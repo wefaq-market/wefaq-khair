@@ -1,0 +1,1710 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Wefaq Platform | Opportunities, Funding, Quran, Languages, Tenders & Auctions</title>
+  <meta name="description" content="Wefaq connects project owners, funding seekers, partners, Quran memorization circles, language teachers, services, tenders and auctions worldwide.">
+  <meta name="theme-color" content="#059669">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="application-name" content="Wefaq">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="canonical" href="https://wefaq-khair.org/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://wefaq-khair.org/">
+  <meta property="og:site_name" content="Wefaq">
+  <meta property="og:title" content="Wefaq Platform | Opportunities, Funding, Quran & Tenders">
+  <meta property="og:description" content="Projects, funding, partnerships, Quran circles, language learning, services, tenders and auctions.">
+  <meta property="og:image" content="https://wefaq-khair.org/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Wefaq Platform">
+  <meta name="twitter:description" content="Global Arabic opportunities platform — projects, Quran, languages, tenders.">
+  <meta name="twitter:image" content="https://wefaq-khair.org/og.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0fdf4', 100: '#dcfce7', 500: '#10b981', 600: '#059669',
+              700: '#047857', 800: '#065f46', 900: '#064e3b',
+              navy: '#0b192c', gold: '#d97706', accent: '#2563eb', purple: '#7c3aed'
+            }
+          },
+          fontFamily: { sans: ['Inter', 'Tajawal', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { font-family: 'Inter', 'Tajawal', sans-serif; }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(229, 231, 235, 0.8);
+    }
+    .dark .glass-card {
+      background: rgba(15, 23, 42, 0.88);
+      border: 1px solid rgba(51, 65, 85, 0.8);
+    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); }
+    ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 4px; }
+    .lang-btn {
+      background-color: #0b4f3b; color: #fff; border: 1px solid #10b981;
+      padding: 6px 14px; border-radius: 8px; cursor: pointer;
+      font-size: 13px; font-weight: 600; transition: all 0.3s ease;
+    }
+    .lang-btn:hover { background-color: #10b981; }
+    html[dir='rtl'] body { text-align: right; }
+    html[dir='rtl'] .fa, html[dir='rtl'] i { }
+    html[dir='rtl'] .flex-row { flex-direction: row-reverse; }
+    html[dir='rtl'] input, html[dir='rtl'] textarea, html[dir='rtl'] select { text-align: right; }
+  </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 w-full border-b border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-700 via-brand-600 to-emerald-400 flex items-center justify-center text-white text-xl font-bold shadow-md shadow-emerald-500/20">W</div>
+        <div>
+          <span class="text-xl font-extrabold bg-gradient-to-r from-brand-800 via-brand-600 to-emerald-500 dark:from-emerald-400 dark:to-teal-200 bg-clip-text text-transparent">Wefaq Global Platform</span>
+          <span class="block text-[10px] font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase">Global & Regional Matching Radar</span>
+        </div>
+      </div>
+
+      <nav class="hidden lg:flex items-center gap-6 text-xs font-semibold text-slate-600 dark:text-slate-300">
+        <a href="#radar-section" class="hover:text-brand-600 dark:hover:text-emerald-400 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-satellite-dish text-brand-500"></i> Full Radar
+        </a>
+        <a href="#marketplace-section" class="hover:text-brand-600 dark:hover:text-emerald-400 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-earth-americas text-blue-500"></i> Marketplace
+        </a>
+      </nav>
+
+      <div class="flex items-center gap-2 sm:gap-3">
+        <button id="langToggleBtn" onclick="toggleLanguage()" class="lang-btn">العربية 🌐</button>
+
+        <select id="currency-select" onchange="renderCards();" class="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs py-1.5 px-2 font-semibold text-slate-700 dark:text-slate-300 focus:outline-none">
+          <option value="SAR" selected>SAR (ر.س)</option>
+          <option value="USD">USD ($)</option>
+          <option value="EGP">EGP (ج.م)</option>
+          <option value="AED">AED (د.إ)</option>
+          <option value="EUR">EUR (€)</option>
+        </select>
+
+        <button id="theme-toggle" onclick="toggleTheme()" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+          <i id="theme-icon" class="fa-solid fa-moon"></i>
+        </button>
+
+        <button onclick="openCreateModal()" class="bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs px-3 py-2 rounded-lg shadow transition transform active:scale-95 flex items-center gap-1.5">
+          <i class="fa-solid fa-plus"></i>
+          <span class="hidden sm:inline">Post Request / Opportunity</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
+
+    <!-- Hero -->
+    <section class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand-900 via-brand-navy to-slate-900 text-white p-6 sm:p-10 shadow-xl">
+      <div class="absolute -right-12 -top-12 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -left-12 -bottom-12 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-8 space-y-4">
+          <div class="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs px-3 py-1 rounded-full font-medium">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            Investment Hub & Global Quran Memorization Circles
+          </div>
+          <h1 class="text-2xl sm:text-4xl font-extrabold leading-tight">
+            The unified platform for Arab projects, funding requests, partnerships, and global Quran memorization circles
+          </h1>
+          <p class="text-slate-300 text-xs sm:text-sm max-w-2xl font-light leading-relaxed">
+            We connect idea & project owners, partnership & funding seekers, and feasibility study providers across the Arab world, plus a global umbrella for Quran teachers and students with continuous sanad, and a language learning section with Arabic first.
+          </p>
+
+          <div class="pt-2 flex flex-wrap gap-3 items-center">
+            <button onclick="openCreateModal('quran')" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-4 py-2.5 rounded-lg text-xs sm:text-sm shadow flex items-center gap-2 transition">
+              <i class="fa-solid fa-book-quran"></i> Request / Offer Quran Memorization
+            </button>
+            <button onclick="openCreateModal('languages')" class="bg-teal-500 hover:bg-teal-600 text-slate-950 font-bold px-4 py-2.5 rounded-lg text-xs sm:text-sm shadow flex items-center gap-2 transition">
+              <i class="fa-solid fa-language"></i> Teach / Learn a Language
+            </button>
+            <button onclick="openCreateModal('invest')" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-4 py-2.5 rounded-lg text-xs sm:text-sm shadow flex items-center gap-2 transition">
+              <i class="fa-solid fa-handshake"></i> Offer Project / Request Funding & Partner
+            </button>
+            <button onclick="triggerFeedRefresh()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-medium px-3.5 py-2.5 rounded-lg text-xs sm:text-sm flex items-center gap-2 transition">
+              <i id="sync-icon" class="fa-solid fa-arrows-rotate"></i> Sync Cloud
+            </button>
+            <button onclick="sharePlatform()" class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-3.5 py-2.5 rounded-lg text-xs sm:text-sm flex items-center gap-2 shadow transition">
+              <i class="fa-solid fa-share-nodes"></i> Share Platform
+            </button>
+          </div>
+        </div>
+
+        <!-- Metrics -->
+        <div class="lg:col-span-4 space-y-3">
+          <div class="grid grid-cols-2 gap-3 text-center">
+            <div class="bg-white/5 border border-white/10 rounded-xl p-3 backdrop-blur-sm">
+              <div class="text-xs text-slate-400">Quran Seekers & Circles</div>
+              <div id="stat-quran" class="text-xl sm:text-2xl font-black text-emerald-400 mt-1">0</div>
+              <div class="text-[10px] text-emerald-300/70">Worldwide</div>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-3 backdrop-blur-sm">
+              <div class="text-xs text-slate-400">Projects & Exhibitors</div>
+              <div id="stat-projects" class="text-xl sm:text-2xl font-black text-blue-400 mt-1">0</div>
+              <div class="text-[10px] text-blue-300/70">Arab World</div>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-3 backdrop-blur-sm">
+              <div class="text-xs text-slate-400">Funding & Partner Seekers</div>
+              <div id="stat-funding" class="text-xl sm:text-2xl font-black text-amber-400 mt-1">0</div>
+              <div class="text-[10px] text-amber-300/70">Investment Opportunities</div>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-xl p-3 backdrop-blur-sm">
+              <div class="text-xs text-slate-400">Feasibility & Ideas</div>
+              <div id="stat-ideas" class="text-xl sm:text-2xl font-black text-purple-400 mt-1">0</div>
+              <div class="text-[10px] text-purple-300/70">Ready to Execute</div>
+            </div>
+            <div class="col-span-2 bg-white/5 border border-white/10 rounded-xl p-3 backdrop-blur-sm">
+              <div class="text-xs text-slate-400">Language Teachers & Learners</div>
+              <div id="stat-languages" class="text-xl sm:text-2xl font-black text-teal-400 mt-1">0</div>
+              <div class="text-[10px] text-teal-300/70">Arabic & Others</div>
+            </div>
+          </div>
+
+          <!-- Visitor Counter (Cloud + Local) -->
+          <div class="bg-gradient-to-r from-cyan-500/15 via-blue-500/10 to-indigo-500/15 border border-cyan-400/25 rounded-xl p-3 backdrop-blur-sm space-y-2.5">
+            <div class="flex items-center justify-between gap-3">
+              <div class="flex items-center gap-2">
+                <div class="w-9 h-9 rounded-lg bg-cyan-500/20 text-cyan-300 flex items-center justify-center"><i class="fa-solid fa-eye"></i></div>
+                <div>
+                  <div class="text-[11px] text-slate-400 font-medium">Platform Visitors</div>
+                  <div class="text-lg font-black text-cyan-300 leading-tight">
+                    <span id="stat-visitors-total">0</span>
+                    <span class="text-[10px] font-semibold text-slate-400 ml-1">total visits</span>
+                  </div>
+                </div>
+              </div>
+              <div class="text-right">
+                <div class="text-[10px] text-slate-400">Online now</div>
+                <div class="text-base font-bold text-emerald-300 flex items-center gap-1 justify-end">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span id="stat-online-num">1</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center justify-between text-[10px] text-slate-400">
+              <span id="stat-visitors-today">Today: 0</span>
+              <span id="stat-visitors-session">Session: 1</span>
+              <span id="stat-my-country" class="text-cyan-300/90 font-semibold">—</span>
+            </div>
+            <div id="visitors-by-country" class="pt-1.5 border-t border-white/10 space-y-1 max-h-28 overflow-y-auto">
+              <div class="text-[10px] text-slate-500 text-center py-1">Loading country breakdown...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- AI Performance & Matching Center -->
+    <section id="ai-center" class="grid grid-cols-1 xl:grid-cols-12 gap-5">
+      <div class="xl:col-span-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-9 h-9 rounded-xl bg-violet-100 dark:bg-violet-950/50 text-violet-600 dark:text-violet-300 flex items-center justify-center"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+              <div>
+                <h2 class="font-extrabold text-slate-900 dark:text-white">AI Match & Performance Center</h2>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400">Connect demand with providers, measure engagement, and surface improvement actions.</p>
+              </div>
+            </div>
+          </div>
+          <span id="ai-engine-status" class="inline-flex items-center gap-1.5 self-start sm:self-auto text-[11px] font-bold px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Smart engine active
+          </span>
+        </div>
+
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
+          <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-3">
+            <div class="text-[10px] uppercase tracking-wide text-slate-400">Opportunities</div>
+            <div id="perf-total" class="text-xl font-black mt-1">0</div>
+          </div>
+          <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-3">
+            <div class="text-[10px] uppercase tracking-wide text-slate-400">Demand signals</div>
+            <div id="perf-demand" class="text-xl font-black mt-1 text-blue-600 dark:text-blue-400">0</div>
+          </div>
+          <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-3">
+            <div class="text-[10px] uppercase tracking-wide text-slate-400">Supply signals</div>
+            <div id="perf-supply" class="text-xl font-black mt-1 text-emerald-600 dark:text-emerald-400">0</div>
+          </div>
+          <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-3">
+            <div class="text-[10px] uppercase tracking-wide text-slate-400">Match readiness</div>
+            <div id="perf-readiness" class="text-xl font-black mt-1 text-violet-600 dark:text-violet-400">0%</div>
+          </div>
+        </div>
+
+        <form id="smart-match-form" class="grid grid-cols-1 md:grid-cols-12 gap-3" onsubmit="runSmartMatch(event)">
+          <div class="md:col-span-5">
+            <label for="match-intent" class="block text-[11px] font-bold text-slate-500 mb-1">What do you need?</label>
+            <input id="match-intent" required maxlength="300" placeholder="e.g. Arabic teacher for beginners, remote, evening..." class="w-full min-h-[44px] bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-3 text-sm focus:ring-2 focus:ring-violet-500 outline-none">
+          </div>
+          <div class="md:col-span-3">
+            <label for="match-category" class="block text-[11px] font-bold text-slate-500 mb-1">Category</label>
+            <select id="match-category" class="w-full min-h-[44px] bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-3 text-sm">
+              <option value="all">Any category</option><option value="projects">Projects</option><option value="funding">Funding</option>
+              <option value="languages">Languages</option><option value="quran">Quran</option><option value="services">Services</option>
+              <option value="demands">Service seekers</option><option value="ideas">Ideas</option>
+            </select>
+          </div>
+          <div class="md:col-span-2">
+            <label for="match-region" class="block text-[11px] font-bold text-slate-500 mb-1">Region</label>
+            <select id="match-region" class="w-full min-h-[44px] bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-3 text-sm">
+              <option value="all">Anywhere</option><option value="KSA">Saudi Arabia</option><option value="EGP">Egypt</option>
+              <option value="UAE">UAE</option><option value="GCC">GCC</option><option value="GLOBAL">Global</option>
+            </select>
+          </div>
+          <div class="md:col-span-2 flex items-end">
+            <button class="w-full min-h-[44px] rounded-xl bg-violet-600 hover:bg-violet-700 text-white font-extrabold text-xs px-4">
+              <i class="fa-solid fa-magnifying-glass-chart mr-1"></i> Smart Match
+            </button>
+          </div>
+        </form>
+
+        <div id="smart-match-results" class="mt-4 hidden" aria-live="polite"></div>
+      </div>
+
+      <aside class="xl:col-span-4 bg-slate-900 text-white rounded-2xl p-5 sm:p-6 border border-slate-800">
+        <div class="flex items-center gap-2 mb-4">
+          <i class="fa-solid fa-chart-line text-amber-400"></i>
+          <h3 class="font-extrabold">Improvement Monitor</h3>
+        </div>
+        <div id="improvement-list" class="space-y-3 text-xs"></div>
+        <div class="mt-5 pt-4 border-t border-white/10">
+          <button type="button" onclick="refreshPerformanceCenter()" class="w-full rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 py-2.5 text-xs font-bold">
+            <i class="fa-solid fa-arrows-rotate mr-1"></i> Recalculate insights
+          </button>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Client / Provider Workspace -->
+    <section id="workspace-section" class="scroll-mt-20 grid grid-cols-1 xl:grid-cols-12 gap-5">
+      <div class="xl:col-span-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+          <div>
+            <div class="flex items-center gap-2"><span class="w-9 h-9 rounded-xl bg-cyan-100 dark:bg-cyan-950/50 text-cyan-600 dark:text-cyan-300 flex items-center justify-center"><i class="fa-solid fa-people-arrows"></i></span><div><h2 class="font-extrabold">My Wefaq Workspace</h2><p class="text-[11px] text-slate-500">Manage your identity, matches, conversations and active connections.</p></div></div>
+          </div>
+          <div id="auth-state" class="text-[11px] font-bold text-slate-500">Guest mode</div>
+        </div>
+        <div id="workspace-guest" class="rounded-xl border border-dashed border-slate-300 dark:border-slate-700 p-5 text-center">
+          <i class="fa-solid fa-user-lock text-2xl text-slate-400 mb-2"></i><h3 class="font-extrabold">Create your secure account</h3><p class="text-xs text-slate-500 mt-1 mb-4">Unlock saved matches, private messaging, requests, reviews and your performance dashboard.</p>
+          <button type="button" onclick="openAuthModal()" class="rounded-xl bg-brand-600 text-white px-5 py-2.5 text-xs font-bold">Sign in / Create account</button>
+        </div>
+        <div id="workspace-user" class="hidden">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+            <div class="rounded-xl border p-3"><div class="text-[10px] text-slate-400">Matches</div><div id="ws-matches" class="text-xl font-black">0</div></div>
+            <div class="rounded-xl border p-3"><div class="text-[10px] text-slate-400">Saved</div><div id="ws-saved" class="text-xl font-black">0</div></div>
+            <div class="rounded-xl border p-3"><div class="text-[10px] text-slate-400">Connections</div><div id="ws-connections" class="text-xl font-black">0</div></div>
+            <div class="rounded-xl border p-3"><div class="text-[10px] text-slate-400">Messages</div><div id="ws-messages" class="text-xl font-black">0</div></div>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div class="rounded-xl border p-4">
+              <div class="flex justify-between items-center mb-2"><h3 class="text-xs font-extrabold">Active Connections</h3><div class="flex gap-2"><button type="button" onclick="openProfileEditor()" class="text-[10px] text-brand-600">Profile</button><button type="button" onclick="loadWorkspace()" class="text-[10px] text-brand-600">Refresh</button></div></div>
+              <div id="ws-connections-list" class="space-y-2 text-xs"></div>
+            </div>
+            <div class="rounded-xl border p-4">
+              <div class="flex justify-between items-center mb-2"><h3 class="text-xs font-extrabold">Notifications</h3><button type="button" onclick="markAllNotificationsRead()" class="text-[10px] text-brand-600">Mark all read</button></div>
+              <div id="ws-notifications" class="space-y-2 text-xs"></div>
+            </div>
+            <div class="rounded-xl border p-4"><h3 class="text-xs font-extrabold mb-2">Recommended Actions</h3><div id="ws-actions" class="space-y-2 text-xs"></div></div>
+          </div>
+        </div>
+      </div>
+      <aside class="xl:col-span-4 bg-gradient-to-br from-slate-950 to-slate-900 text-white rounded-2xl p-5 sm:p-6 border border-slate-800">
+        <div class="flex items-center gap-2 mb-4"><i class="fa-solid fa-shield-halved text-emerald-400"></i><h3 class="font-extrabold">Trust & Quality</h3></div>
+        <div class="space-y-3 text-xs">
+          <div><div class="flex justify-between mb-1"><span>Profile completeness</span><b id="trust-completeness">0%</b></div><div class="h-2 bg-white/10 rounded-full overflow-hidden"><div id="trust-completeness-bar" class="h-full bg-emerald-400 rounded-full" style="width:0%"></div></div></div>
+          <div><div class="flex justify-between mb-1"><span>Verified signals</span><b id="trust-verified">0</b></div><div class="h-2 bg-white/10 rounded-full overflow-hidden"><div id="trust-verified-bar" class="h-full bg-cyan-400 rounded-full" style="width:0%"></div></div></div>
+          <div class="rounded-xl bg-white/5 border border-white/10 p-3"><div class="font-bold mb-1">AI improvement loop</div><div class="text-white/60 leading-5">Every view, match, contact, completion and review can improve future recommendations.</div></div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Smart Filter Radar -->
+    <section id="radar-section" class="scroll-mt-20">
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 sm:p-6 shadow-sm space-y-4">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-filter text-brand-600 dark:text-emerald-400"></i>
+            <h3 class="font-bold text-slate-900 dark:text-white text-base">Smart Comprehensive Filter Radar</h3>
+          </div>
+
+          <div class="flex items-center gap-1.5 overflow-x-auto pb-2 lg:pb-0 text-xs">
+            <button id="tab-all" onclick="setCategoryFilter('all')" class="px-3 py-1.5 rounded-lg bg-brand-600 text-white font-bold transition whitespace-nowrap">All</button>
+            <button id="tab-quran" onclick="setCategoryFilter('quran')" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 font-medium transition whitespace-nowrap">📖 Quran Memorization (Global)</button>
+            <button id="tab-projects" onclick="setCategoryFilter('projects')" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 font-medium transition whitespace-nowrap">🏬 Projects & Exhibitors</button>
+            <button id="tab-demands" onclick="setCategoryFilter('demands')" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 font-medium transition whitespace-nowrap">🛒 Service Seekers</button>
+            <button id="tab-funding" onclick="setCategoryFilter('funding')" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 font-medium transition whitespace-nowrap">💰 Funding & Partners</button>
+            <button id="tab-ideas" onclick="setCategoryFilter('ideas')" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 font-medium transition whitespace-nowrap">💡 Ideas & Feasibility</button>
+            <button id="tab-languages" onclick="setCategoryFilter('languages')" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 font-medium transition whitespace-nowrap">🌍 Language Learning</button>
+            <button id="tab-services" onclick="setCategoryFilter('services')" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 font-medium transition whitespace-nowrap">🛠 Service Offers</button>
+            <button id="tab-tenders" onclick="setCategoryFilter('tenders')" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 font-medium transition whitespace-nowrap">📑 Tenders</button>
+            <button id="tab-auctions" onclick="setCategoryFilter('auctions')" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 font-medium transition whitespace-nowrap">🔨 Auctions</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div class="relative">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-slate-400 text-xs"></i>
+            <input type="text" id="search-keyword" oninput="renderCards()" placeholder="Search by keyword, sheikh, project, country..." class="w-full pl-9 pr-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none">
+          </div>
+
+          <div>
+            <select id="filter-region" onchange="renderCards()" class="w-full py-2 px-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none">
+              <option value="all">All countries, Middle East & World</option>
+              <option value="GLOBAL">Global (Worldwide - Online)</option>
+              <option value="PALESTINE">Palestine & Gaza</option>
+              <option value="GAZA">Gaza specifically</option>
+              <option value="AFRICA">Africa (East, West & North)</option>
+              <option value="FOREIGN">Foreign countries (Europe, Americas, Asia)</option>
+              <option value="KSA">Saudi Arabia (KSA)</option>
+              <option value="EGP">Egypt</option>
+              <option value="UAE">United Arab Emirates (UAE)</option>
+              <option value="QAT">Qatar</option>
+              <option value="KW">Kuwait</option>
+              <option value="GCC">Rest of GCC</option>
+              <option value="MAGHREB">Maghreb</option>
+              <option value="LEVANT">Levant (Jordan, Syria, Lebanon)</option>
+            </select>
+          </div>
+
+          <div>
+            <select id="filter-type" onchange="renderCards()" class="w-full py-2 px-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none">
+              <option value="all">All request & offer types</option>
+              <option value="offer">Offer (Available for execution/sale)</option>
+              <option value="demand">Demand (Seeking to buy/execute)</option>
+              <option value="seeking_partner">Seeking Partner (Co-founder)</option>
+              <option value="seeking_funds">Seeking Funding</option>
+            </select>
+          </div>
+
+          <div>
+            <select id="filter-badge" onchange="renderCards()" class="w-full py-2 px-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none">
+              <option value="all">All verification levels</option>
+              <option value="sanad">Certified with continuous sanad</option>
+              <option value="reviewed">Reviewed by admin (reciter / teacher)</option>
+              <option value="feasibility">Feasibility study attached</option>
+              <option value="verified">Licensed / Verified record</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="quran-extra-filters" class="hidden pt-2 border-t border-slate-100 dark:border-slate-800 grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-500 mb-1">Quranic narration / reading</label>
+            <select id="filter-riwaya" onchange="renderCards()" class="w-full py-1.5 px-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-md text-xs">
+              <option value="all">All narrations & readings</option>
+              <option value="Hafs from Asim">Hafs from Asim</option>
+              <option value="Warsh from Nafi">Warsh from Nafi</option>
+              <option value="Qalun from Nafi">Qalun from Nafi</option>
+              <option value="Al-Duri from Abu Amr">Al-Duri from Abu Amr</option>
+              <option value="The Ten Readings">The Ten Readings</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-500 mb-1">Target audience</label>
+            <select id="filter-gender" onchange="renderCards()" class="w-full py-1.5 px-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-md text-xs">
+              <option value="all">All (Men / Women / Children)</option>
+              <option value="Children">Children & young students</option>
+              <option value="Men">Men only</option>
+              <option value="Women">Women & female teachers</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-500 mb-1">Study mode</label>
+            <select id="filter-mode" onchange="renderCards()" class="w-full py-1.5 px-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-md text-xs">
+              <option value="all">Online (Global) & In-person</option>
+              <option value="online">Remote (Electronic circles worldwide)</option>
+              <option value="in_person">In-person (Mosques & centers)</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="languages-extra-filters" class="hidden pt-2 border-t border-slate-100 dark:border-slate-800 grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-500 mb-1">Language / Track</label>
+            <select id="filter-lang-track" onchange="renderCards()" class="w-full py-1.5 px-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-md text-xs">
+              <option value="all">All languages & tracks</option>
+              <option value="Arabic for Non-Native Speakers">Arabic for Non-Native Speakers</option>
+              <option value="Classical Arabic & Language Sciences">Classical Arabic & Language Sciences</option>
+              <option value="Quranic Arabic & Linguistic Tajweed">Quranic Arabic & Linguistic Tajweed</option>
+              <option value="Language Exchange">Language Exchange</option>
+              <option value="English">English</option>
+              <option value="Other Language">Other Language</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-500 mb-1">Level</label>
+            <select id="filter-lang-level" onchange="renderCards()" class="w-full py-1.5 px-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-md text-xs">
+              <option value="all">All levels</option>
+              <option value="Beginner">Beginner</option>
+              <option value="Intermediate">Intermediate</option>
+              <option value="Advanced">Advanced</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marketplace -->
+    <section id="marketplace-section" class="space-y-4">
+      <div class="flex flex-col gap-3">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-2 flex-wrap">
+            <h2 class="text-lg font-extrabold text-slate-900 dark:text-white">Registered Requests & Opportunities</h2>
+            <span id="results-count-badge" class="bg-brand-100 text-brand-800 dark:bg-brand-900/50 dark:text-brand-300 text-xs font-bold px-2.5 py-0.5 rounded-full">0 results</span>
+          </div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <button onclick="showAfricaQuranReciters()" class="text-xs bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3 py-1.5 rounded-lg shadow flex items-center gap-1.5 transition">
+              <i class="fa-solid fa-book-quran"></i> Quran Reciters in Africa
+            </button>
+            <button onclick="exportCardsJSON()" class="text-xs bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 flex items-center gap-1.5 transition">
+              <i class="fa-solid fa-download"></i> Export JSON
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+
+      <div id="empty-state" class="hidden text-center py-12 bg-white dark:bg-slate-900 rounded-2xl border border-dashed border-slate-300 dark:border-slate-800">
+        <div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 flex items-center justify-center mx-auto mb-3">
+          <i class="fa-solid fa-inbox text-xl"></i>
+        </div>
+        <h3 class="text-base font-bold text-slate-700 dark:text-slate-300">No results match your current filters</h3>
+        <p class="text-xs text-slate-400 mt-1 max-w-sm mx-auto">Try changing the search criteria or reset filters to browse all cards.</p>
+        <button onclick="resetFilters()" class="mt-4 text-xs font-bold text-brand-600 hover:underline">Reset Filters</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Mobile bottom nav -->
+  <nav id="mobile-bottom-nav" class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-slate-950/95 backdrop-blur border-t border-slate-800 flex justify-around items-center py-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] text-[10px] font-semibold text-slate-400">
+    <a href="#radar-section" class="flex flex-col items-center gap-0.5 px-2 py-1 hover:text-emerald-400"><i class="fa-solid fa-satellite-dish text-base"></i>Radar</a>
+    <a href="#marketplace-section" class="flex flex-col items-center gap-0.5 px-2 py-1 hover:text-emerald-400"><i class="fa-solid fa-store text-base"></i>Market</a>
+    <button type="button" onclick="openCreateModal()" class="flex flex-col items-center gap-0.5 px-2 py-1 text-emerald-400"><i class="fa-solid fa-plus-circle text-xl"></i>Add</button>
+    <button type="button" onclick="openMine()" class="flex flex-col items-center gap-0.5 px-2 py-1 hover:text-emerald-400"><i class="fa-solid fa-user text-base"></i>Account</button>
+    <button type="button" onclick="openAuthModal()" class="flex flex-col items-center gap-0.5 px-2 py-1 hover:text-emerald-400"><i class="fa-solid fa-right-to-bracket text-base"></i>Login</button>
+  </nav>
+  <style>@media(max-width:768px){body{padding-bottom:4.5rem}}</style>
+
+  <!-- Contact Modal -->
+  <div id="contact-modal" class="fixed inset-0 z-50 hidden bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
+      <button onclick="closeContactModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><i class="fa-solid fa-xmark text-lg"></i></button>
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-lg"><i class="fa-brands fa-whatsapp"></i></div>
+        <div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base">Direct contact with the poster</h3>
+          <p class="text-xs text-slate-500">A ready agreement message has been prepared for you</p>
+        </div>
+      </div>
+      <div class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Your name or organization</label>
+          <input type="text" id="sender-name" value="Investor / Quran seeker via Wefaq" oninput="updateWhatsAppTemplate()" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg py-2 px-3 text-xs focus:ring-2 focus:ring-brand-500">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Message preview</label>
+          <textarea id="whatsapp-template-text" rows="5" readonly class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg p-3 text-xs text-slate-700 dark:text-slate-300 font-mono resize-none"></textarea>
+        </div>
+        <div class="flex items-center gap-2 pt-2">
+          <button id="send-whatsapp-btn" onclick="sendWhatsAppMessage()" class="flex-grow bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs py-2.5 rounded-lg flex items-center justify-center gap-2 shadow transition">
+            <i class="fa-brands fa-whatsapp text-sm"></i> Open WhatsApp chat
+          </button>
+          <button onclick="copyContactText()" class="bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs px-3 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 transition"><i class="fa-solid fa-copy"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Share Modal -->
+  <div id="share-modal" class="fixed inset-0 z-50 hidden bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl max-w-sm w-full p-6 shadow-2xl relative text-center">
+      <button onclick="closeShareModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><i class="fa-solid fa-xmark text-lg"></i></button>
+      <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xl mx-auto mb-3"><i class="fa-solid fa-share-nodes"></i></div>
+      <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">Share this opportunity</h3>
+      <p class="text-xs text-slate-500 mb-5">Spread the investment or Quran opportunity to reach more interested people</p>
+      <div class="grid grid-cols-4 gap-3 mb-5">
+        <button onclick="shareVia('whatsapp')" class="flex flex-col items-center gap-1 text-emerald-600 hover:opacity-80 transition">
+          <div class="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-950 flex items-center justify-center text-lg"><i class="fa-brands fa-whatsapp"></i></div>
+          <span class="text-[10px] font-bold">WhatsApp</span>
+        </button>
+        <button onclick="shareVia('telegram')" class="flex flex-col items-center gap-1 text-sky-500 hover:opacity-80 transition">
+          <div class="w-10 h-10 rounded-full bg-sky-100 dark:bg-sky-950 flex items-center justify-center text-lg"><i class="fa-brands fa-telegram"></i></div>
+          <span class="text-[10px] font-bold">Telegram</span>
+        </button>
+        <button onclick="shareVia('x')" class="flex flex-col items-center gap-1 text-slate-800 dark:text-slate-200 hover:opacity-80 transition">
+          <div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-lg"><i class="fa-brands fa-x-twitter"></i></div>
+          <span class="text-[10px] font-bold">X / Twitter</span>
+        </button>
+        <button onclick="shareVia('linkedin')" class="flex flex-col items-center gap-1 text-blue-700 hover:opacity-80 transition">
+          <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-950 flex items-center justify-center text-lg"><i class="fa-brands fa-linkedin-in"></i></div>
+          <span class="text-[10px] font-bold">LinkedIn</span>
+        </button>
+      </div>
+      <div class="flex items-center gap-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg p-2">
+        <input type="text" id="share-link-input" readonly value="" class="bg-transparent text-xs text-slate-500 w-full focus:outline-none">
+        <button onclick="copyShareLink()" class="bg-slate-200 dark:bg-slate-800 text-xs px-2.5 py-1 rounded font-bold hover:bg-slate-300">Copy</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Connection / Chat / Profile / AI modals -->
+  <div id="chat-modal" class="fixed inset-0 z-[60] hidden bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-2xl max-w-lg w-full p-5 shadow-2xl border border-slate-200 dark:border-slate-800">
+      <div class="flex items-center justify-between mb-3"><h3 class="font-extrabold">Private Conversation</h3><button type="button" onclick="closeChatModal()" class="text-slate-400"><i class="fa-solid fa-xmark"></i></button></div>
+      <div id="chat-list" class="h-64 overflow-y-auto space-y-2 rounded-xl bg-slate-50 dark:bg-slate-950 p-3"></div>
+      <form onsubmit="sendChatMessage(event)" class="mt-3 flex gap-2">
+        <input id="chat-input" required maxlength="4000" placeholder="Write a message..." class="flex-1 min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 text-sm">
+        <button class="px-4 rounded-xl bg-brand-600 text-white text-xs font-bold">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="profile-modal" class="fixed inset-0 z-[60] hidden bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-800">
+      <div class="flex items-center justify-between mb-4"><h3 class="font-extrabold">My Profile</h3><button type="button" onclick="closeProfileEditor()" class="text-slate-400"><i class="fa-solid fa-xmark"></i></button></div>
+      <form onsubmit="saveProfile(event)" class="space-y-3">
+        <input id="profile-name" required maxlength="120" placeholder="Display name" class="w-full min-h-[44px] rounded-xl border bg-slate-50 dark:bg-slate-950 px-3 text-sm">
+        <input id="profile-phone" maxlength="30" placeholder="Phone / WhatsApp" class="w-full min-h-[44px] rounded-xl border bg-slate-50 dark:bg-slate-950 px-3 text-sm">
+        <input id="profile-region" maxlength="60" placeholder="Country / Region" class="w-full min-h-[44px] rounded-xl border bg-slate-50 dark:bg-slate-950 px-3 text-sm">
+        <textarea id="profile-bio" maxlength="1200" rows="4" placeholder="Tell people what you do and what you are looking for..." class="w-full rounded-xl border bg-slate-50 dark:bg-slate-950 p-3 text-sm"></textarea>
+        <button class="w-full min-h-[44px] rounded-xl bg-brand-600 text-white text-xs font-extrabold">Save Profile</button>
+      </form>
+      <div id="profile-message" class="text-[11px] text-slate-500 mt-2"></div>
+    </div>
+  </div>
+
+  <div id="ai-assistant-modal" class="fixed inset-0 z-[60] hidden bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-800">
+      <div class="flex items-center justify-between mb-4"><div><h3 class="font-extrabold">Wefaq AI Assistant</h3><p class="text-[11px] text-slate-500">Ask about matches, your profile, listings or next actions.</p></div><button type="button" onclick="closeAiAssistant()" class="text-slate-400"><i class="fa-solid fa-xmark"></i></button></div>
+      <div id="ai-chat-log" class="h-56 overflow-y-auto rounded-xl bg-slate-50 dark:bg-slate-950 p-3 space-y-2 text-xs"></div>
+      <form onsubmit="askAiAssistant(event)" class="mt-3 flex gap-2">
+        <input id="ai-assistant-input" required maxlength="1200" placeholder="What should I improve first?" class="flex-1 min-h-[44px] rounded-xl border bg-white dark:bg-slate-900 px-3 text-sm">
+        <button class="px-4 rounded-xl bg-violet-600 text-white text-xs font-bold">Ask</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Create Modal -->
+  <div id="create-modal" class="fixed inset-0 z-50 hidden bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl max-w-xl w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closeCreateModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><i class="fa-solid fa-xmark text-lg"></i></button>
+      <div class="mb-5">
+        <h3 class="font-bold text-slate-900 dark:text-white text-lg">Post a new request / project / Quran circle</h3>
+        <p class="text-xs text-slate-500">Choose the category and enter your details so matching people can reach you quickly</p>
+      </div>
+
+      <form id="create-card-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Main title *</label>
+            <input type="text" id="new-title" required placeholder="e.g. Funding request for a sweets shop / Sanad circle for children" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg py-2 px-3 text-xs focus:ring-2 focus:ring-brand-500">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Main category *</label>
+            <select id="new-category" required onchange="toggleFormFields()" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg py-2 px-3 text-xs focus:ring-2 focus:ring-brand-500">
+              <option value="quran">📖 Quran Memorization (Global)</option>
+              <option value="projects">🏬 Existing Project / Project Exhibitor</option>
+              <option value="demands">🛒 Service / Supply Seeker</option>
+              <option value="funding">💰 Funding / Investment Partnership Seeker</option>
+              <option value="ideas">💡 Idea or Feasibility Study</option>
+              <option value="languages">🌍 Language Teaching</option>
+              <option value="services">🛠 Service Offer</option>
+              <option value="tenders">📑 Tender</option>
+              <option value="auctions">🔨 Auction</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Country / Region *</label>
+            <select id="new-region" required class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg py-2 px-3 text-xs focus:ring-2 focus:ring-brand-500">
+              <option value="GLOBAL">Global (Worldwide - Online)</option>
+              <option value="PALESTINE">Palestine</option>
+              <option value="GAZA">Gaza</option>
+              <option value="AFRICA">Africa</option>
+              <option value="FOREIGN">Foreign</option>
+              <option value="KSA">Saudi Arabia</option>
+              <option value="EGP">Egypt</option>
+              <option value="UAE">UAE</option>
+              <option value="QAT">Qatar</option>
+              <option value="KW">Kuwait</option>
+              <option value="GCC">Rest of GCC</option>
+              <option value="MAGHREB">Maghreb</option>
+              <option value="LEVANT">Levant</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Listing type</label>
+            <select id="new-type" required class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg py-2 px-3 text-xs focus:ring-2 focus:ring-brand-500">
+              <option value="offer">Offer</option>
+              <option value="demand">Demand</option>
+              <option value="seeking_partner">Seeking Partner</option>
+              <option value="seeking_funds">Seeking Funding</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Amount / Capital</label>
+            <input type="number" id="new-amount" placeholder="0" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg py-2 px-3 text-xs focus:ring-2 focus:ring-brand-500">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Full description *</label>
+          <textarea id="new-description" required rows="3" placeholder="Explain your request, scope of work, partnership terms..." class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg p-3 text-xs focus:ring-2 focus:ring-brand-500 resize-none"></textarea>
+        </div>
+
+        <div id="quran-form-fields" class="hidden space-y-3 p-3 bg-emerald-500/10 rounded-xl border border-emerald-500/20">
+          <h4 class="text-xs font-bold text-emerald-700 dark:text-emerald-400">Quran Circle Details</h4>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div>
+              <label class="block text-[11px] font-semibold mb-1">Narration</label>
+              <input type="text" id="new-riwaya" placeholder="Hafs from Asim" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-md py-1.5 px-2.5 text-xs">
+            </div>
+            <div>
+              <label class="block text-[11px] font-semibold mb-1">Sheikh / Reciter</label>
+              <input type="text" id="new-sheikh" placeholder="Sheikh name" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-md py-1.5 px-2.5 text-xs">
+            </div>
+            <div>
+              <label class="block text-[11px] font-semibold mb-1">Audience</label>
+              <select id="new-gender" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-md py-1.5 px-2.5 text-xs">
+                <option value="Children">Children</option>
+                <option value="Men">Men</option>
+                <option value="Women">Women</option>
+                <option value="All">Everyone</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div id="languages-form-fields" class="hidden space-y-3 p-3 bg-teal-500/10 rounded-xl border border-teal-500/20">
+          <h4 class="text-xs font-bold text-teal-700 dark:text-teal-400">Language Lesson Details</h4>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div>
+              <label class="block text-[11px] font-semibold mb-1">Language / Track</label>
+              <select id="new-lang-track" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-md py-1.5 px-2.5 text-xs">
+                <option value="Arabic for Non-Native Speakers">Arabic for Non-Native Speakers</option>
+                <option value="Classical Arabic & Language Sciences">Classical Arabic</option>
+                <option value="English">English</option>
+                <option value="Other Language">Other</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[11px] font-semibold mb-1">Level</label>
+              <select id="new-lang-level" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-md py-1.5 px-2.5 text-xs">
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+                <option value="All levels">All levels</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[11px] font-semibold mb-1">Teacher name</label>
+              <input type="text" id="new-lang-teacher" placeholder="Optional" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-md py-1.5 px-2.5 text-xs">
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">WhatsApp number with country code *</label>
+            <input type="text" id="new-phone" required placeholder="e.g. 966500000000" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg py-2 px-3 text-xs focus:ring-2 focus:ring-brand-500">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">License / Certification (optional)</label>
+            <input type="text" id="new-license" placeholder="e.g. SANAD-09" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg py-2 px-3 text-xs focus:ring-2 focus:ring-brand-500">
+          </div>
+        </div>
+
+        <div class="pt-3 flex justify-end gap-2">
+          <button type="button" onclick="closeCreateModal()" class="px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg text-xs font-semibold">Cancel</button>
+          <button type="submit" class="px-5 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-lg text-xs font-bold shadow transition">Publish to Cloud</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Auth Modal -->
+  <div id="auth-modal" class="fixed inset-0 z-[70] hidden bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 w-full max-w-md p-6 shadow-2xl relative">
+      <button type="button" onclick="closeAuthModal()" class="absolute top-4 right-4 text-slate-400"><i class="fa-solid fa-xmark"></i></button>
+      <div class="flex items-center gap-3 mb-5"><div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center"><i class="fa-solid fa-user-shield"></i></div><div><h2 class="font-extrabold">Wefaq Account</h2><p class="text-[11px] text-slate-500">Secure cloud identity</p></div></div>
+      <form id="auth-form" onsubmit="submitAuth(event)" class="space-y-3">
+        <input id="auth-name" maxlength="80" placeholder="Full name (for new account)" class="w-full rounded-xl border bg-slate-50 dark:bg-slate-950 px-3 py-3 text-sm">
+        <input id="auth-email" type="email" required placeholder="Email" class="w-full rounded-xl border bg-slate-50 dark:bg-slate-950 px-3 py-3 text-sm">
+        <input id="auth-password" type="password" minlength="8" required placeholder="Password (8+ characters)" class="w-full rounded-xl border bg-slate-50 dark:bg-slate-950 px-3 py-3 text-sm">
+        <select id="auth-type" class="w-full rounded-xl border bg-slate-50 dark:bg-slate-950 px-3 py-3 text-sm"><option value="client">Client</option><option value="provider">Provider</option><option value="organization">Organization</option><option value="teacher">Teacher</option><option value="investor">Investor</option></select>
+        <div class="grid grid-cols-2 gap-2"><button class="rounded-xl bg-brand-600 text-white py-3 text-xs font-extrabold">Sign in</button><button type="button" onclick="signUpUser()" class="rounded-xl border py-3 text-xs font-extrabold">Create account</button></div>
+        <p id="auth-message" class="text-xs text-center text-slate-500"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===================== MAIN SCRIPT ===================== -->
+  <script>
+    // ========== CONFIG (ONLY ONCE) ==========
+    const SITE = { name: 'Wefaq', url: 'https://wefaq-khair.org', domain: 'wefaq-khair.org' };
+    const SUPABASE_URL = "https://zwgkrwkrohkmnyoixude.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp3Z2tyd2tyb2hrbW55b2l4dWRlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA2NzY2NDksImV4cCI6MjEwNjI1MjY0OX0.m4oZowdJ0-UbZ4ZFkygSp7yWo4BXENV2rlkzGMPF2JE";
+
+    let supabaseClient = null;
+    if (typeof supabase !== 'undefined') {
+      supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      console.log("Supabase client ready");
+    }
+
+    // ========== SAFE STORAGE HELPERS ==========
+    function safeGet(key, defaultValue = '0') {
+      try { return localStorage.getItem(key) || defaultValue; } catch (e) { return defaultValue; }
+    }
+    function safeSet(key, value) {
+      try { localStorage.setItem(key, value); } catch (e) { /* sandboxed – ignore */ }
+    }
+
+    // ========== LANGUAGE & THEME ==========
+    const I18N = {
+      'Wefaq Global Platform':'منصة وفاق العالمية','Global & Regional Matching Radar':'رادار المطابقة العالمية والإقليمية','Full Radar':'الرادار الكامل','Marketplace':'السوق','Post Request / Opportunity':'نشر طلب / فرصة','Investment Hub & Global Quran Memorization Circles':'مركز الاستثمار وحلقات تحفيظ القرآن العالمية','The unified platform for Arab projects, funding requests, partnerships, and global Quran memorization circles':'منصة موحدة للمشاريع العربية وطلبات التمويل والشراكات وحلقات تحفيظ القرآن حول العالم','We connect idea & project owners, partnership & funding seekers, and feasibility study providers across the Arab world, plus a global umbrella for Quran teachers and students with continuous sanad, and a language learning section with Arabic first.':'نربط أصحاب الأفكار والمشاريع، وطالبي الشراكة والتمويل، ومقدمي دراسات الجدوى في العالم العربي، مع مظلة عالمية لمعلمي وطلاب القرآن ذوي السند المتصل، وقسم لتعلم اللغات يبدأ بالعربية.','Request / Offer Quran Memorization':'طلب / عرض تحفيظ القرآن','Teach / Learn a Language':'تعليم / تعلم لغة','Offer Project / Request Funding & Partner':'عرض مشروع / طلب تمويل وشريك','Sync Cloud':'مزامنة سحابية','Share Platform':'مشاركة المنصة','Metrics':'الإحصائيات','Quran Seekers & Circles':'طالبو القرآن والحلقات','Worldwide':'حول العالم','Projects & Exhibitors':'المشاريع والعارضون','Arab World':'العالم العربي','Funding & Partner Seekers':'طالبو التمويل والشركاء','Investment Opportunities':'فرص الاستثمار','Feasibility & Ideas':'دراسات الجدوى والأفكار','Ready to Execute':'جاهز للتنفيذ','Language Teachers & Learners':'معلمو ومتعلّمو اللغات','Arabic & Others':'العربية وغيرها','Visitor Counter (Cloud + Local)':'عداد الزوار (سحابي + محلي)','Platform Visitors':'زوار المنصة','total visits':'إجمالي الزيارات','Online now':'متصلون الآن','Today: 0':'اليوم: 0','Session: 1':'الجلسة: 1','Loading country breakdown...':'جاري تحميل توزيع الدول...','AI Performance & Matching Center':'مركز أداء ومطابقة الذكاء الاصطناعي','AI Match & Performance Center':'مركز المطابقة والأداء بالذكاء الاصطناعي','Connect demand with providers, measure engagement, and surface improvement actions.':'اربط الطلب بمقدمي الخدمات، وقِس التفاعل، واكتشف إجراءات التحسين.','Smart engine active':'المحرك الذكي نشط','Opportunities':'الفرص','Demand signals':'إشارات الطلب','Supply signals':'إشارات العرض','Match readiness':'جاهزية المطابقة','What do you need?':'ماذا تحتاج؟','Category':'التصنيف','Any category':'أي تصنيف','Projects':'مشاريع','Funding':'تمويل','Languages':'لغات','Quran':'قرآن','Services':'خدمات','Service seekers':'طالبو الخدمات','Ideas':'أفكار','Region':'المنطقة','Anywhere':'أي مكان','Saudi Arabia':'السعودية','Egypt':'مصر','UAE':'الإمارات','GCC':'الخليج','Global':'عالمي','Smart Match':'مطابقة ذكية','Improvement Monitor':'مراقب التحسين','Recalculate insights':'إعادة حساب التحليلات','Client / Provider Workspace':'مساحة العميل / مقدم الخدمة','My Wefaq Workspace':'مساحة وفاق الخاصة بي','Manage your identity, matches, conversations and active connections.':'إدارة هويتك ومطابقاتك ومحادثاتك واتصالاتك النشطة.','Guest mode':'وضع الزائر','Create your secure account':'أنشئ حسابك الآمن','Unlock saved matches, private messaging, requests, reviews and your performance dashboard.':'فعّل المطابقات المحفوظة والرسائل الخاصة والطلبات والتقييمات ولوحة الأداء.','Sign in / Create account':'تسجيل الدخول / إنشاء حساب','Matches':'المطابقات','Saved':'المحفوظات','Connections':'الاتصالات','Messages':'الرسائل','Active Connections':'الاتصالات النشطة','Profile':'الملف الشخصي','Refresh':'تحديث','Notifications':'الإشعارات','Mark all read':'تحديد الكل كمقروء','Recommended Actions':'الإجراءات المقترحة','Trust & Quality':'الثقة والجودة','Profile completeness':'اكتمال الملف الشخصي','Verified signals':'إشارات التحقق','AI improvement loop':'حلقة تحسين الذكاء الاصطناعي','Every view, match, contact, completion and review can improve future recommendations.':'كل مشاهدة ومطابقة وتواصل وإتمام وتقييم يمكن أن يحسن التوصيات المستقبلية.','Smart Filter Radar':'رادار التصفية الذكي','Smart Comprehensive Filter Radar':'رادار التصفية الذكي الشامل','All':'الكل','📖 Quran Memorization (Global)':'📖 تحفيظ القرآن (عالمي)','🏬 Projects & Exhibitors':'🏬 المشاريع والعارضون','🛒 Service Seekers':'🛒 طالبو الخدمات','💰 Funding & Partners':'💰 التمويل والشركاء','💡 Ideas & Feasibility':'💡 الأفكار ودراسات الجدوى','🌍 Language Learning':'🌍 تعلم اللغات','🛠 Service Offers':'🛠 عروض الخدمات','📑 Tenders':'📑 المناقصات','🔨 Auctions':'🔨 المزادات','All countries, Middle East & World':'كل الدول والشرق الأوسط والعالم','Global (Worldwide - Online)':'عالمي (حول العالم - أونلاين)','Palestine & Gaza':'فلسطين وغزة','Gaza specifically':'غزة تحديدًا','Africa (East, West & North)':'أفريقيا (شرق وغرب وشمال)','Foreign countries (Europe, Americas, Asia)':'الدول الأجنبية (أوروبا والأمريكتان وآسيا)','Saudi Arabia (KSA)':'السعودية (KSA)','United Arab Emirates (UAE)':'الإمارات (UAE)','Qatar':'قطر','Kuwait':'الكويت','Rest of GCC':'باقي دول الخليج','Maghreb':'المغرب العربي','Levant (Jordan, Syria, Lebanon)':'بلاد الشام (الأردن وسوريا ولبنان)','All request & offer types':'كل أنواع الطلب والعرض','Offer (Available for execution/sale)':'عرض (متاح للتنفيذ/البيع)','Demand (Seeking to buy/execute)':'طلب (يبحث عن شراء/تنفيذ)','Seeking Partner (Co-founder)':'طلب شريك (شريك مؤسس)','Seeking Funding':'طلب تمويل','All verification levels':'كل مستويات التحقق','Certified with continuous sanad':'موثق بسند متصل','Reviewed by admin (reciter / teacher)':'مراجَع من الإدارة (قارئ / معلم)','Feasibility study attached':'دراسة جدوى مرفقة','Licensed / Verified record':'سجل مرخص / موثق','Quranic narration / reading':'الرواية / القراءة القرآنية','All narrations & readings':'كل الروايات والقراءات','Hafs from Asim':'حفص عن عاصم','Warsh from Nafi':'ورش عن نافع','Qalun from Nafi':'قالون عن نافع','Al-Duri from Abu Amr':'الدوري عن أبي عمرو','The Ten Readings':'القراءات العشر','Target audience':'الفئة المستهدفة','All (Men / Women / Children)':'الجميع (رجال / نساء / أطفال)','Children & young students':'الأطفال والطلاب الصغار','Men only':'رجال فقط','Women & female teachers':'نساء ومعلمات','Study mode':'نمط الدراسة','Online (Global) & In-person':'أونلاين (عالمي) وحضوري','Remote (Electronic circles worldwide)':'عن بُعد (حلقات إلكترونية حول العالم)','In-person (Mosques & centers)':'حضوري (مساجد ومراكز)','Language / Track':'اللغة / المسار','All languages & tracks':'كل اللغات والمسارات','Arabic for Non-Native Speakers':'العربية لغير الناطقين بها','Classical Arabic & Language Sciences':'العربية الفصحى وعلوم اللغة','Quranic Arabic & Linguistic Tajweed':'العربية القرآنية والتجويد اللغوي','Language Exchange':'تبادل لغات','English':'الإنجليزية','Other Language':'لغة أخرى','Level':'المستوى','All levels':'كل المستويات','Beginner':'مبتدئ','Intermediate':'متوسط','Advanced':'متقدم','Registered Requests & Opportunities':'الطلبات والفرص المسجلة','0 results':'0 نتيجة','Quran Reciters in Africa':'قراء القرآن في أفريقيا','Export JSON':'تصدير JSON','No results match your current filters':'لا توجد نتائج تطابق الفلاتر الحالية','Try changing the search criteria or reset filters to browse all cards.':'جرّب تغيير معايير البحث أو إعادة ضبط الفلاتر لعرض جميع البطاقات.','Reset Filters':'إعادة ضبط الفلاتر','Mobile bottom nav':'التنقل السفلي للهاتف','Radar':'الرادار','Market':'السوق','Add':'إضافة','Account':'الحساب','Login':'تسجيل الدخول','Direct contact with the poster':'تواصل مباشر مع صاحب المنشور','A ready agreement message has been prepared for you':'تم تجهيز رسالة اتفاق جاهزة لك','Your name or organization':'اسمك أو مؤسستك','Message preview':'معاينة الرسالة','Open WhatsApp chat':'فتح محادثة واتساب','Share this opportunity':'مشاركة هذه الفرصة','Spread the investment or Quran opportunity to reach more interested people':'شارك فرصة الاستثمار أو القرآن للوصول إلى المزيد من المهتمين','WhatsApp':'واتساب','Telegram':'تيليجرام','X / Twitter':'X / تويتر','LinkedIn':'لينكدإن','Copy':'نسخ','Private Conversation':'محادثة خاصة','Send':'إرسال','My Profile':'ملفي الشخصي','Save Profile':'حفظ الملف الشخصي','Wefaq AI Assistant':'مساعد وفاق بالذكاء الاصطناعي','Ask about matches, your profile, listings or next actions.':'اسأل عن المطابقات أو ملفك أو الإعلانات أو الخطوات التالية.','Ask':'اسأل','Post a new request / project / Quran circle':'نشر طلب / مشروع / حلقة قرآن جديدة','Choose the category and enter your details so matching people can reach you quickly':'اختر التصنيف وأدخل بياناتك ليصل إليك الأشخاص المناسبون بسرعة','Main title *':'العنوان الرئيسي *','Main category *':'التصنيف الرئيسي *','🏬 Existing Project / Project Exhibitor':'🏬 مشروع قائم / عارض مشروع','🛒 Service / Supply Seeker':'🛒 طالب خدمة / توريد','💰 Funding / Investment Partnership Seeker':'💰 طالب تمويل / شراكة استثمارية','💡 Idea or Feasibility Study':'💡 فكرة أو دراسة جدوى','🌍 Language Teaching':'🌍 تعليم لغة','🛠 Service Offer':'🛠 عرض خدمة','📑 Tender':'📑 مناقصة','🔨 Auction':'🔨 مزاد','Country / Region *':'الدولة / المنطقة *','Palestine':'فلسطين','Gaza':'غزة','Africa':'أفريقيا','Foreign':'أجنبي','Levant':'بلاد الشام','Listing type':'نوع الإعلان','Offer':'عرض','Demand':'طلب','Seeking Partner':'طلب شريك','Amount / Capital':'المبلغ / رأس المال','Full description *':'الوصف الكامل *','Quran Circle Details':'تفاصيل حلقة القرآن','Narration':'الرواية','Sheikh / Reciter':'الشيخ / القارئ','Audience':'الفئة المستهدفة','Children':'أطفال','Men':'رجال','Women':'نساء','Everyone':'الجميع','Language Lesson Details':'تفاصيل درس اللغة','Classical Arabic':'العربية الفصحى','Other':'أخرى','Teacher name':'اسم المعلم','WhatsApp number with country code *':'رقم واتساب مع رمز الدولة *','License / Certification (optional)':'الترخيص / الشهادة (اختياري)','Cancel':'إلغاء','Publish to Cloud':'نشر على السحابة','Wefaq Account':'حساب وفاق','Secure cloud identity':'هوية سحابية آمنة','Client':'عميل','Provider':'مقدم خدمة','Organization':'مؤسسة','Teacher':'معلم','Investor':'مستثمر','Sign in':'تسجيل الدخول','Create account':'إنشاء حساب'
+    };
+    let currentLang = localStorage.getItem('wefaq_lang') || 'ar';
+    function translatePage() {
+      const isAr = currentLang === 'ar';
+      document.documentElement.setAttribute('dir', isAr ? 'rtl' : 'ltr');
+      document.documentElement.setAttribute('lang', currentLang);
+      document.body.style.fontFamily = isAr ? "'Tajawal','Inter',sans-serif" : "'Inter','Tajawal',sans-serif";
+      document.querySelectorAll('body *').forEach(el => {
+        if (el.children.length === 0 && el.childNodes.length === 1 && el.firstChild.nodeType === 3) {
+          const raw = el.textContent.trim();
+          if (!raw) return;
+          if (isAr && I18N[raw]) el.textContent = I18N[raw];
+          else if (!isAr) {
+            const original = Object.keys(I18N).find(k => I18N[k] === raw);
+            if (original) el.textContent = original;
+          }
+        }
+      });
+      document.querySelectorAll('input[placeholder],textarea[placeholder],select option').forEach(el => {
+        const raw = (el.getAttribute('placeholder') || el.textContent || '').trim();
+        if (isAr && I18N[raw]) { if (el.tagName === 'OPTION') el.textContent = I18N[raw]; else el.setAttribute('placeholder', I18N[raw]); }
+        else if (!isAr) { const original = Object.keys(I18N).find(k => I18N[k] === raw); if (original) { if (el.tagName === 'OPTION') el.textContent = original; else el.setAttribute('placeholder', original); } }
+      });
+      const btn = document.getElementById('langToggleBtn');
+      if (btn) btn.innerText = isAr ? 'English 🌐' : 'العربية 🌐';
+      localStorage.setItem('wefaq_lang', currentLang);
+    }
+    function toggleLanguage() {
+      currentLang = currentLang === 'en' ? 'ar' : 'en';
+      translatePage();
+    }
+    function toggleTheme() {
+      const htmlEl = document.documentElement;
+      const themeIcon = document.getElementById('theme-icon');
+      if (htmlEl.classList.contains('dark')) {
+        htmlEl.classList.remove('dark');
+        themeIcon.className = 'fa-solid fa-moon';
+      } else {
+        htmlEl.classList.add('dark');
+        themeIcon.className = 'fa-solid fa-sun text-amber-400';
+      }
+    }
+
+    // ========== STATE ==========
+    let currentCategoryFilter = 'all';
+    let opportunitiesData = [];
+    let currentSelectedCardForContact = null;
+    let currentSelectedCardForShare = null;
+    let focusListingId = new URLSearchParams(location.search).get('l') || new URLSearchParams(location.search).get('listing');
+
+    const EXCHANGE_RATES = { SAR: 1, USD: 0.27, EGP: 13.1, AED: 0.98, EUR: 0.24 };
+    const REGION_LABELS = {
+      GLOBAL: 'Global', PALESTINE: 'Palestine', GAZA: 'Gaza', AFRICA: 'Africa',
+      FOREIGN: 'Foreign', KSA: 'Saudi Arabia', EGP: 'Egypt', UAE: 'UAE',
+      QAT: 'Qatar', KW: 'Kuwait', GCC: 'GCC', MAGHREB: 'Maghreb', LEVANT: 'Levant'
+    };
+
+    function esc(s) {
+      if (!s) return '';
+      return String(s).replace(/[&<>"']/g, t => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[t] || t));
+    }
+    function showRealtimeNotification(msg) {
+      const old = document.getElementById('wefaq-toast');
+      if (old) old.remove();
+      const toast = document.createElement('div');
+      toast.id = 'wefaq-toast';
+      toast.className = 'fixed bottom-6 left-6 z-[100] bg-emerald-600 text-white text-xs font-bold px-4 py-3 rounded-xl shadow-2xl flex items-center gap-2 max-w-sm';
+      toast.innerHTML = `<i class="fa-solid fa-bolt"></i> <span>${msg}</span>`;
+      document.body.appendChild(toast);
+      setTimeout(() => { toast.style.opacity = '0'; toast.style.transition = 'opacity 0.4s'; setTimeout(() => toast.remove(), 400); }, 4000);
+    }
+    function listingUrl(id) { return SITE.url + '/l/' + encodeURIComponent(id) + '/'; }
+
+    // ========== ACTIVE CLOUD VISITOR COUNTER ==========
+    async function trackVisitor() {
+      let total = 0, today = 0;
+
+      if (!supabaseClient) {
+        showRealtimeNotification('Cloud storage is not connected');
+        return;
+      }
+
+      try {
+        const { data, error } = await supabaseClient.rpc('increment_site_stats');
+        if (error) throw error;
+
+        total = Number(data?.total_visits || 0);
+        today = Number(data?.today_visits || 0);
+
+        const totalEl = document.getElementById('stat-visitors-total');
+        const todayEl = document.getElementById('stat-visitors-today');
+        if (totalEl) totalEl.innerText = total.toLocaleString();
+        if (todayEl) todayEl.innerText = 'Today: ' + today.toLocaleString();
+      } catch (err) {
+        console.error('Cloud visitor tracking failed:', err);
+        showRealtimeNotification('Cloud counter unavailable');
+      }
+    }
+
+    // ========== FILTERS & RENDER ==========
+    function setCategoryFilter(category) {
+      currentCategoryFilter = category;
+      const tabs = ['all','quran','projects','demands','funding','ideas','languages','services','tenders','auctions'];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`tab-${t}`);
+        if (btn) {
+          btn.className = t === category
+            ? 'px-3 py-1.5 rounded-lg bg-brand-600 text-white font-bold transition whitespace-nowrap shadow'
+            : 'px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 font-medium transition whitespace-nowrap';
+        }
+      });
+      document.getElementById('quran-extra-filters').classList.toggle('hidden', category !== 'quran');
+      const langF = document.getElementById('languages-extra-filters');
+      if (langF) langF.classList.toggle('hidden', category !== 'languages');
+      renderCards();
+    }
+
+    function resetFilters() {
+      document.getElementById('search-keyword').value = '';
+      document.getElementById('filter-region').value = 'all';
+      document.getElementById('filter-type').value = 'all';
+      document.getElementById('filter-badge').value = 'all';
+      ['filter-riwaya','filter-gender','filter-mode','filter-lang-track','filter-lang-level'].forEach(id => {
+        const el = document.getElementById(id); if (el) el.value = 'all';
+      });
+      setCategoryFilter('all');
+    }
+
+    function renderCards() {
+      const container = document.getElementById('cards-container');
+      const emptyState = document.getElementById('empty-state');
+      const searchKey = (document.getElementById('search-keyword').value || '').toLowerCase().trim();
+      const regionVal = document.getElementById('filter-region').value;
+      const typeVal = document.getElementById('filter-type').value;
+      const badgeVal = document.getElementById('filter-badge').value;
+      const currentCurrency = document.getElementById('currency-select').value;
+
+      let filtered = opportunitiesData.filter(item => {
+        if (focusListingId) return item.id === String(focusListingId);
+        if (currentCategoryFilter !== 'all' && item.category !== currentCategoryFilter) return false;
+        if (searchKey) {
+          const hay = ((item.title||'') + ' ' + (item.description||'') + ' ' + (item.sheikh||'')).toLowerCase();
+          if (!hay.includes(searchKey)) return false;
+        }
+        if (regionVal !== 'all') {
+          if (regionVal === 'PALESTINE') {
+            if (item.region !== 'PALESTINE' && item.region !== 'GAZA') return false;
+          } else if (item.region !== regionVal) return false;
+        }
+        if (typeVal !== 'all' && item.type !== typeVal) return false;
+        if (badgeVal !== 'all' && item.badge !== badgeVal) return false;
+        return true;
+      });
+
+      document.getElementById('results-count-badge').innerText = `${filtered.length} results`;
+
+      if (filtered.length === 0) {
+        container.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+      emptyState.classList.add('hidden');
+      container.innerHTML = filtered.map(item => createCardHTML(item, currentCurrency)).join('');
+    }
+
+    function createCardHTML(item, currency) {
+      const regionLabel = REGION_LABELS[item.region] || item.region || '—';
+      const convertedAmount = Math.round((item.amount || 0) * (EXCHANGE_RATES[currency] || 1));
+      const amountFormatted = convertedAmount > 0 ? `${convertedAmount.toLocaleString()} ${currency}` : 'By agreement / Free';
+
+      let categoryBadge = '', categoryIcon = 'fa-briefcase', categoryColor = 'text-blue-600 bg-blue-50 dark:bg-blue-950/50';
+      if (item.category === 'quran') { categoryIcon = 'fa-book-quran'; categoryColor = 'text-emerald-600 bg-emerald-50 dark:bg-emerald-950/50'; categoryBadge = '📖 Quran'; }
+      else if (item.category === 'projects') { categoryIcon = 'fa-store'; categoryColor = 'text-blue-600 bg-blue-50 dark:bg-blue-950/50'; categoryBadge = '🏬 Project'; }
+      else if (item.category === 'funding') { categoryIcon = 'fa-handshake'; categoryColor = 'text-amber-600 bg-amber-50 dark:bg-amber-950/50'; categoryBadge = '💰 Funding'; }
+      else if (item.category === 'languages') { categoryIcon = 'fa-language'; categoryColor = 'text-teal-600 bg-teal-50 dark:bg-teal-950/50'; categoryBadge = '🌍 Languages'; }
+      else if (item.category === 'ideas') { categoryIcon = 'fa-lightbulb'; categoryColor = 'text-purple-600 bg-purple-50 dark:bg-purple-950/50'; categoryBadge = '💡 Ideas'; }
+
+      let trust = '';
+      if (item.badge === 'sanad') trust = `<span class="bg-emerald-500/10 text-emerald-600 border border-emerald-500/30 text-[10px] font-bold px-2 py-0.5 rounded-full">Certified Sanad</span>`;
+      else if (item.badge === 'verified') trust = `<span class="bg-blue-500/10 text-blue-600 border border-blue-500/30 text-[10px] font-bold px-2 py-0.5 rounded-full">Verified</span>`;
+      else trust = `<span class="bg-slate-500/10 text-slate-500 border border-slate-500/30 text-[10px] font-bold px-2 py-0.5 rounded-full">Unverified</span>`;
+
+      return `
+        <div class="glass-card rounded-xl p-5 flex flex-col justify-between hover:shadow-lg transition border">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg ${categoryColor} flex items-center justify-center text-sm"><i class="fa-solid ${categoryIcon}"></i></div>
+                <div class="text-[11px] font-bold text-slate-500">${categoryBadge} • ${regionLabel}</div>
+              </div>
+              ${trust}
+            </div>
+            <h3 class="font-extrabold text-slate-900 dark:text-white text-sm mb-2 line-clamp-2">${esc(item.title)}</h3>
+            <p class="text-slate-600 dark:text-slate-300 text-xs line-clamp-3 mb-4">${esc(item.description)}</p>
+            <div class="flex justify-between text-xs py-2 border-t border-slate-100 dark:border-slate-800 mb-3">
+              <span class="text-slate-400">Budget / Fee</span>
+              <span class="font-extrabold text-brand-600 dark:text-emerald-400">${amountFormatted}</span>
+            </div>
+          </div>
+          <div class="grid grid-cols-4 gap-2">
+            <button onclick="requestConnection('${esc(item.id)}')" class="col-span-2 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold py-2 rounded-lg"><i class="fa-solid fa-handshake mr-1"></i>Connect</button>
+            <button onclick="toggleFavorite('${esc(item.id)}')" title="Save listing" class="bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-300 text-xs rounded-lg border border-amber-100 dark:border-amber-900"><i class="fa-regular fa-bookmark"></i></button>
+            <button onclick="openContactModal('${esc(item.id)}')" title="Contact" class="bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 text-xs rounded-lg border border-emerald-100 dark:border-emerald-900"><i class="fa-brands fa-whatsapp"></i></button>
+            <button onclick="openShareModal('${esc(item.id)}')" title="Share" class="bg-slate-100 dark:bg-slate-800 text-xs rounded-lg"><i class="fa-solid fa-share-nodes"></i></button>
+          </div>
+        </div>`;
+    }
+
+
+    // ========== SMART MATCHING & PERFORMANCE ==========
+    function normalizeWords(value) {
+      return String(value || '').toLowerCase().normalize('NFKD')
+        .replace(/[^\p{L}\p{N}\s]/gu, ' ')
+        .split(/\s+/).filter(w => w.length > 2);
+    }
+
+    function scoreListingMatch(item, intent, category, region) {
+      const words = normalizeWords(intent);
+      const haystack = normalizeWords([item.title, item.description, item.sheikh, item.riwaya, item.category, item.region].join(' '));
+      const hay = new Set(haystack);
+      const overlap = words.length ? words.filter(w => hay.has(w)).length / words.length : 0;
+      let score = 25 + Math.min(45, Math.round(overlap * 70));
+      if (category !== 'all' && item.category === category) score += 18;
+      if (region !== 'all' && (item.region === region || item.region === 'GLOBAL')) score += 8;
+      if (['verified','sanad','reviewed','feasibility'].includes(item.badge)) score += 6;
+      if (item.description && item.description.length >= 80) score += 3;
+      return Math.max(0, Math.min(100, score));
+    }
+
+    async function runSmartMatch(event) {
+      event?.preventDefault();
+      const intent = document.getElementById('match-intent')?.value.trim() || '';
+      const category = document.getElementById('match-category')?.value || 'all';
+      const region = document.getElementById('match-region')?.value || 'all';
+      const box = document.getElementById('smart-match-results');
+      if (!box || !intent) return;
+
+      box.classList.remove('hidden');
+      box.innerHTML = '<div class="rounded-xl border border-violet-200 dark:border-violet-900 bg-violet-50/70 dark:bg-violet-950/30 p-4 text-xs text-violet-700 dark:text-violet-300"><i class="fa-solid fa-spinner fa-spin mr-2"></i>Analyzing current opportunities...</div>';
+
+      let ranked = [];
+      let usedAI = false;
+
+      if (supabaseClient?.functions) {
+        try {
+          const { data, error } = await supabaseClient.functions.invoke('ai-match', {
+            body: { intent, category, region }
+          });
+          if (error) throw error;
+          if (Array.isArray(data?.matches)) {
+            ranked = data.matches.map(m => {
+              const item = opportunitiesData.find(x => String(x.id) === String(m.id));
+              return item ? { item, score: Math.round(Number(m.score || 0)), reason: m.reason || '' } : null;
+            }).filter(Boolean);
+            usedAI = ranked.length > 0;
+          }
+        } catch (err) {
+          console.info('AI Edge Function unavailable, using local matching fallback:', err);
+        }
+      }
+
+      if (!ranked.length) {
+        ranked = opportunitiesData
+          .filter(item => category === 'all' || item.category === category)
+          .filter(item => region === 'all' || item.region === region || item.region === 'GLOBAL')
+          .map(item => ({ item, score: scoreListingMatch(item, intent, category, region), reason: 'Keyword, category, region and trust-signal relevance.' }))
+          .sort((a,b) => b.score - a.score)
+          .slice(0, 5);
+      }
+
+      if (!ranked.length) {
+        box.innerHTML = '<div class="rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 p-4 text-xs text-slate-500">No current listing matches these constraints. Publish a request so providers can respond.</div>';
+        return;
+      }
+
+      box.innerHTML = `
+        <div class="flex items-center justify-between mb-2">
+          <div class="text-xs font-extrabold text-slate-800 dark:text-slate-100">Top matching opportunities</div>
+          <div class="text-[10px] ${usedAI ? 'text-violet-500' : 'text-slate-400'}">${usedAI ? 'AI server ranking' : 'Local smart fallback'}</div>
+        </div>
+        <div class="space-y-2">
+          ${ranked.slice(0,5).map(({item,score,reason}) => `
+            <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-3 bg-slate-50/60 dark:bg-slate-950/50">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+                <div class="min-w-0 flex-1">
+                  <div class="font-bold text-xs text-slate-900 dark:text-white truncate">${esc(item.title)}</div>
+                  <div class="text-[10px] text-slate-500 mt-1">${esc(REGION_LABELS[item.region] || item.region)} • ${esc(item.category)}</div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-black ${score >= 75 ? 'text-emerald-600' : score >= 55 ? 'text-amber-600' : 'text-slate-500'}">${score}%</span>
+                  <button type="button" onclick="recordEngagement('${esc(item.id)}','match'); openContactModal('${esc(item.id)}')" class="text-[11px] font-bold px-3 py-2 rounded-lg bg-brand-600 text-white">Connect</button>
+                </div>
+              </div>
+              ${reason ? `<div class="text-[10px] text-slate-500 dark:text-slate-400 mt-2">${esc(reason)}</div>` : ''}
+            </div>`).join('')}
+        </div>`;
+    }
+
+    function focusSmartMatch(id) {
+      const item = opportunitiesData.find(x => x.id === String(id));
+      if (!item) return;
+      const intent = document.getElementById('match-intent');
+      const category = document.getElementById('match-category');
+      const region = document.getElementById('match-region');
+      if (intent) intent.value = item.title + ' ' + (item.description || '');
+      if (category) category.value = item.category || 'all';
+      if (region) region.value = item.region || 'all';
+      document.getElementById('ai-center')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setTimeout(() => runSmartMatch(), 250);
+    }
+
+    function refreshPerformanceCenter() {
+      const total = opportunitiesData.length;
+      const demandTypes = new Set(['request','seeking_partner','seeking_funding','demands','seek','wanted']);
+      const supplyTypes = new Set(['offer','service','provider']);
+      const demand = opportunitiesData.filter(i => i.category === 'demands' || demandTypes.has(i.type)).length;
+      const supply = opportunitiesData.filter(i => i.category === 'services' || supplyTypes.has(i.type)).length;
+      const trusted = opportunitiesData.filter(i => ['verified','sanad','reviewed','feasibility'].includes(i.badge)).length;
+      const complete = opportunitiesData.filter(i => (i.title||'').length > 10 && (i.description||'').length >= 60 && i.phone).length;
+      const readiness = total ? Math.round(((trusted * .45 + complete * .55) / total) * 100) : 0;
+
+      const set = (id,val) => { const el=document.getElementById(id); if(el) el.textContent=val; };
+      set('perf-total', total.toLocaleString());
+      set('perf-demand', demand.toLocaleString());
+      set('perf-supply', supply.toLocaleString());
+      set('perf-readiness', readiness + '%');
+
+      const tips = [];
+      if (total < 10) tips.push(['Build marketplace density','Add seed providers and real customer requests in your highest-value categories.','fa-users']);
+      if (demand === 0 || supply === 0) tips.push(['Balance both sides','Capture both demand and supply so matching becomes meaningful.','fa-scale-balanced']);
+      if (readiness < 70) tips.push(['Improve listing quality','Require clear descriptions, region, category, contact and verification fields.','fa-list-check']);
+      tips.push(['Track conversion','Record view → contact → accepted → completed to measure actual marketplace performance.','fa-arrow-trend-up']);
+      tips.push(['AI semantic matching','Use server-side embeddings to match by meaning, not just exact keywords.','fa-brain']);
+
+      const list = document.getElementById('improvement-list');
+      if (list) list.innerHTML = tips.slice(0,4).map(([title,body,icon]) => `
+        <div class="rounded-xl bg-white/5 border border-white/10 p-3">
+          <div class="flex gap-2">
+            <i class="fa-solid ${icon} mt-0.5 text-amber-300"></i>
+            <div><div class="font-extrabold text-white">${title}</div><div class="text-slate-400 mt-1 leading-relaxed">${body}</div></div>
+          </div>
+        </div>`).join('');
+    }
+
+    async function recordEngagement(listingId, eventType) {
+      if (!supabaseClient || !listingId) return;
+      try {
+        await supabaseClient.from('engagement_events').insert([{
+          listing_id: listingId,
+          event_type: eventType,
+          session_key: safeGet('wefaq_session_key', '')
+        }]);
+      } catch (e) {
+        console.warn('Engagement event not recorded:', e);
+      }
+    }
+
+    // ========== MODALS ==========
+    function openCreateModal(defaultCat) {
+      document.getElementById('create-modal').classList.remove('hidden');
+      if (defaultCat) {
+        const sel = document.getElementById('new-category');
+        if (sel) {
+          if (defaultCat === 'invest') sel.value = 'funding';
+          else if (['quran','languages','projects','funding','ideas','services','tenders','auctions','demands'].includes(defaultCat)) sel.value = defaultCat;
+        }
+        toggleFormFields();
+      }
+    }
+    function closeCreateModal() { document.getElementById('create-modal').classList.add('hidden'); }
+    function toggleFormFields() {
+      const cat = document.getElementById('new-category').value;
+      document.getElementById('quran-form-fields').classList.toggle('hidden', cat !== 'quran');
+      document.getElementById('languages-form-fields').classList.toggle('hidden', cat !== 'languages');
+    }
+
+    function openContactModal(id) {
+      const item = opportunitiesData.find(i => i.id === id);
+      if (!item) return;
+      currentSelectedCardForContact = item;
+      recordEngagement(id, 'contact_open');
+      document.getElementById('contact-modal').classList.remove('hidden');
+      updateWhatsAppTemplate();
+    }
+    function closeContactModal() { document.getElementById('contact-modal').classList.add('hidden'); }
+    function updateWhatsAppTemplate() {
+      const name = document.getElementById('sender-name').value || 'Interested via Wefaq';
+      const item = currentSelectedCardForContact;
+      if (!item) return;
+      document.getElementById('whatsapp-template-text').value =
+        `Hello, I am ${name}.\nI am interested in your listing on Wefaq:\n"${item.title}"\nPlease contact me. Thank you.`;
+    }
+    function sendWhatsAppMessage() {
+      const item = currentSelectedCardForContact;
+      if (!item || !item.phone) { alert('No phone number'); return; }
+      const phone = String(item.phone).replace(/[^0-9]/g, '');
+      const text = encodeURIComponent(document.getElementById('whatsapp-template-text').value);
+      window.open(`https://wa.me/${phone}?text=${text}`, '_blank', 'noopener,noreferrer');
+    }
+    async function copyText(text) {
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+          return true;
+        }
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        const ok = document.execCommand('copy');
+        ta.remove();
+        return ok;
+      } catch (err) {
+        console.warn('Copy failed:', err);
+        return false;
+      }
+    }
+
+    async function copyContactText() {
+      const ok = await copyText(document.getElementById('whatsapp-template-text').value);
+      showRealtimeNotification(ok ? 'Copied ✓' : 'Copy failed');
+    }
+
+    function openShareModal(id) {
+      const item = opportunitiesData.find(i => i.id === id);
+      if (!item) return;
+      currentSelectedCardForShare = item;
+      document.getElementById('share-link-input').value = listingUrl(id);
+      document.getElementById('share-modal').classList.remove('hidden');
+    }
+    function closeShareModal() { document.getElementById('share-modal').classList.add('hidden'); }
+    function shareVia(platform) {
+      const item = currentSelectedCardForShare;
+      if (!item) return;
+      const url = listingUrl(item.id);
+      const text = encodeURIComponent(item.title + '\n' + url);
+      const eu = encodeURIComponent(url);
+      if (platform === 'whatsapp') window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank', 'noopener,noreferrer');
+      else if (platform === 'telegram') window.open(`https://t.me/share/url?url=${eu}&text=${encodeURIComponent(item.title)}`, '_blank', 'noopener,noreferrer');
+      else if (platform === 'x') window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(item.title)}&url=${eu}`, '_blank', 'noopener,noreferrer');
+      else if (platform === 'linkedin') window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${eu}`, '_blank', 'noopener,noreferrer');
+    }
+    async function copyShareLink() {
+      const ok = await copyText(document.getElementById('share-link-input').value);
+      showRealtimeNotification(ok ? 'Link copied ✓' : 'Copy failed');
+    }
+    function sharePlatform() {
+      document.getElementById('share-link-input').value = SITE.url;
+      currentSelectedCardForShare = { id: 'platform', title: 'Wefaq Platform' };
+      document.getElementById('share-modal').classList.remove('hidden');
+    }
+
+    // ========== PUBLISH (CLOUD) ==========
+    async function handleFormSubmit(e) {
+      e.preventDefault();
+      let currentUser = null;
+      if (supabaseClient) {
+        const {data:authData}=await supabaseClient.auth.getUser();
+        currentUser = authData?.user || null;
+        if (!currentUser) { showRealtimeNotification('Please sign in before publishing'); openAuthModal(); return; }
+      }
+      const title = document.getElementById('new-title').value.trim();
+      const category = document.getElementById('new-category').value;
+      const region = document.getElementById('new-region').value;
+      const type = document.getElementById('new-type').value;
+      const amount = parseFloat(document.getElementById('new-amount').value) || 0;
+      const description = document.getElementById('new-description').value.trim();
+      const phone = document.getElementById('new-phone').value.trim();
+      const license = document.getElementById('new-license').value.trim();
+
+      if (!title || !description || !phone) {
+        alert('Please fill all required fields.');
+        return;
+      }
+
+      const newItem = {
+        id: String(Date.now()),
+        title, category, region, type, amount, description, phone, license,
+        riwaya: document.getElementById('new-riwaya')?.value || document.getElementById('new-lang-track')?.value || '',
+        sheikh: document.getElementById('new-sheikh')?.value || document.getElementById('new-lang-teacher')?.value || '',
+        gender: document.getElementById('new-gender')?.value || document.getElementById('new-lang-level')?.value || 'All',
+        badge: 'verified',
+        ownerId: currentUser?.id || null,
+        createdAt: new Date().toISOString().split('T')[0]
+      };
+
+      // Save to cloud when available.
+      if (!supabaseClient) {
+        showRealtimeNotification('Cloud storage is unavailable');
+        return;
+      }
+
+      try {
+        const { data, error } = await supabaseClient
+          .from('listings')
+          .insert([{
+            title, category, region, type, amount, description, phone, license,
+            status: 'approved',
+            user_id: currentUser.id,
+            riwaya: newItem.riwaya,
+            sheikh: newItem.sheikh,
+            gender: newItem.gender
+          }])
+          .select()
+          .single();
+
+        if (error) throw error;
+
+        newItem.id = String(data.id);
+        newItem.createdAt = (data.created_at || newItem.createdAt).split('T')[0];
+
+        if (!opportunitiesData.some(item => item.id === newItem.id)) {
+          opportunitiesData.unshift(newItem);
+        }
+
+        closeCreateModal();
+        renderCards();
+        updateMetricCounters();
+        showRealtimeNotification('Published to cloud ✓');
+        // Generate/update semantic embedding asynchronously; publishing does not depend on AI availability.
+        try {
+          await supabaseClient.functions.invoke('embed-listing', {
+            body: { listing_id: newItem.id }
+          });
+        } catch (embedErr) {
+          console.info('Embedding job unavailable; listing remains searchable with fallback ranking.', embedErr);
+        }
+      } catch (err) {
+        console.error('Cloud insert failed:', err);
+        showRealtimeNotification('Publish failed: cloud storage error');
+      }
+    }
+
+    function updateMetricCounters() {
+      const counts = { quran: 0, projects: 0, funding: 0, ideas: 0, languages: 0 };
+      opportunitiesData.forEach(i => {
+        if (counts[i.category] !== undefined) counts[i.category]++;
+        else if (['demands','services'].includes(i.category)) counts.projects++;
+      });
+      document.getElementById('stat-quran').innerText = counts.quran;
+      document.getElementById('stat-projects').innerText = counts.projects;
+      document.getElementById('stat-funding').innerText = counts.funding;
+      document.getElementById('stat-ideas').innerText = counts.ideas;
+      document.getElementById('stat-languages').innerText = counts.languages;
+      refreshPerformanceCenter();
+    }
+
+    function triggerFeedRefresh() {
+      fetchOpportunitiesFromSupabase();
+      showRealtimeNotification('Syncing with cloud...');
+    }
+    function showAfricaQuranReciters() {
+      setCategoryFilter('quran');
+      document.getElementById('filter-region').value = 'AFRICA';
+      renderCards();
+    }
+    function exportCardsJSON() {
+      const blob = new Blob([JSON.stringify(opportunitiesData, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'wefaq-listings.json';
+      a.click();
+    }
+    function openAuthModal() { document.getElementById('auth-modal').classList.remove('hidden'); }
+    function closeAuthModal() { document.getElementById('auth-modal').classList.add('hidden'); }
+    async function submitAuth(e) {
+      e.preventDefault();
+      const email=document.getElementById('auth-email').value.trim(), password=document.getElementById('auth-password').value;
+      const msg=document.getElementById('auth-message'); msg.textContent='Signing in...';
+      if(!supabaseClient){msg.textContent='Cloud authentication is unavailable.';return;}
+      const {error}=await supabaseClient.auth.signInWithPassword({email,password});
+      if(error){msg.textContent=error.message;return;}
+      msg.textContent='Signed in ✓'; closeAuthModal(); await refreshAuthState(); loadWorkspace();
+    }
+    async function signUpUser(){
+      const email=document.getElementById('auth-email').value.trim(), password=document.getElementById('auth-password').value, name=document.getElementById('auth-name').value.trim(), type=document.getElementById('auth-type').value;
+      const msg=document.getElementById('auth-message');
+      if(password.length<8){msg.textContent='Password must be at least 8 characters.';return;}
+      if(!supabaseClient){msg.textContent='Cloud authentication is unavailable.';return;}
+      msg.textContent='Creating account...';
+      const {data,error}=await supabaseClient.auth.signUp({email,password,options:{data:{display_name:name,account_type:type}}});
+      if(error){msg.textContent=error.message;return;}
+      if(data.user){await supabaseClient.from('profiles').upsert({id:data.user.id,display_name:name||email.split('@')[0],account_type:type},{onConflict:'id'});}
+      msg.textContent=data.session?'Account created ✓':'Check your email to confirm your account.';
+      if(data.session){closeAuthModal(); await refreshAuthState(); loadWorkspace();}
+    }
+    async function signOutUser(){ if(supabaseClient) await supabaseClient.auth.signOut(); await refreshAuthState(); }
+    async function refreshAuthState(){
+      if(!supabaseClient) return;
+      const {data}=await supabaseClient.auth.getUser(); const user=data?.user;
+      const state=document.getElementById('auth-state'), guest=document.getElementById('workspace-guest'), workspace=document.getElementById('workspace-user');
+      if(user){ state.innerHTML=`Signed in as <span class="text-brand-600">${esc(user.email)}</span> · <button type="button" onclick="signOutUser()" class="underline">Sign out</button>`; guest.classList.add('hidden'); workspace.classList.remove('hidden'); startRealtimeSync(); loadWorkspace(); }
+      else { state.textContent='Guest mode'; guest.classList.remove('hidden'); workspace.classList.add('hidden'); }
+    }
+    async function openMine(){ document.getElementById('workspace-section').scrollIntoView({behavior:'smooth'}); await refreshAuthState(); if(!supabaseClient) return; const {data}=await supabaseClient.auth.getUser(); if(!data?.user) openAuthModal(); }
+    async function loadWorkspace(){
+      if(!supabaseClient) return; const {data:ud}=await supabaseClient.auth.getUser(); const uid=ud?.user?.id; if(!uid) return;
+      const [{data:connections},{data:saved},{data:events},{data:profile}]=await Promise.all([
+        supabaseClient.from('connections').select('id,status,listing_id,created_at,listings(title)').or(`requester_id.eq.${uid},provider_id.eq.${uid}`).order('created_at',{ascending:false}).limit(10),
+        supabaseClient.from('favorites').select('id,listing_id').eq('user_id',uid),
+        supabaseClient.from('engagement_events').select('event_type').eq('user_id',uid).limit(500),
+        supabaseClient.from('profiles').select('*').eq('id',uid).maybeSingle()
+      ]);
+      document.getElementById('ws-connections').textContent=connections?.length||0; document.getElementById('ws-saved').textContent=saved?.length||0;
+      document.getElementById('ws-matches').textContent=(events||[]).filter(x=>x.event_type==='match').length;
+      const {count:unreadMessages}=await supabaseClient.from('messages').select('id',{count:'exact',head:true}).eq('recipient_id',uid).is('read_at',null);
+      document.getElementById('ws-messages').textContent=unreadMessages||0;
+      const list=document.getElementById('ws-connections-list'); list.innerHTML=(connections||[]).map(c=>{
+        const other=c.requester_id===uid?c.provider_id:c.requester_id;
+        return `<div class="flex items-center gap-2 rounded-lg bg-slate-50 dark:bg-slate-950 p-2"><span class="truncate flex-1">${esc(c.listings?.title||'Connection')}</span><b class="text-[10px]">${esc(c.status)}</b><button type="button" onclick="openChat('${esc(c.id)}','${esc(other)}')" class="text-[10px] text-brand-600 font-bold">Chat</button><button type="button" onclick="reviewConnection('${esc(c.id)}')" class="text-[10px] text-amber-600 font-bold">Review</button></div>`;
+      }).join('')||'<span class="text-slate-400">No active connections yet.</span>';
+      await loadNotifications();
+      const complete=profile?['display_name','region','bio'].filter(k=>profile[k]).length*33:0; document.getElementById('trust-completeness').textContent=Math.min(100,complete)+'%'; document.getElementById('trust-completeness-bar').style.width=Math.min(100,complete)+'%';
+      document.getElementById('trust-verified').textContent=profile?.verified?'Verified':'Pending'; document.getElementById('trust-verified-bar').style.width=profile?.verified?'100%':'15%';
+      document.getElementById('ws-actions').innerHTML='<div class="rounded-lg bg-brand-50 dark:bg-brand-950/30 p-2">Complete your profile to improve AI matching.</div><div class="rounded-lg bg-emerald-50 dark:bg-emerald-950/30 p-2">Save relevant listings so recommendations learn your preferences.</div>';
+    }
+
+
+    // ========== PRO WORKFLOWS ==========
+    let activeConnectionId = null;
+    let activeChatRecipientId = null;
+
+    async function requireUser() {
+      if (!supabaseClient) { showRealtimeNotification('Cloud account service is unavailable'); return null; }
+      const { data } = await supabaseClient.auth.getUser();
+      if (!data?.user) { openAuthModal(); showRealtimeNotification('Please sign in first'); return null; }
+      return data.user;
+    }
+
+    async function requestConnection(listingId) {
+      const user = await requireUser(); if (!user) return;
+      const item = opportunitiesData.find(x => String(x.id) === String(listingId));
+      if (!item) return;
+      if (!item.ownerId) { openContactModal(listingId); showRealtimeNotification('This legacy listing has no account owner yet'); return; }
+      if (item.ownerId === user.id) { showRealtimeNotification('You cannot connect to your own listing'); return; }
+      const { data: existing } = await supabaseClient.from('connections').select('id,status').eq('listing_id', item.id).eq('requester_id', user.id).maybeSingle();
+      if (existing) { showRealtimeNotification('Connection already requested'); return; }
+      const { data, error } = await supabaseClient.from('connections').insert({
+        listing_id: item.id, requester_id: user.id, provider_id: item.ownerId, status: 'pending'
+      }).select('id').single();
+      if (error) { console.error(error); showRealtimeNotification('Could not create connection'); return; }
+      await recordEngagement(item.id, 'contact');
+      showRealtimeNotification('Connection request sent ✓');
+      await loadWorkspace();
+    }
+
+    async function toggleFavorite(listingId) {
+      const user = await requireUser(); if (!user) return;
+      const { data: existing } = await supabaseClient.from('favorites').select('id').eq('user_id', user.id).eq('listing_id', listingId).maybeSingle();
+      if (existing) {
+        await supabaseClient.from('favorites').delete().eq('id', existing.id);
+        showRealtimeNotification('Removed from saved');
+      } else {
+        const { error } = await supabaseClient.from('favorites').insert({ user_id: user.id, listing_id: listingId });
+        if (error) { showRealtimeNotification('Could not save listing'); return; }
+        await recordEngagement(listingId, 'favorite');
+        showRealtimeNotification('Saved ✓');
+      }
+      loadWorkspace();
+    }
+
+    async function openChat(connectionId, recipientId) {
+      const user = await requireUser(); if (!user) return;
+      activeConnectionId = connectionId; activeChatRecipientId = recipientId;
+      document.getElementById('chat-modal').classList.remove('hidden');
+      await loadChatMessages();
+    }
+    function closeChatModal(){ document.getElementById('chat-modal').classList.add('hidden'); activeConnectionId=null; activeChatRecipientId=null; }
+    async function loadChatMessages(){
+      if (!activeConnectionId || !supabaseClient) return;
+      const {data,error}=await supabaseClient.from('messages').select('id,sender_id,recipient_id,body,created_at,read_at').eq('connection_id',activeConnectionId).order('created_at',{ascending:true}).limit(200);
+      if(error){ console.error(error); return; }
+      const {data:ud}=await supabaseClient.auth.getUser(); const uid=ud?.user?.id;
+      const box=document.getElementById('chat-list');
+      box.innerHTML=(data||[]).map(m=>`<div class="max-w-[85%] ${m.sender_id===uid?'ml-auto bg-brand-600 text-white':'mr-auto bg-white dark:bg-slate-900 border'} rounded-xl px-3 py-2 text-xs">${esc(m.body)}<div class="text-[9px] opacity-60 mt-1">${new Date(m.created_at).toLocaleString()}</div></div>`).join('')||'<div class="text-center text-slate-400 py-8">Start the conversation.</div>';
+      box.scrollTop=box.scrollHeight;
+      await supabaseClient.from('messages').update({read_at:new Date().toISOString()}).eq('connection_id',activeConnectionId).eq('recipient_id',uid).is('read_at',null);
+    }
+    async function sendChatMessage(e){
+      e.preventDefault(); const user=await requireUser(); if(!user || !activeConnectionId || !activeChatRecipientId) return;
+      const input=document.getElementById('chat-input'); const body=input.value.trim(); if(!body) return;
+      const {error}=await supabaseClient.from('messages').insert({connection_id:activeConnectionId,sender_id:user.id,recipient_id:activeChatRecipientId,body});
+      if(error){showRealtimeNotification('Message failed');return;}
+      input.value=''; await loadChatMessages();
+    }
+
+    async function openProfileEditor(){
+      const user=await requireUser(); if(!user)return;
+      const {data}=await supabaseClient.from('profiles').select('display_name,phone,region,bio').eq('id',user.id).maybeSingle();
+      document.getElementById('profile-name').value=data?.display_name||user.user_metadata?.display_name||'';
+      document.getElementById('profile-phone').value=data?.phone||'';
+      document.getElementById('profile-region').value=data?.region||'';
+      document.getElementById('profile-bio').value=data?.bio||'';
+      document.getElementById('profile-message').textContent='';
+      document.getElementById('profile-modal').classList.remove('hidden');
+    }
+    function closeProfileEditor(){document.getElementById('profile-modal').classList.add('hidden');}
+    async function saveProfile(e){
+      e.preventDefault(); const user=await requireUser(); if(!user)return;
+      const payload={id:user.id,display_name:document.getElementById('profile-name').value.trim(),phone:document.getElementById('profile-phone').value.trim(),region:document.getElementById('profile-region').value.trim(),bio:document.getElementById('profile-bio').value.trim(),updated_at:new Date().toISOString()};
+      const {error}=await supabaseClient.from('profiles').upsert(payload,{onConflict:'id'});
+      document.getElementById('profile-message').textContent=error?error.message:'Profile saved ✓';
+      if(!error){closeProfileEditor();loadWorkspace();}
+    }
+
+    async function reviewConnection(connectionId){
+      const user=await requireUser(); if(!user)return;
+      const rating=Number(prompt('Rate this completed connection from 1 to 5:', '5'));
+      if(!Number.isInteger(rating)||rating<1||rating>5){showRealtimeNotification('Rating must be between 1 and 5');return;}
+      const comment=(prompt('Optional review comment:','')||'').trim().slice(0,1200);
+      const {error}=await supabaseClient.from('reviews').upsert({connection_id:connectionId,reviewer_id:user.id,rating,comment},{onConflict:'connection_id,reviewer_id'});
+      if(error){console.error(error);showRealtimeNotification('Review could not be saved');return;}
+      await supabaseClient.from('connections').update({status:'completed',completed_at:new Date().toISOString()}).eq('id',connectionId);
+      showRealtimeNotification('Review saved ✓'); loadWorkspace();
+    }
+
+    async function loadNotifications(){
+      if(!supabaseClient)return;
+      const {data:ud}=await supabaseClient.auth.getUser(); const uid=ud?.user?.id; if(!uid)return;
+      const {data}=await supabaseClient.from('notifications').select('id,title,body,read_at,created_at,data').eq('user_id',uid).order('created_at',{ascending:false}).limit(8);
+      const box=document.getElementById('ws-notifications'); if(!box)return;
+      box.innerHTML=(data||[]).map(n=>`<button type="button" onclick="notificationAction(${JSON.stringify(n.data||{})})" class="w-full text-left rounded-lg p-2 ${n.read_at?'bg-slate-50 dark:bg-slate-950':'bg-violet-50 dark:bg-violet-950/30'}"><div class="font-bold">${esc(n.title)}</div><div class="text-[10px] text-slate-500">${esc(n.body||'')}</div></button>`).join('')||'<span class="text-slate-400">No notifications.</span>';
+    }
+    async function markAllNotificationsRead(){
+      const user=await requireUser(); if(!user)return;
+      await supabaseClient.from('notifications').update({read_at:new Date().toISOString()}).eq('user_id',user.id).is('read_at',null); loadNotifications();
+    }
+    async function notificationAction(data){
+      if(!data?.connection_id || !supabaseClient) return;
+      const {data:ud}=await supabaseClient.auth.getUser(); const uid=ud?.user?.id; if(!uid)return;
+      const {data:c}=await supabaseClient.from('connections').select('requester_id,provider_id').eq('id',data.connection_id).maybeSingle();
+      if(!c)return;
+      const other=c.requester_id===uid?c.provider_id:c.requester_id;
+      openChat(data.connection_id,other);
+    }
+
+    function openAiAssistant(){
+      document.getElementById('ai-assistant-modal').classList.remove('hidden');
+      const log=document.getElementById('ai-chat-log');
+      if(!log.children.length) log.innerHTML='<div class="rounded-xl bg-white dark:bg-slate-900 border p-3">Hello. I can help improve your profile, find matches, explain opportunities, and suggest your next action.</div>';
+    }
+    function closeAiAssistant(){document.getElementById('ai-assistant-modal').classList.add('hidden');}
+    async function askAiAssistant(e){
+      e.preventDefault(); const user=await requireUser(); if(!user)return;
+      const input=document.getElementById('ai-assistant-input'); const question=input.value.trim(); if(!question)return;
+      const log=document.getElementById('ai-chat-log'); log.innerHTML += `<div class="rounded-xl bg-violet-600 text-white p-3">${esc(question)}</div>`; input.value='';
+      let answer='I recommend completing your profile, saving relevant listings, and using Smart Match with a specific need, region and budget.';
+      if(supabaseClient?.functions){
+        try{
+          const {data,error}=await supabaseClient.functions.invoke('wefaq-ai',{body:{action:'assistant',question}});
+          if(!error && data?.answer) answer=data.answer;
+        }catch(err){console.info('AI assistant fallback',err);}
+      }
+      log.innerHTML += `<div class="rounded-xl bg-white dark:bg-slate-900 border p-3">${esc(answer)}</div>`; log.scrollTop=log.scrollHeight;
+    }
+
+    // ========== FETCH FROM CLOUD ==========
+    async function fetchOpportunitiesFromSupabase() {
+      if (!supabaseClient) {
+        showRealtimeNotification('Cloud storage is not connected');
+        return;
+      }
+      try {
+        console.log("Synchronizing platform data from Supabase cloud...");
+        const { data, error } = await supabaseClient
+          .from('listings')
+          .select('*')
+          .eq('status', 'approved')
+          .order('created_at', { ascending: false })
+          .limit(200);
+
+        if (error) throw error;
+
+        if (data && data.length > 0) {
+          opportunitiesData = data.map(r => ({
+            id: String(r.id),
+            title: r.title,
+            category: r.category || 'projects',
+            region: r.region || 'GLOBAL',
+            type: r.type || 'offer',
+            amount: r.amount || 0,
+            description: r.description || '',
+            phone: r.phone || '',
+            badge: r.badge || 'verified',
+            ownerId: r.user_id || null,
+            riwaya: r.riwaya || '',
+            sheikh: r.sheikh || '',
+            gender: r.gender || 'All',
+            createdAt: (r.created_at || '').split('T')[0]
+          }));
+          console.log("Cloud data loaded:", opportunitiesData.length, "items");
+        } else {
+          loadDemoData();
+        }
+        renderCards();
+        updateMetricCounters();
+      } catch (err) {
+        console.error('Cloud fetch failed:', err);
+        showRealtimeNotification('Cloud sync failed');
+      }
+    }
+
+    function loadDemoData() {
+      if (opportunitiesData.length === 0) {
+        opportunitiesData = [
+          { id: '1', title: 'Online Hafs circle for children', category: 'quran', region: 'GLOBAL', type: 'offer', amount: 0, description: 'Daily online memorization with continuous sanad for ages 6-12.', riwaya: 'Hafs from Asim', sheikh: 'Sheikh Ahmed', gender: 'Children', badge: 'sanad', phone: '966500000000', createdAt: '2026-09-20' },
+          { id: '2', title: 'Seeking co-founder for EdTech startup', category: 'funding', region: 'KSA', type: 'seeking_partner', amount: 150000, description: 'Arabic language learning platform. Looking for technical co-founder.', badge: 'feasibility', phone: '966500000001', createdAt: '2026-09-22' },
+          { id: '3', title: 'Arabic for non-native speakers – Intermediate', category: 'languages', region: 'GLOBAL', type: 'offer', amount: 200, description: 'Live online classes 3× week. Conversation + media Arabic.', riwaya: 'Arabic for Non-Native Speakers', gender: 'Intermediate', sheikh: 'Ustadh Sara', badge: 'reviewed', phone: '966500000002', createdAt: '2026-09-25' }
+        ];
+      }
+      renderCards();
+      updateMetricCounters();
+    }
+
+
+    // ========== REALTIME CLOUD SYNC ==========
+    let realtimeChannel = null;
+    let realtimeUserChannel = null;
+
+    function startRealtimeSync() {
+      if (!supabaseClient) {
+        console.warn('Supabase unavailable - Realtime disabled');
+        return;
+      }
+
+      if (realtimeChannel) {
+        supabaseClient.removeChannel(realtimeChannel);
+      }
+
+      realtimeChannel = supabaseClient
+        .channel('wefaq-listings')
+        .on(
+          'postgres_changes',
+          { event: 'INSERT', schema: 'public', table: 'listings' },
+          (payload) => {
+            const row = payload.new;
+            if (!row || row.status !== 'approved') return;
+            const newItem = {
+              id: String(row.id),
+              title: row.title || '',
+              category: row.category || 'projects',
+              region: row.region || 'GLOBAL',
+              type: row.type || 'offer',
+              amount: Number(row.amount || 0),
+              description: row.description || '',
+              phone: row.phone || '',
+              license: row.license || '',
+              badge: row.badge || 'verified',
+              ownerId: row.user_id || null,
+              riwaya: row.riwaya || '',
+              sheikh: row.sheikh || '',
+              gender: row.gender || 'All',
+              createdAt: (row.created_at || '').split('T')[0]
+            };
+
+            if (!opportunitiesData.some(item => item.id === newItem.id)) {
+              opportunitiesData.unshift(newItem);
+              renderCards();
+              updateMetricCounters();
+              showRealtimeNotification(`New listing: "${newItem.title.substring(0, 40)}..."`);
+            }
+          }
+        )
+        .subscribe((status) => {
+          console.log('Realtime status:', status);
+          if (status === 'SUBSCRIBED') {
+            showRealtimeNotification('Live cloud sync active ✓');
+          } else if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT') {
+            showRealtimeNotification('Live sync connection lost');
+          }
+        });
+
+      supabaseClient.auth.getUser().then(({data}) => {
+        const uid=data?.user?.id;
+        if(!uid) return;
+        if(realtimeUserChannel) supabaseClient.removeChannel(realtimeUserChannel);
+        realtimeUserChannel=supabaseClient.channel('wefaq-user-'+uid)
+          .on('postgres_changes',{event:'INSERT',schema:'public',table:'messages',filter:`recipient_id=eq.${uid}`},payload=>{
+            if(activeConnectionId===payload.new.connection_id) loadChatMessages();
+            loadWorkspace();
+          })
+          .on('postgres_changes',{event:'INSERT',schema:'public',table:'notifications',filter:`user_id=eq.${uid}`},()=>loadNotifications())
+          .subscribe();
+      });
+    }
+
+    // ========== INIT ==========
+    document.addEventListener('DOMContentLoaded', () => {
+      toggleFormFields();
+      translatePage();
+      fetchOpportunitiesFromSupabase();
+      trackVisitor();          // cloud + safe local fallback
+      startRealtimeSync();
+      if (supabaseClient) { supabaseClient.auth.onAuthStateChange(() => refreshAuthState()); refreshAuthState(); }
+      renderCards();
+      updateMetricCounters();
+      refreshPerformanceCenter();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+      closeCreateModal();
+      closeContactModal();
+      closeShareModal();
+      closeChatModal(); closeProfileEditor(); closeAiAssistant();
+    });
+  </script>
+</body>
+</html>
