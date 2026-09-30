@@ -879,7 +879,7 @@
 <div class="fixed inset-0 z-[70] hidden bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4" id="auth-modal">
 <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 w-full max-w-md p-6 shadow-2xl relative">
 <button class="absolute top-4 right-4 text-slate-400" onclick="closeAuthModal()" type="button"><i class="fa-solid fa-xmark"></i></button>
-<div class="flex items-center gap-3 mb-5"><div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center"><i class="fa-solid fa-user-shield"></i></div><div><h2 class="font-extrabold">Wefaq Account</h2><p class="text-[11px] text-slate-500">Secure cloud identity</p></div></div>
+<div class="flex items-center gap-3 mb-5"><div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center"><i class="fa-solid fa-user-shield"></i></div><div><h2 class="font-extrabold">Wefaq Account</h2><p class="text-[11px] text-slate-500" id="auth-context">Sign in to continue securely</p></div></div>
 <form class="space-y-3" id="auth-form" onsubmit="submitAuth(event)">
 <input class="w-full rounded-xl border bg-slate-50 dark:bg-slate-950 px-3 py-3 text-sm" id="auth-name" maxlength="80" placeholder="Full name (for new account)"/>
 <input class="w-full rounded-xl border bg-slate-50 dark:bg-slate-950 px-3 py-3 text-sm" id="auth-email" placeholder="Email" required="" type="email"/>
@@ -1701,9 +1701,15 @@
       const modal = document.getElementById('auth-modal');
       if(modal) modal.classList.remove('hidden');
       const msg = document.getElementById('auth-message');
-      if(msg && action) msg.textContent = t('Please sign in to continue');
+      const context = document.getElementById('auth-context');
+      if(msg) msg.textContent = action ? t('Please sign in to continue') : '';
+      if(context) context.textContent = action ? t('Create or sign in to continue with this interaction') : t('Sign in to continue securely');
+      setTimeout(() => document.getElementById('auth-email')?.focus(), 40);
     }
-    function closeAuthModal() { document.getElementById('auth-modal').classList.add('hidden'); }
+    function closeAuthModal(preservePending=false) {
+      document.getElementById('auth-modal')?.classList.add('hidden');
+      if(!preservePending) pendingAuthAction = null;
+    }
     async function resumePendingAuthAction() {
       const action = pendingAuthAction;
       pendingAuthAction = null;
@@ -1724,7 +1730,7 @@
       if(!supabaseClient){msg.textContent=t('Cloud authentication is unavailable.');return;}
       const {error}=await supabaseClient.auth.signInWithPassword({email,password});
       if(error){msg.textContent=error.message;return;}
-      msg.textContent=t('Signed in ✓'); closeAuthModal(); await refreshAuthState(); loadWorkspace(); await resumePendingAuthAction();
+      msg.textContent=t('Signed in ✓'); closeAuthModal(true); await refreshAuthState(); loadWorkspace(); await resumePendingAuthAction();
     }
     async function signUpUser(){
       const email=document.getElementById('auth-email').value.trim(), password=document.getElementById('auth-password').value, name=document.getElementById('auth-name').value.trim(), type=document.getElementById('auth-type').value;
@@ -1735,8 +1741,8 @@
       const {data,error}=await supabaseClient.auth.signUp({email,password,options:{data:{display_name:name,account_type:type}}});
       if(error){msg.textContent=error.message;return;}
       if(data.user){await supabaseClient.from('profiles').upsert({id:data.user.id,display_name:name||email.split('@')[0],account_type:type},{onConflict:'id'});}
-      msg.textContent=data.session?t('Account created ✓'):t('Check your email to confirm your account.');
-      if(data.session){closeAuthModal(); await refreshAuthState(); loadWorkspace(); await resumePendingAuthAction();}
+      msg.textContent=data.session?t('Account created ✓'):t('Check your email to confirm your account, then sign in to continue.');
+      if(data.session){closeAuthModal(true); await refreshAuthState(); loadWorkspace(); await resumePendingAuthAction();}
     }
     async function signOutUser(){ if(supabaseClient) await supabaseClient.auth.signOut(); currentAuthUser=null; await refreshAuthState(); }
     async function refreshAuthState(){
