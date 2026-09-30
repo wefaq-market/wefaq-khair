@@ -1256,7 +1256,6 @@
       renderCards();
       refreshPerformanceCenter();
       if (typeof renderExternalRadar === 'function') renderExternalRadar();
-      if (typeof externalRadarItems !== 'undefined') renderExternalRadar();
     }
     function toggleTheme() {
       const htmlEl = document.documentElement;
@@ -2633,6 +2632,7 @@
     }
 
     // ========== INIT ==========
+    // Keep initial cloud loads to one call each to avoid duplicate network work.
     document.addEventListener('DOMContentLoaded', () => {
       toggleFormFields();
       translatePage();
@@ -2648,8 +2648,6 @@
       renderCards();
       updateMetricCounters();
       refreshPerformanceCenter();
-      loadExternalRadar();
-      loadCloudOpportunities();
     });
 
     document.addEventListener('keydown', (event) => {
