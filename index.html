@@ -632,9 +632,6 @@
 </div>
 <div class="flex items-center gap-2 flex-wrap">
 <button class="text-xs bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3 py-1.5 rounded-lg shadow flex items-center gap-1.5 transition" onclick="showAfricaQuranReciters()">
-<i class="fa-solid fa-book-quran"></i> Quran Reciters in Africa
-            </button>
-</div>
 </div>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="cards-container"></div>
@@ -1466,18 +1463,6 @@
         </div>`;
     }
 
-    function focusSmartMatch(id) {
-      const item = opportunitiesData.find(x => x.id === String(id));
-      if (!item) return;
-      const intent = document.getElementById('match-intent');
-      const category = document.getElementById('match-category');
-      const region = document.getElementById('match-region');
-      if (intent) intent.value = item.title + ' ' + (item.description || '');
-      if (category) category.value = item.category || 'all';
-      if (region) region.value = item.region || 'all';
-      document.getElementById('ai-center')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setTimeout(() => runSmartMatch(), 250);
-    }
 
     function t(key) { return currentLang === 'ar' ? (I18N[key] || key) : key; }
 
@@ -1651,11 +1636,6 @@
       const ok = await copyText(document.getElementById('share-link-input').value);
       showRealtimeNotification(ok ? t('Link copied ✓') : t('Copy failed'));
     }
-    function sharePlatform() {
-      document.getElementById('share-link-input').value = new URL(location.href).origin + new URL(location.href).pathname;
-      currentSelectedCardForShare = { id: 'platform', title: 'Wefaq Platform' };
-      document.getElementById('share-modal').classList.remove('hidden');
-    }
 
     // ========== PUBLISH (CLOUD) ==========
     async function handleFormSubmit(e) {
@@ -1754,15 +1734,6 @@
       refreshPerformanceCenter();
     }
 
-    function triggerFeedRefresh() {
-      fetchOpportunitiesFromSupabase();
-      showRealtimeNotification(t('Syncing with cloud...'));
-    }
-    function showAfricaQuranReciters() {
-      setCategoryFilter('quran');
-      document.getElementById('filter-region').value = 'AFRICA';
-      renderCards();
-    }
     let pendingAuthAction = null;
     let currentAuthUser = null;
     function openAuthModal(action=null) {
@@ -2107,10 +2078,6 @@
       const seen = new Set();
       return links.filter(link => { const key = `${link.key}:${link.href}`; if (seen.has(key)) return false; seen.add(key); return true; }).slice(0,6);
     }
-    function specialistContactUrl(profile) {
-      return specialistContactLinks(profile).find(link => link.key === 'WhatsApp')?.href || specialistContactLinks(profile)[0]?.href || '';
-    }
-    function specialistContactTarget(href) { return /^https:\/\//i.test(String(href||'')) ? ' target="_blank" rel="noopener noreferrer"' : ''; }
     async function contactSpecialist(id, contactKey, bypassAuth=false) {
       const profile=specialistProfiles.find(item=>String(item.id)===String(id));
       if(!profile)return;
@@ -2226,12 +2193,6 @@
       closeSpecialistJoin();
       await loadSpecialists();
       showRealtimeNotification(t('Cloud profile published ✓'));
-    }
-    function setSpecialistRole(role) {
-      const select=document.getElementById('specialist-role');
-      if(select) select.value=role;
-      renderSpecialists();
-      document.getElementById('specialists-grid')?.scrollIntoView({behavior:'smooth',block:'start'});
     }
 
     function renderSpecialists() {
