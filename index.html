@@ -282,7 +282,7 @@
             <div class="w-11 h-11 rounded-xl bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 flex items-center justify-center"><i class="fa-solid fa-book-quran text-lg"></i></div>
             <div><h2 class="font-extrabold text-slate-900 dark:text-white">Quran, Hadith & Arabic Specialists</h2><p class="text-[11px] text-slate-500 dark:text-slate-400">Find teachers, students, reciters, memorization specialists, Hadith specialists and Arabic teachers through cloud profiles.</p></div>
           </div>
-          <span id="specialists-count" class="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900 px-3 py-1.5 text-[10px] font-extrabold">0 specialists</span>
+          <div class="flex items-center gap-2 flex-wrap"><span id="specialists-count" class="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900 px-3 py-1.5 text-[10px] font-extrabold">0 specialists</span><button type="button" onclick="openSpecialistJoin()" class="rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 text-xs font-extrabold shadow-sm"><i class="fa-solid fa-user-plus mr-1"></i><span>Join the specialist network</span></button></div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
           <div><label for="specialist-role" class="block text-[11px] font-bold text-slate-500 mb-1">Specialist role</label><select id="specialist-role" onchange="renderSpecialists()" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm"><option value="all">All specialist roles</option><option value="student">Student</option><option value="parent_family">Parent / Muslim family</option><option value="quran_teacher">Quran teacher</option><option value="qari">Qari / Reciter</option><option value="quran_memorizer">Quran memorization specialist</option><option value="hadith_specialist">Hadith specialist</option><option value="arabic_teacher">Arabic teacher</option></select></div>
@@ -703,6 +703,37 @@
   </nav>
   <style>@media(max-width:768px){body{padding-bottom:4.5rem}}</style>
 
+  <!-- Specialist Join Modal -->
+  <div id="specialist-join-modal" class="fixed inset-0 z-[65] hidden bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <button type="button" onclick="closeSpecialistJoin()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"><i class="fa-solid fa-xmark text-lg"></i></button>
+      <div class="mb-5 pr-8">
+        <h3 class="font-extrabold text-slate-900 dark:text-white text-lg">Join the Quran, Hadith & Arabic network</h3>
+        <p class="text-xs text-slate-500 mt-1">Create a real cloud profile so students, families and learners can find you.</p>
+      </div>
+      <form id="specialist-join-form" onsubmit="saveSpecialistProfile(event)" class="space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div><label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Display name *</label><input id="sp-display-name" required maxlength="120" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm" placeholder="Your public name"></div>
+          <div><label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Role *</label><select id="sp-role" required class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm"><option value="student">Student</option><option value="parent_family">Parent / Muslim family</option><option value="quran_teacher">Quran teacher</option><option value="qari">Qari / Reciter</option><option value="quran_memorizer">Quran memorization specialist</option><option value="hadith_specialist">Hadith specialist</option><option value="arabic_teacher">Arabic teacher</option></select></div>
+          <div><label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Specialty</label><input id="sp-specialty" maxlength="160" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm" placeholder="Quran, Hadith, Tajweed, Arabic..."></div>
+          <div><label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Country</label><input id="sp-country" maxlength="80" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm" placeholder="Saudi Arabia"></div>
+          <div><label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">City</label><input id="sp-city" maxlength="80" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm" placeholder="City"></div>
+          <div><label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">WhatsApp</label><input id="sp-whatsapp" maxlength="30" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm" placeholder="Country code + number"></div>
+          <div><label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Teaching modes</label><input id="sp-modes" maxlength="180" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm" placeholder="online, in_person, hybrid"></div>
+          <div><label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Audience</label><input id="sp-audience" maxlength="180" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm" placeholder="children, families, adults, students"></div>
+          <div><label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Subjects</label><input id="sp-subjects" maxlength="220" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm" placeholder="quran, tajweed, hadith, arabic"></div>
+          <div><label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Qiraat</label><input id="sp-qiraat" maxlength="180" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm" placeholder="Hafs, Warsh..."></div>
+          <div><label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Languages</label><input id="sp-languages" maxlength="180" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm" placeholder="Arabic, English..."></div>
+          <div><label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Years of experience</label><input id="sp-experience" type="number" min="0" max="80" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm" placeholder="0"></div>
+        </div>
+        <div><label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Availability</label><input id="sp-availability" maxlength="180" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm" placeholder="Evenings, weekends..."></div>
+        <div><label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Profile description *</label><textarea id="sp-bio" required maxlength="1600" rows="5" class="w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 p-3 text-sm" placeholder="Describe your teaching, expertise, audience and what you are looking for."></textarea></div>
+        <div class="flex items-center gap-2 pt-2"><button class="flex-1 min-h-[44px] rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-extrabold"><i class="fa-solid fa-cloud-arrow-up mr-1"></i>Publish cloud profile</button><button type="button" onclick="closeSpecialistJoin()" class="min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-700 px-4 text-xs font-bold">Cancel</button></div>
+        <div id="specialist-join-message" class="text-[11px] text-slate-500" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+
   <!-- Contact Modal -->
   <div id="contact-modal" class="fixed inset-0 z-50 hidden bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
@@ -1064,6 +1095,29 @@
       'Verified profile':'ملف موثق',
       'Contact specialist':'التواصل مع المتخصص',
       'No direct contact available':'لا توجد وسيلة تواصل مباشرة'
+    });
+    Object.assign(I18N, {
+      'Join the specialist network':'انضم إلى شبكة المتخصصين',
+      'Join the Quran, Hadith & Arabic network':'انضم إلى شبكة القرآن والحديث واللغة العربية',
+      'Create a real cloud profile so students, families and learners can find you.':'أنشئ ملفًا سحابيًا حقيقيًا ليتمكن الطلاب والأسر والمتعلمون من العثور عليك.',
+      'Display name *':'الاسم الظاهر *',
+      'Role *':'الدور *',
+      'Your public name':'اسمك الظاهر',
+      'Specialty':'التخصص',
+      'Country':'الدولة',
+      'City':'المدينة',
+      'WhatsApp':'واتساب',
+      'Teaching modes':'طرق التعليم',
+      'Audience':'الفئة المستهدفة',
+      'Subjects':'المواد',
+      'Qiraat':'القراءات',
+      'Languages':'اللغات',
+      'Years of experience':'سنوات الخبرة',
+      'Availability':'الأوقات المتاحة',
+      'Profile description *':'وصف الملف *',
+      'Publish cloud profile':'نشر الملف السحابي',
+      'Publishing cloud profile...':'جارٍ نشر الملف السحابي...',
+      'Cloud profile published ✓':'تم نشر الملف السحابي ✓'
     });
     let currentLang = safeGet('wefaq_lang', 'ar');
     if (!['ar','en'].includes(currentLang)) currentLang = 'ar';
@@ -1936,8 +1990,66 @@
         const {data,error}=await supabaseClient.from('education_profiles').select('id,role,specialty,bio,country,city,teaching_mode,audience,subjects,qiraat,languages,years_experience,availability,whatsapp,phone,verification_status,profile_image_url,is_active,created_at').eq('is_active',true).order('created_at',{ascending:false}).limit(120);
         if(error)throw error;
         specialistProfiles=Array.isArray(data)?data:[];
+        const ids=specialistProfiles.map(item=>item.id).filter(Boolean);
+        if(ids.length){
+          const {data:names}=await supabaseClient.from('profiles').select('id,display_name').in('id',ids);
+          const map=new Map((names||[]).map(row=>[row.id,row.display_name]));
+          specialistProfiles=specialistProfiles.map(item=>({...item,display_name:map.get(item.id)||''}));
+        }
       } catch(error) { console.warn('Specialist profile load failed',error); specialistProfiles=[]; }
       renderSpecialists();
+    }
+    function openSpecialistJoin() {
+      requireUser().then(user=>{
+        if(!user)return;
+        document.getElementById('specialist-join-modal')?.classList.remove('hidden');
+        const name=document.getElementById('sp-display-name');
+        const phone=document.getElementById('sp-whatsapp');
+        supabaseClient.from('profiles').select('display_name,phone,region,bio').eq('id',user.id).maybeSingle().then(({data})=>{
+          if(name)name.value=data?.display_name||user.user_metadata?.display_name||'';
+          if(phone)phone.value=data?.phone||'';
+          const country=document.getElementById('sp-country');
+          if(country&&!country.value)country.value=data?.region||'';
+        });
+      });
+    }
+    function closeSpecialistJoin(){document.getElementById('specialist-join-modal')?.classList.add('hidden');}
+    function csvValues(id){return String(document.getElementById(id)?.value||'').split(',').map(v=>v.trim()).filter(Boolean).slice(0,12);}
+    async function saveSpecialistProfile(e){
+      e.preventDefault();
+      const user=await requireUser(); if(!user)return;
+      const message=document.getElementById('specialist-join-message');
+      const experience=Number(document.getElementById('sp-experience')?.value||0);
+      const profile={
+        id:user.id,
+        role:document.getElementById('sp-role').value,
+        specialty:document.getElementById('sp-specialty').value.trim(),
+        bio:document.getElementById('sp-bio').value.trim(),
+        country:document.getElementById('sp-country').value.trim(),
+        city:document.getElementById('sp-city').value.trim(),
+        teaching_mode:csvValues('sp-modes'),
+        audience:csvValues('sp-audience'),
+        subjects:csvValues('sp-subjects'),
+        qiraat:csvValues('sp-qiraat'),
+        languages:csvValues('sp-languages'),
+        children_support:csvValues('sp-audience').includes('children'),
+        family_support:csvValues('sp-audience').includes('families'),
+        years_experience:Number.isFinite(experience)?Math.max(0,Math.min(80,Math.floor(experience))):0,
+        availability:document.getElementById('sp-availability').value.trim(),
+        whatsapp:document.getElementById('sp-whatsapp').value.trim(),
+        phone:document.getElementById('sp-whatsapp').value.trim(),
+        verification_status:'pending',
+        is_active:true
+      };
+      if(message)message.textContent=t('Publishing cloud profile...');
+      const {error}=await supabaseClient.from('education_profiles').upsert(profile,{onConflict:'id'});
+      if(error){console.error(error);if(message)message.textContent=error.message;return;}
+      const name=document.getElementById('sp-display-name').value.trim();
+      await supabaseClient.from('profiles').upsert({id:user.id,display_name:name,phone:profile.phone,region:[profile.city,profile.country].filter(Boolean).join(', '),bio:profile.bio,updated_at:new Date().toISOString()},{onConflict:'id'});
+      if(message)message.textContent=t('Cloud profile published ✓');
+      closeSpecialistJoin();
+      await loadSpecialists();
+      showRealtimeNotification(t('Cloud profile published ✓'));
     }
     function renderSpecialists() {
       const grid=document.getElementById('specialists-grid'),empty=document.getElementById('specialists-empty'),count=document.getElementById('specialists-count');
