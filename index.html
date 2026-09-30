@@ -110,12 +110,6 @@
     .wf-hero-art-caption{position:absolute;inset:auto 1rem 1rem 1rem;z-index:2;border:1px solid rgba(255,255,255,.13);background:rgba(2,6,23,.58);backdrop-filter:blur(12px);border-radius:1rem;padding:.8rem;color:white;}
     .wf-specialists-shell{border:1px solid rgba(16,185,129,.20);background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(248,250,252,.98));}
     .dark .wf-specialists-shell{background:linear-gradient(180deg,rgba(15,23,42,.98),rgba(2,6,23,.96));}
-    .wf-specialist-rail{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:.55rem;margin-bottom:1rem;}
-    .wf-specialist-rail button{min-height:66px;border:1px solid #e2e8f0;background:#fff;border-radius:1rem;padding:.55rem;font-size:.68rem;font-weight:800;color:#334155;transition:.18s ease;}
-    .wf-specialist-rail button:hover,.wf-specialist-rail button.active{border-color:#86efac;background:#f0fdf4;color:#047857;transform:translateY(-1px);}
-    .dark .wf-specialist-rail button{border-color:#1e293b;background:#0f172a;color:#cbd5e1;}
-    .dark .wf-specialist-rail button:hover,.dark .wf-specialist-rail button.active{border-color:#065f46;background:#052e2b;color:#a7f3d0;}
-    .wf-specialist-rail i{display:block;font-size:1rem;margin-bottom:.3rem;}
     .wf-trust-strip{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:.8rem;}
     .wf-trust-chip{display:inline-flex;align-items:center;gap:.35rem;border:1px solid #e2e8f0;background:#fff;padding:.4rem .65rem;border-radius:999px;font-size:.62rem;font-weight:800;color:#475569;}
     .dark .wf-trust-chip{border-color:#1e293b;background:#0f172a;color:#cbd5e1;}
@@ -235,15 +229,6 @@
 </div>
 <div class="flex items-center gap-2 flex-wrap"><span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900 px-3 py-1.5 text-[10px] font-extrabold" id="specialists-count">0 specialists</span><button class="rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 text-xs font-extrabold shadow-sm" onclick="openSpecialistJoin()" type="button"><i class="fa-solid fa-user-plus mr-1"></i><span>Join the specialist network</span></button></div>
 </div>
-<div class="wf-specialist-rail">
-<button onclick="heroChoose('quran_teacher')" type="button"><i class="fa-solid fa-person-chalkboard"></i>Quran teacher</button>
-<button onclick="heroChoose('qari')" type="button"><i class="fa-solid fa-microphone-lines"></i>Qari / Reciter</button>
-<button onclick="heroChoose('quran_memorizer')" type="button"><i class="fa-solid fa-book-open"></i>Memorization</button>
-<button onclick="heroChoose('hadith_specialist')" type="button"><i class="fa-solid fa-scroll"></i>Hadith</button>
-<button onclick="heroChoose('arabic_teacher')" type="button"><i class="fa-solid fa-language"></i>Arabic</button>
-<button onclick="heroChoose('student')" type="button"><i class="fa-solid fa-user-graduate"></i>Student</button>
-<button onclick="heroChoose('parent_family')" type="button"><i class="fa-solid fa-people-roof"></i>Family</button>
-</div>
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
 <div><label class="block text-[11px] font-bold text-slate-500 mb-1" for="specialist-role">Specialist role</label><select class="w-full min-h-[46px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm" id="specialist-role" onchange="renderSpecialists()"><option value="all">All specialist roles</option><option value="student">Student</option><option value="parent_family">Parent / Muslim family</option><option value="quran_teacher">Quran teacher</option><option value="qari">Qari / Reciter</option><option value="quran_memorizer">Quran memorization specialist</option><option value="hadith_specialist">Hadith specialist</option><option value="arabic_teacher">Arabic teacher</option></select></div>
 <div><label class="block text-[11px] font-bold text-slate-500 mb-1" for="specialist-subject">Specialty</label><select class="w-full min-h-[46px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm" id="specialist-subject" onchange="renderSpecialists()"><option value="all">All specialties</option><option value="quran">Quran</option><option value="hadith">Hadith</option><option value="arabic">Arabic language</option><option value="tajweed">Tajweed</option><option value="qiraat">Qiraat</option><option value="memorization">Memorization</option><option value="arabic_for_non_native">Arabic for non-native speakers</option></select></div>
@@ -262,31 +247,6 @@
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mt-4" id="specialists-grid"></div>
 <div class="hidden text-center py-10 rounded-2xl border border-dashed border-slate-300 dark:border-slate-800 text-slate-400 text-xs" id="specialists-empty">No specialist profiles are available for this filter yet.</div>
-</div>
-</section>
-<!-- Quran Banner -->
-<section class="relative overflow-hidden rounded-2xl border border-emerald-200 dark:border-emerald-900/60 bg-slate-900 shadow-xl" id="quran-banner">
-<div class="relative min-h-[240px] sm:min-h-[300px] lg:min-h-[340px]">
-<img alt="Quran Mushaf banner for Wefaq" class="absolute inset-0 w-full h-full object-cover" data-i18n-alt="Quran Mushaf banner for Wefaq" decoding="async" fetchpriority="high" loading="eager" onerror="this.style.display='none';this.parentElement.classList.add('bg-gradient-to-br','from-emerald-950','via-slate-900','to-slate-950')" src="./wefaq-quran-banner.png"/>
-<div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/55 to-emerald-950/25"></div>
-<div class="relative z-10 h-full min-h-[240px] sm:min-h-[300px] lg:min-h-[340px] flex items-center p-6 sm:p-10">
-<div class="max-w-2xl text-white">
-<div class="inline-flex items-center gap-2 rounded-full bg-emerald-400/15 border border-emerald-300/30 px-3 py-1 text-xs font-bold text-emerald-200 mb-4">
-<i class="fa-solid fa-book-quran"></i>
-              Quran &amp; Wefaq
-            </div>
-<h2 class="text-2xl sm:text-3xl lg:text-4xl font-black leading-tight mb-3">
-              A trusted space for Quran learning, memorization and meaningful connections.
-            </h2>
-<p class="text-sm text-white/80 leading-7 max-w-xl mb-5">
-              Connect Quran teachers and students worldwide, discover memorization circles, and use smart matching to find suitable opportunities.
-            </p>
-<button class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-extrabold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-lg transition" onclick="setCategoryFilter('quran');document.getElementById('marketplace-section')?.scrollIntoView({behavior:'smooth'})" type="button">
-<i class="fa-solid fa-compass"></i>
-              Explore Quran Opportunities
-            </button>
-</div>
-</div>
 </div>
 </section>
 <!-- Live Social + Open Web Radar -->
