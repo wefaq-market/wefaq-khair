@@ -1867,15 +1867,7 @@
       const days=Math.min(Math.max(Number(document.getElementById('external-days')?.value||7),1),30);
       const icon=document.getElementById('external-sync-icon'); if(icon)icon.classList.add('fa-spin'); setExternalStatus(t('Syncing') + ` · ${days}d`);
       try{
-        const { data: sessionData, error: sessionError } = await supabaseClient.auth.getSession();
-        if (sessionError) throw sessionError;
-        const accessToken = sessionData?.session?.access_token;
-        if (!accessToken) throw new Error('No active session');
-
-        const { data, error } = await supabaseClient.functions.invoke('social-radar-sync', {
-          body: { query, provider, days, max_results: 40 },
-          headers: { Authorization: `Bearer ${accessToken}` }
-        });
+        const {data,error}=await supabaseClient.functions.invoke('social-radar-sync',{body:{query,provider,days,max_results:40}}); 
         if(error)throw error;
         externalLiveWebItems = Array.isArray(data?.web_results) ? data.web_results.map((r,i)=>({
           id:`brave:${i}:${r.source_url||''}`,
@@ -1891,8 +1883,9 @@
         await loadExternalRadar();
         const synced=data?.synced?Object.entries(data.synced).map(([k,v])=>`${k}: ${v}`).join(' · '):'';
         const missing=data?.missing_credentials?.length?` · ${t('Credential missing')}: ${data.missing_credentials.length}`:'';
-        const errorCount=data?.errors?Object.keys(data.errors).length:0;
-        const errors=errorCount?` · errors: ${errorCount}`:'';
+        const errorEntries=data?.errors && typeof data.errors==='object' ? Object.entries(data.errors) : [];
+        const errorCount=errorEntries.length;
+        const errors=errorCount ? ` · errors: ${errorEntries.map(([k,v])=>`${k}: ${v}`).join(' | ')}` : '';
         const liveNote=data?.web_results_persisted===false&&data?.web_results?.length?` · ${t('Web results are live only')}`:'';
         const msg=`${t('External sync completed')}${synced?' — '+synced:''}${missing}${errors}${liveNote}`; showRealtimeNotification(msg); setExternalStatus(msg,'live');
       }catch(err){console.error('External sync failed',err);const msg=`${t('External sync unavailable')}${err?.message?' — '+err.message:''}`;showRealtimeNotification(msg);setExternalStatus(msg,'error');}
