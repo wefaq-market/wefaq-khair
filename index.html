@@ -1300,7 +1300,13 @@
       document.body.appendChild(toast);
       setTimeout(() => { toast.style.opacity = '0'; toast.style.transition = 'opacity 0.4s'; setTimeout(() => toast.remove(), 400); }, 4000);
     }
-    function listingUrl(id) { return SITE.url + '/l/' + encodeURIComponent(id) + '/'; }
+    function listingUrl(id) {
+      const u = new URL(location.href);
+      u.search = '';
+      u.hash = '';
+      u.searchParams.set('l', String(id));
+      return u.toString();
+    }
 
     // ========== ACTIVE CLOUD VISITOR COUNTER ==========
     async function trackVisitor() {
@@ -1732,7 +1738,7 @@
       showRealtimeNotification(ok ? t('Link copied ✓') : t('Copy failed'));
     }
     function sharePlatform() {
-      document.getElementById('share-link-input').value = SITE.url;
+      document.getElementById('share-link-input').value = new URL(location.href).origin + new URL(location.href).pathname;
       currentSelectedCardForShare = { id: 'platform', title: 'Wefaq Platform' };
       document.getElementById('share-modal').classList.remove('hidden');
     }
