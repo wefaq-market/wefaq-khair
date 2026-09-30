@@ -149,13 +149,6 @@
 </nav>
 <div class="flex items-center gap-2 sm:gap-3">
 <button class="lang-btn" id="langToggleBtn" onclick="toggleLanguage()">العربية 🌐</button>
-<select class="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs py-1.5 px-2 font-semibold text-slate-700 dark:text-slate-300 focus:outline-none" id="currency-select" onchange="renderCards();">
-<option selected="" value="SAR">SAR (ر.س)</option>
-<option value="USD">USD ($)</option>
-<option value="EGP">EGP (ج.م)</option>
-<option value="AED">AED (د.إ)</option>
-<option value="EUR">EUR (€)</option>
-</select>
 <button class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition" id="theme-toggle" onclick="toggleTheme()">
 <i class="fa-solid fa-moon" id="theme-icon"></i>
 </button>
@@ -1159,7 +1152,6 @@
     let currentSelectedCardForShare = null;
     let focusListingId = new URLSearchParams(location.search).get('l') || new URLSearchParams(location.search).get('listing');
 
-    const EXCHANGE_RATES = { SAR: 1, USD: 0.27, EGP: 13.1, AED: 0.98, EUR: 0.24 };
     const REGION_LABELS = {
       GLOBAL: 'Global', PALESTINE: 'Palestine', GAZA: 'Gaza', AFRICA: 'Africa',
       FOREIGN: 'Foreign', KSA: 'Saudi Arabia', EGP: 'Egypt', UAE: 'UAE',
@@ -1258,7 +1250,7 @@
       const genderVal = document.getElementById('filter-gender')?.value || 'all';
       const langTrackVal = document.getElementById('filter-lang-track')?.value || 'all';
       const langLevelVal = document.getElementById('filter-lang-level')?.value || 'all';
-      const currentCurrency = document.getElementById('currency-select').value;
+      const currentCurrency = 'SAR';
 
       const matchesField = (value, selected) => {
         if (selected === 'all') return true;
@@ -1311,8 +1303,8 @@
 
     function createCardHTML(item, currency) {
       const regionLabel = REGION_LABELS[item.region] || item.region || '—';
-      const convertedAmount = Math.round((item.amount || 0) * (EXCHANGE_RATES[currency] || 1));
-      const amountFormatted = convertedAmount > 0 ? `${convertedAmount.toLocaleString()} ${currency}` : (currentLang === 'ar' ? 'حسب الاتفاق / مجانًا' : 'By agreement / Free');
+      const numericAmount = Number(item.amount);
+      const amountFormatted = Number.isFinite(numericAmount) && numericAmount > 0 ? numericAmount.toLocaleString() : (currentLang === 'ar' ? 'حسب الاتفاق / مجانًا' : 'By agreement / Free');
 
       let categoryBadge = '', categoryIcon = 'fa-briefcase', categoryColor = 'text-blue-600 bg-blue-50 dark:bg-blue-950/50';
       if (item.category === 'quran') { categoryIcon = 'fa-book-quran'; categoryColor = 'text-emerald-600 bg-emerald-50 dark:bg-emerald-950/50'; categoryBadge = currentLang === 'ar' ? '📖 قرآن' : '📖 Quran'; }
@@ -2391,7 +2383,7 @@
       const date=item.deadline_at||item.ends_at||item.posted_at;
       const budget=(item.budget_min!=null||item.budget_max!=null)?`${item.budget_min!=null?item.budget_min:'—'}${item.budget_max!=null?` - ${item.budget_max}`:''} ${item.currency||''}`.trim():'';
       const meta=[item.location_text,budget,date?formatExternalDate(date):''].filter(Boolean);
-      return `<article class="source-card rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col h-full"><div class="p-4 flex flex-col flex-1"><div class="flex items-start justify-between gap-3 mb-3"><span class="text-[10px] font-extrabold uppercase tracking-wide text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/30 px-2.5 py-1 rounded-full">${esc(typeLabel)}</span><span class="text-[10px] font-bold text-slate-400">${esc(item.source_provider||'')}</span></div><h3 class="font-extrabold text-sm text-slate-900 dark:text-white line-clamp-3 mb-2">${esc(item.title||'Opportunity')}</h3><p class="text-xs text-slate-600 dark:text-slate-300 leading-5 line-clamp-4 flex-1">${esc(item.description||'')}</p><div class="mt-3 flex flex-wrap gap-1.5">${meta.map(v=>`<span class="text-[10px] font-bold rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 px-2 py-1">${esc(String(v))}</span>`).join('')}</div><div class="mt-4"><a href="${esc(item.source_url||'#')}" target="_blank" rel="noopener noreferrer" class="block text-center rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-extrabold py-2.5"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>Open source</a></div></div></article>`;
+      return `<article class="source-card rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col h-full"><div class="p-4 flex flex-col flex-1"><div class="flex items-start justify-between gap-3 mb-3"><span class="text-[10px] font-extrabold uppercase tracking-wide text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/30 px-2.5 py-1 rounded-full">${esc(typeLabel)}</span><span class="text-[10px] font-bold text-slate-400">${esc(item.source_provider||'')}</span></div><h3 class="font-extrabold text-sm text-slate-900 dark:text-white line-clamp-3 mb-2">${esc(item.title||'Opportunity')}</h3><p class="text-xs text-slate-600 dark:text-slate-300 leading-5 line-clamp-4 flex-1">${esc(item.description||'')}</p><div class="mt-3 flex flex-wrap gap-1.5">${meta.map(v=>`<span class="text-[10px] font-bold rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 px-2 py-1">${esc(String(v))}</span>`).join('')}</div><div class="mt-4">${item.source_url ? `<a href="${esc(item.source_url)}" target="_blank" rel="noopener noreferrer" class="block text-center rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-extrabold py-2.5"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>Open source</a>` : `<button type="button" disabled class="w-full rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 text-xs font-extrabold py-2.5">${esc(t('Source link unavailable'))}</button>`}</div></div></article>`;
     }
     async function loadCloudOpportunities(){
       const grid=document.getElementById('cloud-opportunities-grid'),empty=document.getElementById('cloud-opportunities-empty');
