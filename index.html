@@ -1598,7 +1598,11 @@
     }
 
     // ========== MODALS ==========
-    function openCreateModal(defaultCat) {
+    async function openCreateModal(defaultCat, bypassAuth=false) {
+      if(!bypassAuth){
+        const user=await requireUser({kind:'create_listing',category:defaultCat||null});
+        if(!user)return;
+      }
       document.getElementById('create-modal').classList.remove('hidden');
       if (defaultCat) {
         const sel = document.getElementById('new-category');
@@ -1616,9 +1620,13 @@
       document.getElementById('languages-form-fields').classList.toggle('hidden', cat !== 'languages');
     }
 
-    function openContactModal(id) {
+    async function openContactModal(id, bypassAuth=false) {
       const item = opportunitiesData.find(i => i.id === id);
       if (!item) return;
+      if(!bypassAuth){
+        const user=await requireUser({kind:'listing_contact',id});
+        if(!user)return;
+      }
       currentSelectedCardForContact = item;
       const senderInput = document.getElementById('sender-name');
       if (senderInput && (!senderInput.value || senderInput.value === 'Investor / Quran seeker via Wefaq' || senderInput.value === 'مستثمر / طالب قرآن عبر وفاق')) senderInput.value = t('Investor / Quran seeker via Wefaq');
@@ -1808,8 +1816,28 @@
       a.download = 'wefaq-listings.json';
       a.click();
     }
-    function openAuthModal() { document.getElementById('auth-modal').classList.remove('hidden'); }
+    let pendingAuthAction = null;
+    function openAuthModal(action=null) {
+      if(action) pendingAuthAction = action;
+      const modal = document.getElementById('auth-modal');
+      if(modal) modal.classList.remove('hidden');
+      const msg = document.getElementById('auth-message');
+      if(msg && action) msg.textContent = t('Please sign in to continue');
+    }
     function closeAuthModal() { document.getElementById('auth-modal').classList.add('hidden'); }
+    async function resumePendingAuthAction() {
+      const action = pendingAuthAction;
+      pendingAuthAction = null;
+      if(!action) return;
+      try {
+        if(action.kind === 'listing_contact') await openContactModal(action.id, true);
+        else if(action.kind === 'listing_connect') await requestConnection(action.id, true);
+        else if(action.kind === 'listing_save') await toggleFavorite(action.id, true);
+        else if(action.kind === 'create_listing') { closeAuthModal(); await openCreateModal(action.category, true); }
+        else if(action.kind === 'specialist_contact') contactSpecialist(action.id, action.contactKey, true);
+        else if(action.kind === 'specialist_join') { closeAuthModal(); await openSpecialistJoin(true); }
+      } catch(err) { console.warn('Pending interaction resume failed', err); }
+    }
     async function submitAuth(e) {
       e.preventDefault();
       const email=document.getElementById('auth-email').value.trim(), password=document.getElementById('auth-password').value;
@@ -1817,7 +1845,7 @@
       if(!supabaseClient){msg.textContent=t('Cloud authentication is unavailable.');return;}
       const {error}=await supabaseClient.auth.signInWithPassword({email,password});
       if(error){msg.textContent=error.message;return;}
-      msg.textContent=t('Signed in ✓'); closeAuthModal(); await refreshAuthState(); loadWorkspace();
+      msg.textContent=t('Signed in ✓'); closeAuthModal(); await refreshAuthState(); loadWorkspace(); await resumePendingAuthAction();
     }
     async function signUpUser(){
       const email=document.getElementById('auth-email').value.trim(), password=document.getElementById('auth-password').value, name=document.getElementById('auth-name').value.trim(), type=document.getElementById('auth-type').value;
@@ -1829,7 +1857,7 @@
       if(error){msg.textContent=error.message;return;}
       if(data.user){await supabaseClient.from('profiles').upsert({id:data.user.id,display_name:name||email.split('@')[0],account_type:type},{onConflict:'id'});}
       msg.textContent=data.session?t('Account created ✓'):t('Check your email to confirm your account.');
-      if(data.session){closeAuthModal(); await refreshAuthState(); loadWorkspace();}
+      if(data.session){closeAuthModal(); await refreshAuthState(); loadWorkspace(); await resumePendingAuthAction();}
     }
     async function signOutUser(){ if(supabaseClient) await supabaseClient.auth.signOut(); await refreshAuthState(); }
     async function refreshAuthState(){
@@ -1868,15 +1896,16 @@
     let activeConnectionId = null;
     let activeChatRecipientId = null;
 
-    async function requireUser() {
+    async function requireUser(action=null) {
       if (!supabaseClient) { showRealtimeNotification('Cloud account service is unavailable'); return null; }
       const { data } = await supabaseClient.auth.getUser();
-      if (!data?.user) { openAuthModal(); showRealtimeNotification(t('Please sign in first')); return null; }
+      if (!data?.user) { openAuthModal(action); showRealtimeNotification(t('Please sign in first')); return null; }
       return data.user;
     }
 
-    async function requestConnection(listingId) {
-      const user = await requireUser(); if (!user) return;
+    async function requestConnection(listingId, bypassAuth=false) {
+      const user = bypassAuth ? (await supabaseClient.auth.getUser()).data?.user : await requireUser({kind:'listing_connect',id:listingId});
+      if (!user) return;
       const item = opportunitiesData.find(x => String(x.id) === String(listingId));
       if (!item) return;
       if (!item.ownerId) { openContactModal(listingId); showRealtimeNotification('This legacy listing has no account owner yet'); return; }
@@ -1892,8 +1921,9 @@
       await loadWorkspace();
     }
 
-    async function toggleFavorite(listingId) {
-      const user = await requireUser(); if (!user) return;
+    async function toggleFavorite(listingId, bypassAuth=false) {
+      const user = bypassAuth ? (await supabaseClient.auth.getUser()).data?.user : await requireUser({kind:'listing_save',id:listingId});
+      if (!user) return;
       const { data: existing } = await supabaseClient.from('favorites').select('id').eq('user_id', user.id).eq('listing_id', listingId).maybeSingle();
       if (existing) {
         await supabaseClient.from('favorites').delete().eq('id', existing.id);
@@ -2090,6 +2120,18 @@
       return specialistContactLinks(profile).find(link => link.key === 'WhatsApp')?.href || specialistContactLinks(profile)[0]?.href || '';
     }
     function specialistContactTarget(href) { return /^https:\/\//i.test(String(href||'')) ? ' target="_blank" rel="noopener noreferrer"' : ''; }
+    async function contactSpecialist(id, contactKey, bypassAuth=false) {
+      const profile=specialistProfiles.find(item=>String(item.id)===String(id));
+      if(!profile)return;
+      if(!bypassAuth){
+        const user=await requireUser({kind:'specialist_contact',id,contactKey});
+        if(!user)return;
+      }
+      const link=specialistContactLinks(profile).find(item=>item.key===contactKey)||specialistContactLinks(profile)[0];
+      if(!link)return;
+      if(/^https:\/\//i.test(link.href)) window.open(link.href,'_blank','noopener,noreferrer');
+      else window.location.href=link.href;
+    }
     function specialistTags(profile) {
       const values=[...(Array.isArray(profile?.subjects)?profile.subjects:[]),...(Array.isArray(profile?.qiraat)?profile.qiraat:[]),...(Array.isArray(profile?.languages)?profile.languages:[]),...(Array.isArray(profile?.audience)?profile.audience:[]),...(Array.isArray(profile?.teaching_mode)?profile.teaching_mode:[])];
       return [...new Set(values.map(v=>String(v||'').trim()).filter(Boolean))].slice(0,8);
@@ -2101,8 +2143,8 @@
       const verification=['verified','admin_reviewed'].includes(profile.verification_status)?`<span class="text-[10px] font-extrabold px-2 py-1 rounded-full text-blue-700 bg-blue-50 dark:bg-blue-950/30">${esc(t('Verified profile'))}</span>`:'';
       const title=profile.display_name||specialistRoleLabel(profile.role);
       const image=profile.profile_image_url&&/^https:\/\//i.test(profile.profile_image_url)?`<img src="${esc(profile.profile_image_url)}" alt="" loading="lazy" referrerpolicy="no-referrer" class="w-14 h-14 rounded-2xl object-cover border border-slate-200 dark:border-slate-700">`:`<div class="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 flex items-center justify-center text-xl"><i class="fa-solid fa-user-graduate"></i></div>`;
-      const primary=links.slice(0,2).map(link=>`<a href="${esc(link.href)}" ${specialistContactTarget(link.href)} class="text-center rounded-xl ${link.cls} text-xs font-extrabold py-2.5"><i class="${link.icon} mr-1"></i>${esc(t(link.key))}</a>`).join('');
-      return `<article class="source-card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 flex flex-col h-full"><div class="flex items-start gap-3">${image}<div class="min-w-0 flex-1"><div class="flex items-start justify-between gap-2"><h3 class="font-extrabold text-sm text-slate-900 dark:text-white line-clamp-2">${esc(title)}</h3>${verification}</div><div class="text-[10px] font-bold text-emerald-700 dark:text-emerald-300 mt-1">${esc(t(specialistRoleLabel(profile.role)))}</div>${location?`<div class="text-[10px] text-slate-400 mt-1"><i class="fa-solid fa-location-dot mr-1"></i>${esc(location)}</div>`:''}</div></div><p class="text-xs text-slate-600 dark:text-slate-300 leading-5 mt-3 line-clamp-4 flex-1">${esc(profile.bio||profile.specialty||t('Language'))}</p>${profile.years_experience?`<div class="text-[10px] text-slate-500 mt-2"><span class="font-bold">${esc(t('Years experience'))}:</span> ${Number(profile.years_experience)}</div>`:''}${tags.length?`<div class="flex flex-wrap gap-1.5 mt-3">${tags.map(tag=>`<span class="text-[9px] font-bold px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">${esc(tag)}</span>`).join('')}</div>`:''}<div class="mt-4 grid grid-cols-2 gap-2">${primary || `<button type="button" disabled class="rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 text-xs font-bold py-2.5">${esc(t('No public contact options'))}</button>`}<button type="button" onclick="openSpecialistDetails('${esc(profile.id)}')" class="rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-xs font-bold py-2.5">${esc(t('Details'))}</button></div><div class="mt-2 flex flex-wrap gap-1.5">${links.slice(2).map(link=>`<a href="${esc(link.href)}" ${specialistContactTarget(link.href)} class="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[10px] font-extrabold ${link.cls}"><i class="${link.icon}"></i>${esc(t(link.key))}</a>`).join('')}</div></article>`;
+      const primary=links.slice(0,2).map(link=>`<button type="button" onclick="contactSpecialist('${esc(profile.id)}','${esc(link.key)}')" class="text-center rounded-xl ${link.cls} text-xs font-extrabold py-2.5"><i class="${link.icon} mr-1"></i>${esc(t(link.key))}</button>`).join('');
+      return `<article class="source-card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 flex flex-col h-full"><div class="flex items-start gap-3">${image}<div class="min-w-0 flex-1"><div class="flex items-start justify-between gap-2"><h3 class="font-extrabold text-sm text-slate-900 dark:text-white line-clamp-2">${esc(title)}</h3>${verification}</div><div class="text-[10px] font-bold text-emerald-700 dark:text-emerald-300 mt-1">${esc(t(specialistRoleLabel(profile.role)))}</div>${location?`<div class="text-[10px] text-slate-400 mt-1"><i class="fa-solid fa-location-dot mr-1"></i>${esc(location)}</div>`:''}</div></div><p class="text-xs text-slate-600 dark:text-slate-300 leading-5 mt-3 line-clamp-4 flex-1">${esc(profile.bio||profile.specialty||t('Language'))}</p>${profile.years_experience?`<div class="text-[10px] text-slate-500 mt-2"><span class="font-bold">${esc(t('Years experience'))}:</span> ${Number(profile.years_experience)}</div>`:''}${tags.length?`<div class="flex flex-wrap gap-1.5 mt-3">${tags.map(tag=>`<span class="text-[9px] font-bold px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">${esc(tag)}</span>`).join('')}</div>`:''}<div class="mt-4 grid grid-cols-2 gap-2">${primary || `<button type="button" disabled class="rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 text-xs font-bold py-2.5">${esc(t('No public contact options'))}</button>`}<button type="button" onclick="openSpecialistDetails('${esc(profile.id)}')" class="rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-xs font-bold py-2.5">${esc(t('Details'))}</button></div><div class="mt-2 flex flex-wrap gap-1.5">${links.slice(2).map(link=>`<button type="button" onclick="contactSpecialist('${esc(profile.id)}','${esc(link.key)}')" class="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[10px] font-extrabold ${link.cls}"><i class="${link.icon}"></i>${esc(t(link.key))}</button>`).join('')}</div></article>`;
     }
     async function loadSpecialists() {
       if(!supabaseClient)return;
@@ -2119,8 +2161,9 @@
       } catch(error) { console.warn('Specialist profile load failed',error); specialistProfiles=[]; }
       renderSpecialists();
     }
-    function openSpecialistJoin() {
-      requireUser().then(async user=>{
+    function openSpecialistJoin(bypassAuth=false) {
+      const openForm=async()=>{
+        const user=bypassAuth ? (await supabaseClient.auth.getUser()).data?.user : await requireUser({kind:'specialist_join'});
         if(!user)return;
         document.getElementById('specialist-join-modal')?.classList.remove('hidden');
         const ids=['sp-display-name','sp-whatsapp','sp-phone','sp-telegram','sp-email','sp-linkedin','sp-website','sp-country'];
@@ -2138,7 +2181,8 @@
         setValue('sp-city',education?.city||'');
         setValue('sp-specialty',education?.specialty||'');
         setValue('sp-bio',education?.bio||profile?.bio||'');
-      });
+      };
+      return openForm();
     }
     function closeSpecialistJoin(){document.getElementById('specialist-join-modal')?.classList.add('hidden');}
     function csvValues(id){return String(document.getElementById(id)?.value||'').split(',').map(v=>v.trim()).filter(Boolean).slice(0,12);}
@@ -2219,7 +2263,7 @@
       const chips=[...(Array.isArray(profile.subjects)?profile.subjects:[]),...(Array.isArray(profile.qiraat)?profile.qiraat:[]),...(Array.isArray(profile.audience)?profile.audience:[]),...(Array.isArray(profile.teaching_mode)?profile.teaching_mode:[]),...(Array.isArray(profile.languages)?profile.languages:[])].map(v=>String(v||'').trim()).filter(Boolean).slice(0,14);
       const content=document.getElementById('specialist-details-content');
       if(!content)return;
-      content.innerHTML=`<div class="flex items-start gap-4"><div class="shrink-0">${profile.profile_image_url&&/^https:\/\//i.test(profile.profile_image_url)?`<img src="${esc(profile.profile_image_url)}" alt="" class="w-20 h-20 rounded-2xl object-cover border border-slate-200 dark:border-slate-700">`:`<div class="w-20 h-20 rounded-2xl bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 flex items-center justify-center text-2xl"><i class="fa-solid fa-user-graduate"></i></div>`}</div><div class="min-w-0 flex-1"><div class="flex flex-wrap items-center gap-2"><h3 class="text-xl font-black text-slate-900 dark:text-white">${esc(title)}</h3>${verification?`<span class="text-[10px] font-extrabold px-2 py-1 rounded-full text-blue-700 bg-blue-50 dark:bg-blue-950/30">${esc(verification)}</span>`:''}</div><div class="text-sm font-bold text-emerald-700 dark:text-emerald-300 mt-1">${esc(role)}</div>${location?`<div class="text-xs text-slate-500 mt-2"><i class="fa-solid fa-location-dot mr-1"></i>${esc(location)}</div>`:''}</div></div><div class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3"><div class="rounded-xl border border-slate-200 dark:border-slate-800 p-3"><div class="text-[10px] font-extrabold text-slate-400 uppercase">${esc(t('Specialty'))}</div><div class="text-sm font-bold mt-1">${esc(profile.specialty||'—')}</div></div><div class="rounded-xl border border-slate-200 dark:border-slate-800 p-3"><div class="text-[10px] font-extrabold text-slate-400 uppercase">${esc(t('Years experience'))}</div><div class="text-sm font-bold mt-1">${profile.years_experience==null?'—':Number(profile.years_experience)}</div></div><div class="rounded-xl border border-slate-200 dark:border-slate-800 p-3"><div class="text-[10px] font-extrabold text-slate-400 uppercase">${esc(t('Availability'))}</div><div class="text-sm font-bold mt-1">${esc(profile.availability||'—')}</div></div><div class="rounded-xl border border-slate-200 dark:border-slate-800 p-3"><div class="text-[10px] font-extrabold text-slate-400 uppercase">${esc(t('Qiraat'))}</div><div class="text-sm font-bold mt-1">${esc(Array.isArray(profile.qiraat)&&profile.qiraat.length?profile.qiraat.join(', '):'—')}</div></div></div><div class="mt-4 rounded-xl border border-slate-200 dark:border-slate-800 p-4"><div class="text-[10px] font-extrabold text-slate-400 uppercase mb-2">${esc(t('Profile information'))}</div><p class="text-sm text-slate-600 dark:text-slate-300 leading-7">${esc(profile.bio||'—')}</p></div>${chips.length?`<div class="mt-4 flex flex-wrap gap-2">${chips.map(chip=>`<span class="text-[10px] font-bold px-2.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">${esc(chip)}</span>`).join('')}</div>`:''}<div class="mt-5"><div class="text-[10px] font-extrabold text-slate-400 uppercase mb-2">${esc(t('Contact options'))}</div>${links.length?`<div class="grid grid-cols-2 sm:grid-cols-3 gap-2">${links.map(link=>`<a href="${esc(link.href)}" ${specialistContactTarget(link.href)} class="inline-flex items-center justify-center gap-2 rounded-xl px-3 py-3 text-xs font-extrabold ${link.cls}"><i class="${link.icon}"></i>${esc(t(link.key))}</a>`).join('')}</div>`:`<div class="text-xs text-slate-400">${esc(t('No public contact options'))}</div>`}</div><div class="mt-5 flex justify-end"><button type="button" onclick="closeSpecialistDetails()" class="rounded-xl border border-slate-200 dark:border-slate-700 px-4 py-2.5 text-xs font-bold text-slate-700 dark:text-slate-200">${esc(t('Close'))}</button></div>`;
+      content.innerHTML=`<div class="flex items-start gap-4"><div class="shrink-0">${profile.profile_image_url&&/^https:\/\//i.test(profile.profile_image_url)?`<img src="${esc(profile.profile_image_url)}" alt="" class="w-20 h-20 rounded-2xl object-cover border border-slate-200 dark:border-slate-700">`:`<div class="w-20 h-20 rounded-2xl bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 flex items-center justify-center text-2xl"><i class="fa-solid fa-user-graduate"></i></div>`}</div><div class="min-w-0 flex-1"><div class="flex flex-wrap items-center gap-2"><h3 class="text-xl font-black text-slate-900 dark:text-white">${esc(title)}</h3>${verification?`<span class="text-[10px] font-extrabold px-2 py-1 rounded-full text-blue-700 bg-blue-50 dark:bg-blue-950/30">${esc(verification)}</span>`:''}</div><div class="text-sm font-bold text-emerald-700 dark:text-emerald-300 mt-1">${esc(role)}</div>${location?`<div class="text-xs text-slate-500 mt-2"><i class="fa-solid fa-location-dot mr-1"></i>${esc(location)}</div>`:''}</div></div><div class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3"><div class="rounded-xl border border-slate-200 dark:border-slate-800 p-3"><div class="text-[10px] font-extrabold text-slate-400 uppercase">${esc(t('Specialty'))}</div><div class="text-sm font-bold mt-1">${esc(profile.specialty||'—')}</div></div><div class="rounded-xl border border-slate-200 dark:border-slate-800 p-3"><div class="text-[10px] font-extrabold text-slate-400 uppercase">${esc(t('Years experience'))}</div><div class="text-sm font-bold mt-1">${profile.years_experience==null?'—':Number(profile.years_experience)}</div></div><div class="rounded-xl border border-slate-200 dark:border-slate-800 p-3"><div class="text-[10px] font-extrabold text-slate-400 uppercase">${esc(t('Availability'))}</div><div class="text-sm font-bold mt-1">${esc(profile.availability||'—')}</div></div><div class="rounded-xl border border-slate-200 dark:border-slate-800 p-3"><div class="text-[10px] font-extrabold text-slate-400 uppercase">${esc(t('Qiraat'))}</div><div class="text-sm font-bold mt-1">${esc(Array.isArray(profile.qiraat)&&profile.qiraat.length?profile.qiraat.join(', '):'—')}</div></div></div><div class="mt-4 rounded-xl border border-slate-200 dark:border-slate-800 p-4"><div class="text-[10px] font-extrabold text-slate-400 uppercase mb-2">${esc(t('Profile information'))}</div><p class="text-sm text-slate-600 dark:text-slate-300 leading-7">${esc(profile.bio||'—')}</p></div>${chips.length?`<div class="mt-4 flex flex-wrap gap-2">${chips.map(chip=>`<span class="text-[10px] font-bold px-2.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">${esc(chip)}</span>`).join('')}</div>`:''}<div class="mt-5"><div class="text-[10px] font-extrabold text-slate-400 uppercase mb-2">${esc(t('Contact options'))}</div>${links.length?`<div class="grid grid-cols-2 sm:grid-cols-3 gap-2">${links.map(link=>`<button type="button" onclick="contactSpecialist('${esc(profile.id)}','${esc(link.key)}')" class="inline-flex items-center justify-center gap-2 rounded-xl px-3 py-3 text-xs font-extrabold ${link.cls}"><i class="${link.icon}"></i>${esc(t(link.key))}</button>`).join('')}</div>`:`<div class="text-xs text-slate-400">${esc(t('No public contact options'))}</div>`}</div><div class="mt-5 flex justify-end"><button type="button" onclick="closeSpecialistDetails()" class="rounded-xl border border-slate-200 dark:border-slate-700 px-4 py-2.5 text-xs font-bold text-slate-700 dark:text-slate-200">${esc(t('Close'))}</button></div>`;
       document.getElementById('specialist-details-modal').classList.remove('hidden');
       translatePage();
     }
