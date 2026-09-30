@@ -103,6 +103,7 @@
         <a href="#marketplace-section" class="hover:text-brand-600 dark:hover:text-emerald-400 transition flex items-center gap-1.5">
           <i class="fa-solid fa-earth-americas text-blue-500"></i> Marketplace
         </a>
+        <a href="#specialists-hub" class="hover:text-brand-600 dark:hover:text-emerald-400 transition flex items-center gap-1.5"><i class="fa-solid fa-book-quran text-emerald-500"></i> Specialists</a>
         <a href="#external-radar" class="hover:text-brand-600 dark:hover:text-emerald-400 transition flex items-center gap-1.5">
           <i class="fa-solid fa-satellite-dish text-sky-500"></i> Social Radar
         </a>
@@ -272,6 +273,31 @@
       </div>
     </section>
 
+
+    <!-- Quran, Hadith & Arabic Specialists Hub -->
+    <section id="specialists-hub" class="scroll-mt-20">
+      <div class="bg-white dark:bg-slate-900 border border-emerald-200 dark:border-emerald-900/60 rounded-2xl p-5 sm:p-6 shadow-sm">
+        <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-4 mb-5">
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-xl bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 flex items-center justify-center"><i class="fa-solid fa-book-quran text-lg"></i></div>
+            <div><h2 class="font-extrabold text-slate-900 dark:text-white">Quran, Hadith & Arabic Specialists</h2><p class="text-[11px] text-slate-500 dark:text-slate-400">Find teachers, students, reciters, memorization specialists, Hadith specialists and Arabic teachers through cloud profiles.</p></div>
+          </div>
+          <span id="specialists-count" class="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900 px-3 py-1.5 text-[10px] font-extrabold">0 specialists</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
+          <div><label for="specialist-role" class="block text-[11px] font-bold text-slate-500 mb-1">Specialist role</label><select id="specialist-role" onchange="renderSpecialists()" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm"><option value="all">All specialist roles</option><option value="student">Student</option><option value="parent_family">Parent / Muslim family</option><option value="quran_teacher">Quran teacher</option><option value="qari">Qari / Reciter</option><option value="quran_memorizer">Quran memorization specialist</option><option value="hadith_specialist">Hadith specialist</option><option value="arabic_teacher">Arabic teacher</option></select></div>
+          <div><label for="specialist-subject" class="block text-[11px] font-bold text-slate-500 mb-1">Specialty</label><select id="specialist-subject" onchange="renderSpecialists()" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm"><option value="all">All specialties</option><option value="quran">Quran</option><option value="hadith">Hadith</option><option value="arabic">Arabic language</option><option value="tajweed">Tajweed</option><option value="qiraat">Qiraat</option><option value="memorization">Memorization</option><option value="arabic_for_non_native">Arabic for non-native speakers</option></select></div>
+          <div><label for="specialist-audience" class="block text-[11px] font-bold text-slate-500 mb-1">Target audience</label><select id="specialist-audience" onchange="renderSpecialists()" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm"><option value="all">All audiences</option><option value="children">Children</option><option value="families">Families</option><option value="men">Men</option><option value="women">Women</option><option value="adults">Adults</option><option value="students">Students</option></select></div>
+          <div><label for="specialist-mode" class="block text-[11px] font-bold text-slate-500 mb-1">Study mode</label><select id="specialist-mode" onchange="renderSpecialists()" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm"><option value="all">All modes</option><option value="online">Online</option><option value="in_person">In-person</option><option value="hybrid">Hybrid</option></select></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-3 mb-4">
+          <div class="md:col-span-8"><label for="specialist-search" class="block text-[11px] font-bold text-slate-500 mb-1">Search specialists</label><input id="specialist-search" oninput="renderSpecialists()" maxlength="120" placeholder="Search by name, specialty, country or expertise..." class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm focus:ring-2 focus:ring-emerald-500 outline-none"></div>
+          <div class="md:col-span-4"><label for="specialist-country" class="block text-[11px] font-bold text-slate-500 mb-1">Country / Region</label><input id="specialist-country" oninput="renderSpecialists()" maxlength="80" placeholder="Saudi Arabia, Egypt, Morocco..." class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm focus:ring-2 focus:ring-emerald-500 outline-none"></div>
+        </div>
+        <div id="specialists-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"></div>
+        <div id="specialists-empty" class="hidden text-center py-10 rounded-2xl border border-dashed border-slate-300 dark:border-slate-800 text-slate-400 text-xs">No specialist profiles are available for this filter yet.</div>
+      </div>
+    </section>
 
     <!-- Live Social + Open Web Radar -->
     <section id="external-radar" class="scroll-mt-20">
@@ -1001,7 +1027,43 @@
       'Offer':'عرض',
       'Unknown':'غير محدد',
       'Syncing':'جارٍ المزامنة…',
-      'Social radar requires an account for controlled API sync.':'يتطلب مزامنة الرادار الاجتماعي تسجيل الدخول للتحكم في استدعاءات الواجهات الخارجية.'
+      'Social radar requires an account for controlled API sync.':'يتطلب مزامنة الرادار الاجتماعي تسجيل الدخول للتحكم في استدعاءات الواجهات الخارجية.',
+      'Quran, Hadith & Arabic Specialists':'متخصصو القرآن والحديث واللغة العربية',
+      'Find teachers, students, reciters, memorization specialists, Hadith specialists and Arabic teachers through cloud profiles.':'اعثر على المعلمين والطلاب والقراء والمتخصصين في التحفيظ والحديث واللغة العربية عبر ملفات سحابية.',
+      'specialists':'متخصصون',
+      'Specialist role':'نوع المتخصص',
+      'All specialist roles':'كل أنواع المتخصصين',
+      'Student':'طالب',
+      'Parent / Muslim family':'ولي أمر / أسرة مسلمة',
+      'Quran teacher':'معلم قرآن',
+      'Qari / Reciter':'قارئ',
+      'Quran memorization specialist':'متخصص تحفيظ القرآن',
+      'Hadith specialist':'متخصص حديث',
+      'Arabic teacher':'معلم لغة عربية',
+      'Specialty':'التخصص',
+      'All specialties':'كل التخصصات',
+      'Hadith':'الحديث',
+      'Arabic language':'اللغة العربية',
+      'Tajweed':'التجويد',
+      'Qiraat':'القراءات',
+      'Memorization':'التحفيظ',
+      'Arabic for non-native speakers':'العربية لغير الناطقين بها',
+      'All audiences':'كل الفئات',
+      'Families':'الأسر',
+      'Adults':'الكبار',
+      'Students':'الطلاب',
+      'All modes':'كل طرق التعليم',
+      'Online':'أونلاين',
+      'In-person':'حضوري',
+      'Hybrid':'هجين',
+      'Search specialists':'البحث عن متخصصين',
+      'Search by name, specialty, country or expertise...':'ابحث بالاسم أو التخصص أو الدولة أو الخبرة...',
+      'Saudi Arabia, Egypt, Morocco...':'السعودية، مصر، المغرب...',
+      'No specialist profiles are available for this filter yet.':'لا توجد ملفات لمتخصصين لهذا الفلتر حاليًا.',
+      'Years experience':'سنوات الخبرة',
+      'Verified profile':'ملف موثق',
+      'Contact specialist':'التواصل مع المتخصص',
+      'No direct contact available':'لا توجد وسيلة تواصل مباشرة'
     });
     let currentLang = safeGet('wefaq_lang', 'ar');
     if (!['ar','en'].includes(currentLang)) currentLang = 'ar';
@@ -1845,6 +1907,63 @@
       }
     }
 
+    // ========== QURAN, HADITH & ARABIC SPECIALISTS ==========
+    let specialistProfiles = [];
+    function specialistRoleLabel(role) {
+      return ({student:'Student',parent_family:'Parent / Muslim family',quran_teacher:'Quran teacher',qari:'Qari / Reciter',quran_memorizer:'Quran memorization specialist',hadith_specialist:'Hadith specialist',arabic_teacher:'Arabic teacher'})[role] || role || 'Specialist';
+    }
+    function specialistContactUrl(profile) {
+      const raw=String(profile?.whatsapp||profile?.phone||'').trim();
+      const phone=raw.replace(/[^0-9]/g,'');
+      return phone.length>=8 && phone.length<=15 ? `https://wa.me/${phone}` : '';
+    }
+    function specialistTags(profile) {
+      const values=[...(Array.isArray(profile?.subjects)?profile.subjects:[]),...(Array.isArray(profile?.qiraat)?profile.qiraat:[]),...(Array.isArray(profile?.languages)?profile.languages:[]),...(Array.isArray(profile?.audience)?profile.audience:[]),...(Array.isArray(profile?.teaching_mode)?profile.teaching_mode:[])];
+      return [...new Set(values.map(v=>String(v||'').trim()).filter(Boolean))].slice(0,8);
+    }
+    function specialistCardHtml(profile) {
+      const contact=specialistContactUrl(profile);
+      const tags=specialistTags(profile);
+      const location=[profile.city,profile.country].filter(Boolean).join(', ');
+      const verification=['verified','admin_reviewed'].includes(profile.verification_status)?`<span class="text-[10px] font-extrabold px-2 py-1 rounded-full text-blue-700 bg-blue-50 dark:bg-blue-950/30">${esc(t('Verified profile'))}</span>`:'';
+      const title=profile.display_name||specialistRoleLabel(profile.role);
+      const image=profile.profile_image_url&&/^https:\/\//i.test(profile.profile_image_url)?`<img src="${esc(profile.profile_image_url)}" alt="" loading="lazy" referrerpolicy="no-referrer" class="w-14 h-14 rounded-2xl object-cover border border-slate-200 dark:border-slate-700">`:`<div class="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 flex items-center justify-center text-xl"><i class="fa-solid fa-user-graduate"></i></div>`;
+      return `<article class="source-card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 flex flex-col h-full"><div class="flex items-start gap-3">${image}<div class="min-w-0 flex-1"><div class="flex items-start justify-between gap-2"><h3 class="font-extrabold text-sm text-slate-900 dark:text-white line-clamp-2">${esc(title)}</h3>${verification}</div><div class="text-[10px] font-bold text-emerald-700 dark:text-emerald-300 mt-1">${esc(t(specialistRoleLabel(profile.role)))}</div>${location?`<div class="text-[10px] text-slate-400 mt-1"><i class="fa-solid fa-location-dot mr-1"></i>${esc(location)}</div>`:''}</div></div><p class="text-xs text-slate-600 dark:text-slate-300 leading-5 mt-3 line-clamp-4 flex-1">${esc(profile.bio||profile.specialty||t('Language'))}</p>${profile.years_experience?`<div class="text-[10px] text-slate-500 mt-2"><span class="font-bold">${esc(t('Years experience'))}:</span> ${Number(profile.years_experience)}</div>`:''}${tags.length?`<div class="flex flex-wrap gap-1.5 mt-3">${tags.map(tag=>`<span class="text-[9px] font-bold px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">${esc(tag)}</span>`).join('')}</div>`:''}<div class="mt-4 grid grid-cols-2 gap-2">${contact?`<a href="${esc(contact)}" target="_blank" rel="noopener noreferrer" class="text-center rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-extrabold py-2.5"><i class="fa-brands fa-whatsapp mr-1"></i>${esc(t('Contact specialist'))}</a>`:`<button type="button" disabled class="rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 text-xs font-bold py-2.5">${esc(t('No direct contact available'))}</button>`}<button type="button" onclick="openSpecialistDetails('${esc(profile.id)}')" class="rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-xs font-bold py-2.5">${esc(t('Details'))}</button></div></article>`;
+    }
+    async function loadSpecialists() {
+      if(!supabaseClient)return;
+      try {
+        const {data,error}=await supabaseClient.from('education_profiles').select('id,role,specialty,bio,country,city,teaching_mode,audience,subjects,qiraat,languages,years_experience,availability,whatsapp,phone,verification_status,profile_image_url,is_active,created_at').eq('is_active',true).order('created_at',{ascending:false}).limit(120);
+        if(error)throw error;
+        specialistProfiles=Array.isArray(data)?data:[];
+      } catch(error) { console.warn('Specialist profile load failed',error); specialistProfiles=[]; }
+      renderSpecialists();
+    }
+    function renderSpecialists() {
+      const grid=document.getElementById('specialists-grid'),empty=document.getElementById('specialists-empty'),count=document.getElementById('specialists-count');
+      if(!grid||!empty)return;
+      const role=document.getElementById('specialist-role')?.value||'all',subject=document.getElementById('specialist-subject')?.value||'all',audience=document.getElementById('specialist-audience')?.value||'all',mode=document.getElementById('specialist-mode')?.value||'all',query=String(document.getElementById('specialist-search')?.value||'').trim().toLowerCase(),country=String(document.getElementById('specialist-country')?.value||'').trim().toLowerCase();
+      const filtered=specialistProfiles.filter(profile=>{
+        if(role!=='all'&&profile.role!==role)return false;
+        if(subject!=='all'){const subjects=Array.isArray(profile.subjects)?profile.subjects.map(v=>String(v).toLowerCase()):[];const specialty=String(profile.specialty||'').toLowerCase();if(!subjects.includes(subject.toLowerCase())&&!specialty.includes(subject.toLowerCase()))return false;}
+        if(audience!=='all'){const values=Array.isArray(profile.audience)?profile.audience.map(v=>String(v).toLowerCase()):[];if(!values.includes(audience.toLowerCase()))return false;}
+        if(mode!=='all'){const values=Array.isArray(profile.teaching_mode)?profile.teaching_mode.map(v=>String(v).toLowerCase()):[];if(!values.includes(mode.toLowerCase()))return false;}
+        if(country){const hay=`${profile.country||''} ${profile.city||''}`.toLowerCase();if(!hay.includes(country))return false;}
+        if(query){const hay=[profile.role,profile.specialty,profile.bio,profile.country,profile.city,...(Array.isArray(profile.subjects)?profile.subjects:[]),...(Array.isArray(profile.qiraat)?profile.qiraat:[]),...(Array.isArray(profile.languages)?profile.languages:[])].join(' ').toLowerCase();if(!hay.includes(query))return false;}
+        return true;
+      });
+      if(count)count.textContent=`${filtered.length} ${t('specialists')}`;
+      grid.innerHTML=filtered.map(specialistCardHtml).join('');
+      empty.classList.toggle('hidden',filtered.length>0);
+      translatePage();
+    }
+    function openSpecialistDetails(id) {
+      const profile=specialistProfiles.find(item=>String(item.id)===String(id));
+      if(!profile)return;
+      const parts=[profile.bio||'',profile.specialty?`Specialty: ${profile.specialty}`:'',profile.country||profile.city?`Location: ${[profile.city,profile.country].filter(Boolean).join(', ')}`:'',profile.years_experience?`Experience: ${profile.years_experience} years`:'',Array.isArray(profile.qiraat)&&profile.qiraat.length?`Qiraat: ${profile.qiraat.join(', ')}`:''].filter(Boolean);
+      alert(parts.join('\n\n'));
+    }
+
     // ========== LIVE EXTERNAL RADAR ==========
     let externalRadarItems = [];
     let externalLiveWebItems = [];
@@ -2065,6 +2184,7 @@
       fetchOpportunitiesFromSupabase();
       loadExternalRadar();
       loadCloudOpportunities();
+      loadSpecialists();
       trackVisitor();          // cloud + safe local fallback
       startRealtimeSync();
       if (supabaseClient) { supabaseClient.auth.onAuthStateChange(() => refreshAuthState()); refreshAuthState(); }
