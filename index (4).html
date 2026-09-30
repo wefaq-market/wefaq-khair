@@ -1867,7 +1867,15 @@
       const days=Math.min(Math.max(Number(document.getElementById('external-days')?.value||7),1),30);
       const icon=document.getElementById('external-sync-icon'); if(icon)icon.classList.add('fa-spin'); setExternalStatus(t('Syncing') + ` · ${days}d`);
       try{
-        const {data,error}=await supabaseClient.functions.invoke('social-radar-sync',{body:{query,provider,days,max_results:40}}); 
+        const { data: sessionData, error: sessionError } = await supabaseClient.auth.getSession();
+        if (sessionError) throw sessionError;
+        const accessToken = sessionData?.session?.access_token;
+        if (!accessToken) throw new Error('No active session');
+
+        const { data, error } = await supabaseClient.functions.invoke('social-radar-sync', {
+          body: { query, provider, days, max_results: 40 },
+          headers: { Authorization: `Bearer ${accessToken}` }
+        });
         if(error)throw error;
         externalLiveWebItems = Array.isArray(data?.web_results) ? data.web_results.map((r,i)=>({
           id:`brave:${i}:${r.source_url||''}`,
