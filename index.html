@@ -81,6 +81,52 @@
     html[dir='rtl'] .search-leading-icon { left: auto; right: 0.75rem; }
     html[dir='rtl'] .search-leading-input { padding-left: 0.75rem; padding-right: 2.25rem; }
     html[dir='ltr'] .search-leading-input { padding-left: 2.25rem; padding-right: 0.75rem; }
+  
+    /* v8.0 design system */
+    .wf-hero{position:relative;overflow:hidden;border:1px solid rgba(16,185,129,.22);background:linear-gradient(135deg,#052e2b 0%,#0b192c 50%,#07131f 100%);}
+    .wf-hero:before{content:"";position:absolute;inset:auto -10% -55% 35%;height:420px;background:radial-gradient(circle,rgba(16,185,129,.20),transparent 65%);pointer-events:none;}
+    .wf-hero-grid{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:1.5rem;align-items:stretch;}
+    .wf-hero-copy{display:flex;flex-direction:column;justify-content:center;min-width:0;}
+    .wf-eyebrow{display:inline-flex;align-items:center;gap:.5rem;width:max-content;border:1px solid rgba(110,231,183,.22);background:rgba(16,185,129,.10);color:#a7f3d0;padding:.45rem .75rem;border-radius:999px;font-size:.72rem;font-weight:800;}
+    .wf-hero-title{font-size:clamp(2rem,4.2vw,4.1rem);line-height:1.05;font-weight:900;letter-spacing:-.03em;margin-top:1rem;}
+    .wf-hero-subtitle{font-size:.95rem;line-height:1.9;color:rgba(226,232,240,.78);max-width:46rem;margin-top:1rem;}
+    .wf-search-box{border:1px solid rgba(255,255,255,.10);background:rgba(2,6,23,.32);padding:.9rem;border-radius:1.2rem;}
+    .wf-search-row{display:grid;grid-template-columns:minmax(0,1fr) 180px 120px;gap:.6rem;}
+    .wf-search-input,.wf-search-select{width:100%;min-height:48px;border-radius:.95rem;border:1px solid rgba(148,163,184,.20);background:rgba(15,23,42,.72);color:#f8fafc;padding:0 .9rem;font-size:.85rem;outline:none;}
+    .wf-search-input::placeholder{color:#94a3b8;}
+    .wf-search-input:focus,.wf-search-select:focus{border-color:rgba(52,211,153,.65);box-shadow:0 0 0 3px rgba(16,185,129,.10);}
+    .wf-search-button{min-height:48px;border:0;border-radius:.95rem;background:linear-gradient(135deg,#10b981,#059669);color:#03231a;font-weight:900;font-size:.82rem;padding:0 1rem;}
+    .wf-intent-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.65rem;margin-top:1rem;}
+    .wf-intent{min-height:74px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.045);color:#e2e8f0;border-radius:1rem;padding:.65rem;text-align:right;display:flex;gap:.65rem;align-items:center;transition:.18s ease;}
+    .wf-intent:hover{transform:translateY(-2px);border-color:rgba(110,231,183,.35);background:rgba(16,185,129,.08);}
+    .wf-intent-icon{width:2.5rem;height:2.5rem;border-radius:.8rem;display:flex;align-items:center;justify-content:center;background:rgba(16,185,129,.12);color:#6ee7b7;flex:0 0 auto;}
+    .wf-intent strong{display:block;font-size:.75rem;line-height:1.4;}
+    .wf-intent span{display:block;font-size:.61rem;color:#94a3b8;margin-top:.15rem;}
+    .wf-mini-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.65rem;margin-top:1rem;}
+    .wf-stat{border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.04);border-radius:1rem;padding:.7rem;}
+    .wf-stat b{display:block;font-size:1.1rem;margin-top:.15rem;}
+    .wf-stat span{font-size:.62rem;color:#94a3b8;}
+    .wf-hero-art{position:relative;min-height:430px;border-radius:1.35rem;overflow:hidden;background:#0f172a;}
+    .wf-hero-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.66;}
+    .wf-hero-art:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,6,23,.10),rgba(2,6,23,.92) 82%);}
+    .wf-hero-art-caption{position:absolute;inset:auto 1rem 1rem 1rem;z-index:2;border:1px solid rgba(255,255,255,.13);background:rgba(2,6,23,.58);backdrop-filter:blur(12px);border-radius:1rem;padding:.8rem;color:white;}
+    .wf-specialists-shell{border:1px solid rgba(16,185,129,.20);background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(248,250,252,.98));}
+    .dark .wf-specialists-shell{background:linear-gradient(180deg,rgba(15,23,42,.98),rgba(2,6,23,.96));}
+    .wf-specialist-rail{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:.55rem;margin-bottom:1rem;}
+    .wf-specialist-rail button{min-height:66px;border:1px solid #e2e8f0;background:#fff;border-radius:1rem;padding:.55rem;font-size:.68rem;font-weight:800;color:#334155;transition:.18s ease;}
+    .wf-specialist-rail button:hover,.wf-specialist-rail button.active{border-color:#86efac;background:#f0fdf4;color:#047857;transform:translateY(-1px);}
+    .dark .wf-specialist-rail button{border-color:#1e293b;background:#0f172a;color:#cbd5e1;}
+    .dark .wf-specialist-rail button:hover,.dark .wf-specialist-rail button.active{border-color:#065f46;background:#052e2b;color:#a7f3d0;}
+    .wf-specialist-rail i{display:block;font-size:1rem;margin-bottom:.3rem;}
+    .wf-trust-strip{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:.8rem;}
+    .wf-trust-chip{display:inline-flex;align-items:center;gap:.35rem;border:1px solid #e2e8f0;background:#fff;padding:.4rem .65rem;border-radius:999px;font-size:.62rem;font-weight:800;color:#475569;}
+    .dark .wf-trust-chip{border-color:#1e293b;background:#0f172a;color:#cbd5e1;}
+    .wf-section-title{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;margin-bottom:.9rem;}
+    .wf-section-title h2{font-size:1.25rem;font-weight:900;}
+    .wf-section-title p{font-size:.72rem;color:#64748b;margin-top:.25rem;}
+    @media(max-width:1024px){.wf-hero-grid{grid-template-columns:1fr}.wf-hero-art{min-height:320px}.wf-intent-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.wf-specialist-rail{grid-template-columns:repeat(4,minmax(0,1fr))}.wf-search-row{grid-template-columns:1fr 1fr}.wf-search-button{grid-column:1/-1}}
+    @media(max-width:640px){.wf-hero-title{font-size:2.25rem}.wf-intent-grid{grid-template-columns:1fr 1fr}.wf-specialist-rail{grid-template-columns:repeat(2,minmax(0,1fr))}.wf-search-row{grid-template-columns:1fr}.wf-search-button{grid-column:auto}.wf-mini-stats{grid-template-columns:1fr 1fr 1fr}.wf-intent{min-height:68px}.wf-hero-art{min-height:250px}}
+
   </style>
 </head>
 <body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
@@ -137,129 +183,95 @@
 
   <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
 
-    <!-- Hero -->
-    <section class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand-900 via-brand-navy to-slate-900 text-white p-6 sm:p-10 shadow-xl">
-      <div class="absolute -right-12 -top-12 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="absolute -left-12 -bottom-12 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-      <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        <div class="lg:col-span-8 space-y-4">
-          <div class="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs px-3 py-1 rounded-full font-medium">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            Investment Hub & Global Quran Memorization Circles
+    <!-- v8.0 Main Hero -->
+    <section class="wf-hero rounded-3xl p-5 sm:p-7 lg:p-8 text-white shadow-xl">
+      <div class="wf-hero-grid">
+        <div class="wf-hero-copy">
+          <span class="wf-eyebrow"><i class="fa-solid fa-book-quran"></i> Quran, Hadith & Arabic Network</span>
+          <h1 class="wf-hero-title">Wefaq brings the right person closer to the right learning need.</h1>
+          <p class="wf-hero-subtitle">Find Quran teachers, reciters, memorization specialists, Hadith experts and Arabic teachers. Families, students and educators can build trusted cloud profiles and connect through the contact methods they actually provide.</p>
+          <div class="wf-search-box mt-5">
+            <div class="text-[11px] font-extrabold text-emerald-200 mb-2">Find a specialist</div>
+            <div class="wf-search-row">
+              <input id="hero-specialist-search" class="wf-search-input" maxlength="120" placeholder="Search by name, specialty, city or expertise...">
+              <select id="hero-specialist-role" class="wf-search-select">
+                <option value="all">All specialist roles</option>
+                <option value="quran_teacher">Quran teacher</option>
+                <option value="qari">Qari / Reciter</option>
+                <option value="quran_memorizer">Quran memorization specialist</option>
+                <option value="hadith_specialist">Hadith specialist</option>
+                <option value="arabic_teacher">Arabic teacher</option>
+                <option value="student">Student</option>
+                <option value="parent_family">Parent / Muslim family</option>
+              </select>
+              <button type="button" class="wf-search-button" onclick="launchHeroSearch()"><i class="fa-solid fa-magnifying-glass mr-1"></i> Find</button>
+            </div>
           </div>
-          <h1 class="text-2xl sm:text-4xl font-extrabold leading-tight">
-            The unified platform for Arab projects, funding requests, partnerships, and global Quran memorization circles
-          </h1>
-          <p class="text-slate-300 text-xs sm:text-sm max-w-2xl font-light leading-relaxed">
-            We connect idea & project owners, partnership & funding seekers, and feasibility study providers across the Arab world, plus a global umbrella for Quran teachers and students with continuous sanad, and a language learning section with Arabic first.
-          </p>
-
-          <div class="pt-2 flex flex-wrap gap-3 items-center">
-            <button onclick="openCreateModal('quran')" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-4 py-2.5 rounded-lg text-xs sm:text-sm shadow flex items-center gap-2 transition">
-              <i class="fa-solid fa-book-quran"></i> Request / Offer Quran Memorization
-            </button>
-            <button onclick="openCreateModal('languages')" class="bg-teal-500 hover:bg-teal-600 text-slate-950 font-bold px-4 py-2.5 rounded-lg text-xs sm:text-sm shadow flex items-center gap-2 transition">
-              <i class="fa-solid fa-language"></i> Teach / Learn a Language
-            </button>
-            <button onclick="openCreateModal('invest')" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-4 py-2.5 rounded-lg text-xs sm:text-sm shadow flex items-center gap-2 transition">
-              <i class="fa-solid fa-handshake"></i> Offer Project / Request Funding & Partner
-            </button>
-            <button onclick="triggerFeedRefresh()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-medium px-3.5 py-2.5 rounded-lg text-xs sm:text-sm flex items-center gap-2 transition">
-              <i id="sync-icon" class="fa-solid fa-arrows-rotate"></i> Sync Cloud
-            </button>
-            <button onclick="sharePlatform()" class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-3.5 py-2.5 rounded-lg text-xs sm:text-sm flex items-center gap-2 shadow transition">
-              <i class="fa-solid fa-share-nodes"></i> Share Platform
-            </button>
+          <div class="wf-intent-grid">
+            <button type="button" class="wf-intent" onclick="heroChoose('quran_teacher')"><span class="wf-intent-icon"><i class="fa-solid fa-person-chalkboard"></i></span><span><strong>I need a Quran teacher</strong><span>Students & families</span></span></button>
+            <button type="button" class="wf-intent" onclick="heroChoose('parent_family')"><span class="wf-intent-icon"><i class="fa-solid fa-people-roof"></i></span><span><strong>I need help for my family</strong><span>Children & home learning</span></span></button>
+            <button type="button" class="wf-intent" onclick="heroChoose('student')"><span class="wf-intent-icon"><i class="fa-solid fa-user-graduate"></i></span><span><strong>I am a student</strong><span>Find a suitable specialist</span></span></button>
+            <button type="button" class="wf-intent" onclick="heroChoose('qari')"><span class="wf-intent-icon"><i class="fa-solid fa-microphone-lines"></i></span><span><strong>I am a reciter</strong><span>Build your public profile</span></span></button>
+            <button type="button" class="wf-intent" onclick="heroChoose('quran_memorizer')"><span class="wf-intent-icon"><i class="fa-solid fa-book-open"></i></span><span><strong>I teach memorization</strong><span>Connect with learners</span></span></button>
+            <button type="button" class="wf-intent" onclick="heroChoose('hadith_specialist')"><span class="wf-intent-icon"><i class="fa-solid fa-scroll"></i></span><span><strong>I need a Hadith specialist</strong><span>Study & consultation</span></span></button>
+            <button type="button" class="wf-intent" onclick="heroChoose('arabic_teacher')"><span class="wf-intent-icon"><i class="fa-solid fa-language"></i></span><span><strong>I need Arabic</strong><span>Native & non-native learners</span></span></button>
+            <button type="button" class="wf-intent" onclick="openSpecialistJoin()"><span class="wf-intent-icon"><i class="fa-solid fa-user-plus"></i></span><span><strong>Join as a specialist</strong><span>Create your cloud profile</span></span></button>
+          </div>
+          <div class="wf-mini-stats">
+            <div class="wf-stat"><span>Specialist profiles</span><b id="stat-specialists-v8">0</b></div>
+            <div class="wf-stat"><span>Platform visitors</span><b id="stat-visitors-v8">0</b></div>
+            <div class="wf-stat"><span>Online now</span><b id="stat-online-v8">0</b></div>
           </div>
         </div>
-
-        <!-- Metrics -->
-        <div class="lg:col-span-4 space-y-3">
-          <div class="grid grid-cols-2 gap-3 text-center">
-            <div class="bg-white/5 border border-white/10 rounded-xl p-3 backdrop-blur-sm">
-              <div class="text-xs text-slate-400">Quran Seekers & Circles</div>
-              <div id="stat-quran" class="text-xl sm:text-2xl font-black text-emerald-400 mt-1">0</div>
-              <div class="text-[10px] text-emerald-300/70">Worldwide</div>
-            </div>
-            <div class="bg-white/5 border border-white/10 rounded-xl p-3 backdrop-blur-sm">
-              <div class="text-xs text-slate-400">Projects & Exhibitors</div>
-              <div id="stat-projects" class="text-xl sm:text-2xl font-black text-blue-400 mt-1">0</div>
-              <div class="text-[10px] text-blue-300/70">Arab World</div>
-            </div>
-            <div class="bg-white/5 border border-white/10 rounded-xl p-3 backdrop-blur-sm">
-              <div class="text-xs text-slate-400">Funding & Partner Seekers</div>
-              <div id="stat-funding" class="text-xl sm:text-2xl font-black text-amber-400 mt-1">0</div>
-              <div class="text-[10px] text-amber-300/70">Investment Opportunities</div>
-            </div>
-            <div class="bg-white/5 border border-white/10 rounded-xl p-3 backdrop-blur-sm">
-              <div class="text-xs text-slate-400">Feasibility & Ideas</div>
-              <div id="stat-ideas" class="text-xl sm:text-2xl font-black text-purple-400 mt-1">0</div>
-              <div class="text-[10px] text-purple-300/70">Ready to Execute</div>
-            </div>
-            <div class="col-span-2 bg-white/5 border border-white/10 rounded-xl p-3 backdrop-blur-sm">
-              <div class="text-xs text-slate-400">Language Teachers & Learners</div>
-              <div id="stat-languages" class="text-xl sm:text-2xl font-black text-teal-400 mt-1">0</div>
-              <div class="text-[10px] text-teal-300/70">Arabic & Others</div>
-            </div>
-          </div>
-
-          <!-- Visitor Counter (Cloud + Local) -->
-          <div class="bg-gradient-to-r from-cyan-500/15 via-blue-500/10 to-indigo-500/15 border border-cyan-400/25 rounded-xl p-3 backdrop-blur-sm space-y-2.5">
-            <div class="flex items-center justify-between gap-3">
-              <div class="flex items-center gap-2">
-                <div class="w-9 h-9 rounded-lg bg-cyan-500/20 text-cyan-300 flex items-center justify-center"><i class="fa-solid fa-eye"></i></div>
-                <div>
-                  <div class="text-[11px] text-slate-400 font-medium">Platform Visitors</div>
-                  <div class="text-lg font-black text-cyan-300 leading-tight">
-                    <span id="stat-visitors-total">0</span>
-                    <span class="text-[10px] font-semibold text-slate-400 ml-1">total visits</span>
-                  </div>
-                </div>
-              </div>
-              <div class="text-right">
-                <div class="text-[10px] text-slate-400">Online now</div>
-                <div class="text-base font-bold text-emerald-300 flex items-center gap-1 justify-end">
-                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                  <span id="stat-online-num">1</span>
-                </div>
-              </div>
-            </div>
-            <div class="flex items-center justify-between text-[10px] text-slate-400">
-              <span id="stat-visitors-today">Today: 0</span>
-              <span id="stat-visitors-session">Session: 1</span>
-              <span id="stat-my-country" class="text-cyan-300/90 font-semibold">—</span>
-            </div>
-            <div id="visitors-by-country" class="pt-1.5 border-t border-white/10 space-y-1 max-h-28 overflow-y-auto">
-              <div class="text-[10px] text-slate-500 text-center py-1">Loading country breakdown...</div>
-            </div>
+        <div class="wf-hero-art">
+          <img src="./wefaq-quran-banner.png" alt="Quran learning banner" loading="eager">
+          <div class="wf-hero-art-caption">
+            <div class="text-[10px] font-extrabold text-emerald-300 mb-1">A focused community</div>
+            <div class="text-sm font-black">Families, students and qualified educators — connected in one trusted space.</div>
+            <div class="text-[10px] text-slate-300 mt-2">Cloud profiles · multiple contact options · online and in-person</div>
           </div>
         </div>
       </div>
     </section>
 
-
-    <!-- Quran, Hadith & Arabic Specialists Hub -->
+    <!-- v8.0 Specialists Hub -->
     <section id="specialists-hub" class="scroll-mt-20">
-      <div class="bg-white dark:bg-slate-900 border border-emerald-200 dark:border-emerald-900/60 rounded-2xl p-5 sm:p-6 shadow-sm">
-        <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-4 mb-5">
-          <div class="flex items-center gap-3">
-            <div class="w-11 h-11 rounded-xl bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 flex items-center justify-center"><i class="fa-solid fa-book-quran text-lg"></i></div>
-            <div><h2 class="font-extrabold text-slate-900 dark:text-white">Quran, Hadith & Arabic Specialists</h2><p class="text-[11px] text-slate-500 dark:text-slate-400">Find teachers, students, reciters, memorization specialists, Hadith specialists and Arabic teachers through cloud profiles.</p></div>
+      <div class="wf-specialists-shell rounded-3xl p-5 sm:p-6 shadow-sm">
+        <div class="wf-section-title">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-11 h-11 rounded-xl bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 flex items-center justify-center"><i class="fa-solid fa-book-quran text-lg"></i></span>
+              <div><h2>Quran, Hadith & Arabic Specialists</h2><p>Search the cloud network by role, specialty, audience and learning mode.</p></div>
+            </div>
           </div>
           <div class="flex items-center gap-2 flex-wrap"><span id="specialists-count" class="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900 px-3 py-1.5 text-[10px] font-extrabold">0 specialists</span><button type="button" onclick="openSpecialistJoin()" class="rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 text-xs font-extrabold shadow-sm"><i class="fa-solid fa-user-plus mr-1"></i><span>Join the specialist network</span></button></div>
         </div>
+        <div class="wf-specialist-rail">
+          <button type="button" onclick="heroChoose('quran_teacher')"><i class="fa-solid fa-person-chalkboard"></i>Quran teacher</button>
+          <button type="button" onclick="heroChoose('qari')"><i class="fa-solid fa-microphone-lines"></i>Qari / Reciter</button>
+          <button type="button" onclick="heroChoose('quran_memorizer')"><i class="fa-solid fa-book-open"></i>Memorization</button>
+          <button type="button" onclick="heroChoose('hadith_specialist')"><i class="fa-solid fa-scroll"></i>Hadith</button>
+          <button type="button" onclick="heroChoose('arabic_teacher')"><i class="fa-solid fa-language"></i>Arabic</button>
+          <button type="button" onclick="heroChoose('student')"><i class="fa-solid fa-user-graduate"></i>Student</button>
+          <button type="button" onclick="heroChoose('parent_family')"><i class="fa-solid fa-people-roof"></i>Family</button>
+        </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
-          <div><label for="specialist-role" class="block text-[11px] font-bold text-slate-500 mb-1">Specialist role</label><select id="specialist-role" onchange="renderSpecialists()" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm"><option value="all">All specialist roles</option><option value="student">Student</option><option value="parent_family">Parent / Muslim family</option><option value="quran_teacher">Quran teacher</option><option value="qari">Qari / Reciter</option><option value="quran_memorizer">Quran memorization specialist</option><option value="hadith_specialist">Hadith specialist</option><option value="arabic_teacher">Arabic teacher</option></select></div>
-          <div><label for="specialist-subject" class="block text-[11px] font-bold text-slate-500 mb-1">Specialty</label><select id="specialist-subject" onchange="renderSpecialists()" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm"><option value="all">All specialties</option><option value="quran">Quran</option><option value="hadith">Hadith</option><option value="arabic">Arabic language</option><option value="tajweed">Tajweed</option><option value="qiraat">Qiraat</option><option value="memorization">Memorization</option><option value="arabic_for_non_native">Arabic for non-native speakers</option></select></div>
-          <div><label for="specialist-audience" class="block text-[11px] font-bold text-slate-500 mb-1">Target audience</label><select id="specialist-audience" onchange="renderSpecialists()" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm"><option value="all">All audiences</option><option value="children">Children</option><option value="families">Families</option><option value="men">Men</option><option value="women">Women</option><option value="adults">Adults</option><option value="students">Students</option></select></div>
-          <div><label for="specialist-mode" class="block text-[11px] font-bold text-slate-500 mb-1">Study mode</label><select id="specialist-mode" onchange="renderSpecialists()" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm"><option value="all">All modes</option><option value="online">Online</option><option value="in_person">In-person</option><option value="hybrid">Hybrid</option></select></div>
+          <div><label for="specialist-role" class="block text-[11px] font-bold text-slate-500 mb-1">Specialist role</label><select id="specialist-role" onchange="renderSpecialists()" class="w-full min-h-[46px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm"><option value="all">All specialist roles</option><option value="student">Student</option><option value="parent_family">Parent / Muslim family</option><option value="quran_teacher">Quran teacher</option><option value="qari">Qari / Reciter</option><option value="quran_memorizer">Quran memorization specialist</option><option value="hadith_specialist">Hadith specialist</option><option value="arabic_teacher">Arabic teacher</option></select></div>
+          <div><label for="specialist-subject" class="block text-[11px] font-bold text-slate-500 mb-1">Specialty</label><select id="specialist-subject" onchange="renderSpecialists()" class="w-full min-h-[46px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm"><option value="all">All specialties</option><option value="quran">Quran</option><option value="hadith">Hadith</option><option value="arabic">Arabic language</option><option value="tajweed">Tajweed</option><option value="qiraat">Qiraat</option><option value="memorization">Memorization</option><option value="arabic_for_non_native">Arabic for non-native speakers</option></select></div>
+          <div><label for="specialist-audience" class="block text-[11px] font-bold text-slate-500 mb-1">Target audience</label><select id="specialist-audience" onchange="renderSpecialists()" class="w-full min-h-[46px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm"><option value="all">All audiences</option><option value="children">Children</option><option value="families">Families</option><option value="men">Men</option><option value="women">Women</option><option value="adults">Adults</option><option value="students">Students</option></select></div>
+          <div><label for="specialist-mode" class="block text-[11px] font-bold text-slate-500 mb-1">Study mode</label><select id="specialist-mode" onchange="renderSpecialists()" class="w-full min-h-[46px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm"><option value="all">All modes</option><option value="online">Online</option><option value="in_person">In-person</option><option value="hybrid">Hybrid</option></select></div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-12 gap-3 mb-4">
-          <div class="md:col-span-8"><label for="specialist-search" class="block text-[11px] font-bold text-slate-500 mb-1">Search specialists</label><input id="specialist-search" oninput="renderSpecialists()" maxlength="120" placeholder="Search by name, specialty, country or expertise..." class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm focus:ring-2 focus:ring-emerald-500 outline-none"></div>
-          <div class="md:col-span-4"><label for="specialist-country" class="block text-[11px] font-bold text-slate-500 mb-1">Country / Region</label><input id="specialist-country" oninput="renderSpecialists()" maxlength="80" placeholder="Saudi Arabia, Egypt, Morocco..." class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm focus:ring-2 focus:ring-emerald-500 outline-none"></div>
+          <div class="md:col-span-8"><label for="specialist-search" class="block text-[11px] font-bold text-slate-500 mb-1">Search specialists</label><input id="specialist-search" oninput="renderSpecialists()" maxlength="120" placeholder="Search by name, specialty, country or expertise..." class="w-full min-h-[46px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm focus:ring-2 focus:ring-emerald-500 outline-none"></div>
+          <div class="md:col-span-4"><label for="specialist-country" class="block text-[11px] font-bold text-slate-500 mb-1">Country / Region</label><input id="specialist-country" oninput="renderSpecialists()" maxlength="80" placeholder="Saudi Arabia, Egypt, Morocco..." class="w-full min-h-[46px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm focus:ring-2 focus:ring-emerald-500 outline-none"></div>
         </div>
-        <div id="specialists-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"></div>
+        <div class="wf-trust-strip">
+          <span class="wf-trust-chip"><i class="fa-solid fa-cloud"></i>Cloud profiles</span>
+          <span class="wf-trust-chip"><i class="fa-solid fa-filter"></i>Smart filters</span>
+          <span class="wf-trust-chip"><i class="fa-solid fa-message"></i>Direct contact</span>
+          <span class="wf-trust-chip"><i class="fa-solid fa-circle-check"></i>Verification status</span>
+        </div>
+        <div id="specialists-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mt-4"></div>
         <div id="specialists-empty" class="hidden text-center py-10 rounded-2xl border border-dashed border-slate-300 dark:border-slate-800 text-slate-400 text-xs">No specialist profiles are available for this filter yet.</div>
       </div>
     </section>
@@ -1152,6 +1164,48 @@
       'Publish cloud profile':'نشر الملف السحابي',
       'Publishing cloud profile...':'جارٍ نشر الملف السحابي...',
       'Cloud profile published ✓':'تم نشر الملف السحابي ✓'
+    });
+    Object.assign(I18N, {
+      'Quran, Hadith & Arabic Network':'شبكة القرآن والحديث واللغة العربية',
+      'Wefaq brings the right person closer to the right learning need.':'وفاق تقرّب الشخص المناسب من احتياج التعلّم المناسب.',
+      'Find Quran teachers, reciters, memorization specialists, Hadith experts and Arabic teachers. Families, students and educators can build trusted cloud profiles and connect through the contact methods they actually provide.':'اعثر على معلمي القرآن والقراء والمتخصصين في التحفيظ والحديث واللغة العربية، وأنشئ ملفًا سحابيًا للتواصل عبر وسائل الاتصال المتاحة فعليًا.',
+      'Find a specialist':'ابحث عن متخصص',
+      'Search by name, specialty, city or expertise...':'ابحث بالاسم أو التخصص أو المدينة أو الخبرة...',
+      'Find':'بحث',
+      'I need a Quran teacher':'أحتاج معلم قرآن',
+      'Students & families':'للطلاب والأسر',
+      'I need help for my family':'أحتاج مساعدة لأسرتي',
+      'Children & home learning':'الأطفال والتعلم المنزلي',
+      'I am a student':'أنا طالب',
+      'Find a suitable specialist':'اعثر على متخصص مناسب',
+      'I am a reciter':'أنا قارئ',
+      'Build your public profile':'أنشئ ملفك العام',
+      'I teach memorization':'أقوم بالتحفيظ',
+      'Connect with learners':'تواصل مع المتعلمين',
+      'I need a Hadith specialist':'أحتاج متخصص حديث',
+      'Study & consultation':'دراسة واستشارة',
+      'I need Arabic':'أحتاج اللغة العربية',
+      'Native & non-native learners':'للناطقين وغير الناطقين بها',
+      'Join as a specialist':'انضم كمتخصص',
+      'Create your cloud profile':'أنشئ ملفك السحابي',
+      'Specialist profiles':'ملفات المتخصصين',
+      'Platform visitors':'زوار المنصة',
+      'Online now':'متصلون الآن',
+      'A focused community':'مجتمع متخصص',
+      'Families, students and qualified educators — connected in one trusted space.':'الأسر والطلاب والمتخصصون في التعليم — في مساحة موثوقة واحدة.',
+      'Cloud profiles · multiple contact options · online and in-person':'ملفات سحابية · وسائل تواصل متعددة · أونلاين وحضوري',
+      'Search the cloud network by role, specialty, audience and learning mode.':'ابحث في الشبكة السحابية حسب الدور والتخصص والفئة وطريقة التعليم.',
+      'Cloud profiles':'ملفات سحابية',
+      'Smart filters':'فلاتر ذكية',
+      'Direct contact':'تواصل مباشر',
+      'Verification status':'حالة التوثيق',
+      'Student':'طالب',
+      'Parent / Muslim family':'ولي أمر / أسرة مسلمة',
+      'Quran teacher':'معلم قرآن',
+      'Qari / Reciter':'قارئ',
+      'Quran memorization specialist':'متخصص تحفيظ القرآن',
+      'Hadith specialist':'متخصص حديث',
+      'Arabic teacher':'معلم لغة عربية',
     });
     let currentLang = safeGet('wefaq_lang', 'ar');
     if (!['ar','en'].includes(currentLang)) currentLang = 'ar';
@@ -2383,6 +2437,34 @@
       }
     }
 
+
+    // ========== v8.0 HERO SEARCH ==========
+    function launchHeroSearch(){
+      const q=String(document.getElementById('hero-specialist-search')?.value||'').trim();
+      const role=document.getElementById('hero-specialist-role')?.value||'all';
+      const search=document.getElementById('specialist-search');
+      const roleSelect=document.getElementById('specialist-role');
+      if(search) search.value=q;
+      if(roleSelect) roleSelect.value=role;
+      renderSpecialists();
+      document.getElementById('specialists-hub')?.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+    function heroChoose(role){
+      const heroRole=document.getElementById('hero-specialist-role');
+      const roleSelect=document.getElementById('specialist-role');
+      if(heroRole) heroRole.value=role;
+      if(roleSelect) roleSelect.value=role;
+      const hub=document.getElementById('specialists-hub');
+      if(hub){renderSpecialists();hub.scrollIntoView({behavior:'smooth',block:'start'});}
+    }
+
+
+    function updateV8HeroStats(){
+      const a=document.getElementById('stat-specialists-v8'); if(a) a.textContent=String(specialistProfiles.length||0);
+      const b=document.getElementById('stat-visitors-v8'); const src=document.getElementById('stat-visitors-total'); if(b&&src) b.textContent=src.textContent||'0';
+      const c=document.getElementById('stat-online-v8'); const src2=document.getElementById('stat-online-num'); if(c&&src2) c.textContent=src2.textContent||'0';
+    }
+
     // ========== INIT ==========
     document.addEventListener('DOMContentLoaded', () => {
       toggleFormFields();
@@ -2391,7 +2473,9 @@
       loadExternalRadar();
       loadCloudOpportunities();
       loadSpecialists();
+      setTimeout(updateV8HeroStats, 350);
       trackVisitor();          // cloud + safe local fallback
+      setTimeout(updateV8HeroStats, 1200);
       startRealtimeSync();
       if (supabaseClient) { supabaseClient.auth.onAuthStateChange(() => refreshAuthState()); refreshAuthState(); }
       renderCards();
