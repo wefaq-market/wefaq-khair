@@ -74,6 +74,9 @@
     html[dir='rtl'] .fa, html[dir='rtl'] i { }
     html[dir='rtl'] .flex-row { flex-direction: row-reverse; }
     html[dir='rtl'] input, html[dir='rtl'] textarea, html[dir='rtl'] select { text-align: right; }
+    .source-card { transition: transform .2s ease, box-shadow .2s ease; }
+    .source-card:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(15,23,42,.10); }
+    .source-thumb { aspect-ratio: 16 / 9; object-fit: cover; width: 100%; }
     html[dir='ltr'] input, html[dir='ltr'] textarea, html[dir='ltr'] select { text-align: left; }
     html[dir='rtl'] .search-leading-icon { left: auto; right: 0.75rem; }
     html[dir='rtl'] .search-leading-input { padding-left: 0.75rem; padding-right: 2.25rem; }
@@ -99,6 +102,9 @@
         </a>
         <a href="#marketplace-section" class="hover:text-brand-600 dark:hover:text-emerald-400 transition flex items-center gap-1.5">
           <i class="fa-solid fa-earth-americas text-blue-500"></i> Marketplace
+        </a>
+        <a href="#external-radar" class="hover:text-brand-600 dark:hover:text-emerald-400 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-satellite-dish text-sky-500"></i> Social Radar
         </a>
       </nav>
 
@@ -259,6 +265,61 @@
             </button>
           </div>
         </div>
+      </div>
+    </section>
+
+
+    <!-- Live Social + Open Web Radar -->
+    <section id="external-radar" class="scroll-mt-20">
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm">
+        <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-4 mb-5">
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-xl bg-sky-100 dark:bg-sky-950/50 text-sky-600 dark:text-sky-300 flex items-center justify-center"><i class="fa-solid fa-satellite-dish text-lg"></i></div>
+            <div>
+              <h2 class="font-extrabold text-slate-900 dark:text-white">Live Social & Open-Web Radar</h2>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400">Real external posts and public web results are stored as source leads. Wefaq never invents external listings.</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <span id="external-radar-status" class="inline-flex items-center gap-1.5 rounded-full bg-slate-100 dark:bg-slate-800 px-3 py-1.5 text-[10px] font-bold text-slate-500"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>Waiting for sync</span>
+            <button type="button" onclick="syncExternalRadar()" class="rounded-xl bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 text-xs font-extrabold shadow"><i id="external-sync-icon" class="fa-solid fa-arrows-rotate mr-1"></i>Sync external sources</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 mb-4">
+          <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-3"><div class="text-[10px] font-bold text-slate-400 uppercase">X</div><div class="text-sm font-extrabold mt-1">Recent posts</div><div class="text-[10px] text-slate-500 mt-1">Current public search window</div></div>
+          <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-3"><div class="text-[10px] font-bold text-slate-400 uppercase">YouTube</div><div class="text-sm font-extrabold mt-1">Videos / channels</div><div class="text-[10px] text-slate-500 mt-1">Public API search</div></div>
+          <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-3"><div class="text-[10px] font-bold text-slate-400 uppercase">Reddit</div><div class="text-sm font-extrabold mt-1">Communities / posts</div><div class="text-[10px] text-slate-500 mt-1">Public search API</div></div>
+          <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-3"><div class="text-[10px] font-bold text-slate-400 uppercase">Telegram</div><div class="text-sm font-extrabold mt-1">Groups / channels</div><div class="text-[10px] text-slate-500 mt-1">Live webhook feed</div></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-3 mb-4">
+          <div class="md:col-span-6">
+            <label for="external-query" class="block text-[11px] font-bold text-slate-500 mb-1">Live search query</label>
+            <input id="external-query" value="مطلوب OR طلب OR باحث OR تمويل OR شريك OR مشروع OR خدمة OR معلم OR تحفيظ OR مناقصة OR مزاد" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm focus:ring-2 focus:ring-sky-500 outline-none">
+          </div>
+          <div class="md:col-span-3">
+            <label for="external-source" class="block text-[11px] font-bold text-slate-500 mb-1">Source</label>
+            <select id="external-source" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm">
+              <option value="all">All connected sources</option>
+              <option value="x">X</option>
+              <option value="youtube">YouTube</option>
+              <option value="reddit">Reddit</option>
+              <option value="web_search">Open Web Search</option>
+              <option value="telegram">Telegram</option>
+            </select>
+          </div>
+          <div class="md:col-span-3 flex items-end">
+            <button type="button" onclick="loadExternalRadar()" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-extrabold text-slate-700 dark:text-slate-200"><i class="fa-solid fa-filter mr-1"></i>Apply filter</button>
+          </div>
+        </div>
+
+        <div id="external-radar-notice" class="rounded-xl border border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/20 text-amber-800 dark:text-amber-300 p-3 text-[11px] leading-5 mb-4">
+          External source APIs are enabled only when their official credentials or authorized access are configured on the server. Private messages and unrestricted private/group data are not collected. Facebook/Instagram and LinkedIn require separate approved authorization connectors for account/page data.
+        </div>
+
+        <div id="external-radar-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"></div>
+        <div id="external-radar-empty" class="hidden text-center py-10 rounded-2xl border border-dashed border-slate-300 dark:border-slate-800 text-slate-400 text-xs">No external source items are available for this filter yet.</div>
       </div>
     </section>
 
@@ -835,6 +896,46 @@
     const I18N = {
       'Wefaq Global Platform':'منصة وفاق العالمية','Global & Regional Matching Radar':'رادار المطابقة العالمية والإقليمية','Full Radar':'الرادار الكامل','Marketplace':'السوق','Post Request / Opportunity':'نشر طلب / فرصة','Investment Hub & Global Quran Memorization Circles':'مركز الاستثمار وحلقات تحفيظ القرآن العالمية','The unified platform for Arab projects, funding requests, partnerships, and global Quran memorization circles':'منصة موحدة للمشاريع العربية وطلبات التمويل والشراكات وحلقات تحفيظ القرآن حول العالم','We connect idea & project owners, partnership & funding seekers, and feasibility study providers across the Arab world, plus a global umbrella for Quran teachers and students with continuous sanad, and a language learning section with Arabic first.':'نربط أصحاب الأفكار والمشاريع، وطالبي الشراكة والتمويل، ومقدمي دراسات الجدوى في العالم العربي، مع مظلة عالمية لمعلمي وطلاب القرآن ذوي السند المتصل، وقسم لتعلم اللغات يبدأ بالعربية.','Request / Offer Quran Memorization':'طلب / عرض تحفيظ القرآن','Teach / Learn a Language':'تعليم / تعلم لغة','Offer Project / Request Funding & Partner':'عرض مشروع / طلب تمويل وشريك','Sync Cloud':'مزامنة سحابية','Share Platform':'مشاركة المنصة','Metrics':'الإحصائيات','Quran Seekers & Circles':'طالبو القرآن والحلقات','Worldwide':'حول العالم','Projects & Exhibitors':'المشاريع والعارضون','Arab World':'العالم العربي','Funding & Partner Seekers':'طالبو التمويل والشركاء','Investment Opportunities':'فرص الاستثمار','Feasibility & Ideas':'دراسات الجدوى والأفكار','Ready to Execute':'جاهز للتنفيذ','Language Teachers & Learners':'معلمو ومتعلّمو اللغات','Arabic & Others':'العربية وغيرها','Visitor Counter (Cloud + Local)':'عداد الزوار (سحابي + محلي)','Platform Visitors':'زوار المنصة','total visits':'إجمالي الزيارات','Online now':'متصلون الآن','Today: 0':'اليوم: 0','Session: 1':'الجلسة: 1','Loading country breakdown...':'جاري تحميل توزيع الدول...','AI Performance & Matching Center':'مركز أداء ومطابقة الذكاء الاصطناعي','AI Match & Performance Center':'مركز المطابقة والأداء بالذكاء الاصطناعي','Connect demand with providers, measure engagement, and surface improvement actions.':'اربط الطلب بمقدمي الخدمات، وقِس التفاعل، واكتشف إجراءات التحسين.','Smart engine active':'المحرك الذكي نشط','Opportunities':'الفرص','Demand signals':'إشارات الطلب','Supply signals':'إشارات العرض','Match readiness':'جاهزية المطابقة','What do you need?':'ماذا تحتاج؟','Category':'التصنيف','Any category':'أي تصنيف','Projects':'مشاريع','Funding':'تمويل','Languages':'لغات','Quran':'قرآن','Services':'خدمات','Service seekers':'طالبو الخدمات','Ideas':'أفكار','Region':'المنطقة','Anywhere':'أي مكان','Saudi Arabia':'السعودية','Egypt':'مصر','UAE':'الإمارات','GCC':'الخليج','Global':'عالمي','Smart Match':'مطابقة ذكية','Improvement Monitor':'مراقب التحسين','Recalculate insights':'إعادة حساب التحليلات','Client / Provider Workspace':'مساحة العميل / مقدم الخدمة','My Wefaq Workspace':'مساحة وفاق الخاصة بي','Manage your identity, matches, conversations and active connections.':'إدارة هويتك ومطابقاتك ومحادثاتك واتصالاتك النشطة.','Guest mode':'وضع الزائر','Create your secure account':'أنشئ حسابك الآمن','Unlock saved matches, private messaging, requests, reviews and your performance dashboard.':'فعّل المطابقات المحفوظة والرسائل الخاصة والطلبات والتقييمات ولوحة الأداء.','Sign in / Create account':'تسجيل الدخول / إنشاء حساب','Matches':'المطابقات','Saved':'المحفوظات','Connections':'الاتصالات','Messages':'الرسائل','Active Connections':'الاتصالات النشطة','Profile':'الملف الشخصي','Refresh':'تحديث','Notifications':'الإشعارات','Mark all read':'تحديد الكل كمقروء','Recommended Actions':'الإجراءات المقترحة','Trust & Quality':'الثقة والجودة','Profile completeness':'اكتمال الملف الشخصي','Verified signals':'إشارات التحقق','AI improvement loop':'حلقة تحسين الذكاء الاصطناعي','Every view, match, contact, completion and review can improve future recommendations.':'كل مشاهدة ومطابقة وتواصل وإتمام وتقييم يمكن أن يحسن التوصيات المستقبلية.','Smart Filter Radar':'رادار التصفية الذكي','Smart Comprehensive Filter Radar':'رادار التصفية الذكي الشامل','All':'الكل','📖 Quran Memorization (Global)':'📖 تحفيظ القرآن (عالمي)','🏬 Projects & Exhibitors':'🏬 المشاريع والعارضون','🛒 Service Seekers':'🛒 طالبو الخدمات','💰 Funding & Partners':'💰 التمويل والشركاء','💡 Ideas & Feasibility':'💡 الأفكار ودراسات الجدوى','🌍 Language Learning':'🌍 تعلم اللغات','🛠 Service Offers':'🛠 عروض الخدمات','📑 Tenders':'📑 المناقصات','🔨 Auctions':'🔨 المزادات','All countries, Middle East & World':'كل الدول والشرق الأوسط والعالم','Global (Worldwide - Online)':'عالمي (حول العالم - أونلاين)','Palestine & Gaza':'فلسطين وغزة','Gaza specifically':'غزة تحديدًا','Africa (East, West & North)':'أفريقيا (شرق وغرب وشمال)','Foreign countries (Europe, Americas, Asia)':'الدول الأجنبية (أوروبا والأمريكتان وآسيا)','Saudi Arabia (KSA)':'السعودية (KSA)','United Arab Emirates (UAE)':'الإمارات (UAE)','Qatar':'قطر','Kuwait':'الكويت','Rest of GCC':'باقي دول الخليج','Maghreb':'المغرب العربي','Levant (Jordan, Syria, Lebanon)':'بلاد الشام (الأردن وسوريا ولبنان)','All request & offer types':'كل أنواع الطلب والعرض','Offer (Available for execution/sale)':'عرض (متاح للتنفيذ/البيع)','Demand (Seeking to buy/execute)':'طلب (يبحث عن شراء/تنفيذ)','Seeking Partner (Co-founder)':'طلب شريك (شريك مؤسس)','Seeking Funding':'طلب تمويل','All verification levels':'كل مستويات التحقق','Certified with continuous sanad':'موثق بسند متصل','Reviewed by admin (reciter / teacher)':'مراجَع من الإدارة (قارئ / معلم)','Feasibility study attached':'دراسة جدوى مرفقة','Licensed / Verified record':'سجل مرخص / موثق','Quranic narration / reading':'الرواية / القراءة القرآنية','All narrations & readings':'كل الروايات والقراءات','Hafs from Asim':'حفص عن عاصم','Warsh from Nafi':'ورش عن نافع','Qalun from Nafi':'قالون عن نافع','Al-Duri from Abu Amr':'الدوري عن أبي عمرو','The Ten Readings':'القراءات العشر','Target audience':'الفئة المستهدفة','All (Men / Women / Children)':'الجميع (رجال / نساء / أطفال)','Children & young students':'الأطفال والطلاب الصغار','Men only':'رجال فقط','Women & female teachers':'نساء ومعلمات','Study mode':'نمط الدراسة','Online (Global) & In-person':'أونلاين (عالمي) وحضوري','Remote (Electronic circles worldwide)':'عن بُعد (حلقات إلكترونية حول العالم)','In-person (Mosques & centers)':'حضوري (مساجد ومراكز)','Language / Track':'اللغة / المسار','All languages & tracks':'كل اللغات والمسارات','Arabic for Non-Native Speakers':'العربية لغير الناطقين بها','Classical Arabic & Language Sciences':'العربية الفصحى وعلوم اللغة','Quranic Arabic & Linguistic Tajweed':'العربية القرآنية والتجويد اللغوي','Language Exchange':'تبادل لغات','English':'الإنجليزية','Other Language':'لغة أخرى','Level':'المستوى','All levels':'كل المستويات','Beginner':'مبتدئ','Intermediate':'متوسط','Advanced':'متقدم','Registered Requests & Opportunities':'الطلبات والفرص المسجلة','0 results':'0 نتيجة','Quran Reciters in Africa':'قراء القرآن في أفريقيا','Export JSON':'تصدير JSON','No results match your current filters':'لا توجد نتائج تطابق الفلاتر الحالية','Try changing the search criteria or reset filters to browse all cards.':'جرّب تغيير معايير البحث أو إعادة ضبط الفلاتر لعرض جميع البطاقات.','Reset Filters':'إعادة ضبط الفلاتر','Mobile bottom nav':'التنقل السفلي للهاتف','Radar':'الرادار','Market':'السوق','Add':'إضافة','Account':'الحساب','Login':'تسجيل الدخول','Direct contact with the poster':'تواصل مباشر مع صاحب المنشور','A ready agreement message has been prepared for you':'تم تجهيز رسالة اتفاق جاهزة لك','Your name or organization':'اسمك أو مؤسستك','Message preview':'معاينة الرسالة','Open WhatsApp chat':'فتح محادثة واتساب','Share this opportunity':'مشاركة هذه الفرصة','Spread the investment or Quran opportunity to reach more interested people':'شارك فرصة الاستثمار أو القرآن للوصول إلى المزيد من المهتمين','WhatsApp':'واتساب','Telegram':'تيليجرام','X / Twitter':'X / تويتر','LinkedIn':'لينكدإن','Copy':'نسخ','Private Conversation':'محادثة خاصة','Send':'إرسال','My Profile':'ملفي الشخصي','Save Profile':'حفظ الملف الشخصي','Wefaq AI Assistant':'مساعد وفاق بالذكاء الاصطناعي','Ask about matches, your profile, listings or next actions.':'اسأل عن المطابقات أو ملفك أو الإعلانات أو الخطوات التالية.','Ask':'اسأل','Post a new request / project / Quran circle':'نشر طلب / مشروع / حلقة قرآن جديدة','Choose the category and enter your details so matching people can reach you quickly':'اختر التصنيف وأدخل بياناتك ليصل إليك الأشخاص المناسبون بسرعة','Main title *':'العنوان الرئيسي *','Main category *':'التصنيف الرئيسي *','🏬 Existing Project / Project Exhibitor':'🏬 مشروع قائم / عارض مشروع','🛒 Service / Supply Seeker':'🛒 طالب خدمة / توريد','💰 Funding / Investment Partnership Seeker':'💰 طالب تمويل / شراكة استثمارية','💡 Idea or Feasibility Study':'💡 فكرة أو دراسة جدوى','🌍 Language Teaching':'🌍 تعليم لغة','🛠 Service Offer':'🛠 عرض خدمة','📑 Tender':'📑 مناقصة','🔨 Auction':'🔨 مزاد','Country / Region *':'الدولة / المنطقة *','Palestine':'فلسطين','Gaza':'غزة','Africa':'أفريقيا','Foreign':'أجنبي','Levant':'بلاد الشام','Listing type':'نوع الإعلان','Offer':'عرض','Demand':'طلب','Seeking Partner':'طلب شريك','Amount / Capital':'المبلغ / رأس المال','Full description *':'الوصف الكامل *','Quran Circle Details':'تفاصيل حلقة القرآن','Narration':'الرواية','Sheikh / Reciter':'الشيخ / القارئ','Audience':'الفئة المستهدفة','Children':'أطفال','Men':'رجال','Women':'نساء','Everyone':'الجميع','Language Lesson Details':'تفاصيل درس اللغة','Classical Arabic':'العربية الفصحى','Other':'أخرى','Teacher name':'اسم المعلم','WhatsApp number with country code *':'رقم واتساب مع رمز الدولة *','License / Certification (optional)':'الترخيص / الشهادة (اختياري)','Cancel':'إلغاء','Publish to Cloud':'نشر على السحابة','Wefaq Account':'حساب وفاق','Secure cloud identity':'هوية سحابية آمنة','Client':'عميل','Provider':'مقدم خدمة','Organization':'مؤسسة','Teacher':'معلم','Investor':'مستثمر','Sign in':'تسجيل الدخول','Create account':'إنشاء حساب','quran_banner_alt':'مصحف مفتوح للقراءة والحفظ ضمن منصة وفاق','Quran & Wefaq':'القرآن ووفاق','A trusted space for Quran learning, memorization and meaningful connections.':'مساحة موثوقة لتعلم القرآن وحفظه وبناء روابط نافعة.','Explore Quran Opportunities':'استكشف فرص القرآن','Cloud storage is not connected':'التخزين السحابي غير متصل','Cloud counter unavailable':'عداد السحابة غير متاح','Syncing with cloud...':'جارٍ المزامنة مع السحابة...','No current listing matches these constraints. Publish a request so providers can respond.':'لا توجد فرصة حالية تطابق هذه الشروط. انشر طلبًا ليتمكن مقدمو الخدمات من الرد.','Top matching opportunities':'أفضل الفرص المطابقة','AI server ranking':'ترتيب خادم الذكاء الاصطناعي','Local smart fallback':'مطابقة ذكية محلية بديلة','Keyword, category, region and trust-signal relevance.':'مدى الصلة بالكلمات المفتاحية والتصنيف والمنطقة وإشارات الثقة.','Complete your profile to improve AI matching.':'أكمل ملفك الشخصي لتحسين المطابقة بالذكاء الاصطناعي.','Save relevant listings so recommendations learn your preferences.':'احفظ الفرص المناسبة لتتعلم التوصيات تفضيلاتك.','No active connections yet.':'لا توجد اتصالات نشطة بعد.','No notifications.':'لا توجد إشعارات.','Start the conversation.':'ابدأ المحادثة.','Hello. I can help improve your profile, find matches, explain opportunities, and suggest your next action.':'مرحبًا. يمكنني مساعدتك في تحسين ملفك والعثور على المطابقات وشرح الفرص واقتراح خطوتك التالية.','I recommend completing your profile, saving relevant listings, and using Smart Match with a specific need, region and budget.':'أوصي بإكمال ملفك الشخصي وحفظ الفرص المناسبة واستخدام المطابقة الذكية مع تحديد الحاجة والمنطقة والميزانية.','Please sign in before publishing':'سجّل الدخول قبل النشر','Published to cloud ✓':'تم النشر على السحابة ✓','Publish failed: cloud storage error':'فشل النشر: خطأ في التخزين السحابي','Please sign in first':'سجّل الدخول أولًا','Connection already requested':'تم إرسال طلب الاتصال بالفعل','You cannot connect to your own listing':'لا يمكنك الاتصال بإعلانك الخاص','Connection request sent ✓':'تم إرسال طلب الاتصال ✓','Could not create connection':'تعذر إنشاء الاتصال','Saved ✓':'تم الحفظ ✓','Removed from saved':'تمت الإزالة من المحفوظات','Could not save listing':'تعذر حفظ الفرصة','Message failed':'فشل إرسال الرسالة','Review saved ✓':'تم حفظ التقييم ✓','Rating must be between 1 and 5':'يجب أن يكون التقييم بين 1 و5','Review could not be saved':'تعذر حفظ التقييم','No phone number':'لا يوجد رقم هاتف','Copied ✓':'تم النسخ ✓','Copy failed':'فشل النسخ','Link copied ✓':'تم نسخ الرابط ✓','Signing in...':'جارٍ تسجيل الدخول...','Signed in ✓':'تم تسجيل الدخول ✓','Cloud authentication is unavailable.':'مصادقة السحابة غير متاحة.','Account created ✓':'تم إنشاء الحساب ✓','Check your email to confirm your account.':'تحقق من بريدك الإلكتروني لتأكيد الحساب.','Creating account...':'جارٍ إنشاء الحساب...','Password must be at least 8 characters.':'يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.','Could not save listing':'تعذر حفظ الفرصة','Cloud sync failed':'فشلت مزامنة السحابة','Live cloud sync active ✓':'تم تفعيل المزامنة السحابية المباشرة ✓','Live sync connection lost':'انقطع اتصال المزامنة المباشرة','New listing:':'إعلان جديد:','This legacy listing has no account owner yet':'هذا الإعلان القديم لا يملك حسابًا مرتبطًا به بعد','Legacy':'قديم','Analyzing current opportunities...':'جارٍ تحليل الفرص الحالية...','Connect':'تواصل','No current listing matches these constraints. Publish a request so providers can respond.':'لا توجد فرصة حالية تطابق هذه الشروط. انشر طلبًا ليتمكن مقدمو الخدمات من الرد.','Top matching opportunities':'أفضل الفرص المطابقة','Please fill all required fields.':'يرجى تعبئة جميع الحقول المطلوبة.','Could not save listing':'تعذر حفظ الفرصة','Build marketplace density':'بناء كثافة السوق','Add real providers and customer requests in your highest-value categories.':'أضف مقدمي خدمات حقيقيين وطلبات عملاء حقيقية في الفئات الأعلى قيمة.','Balance both sides':'موازنة جانبي السوق','Capture both demand and supply so matching becomes meaningful.':'اجمع بين الطلب والعرض حتى تصبح المطابقة ذات معنى.','Improve listing quality':'تحسين جودة الإعلانات','Require clear descriptions, region, category, contact and verification fields.':'اطلب أوصافًا واضحة والمنطقة والتصنيف وبيانات التواصل والحقول الخاصة بالتحقق.','Track conversion':'تتبع التحويل','Record view → contact → accepted → completed to measure actual marketplace performance.':'سجل المشاهدة ← التواصل ← القبول ← الإتمام لقياس أداء السوق الفعلي.','AI semantic matching':'المطابقة الدلالية بالذكاء الاصطناعي','Use server-side embeddings to match by meaning, not just exact keywords.':'استخدم التضمينات على الخادم للمطابقة حسب المعنى وليس الكلمات المتطابقة فقط.','Quran Mushaf banner for Wefaq':'صورة مصحف للقرآن ضمن منصة وفاق','A trusted space for Quran learning, memorization and meaningful connections.':'مساحة موثوقة لتعلم القرآن وحفظه وبناء روابط نافعة.','Connect Quran teachers and students worldwide, discover memorization circles, and use smart matching to find suitable opportunities.':'اربط معلمي وطلاب القرآن حول العالم، واكتشف حلقات التحفيظ، واستخدم المطابقة الذكية للعثور على الفرص المناسبة.','Explore Quran Opportunities':'استكشف فرص القرآن','Sign out':'تسجيل الخروج','Chat':'محادثة','Review':'تقييم','Connection':'اتصال','pending':'قيد الانتظار','completed':'مكتمل','Profile saved ✓':'تم حفظ الملف الشخصي ✓','Investor / Quran seeker via Wefaq':'مستثمر / طالب قرآن عبر وفاق','Start the conversation.':'ابدأ المحادثة.','Please fill all required fields.':'يرجى تعبئة جميع الحقول المطلوبة.','Cloud storage is unavailable':'التخزين السحابي غير متاح','Cloud storage is not connected':'التخزين السحابي غير متصل','Cloud counter unavailable':'عداد السحابة غير متاح'
     };
+    Object.assign(I18N, {
+      'Live Social & Open-Web Radar':'الرادار الحي للسوشيال والويب المفتوح',
+      'Real external posts and public web results are stored as source leads. Wefaq never invents external listings.':'يتم حفظ المنشورات الخارجية الحقيقية ونتائج الويب العامة كمصادر للفرص، ولا تختلق وفاق أي إعلان خارجي.',
+      'Waiting for sync':'بانتظار المزامنة',
+      'Sync external sources':'مزامنة المصادر الخارجية',
+      'Recent posts':'منشورات حديثة',
+      'Current public search window':'نافذة البحث العامة الحالية',
+      'Videos / channels':'فيديوهات / قنوات',
+      'Public API search':'بحث عبر الواجهة العامة',
+      'Communities / posts':'مجتمعات / منشورات',
+      'Groups / channels':'مجموعات / قنوات',
+      'Live webhook feed':'تغذية مباشرة عبر Webhook',
+      'Live search query':'استعلام البحث الحي',
+      'Source':'المصدر',
+      'All connected sources':'كل المصادر المتصلة',
+      'Open Web Search':'بحث الويب المفتوح',
+      'Apply filter':'تطبيق الفلتر',
+      'External source APIs are enabled only when their official credentials or authorized access are configured on the server. Private messages and unrestricted private/group data are not collected. Facebook/Instagram and LinkedIn require separate approved authorization connectors for account/page data.':'تُفعّل واجهات المصادر الخارجية عند إعداد بيانات الاعتماد الرسمية أو الوصول المصرّح به على الخادم. لا يتم جمع الرسائل الخاصة أو بيانات المجموعات الخاصة غير المصرّح بها. ويتطلب Facebook/Instagram وLinkedIn موصلات تفويض منفصلة وموافقات للوصول إلى بيانات الحسابات والصفحات.',
+      'No external source items are available for this filter yet.':'لا توجد عناصر من المصادر الخارجية لهذا الفلتر حتى الآن.',
+      'Posts':'منشورات',
+      'External sync completed':'اكتملت مزامنة المصادر الخارجية',
+      'External sync unavailable':'المزامنة الخارجية غير متاحة حالياً',
+      'Credential missing':'بيانات الاعتماد غير مهيأة',
+      'Open source':'فتح المصدر',
+      'Contact source':'التواصل عبر المصدر',
+      'No direct contact found':'لم يتم العثور على وسيلة تواصل مباشرة',
+      'Real external source':'مصدر خارجي حقيقي',
+      'Funding':'تمويل',
+      'Partner':'شريك',
+      'Tender':'مناقصة',
+      'Auction':'مزاد',
+      'Quran':'قرآن',
+      'Language':'لغة',
+      'Service':'خدمة',
+      'Demand':'طلب',
+      'Offer':'عرض',
+      'Unknown':'غير محدد',
+      'Syncing':'جارٍ المزامنة…',
+      'Social radar requires an account for controlled API sync.':'يتطلب مزامنة الرادار الاجتماعي تسجيل الدخول للتحكم في استدعاءات الواجهات الخارجية.'
+    });
     let currentLang = safeGet('wefaq_lang', 'ar');
     if (!['ar','en'].includes(currentLang)) currentLang = 'ar';
 
@@ -891,6 +992,10 @@
     function toggleLanguage() {
       currentLang = currentLang === 'en' ? 'ar' : 'en';
       translatePage();
+      renderCards();
+      refreshPerformanceCenter();
+      if (typeof renderExternalRadar === 'function') renderExternalRadar();
+      if (typeof externalRadarItems !== 'undefined' && externalRadarItems.length) setExternalStatus(`${externalRadarItems.length} ${t('Posts')}`, 'live');
     }
     function toggleTheme() {
       const htmlEl = document.documentElement;
@@ -1673,18 +1778,77 @@
       }
     }
 
-    function loadDemoData() {
-      if (opportunitiesData.length === 0) {
-        opportunitiesData = [
-          { id: '1', title: 'Online Hafs circle for children', category: 'quran', region: 'GLOBAL', type: 'offer', amount: 0, description: 'Daily online memorization with continuous sanad for ages 6-12.', riwaya: 'Hafs from Asim', sheikh: 'Sheikh Ahmed', gender: 'Children', badge: 'sanad', phone: '966500000000', createdAt: '2026-09-20' },
-          { id: '2', title: 'Seeking co-founder for EdTech startup', category: 'funding', region: 'KSA', type: 'seeking_partner', amount: 150000, description: 'Arabic language learning platform. Looking for technical co-founder.', badge: 'feasibility', phone: '966500000001', createdAt: '2026-09-22' },
-          { id: '3', title: 'Arabic for non-native speakers – Intermediate', category: 'languages', region: 'GLOBAL', type: 'offer', amount: 200, description: 'Live online classes 3× week. Conversation + media Arabic.', riwaya: 'Arabic for Non-Native Speakers', gender: 'Intermediate', sheikh: 'Ustadh Sara', badge: 'reviewed', phone: '966500000002', createdAt: '2026-09-25' }
-        ];
+    // ========== LIVE EXTERNAL RADAR ==========
+    let externalRadarItems = [];
+    const externalIntentRules = [
+      { key:'Funding', words:['تمويل','ممول','استثمار','funding','investor','investment'] },
+      { key:'Partner', words:['شريك','شراكة','partner','partnership','cofounder','co-founder'] },
+      { key:'Tender', words:['مناقصة','tender','rfp','request for proposal'] },
+      { key:'Auction', words:['مزاد','auction'] },
+      { key:'Quran', words:['قرآن','تحفيظ','حفظ القرآن','quran','hifz','tajweed'] },
+      { key:'Language', words:['لغة','العربية لغير الناطقين','مدرس لغة','language','arabic teacher','english teacher'] },
+      { key:'Service', words:['خدمة','خدمات','مقدم خدمة','service','services','provider'] },
+      { key:'Demand', words:['مطلوب','طلب','باحث','ابحث عن','يبحث عن','محتاج','seeking','looking for','wanted','need'] },
+      { key:'Offer', words:['متاح','عرض','أعرض','نوفر','available','offer','offering'] }
+    ];
+    function inferExternalIntent(item){const text=`${item.title||''} ${item.description||''}`.toLowerCase();for(const rule of externalIntentRules){if(rule.words.some(w=>text.includes(w.toLowerCase())))return rule.key;}return 'Unknown';}
+    function providerLabel(provider){return ({x:'X',youtube:'YouTube',reddit:'Reddit',telegram:'Telegram',web_search:t('Open Web Search')})[provider]||provider||'—';}
+    function providerIcon(provider){return ({x:'fa-x-twitter',youtube:'fa-youtube',reddit:'fa-reddit-alien',telegram:'fa-telegram'})[provider]||'fa-globe';}
+    function formatExternalDate(value){try{return value?new Date(value).toLocaleString(currentLang==='ar'?'ar-SA':'en-US',{dateStyle:'medium',timeStyle:'short'}):'—';}catch{return value||'—';}}
+    function mediaPreviewUrl(item){
+      const media=Array.isArray(item?.media)?item.media:[];
+      for(const m of media){
+        const candidates=[m?.url,m?.preview_image_url,m?.default?.url,m?.medium?.url,m?.high?.url,m?.maxres?.url];
+        const hit=candidates.find(v=>typeof v==='string'&&/^https:\/\//i.test(v));
+        if(hit)return hit;
       }
-      renderCards();
-      updateMetricCounters();
+      return '';
     }
-
+    function directContactUrl(item){
+      const text=String(item?.description||'');
+      const phone=(text.match(/(?:\+?\d[\d\s().-]{7,}\d)/)||[])[0]?.replace(/[^0-9]/g,'');
+      if(phone && phone.length>=8 && phone.length<=15) return `https://wa.me/${phone}`;
+      if(item.provider==='telegram' && item.source_url) return item.source_url;
+      return null;
+    }
+    function externalCardHtml(item){
+      const provider=providerLabel(item.provider), intent=inferExternalIntent(item), thumb=mediaPreviewUrl(item), contact=directContactUrl(item), url=item.source_url||'#';
+      const badge=intent==='Funding'?'text-amber-700 bg-amber-50 dark:bg-amber-950/30':intent==='Demand'?'text-blue-700 bg-blue-50 dark:bg-blue-950/30':intent==='Quran'?'text-emerald-700 bg-emerald-50 dark:bg-emerald-950/30':'text-slate-700 bg-slate-100 dark:bg-slate-800';
+      return `<article class="source-card rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col h-full">${thumb?`<img class="source-thumb" src="${esc(thumb)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:''}<div class="p-4 flex flex-col flex-1"><div class="flex items-start justify-between gap-3 mb-3"><div class="flex items-center gap-2 min-w-0"><div class="w-9 h-9 rounded-xl bg-sky-100 dark:bg-sky-950/50 text-sky-600 dark:text-sky-300 flex items-center justify-center"><i class="fa-brands ${provider==='Open Web Search'?'':providerIcon(item.provider)} ${provider==='Open Web Search'?'fa-solid fa-globe':''}"></i></div><div class="min-w-0"><div class="text-[10px] font-extrabold text-slate-500 uppercase tracking-wide">${esc(provider)}</div><div class="text-[10px] text-slate-400 truncate">${esc(formatExternalDate(item.published_at))}</div></div></div><span class="text-[10px] font-extrabold px-2 py-1 rounded-full ${badge}">${esc(t(intent))}</span></div><h3 class="font-extrabold text-sm text-slate-900 dark:text-white line-clamp-3 mb-2">${esc(item.title||provider)}</h3><p class="text-xs text-slate-600 dark:text-slate-300 leading-5 line-clamp-5 flex-1">${esc(item.description||t('Real external source'))}</p><div class="mt-4 flex items-center gap-2"><a href="${esc(url)}" target="_blank" rel="noopener noreferrer" class="flex-1 text-center rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-extrabold py-2.5"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>${esc(t('Open source'))}</a>${contact?`<a href="${esc(contact)}" target="_blank" rel="noopener noreferrer" class="rounded-xl border border-emerald-200 dark:border-emerald-900 px-3 py-2.5 text-xs font-bold text-emerald-700 dark:text-emerald-300" title="${esc(t('Contact source'))}"><i class="fa-solid fa-comments"></i></a>`:`<button type="button" disabled class="rounded-xl border border-slate-200 dark:border-slate-800 px-3 py-2.5 text-xs font-bold text-slate-300 dark:text-slate-600" title="${esc(t('No direct contact found'))}"><i class="fa-solid fa-comments"></i></button>`}</div></div></article>`;
+    }
+    function renderExternalRadar(){
+      const grid=document.getElementById('external-radar-grid'),empty=document.getElementById('external-radar-empty');if(!grid||!empty)return;
+      const provider=document.getElementById('external-source')?.value||'all';
+      const data=externalRadarItems.filter(i=>provider==='all'||i.provider===provider);
+      grid.innerHTML=data.map(externalCardHtml).join(''); empty.classList.toggle('hidden',data.length>0);
+    }
+    function setExternalStatus(message,kind='idle'){const el=document.getElementById('external-radar-status');if(!el)return;const dot=kind==='live'?'bg-emerald-500':kind==='error'?'bg-red-500':'bg-slate-400';el.innerHTML=`<span class="w-1.5 h-1.5 rounded-full ${dot}"></span><span>${esc(message)}</span>`;}
+    async function loadExternalRadar(){
+      if(!supabaseClient)return;
+      try{
+        const provider=document.getElementById('external-source')?.value||'all';
+        const {data,error}=await supabaseClient.rpc('get_public_source_items',{p_provider:provider==='all'?null:provider,p_limit:120});
+        if(error)throw error;
+        externalRadarItems=(data||[]).map(r=>({id:String(r.id),provider:r.provider,external_item_id:r.external_item_id,source_url:r.source_url,title:r.title||providerLabel(r.provider),description:r.description||'',media:r.media||[],published_at:r.published_at,last_seen_at:r.last_seen_at}));
+        renderExternalRadar(); setExternalStatus(externalRadarItems.length?`${externalRadarItems.length} ${t('Posts')}`:t('Waiting for sync'),externalRadarItems.length?'live':'idle');
+      }catch(err){console.warn('External radar load failed',err);setExternalStatus(t('External sync unavailable'),'error');}
+    }
+    async function syncExternalRadar(){
+      const user=await requireUser(); if(!user)return;
+      const query=document.getElementById('external-query')?.value.trim()||'مطلوب OR طلب OR باحث OR تمويل OR شريك OR مشروع OR خدمة OR معلم OR تحفيظ OR مناقصة OR مزاد';
+      const provider=document.getElementById('external-source')?.value||'all';
+      const icon=document.getElementById('external-sync-icon'); if(icon)icon.classList.add('fa-spin'); setExternalStatus(t('Syncing'));
+      try{
+        const {data,error}=await supabaseClient.functions.invoke('social-radar-sync',{body:{query,provider,days:7,max_results:100}}); if(error)throw error;
+        await loadExternalRadar();
+        const synced=data?.synced?Object.entries(data.synced).map(([k,v])=>`${k}: ${v}`).join(' · '):'';
+        const missing=data?.missing_credentials?.length?` · ${t('Credential missing')}: ${data.missing_credentials.length}`:'';
+        const errorCount=data?.errors?Object.keys(data.errors).length:0;
+        const errors=errorCount?` · errors: ${errorCount}`:'';
+        const msg=`${t('External sync completed')}${synced?' — '+synced:''}${missing}${errors}`; showRealtimeNotification(msg); setExternalStatus(msg,'live');
+      }catch(err){console.error('External sync failed',err);const msg=`${t('External sync unavailable')}${err?.message?' — '+err.message:''}`;showRealtimeNotification(msg);setExternalStatus(msg,'error');}
+      finally{if(icon)icon.classList.remove('fa-spin');}
+    }
 
     // ========== REALTIME CLOUD SYNC ==========
     let realtimeChannel = null;
@@ -1768,6 +1932,7 @@
       renderCards();
       updateMetricCounters();
       refreshPerformanceCenter();
+      loadExternalRadar();
     });
 
     document.addEventListener('keydown', (event) => {
