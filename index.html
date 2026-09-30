@@ -106,6 +106,9 @@
         <a href="#external-radar" class="hover:text-brand-600 dark:hover:text-emerald-400 transition flex items-center gap-1.5">
           <i class="fa-solid fa-satellite-dish text-sky-500"></i> Social Radar
         </a>
+        <a href="#cloud-opportunities" class="hover:text-brand-600 dark:hover:text-emerald-400 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-database text-emerald-500"></i> Cloud Opportunities
+        </a>
       </nav>
 
       <div class="flex items-center gap-2 sm:gap-3">
@@ -303,9 +306,9 @@
         <div class="grid grid-cols-1 md:grid-cols-12 gap-3 mb-4">
           <div class="md:col-span-6">
             <label for="external-query" class="block text-[11px] font-bold text-slate-500 mb-1">Live search query</label>
-            <input id="external-query" value="مطلوب OR طلب OR باحث OR تمويل OR شريك OR مشروع OR خدمة OR معلم OR تحفيظ OR مناقصة OR مزاد" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm focus:ring-2 focus:ring-sky-500 outline-none">
+            <input id="external-query" value="freelance OR freelancer OR "remote job" OR "freelance project" OR tender OR RFP OR procurement OR auction OR "عمل حر" OR مناقصة OR مزاد -site:github.com -site:learn.microsoft.com" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm focus:ring-2 focus:ring-sky-500 outline-none">
           </div>
-          <div class="md:col-span-3">
+          <div class="md:col-span-2">
             <label for="external-source" class="block text-[11px] font-bold text-slate-500 mb-1">Source</label>
             <select id="external-source" onchange="renderExternalRadar()" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm">
               <option value="all">All connected sources</option>
@@ -314,6 +317,21 @@
               <option value="reddit">Reddit</option>
               <option value="web_search">Open Web Search</option>
               <option value="telegram">Telegram</option>
+            </select>
+          </div>
+          <div class="md:col-span-2">
+            <label for="external-opportunity-type" class="block text-[11px] font-bold text-slate-500 mb-1">Opportunity type</label>
+            <select id="external-opportunity-type" onchange="renderExternalRadar()" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm">
+              <option value="all">All actionable opportunities</option>
+              <option value="freelance">Freelance</option>
+              <option value="tender">Tender</option>
+              <option value="auction">Auction</option>
+              <option value="funding">Funding</option>
+              <option value="partner">Partner</option>
+              <option value="service">Service</option>
+              <option value="quran">Quran</option>
+              <option value="language">Language</option>
+              <option value="demand">Demand</option>
             </select>
           </div>
           <div class="md:col-span-2">
@@ -336,6 +354,34 @@
 
         <div id="external-radar-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"></div>
         <div id="external-radar-empty" class="hidden text-center py-10 rounded-2xl border border-dashed border-slate-300 dark:border-slate-800 text-slate-400 text-xs">No external source items are available for this filter yet.</div>
+      </div>
+    </section>
+
+    <!-- Cloud Opportunities Hub -->
+    <section id="cloud-opportunities" class="scroll-mt-20">
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 mb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-300 flex items-center justify-center"><i class="fa-solid fa-database"></i></div>
+              <div>
+                <h2 class="font-extrabold text-slate-900 dark:text-white">Cloud Opportunities</h2>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400">Unified cloud cards for real freelance projects, tenders and auctions.</p>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <select id="cloud-opportunity-type" onchange="loadCloudOpportunities()" class="min-h-[40px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-xs">
+              <option value="all">All opportunity types</option>
+              <option value="freelance">Freelance</option>
+              <option value="tender">Tender</option>
+              <option value="auction">Auction</option>
+            </select>
+            <button type="button" onclick="loadCloudOpportunities()" class="min-h-[40px] rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white px-4 text-xs font-extrabold"><i class="fa-solid fa-arrows-rotate mr-1"></i>Refresh cloud</button>
+          </div>
+        </div>
+        <div id="cloud-opportunities-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"></div>
+        <div id="cloud-opportunities-empty" class="hidden text-center py-10 rounded-2xl border border-dashed border-slate-300 dark:border-slate-800 text-slate-400 text-xs">No cloud opportunities are available yet.</div>
       </div>
     </section>
 
@@ -1803,6 +1849,7 @@
     let externalRadarItems = [];
     let externalLiveWebItems = [];
     const externalIntentRules = [
+      { key:'Freelance', words:['freelance','freelancer','freelancing','remote job','freelance project','upwork','freelancer.com','fiverr','عمل حر','عمل حر عن بعد','مشروع حر','مستقل','خمسات'] },
       { key:'Funding', words:['تمويل','ممول','استثمار','funding','investor','investment'] },
       { key:'Partner', words:['شريك','شراكة','partner','partnership','cofounder','co-founder'] },
       { key:'Tender', words:['مناقصة','tender','rfp','request for proposal'] },
@@ -1835,14 +1882,24 @@
     }
     function externalCardHtml(item){
       const provider=providerLabel(item.provider), intent=inferExternalIntent(item), thumb=mediaPreviewUrl(item), contact=directContactUrl(item), url=item.source_url||'#';
-      const badge=intent==='Funding'?'text-amber-700 bg-amber-50 dark:bg-amber-950/30':intent==='Demand'?'text-blue-700 bg-blue-50 dark:bg-blue-950/30':intent==='Quran'?'text-emerald-700 bg-emerald-50 dark:bg-emerald-950/30':'text-slate-700 bg-slate-100 dark:bg-slate-800';
+      const badge=intent==='Freelance'?'text-violet-700 bg-violet-50 dark:bg-violet-950/30':intent==='Tender'?'text-indigo-700 bg-indigo-50 dark:bg-indigo-950/30':intent==='Auction'?'text-orange-700 bg-orange-50 dark:bg-orange-950/30':intent==='Funding'?'text-amber-700 bg-amber-50 dark:bg-amber-950/30':intent==='Demand'?'text-blue-700 bg-blue-50 dark:bg-blue-950/30':intent==='Quran'?'text-emerald-700 bg-emerald-50 dark:bg-emerald-950/30':'text-slate-700 bg-slate-100 dark:bg-slate-800';
       return `<article class="source-card rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col h-full">${thumb?`<img class="source-thumb" src="${esc(thumb)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:''}<div class="p-4 flex flex-col flex-1"><div class="flex items-start justify-between gap-3 mb-3"><div class="flex items-center gap-2 min-w-0"><div class="w-9 h-9 rounded-xl bg-sky-100 dark:bg-sky-950/50 text-sky-600 dark:text-sky-300 flex items-center justify-center"><i class="fa-brands ${provider==='Open Web Search'?'':providerIcon(item.provider)} ${provider==='Open Web Search'?'fa-solid fa-globe':''}"></i></div><div class="min-w-0"><div class="text-[10px] font-extrabold text-slate-500 uppercase tracking-wide">${esc(provider)}</div><div class="text-[10px] text-slate-400 truncate">${esc(formatExternalDate(item.published_at))}</div></div></div><span class="text-[10px] font-extrabold px-2 py-1 rounded-full ${badge}">${esc(t(intent))}</span></div><h3 class="font-extrabold text-sm text-slate-900 dark:text-white line-clamp-3 mb-2">${esc(item.title||provider)}</h3><p class="text-xs text-slate-600 dark:text-slate-300 leading-5 line-clamp-5 flex-1">${esc(item.description||t('Real external source'))}</p><div class="mt-4 flex items-center gap-2"><a href="${esc(url)}" target="_blank" rel="noopener noreferrer" class="flex-1 text-center rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-extrabold py-2.5"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>${esc(t('Open source'))}</a>${contact?`<a href="${esc(contact)}" target="_blank" rel="noopener noreferrer" class="rounded-xl border border-emerald-200 dark:border-emerald-900 px-3 py-2.5 text-xs font-bold text-emerald-700 dark:text-emerald-300" title="${esc(t('Contact source'))}"><i class="fa-solid fa-comments"></i></a>`:`<button type="button" disabled class="rounded-xl border border-slate-200 dark:border-slate-800 px-3 py-2.5 text-xs font-bold text-slate-300 dark:text-slate-600" title="${esc(t('No direct contact found'))}"><i class="fa-solid fa-comments"></i></button>`}</div></div></article>`;
+    }
+    function externalOpportunityKey(intent){
+      return ({Freelance:'freelance',Tender:'tender',Auction:'auction',Funding:'funding',Partner:'partner',Service:'service',Quran:'quran',Language:'language',Demand:'demand'})[intent]||null;
     }
     function renderExternalRadar(){
       const grid=document.getElementById('external-radar-grid'),empty=document.getElementById('external-radar-empty');if(!grid||!empty)return;
       const provider=document.getElementById('external-source')?.value||'all';
-      const data=externalRadarItems.filter(i=>provider==='all'||i.provider===provider);
-      grid.innerHTML=data.map(externalCardHtml).join(''); empty.classList.toggle('hidden',data.length>0);
+      const type=document.getElementById('external-opportunity-type')?.value||'all';
+      const data=externalRadarItems
+        .filter(i=>provider==='all'||i.provider===provider)
+        .map(i=>({item:i,intent:inferExternalIntent(i)}))
+        .filter(x=>x.intent!=='Unknown')
+        .filter(x=>type==='all'||externalOpportunityKey(x.intent)===type)
+        .map(x=>x.item);
+      grid.innerHTML=data.map(externalCardHtml).join('');
+      empty.classList.toggle('hidden',data.length>0);
     }
     function setExternalStatus(message,kind='idle'){const el=document.getElementById('external-radar-status');if(!el)return;const dot=kind==='live'?'bg-emerald-500':kind==='error'?'bg-red-500':'bg-slate-400';el.innerHTML=`<span class="w-1.5 h-1.5 rounded-full ${dot}"></span><span>${esc(message)}</span>`;}
     async function loadExternalRadar(){
@@ -1868,7 +1925,7 @@
 
     async function syncExternalRadar(){
       const user=await requireUser(); if(!user)return;
-      const query=document.getElementById('external-query')?.value.trim()||'مطلوب OR طلب OR باحث OR تمويل OR شريك OR مشروع OR خدمة OR معلم OR تحفيظ OR مناقصة OR مزاد';
+      const query=document.getElementById('external-query')?.value.trim()||'freelance OR freelancer OR \"remote job\" OR \"freelance project\" OR tender OR RFP OR procurement OR auction OR \"عمل حر\" OR مناقصة OR مزاد -site:github.com -site:learn.microsoft.com';
       const provider=document.getElementById('external-source')?.value||'all';
       const days=Math.min(Math.max(Number(document.getElementById('external-days')?.value||7),1),30);
       const icon=document.getElementById('external-sync-icon'); if(icon)icon.classList.add('fa-spin'); setExternalStatus(t('Syncing') + ` · ${days}d`);
@@ -1978,12 +2035,36 @@
       });
     }
 
+    function cloudOpportunityCardHtml(item){
+      const typeLabel=({freelance:'Freelance',tender:'Tender',auction:'Auction'})[item.opportunity_type]||item.opportunity_type||'Opportunity';
+      const date=item.deadline_at||item.ends_at||item.posted_at;
+      const budget=(item.budget_min!=null||item.budget_max!=null)?`${item.budget_min!=null?item.budget_min:'—'}${item.budget_max!=null?` - ${item.budget_max}`:''} ${item.currency||''}`.trim():'';
+      const meta=[item.location_text,budget,date?formatExternalDate(date):''].filter(Boolean);
+      return `<article class="source-card rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col h-full"><div class="p-4 flex flex-col flex-1"><div class="flex items-start justify-between gap-3 mb-3"><span class="text-[10px] font-extrabold uppercase tracking-wide text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/30 px-2.5 py-1 rounded-full">${esc(typeLabel)}</span><span class="text-[10px] font-bold text-slate-400">${esc(item.source_provider||'')}</span></div><h3 class="font-extrabold text-sm text-slate-900 dark:text-white line-clamp-3 mb-2">${esc(item.title||'Opportunity')}</h3><p class="text-xs text-slate-600 dark:text-slate-300 leading-5 line-clamp-4 flex-1">${esc(item.description||'')}</p><div class="mt-3 flex flex-wrap gap-1.5">${meta.map(v=>`<span class="text-[10px] font-bold rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 px-2 py-1">${esc(String(v))}</span>`).join('')}</div><div class="mt-4"><a href="${esc(item.source_url||'#')}" target="_blank" rel="noopener noreferrer" class="block text-center rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-extrabold py-2.5"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>Open source</a></div></div></article>`;
+    }
+    async function loadCloudOpportunities(){
+      const grid=document.getElementById('cloud-opportunities-grid'),empty=document.getElementById('cloud-opportunities-empty');
+      if(!grid||!empty||!supabaseClient)return;
+      const type=document.getElementById('cloud-opportunity-type')?.value||'all';
+      try{
+        const {data,error}=await supabaseClient.rpc('get_opportunities',{p_type:type==='all'?null:type,p_category:null,p_provider:null,p_status:'active',p_search:null,p_limit:60,p_offset:0});
+        if(error)throw error;
+        const rows=Array.isArray(data)?data:[];
+        grid.innerHTML=rows.map(cloudOpportunityCardHtml).join('');
+        empty.classList.toggle('hidden',rows.length>0);
+      }catch(err){
+        console.warn('Cloud opportunities load failed',err);
+        grid.innerHTML=''; empty.classList.remove('hidden');
+      }
+    }
+
     // ========== INIT ==========
     document.addEventListener('DOMContentLoaded', () => {
       toggleFormFields();
       translatePage();
       fetchOpportunitiesFromSupabase();
       loadExternalRadar();
+      loadCloudOpportunities();
       trackVisitor();          // cloud + safe local fallback
       startRealtimeSync();
       if (supabaseClient) { supabaseClient.auth.onAuthStateChange(() => refreshAuthState()); refreshAuthState(); }
@@ -1991,6 +2072,7 @@
       updateMetricCounters();
       refreshPerformanceCenter();
       loadExternalRadar();
+      loadCloudOpportunities();
     });
 
     document.addEventListener('keydown', (event) => {
