@@ -74,6 +74,10 @@
     html[dir='rtl'] .fa, html[dir='rtl'] i { }
     html[dir='rtl'] .flex-row { flex-direction: row-reverse; }
     html[dir='rtl'] input, html[dir='rtl'] textarea, html[dir='rtl'] select { text-align: right; }
+    html[dir='ltr'] input, html[dir='ltr'] textarea, html[dir='ltr'] select { text-align: left; }
+    html[dir='rtl'] .search-leading-icon { left: auto; right: 0.75rem; }
+    html[dir='rtl'] .search-leading-input { padding-left: 0.75rem; padding-right: 2.25rem; }
+    html[dir='ltr'] .search-leading-input { padding-left: 2.25rem; padding-right: 0.75rem; }
   </style>
 </head>
 <body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
@@ -225,6 +229,39 @@
     </section>
 
 
+    <!-- Quran Banner -->
+    <section id="quran-banner" class="relative overflow-hidden rounded-2xl border border-emerald-200 dark:border-emerald-900/60 bg-slate-900 shadow-xl">
+      <div class="relative min-h-[240px] sm:min-h-[300px] lg:min-h-[340px]">
+        <img src="./wefaq-quran-banner.png"
+             data-i18n-alt="Quran Mushaf banner for Wefaq"
+             alt="Quran Mushaf banner for Wefaq"
+             class="absolute inset-0 w-full h-full object-cover"
+             loading="lazy"
+             decoding="async"
+             onerror="this.style.display='none';this.parentElement.classList.add('bg-gradient-to-br','from-emerald-950','via-slate-900','to-slate-950')">
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/55 to-emerald-950/25"></div>
+        <div class="relative z-10 h-full min-h-[240px] sm:min-h-[300px] lg:min-h-[340px] flex items-center p-6 sm:p-10">
+          <div class="max-w-2xl text-white">
+            <div class="inline-flex items-center gap-2 rounded-full bg-emerald-400/15 border border-emerald-300/30 px-3 py-1 text-xs font-bold text-emerald-200 mb-4">
+              <i class="fa-solid fa-book-quran"></i>
+              Quran & Wefaq
+            </div>
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black leading-tight mb-3">
+              A trusted space for Quran learning, memorization and meaningful connections.
+            </h2>
+            <p class="text-sm text-white/80 leading-7 max-w-xl mb-5">
+              Connect Quran teachers and students worldwide, discover memorization circles, and use smart matching to find suitable opportunities.
+            </p>
+            <button type="button" onclick="setCategoryFilter('quran');document.getElementById('marketplace-section')?.scrollIntoView({behavior:'smooth'})"
+                    class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-extrabold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-lg transition">
+              <i class="fa-solid fa-compass"></i>
+              Explore Quran Opportunities
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- AI Performance & Matching Center -->
     <section id="ai-center" class="grid grid-cols-1 xl:grid-cols-12 gap-5">
       <div class="xl:col-span-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm">
@@ -374,8 +411,8 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           <div class="relative">
-            <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-slate-400 text-xs"></i>
-            <input type="text" id="search-keyword" oninput="renderCards()" placeholder="Search by keyword, sheikh, project, country..." class="w-full pl-9 pr-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 search-leading-icon" text-slate-400 text-xs"></i>
+            <input type="text" id="search-keyword" oninput="renderCards()" placeholder="Search by keyword, sheikh, project, country..." class="w-full search-leading-input pl-9 pr-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none">
           </div>
 
           <div>
@@ -796,34 +833,61 @@
 
     // ========== LANGUAGE & THEME ==========
     const I18N = {
-      'Wefaq Global Platform':'منصة وفاق العالمية','Global & Regional Matching Radar':'رادار المطابقة العالمية والإقليمية','Full Radar':'الرادار الكامل','Marketplace':'السوق','Post Request / Opportunity':'نشر طلب / فرصة','Investment Hub & Global Quran Memorization Circles':'مركز الاستثمار وحلقات تحفيظ القرآن العالمية','The unified platform for Arab projects, funding requests, partnerships, and global Quran memorization circles':'منصة موحدة للمشاريع العربية وطلبات التمويل والشراكات وحلقات تحفيظ القرآن حول العالم','We connect idea & project owners, partnership & funding seekers, and feasibility study providers across the Arab world, plus a global umbrella for Quran teachers and students with continuous sanad, and a language learning section with Arabic first.':'نربط أصحاب الأفكار والمشاريع، وطالبي الشراكة والتمويل، ومقدمي دراسات الجدوى في العالم العربي، مع مظلة عالمية لمعلمي وطلاب القرآن ذوي السند المتصل، وقسم لتعلم اللغات يبدأ بالعربية.','Request / Offer Quran Memorization':'طلب / عرض تحفيظ القرآن','Teach / Learn a Language':'تعليم / تعلم لغة','Offer Project / Request Funding & Partner':'عرض مشروع / طلب تمويل وشريك','Sync Cloud':'مزامنة سحابية','Share Platform':'مشاركة المنصة','Metrics':'الإحصائيات','Quran Seekers & Circles':'طالبو القرآن والحلقات','Worldwide':'حول العالم','Projects & Exhibitors':'المشاريع والعارضون','Arab World':'العالم العربي','Funding & Partner Seekers':'طالبو التمويل والشركاء','Investment Opportunities':'فرص الاستثمار','Feasibility & Ideas':'دراسات الجدوى والأفكار','Ready to Execute':'جاهز للتنفيذ','Language Teachers & Learners':'معلمو ومتعلّمو اللغات','Arabic & Others':'العربية وغيرها','Visitor Counter (Cloud + Local)':'عداد الزوار (سحابي + محلي)','Platform Visitors':'زوار المنصة','total visits':'إجمالي الزيارات','Online now':'متصلون الآن','Today: 0':'اليوم: 0','Session: 1':'الجلسة: 1','Loading country breakdown...':'جاري تحميل توزيع الدول...','AI Performance & Matching Center':'مركز أداء ومطابقة الذكاء الاصطناعي','AI Match & Performance Center':'مركز المطابقة والأداء بالذكاء الاصطناعي','Connect demand with providers, measure engagement, and surface improvement actions.':'اربط الطلب بمقدمي الخدمات، وقِس التفاعل، واكتشف إجراءات التحسين.','Smart engine active':'المحرك الذكي نشط','Opportunities':'الفرص','Demand signals':'إشارات الطلب','Supply signals':'إشارات العرض','Match readiness':'جاهزية المطابقة','What do you need?':'ماذا تحتاج؟','Category':'التصنيف','Any category':'أي تصنيف','Projects':'مشاريع','Funding':'تمويل','Languages':'لغات','Quran':'قرآن','Services':'خدمات','Service seekers':'طالبو الخدمات','Ideas':'أفكار','Region':'المنطقة','Anywhere':'أي مكان','Saudi Arabia':'السعودية','Egypt':'مصر','UAE':'الإمارات','GCC':'الخليج','Global':'عالمي','Smart Match':'مطابقة ذكية','Improvement Monitor':'مراقب التحسين','Recalculate insights':'إعادة حساب التحليلات','Client / Provider Workspace':'مساحة العميل / مقدم الخدمة','My Wefaq Workspace':'مساحة وفاق الخاصة بي','Manage your identity, matches, conversations and active connections.':'إدارة هويتك ومطابقاتك ومحادثاتك واتصالاتك النشطة.','Guest mode':'وضع الزائر','Create your secure account':'أنشئ حسابك الآمن','Unlock saved matches, private messaging, requests, reviews and your performance dashboard.':'فعّل المطابقات المحفوظة والرسائل الخاصة والطلبات والتقييمات ولوحة الأداء.','Sign in / Create account':'تسجيل الدخول / إنشاء حساب','Matches':'المطابقات','Saved':'المحفوظات','Connections':'الاتصالات','Messages':'الرسائل','Active Connections':'الاتصالات النشطة','Profile':'الملف الشخصي','Refresh':'تحديث','Notifications':'الإشعارات','Mark all read':'تحديد الكل كمقروء','Recommended Actions':'الإجراءات المقترحة','Trust & Quality':'الثقة والجودة','Profile completeness':'اكتمال الملف الشخصي','Verified signals':'إشارات التحقق','AI improvement loop':'حلقة تحسين الذكاء الاصطناعي','Every view, match, contact, completion and review can improve future recommendations.':'كل مشاهدة ومطابقة وتواصل وإتمام وتقييم يمكن أن يحسن التوصيات المستقبلية.','Smart Filter Radar':'رادار التصفية الذكي','Smart Comprehensive Filter Radar':'رادار التصفية الذكي الشامل','All':'الكل','📖 Quran Memorization (Global)':'📖 تحفيظ القرآن (عالمي)','🏬 Projects & Exhibitors':'🏬 المشاريع والعارضون','🛒 Service Seekers':'🛒 طالبو الخدمات','💰 Funding & Partners':'💰 التمويل والشركاء','💡 Ideas & Feasibility':'💡 الأفكار ودراسات الجدوى','🌍 Language Learning':'🌍 تعلم اللغات','🛠 Service Offers':'🛠 عروض الخدمات','📑 Tenders':'📑 المناقصات','🔨 Auctions':'🔨 المزادات','All countries, Middle East & World':'كل الدول والشرق الأوسط والعالم','Global (Worldwide - Online)':'عالمي (حول العالم - أونلاين)','Palestine & Gaza':'فلسطين وغزة','Gaza specifically':'غزة تحديدًا','Africa (East, West & North)':'أفريقيا (شرق وغرب وشمال)','Foreign countries (Europe, Americas, Asia)':'الدول الأجنبية (أوروبا والأمريكتان وآسيا)','Saudi Arabia (KSA)':'السعودية (KSA)','United Arab Emirates (UAE)':'الإمارات (UAE)','Qatar':'قطر','Kuwait':'الكويت','Rest of GCC':'باقي دول الخليج','Maghreb':'المغرب العربي','Levant (Jordan, Syria, Lebanon)':'بلاد الشام (الأردن وسوريا ولبنان)','All request & offer types':'كل أنواع الطلب والعرض','Offer (Available for execution/sale)':'عرض (متاح للتنفيذ/البيع)','Demand (Seeking to buy/execute)':'طلب (يبحث عن شراء/تنفيذ)','Seeking Partner (Co-founder)':'طلب شريك (شريك مؤسس)','Seeking Funding':'طلب تمويل','All verification levels':'كل مستويات التحقق','Certified with continuous sanad':'موثق بسند متصل','Reviewed by admin (reciter / teacher)':'مراجَع من الإدارة (قارئ / معلم)','Feasibility study attached':'دراسة جدوى مرفقة','Licensed / Verified record':'سجل مرخص / موثق','Quranic narration / reading':'الرواية / القراءة القرآنية','All narrations & readings':'كل الروايات والقراءات','Hafs from Asim':'حفص عن عاصم','Warsh from Nafi':'ورش عن نافع','Qalun from Nafi':'قالون عن نافع','Al-Duri from Abu Amr':'الدوري عن أبي عمرو','The Ten Readings':'القراءات العشر','Target audience':'الفئة المستهدفة','All (Men / Women / Children)':'الجميع (رجال / نساء / أطفال)','Children & young students':'الأطفال والطلاب الصغار','Men only':'رجال فقط','Women & female teachers':'نساء ومعلمات','Study mode':'نمط الدراسة','Online (Global) & In-person':'أونلاين (عالمي) وحضوري','Remote (Electronic circles worldwide)':'عن بُعد (حلقات إلكترونية حول العالم)','In-person (Mosques & centers)':'حضوري (مساجد ومراكز)','Language / Track':'اللغة / المسار','All languages & tracks':'كل اللغات والمسارات','Arabic for Non-Native Speakers':'العربية لغير الناطقين بها','Classical Arabic & Language Sciences':'العربية الفصحى وعلوم اللغة','Quranic Arabic & Linguistic Tajweed':'العربية القرآنية والتجويد اللغوي','Language Exchange':'تبادل لغات','English':'الإنجليزية','Other Language':'لغة أخرى','Level':'المستوى','All levels':'كل المستويات','Beginner':'مبتدئ','Intermediate':'متوسط','Advanced':'متقدم','Registered Requests & Opportunities':'الطلبات والفرص المسجلة','0 results':'0 نتيجة','Quran Reciters in Africa':'قراء القرآن في أفريقيا','Export JSON':'تصدير JSON','No results match your current filters':'لا توجد نتائج تطابق الفلاتر الحالية','Try changing the search criteria or reset filters to browse all cards.':'جرّب تغيير معايير البحث أو إعادة ضبط الفلاتر لعرض جميع البطاقات.','Reset Filters':'إعادة ضبط الفلاتر','Mobile bottom nav':'التنقل السفلي للهاتف','Radar':'الرادار','Market':'السوق','Add':'إضافة','Account':'الحساب','Login':'تسجيل الدخول','Direct contact with the poster':'تواصل مباشر مع صاحب المنشور','A ready agreement message has been prepared for you':'تم تجهيز رسالة اتفاق جاهزة لك','Your name or organization':'اسمك أو مؤسستك','Message preview':'معاينة الرسالة','Open WhatsApp chat':'فتح محادثة واتساب','Share this opportunity':'مشاركة هذه الفرصة','Spread the investment or Quran opportunity to reach more interested people':'شارك فرصة الاستثمار أو القرآن للوصول إلى المزيد من المهتمين','WhatsApp':'واتساب','Telegram':'تيليجرام','X / Twitter':'X / تويتر','LinkedIn':'لينكدإن','Copy':'نسخ','Private Conversation':'محادثة خاصة','Send':'إرسال','My Profile':'ملفي الشخصي','Save Profile':'حفظ الملف الشخصي','Wefaq AI Assistant':'مساعد وفاق بالذكاء الاصطناعي','Ask about matches, your profile, listings or next actions.':'اسأل عن المطابقات أو ملفك أو الإعلانات أو الخطوات التالية.','Ask':'اسأل','Post a new request / project / Quran circle':'نشر طلب / مشروع / حلقة قرآن جديدة','Choose the category and enter your details so matching people can reach you quickly':'اختر التصنيف وأدخل بياناتك ليصل إليك الأشخاص المناسبون بسرعة','Main title *':'العنوان الرئيسي *','Main category *':'التصنيف الرئيسي *','🏬 Existing Project / Project Exhibitor':'🏬 مشروع قائم / عارض مشروع','🛒 Service / Supply Seeker':'🛒 طالب خدمة / توريد','💰 Funding / Investment Partnership Seeker':'💰 طالب تمويل / شراكة استثمارية','💡 Idea or Feasibility Study':'💡 فكرة أو دراسة جدوى','🌍 Language Teaching':'🌍 تعليم لغة','🛠 Service Offer':'🛠 عرض خدمة','📑 Tender':'📑 مناقصة','🔨 Auction':'🔨 مزاد','Country / Region *':'الدولة / المنطقة *','Palestine':'فلسطين','Gaza':'غزة','Africa':'أفريقيا','Foreign':'أجنبي','Levant':'بلاد الشام','Listing type':'نوع الإعلان','Offer':'عرض','Demand':'طلب','Seeking Partner':'طلب شريك','Amount / Capital':'المبلغ / رأس المال','Full description *':'الوصف الكامل *','Quran Circle Details':'تفاصيل حلقة القرآن','Narration':'الرواية','Sheikh / Reciter':'الشيخ / القارئ','Audience':'الفئة المستهدفة','Children':'أطفال','Men':'رجال','Women':'نساء','Everyone':'الجميع','Language Lesson Details':'تفاصيل درس اللغة','Classical Arabic':'العربية الفصحى','Other':'أخرى','Teacher name':'اسم المعلم','WhatsApp number with country code *':'رقم واتساب مع رمز الدولة *','License / Certification (optional)':'الترخيص / الشهادة (اختياري)','Cancel':'إلغاء','Publish to Cloud':'نشر على السحابة','Wefaq Account':'حساب وفاق','Secure cloud identity':'هوية سحابية آمنة','Client':'عميل','Provider':'مقدم خدمة','Organization':'مؤسسة','Teacher':'معلم','Investor':'مستثمر','Sign in':'تسجيل الدخول','Create account':'إنشاء حساب'
+      'Wefaq Global Platform':'منصة وفاق العالمية','Global & Regional Matching Radar':'رادار المطابقة العالمية والإقليمية','Full Radar':'الرادار الكامل','Marketplace':'السوق','Post Request / Opportunity':'نشر طلب / فرصة','Investment Hub & Global Quran Memorization Circles':'مركز الاستثمار وحلقات تحفيظ القرآن العالمية','The unified platform for Arab projects, funding requests, partnerships, and global Quran memorization circles':'منصة موحدة للمشاريع العربية وطلبات التمويل والشراكات وحلقات تحفيظ القرآن حول العالم','We connect idea & project owners, partnership & funding seekers, and feasibility study providers across the Arab world, plus a global umbrella for Quran teachers and students with continuous sanad, and a language learning section with Arabic first.':'نربط أصحاب الأفكار والمشاريع، وطالبي الشراكة والتمويل، ومقدمي دراسات الجدوى في العالم العربي، مع مظلة عالمية لمعلمي وطلاب القرآن ذوي السند المتصل، وقسم لتعلم اللغات يبدأ بالعربية.','Request / Offer Quran Memorization':'طلب / عرض تحفيظ القرآن','Teach / Learn a Language':'تعليم / تعلم لغة','Offer Project / Request Funding & Partner':'عرض مشروع / طلب تمويل وشريك','Sync Cloud':'مزامنة سحابية','Share Platform':'مشاركة المنصة','Metrics':'الإحصائيات','Quran Seekers & Circles':'طالبو القرآن والحلقات','Worldwide':'حول العالم','Projects & Exhibitors':'المشاريع والعارضون','Arab World':'العالم العربي','Funding & Partner Seekers':'طالبو التمويل والشركاء','Investment Opportunities':'فرص الاستثمار','Feasibility & Ideas':'دراسات الجدوى والأفكار','Ready to Execute':'جاهز للتنفيذ','Language Teachers & Learners':'معلمو ومتعلّمو اللغات','Arabic & Others':'العربية وغيرها','Visitor Counter (Cloud + Local)':'عداد الزوار (سحابي + محلي)','Platform Visitors':'زوار المنصة','total visits':'إجمالي الزيارات','Online now':'متصلون الآن','Today: 0':'اليوم: 0','Session: 1':'الجلسة: 1','Loading country breakdown...':'جاري تحميل توزيع الدول...','AI Performance & Matching Center':'مركز أداء ومطابقة الذكاء الاصطناعي','AI Match & Performance Center':'مركز المطابقة والأداء بالذكاء الاصطناعي','Connect demand with providers, measure engagement, and surface improvement actions.':'اربط الطلب بمقدمي الخدمات، وقِس التفاعل، واكتشف إجراءات التحسين.','Smart engine active':'المحرك الذكي نشط','Opportunities':'الفرص','Demand signals':'إشارات الطلب','Supply signals':'إشارات العرض','Match readiness':'جاهزية المطابقة','What do you need?':'ماذا تحتاج؟','Category':'التصنيف','Any category':'أي تصنيف','Projects':'مشاريع','Funding':'تمويل','Languages':'لغات','Quran':'قرآن','Services':'خدمات','Service seekers':'طالبو الخدمات','Ideas':'أفكار','Region':'المنطقة','Anywhere':'أي مكان','Saudi Arabia':'السعودية','Egypt':'مصر','UAE':'الإمارات','GCC':'الخليج','Global':'عالمي','Smart Match':'مطابقة ذكية','Improvement Monitor':'مراقب التحسين','Recalculate insights':'إعادة حساب التحليلات','Client / Provider Workspace':'مساحة العميل / مقدم الخدمة','My Wefaq Workspace':'مساحة وفاق الخاصة بي','Manage your identity, matches, conversations and active connections.':'إدارة هويتك ومطابقاتك ومحادثاتك واتصالاتك النشطة.','Guest mode':'وضع الزائر','Create your secure account':'أنشئ حسابك الآمن','Unlock saved matches, private messaging, requests, reviews and your performance dashboard.':'فعّل المطابقات المحفوظة والرسائل الخاصة والطلبات والتقييمات ولوحة الأداء.','Sign in / Create account':'تسجيل الدخول / إنشاء حساب','Matches':'المطابقات','Saved':'المحفوظات','Connections':'الاتصالات','Messages':'الرسائل','Active Connections':'الاتصالات النشطة','Profile':'الملف الشخصي','Refresh':'تحديث','Notifications':'الإشعارات','Mark all read':'تحديد الكل كمقروء','Recommended Actions':'الإجراءات المقترحة','Trust & Quality':'الثقة والجودة','Profile completeness':'اكتمال الملف الشخصي','Verified signals':'إشارات التحقق','AI improvement loop':'حلقة تحسين الذكاء الاصطناعي','Every view, match, contact, completion and review can improve future recommendations.':'كل مشاهدة ومطابقة وتواصل وإتمام وتقييم يمكن أن يحسن التوصيات المستقبلية.','Smart Filter Radar':'رادار التصفية الذكي','Smart Comprehensive Filter Radar':'رادار التصفية الذكي الشامل','All':'الكل','📖 Quran Memorization (Global)':'📖 تحفيظ القرآن (عالمي)','🏬 Projects & Exhibitors':'🏬 المشاريع والعارضون','🛒 Service Seekers':'🛒 طالبو الخدمات','💰 Funding & Partners':'💰 التمويل والشركاء','💡 Ideas & Feasibility':'💡 الأفكار ودراسات الجدوى','🌍 Language Learning':'🌍 تعلم اللغات','🛠 Service Offers':'🛠 عروض الخدمات','📑 Tenders':'📑 المناقصات','🔨 Auctions':'🔨 المزادات','All countries, Middle East & World':'كل الدول والشرق الأوسط والعالم','Global (Worldwide - Online)':'عالمي (حول العالم - أونلاين)','Palestine & Gaza':'فلسطين وغزة','Gaza specifically':'غزة تحديدًا','Africa (East, West & North)':'أفريقيا (شرق وغرب وشمال)','Foreign countries (Europe, Americas, Asia)':'الدول الأجنبية (أوروبا والأمريكتان وآسيا)','Saudi Arabia (KSA)':'السعودية (KSA)','United Arab Emirates (UAE)':'الإمارات (UAE)','Qatar':'قطر','Kuwait':'الكويت','Rest of GCC':'باقي دول الخليج','Maghreb':'المغرب العربي','Levant (Jordan, Syria, Lebanon)':'بلاد الشام (الأردن وسوريا ولبنان)','All request & offer types':'كل أنواع الطلب والعرض','Offer (Available for execution/sale)':'عرض (متاح للتنفيذ/البيع)','Demand (Seeking to buy/execute)':'طلب (يبحث عن شراء/تنفيذ)','Seeking Partner (Co-founder)':'طلب شريك (شريك مؤسس)','Seeking Funding':'طلب تمويل','All verification levels':'كل مستويات التحقق','Certified with continuous sanad':'موثق بسند متصل','Reviewed by admin (reciter / teacher)':'مراجَع من الإدارة (قارئ / معلم)','Feasibility study attached':'دراسة جدوى مرفقة','Licensed / Verified record':'سجل مرخص / موثق','Quranic narration / reading':'الرواية / القراءة القرآنية','All narrations & readings':'كل الروايات والقراءات','Hafs from Asim':'حفص عن عاصم','Warsh from Nafi':'ورش عن نافع','Qalun from Nafi':'قالون عن نافع','Al-Duri from Abu Amr':'الدوري عن أبي عمرو','The Ten Readings':'القراءات العشر','Target audience':'الفئة المستهدفة','All (Men / Women / Children)':'الجميع (رجال / نساء / أطفال)','Children & young students':'الأطفال والطلاب الصغار','Men only':'رجال فقط','Women & female teachers':'نساء ومعلمات','Study mode':'نمط الدراسة','Online (Global) & In-person':'أونلاين (عالمي) وحضوري','Remote (Electronic circles worldwide)':'عن بُعد (حلقات إلكترونية حول العالم)','In-person (Mosques & centers)':'حضوري (مساجد ومراكز)','Language / Track':'اللغة / المسار','All languages & tracks':'كل اللغات والمسارات','Arabic for Non-Native Speakers':'العربية لغير الناطقين بها','Classical Arabic & Language Sciences':'العربية الفصحى وعلوم اللغة','Quranic Arabic & Linguistic Tajweed':'العربية القرآنية والتجويد اللغوي','Language Exchange':'تبادل لغات','English':'الإنجليزية','Other Language':'لغة أخرى','Level':'المستوى','All levels':'كل المستويات','Beginner':'مبتدئ','Intermediate':'متوسط','Advanced':'متقدم','Registered Requests & Opportunities':'الطلبات والفرص المسجلة','0 results':'0 نتيجة','Quran Reciters in Africa':'قراء القرآن في أفريقيا','Export JSON':'تصدير JSON','No results match your current filters':'لا توجد نتائج تطابق الفلاتر الحالية','Try changing the search criteria or reset filters to browse all cards.':'جرّب تغيير معايير البحث أو إعادة ضبط الفلاتر لعرض جميع البطاقات.','Reset Filters':'إعادة ضبط الفلاتر','Mobile bottom nav':'التنقل السفلي للهاتف','Radar':'الرادار','Market':'السوق','Add':'إضافة','Account':'الحساب','Login':'تسجيل الدخول','Direct contact with the poster':'تواصل مباشر مع صاحب المنشور','A ready agreement message has been prepared for you':'تم تجهيز رسالة اتفاق جاهزة لك','Your name or organization':'اسمك أو مؤسستك','Message preview':'معاينة الرسالة','Open WhatsApp chat':'فتح محادثة واتساب','Share this opportunity':'مشاركة هذه الفرصة','Spread the investment or Quran opportunity to reach more interested people':'شارك فرصة الاستثمار أو القرآن للوصول إلى المزيد من المهتمين','WhatsApp':'واتساب','Telegram':'تيليجرام','X / Twitter':'X / تويتر','LinkedIn':'لينكدإن','Copy':'نسخ','Private Conversation':'محادثة خاصة','Send':'إرسال','My Profile':'ملفي الشخصي','Save Profile':'حفظ الملف الشخصي','Wefaq AI Assistant':'مساعد وفاق بالذكاء الاصطناعي','Ask about matches, your profile, listings or next actions.':'اسأل عن المطابقات أو ملفك أو الإعلانات أو الخطوات التالية.','Ask':'اسأل','Post a new request / project / Quran circle':'نشر طلب / مشروع / حلقة قرآن جديدة','Choose the category and enter your details so matching people can reach you quickly':'اختر التصنيف وأدخل بياناتك ليصل إليك الأشخاص المناسبون بسرعة','Main title *':'العنوان الرئيسي *','Main category *':'التصنيف الرئيسي *','🏬 Existing Project / Project Exhibitor':'🏬 مشروع قائم / عارض مشروع','🛒 Service / Supply Seeker':'🛒 طالب خدمة / توريد','💰 Funding / Investment Partnership Seeker':'💰 طالب تمويل / شراكة استثمارية','💡 Idea or Feasibility Study':'💡 فكرة أو دراسة جدوى','🌍 Language Teaching':'🌍 تعليم لغة','🛠 Service Offer':'🛠 عرض خدمة','📑 Tender':'📑 مناقصة','🔨 Auction':'🔨 مزاد','Country / Region *':'الدولة / المنطقة *','Palestine':'فلسطين','Gaza':'غزة','Africa':'أفريقيا','Foreign':'أجنبي','Levant':'بلاد الشام','Listing type':'نوع الإعلان','Offer':'عرض','Demand':'طلب','Seeking Partner':'طلب شريك','Amount / Capital':'المبلغ / رأس المال','Full description *':'الوصف الكامل *','Quran Circle Details':'تفاصيل حلقة القرآن','Narration':'الرواية','Sheikh / Reciter':'الشيخ / القارئ','Audience':'الفئة المستهدفة','Children':'أطفال','Men':'رجال','Women':'نساء','Everyone':'الجميع','Language Lesson Details':'تفاصيل درس اللغة','Classical Arabic':'العربية الفصحى','Other':'أخرى','Teacher name':'اسم المعلم','WhatsApp number with country code *':'رقم واتساب مع رمز الدولة *','License / Certification (optional)':'الترخيص / الشهادة (اختياري)','Cancel':'إلغاء','Publish to Cloud':'نشر على السحابة','Wefaq Account':'حساب وفاق','Secure cloud identity':'هوية سحابية آمنة','Client':'عميل','Provider':'مقدم خدمة','Organization':'مؤسسة','Teacher':'معلم','Investor':'مستثمر','Sign in':'تسجيل الدخول','Create account':'إنشاء حساب','quran_banner_alt':'مصحف مفتوح للقراءة والحفظ ضمن منصة وفاق','Quran & Wefaq':'القرآن ووفاق','A trusted space for Quran learning, memorization and meaningful connections.':'مساحة موثوقة لتعلم القرآن وحفظه وبناء روابط نافعة.','Explore Quran Opportunities':'استكشف فرص القرآن','Cloud storage is not connected':'التخزين السحابي غير متصل','Cloud counter unavailable':'عداد السحابة غير متاح','Syncing with cloud...':'جارٍ المزامنة مع السحابة...','No current listing matches these constraints. Publish a request so providers can respond.':'لا توجد فرصة حالية تطابق هذه الشروط. انشر طلبًا ليتمكن مقدمو الخدمات من الرد.','Top matching opportunities':'أفضل الفرص المطابقة','AI server ranking':'ترتيب خادم الذكاء الاصطناعي','Local smart fallback':'مطابقة ذكية محلية بديلة','Keyword, category, region and trust-signal relevance.':'مدى الصلة بالكلمات المفتاحية والتصنيف والمنطقة وإشارات الثقة.','Complete your profile to improve AI matching.':'أكمل ملفك الشخصي لتحسين المطابقة بالذكاء الاصطناعي.','Save relevant listings so recommendations learn your preferences.':'احفظ الفرص المناسبة لتتعلم التوصيات تفضيلاتك.','No active connections yet.':'لا توجد اتصالات نشطة بعد.','No notifications.':'لا توجد إشعارات.','Start the conversation.':'ابدأ المحادثة.','Hello. I can help improve your profile, find matches, explain opportunities, and suggest your next action.':'مرحبًا. يمكنني مساعدتك في تحسين ملفك والعثور على المطابقات وشرح الفرص واقتراح خطوتك التالية.','I recommend completing your profile, saving relevant listings, and using Smart Match with a specific need, region and budget.':'أوصي بإكمال ملفك الشخصي وحفظ الفرص المناسبة واستخدام المطابقة الذكية مع تحديد الحاجة والمنطقة والميزانية.','Please sign in before publishing':'سجّل الدخول قبل النشر','Published to cloud ✓':'تم النشر على السحابة ✓','Publish failed: cloud storage error':'فشل النشر: خطأ في التخزين السحابي','Please sign in first':'سجّل الدخول أولًا','Connection already requested':'تم إرسال طلب الاتصال بالفعل','You cannot connect to your own listing':'لا يمكنك الاتصال بإعلانك الخاص','Connection request sent ✓':'تم إرسال طلب الاتصال ✓','Could not create connection':'تعذر إنشاء الاتصال','Saved ✓':'تم الحفظ ✓','Removed from saved':'تمت الإزالة من المحفوظات','Could not save listing':'تعذر حفظ الفرصة','Message failed':'فشل إرسال الرسالة','Review saved ✓':'تم حفظ التقييم ✓','Rating must be between 1 and 5':'يجب أن يكون التقييم بين 1 و5','Review could not be saved':'تعذر حفظ التقييم','No phone number':'لا يوجد رقم هاتف','Copied ✓':'تم النسخ ✓','Copy failed':'فشل النسخ','Link copied ✓':'تم نسخ الرابط ✓','Signing in...':'جارٍ تسجيل الدخول...','Signed in ✓':'تم تسجيل الدخول ✓','Cloud authentication is unavailable.':'مصادقة السحابة غير متاحة.','Account created ✓':'تم إنشاء الحساب ✓','Check your email to confirm your account.':'تحقق من بريدك الإلكتروني لتأكيد الحساب.','Creating account...':'جارٍ إنشاء الحساب...','Password must be at least 8 characters.':'يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.','Could not save listing':'تعذر حفظ الفرصة','Cloud sync failed':'فشلت مزامنة السحابة','Live cloud sync active ✓':'تم تفعيل المزامنة السحابية المباشرة ✓','Live sync connection lost':'انقطع اتصال المزامنة المباشرة','New listing:':'إعلان جديد:','This legacy listing has no account owner yet':'هذا الإعلان القديم لا يملك حسابًا مرتبطًا به بعد','Legacy':'قديم','Analyzing current opportunities...':'جارٍ تحليل الفرص الحالية...','Connect':'تواصل','No current listing matches these constraints. Publish a request so providers can respond.':'لا توجد فرصة حالية تطابق هذه الشروط. انشر طلبًا ليتمكن مقدمو الخدمات من الرد.','Top matching opportunities':'أفضل الفرص المطابقة','Please fill all required fields.':'يرجى تعبئة جميع الحقول المطلوبة.','Could not save listing':'تعذر حفظ الفرصة','Build marketplace density':'بناء كثافة السوق','Add real providers and customer requests in your highest-value categories.':'أضف مقدمي خدمات حقيقيين وطلبات عملاء حقيقية في الفئات الأعلى قيمة.','Balance both sides':'موازنة جانبي السوق','Capture both demand and supply so matching becomes meaningful.':'اجمع بين الطلب والعرض حتى تصبح المطابقة ذات معنى.','Improve listing quality':'تحسين جودة الإعلانات','Require clear descriptions, region, category, contact and verification fields.':'اطلب أوصافًا واضحة والمنطقة والتصنيف وبيانات التواصل والحقول الخاصة بالتحقق.','Track conversion':'تتبع التحويل','Record view → contact → accepted → completed to measure actual marketplace performance.':'سجل المشاهدة ← التواصل ← القبول ← الإتمام لقياس أداء السوق الفعلي.','AI semantic matching':'المطابقة الدلالية بالذكاء الاصطناعي','Use server-side embeddings to match by meaning, not just exact keywords.':'استخدم التضمينات على الخادم للمطابقة حسب المعنى وليس الكلمات المتطابقة فقط.','Quran Mushaf banner for Wefaq':'صورة مصحف للقرآن ضمن منصة وفاق','A trusted space for Quran learning, memorization and meaningful connections.':'مساحة موثوقة لتعلم القرآن وحفظه وبناء روابط نافعة.','Connect Quran teachers and students worldwide, discover memorization circles, and use smart matching to find suitable opportunities.':'اربط معلمي وطلاب القرآن حول العالم، واكتشف حلقات التحفيظ، واستخدم المطابقة الذكية للعثور على الفرص المناسبة.','Explore Quran Opportunities':'استكشف فرص القرآن','Sign out':'تسجيل الخروج','Chat':'محادثة','Review':'تقييم','Connection':'اتصال','pending':'قيد الانتظار','completed':'مكتمل','Profile saved ✓':'تم حفظ الملف الشخصي ✓','Investor / Quran seeker via Wefaq':'مستثمر / طالب قرآن عبر وفاق','Start the conversation.':'ابدأ المحادثة.','Please fill all required fields.':'يرجى تعبئة جميع الحقول المطلوبة.','Cloud storage is unavailable':'التخزين السحابي غير متاح','Cloud storage is not connected':'التخزين السحابي غير متصل','Cloud counter unavailable':'عداد السحابة غير متاح'
     };
-    let currentLang = localStorage.getItem('wefaq_lang') || 'ar';
+    let currentLang = safeGet('wefaq_lang', 'ar');
+    if (!['ar','en'].includes(currentLang)) currentLang = 'ar';
+
+    const originalTextNodes = new WeakMap();
+    const originalPlaceholders = new WeakMap();
     function translatePage() {
       const isAr = currentLang === 'ar';
       document.documentElement.setAttribute('dir', isAr ? 'rtl' : 'ltr');
       document.documentElement.setAttribute('lang', currentLang);
       document.body.style.fontFamily = isAr ? "'Tajawal','Inter',sans-serif" : "'Inter','Tajawal',sans-serif";
-      document.querySelectorAll('body *').forEach(el => {
-        if (el.children.length === 0 && el.childNodes.length === 1 && el.firstChild.nodeType === 3) {
-          const raw = el.textContent.trim();
-          if (!raw) return;
-          if (isAr && I18N[raw]) el.textContent = I18N[raw];
-          else if (!isAr) {
-            const original = Object.keys(I18N).find(k => I18N[k] === raw);
-            if (original) el.textContent = original;
-          }
+
+      // Translate every visible text node, including text inside buttons that also contain icons.
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+      const nodes = [];
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+      nodes.forEach(node => {
+        const parent = node.parentElement;
+        if (!parent || ['SCRIPT','STYLE','NOSCRIPT'].includes(parent.tagName)) return;
+
+        if (!originalTextNodes.has(node)) {
+          const original = node.nodeValue.trim();
+          if (original) originalTextNodes.set(node, original);
         }
+
+        const original = originalTextNodes.get(node);
+        if (!original) return;
+        const translated = isAr ? (I18N[original] || original) : original;
+        const leading = node.nodeValue.match(/^\s*/)?.[0] || '';
+        const trailing = node.nodeValue.match(/\s*$/)?.[0] || '';
+        node.nodeValue = leading + translated + trailing;
       });
-      document.querySelectorAll('input[placeholder],textarea[placeholder],select option').forEach(el => {
-        const raw = (el.getAttribute('placeholder') || el.textContent || '').trim();
-        if (isAr && I18N[raw]) { if (el.tagName === 'OPTION') el.textContent = I18N[raw]; else el.setAttribute('placeholder', I18N[raw]); }
-        else if (!isAr) { const original = Object.keys(I18N).find(k => I18N[k] === raw); if (original) { if (el.tagName === 'OPTION') el.textContent = original; else el.setAttribute('placeholder', original); } }
+
+      document.querySelectorAll('input[placeholder], textarea[placeholder]').forEach(el => {
+        if (!originalPlaceholders.has(el)) originalPlaceholders.set(el, el.getAttribute('placeholder') || '');
+        const original = originalPlaceholders.get(el);
+        el.setAttribute('placeholder', isAr ? (I18N[original] || original) : original);
       });
+
+      document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+        const key = el.getAttribute('data-i18n-alt');
+        if (key) el.setAttribute('alt', isAr ? (I18N[key] || key) : key);
+      });
+
+      // Keep the browser/tab title aligned with the selected language.
+      document.title = isAr
+        ? 'منصة وفاق العالمية | الفرص والتمويل والقرآن والمناقصات والمزادات'
+        : 'Wefaq Platform | Opportunities, Funding, Quran, Languages, Tenders & Auctions';
+
       const btn = document.getElementById('langToggleBtn');
       if (btn) btn.innerText = isAr ? 'English 🌐' : 'العربية 🌐';
-      localStorage.setItem('wefaq_lang', currentLang);
+      safeSet('wefaq_lang', currentLang);
     }
+
     function toggleLanguage() {
       currentLang = currentLang === 'en' ? 'ar' : 'en';
       translatePage();
@@ -875,7 +939,7 @@
       let total = 0, today = 0;
 
       if (!supabaseClient) {
-        showRealtimeNotification('Cloud storage is not connected');
+        showRealtimeNotification(t('Cloud storage is not connected'));
         return;
       }
 
@@ -889,10 +953,10 @@
         const totalEl = document.getElementById('stat-visitors-total');
         const todayEl = document.getElementById('stat-visitors-today');
         if (totalEl) totalEl.innerText = total.toLocaleString();
-        if (todayEl) todayEl.innerText = 'Today: ' + today.toLocaleString();
+        if (todayEl) todayEl.innerText = currentLang === 'ar' ? 'اليوم: ' + today.toLocaleString() : 'Today: ' + today.toLocaleString();
       } catch (err) {
         console.error('Cloud visitor tracking failed:', err);
-        showRealtimeNotification('Cloud counter unavailable');
+        showRealtimeNotification(t('Cloud counter unavailable'));
       }
     }
 
@@ -951,7 +1015,7 @@
         return true;
       });
 
-      document.getElementById('results-count-badge').innerText = `${filtered.length} results`;
+      document.getElementById('results-count-badge').innerText = `${filtered.length} ${currentLang === 'ar' ? 'نتيجة' : 'results'}`;
 
       if (filtered.length === 0) {
         container.innerHTML = '';
@@ -960,24 +1024,25 @@
       }
       emptyState.classList.add('hidden');
       container.innerHTML = filtered.map(item => createCardHTML(item, currentCurrency)).join('');
+      translatePage();
     }
 
     function createCardHTML(item, currency) {
       const regionLabel = REGION_LABELS[item.region] || item.region || '—';
       const convertedAmount = Math.round((item.amount || 0) * (EXCHANGE_RATES[currency] || 1));
-      const amountFormatted = convertedAmount > 0 ? `${convertedAmount.toLocaleString()} ${currency}` : 'By agreement / Free';
+      const amountFormatted = convertedAmount > 0 ? `${convertedAmount.toLocaleString()} ${currency}` : (currentLang === 'ar' ? 'حسب الاتفاق / مجانًا' : 'By agreement / Free');
 
       let categoryBadge = '', categoryIcon = 'fa-briefcase', categoryColor = 'text-blue-600 bg-blue-50 dark:bg-blue-950/50';
-      if (item.category === 'quran') { categoryIcon = 'fa-book-quran'; categoryColor = 'text-emerald-600 bg-emerald-50 dark:bg-emerald-950/50'; categoryBadge = '📖 Quran'; }
-      else if (item.category === 'projects') { categoryIcon = 'fa-store'; categoryColor = 'text-blue-600 bg-blue-50 dark:bg-blue-950/50'; categoryBadge = '🏬 Project'; }
-      else if (item.category === 'funding') { categoryIcon = 'fa-handshake'; categoryColor = 'text-amber-600 bg-amber-50 dark:bg-amber-950/50'; categoryBadge = '💰 Funding'; }
-      else if (item.category === 'languages') { categoryIcon = 'fa-language'; categoryColor = 'text-teal-600 bg-teal-50 dark:bg-teal-950/50'; categoryBadge = '🌍 Languages'; }
-      else if (item.category === 'ideas') { categoryIcon = 'fa-lightbulb'; categoryColor = 'text-purple-600 bg-purple-50 dark:bg-purple-950/50'; categoryBadge = '💡 Ideas'; }
+      if (item.category === 'quran') { categoryIcon = 'fa-book-quran'; categoryColor = 'text-emerald-600 bg-emerald-50 dark:bg-emerald-950/50'; categoryBadge = currentLang === 'ar' ? '📖 قرآن' : '📖 Quran'; }
+      else if (item.category === 'projects') { categoryIcon = 'fa-store'; categoryColor = 'text-blue-600 bg-blue-50 dark:bg-blue-950/50'; categoryBadge = currentLang === 'ar' ? '🏬 مشروع' : '🏬 Project'; }
+      else if (item.category === 'funding') { categoryIcon = 'fa-handshake'; categoryColor = 'text-amber-600 bg-amber-50 dark:bg-amber-950/50'; categoryBadge = currentLang === 'ar' ? '💰 تمويل' : '💰 Funding'; }
+      else if (item.category === 'languages') { categoryIcon = 'fa-language'; categoryColor = 'text-teal-600 bg-teal-50 dark:bg-teal-950/50'; categoryBadge = currentLang === 'ar' ? '🌍 لغات' : '🌍 Languages'; }
+      else if (item.category === 'ideas') { categoryIcon = 'fa-lightbulb'; categoryColor = 'text-purple-600 bg-purple-50 dark:bg-purple-950/50'; categoryBadge = currentLang === 'ar' ? '💡 أفكار' : '💡 Ideas'; }
 
       let trust = '';
-      if (item.badge === 'sanad') trust = `<span class="bg-emerald-500/10 text-emerald-600 border border-emerald-500/30 text-[10px] font-bold px-2 py-0.5 rounded-full">Certified Sanad</span>`;
-      else if (item.badge === 'verified') trust = `<span class="bg-blue-500/10 text-blue-600 border border-blue-500/30 text-[10px] font-bold px-2 py-0.5 rounded-full">Verified</span>`;
-      else trust = `<span class="bg-slate-500/10 text-slate-500 border border-slate-500/30 text-[10px] font-bold px-2 py-0.5 rounded-full">Unverified</span>`;
+      if (item.badge === 'sanad') trust = `<span class="bg-emerald-500/10 text-emerald-600 border border-emerald-500/30 text-[10px] font-bold px-2 py-0.5 rounded-full">${currentLang === 'ar' ? 'سند موثق' : 'Certified Sanad'}</span>`;
+      else if (item.badge === 'verified') trust = `<span class="bg-blue-500/10 text-blue-600 border border-blue-500/30 text-[10px] font-bold px-2 py-0.5 rounded-full">${currentLang === 'ar' ? 'موثق' : 'Verified'}</span>`;
+      else trust = `<span class="bg-slate-500/10 text-slate-500 border border-slate-500/30 text-[10px] font-bold px-2 py-0.5 rounded-full">${currentLang === 'ar' ? 'غير موثق' : 'Unverified'}</span>`;
 
       return `
         <div class="glass-card rounded-xl p-5 flex flex-col justify-between hover:shadow-lg transition border">
@@ -992,15 +1057,15 @@
             <h3 class="font-extrabold text-slate-900 dark:text-white text-sm mb-2 line-clamp-2">${esc(item.title)}</h3>
             <p class="text-slate-600 dark:text-slate-300 text-xs line-clamp-3 mb-4">${esc(item.description)}</p>
             <div class="flex justify-between text-xs py-2 border-t border-slate-100 dark:border-slate-800 mb-3">
-              <span class="text-slate-400">Budget / Fee</span>
+              <span class="text-slate-400">${currentLang === 'ar' ? 'الميزانية / الرسوم' : 'Budget / Fee'}</span>
               <span class="font-extrabold text-brand-600 dark:text-emerald-400">${amountFormatted}</span>
             </div>
           </div>
           <div class="grid grid-cols-4 gap-2">
-            <button onclick="requestConnection('${esc(item.id)}')" class="col-span-2 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold py-2 rounded-lg"><i class="fa-solid fa-handshake mr-1"></i>Connect</button>
-            <button onclick="toggleFavorite('${esc(item.id)}')" title="Save listing" class="bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-300 text-xs rounded-lg border border-amber-100 dark:border-amber-900"><i class="fa-regular fa-bookmark"></i></button>
-            <button onclick="openContactModal('${esc(item.id)}')" title="Contact" class="bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 text-xs rounded-lg border border-emerald-100 dark:border-emerald-900"><i class="fa-brands fa-whatsapp"></i></button>
-            <button onclick="openShareModal('${esc(item.id)}')" title="Share" class="bg-slate-100 dark:bg-slate-800 text-xs rounded-lg"><i class="fa-solid fa-share-nodes"></i></button>
+            <button onclick="requestConnection('${esc(item.id)}')" class="col-span-2 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold py-2 rounded-lg"><i class="fa-solid fa-handshake mr-1"></i>${currentLang === 'ar' ? 'تواصل' : 'Connect'}</button>
+            <button onclick="toggleFavorite('${esc(item.id)}')" title="${currentLang === 'ar' ? 'حفظ الفرصة' : 'Save listing'}" class="bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-300 text-xs rounded-lg border border-amber-100 dark:border-amber-900"><i class="fa-regular fa-bookmark"></i></button>
+            <button onclick="openContactModal('${esc(item.id)}')" title="${currentLang === 'ar' ? 'تواصل' : 'Contact'}" class="bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 text-xs rounded-lg border border-emerald-100 dark:border-emerald-900"><i class="fa-brands fa-whatsapp"></i></button>
+            <button onclick="openShareModal('${esc(item.id)}')" title="${currentLang === 'ar' ? 'مشاركة' : 'Share'}" class="bg-slate-100 dark:bg-slate-800 text-xs rounded-lg"><i class="fa-solid fa-share-nodes"></i></button>
           </div>
         </div>`;
     }
@@ -1035,7 +1100,7 @@
       if (!box || !intent) return;
 
       box.classList.remove('hidden');
-      box.innerHTML = '<div class="rounded-xl border border-violet-200 dark:border-violet-900 bg-violet-50/70 dark:bg-violet-950/30 p-4 text-xs text-violet-700 dark:text-violet-300"><i class="fa-solid fa-spinner fa-spin mr-2"></i>Analyzing current opportunities...</div>';
+      box.innerHTML = `<div class="rounded-xl border border-violet-200 dark:border-violet-900 bg-violet-50/70 dark:bg-violet-950/30 p-4 text-xs text-violet-700 dark:text-violet-300"><i class="fa-solid fa-spinner fa-spin mr-2"></i>${t('Analyzing current opportunities...')}</div>`;
 
       let ranked = [];
       let usedAI = false;
@@ -1062,20 +1127,20 @@
         ranked = opportunitiesData
           .filter(item => category === 'all' || item.category === category)
           .filter(item => region === 'all' || item.region === region || item.region === 'GLOBAL')
-          .map(item => ({ item, score: scoreListingMatch(item, intent, category, region), reason: 'Keyword, category, region and trust-signal relevance.' }))
+          .map(item => ({ item, score: scoreListingMatch(item, intent, category, region), reason: t('Keyword, category, region and trust-signal relevance.') }))
           .sort((a,b) => b.score - a.score)
           .slice(0, 5);
       }
 
       if (!ranked.length) {
-        box.innerHTML = '<div class="rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 p-4 text-xs text-slate-500">No current listing matches these constraints. Publish a request so providers can respond.</div>';
+        box.innerHTML = `<div class="rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 p-4 text-xs text-slate-500">${t('No current listing matches these constraints. Publish a request so providers can respond.')}</div>`;
         return;
       }
 
       box.innerHTML = `
         <div class="flex items-center justify-between mb-2">
-          <div class="text-xs font-extrabold text-slate-800 dark:text-slate-100">Top matching opportunities</div>
-          <div class="text-[10px] ${usedAI ? 'text-violet-500' : 'text-slate-400'}">${usedAI ? 'AI server ranking' : 'Local smart fallback'}</div>
+          <div class="text-xs font-extrabold text-slate-800 dark:text-slate-100">${t('Top matching opportunities')}</div>
+          <div class="text-[10px] ${usedAI ? 'text-violet-500' : 'text-slate-400'}">${usedAI ? t('AI server ranking') : t('Local smart fallback')}</div>
         </div>
         <div class="space-y-2">
           ${ranked.slice(0,5).map(({item,score,reason}) => `
@@ -1083,11 +1148,11 @@
               <div class="flex flex-col sm:flex-row sm:items-center gap-3">
                 <div class="min-w-0 flex-1">
                   <div class="font-bold text-xs text-slate-900 dark:text-white truncate">${esc(item.title)}</div>
-                  <div class="text-[10px] text-slate-500 mt-1">${esc(REGION_LABELS[item.region] || item.region)} • ${esc(item.category)}</div>
+                  <div class="text-[10px] text-slate-500 mt-1">${esc(currentLang === 'ar' ? (I18N[REGION_LABELS[item.region] || item.region] || REGION_LABELS[item.region] || item.region) : (REGION_LABELS[item.region] || item.region))} • ${esc(currentLang === 'ar' ? (I18N[item.category] || item.category) : item.category)}</div>
                 </div>
                 <div class="flex items-center gap-2">
                   <span class="text-xs font-black ${score >= 75 ? 'text-emerald-600' : score >= 55 ? 'text-amber-600' : 'text-slate-500'}">${score}%</span>
-                  <button type="button" onclick="recordEngagement('${esc(item.id)}','match'); openContactModal('${esc(item.id)}')" class="text-[11px] font-bold px-3 py-2 rounded-lg bg-brand-600 text-white">Connect</button>
+                  <button type="button" onclick="recordEngagement('${esc(item.id)}','match'); openContactModal('${esc(item.id)}')" class="text-[11px] font-bold px-3 py-2 rounded-lg bg-brand-600 text-white">${t('Connect')}</button>
                 </div>
               </div>
               ${reason ? `<div class="text-[10px] text-slate-500 dark:text-slate-400 mt-2">${esc(reason)}</div>` : ''}
@@ -1108,6 +1173,8 @@
       setTimeout(() => runSmartMatch(), 250);
     }
 
+    function t(key) { return currentLang === 'ar' ? (I18N[key] || key) : key; }
+
     function refreshPerformanceCenter() {
       const total = opportunitiesData.length;
       const demandTypes = new Set(['request','seeking_partner','seeking_funding','demands','seek','wanted']);
@@ -1125,11 +1192,11 @@
       set('perf-readiness', readiness + '%');
 
       const tips = [];
-      if (total < 10) tips.push(['Build marketplace density','Add seed providers and real customer requests in your highest-value categories.','fa-users']);
-      if (demand === 0 || supply === 0) tips.push(['Balance both sides','Capture both demand and supply so matching becomes meaningful.','fa-scale-balanced']);
-      if (readiness < 70) tips.push(['Improve listing quality','Require clear descriptions, region, category, contact and verification fields.','fa-list-check']);
-      tips.push(['Track conversion','Record view → contact → accepted → completed to measure actual marketplace performance.','fa-arrow-trend-up']);
-      tips.push(['AI semantic matching','Use server-side embeddings to match by meaning, not just exact keywords.','fa-brain']);
+      if (total < 10) tips.push([t('Build marketplace density'),t('Add real providers and customer requests in your highest-value categories.'),'fa-users']);
+      if (demand === 0 || supply === 0) tips.push([t('Balance both sides'),t('Capture both demand and supply so matching becomes meaningful.'),'fa-scale-balanced']);
+      if (readiness < 70) tips.push([t('Improve listing quality'),t('Require clear descriptions, region, category, contact and verification fields.'),'fa-list-check']);
+      tips.push([t('Track conversion'),t('Record view → contact → accepted → completed to measure actual marketplace performance.'),'fa-arrow-trend-up']);
+      tips.push([t('AI semantic matching'),t('Use server-side embeddings to match by meaning, not just exact keywords.'),'fa-brain']);
 
       const list = document.getElementById('improvement-list');
       if (list) list.innerHTML = tips.slice(0,4).map(([title,body,icon]) => `
@@ -1177,6 +1244,8 @@
       const item = opportunitiesData.find(i => i.id === id);
       if (!item) return;
       currentSelectedCardForContact = item;
+      const senderInput = document.getElementById('sender-name');
+      if (senderInput && (!senderInput.value || senderInput.value === 'Investor / Quran seeker via Wefaq' || senderInput.value === 'مستثمر / طالب قرآن عبر وفاق')) senderInput.value = t('Investor / Quran seeker via Wefaq');
       recordEngagement(id, 'contact_open');
       document.getElementById('contact-modal').classList.remove('hidden');
       updateWhatsAppTemplate();
@@ -1186,12 +1255,13 @@
       const name = document.getElementById('sender-name').value || 'Interested via Wefaq';
       const item = currentSelectedCardForContact;
       if (!item) return;
-      document.getElementById('whatsapp-template-text').value =
-        `Hello, I am ${name}.\nI am interested in your listing on Wefaq:\n"${item.title}"\nPlease contact me. Thank you.`;
+      document.getElementById('whatsapp-template-text').value = currentLang === 'ar'
+        ? `مرحبًا، أنا ${name}.\nأنا مهتم بإعلانك على منصة وفاق:\n"${item.title}"\nيرجى التواصل معي. شكرًا لك.`
+        : `Hello, I am ${name}.\nI am interested in your listing on Wefaq:\n"${item.title}"\nPlease contact me. Thank you.`;
     }
     function sendWhatsAppMessage() {
       const item = currentSelectedCardForContact;
-      if (!item || !item.phone) { alert('No phone number'); return; }
+      if (!item || !item.phone) { alert(t('No phone number')); return; }
       const phone = String(item.phone).replace(/[^0-9]/g, '');
       const text = encodeURIComponent(document.getElementById('whatsapp-template-text').value);
       window.open(`https://wa.me/${phone}?text=${text}`, '_blank', 'noopener,noreferrer');
@@ -1219,7 +1289,7 @@
 
     async function copyContactText() {
       const ok = await copyText(document.getElementById('whatsapp-template-text').value);
-      showRealtimeNotification(ok ? 'Copied ✓' : 'Copy failed');
+      showRealtimeNotification(ok ? t('Copied ✓') : t('Copy failed'));
     }
 
     function openShareModal(id) {
@@ -1243,7 +1313,7 @@
     }
     async function copyShareLink() {
       const ok = await copyText(document.getElementById('share-link-input').value);
-      showRealtimeNotification(ok ? 'Link copied ✓' : 'Copy failed');
+      showRealtimeNotification(ok ? t('Link copied ✓') : t('Copy failed'));
     }
     function sharePlatform() {
       document.getElementById('share-link-input').value = SITE.url;
@@ -1258,7 +1328,7 @@
       if (supabaseClient) {
         const {data:authData}=await supabaseClient.auth.getUser();
         currentUser = authData?.user || null;
-        if (!currentUser) { showRealtimeNotification('Please sign in before publishing'); openAuthModal(); return; }
+        if (!currentUser) { showRealtimeNotification(t('Please sign in before publishing')); openAuthModal(); return; }
       }
       const title = document.getElementById('new-title').value.trim();
       const category = document.getElementById('new-category').value;
@@ -1270,7 +1340,7 @@
       const license = document.getElementById('new-license').value.trim();
 
       if (!title || !description || !phone) {
-        alert('Please fill all required fields.');
+        alert(t('Please fill all required fields.'));
         return;
       }
 
@@ -1287,7 +1357,7 @@
 
       // Save to cloud when available.
       if (!supabaseClient) {
-        showRealtimeNotification('Cloud storage is unavailable');
+        showRealtimeNotification(t('Cloud storage is unavailable'));
         return;
       }
 
@@ -1328,7 +1398,7 @@
         }
       } catch (err) {
         console.error('Cloud insert failed:', err);
-        showRealtimeNotification('Publish failed: cloud storage error');
+        showRealtimeNotification(t('Publish failed: cloud storage error'));
       }
     }
 
@@ -1348,7 +1418,7 @@
 
     function triggerFeedRefresh() {
       fetchOpportunitiesFromSupabase();
-      showRealtimeNotification('Syncing with cloud...');
+      showRealtimeNotification(t('Syncing with cloud...'));
     }
     function showAfricaQuranReciters() {
       setCategoryFilter('quran');
@@ -1367,22 +1437,22 @@
     async function submitAuth(e) {
       e.preventDefault();
       const email=document.getElementById('auth-email').value.trim(), password=document.getElementById('auth-password').value;
-      const msg=document.getElementById('auth-message'); msg.textContent='Signing in...';
-      if(!supabaseClient){msg.textContent='Cloud authentication is unavailable.';return;}
+      const msg=document.getElementById('auth-message'); msg.textContent=t('Signing in...');
+      if(!supabaseClient){msg.textContent=t('Cloud authentication is unavailable.');return;}
       const {error}=await supabaseClient.auth.signInWithPassword({email,password});
       if(error){msg.textContent=error.message;return;}
-      msg.textContent='Signed in ✓'; closeAuthModal(); await refreshAuthState(); loadWorkspace();
+      msg.textContent=t('Signed in ✓'); closeAuthModal(); await refreshAuthState(); loadWorkspace();
     }
     async function signUpUser(){
       const email=document.getElementById('auth-email').value.trim(), password=document.getElementById('auth-password').value, name=document.getElementById('auth-name').value.trim(), type=document.getElementById('auth-type').value;
       const msg=document.getElementById('auth-message');
-      if(password.length<8){msg.textContent='Password must be at least 8 characters.';return;}
-      if(!supabaseClient){msg.textContent='Cloud authentication is unavailable.';return;}
-      msg.textContent='Creating account...';
+      if(password.length<8){msg.textContent=t('Password must be at least 8 characters.');return;}
+      if(!supabaseClient){msg.textContent=t('Cloud authentication is unavailable.');return;}
+      msg.textContent=t('Creating account...');
       const {data,error}=await supabaseClient.auth.signUp({email,password,options:{data:{display_name:name,account_type:type}}});
       if(error){msg.textContent=error.message;return;}
       if(data.user){await supabaseClient.from('profiles').upsert({id:data.user.id,display_name:name||email.split('@')[0],account_type:type},{onConflict:'id'});}
-      msg.textContent=data.session?'Account created ✓':'Check your email to confirm your account.';
+      msg.textContent=data.session?t('Account created ✓'):t('Check your email to confirm your account.');
       if(data.session){closeAuthModal(); await refreshAuthState(); loadWorkspace();}
     }
     async function signOutUser(){ if(supabaseClient) await supabaseClient.auth.signOut(); await refreshAuthState(); }
@@ -1390,7 +1460,7 @@
       if(!supabaseClient) return;
       const {data}=await supabaseClient.auth.getUser(); const user=data?.user;
       const state=document.getElementById('auth-state'), guest=document.getElementById('workspace-guest'), workspace=document.getElementById('workspace-user');
-      if(user){ state.innerHTML=`Signed in as <span class="text-brand-600">${esc(user.email)}</span> · <button type="button" onclick="signOutUser()" class="underline">Sign out</button>`; guest.classList.add('hidden'); workspace.classList.remove('hidden'); startRealtimeSync(); loadWorkspace(); }
+      if(user){ state.innerHTML=`Signed in as <span class="text-brand-600">${esc(user.email)}</span> · <button type="button" onclick="signOutUser()" class="underline">${t('Sign out')}</button>`; guest.classList.add('hidden'); workspace.classList.remove('hidden'); startRealtimeSync(); loadWorkspace(); }
       else { state.textContent='Guest mode'; guest.classList.remove('hidden'); workspace.classList.add('hidden'); }
     }
     async function openMine(){ document.getElementById('workspace-section').scrollIntoView({behavior:'smooth'}); await refreshAuthState(); if(!supabaseClient) return; const {data}=await supabaseClient.auth.getUser(); if(!data?.user) openAuthModal(); }
@@ -1408,12 +1478,13 @@
       document.getElementById('ws-messages').textContent=unreadMessages||0;
       const list=document.getElementById('ws-connections-list'); list.innerHTML=(connections||[]).map(c=>{
         const other=c.requester_id===uid?c.provider_id:c.requester_id;
-        return `<div class="flex items-center gap-2 rounded-lg bg-slate-50 dark:bg-slate-950 p-2"><span class="truncate flex-1">${esc(c.listings?.title||'Connection')}</span><b class="text-[10px]">${esc(c.status)}</b><button type="button" onclick="openChat('${esc(c.id)}','${esc(other)}')" class="text-[10px] text-brand-600 font-bold">Chat</button><button type="button" onclick="reviewConnection('${esc(c.id)}')" class="text-[10px] text-amber-600 font-bold">Review</button></div>`;
+        return `<div class="flex items-center gap-2 rounded-lg bg-slate-50 dark:bg-slate-950 p-2"><span class="truncate flex-1">${esc(c.listings?.title||t('Connection'))}</span><b class="text-[10px]">${esc(t(String(c.status || 'pending')))}</b><button type="button" onclick="openChat('${esc(c.id)}','${esc(other)}')" class="text-[10px] text-brand-600 font-bold">${t('Chat')}</button><button type="button" onclick="reviewConnection('${esc(c.id)}')" class="text-[10px] text-amber-600 font-bold">${t('Review')}</button></div>`;
       }).join('')||'<span class="text-slate-400">No active connections yet.</span>';
       await loadNotifications();
       const complete=profile?['display_name','region','bio'].filter(k=>profile[k]).length*33:0; document.getElementById('trust-completeness').textContent=Math.min(100,complete)+'%'; document.getElementById('trust-completeness-bar').style.width=Math.min(100,complete)+'%';
       document.getElementById('trust-verified').textContent=profile?.verified?'Verified':'Pending'; document.getElementById('trust-verified-bar').style.width=profile?.verified?'100%':'15%';
-      document.getElementById('ws-actions').innerHTML='<div class="rounded-lg bg-brand-50 dark:bg-brand-950/30 p-2">Complete your profile to improve AI matching.</div><div class="rounded-lg bg-emerald-50 dark:bg-emerald-950/30 p-2">Save relevant listings so recommendations learn your preferences.</div>';
+      document.getElementById('ws-actions').innerHTML=`<div class="rounded-lg bg-brand-50 dark:bg-brand-950/30 p-2">${t('Complete your profile to improve AI matching.')}</div><div class="rounded-lg bg-emerald-50 dark:bg-emerald-950/30 p-2">${t('Save relevant listings so recommendations learn your preferences.')}</div>`;
+      translatePage();
     }
 
 
@@ -1424,7 +1495,7 @@
     async function requireUser() {
       if (!supabaseClient) { showRealtimeNotification('Cloud account service is unavailable'); return null; }
       const { data } = await supabaseClient.auth.getUser();
-      if (!data?.user) { openAuthModal(); showRealtimeNotification('Please sign in first'); return null; }
+      if (!data?.user) { openAuthModal(); showRealtimeNotification(t('Please sign in first')); return null; }
       return data.user;
     }
 
@@ -1433,15 +1504,15 @@
       const item = opportunitiesData.find(x => String(x.id) === String(listingId));
       if (!item) return;
       if (!item.ownerId) { openContactModal(listingId); showRealtimeNotification('This legacy listing has no account owner yet'); return; }
-      if (item.ownerId === user.id) { showRealtimeNotification('You cannot connect to your own listing'); return; }
+      if (item.ownerId === user.id) { showRealtimeNotification(t('You cannot connect to your own listing')); return; }
       const { data: existing } = await supabaseClient.from('connections').select('id,status').eq('listing_id', item.id).eq('requester_id', user.id).maybeSingle();
-      if (existing) { showRealtimeNotification('Connection already requested'); return; }
+      if (existing) { showRealtimeNotification(t('Connection already requested')); return; }
       const { data, error } = await supabaseClient.from('connections').insert({
         listing_id: item.id, requester_id: user.id, provider_id: item.ownerId, status: 'pending'
       }).select('id').single();
-      if (error) { console.error(error); showRealtimeNotification('Could not create connection'); return; }
+      if (error) { console.error(error); showRealtimeNotification(t('Could not create connection')); return; }
       await recordEngagement(item.id, 'contact');
-      showRealtimeNotification('Connection request sent ✓');
+      showRealtimeNotification(t('Connection request sent ✓'));
       await loadWorkspace();
     }
 
@@ -1450,12 +1521,12 @@
       const { data: existing } = await supabaseClient.from('favorites').select('id').eq('user_id', user.id).eq('listing_id', listingId).maybeSingle();
       if (existing) {
         await supabaseClient.from('favorites').delete().eq('id', existing.id);
-        showRealtimeNotification('Removed from saved');
+        showRealtimeNotification(t('Removed from saved'));
       } else {
         const { error } = await supabaseClient.from('favorites').insert({ user_id: user.id, listing_id: listingId });
-        if (error) { showRealtimeNotification('Could not save listing'); return; }
+        if (error) { showRealtimeNotification(t('Could not save listing')); return; }
         await recordEngagement(listingId, 'favorite');
-        showRealtimeNotification('Saved ✓');
+        showRealtimeNotification(t('Saved ✓'));
       }
       loadWorkspace();
     }
@@ -1473,7 +1544,7 @@
       if(error){ console.error(error); return; }
       const {data:ud}=await supabaseClient.auth.getUser(); const uid=ud?.user?.id;
       const box=document.getElementById('chat-list');
-      box.innerHTML=(data||[]).map(m=>`<div class="max-w-[85%] ${m.sender_id===uid?'ml-auto bg-brand-600 text-white':'mr-auto bg-white dark:bg-slate-900 border'} rounded-xl px-3 py-2 text-xs">${esc(m.body)}<div class="text-[9px] opacity-60 mt-1">${new Date(m.created_at).toLocaleString()}</div></div>`).join('')||'<div class="text-center text-slate-400 py-8">Start the conversation.</div>';
+      box.innerHTML=(data||[]).map(m=>`<div class="max-w-[85%] ${m.sender_id===uid?'ml-auto bg-brand-600 text-white':'mr-auto bg-white dark:bg-slate-900 border'} rounded-xl px-3 py-2 text-xs">${esc(m.body)}<div class="text-[9px] opacity-60 mt-1">${new Date(m.created_at).toLocaleString()}</div></div>`).join('')||`<div class="text-center text-slate-400 py-8">${t('Start the conversation.')}</div>`;
       box.scrollTop=box.scrollHeight;
       await supabaseClient.from('messages').update({read_at:new Date().toISOString()}).eq('connection_id',activeConnectionId).eq('recipient_id',uid).is('read_at',null);
     }
@@ -1481,7 +1552,7 @@
       e.preventDefault(); const user=await requireUser(); if(!user || !activeConnectionId || !activeChatRecipientId) return;
       const input=document.getElementById('chat-input'); const body=input.value.trim(); if(!body) return;
       const {error}=await supabaseClient.from('messages').insert({connection_id:activeConnectionId,sender_id:user.id,recipient_id:activeChatRecipientId,body});
-      if(error){showRealtimeNotification('Message failed');return;}
+      if(error){showRealtimeNotification(t('Message failed'));return;}
       input.value=''; await loadChatMessages();
     }
 
@@ -1500,19 +1571,19 @@
       e.preventDefault(); const user=await requireUser(); if(!user)return;
       const payload={id:user.id,display_name:document.getElementById('profile-name').value.trim(),phone:document.getElementById('profile-phone').value.trim(),region:document.getElementById('profile-region').value.trim(),bio:document.getElementById('profile-bio').value.trim(),updated_at:new Date().toISOString()};
       const {error}=await supabaseClient.from('profiles').upsert(payload,{onConflict:'id'});
-      document.getElementById('profile-message').textContent=error?error.message:'Profile saved ✓';
+      document.getElementById('profile-message').textContent=error?error.message:t('Profile saved ✓');
       if(!error){closeProfileEditor();loadWorkspace();}
     }
 
     async function reviewConnection(connectionId){
       const user=await requireUser(); if(!user)return;
-      const rating=Number(prompt('Rate this completed connection from 1 to 5:', '5'));
-      if(!Number.isInteger(rating)||rating<1||rating>5){showRealtimeNotification('Rating must be between 1 and 5');return;}
-      const comment=(prompt('Optional review comment:','')||'').trim().slice(0,1200);
+      const rating=Number(prompt(currentLang === 'ar' ? 'قيّم هذا الاتصال المكتمل من 1 إلى 5:' : 'Rate this completed connection from 1 to 5:', '5'));
+      if(!Number.isInteger(rating)||rating<1||rating>5){showRealtimeNotification(t('Rating must be between 1 and 5'));return;}
+      const comment=(prompt(currentLang === 'ar' ? 'تعليق اختياري على التقييم:' : 'Optional review comment:','')||'').trim().slice(0,1200);
       const {error}=await supabaseClient.from('reviews').upsert({connection_id:connectionId,reviewer_id:user.id,rating,comment},{onConflict:'connection_id,reviewer_id'});
-      if(error){console.error(error);showRealtimeNotification('Review could not be saved');return;}
+      if(error){console.error(error);showRealtimeNotification(t('Review could not be saved'));return;}
       await supabaseClient.from('connections').update({status:'completed',completed_at:new Date().toISOString()}).eq('id',connectionId);
-      showRealtimeNotification('Review saved ✓'); loadWorkspace();
+      showRealtimeNotification(t('Review saved ✓')); loadWorkspace();
     }
 
     async function loadNotifications(){
@@ -1520,7 +1591,8 @@
       const {data:ud}=await supabaseClient.auth.getUser(); const uid=ud?.user?.id; if(!uid)return;
       const {data}=await supabaseClient.from('notifications').select('id,title,body,read_at,created_at,data').eq('user_id',uid).order('created_at',{ascending:false}).limit(8);
       const box=document.getElementById('ws-notifications'); if(!box)return;
-      box.innerHTML=(data||[]).map(n=>`<button type="button" onclick="notificationAction(${JSON.stringify(n.data||{})})" class="w-full text-left rounded-lg p-2 ${n.read_at?'bg-slate-50 dark:bg-slate-950':'bg-violet-50 dark:bg-violet-950/30'}"><div class="font-bold">${esc(n.title)}</div><div class="text-[10px] text-slate-500">${esc(n.body||'')}</div></button>`).join('')||'<span class="text-slate-400">No notifications.</span>';
+      box.innerHTML=(data||[]).map(n=>`<button type="button" onclick="notificationAction(${JSON.stringify(n.data||{})})" class="w-full text-left rounded-lg p-2 ${n.read_at?'bg-slate-50 dark:bg-slate-950':'bg-violet-50 dark:bg-violet-950/30'}"><div class="font-bold">${esc(n.title)}</div><div class="text-[10px] text-slate-500">${esc(n.body||'')}</div></button>`).join('')||`<span class="text-slate-400">${t('No notifications.')}</span>`;
+      translatePage();
     }
     async function markAllNotificationsRead(){
       const user=await requireUser(); if(!user)return;
@@ -1538,27 +1610,27 @@
     function openAiAssistant(){
       document.getElementById('ai-assistant-modal').classList.remove('hidden');
       const log=document.getElementById('ai-chat-log');
-      if(!log.children.length) log.innerHTML='<div class="rounded-xl bg-white dark:bg-slate-900 border p-3">Hello. I can help improve your profile, find matches, explain opportunities, and suggest your next action.</div>';
+      if(!log.children.length) log.innerHTML=`<div class="rounded-xl bg-white dark:bg-slate-900 border p-3">${t('Hello. I can help improve your profile, find matches, explain opportunities, and suggest your next action.')}</div>`;
     }
     function closeAiAssistant(){document.getElementById('ai-assistant-modal').classList.add('hidden');}
     async function askAiAssistant(e){
       e.preventDefault(); const user=await requireUser(); if(!user)return;
       const input=document.getElementById('ai-assistant-input'); const question=input.value.trim(); if(!question)return;
       const log=document.getElementById('ai-chat-log'); log.innerHTML += `<div class="rounded-xl bg-violet-600 text-white p-3">${esc(question)}</div>`; input.value='';
-      let answer='I recommend completing your profile, saving relevant listings, and using Smart Match with a specific need, region and budget.';
+      let answer=t('I recommend completing your profile, saving relevant listings, and using Smart Match with a specific need, region and budget.');
       if(supabaseClient?.functions){
         try{
           const {data,error}=await supabaseClient.functions.invoke('wefaq-ai',{body:{action:'assistant',question}});
           if(!error && data?.answer) answer=data.answer;
         }catch(err){console.info('AI assistant fallback',err);}
       }
-      log.innerHTML += `<div class="rounded-xl bg-white dark:bg-slate-900 border p-3">${esc(answer)}</div>`; log.scrollTop=log.scrollHeight;
+      log.innerHTML += `<div class="rounded-xl bg-white dark:bg-slate-900 border p-3">${esc(answer)}</div>`; translatePage(); log.scrollTop=log.scrollHeight;
     }
 
     // ========== FETCH FROM CLOUD ==========
     async function fetchOpportunitiesFromSupabase() {
       if (!supabaseClient) {
-        showRealtimeNotification('Cloud storage is not connected');
+        showRealtimeNotification(t('Cloud storage is not connected'));
         return;
       }
       try {
@@ -1591,13 +1663,13 @@
           }));
           console.log("Cloud data loaded:", opportunitiesData.length, "items");
         } else {
-          loadDemoData();
+          opportunitiesData = [];
         }
         renderCards();
         updateMetricCounters();
       } catch (err) {
         console.error('Cloud fetch failed:', err);
-        showRealtimeNotification('Cloud sync failed');
+        showRealtimeNotification(t('Cloud sync failed'));
       }
     }
 
@@ -1665,9 +1737,9 @@
         .subscribe((status) => {
           console.log('Realtime status:', status);
           if (status === 'SUBSCRIBED') {
-            showRealtimeNotification('Live cloud sync active ✓');
+            showRealtimeNotification(t('Live cloud sync active ✓'));
           } else if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT') {
-            showRealtimeNotification('Live sync connection lost');
+            showRealtimeNotification(t('Live sync connection lost'));
           }
         });
 
