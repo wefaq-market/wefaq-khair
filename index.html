@@ -239,6 +239,31 @@
     </section>
 
 
+    <!-- Quran, Hadith & Arabic Specialists Hub -->
+    <section id="specialists-hub" class="scroll-mt-20">
+      <div class="bg-white dark:bg-slate-900 border border-emerald-200 dark:border-emerald-900/60 rounded-2xl p-5 sm:p-6 shadow-sm">
+        <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-4 mb-5">
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-xl bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 flex items-center justify-center"><i class="fa-solid fa-book-quran text-lg"></i></div>
+            <div><h2 class="font-extrabold text-slate-900 dark:text-white">Quran, Hadith & Arabic Specialists</h2><p class="text-[11px] text-slate-500 dark:text-slate-400">Find teachers, students, reciters, memorization specialists, Hadith specialists and Arabic teachers through cloud profiles.</p></div>
+          </div>
+          <div class="flex items-center gap-2 flex-wrap"><span id="specialists-count" class="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900 px-3 py-1.5 text-[10px] font-extrabold">0 specialists</span><button type="button" onclick="openSpecialistJoin()" class="rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 text-xs font-extrabold shadow-sm"><i class="fa-solid fa-user-plus mr-1"></i><span>Join the specialist network</span></button></div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
+          <div><label for="specialist-role" class="block text-[11px] font-bold text-slate-500 mb-1">Specialist role</label><select id="specialist-role" onchange="renderSpecialists()" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm"><option value="all">All specialist roles</option><option value="student">Student</option><option value="parent_family">Parent / Muslim family</option><option value="quran_teacher">Quran teacher</option><option value="qari">Qari / Reciter</option><option value="quran_memorizer">Quran memorization specialist</option><option value="hadith_specialist">Hadith specialist</option><option value="arabic_teacher">Arabic teacher</option></select></div>
+          <div><label for="specialist-subject" class="block text-[11px] font-bold text-slate-500 mb-1">Specialty</label><select id="specialist-subject" onchange="renderSpecialists()" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm"><option value="all">All specialties</option><option value="quran">Quran</option><option value="hadith">Hadith</option><option value="arabic">Arabic language</option><option value="tajweed">Tajweed</option><option value="qiraat">Qiraat</option><option value="memorization">Memorization</option><option value="arabic_for_non_native">Arabic for non-native speakers</option></select></div>
+          <div><label for="specialist-audience" class="block text-[11px] font-bold text-slate-500 mb-1">Target audience</label><select id="specialist-audience" onchange="renderSpecialists()" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm"><option value="all">All audiences</option><option value="children">Children</option><option value="families">Families</option><option value="men">Men</option><option value="women">Women</option><option value="adults">Adults</option><option value="students">Students</option></select></div>
+          <div><label for="specialist-mode" class="block text-[11px] font-bold text-slate-500 mb-1">Study mode</label><select id="specialist-mode" onchange="renderSpecialists()" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm"><option value="all">All modes</option><option value="online">Online</option><option value="in_person">In-person</option><option value="hybrid">Hybrid</option></select></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-3 mb-4">
+          <div class="md:col-span-8"><label for="specialist-search" class="block text-[11px] font-bold text-slate-500 mb-1">Search specialists</label><input id="specialist-search" oninput="renderSpecialists()" maxlength="120" placeholder="Search by name, specialty, country or expertise..." class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm focus:ring-2 focus:ring-emerald-500 outline-none"></div>
+          <div class="md:col-span-4"><label for="specialist-country" class="block text-[11px] font-bold text-slate-500 mb-1">Country / Region</label><input id="specialist-country" oninput="renderSpecialists()" maxlength="80" placeholder="Saudi Arabia, Egypt, Morocco..." class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm focus:ring-2 focus:ring-emerald-500 outline-none"></div>
+        </div>
+        <div id="specialists-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"></div>
+        <div id="specialists-empty" class="hidden text-center py-10 rounded-2xl border border-dashed border-slate-300 dark:border-slate-800 text-slate-400 text-xs">No specialist profiles are available for this filter yet.</div>
+      </div>
+    </section>
+
     <!-- Quran Banner -->
     <section id="quran-banner" class="relative overflow-hidden rounded-2xl border border-emerald-200 dark:border-emerald-900/60 bg-slate-900 shadow-xl">
       <div class="relative min-h-[240px] sm:min-h-[300px] lg:min-h-[340px]">
@@ -274,31 +299,6 @@
     </section>
 
 
-    <!-- Quran, Hadith & Arabic Specialists Hub -->
-    <section id="specialists-hub" class="scroll-mt-20">
-      <div class="bg-white dark:bg-slate-900 border border-emerald-200 dark:border-emerald-900/60 rounded-2xl p-5 sm:p-6 shadow-sm">
-        <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-4 mb-5">
-          <div class="flex items-center gap-3">
-            <div class="w-11 h-11 rounded-xl bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 flex items-center justify-center"><i class="fa-solid fa-book-quran text-lg"></i></div>
-            <div><h2 class="font-extrabold text-slate-900 dark:text-white">Quran, Hadith & Arabic Specialists</h2><p class="text-[11px] text-slate-500 dark:text-slate-400">Find teachers, students, reciters, memorization specialists, Hadith specialists and Arabic teachers through cloud profiles.</p></div>
-          </div>
-          <div class="flex items-center gap-2 flex-wrap"><span id="specialists-count" class="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900 px-3 py-1.5 text-[10px] font-extrabold">0 specialists</span><button type="button" onclick="openSpecialistJoin()" class="rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 text-xs font-extrabold shadow-sm"><i class="fa-solid fa-user-plus mr-1"></i><span>Join the specialist network</span></button></div>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
-          <div><label for="specialist-role" class="block text-[11px] font-bold text-slate-500 mb-1">Specialist role</label><select id="specialist-role" onchange="renderSpecialists()" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm"><option value="all">All specialist roles</option><option value="student">Student</option><option value="parent_family">Parent / Muslim family</option><option value="quran_teacher">Quran teacher</option><option value="qari">Qari / Reciter</option><option value="quran_memorizer">Quran memorization specialist</option><option value="hadith_specialist">Hadith specialist</option><option value="arabic_teacher">Arabic teacher</option></select></div>
-          <div><label for="specialist-subject" class="block text-[11px] font-bold text-slate-500 mb-1">Specialty</label><select id="specialist-subject" onchange="renderSpecialists()" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm"><option value="all">All specialties</option><option value="quran">Quran</option><option value="hadith">Hadith</option><option value="arabic">Arabic language</option><option value="tajweed">Tajweed</option><option value="qiraat">Qiraat</option><option value="memorization">Memorization</option><option value="arabic_for_non_native">Arabic for non-native speakers</option></select></div>
-          <div><label for="specialist-audience" class="block text-[11px] font-bold text-slate-500 mb-1">Target audience</label><select id="specialist-audience" onchange="renderSpecialists()" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm"><option value="all">All audiences</option><option value="children">Children</option><option value="families">Families</option><option value="men">Men</option><option value="women">Women</option><option value="adults">Adults</option><option value="students">Students</option></select></div>
-          <div><label for="specialist-mode" class="block text-[11px] font-bold text-slate-500 mb-1">Study mode</label><select id="specialist-mode" onchange="renderSpecialists()" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm"><option value="all">All modes</option><option value="online">Online</option><option value="in_person">In-person</option><option value="hybrid">Hybrid</option></select></div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-3 mb-4">
-          <div class="md:col-span-8"><label for="specialist-search" class="block text-[11px] font-bold text-slate-500 mb-1">Search specialists</label><input id="specialist-search" oninput="renderSpecialists()" maxlength="120" placeholder="Search by name, specialty, country or expertise..." class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm focus:ring-2 focus:ring-emerald-500 outline-none"></div>
-          <div class="md:col-span-4"><label for="specialist-country" class="block text-[11px] font-bold text-slate-500 mb-1">Country / Region</label><input id="specialist-country" oninput="renderSpecialists()" maxlength="80" placeholder="Saudi Arabia, Egypt, Morocco..." class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm focus:ring-2 focus:ring-emerald-500 outline-none"></div>
-        </div>
-        <div id="specialists-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"></div>
-        <div id="specialists-empty" class="hidden text-center py-10 rounded-2xl border border-dashed border-slate-300 dark:border-slate-800 text-slate-400 text-xs">No specialist profiles are available for this filter yet.</div>
-      </div>
-    </section>
-
     <!-- Live Social + Open Web Radar -->
     <section id="external-radar" class="scroll-mt-20">
       <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm">
@@ -332,7 +332,7 @@
         <div class="grid grid-cols-1 md:grid-cols-12 gap-3 mb-4">
           <div class="md:col-span-6">
             <label for="external-query" class="block text-[11px] font-bold text-slate-500 mb-1">Live search query</label>
-            <input id="external-query" value="freelance OR freelancer OR "remote job" OR "freelance project" OR tender OR RFP OR procurement OR auction OR "عمل حر" OR مناقصة OR مزاد -site:github.com -site:learn.microsoft.com" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm focus:ring-2 focus:ring-sky-500 outline-none">
+            <input id="external-query" value="freelance OR freelancer OR &quot;remote job&quot; OR &quot;freelance project&quot; OR tender OR RFP OR procurement OR auction OR عمل حر OR مناقصة OR مزاد -site:github.com -site:learn.microsoft.com" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm focus:ring-2 focus:ring-sky-500 outline-none">
           </div>
           <div class="md:col-span-2">
             <label for="external-source" class="block text-[11px] font-bold text-slate-500 mb-1">Source</label>
@@ -1109,7 +1109,17 @@
       'Years experience':'سنوات الخبرة',
       'Verified profile':'ملف موثق',
       'Contact specialist':'التواصل مع المتخصص',
-      'No direct contact available':'لا توجد وسيلة تواصل مباشرة'
+      'No direct contact available':'لا توجد وسيلة تواصل مباشرة',
+      'Country / Region':'\u0627\u0644\u062f\u0648\u0644\u0629 / \u0627\u0644\u0645\u0646\u0637\u0642\u0629',
+      'Specialist role':'\u0646\u0648\u0639 \u0627\u0644\u0645\u062a\u062e\u0635\u0635',
+      'Target audience':'\u0627\u0644\u0641\u0626\u0629 \u0627\u0644\u0645\u0633\u062a\u0647\u062f\u0641\u0629',
+      'Study mode':'\u0646\u0645\u0637 \u0627\u0644\u062f\u0631\u0627\u0633\u0629',
+      'Search specialists':'\u0627\u0644\u0628\u062d\u062b \u0639\u0646 \u0645\u062a\u062e\u0635\u0635\u064a\u0646',
+      'Specialty':'\u0627\u0644\u062a\u062e\u0635\u0635',
+      'Availability':'\u0627\u0644\u0623\u0648\u0642\u0627\u062a \u0627\u0644\u0645\u062a\u0627\u062d\u0629',
+      'Profile information':'\u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0627\u0644\u0645\u0644\u0641',
+      'Contact options':'\u0637\u0631\u0642 \u0627\u0644\u062a\u0648\u0627\u0635\u0644',
+      'Close':'\u0625\u063a\u0644\u0627\u0642'
     });
     Object.assign(I18N, {
       'Join the specialist network':'انضم إلى شبكة المتخصصين',
@@ -2118,6 +2128,13 @@
       await loadSpecialists();
       showRealtimeNotification(t('Cloud profile published ✓'));
     }
+    function setSpecialistRole(role) {
+      const select=document.getElementById('specialist-role');
+      if(select) select.value=role;
+      renderSpecialists();
+      document.getElementById('specialists-grid')?.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+
     function renderSpecialists() {
       const grid=document.getElementById('specialists-grid'),empty=document.getElementById('specialists-empty'),count=document.getElementById('specialists-count');
       if(!grid||!empty)return;
