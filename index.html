@@ -718,7 +718,12 @@
           <div><label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Specialty</label><input id="sp-specialty" maxlength="160" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm" placeholder="Quran, Hadith, Tajweed, Arabic..."></div>
           <div><label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Country</label><input id="sp-country" maxlength="80" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm" placeholder="Saudi Arabia"></div>
           <div><label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">City</label><input id="sp-city" maxlength="80" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm" placeholder="City"></div>
-          <div><label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">WhatsApp</label><input id="sp-whatsapp" maxlength="30" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm" placeholder="Country code + number"></div>
+          <div><label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">WhatsApp</label><input id="sp-whatsapp" maxlength="40" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm" placeholder="Country code + number"></div>
+          <div><label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Phone</label><input id="sp-phone" maxlength="40" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm" placeholder="Country code + number"></div>
+          <div><label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Telegram</label><input id="sp-telegram" maxlength="160" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm" placeholder="Username or profile URL"></div>
+          <div><label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Email</label><input id="sp-email" type="email" maxlength="160" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm" placeholder="name@example.com"></div>
+          <div><label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">LinkedIn</label><input id="sp-linkedin" maxlength="240" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm" placeholder="https://www.linkedin.com/in/your-profile"></div>
+          <div><label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Website</label><input id="sp-website" maxlength="240" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm" placeholder="https://example.com"></div>
           <div><label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Teaching modes</label><input id="sp-modes" maxlength="180" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm" placeholder="online, in_person, hybrid"></div>
           <div><label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Audience</label><input id="sp-audience" maxlength="180" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm" placeholder="children, families, adults, students"></div>
           <div><label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Subjects</label><input id="sp-subjects" maxlength="220" class="w-full min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-sm" placeholder="quran, tajweed, hadith, arabic"></div>
@@ -731,6 +736,16 @@
         <div class="flex items-center gap-2 pt-2"><button class="flex-1 min-h-[44px] rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-extrabold"><i class="fa-solid fa-cloud-arrow-up mr-1"></i>Publish cloud profile</button><button type="button" onclick="closeSpecialistJoin()" class="min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-700 px-4 text-xs font-bold">Cancel</button></div>
         <div id="specialist-join-message" class="text-[11px] text-slate-500" aria-live="polite"></div>
       </form>
+    </div>
+  </div>
+
+  <!-- Specialist Details Modal -->
+  <div id="specialist-details-modal" class="fixed inset-0 z-[70] hidden bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <button type="button" onclick="closeSpecialistDetails()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200" aria-label="Close">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+      <div id="specialist-details-content" class="pr-8"></div>
     </div>
   </div>
 
@@ -1107,6 +1122,15 @@
       'Country':'الدولة',
       'City':'المدينة',
       'WhatsApp':'واتساب',
+      'Telegram':'تيليجرام',
+      'Email':'البريد الإلكتروني',
+      'LinkedIn':'لينكدإن',
+      'Website':'الموقع الإلكتروني',
+      'Contact options':'طرق التواصل',
+      'No public contact options':'لا توجد وسائل تواصل عامة',
+      'Close':'إغلاق',
+      'Phone':'الهاتف',
+      'Profile information':'معلومات الملف',
       'Teaching modes':'طرق التعليم',
       'Audience':'الفئة المستهدفة',
       'Subjects':'المواد',
@@ -1966,28 +1990,60 @@
     function specialistRoleLabel(role) {
       return ({student:'Student',parent_family:'Parent / Muslim family',quran_teacher:'Quran teacher',qari:'Qari / Reciter',quran_memorizer:'Quran memorization specialist',hadith_specialist:'Hadith specialist',arabic_teacher:'Arabic teacher'})[role] || role || 'Specialist';
     }
-    function specialistContactUrl(profile) {
-      const raw=String(profile?.whatsapp||profile?.phone||'').trim();
-      const phone=raw.replace(/[^0-9]/g,'');
-      return phone.length>=8 && phone.length<=15 ? `https://wa.me/${phone}` : '';
+    function specialistContactLinks(profile) {
+      const links = [];
+      const wa = String(profile?.whatsapp || '').trim();
+      const waDigits = wa.replace(/[^0-9]/g, '');
+      if (waDigits.length >= 8 && waDigits.length <= 15) {
+        links.push({key:'WhatsApp', icon:'fa-brands fa-whatsapp', href:`https://wa.me/${waDigits}`, cls:'bg-emerald-600 hover:bg-emerald-700 text-white'});
+      }
+      const phone = String(profile?.phone || '').trim();
+      const phoneDigits = phone.replace(/[^0-9+]/g, '');
+      if (phoneDigits.length >= 8) {
+        links.push({key:'Phone', icon:'fa-solid fa-phone', href:`tel:${phoneDigits}`, cls:'border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200'});
+      }
+      const telegram = String(profile?.telegram || '').trim();
+      if (telegram) {
+        const href = /^https:\/\//i.test(telegram) ? telegram : `https://t.me/${telegram.replace(/^@+/, '')}`;
+        links.push({key:'Telegram', icon:'fa-brands fa-telegram', href, cls:'bg-sky-500 hover:bg-sky-600 text-white'});
+      }
+      const email = String(profile?.email || '').trim();
+      if (email && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+        links.push({key:'Email', icon:'fa-solid fa-envelope', href:`mailto:${email}`, cls:'bg-slate-800 hover:bg-slate-900 text-white'});
+      }
+      const linkedin = String(profile?.linkedin || '').trim();
+      if (/^https:\/\//i.test(linkedin)) {
+        links.push({key:'LinkedIn', icon:'fa-brands fa-linkedin', href:linkedin, cls:'bg-blue-700 hover:bg-blue-800 text-white'});
+      }
+      const website = String(profile?.website || '').trim();
+      if (/^https:\/\//i.test(website)) {
+        links.push({key:'Website', icon:'fa-solid fa-globe', href:website, cls:'border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200'});
+      }
+      const seen = new Set();
+      return links.filter(link => { const key = `${link.key}:${link.href}`; if (seen.has(key)) return false; seen.add(key); return true; }).slice(0,6);
     }
+    function specialistContactUrl(profile) {
+      return specialistContactLinks(profile).find(link => link.key === 'WhatsApp')?.href || specialistContactLinks(profile)[0]?.href || '';
+    }
+    function specialistContactTarget(href) { return /^https:\/\//i.test(String(href||'')) ? ' target="_blank" rel="noopener noreferrer"' : ''; }
     function specialistTags(profile) {
       const values=[...(Array.isArray(profile?.subjects)?profile.subjects:[]),...(Array.isArray(profile?.qiraat)?profile.qiraat:[]),...(Array.isArray(profile?.languages)?profile.languages:[]),...(Array.isArray(profile?.audience)?profile.audience:[]),...(Array.isArray(profile?.teaching_mode)?profile.teaching_mode:[])];
       return [...new Set(values.map(v=>String(v||'').trim()).filter(Boolean))].slice(0,8);
     }
     function specialistCardHtml(profile) {
-      const contact=specialistContactUrl(profile);
+      const links=specialistContactLinks(profile);
       const tags=specialistTags(profile);
       const location=[profile.city,profile.country].filter(Boolean).join(', ');
       const verification=['verified','admin_reviewed'].includes(profile.verification_status)?`<span class="text-[10px] font-extrabold px-2 py-1 rounded-full text-blue-700 bg-blue-50 dark:bg-blue-950/30">${esc(t('Verified profile'))}</span>`:'';
       const title=profile.display_name||specialistRoleLabel(profile.role);
       const image=profile.profile_image_url&&/^https:\/\//i.test(profile.profile_image_url)?`<img src="${esc(profile.profile_image_url)}" alt="" loading="lazy" referrerpolicy="no-referrer" class="w-14 h-14 rounded-2xl object-cover border border-slate-200 dark:border-slate-700">`:`<div class="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 flex items-center justify-center text-xl"><i class="fa-solid fa-user-graduate"></i></div>`;
-      return `<article class="source-card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 flex flex-col h-full"><div class="flex items-start gap-3">${image}<div class="min-w-0 flex-1"><div class="flex items-start justify-between gap-2"><h3 class="font-extrabold text-sm text-slate-900 dark:text-white line-clamp-2">${esc(title)}</h3>${verification}</div><div class="text-[10px] font-bold text-emerald-700 dark:text-emerald-300 mt-1">${esc(t(specialistRoleLabel(profile.role)))}</div>${location?`<div class="text-[10px] text-slate-400 mt-1"><i class="fa-solid fa-location-dot mr-1"></i>${esc(location)}</div>`:''}</div></div><p class="text-xs text-slate-600 dark:text-slate-300 leading-5 mt-3 line-clamp-4 flex-1">${esc(profile.bio||profile.specialty||t('Language'))}</p>${profile.years_experience?`<div class="text-[10px] text-slate-500 mt-2"><span class="font-bold">${esc(t('Years experience'))}:</span> ${Number(profile.years_experience)}</div>`:''}${tags.length?`<div class="flex flex-wrap gap-1.5 mt-3">${tags.map(tag=>`<span class="text-[9px] font-bold px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">${esc(tag)}</span>`).join('')}</div>`:''}<div class="mt-4 grid grid-cols-2 gap-2">${contact?`<a href="${esc(contact)}" target="_blank" rel="noopener noreferrer" class="text-center rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-extrabold py-2.5"><i class="fa-brands fa-whatsapp mr-1"></i>${esc(t('Contact specialist'))}</a>`:`<button type="button" disabled class="rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 text-xs font-bold py-2.5">${esc(t('No direct contact available'))}</button>`}<button type="button" onclick="openSpecialistDetails('${esc(profile.id)}')" class="rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-xs font-bold py-2.5">${esc(t('Details'))}</button></div></article>`;
+      const primary=links.slice(0,2).map(link=>`<a href="${esc(link.href)}" ${specialistContactTarget(link.href)} class="text-center rounded-xl ${link.cls} text-xs font-extrabold py-2.5"><i class="${link.icon} mr-1"></i>${esc(t(link.key))}</a>`).join('');
+      return `<article class="source-card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 flex flex-col h-full"><div class="flex items-start gap-3">${image}<div class="min-w-0 flex-1"><div class="flex items-start justify-between gap-2"><h3 class="font-extrabold text-sm text-slate-900 dark:text-white line-clamp-2">${esc(title)}</h3>${verification}</div><div class="text-[10px] font-bold text-emerald-700 dark:text-emerald-300 mt-1">${esc(t(specialistRoleLabel(profile.role)))}</div>${location?`<div class="text-[10px] text-slate-400 mt-1"><i class="fa-solid fa-location-dot mr-1"></i>${esc(location)}</div>`:''}</div></div><p class="text-xs text-slate-600 dark:text-slate-300 leading-5 mt-3 line-clamp-4 flex-1">${esc(profile.bio||profile.specialty||t('Language'))}</p>${profile.years_experience?`<div class="text-[10px] text-slate-500 mt-2"><span class="font-bold">${esc(t('Years experience'))}:</span> ${Number(profile.years_experience)}</div>`:''}${tags.length?`<div class="flex flex-wrap gap-1.5 mt-3">${tags.map(tag=>`<span class="text-[9px] font-bold px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">${esc(tag)}</span>`).join('')}</div>`:''}<div class="mt-4 grid grid-cols-2 gap-2">${primary || `<button type="button" disabled class="rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 text-xs font-bold py-2.5">${esc(t('No public contact options'))}</button>`}<button type="button" onclick="openSpecialistDetails('${esc(profile.id)}')" class="rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-xs font-bold py-2.5">${esc(t('Details'))}</button></div><div class="mt-2 flex flex-wrap gap-1.5">${links.slice(2).map(link=>`<a href="${esc(link.href)}" ${specialistContactTarget(link.href)} class="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[10px] font-extrabold ${link.cls}"><i class="${link.icon}"></i>${esc(t(link.key))}</a>`).join('')}</div></article>`;
     }
     async function loadSpecialists() {
       if(!supabaseClient)return;
       try {
-        const {data,error}=await supabaseClient.from('education_profiles').select('id,role,specialty,bio,country,city,teaching_mode,audience,subjects,qiraat,languages,years_experience,availability,whatsapp,phone,verification_status,profile_image_url,is_active,created_at').eq('is_active',true).order('created_at',{ascending:false}).limit(120);
+        const {data,error}=await supabaseClient.from('education_profiles').select('id,role,specialty,bio,country,city,teaching_mode,audience,subjects,qiraat,languages,years_experience,availability,whatsapp,phone,telegram,email,linkedin,website,verification_status,profile_image_url,is_active,created_at').eq('is_active',true).order('created_at',{ascending:false}).limit(120);
         if(error)throw error;
         specialistProfiles=Array.isArray(data)?data:[];
         const ids=specialistProfiles.map(item=>item.id).filter(Boolean);
@@ -2000,17 +2056,24 @@
       renderSpecialists();
     }
     function openSpecialistJoin() {
-      requireUser().then(user=>{
+      requireUser().then(async user=>{
         if(!user)return;
         document.getElementById('specialist-join-modal')?.classList.remove('hidden');
-        const name=document.getElementById('sp-display-name');
-        const phone=document.getElementById('sp-whatsapp');
-        supabaseClient.from('profiles').select('display_name,phone,region,bio').eq('id',user.id).maybeSingle().then(({data})=>{
-          if(name)name.value=data?.display_name||user.user_metadata?.display_name||'';
-          if(phone)phone.value=data?.phone||'';
-          const country=document.getElementById('sp-country');
-          if(country&&!country.value)country.value=data?.region||'';
-        });
+        const ids=['sp-display-name','sp-whatsapp','sp-phone','sp-telegram','sp-email','sp-linkedin','sp-website','sp-country'];
+        const setValue=(id,value)=>{const el=document.getElementById(id);if(el)el.value=value||'';};
+        const {data:profile}=await supabaseClient.from('profiles').select('display_name,phone,region,bio').eq('id',user.id).maybeSingle();
+        const {data:education}=await supabaseClient.from('education_profiles').select('phone,whatsapp,telegram,email,linkedin,website,country,city,specialty,bio').eq('id',user.id).maybeSingle();
+        setValue('sp-display-name',profile?.display_name||user.user_metadata?.display_name||'');
+        setValue('sp-whatsapp',education?.whatsapp||profile?.phone||'');
+        setValue('sp-phone',education?.phone||'');
+        setValue('sp-telegram',education?.telegram||'');
+        setValue('sp-email',education?.email||'');
+        setValue('sp-linkedin',education?.linkedin||'');
+        setValue('sp-website',education?.website||'');
+        setValue('sp-country',education?.country||profile?.region||'');
+        setValue('sp-city',education?.city||'');
+        setValue('sp-specialty',education?.specialty||'');
+        setValue('sp-bio',education?.bio||profile?.bio||'');
       });
     }
     function closeSpecialistJoin(){document.getElementById('specialist-join-modal')?.classList.add('hidden');}
@@ -2037,7 +2100,11 @@
         years_experience:Number.isFinite(experience)?Math.max(0,Math.min(80,Math.floor(experience))):0,
         availability:document.getElementById('sp-availability').value.trim(),
         whatsapp:document.getElementById('sp-whatsapp').value.trim(),
-        phone:document.getElementById('sp-whatsapp').value.trim(),
+        phone:document.getElementById('sp-phone').value.trim(),
+        telegram:document.getElementById('sp-telegram').value.trim(),
+        email:document.getElementById('sp-email').value.trim(),
+        linkedin:document.getElementById('sp-linkedin').value.trim(),
+        website:document.getElementById('sp-website').value.trim(),
         verification_status:'pending',
         is_active:true
       };
@@ -2069,11 +2136,21 @@
       empty.classList.toggle('hidden',filtered.length>0);
       translatePage();
     }
+    function closeSpecialistDetails(){document.getElementById('specialist-details-modal')?.classList.add('hidden');}
     function openSpecialistDetails(id) {
       const profile=specialistProfiles.find(item=>String(item.id)===String(id));
       if(!profile)return;
-      const parts=[profile.bio||'',profile.specialty?`Specialty: ${profile.specialty}`:'',profile.country||profile.city?`Location: ${[profile.city,profile.country].filter(Boolean).join(', ')}`:'',profile.years_experience?`Experience: ${profile.years_experience} years`:'',Array.isArray(profile.qiraat)&&profile.qiraat.length?`Qiraat: ${profile.qiraat.join(', ')}`:''].filter(Boolean);
-      alert(parts.join('\n\n'));
+      const links=specialistContactLinks(profile);
+      const title=profile.display_name||specialistRoleLabel(profile.role);
+      const role=t(specialistRoleLabel(profile.role));
+      const location=[profile.city,profile.country].filter(Boolean).join(', ');
+      const verification=['verified','admin_reviewed'].includes(profile.verification_status) ? t('Verified profile') : '';
+      const chips=[...(Array.isArray(profile.subjects)?profile.subjects:[]),...(Array.isArray(profile.qiraat)?profile.qiraat:[]),...(Array.isArray(profile.audience)?profile.audience:[]),...(Array.isArray(profile.teaching_mode)?profile.teaching_mode:[]),...(Array.isArray(profile.languages)?profile.languages:[])].map(v=>String(v||'').trim()).filter(Boolean).slice(0,14);
+      const content=document.getElementById('specialist-details-content');
+      if(!content)return;
+      content.innerHTML=`<div class="flex items-start gap-4"><div class="shrink-0">${profile.profile_image_url&&/^https:\/\//i.test(profile.profile_image_url)?`<img src="${esc(profile.profile_image_url)}" alt="" class="w-20 h-20 rounded-2xl object-cover border border-slate-200 dark:border-slate-700">`:`<div class="w-20 h-20 rounded-2xl bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 flex items-center justify-center text-2xl"><i class="fa-solid fa-user-graduate"></i></div>`}</div><div class="min-w-0 flex-1"><div class="flex flex-wrap items-center gap-2"><h3 class="text-xl font-black text-slate-900 dark:text-white">${esc(title)}</h3>${verification?`<span class="text-[10px] font-extrabold px-2 py-1 rounded-full text-blue-700 bg-blue-50 dark:bg-blue-950/30">${esc(verification)}</span>`:''}</div><div class="text-sm font-bold text-emerald-700 dark:text-emerald-300 mt-1">${esc(role)}</div>${location?`<div class="text-xs text-slate-500 mt-2"><i class="fa-solid fa-location-dot mr-1"></i>${esc(location)}</div>`:''}</div></div><div class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3"><div class="rounded-xl border border-slate-200 dark:border-slate-800 p-3"><div class="text-[10px] font-extrabold text-slate-400 uppercase">${esc(t('Specialty'))}</div><div class="text-sm font-bold mt-1">${esc(profile.specialty||'—')}</div></div><div class="rounded-xl border border-slate-200 dark:border-slate-800 p-3"><div class="text-[10px] font-extrabold text-slate-400 uppercase">${esc(t('Years experience'))}</div><div class="text-sm font-bold mt-1">${profile.years_experience==null?'—':Number(profile.years_experience)}</div></div><div class="rounded-xl border border-slate-200 dark:border-slate-800 p-3"><div class="text-[10px] font-extrabold text-slate-400 uppercase">${esc(t('Availability'))}</div><div class="text-sm font-bold mt-1">${esc(profile.availability||'—')}</div></div><div class="rounded-xl border border-slate-200 dark:border-slate-800 p-3"><div class="text-[10px] font-extrabold text-slate-400 uppercase">${esc(t('Qiraat'))}</div><div class="text-sm font-bold mt-1">${esc(Array.isArray(profile.qiraat)&&profile.qiraat.length?profile.qiraat.join(', '):'—')}</div></div></div><div class="mt-4 rounded-xl border border-slate-200 dark:border-slate-800 p-4"><div class="text-[10px] font-extrabold text-slate-400 uppercase mb-2">${esc(t('Profile information'))}</div><p class="text-sm text-slate-600 dark:text-slate-300 leading-7">${esc(profile.bio||'—')}</p></div>${chips.length?`<div class="mt-4 flex flex-wrap gap-2">${chips.map(chip=>`<span class="text-[10px] font-bold px-2.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">${esc(chip)}</span>`).join('')}</div>`:''}<div class="mt-5"><div class="text-[10px] font-extrabold text-slate-400 uppercase mb-2">${esc(t('Contact options'))}</div>${links.length?`<div class="grid grid-cols-2 sm:grid-cols-3 gap-2">${links.map(link=>`<a href="${esc(link.href)}" ${specialistContactTarget(link.href)} class="inline-flex items-center justify-center gap-2 rounded-xl px-3 py-3 text-xs font-extrabold ${link.cls}"><i class="${link.icon}"></i>${esc(t(link.key))}</a>`).join('')}</div>`:`<div class="text-xs text-slate-400">${esc(t('No public contact options'))}</div>`}</div><div class="mt-5 flex justify-end"><button type="button" onclick="closeSpecialistDetails()" class="rounded-xl border border-slate-200 dark:border-slate-700 px-4 py-2.5 text-xs font-bold text-slate-700 dark:text-slate-200">${esc(t('Close'))}</button></div>`;
+      document.getElementById('specialist-details-modal').classList.remove('hidden');
+      translatePage();
     }
 
     // ========== LIVE EXTERNAL RADAR ==========
@@ -2312,7 +2389,7 @@
       closeCreateModal();
       closeContactModal();
       closeShareModal();
-      closeChatModal(); closeProfileEditor(); closeAiAssistant();
+      closeChatModal(); closeProfileEditor(); closeAiAssistant(); closeSpecialistDetails();
     });
   </script>
 </body>
