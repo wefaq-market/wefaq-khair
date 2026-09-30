@@ -1780,12 +1780,12 @@
         riwaya: document.getElementById('new-riwaya')?.value || document.getElementById('new-lang-track')?.value || '',
         sheikh: document.getElementById('new-sheikh')?.value || document.getElementById('new-lang-teacher')?.value || '',
         gender: document.getElementById('new-gender')?.value || document.getElementById('new-lang-level')?.value || 'All',
-        badge: 'verified',
+        badge: 'unverified',
         ownerId: currentUser?.id || null,
         createdAt: new Date().toISOString().split('T')[0]
       };
 
-      // Save to cloud when available.
+      // Save to cloud as a public but unverified listing until moderation is introduced.
       if (!supabaseClient) {
         showRealtimeNotification(t('Cloud storage is unavailable'));
         return;
@@ -1796,6 +1796,7 @@
           .from('listings')
           .insert([{
             title, category, region, type, amount, description, phone, license,
+            badge: 'unverified',
             status: 'approved',
             user_id: currentUser.id,
             riwaya: newItem.riwaya,
