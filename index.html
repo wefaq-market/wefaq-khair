@@ -616,7 +616,7 @@
           </div>
         </div>
 
-        <div id="quran-extra-filters" class="hidden pt-2 border-t border-slate-100 dark:border-slate-800 grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div id="quran-extra-filters" class="hidden pt-2 border-t border-slate-100 dark:border-slate-800 grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label class="block text-[11px] font-semibold text-slate-500 mb-1">Quranic narration / reading</label>
             <select id="filter-riwaya" onchange="renderCards()" class="w-full py-1.5 px-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-md text-xs">
@@ -635,14 +635,6 @@
               <option value="Children">Children & young students</option>
               <option value="Men">Men only</option>
               <option value="Women">Women & female teachers</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-[11px] font-semibold text-slate-500 mb-1">Study mode</label>
-            <select id="filter-mode" onchange="renderCards()" class="w-full py-1.5 px-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-md text-xs">
-              <option value="all">Online (Global) & In-person</option>
-              <option value="online">Remote (Electronic circles worldwide)</option>
-              <option value="in_person">In-person (Mosques & centers)</option>
             </select>
           </div>
         </div>
@@ -1363,7 +1355,7 @@
       document.getElementById('filter-region').value = 'all';
       document.getElementById('filter-type').value = 'all';
       document.getElementById('filter-badge').value = 'all';
-      ['filter-riwaya','filter-gender','filter-mode','filter-lang-track','filter-lang-level'].forEach(id => {
+      ['filter-riwaya','filter-gender','filter-lang-track','filter-lang-level'].forEach(id => {
         const el = document.getElementById(id); if (el) el.value = 'all';
       });
       setCategoryFilter('all');
@@ -1376,13 +1368,25 @@
       const regionVal = document.getElementById('filter-region').value;
       const typeVal = document.getElementById('filter-type').value;
       const badgeVal = document.getElementById('filter-badge').value;
+      const riwayaVal = document.getElementById('filter-riwaya')?.value || 'all';
+      const genderVal = document.getElementById('filter-gender')?.value || 'all';
+      const langTrackVal = document.getElementById('filter-lang-track')?.value || 'all';
+      const langLevelVal = document.getElementById('filter-lang-level')?.value || 'all';
       const currentCurrency = document.getElementById('currency-select').value;
+
+      const matchesField = (value, selected) => {
+        if (selected === 'all') return true;
+        const hay = String(value || '').trim().toLowerCase();
+        const needle = String(selected || '').trim().toLowerCase();
+        if (!hay || !needle) return false;
+        return hay === needle || hay.split(',').map(v => v.trim()).includes(needle);
+      };
 
       let filtered = opportunitiesData.filter(item => {
         if (focusListingId) return item.id === String(focusListingId);
         if (currentCategoryFilter !== 'all' && item.category !== currentCategoryFilter) return false;
         if (searchKey) {
-          const hay = ((item.title||'') + ' ' + (item.description||'') + ' ' + (item.sheikh||'')).toLowerCase();
+          const hay = ((item.title||'') + ' ' + (item.description||'') + ' ' + (item.sheikh||'') + ' ' + (item.riwaya||'')).toLowerCase();
           if (!hay.includes(searchKey)) return false;
         }
         if (regionVal !== 'all') {
@@ -1392,6 +1396,18 @@
         }
         if (typeVal !== 'all' && item.type !== typeVal) return false;
         if (badgeVal !== 'all' && item.badge !== badgeVal) return false;
+
+        if (currentCategoryFilter === 'quran') {
+          if (!matchesField(item.riwaya, riwayaVal)) return false;
+          if (!matchesField(item.gender, genderVal)) return false;
+        }
+
+        if (currentCategoryFilter === 'languages') {
+          // Existing listings store language track in riwaya and level in gender.
+          if (!matchesField(item.riwaya, langTrackVal)) return false;
+          if (!matchesField(item.gender, langLevelVal)) return false;
+        }
+
         return true;
       });
 
@@ -1444,7 +1460,7 @@
           <div class="grid grid-cols-4 gap-2">
             <button onclick="requestConnection('${esc(item.id)}')" class="col-span-2 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold py-2 rounded-lg"><i class="fa-solid fa-handshake mr-1"></i>${currentLang === 'ar' ? 'تواصل' : 'Connect'}</button>
             <button onclick="toggleFavorite('${esc(item.id)}')" title="${currentLang === 'ar' ? 'حفظ الفرصة' : 'Save listing'}" class="bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-300 text-xs rounded-lg border border-amber-100 dark:border-amber-900"><i class="fa-regular fa-bookmark"></i></button>
-            <button onclick="openContactModal('${esc(item.id)}')" title="${currentLang === 'ar' ? 'تواصل' : 'Contact'}" class="bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 text-xs rounded-lg border border-emerald-100 dark:border-emerald-900"><i class="fa-brands fa-whatsapp"></i></button>
+            <button type="button" onclick="handleListingContact('${esc(item.id)}')" aria-label="${currentLang === 'ar' ? 'التواصل مع صاحب الإعلان' : 'Contact listing owner'}" title="${currentLang === 'ar' ? 'تواصل' : 'Contact'}" class="bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 text-xs rounded-lg border border-emerald-100 dark:border-emerald-900"><i class="fa-brands fa-whatsapp"></i></button>
             <button onclick="openShareModal('${esc(item.id)}')" title="${currentLang === 'ar' ? 'مشاركة' : 'Share'}" class="bg-slate-100 dark:bg-slate-800 text-xs rounded-lg"><i class="fa-solid fa-share-nodes"></i></button>
           </div>
         </div>`;
@@ -1624,6 +1640,18 @@
       document.getElementById('languages-form-fields').classList.toggle('hidden', cat !== 'languages');
     }
 
+    async function handleListingContact(id) {
+      const item = opportunitiesData.find(i => i.id === id);
+      if (!item) return;
+      if (!item.phone) {
+        showRealtimeNotification(t('No phone number'));
+        return;
+      }
+      const user = await requireUser({kind:'listing_contact', id});
+      if (!user) return;
+      await openContactModal(id, true);
+    }
+
     async function openContactModal(id, bypassAuth=false) {
       const item = opportunitiesData.find(i => i.id === id);
       if (!item) return;
@@ -1652,7 +1680,7 @@
       if (!item || !item.phone) { alert(t('No phone number')); return; }
       const phone = String(item.phone).replace(/[^0-9]/g, '');
       const text = encodeURIComponent(document.getElementById('whatsapp-template-text').value);
-      window.open(`https://wa.me/${phone}?text=${text}`, '_blank', 'noopener,noreferrer');
+      window.location.href = `https://wa.me/${phone}?text=${text}`;
     }
     async function copyText(text) {
       try {
@@ -2160,8 +2188,8 @@
       const verification=['verified','admin_reviewed'].includes(profile.verification_status)?`<span class="text-[10px] font-extrabold px-2 py-1 rounded-full text-blue-700 bg-blue-50 dark:bg-blue-950/30">${esc(t('Verified profile'))}</span>`:'';
       const title=profile.display_name||specialistRoleLabel(profile.role);
       const image=profile.profile_image_url&&/^https:\/\//i.test(profile.profile_image_url)?`<img src="${esc(profile.profile_image_url)}" alt="" loading="lazy" referrerpolicy="no-referrer" class="w-14 h-14 rounded-2xl object-cover border border-slate-200 dark:border-slate-700">`:`<div class="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 flex items-center justify-center text-xl"><i class="fa-solid fa-user-graduate"></i></div>`;
-      const primary=links.slice(0,2).map(link=>`<button type="button" onclick="contactSpecialist('${esc(profile.id)}','${esc(link.key)}')" class="text-center rounded-xl ${link.cls} text-xs font-extrabold py-2.5"><i class="${link.icon} mr-1"></i>${esc(t(link.key))}</button>`).join('');
-      return `<article class="source-card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 flex flex-col h-full"><div class="flex items-start gap-3">${image}<div class="min-w-0 flex-1"><div class="flex items-start justify-between gap-2"><h3 class="font-extrabold text-sm text-slate-900 dark:text-white line-clamp-2">${esc(title)}</h3>${verification}</div><div class="text-[10px] font-bold text-emerald-700 dark:text-emerald-300 mt-1">${esc(t(specialistRoleLabel(profile.role)))}</div>${location?`<div class="text-[10px] text-slate-400 mt-1"><i class="fa-solid fa-location-dot mr-1"></i>${esc(location)}</div>`:''}</div></div><p class="text-xs text-slate-600 dark:text-slate-300 leading-5 mt-3 line-clamp-4 flex-1">${esc(profile.bio||profile.specialty||t('Language'))}</p>${profile.years_experience?`<div class="text-[10px] text-slate-500 mt-2"><span class="font-bold">${esc(t('Years experience'))}:</span> ${Number(profile.years_experience)}</div>`:''}${tags.length?`<div class="flex flex-wrap gap-1.5 mt-3">${tags.map(tag=>`<span class="text-[9px] font-bold px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">${esc(tag)}</span>`).join('')}</div>`:''}<div class="mt-4 grid grid-cols-2 gap-2">${primary || `<button type="button" disabled class="rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 text-xs font-bold py-2.5">${esc(t('No public contact options'))}</button>`}<button type="button" onclick="openSpecialistDetails('${esc(profile.id)}')" class="rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-xs font-bold py-2.5">${esc(t('Details'))}</button></div><div class="mt-2 flex flex-wrap gap-1.5">${links.slice(2).map(link=>`<button type="button" onclick="contactSpecialist('${esc(profile.id)}','${esc(link.key)}')" class="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[10px] font-extrabold ${link.cls}"><i class="${link.icon}"></i>${esc(t(link.key))}</button>`).join('')}</div></article>`;
+      const primary=links.slice(0,2).map(link=>`<button type="button" onclick="contactSpecialist('${esc(profile.id)}','${esc(link.key)}')" aria-label="${esc(t(link.key))}" class="text-center rounded-xl ${link.cls} text-xs font-extrabold py-2.5"><i class="${link.icon} mr-1"></i>${esc(t(link.key))}</button>`).join('');
+      return `<article class="source-card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 flex flex-col h-full"><div class="flex items-start gap-3">${image}<div class="min-w-0 flex-1"><div class="flex items-start justify-between gap-2"><h3 class="font-extrabold text-sm text-slate-900 dark:text-white line-clamp-2">${esc(title)}</h3>${verification}</div><div class="text-[10px] font-bold text-emerald-700 dark:text-emerald-300 mt-1">${esc(t(specialistRoleLabel(profile.role)))}</div>${location?`<div class="text-[10px] text-slate-400 mt-1"><i class="fa-solid fa-location-dot mr-1"></i>${esc(location)}</div>`:''}</div></div><p class="text-xs text-slate-600 dark:text-slate-300 leading-5 mt-3 line-clamp-4 flex-1">${esc(profile.bio||profile.specialty||t('Language'))}</p>${profile.years_experience?`<div class="text-[10px] text-slate-500 mt-2"><span class="font-bold">${esc(t('Years experience'))}:</span> ${Number(profile.years_experience)}</div>`:''}${tags.length?`<div class="flex flex-wrap gap-1.5 mt-3">${tags.map(tag=>`<span class="text-[9px] font-bold px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">${esc(tag)}</span>`).join('')}</div>`:''}<div class="mt-4 grid grid-cols-2 gap-2">${primary || `<button type="button" disabled class="rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 text-xs font-bold py-2.5">${esc(t('No public contact options'))}</button>`}<button type="button" onclick="openSpecialistDetails('${esc(profile.id)}')" class="rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-xs font-bold py-2.5">${esc(t('Details'))}</button></div><div class="mt-2 flex flex-wrap gap-1.5">${links.slice(2).map(link=>`<button type="button" onclick="contactSpecialist('${esc(profile.id)}','${esc(link.key)}')" aria-label="${esc(t(link.key))}" class="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[10px] font-extrabold ${link.cls}"><i class="${link.icon}"></i>${esc(t(link.key))}</button>`).join('')}</div></article>`;
     }
     async function loadSpecialists() {
       if(!supabaseClient)return;
@@ -2280,7 +2308,7 @@
       const chips=[...(Array.isArray(profile.subjects)?profile.subjects:[]),...(Array.isArray(profile.qiraat)?profile.qiraat:[]),...(Array.isArray(profile.audience)?profile.audience:[]),...(Array.isArray(profile.teaching_mode)?profile.teaching_mode:[]),...(Array.isArray(profile.languages)?profile.languages:[])].map(v=>String(v||'').trim()).filter(Boolean).slice(0,14);
       const content=document.getElementById('specialist-details-content');
       if(!content)return;
-      content.innerHTML=`<div class="flex items-start gap-4"><div class="shrink-0">${profile.profile_image_url&&/^https:\/\//i.test(profile.profile_image_url)?`<img src="${esc(profile.profile_image_url)}" alt="" class="w-20 h-20 rounded-2xl object-cover border border-slate-200 dark:border-slate-700">`:`<div class="w-20 h-20 rounded-2xl bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 flex items-center justify-center text-2xl"><i class="fa-solid fa-user-graduate"></i></div>`}</div><div class="min-w-0 flex-1"><div class="flex flex-wrap items-center gap-2"><h3 class="text-xl font-black text-slate-900 dark:text-white">${esc(title)}</h3>${verification?`<span class="text-[10px] font-extrabold px-2 py-1 rounded-full text-blue-700 bg-blue-50 dark:bg-blue-950/30">${esc(verification)}</span>`:''}</div><div class="text-sm font-bold text-emerald-700 dark:text-emerald-300 mt-1">${esc(role)}</div>${location?`<div class="text-xs text-slate-500 mt-2"><i class="fa-solid fa-location-dot mr-1"></i>${esc(location)}</div>`:''}</div></div><div class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3"><div class="rounded-xl border border-slate-200 dark:border-slate-800 p-3"><div class="text-[10px] font-extrabold text-slate-400 uppercase">${esc(t('Specialty'))}</div><div class="text-sm font-bold mt-1">${esc(profile.specialty||'—')}</div></div><div class="rounded-xl border border-slate-200 dark:border-slate-800 p-3"><div class="text-[10px] font-extrabold text-slate-400 uppercase">${esc(t('Years experience'))}</div><div class="text-sm font-bold mt-1">${profile.years_experience==null?'—':Number(profile.years_experience)}</div></div><div class="rounded-xl border border-slate-200 dark:border-slate-800 p-3"><div class="text-[10px] font-extrabold text-slate-400 uppercase">${esc(t('Availability'))}</div><div class="text-sm font-bold mt-1">${esc(profile.availability||'—')}</div></div><div class="rounded-xl border border-slate-200 dark:border-slate-800 p-3"><div class="text-[10px] font-extrabold text-slate-400 uppercase">${esc(t('Qiraat'))}</div><div class="text-sm font-bold mt-1">${esc(Array.isArray(profile.qiraat)&&profile.qiraat.length?profile.qiraat.join(', '):'—')}</div></div></div><div class="mt-4 rounded-xl border border-slate-200 dark:border-slate-800 p-4"><div class="text-[10px] font-extrabold text-slate-400 uppercase mb-2">${esc(t('Profile information'))}</div><p class="text-sm text-slate-600 dark:text-slate-300 leading-7">${esc(profile.bio||'—')}</p></div>${chips.length?`<div class="mt-4 flex flex-wrap gap-2">${chips.map(chip=>`<span class="text-[10px] font-bold px-2.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">${esc(chip)}</span>`).join('')}</div>`:''}<div class="mt-5"><div class="text-[10px] font-extrabold text-slate-400 uppercase mb-2">${esc(t('Contact options'))}</div>${links.length?`<div class="grid grid-cols-2 sm:grid-cols-3 gap-2">${links.map(link=>`<button type="button" onclick="contactSpecialist('${esc(profile.id)}','${esc(link.key)}')" class="inline-flex items-center justify-center gap-2 rounded-xl px-3 py-3 text-xs font-extrabold ${link.cls}"><i class="${link.icon}"></i>${esc(t(link.key))}</button>`).join('')}</div>`:`<div class="text-xs text-slate-400">${esc(t('No public contact options'))}</div>`}</div><div class="mt-5 flex justify-end"><button type="button" onclick="closeSpecialistDetails()" class="rounded-xl border border-slate-200 dark:border-slate-700 px-4 py-2.5 text-xs font-bold text-slate-700 dark:text-slate-200">${esc(t('Close'))}</button></div>`;
+      content.innerHTML=`<div class="flex items-start gap-4"><div class="shrink-0">${profile.profile_image_url&&/^https:\/\//i.test(profile.profile_image_url)?`<img src="${esc(profile.profile_image_url)}" alt="" class="w-20 h-20 rounded-2xl object-cover border border-slate-200 dark:border-slate-700">`:`<div class="w-20 h-20 rounded-2xl bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 flex items-center justify-center text-2xl"><i class="fa-solid fa-user-graduate"></i></div>`}</div><div class="min-w-0 flex-1"><div class="flex flex-wrap items-center gap-2"><h3 class="text-xl font-black text-slate-900 dark:text-white">${esc(title)}</h3>${verification?`<span class="text-[10px] font-extrabold px-2 py-1 rounded-full text-blue-700 bg-blue-50 dark:bg-blue-950/30">${esc(verification)}</span>`:''}</div><div class="text-sm font-bold text-emerald-700 dark:text-emerald-300 mt-1">${esc(role)}</div>${location?`<div class="text-xs text-slate-500 mt-2"><i class="fa-solid fa-location-dot mr-1"></i>${esc(location)}</div>`:''}</div></div><div class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3"><div class="rounded-xl border border-slate-200 dark:border-slate-800 p-3"><div class="text-[10px] font-extrabold text-slate-400 uppercase">${esc(t('Specialty'))}</div><div class="text-sm font-bold mt-1">${esc(profile.specialty||'—')}</div></div><div class="rounded-xl border border-slate-200 dark:border-slate-800 p-3"><div class="text-[10px] font-extrabold text-slate-400 uppercase">${esc(t('Years experience'))}</div><div class="text-sm font-bold mt-1">${profile.years_experience==null?'—':Number(profile.years_experience)}</div></div><div class="rounded-xl border border-slate-200 dark:border-slate-800 p-3"><div class="text-[10px] font-extrabold text-slate-400 uppercase">${esc(t('Availability'))}</div><div class="text-sm font-bold mt-1">${esc(profile.availability||'—')}</div></div><div class="rounded-xl border border-slate-200 dark:border-slate-800 p-3"><div class="text-[10px] font-extrabold text-slate-400 uppercase">${esc(t('Qiraat'))}</div><div class="text-sm font-bold mt-1">${esc(Array.isArray(profile.qiraat)&&profile.qiraat.length?profile.qiraat.join(', '):'—')}</div></div></div><div class="mt-4 rounded-xl border border-slate-200 dark:border-slate-800 p-4"><div class="text-[10px] font-extrabold text-slate-400 uppercase mb-2">${esc(t('Profile information'))}</div><p class="text-sm text-slate-600 dark:text-slate-300 leading-7">${esc(profile.bio||'—')}</p></div>${chips.length?`<div class="mt-4 flex flex-wrap gap-2">${chips.map(chip=>`<span class="text-[10px] font-bold px-2.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">${esc(chip)}</span>`).join('')}</div>`:''}<div class="mt-5"><div class="text-[10px] font-extrabold text-slate-400 uppercase mb-2">${esc(t('Contact options'))}</div>${links.length?`<div class="grid grid-cols-2 sm:grid-cols-3 gap-2">${links.map(link=>`<button type="button" onclick="contactSpecialist('${esc(profile.id)}','${esc(link.key)}')" aria-label="${esc(t(link.key))}" class="inline-flex items-center justify-center gap-2 rounded-xl px-3 py-3 text-xs font-extrabold ${link.cls}"><i class="${link.icon}"></i>${esc(t(link.key))}</button>`).join('')}</div>`:`<div class="text-xs text-slate-400">${esc(t('No public contact options'))}</div>`}</div><div class="mt-5 flex justify-end"><button type="button" onclick="closeSpecialistDetails()" class="rounded-xl border border-slate-200 dark:border-slate-700 px-4 py-2.5 text-xs font-bold text-slate-700 dark:text-slate-200">${esc(t('Close'))}</button></div>`;
       document.getElementById('specialist-details-modal').classList.remove('hidden');
       translatePage();
     }
