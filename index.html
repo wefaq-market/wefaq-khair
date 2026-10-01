@@ -148,6 +148,10 @@
         </a>
 </nav>
 <div class="flex items-center gap-2 sm:gap-3">
+<button id="desktop-auth-btn" type="button" class="hidden lg:flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 text-xs font-bold px-3 py-2 transition" onclick="openAuthModal()">
+<i id="desktop-auth-icon" class="fa-solid fa-right-to-bracket"></i>
+<span id="desktop-auth-label">Login</span>
+</button>
 <button class="lang-btn" id="langToggleBtn" onclick="toggleLanguage()">العربية 🌐</button>
 <button class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition" id="theme-toggle" onclick="toggleTheme()">
 <i class="fa-solid fa-moon" id="theme-icon"></i>
@@ -1757,9 +1761,21 @@
       if(!supabaseClient) return;
       const {data}=await supabaseClient.auth.getUser(); const user=data?.user;
       const state=document.getElementById('auth-state'), guest=document.getElementById('workspace-guest'), workspace=document.getElementById('workspace-user');
+      const desktopAuthBtn=document.getElementById('desktop-auth-btn'), desktopAuthIcon=document.getElementById('desktop-auth-icon'), desktopAuthLabel=document.getElementById('desktop-auth-label');
       currentAuthUser=user||null;
-      if(user){ state.innerHTML=`Signed in as <span class="text-brand-600">${esc(user.email)}</span> · <button type="button" onclick="signOutUser()" class="underline">${t('Sign out')}</button>`; guest.classList.add('hidden'); workspace.classList.remove('hidden'); startRealtimeSync(); loadWorkspace(); }
-      else { state.textContent='Guest mode'; guest.classList.remove('hidden'); workspace.classList.add('hidden'); }
+      if(user){
+        state.innerHTML=`Signed in as <span class="text-brand-600">${esc(user.email)}</span> · <button type="button" onclick="signOutUser()" class="underline">${t('Sign out')}</button>`;
+        guest.classList.add('hidden'); workspace.classList.remove('hidden');
+        if(desktopAuthBtn){ desktopAuthBtn.onclick=()=>openMine(); }
+        if(desktopAuthIcon) desktopAuthIcon.className='fa-solid fa-user';
+        if(desktopAuthLabel) desktopAuthLabel.textContent=t('Account');
+        startRealtimeSync(); loadWorkspace();
+      } else {
+        state.textContent='Guest mode'; guest.classList.remove('hidden'); workspace.classList.add('hidden');
+        if(desktopAuthBtn){ desktopAuthBtn.onclick=()=>openAuthModal(); }
+        if(desktopAuthIcon) desktopAuthIcon.className='fa-solid fa-right-to-bracket';
+        if(desktopAuthLabel) desktopAuthLabel.textContent=t('Login');
+      }
     }
     async function openMine(){ document.getElementById('workspace-section').scrollIntoView({behavior:'smooth'}); await refreshAuthState(); if(!supabaseClient) return; const {data}=await supabaseClient.auth.getUser(); if(!data?.user) openAuthModal(); }
     async function loadWorkspace(){
