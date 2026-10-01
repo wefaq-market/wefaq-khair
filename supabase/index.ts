@@ -1,6 +1,6 @@
-// Wefaq — smart-processor v15
-// Reads persisted source_items, classifies educational signals, deduplicates across sources,
-// extracts safe public contact hints, and upserts production radar_leads.
+// Wefaq — social-radar-sync v15
+// Collector only: fetch public/authorized external signals and persist them as source_items.
+// No private messages, private groups, or unrestricted profile scraping.
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
@@ -14,245 +14,275 @@ const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 const supabaseAdmin = createClient(SUPABASE_URL, SERVICE_ROLE_KEY);
 
-function cleanText(value: unknown, max = 5000) {
+const missing: string[] = [];
+
+function cleanText(value: unknown, max = 4000) {
   return String(value ?? "").replace(/\s+/g, " ").trim().slice(0, max);
 }
-function normalize(value: unknown) {
-  return cleanText(value, 5000)
-    .toLowerCase()
-    .normalize("NFKC")
-    .replace(/[\u064B-\u065F\u0670\u06D6-\u06ED]/g, "")
-    .replace(/[أإآ]/g, "ا")
-    .replace(/ى/g, "ي")
-    .replace(/ؤ/g, "و")
-    .replace(/ئ/g, "ي")
-    .replace(/[\u200f\u200e]/g, "")
-    .replace(/[^\p{L}\p{N}]+/gu, " ")
-    .trim();
+
+function isoDaysAgo(days: number) {
+  const d = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
+  return d.toISOString().replace(/\.000Z$/, "Z");
 }
+
+async function verifyUser(req: Request) {
+  const authHeader = req.headers.get("Authorization") || "";
+  if (!authHeader) return null;
+  const accessToken = authHeader.replace(/^Bearer\s+/i, "");
+  const { data, error } = await supabaseAdmin.auth.getUser(accessToken);
+  return error || !data?.user ? null : data.user;
+}
+
 async function sha256(value: string) {
   const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(value));
   return Array.from(new Uint8Array(digest)).map((b) => b.toString(16).padStart(2, "0")).join("");
 }
-function hasAny(text: string, words: string[]) { return words.some((w) => text.includes(normalize(w))); }
-function countAny(text: string, words: string[]) { return words.reduce((n, w) => n + (text.includes(normalize(w)) ? 1 : 0), 0); }
 
-const demandWords = ["مطلوب", "ابحث عن", "أبحث عن", "اريد", "أريد", "احتاج", "أحتاج", "بحاجة", "من يبحث", "طالب", "تبحث عن", "نبحث عن"];
-const supplyWords = ["متاح", "متاحة", "أقدم", "أقدم خدمات", "معلم", "معلمة", "محفظ", "محفظة", "مدرس", "مدرسة", "أدرس", "ادرس", "تعليم", "استطيع التدريس"];
-const serviceWords = ["خدمة تعليمية", "مركز", "حلقة", "برنامج", "دورة", "جلسات", "دروس", "منصة تعليمية"];
-const quranWords = ["قرآن", "تحفيظ", "تجويد", "تلاوة", "إجازة", "قراءات", "حفص", "ورش", "رواية", "سند"];
-const hadithWords = ["حديث", "السنة", "مصطلح الحديث", "شرح الحديث"];
-const arabicWords = ["لغة عربية", "النحو", "الصرف", "البلاغة", "الإملاء", "العربية لغير الناطقين", "عربي"];
-const kidsWords = ["أطفال", "طفل", "ابني", "ابنتي", "الناشئة", "صغار"];
-const languageWords = ["لغة إنجليزية", "الانجليزية", "فرنسية", "تركية", "أردو", "تعلم اللغات", "language"];
-const legacyWords = ["تمويل", "استثمار", "مناقصة", "مزاد", "شريك مؤسس", "دراسة جدوى", "مشروع"];
-
-function classify(textInput: string, rawData: any, publishedAt: string | null) {
-  const text = normalize(textInput);
-  const educationalHits = countAny(text, [...quranWords, ...hadithWords, ...arabicWords, ...kidsWords, ...languageWords, ...serviceWords]);
-  if (educationalHits === 0) return null;
-  const legacyHits = countAny(text, legacyWords);
-  if (legacyHits >= 2 && educationalHits < 2) return null;
-
-  const isDemand = hasAny(text, demandWords);
-  const isSupply = hasAny(text, supplyWords);
-  const isService = hasAny(text, serviceWords);
-
-  let persona: "student" | "teacher" | "service" = "student";
-  if (isDemand) persona = isService && !isSupply ? "service" : "student";
-  else if (isSupply) persona = "teacher";
-  else if (isService) persona = "service";
-
-  let intentType = "signal";
-  if (isDemand) intentType = "demand";
-  else if (isSupply) intentType = "supply";
-
-  let category = "services";
-  if (hasAny(text, quranWords)) category = "quran";
-  else if (hasAny(text, hadithWords)) category = "hadith";
-  else if (hasAny(text, arabicWords)) category = "arabic";
-  else if (hasAny(text, kidsWords)) category = "kids";
-  else if (hasAny(text, languageWords)) category = "languages";
-
-  let mode = "";
-  if (hasAny(text, ["هجين", "hybrid"])) mode = "hybrid";
-  else if (hasAny(text, ["حضوري", "في المركز", "في المسجد", "in person"])) mode = "in_person";
-  else if (hasAny(text, ["اونلاين", "أونلاين", "عن بعد", "عن بُعد", "online", "remote"])) mode = "online";
-
-  const regionHits: Array<[string,string,string]> = [
-    ["KSA", "SA", "السعودية"], ["KSA", "SA", "الرياض"], ["KSA", "SA", "جدة"], ["KSA", "SA", "المدينة"], ["KSA", "SA", "مكة"], ["KSA", "SA", "الدمام"],
-    ["EGP", "EG", "مصر"], ["EGP", "EG", "القاهرة"], ["EGP", "EG", "الإسكندرية"],
-    ["UAE", "AE", "الإمارات"], ["UAE", "AE", "دبي"], ["UAE", "AE", "أبو ظبي"],
-    ["QAT", "QA", "قطر"], ["KW", "KW", "الكويت"], ["GCC", "GCC", "الخليج"], ["MAGHREB", "MAGHREB", "المغرب"], ["MAGHREB", "MAGHREB", "الجزائر"], ["MAGHREB", "MAGHREB", "تونس"],
-    ["LEVANT", "LEVANT", "الأردن"], ["LEVANT", "LEVANT", "لبنان"], ["LEVANT", "LEVANT", "سوريا"], ["PALESTINE", "PS", "فلسطين"], ["GAZA", "PS", "غزة"],
-    ["AFRICA", "AFRICA", "أفريقيا"], ["AFRICA", "AFRICA", "كينيا"], ["AFRICA", "AFRICA", "نيجيريا"], ["AFRICA", "AFRICA", "جنوب أفريقيا"],
-    ["FOREIGN", "FOREIGN", "ألمانيا"], ["FOREIGN", "FOREIGN", "فرنسا"], ["FOREIGN", "FOREIGN", "بريطانيا"], ["FOREIGN", "FOREIGN", "كندا"], ["FOREIGN", "FOREIGN", "أمريكا"], ["FOREIGN", "FOREIGN", "الولايات المتحدة"],
-  ];
-  let region = "GLOBAL", countryCode = "", city = "";
-  for (const [r, c, needle] of regionHits) {
-    if (text.includes(normalize(needle))) { region = r; countryCode = c; if (["الرياض","جدة","المدينة","مكة","الدمام","القاهرة","الإسكندرية","دبي","أبو ظبي","غزة"].includes(needle)) city = needle; break; }
-  }
-
-  const languages: string[] = [];
-  const addLang = (needle: string, label: string) => { if (hasAny(text, [needle])) languages.push(label); };
-  addLang("عربي", "Arabic"); addLang("الإنجليزية", "English"); addLang("انجليزية", "English"); addLang("فرنسية", "French"); addLang("أردو", "Urdu"); addLang("تركية", "Turkish");
-  if (rawData?.lang && typeof rawData.lang === "string") {
-    const code = rawData.lang.toLowerCase();
-    if (code === "ar") languages.push("Arabic"); else if (code === "en") languages.push("English"); else if (code === "fr") languages.push("French");
-  }
-  const uniqueLanguages = [...new Set(languages)];
-  const language = uniqueLanguages[0] || "";
-
-  const tags: string[] = [];
-  const tagMap: Array<[string,string[]]> = [
-    ["تحفيظ", ["تحفيظ", "حفظ"]], ["تجويد", ["تجويد"]], ["قراءات", ["قراءات", "حفص", "ورش"]], ["إجازة", ["إجازة", "سند"]],
-    ["حديث", hadithWords], ["نحو", ["النحو"]], ["صرف", ["الصرف"]], ["بلاغة", ["البلاغة"]], ["أطفال", kidsWords],
-    ["أونلاين", ["اونلاين", "أونلاين", "عن بعد", "online"]], ["حضوري", ["حضوري", "in person"]]
-  ];
-  for (const [label, needles] of tagMap) if (hasAny(text, needles)) tags.push(label);
-  if (region !== "GLOBAL") tags.push(region);
-  tags.push(intentType === "demand" ? "طلب" : intentType === "supply" ? "عرض" : "إشارة");
-  tags.push(category);
-
-  const emailMatches = cleanText(textInput).match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi) || [];
-  const waLinks = cleanText(textInput).match(/https?:\/\/(?:wa\.me|api\.whatsapp\.com)\/[^\s)]+/gi) || [];
-  const tgLinks = cleanText(textInput).match(/https?:\/\/t\.me\/[^\s)]+/gi) || [];
-  const phoneMatches = cleanText(textInput).match(/(?:\+?\d[\d\s().-]{7,}\d)/g) || [];
-  const contact: Record<string, unknown> = {};
-  if (emailMatches[0]) contact.email = emailMatches[0];
-  if (waLinks[0]) contact.whatsapp_url = waLinks[0];
-  if (tgLinks[0]) contact.telegram_url = tgLinks[0];
-  if (phoneMatches[0] && (phoneMatches[0].includes("+") || /[ -]/.test(phoneMatches[0]))) contact.phone = phoneMatches[0].trim();
-  const hasPublicContact = Object.keys(contact).length > 0;
-
-  const ageHours = publishedAt ? Math.max(0, (Date.now() - new Date(publishedAt).getTime()) / 3600000) : 0;
-  const freshnessScore = ageHours <= 24 ? 10 : ageHours <= 72 ? 6 : ageHours <= 168 ? 3 : 0;
-  const relevance = Math.min(40, educationalHits * 8);
-  const demandScore = isDemand ? 18 : isSupply ? 12 : 4;
-  const specificScore = (mode ? 6 : 0) + (region !== "GLOBAL" ? 6 : 0) + (uniqueLanguages.length ? 4 : 0) + (hasPublicContact ? 5 : 0);
-  const score = Math.min(99, relevance + demandScore + specificScore + freshnessScore);
-  const triageConfidence = Math.min(99, 50 + Math.min(35, educationalHits * 6) + (isDemand || isSupply ? 10 : 4));
-  const priority = score >= 82 ? "hot" : score >= 65 ? "warm" : "normal";
-  const dedupeText = normalize(`${cleanText(textInput.slice(0, 1200))}|${category}|${intentType}|${region}`);
-
-  return {
-    persona, intentType, category, mode, region, countryCode, city, language, languages: uniqueLanguages,
-    tags: [...new Set(tags)].slice(0, 12), contact, consentStatus: hasPublicContact ? "public_contact" : "unknown",
-    consentBasis: hasPublicContact ? "contact_published_in_source_text" : null,
-    score, triageConfidence, priority, dedupeText,
-  };
+async function integration(provider: string, accountName: string, externalAccountId: string, metadata: Record<string, unknown> = {}) {
+  const { data, error } = await supabaseAdmin.from("source_integrations").upsert({
+    provider,
+    account_name: accountName,
+    external_account_id: externalAccountId,
+    status: "connected",
+    scopes: ["search"],
+    metadata: { ...metadata, educational_only: true },
+    updated_at: new Date().toISOString(),
+  }, { onConflict: "provider,external_account_id" }).select("id").single();
+  if (error) throw error;
+  return data.id;
 }
 
-async function dedupeHash(value: string) { return sha256(value); }
+async function storeItem(args: {
+  integrationId: string;
+  provider: string;
+  externalItemId: string;
+  sourceUrl: string | null;
+  title: string;
+  description: string;
+  media?: unknown[];
+  rawData?: unknown;
+  publishedAt?: string | null;
+}) {
+  const publishedAt = args.publishedAt || new Date().toISOString();
+  const raw = JSON.stringify(args.rawData ?? {}) + "|" + args.externalItemId + "|" + args.description;
+  const contentHash = await sha256(raw);
+  const { error } = await supabaseAdmin.from("source_items").upsert({
+    integration_id: args.integrationId,
+    provider: args.provider,
+    external_item_id: args.externalItemId,
+    source_url: args.sourceUrl,
+    title: cleanText(args.title, 500),
+    description: cleanText(args.description, 4000),
+    media: args.media ?? [],
+    raw_data: args.rawData ?? null,
+    content_hash: contentHash,
+    published_at: publishedAt,
+    last_seen_at: new Date().toISOString(),
+    is_active: true,
+  }, { onConflict: "provider,external_item_id" });
+  if (error) throw error;
+}
+
+const EDUCATIONAL_QUERIES = [
+  "\"مطلوب محفظ قرآن\" OR \"أبحث عن محفظ قرآن\" OR \"تحفيظ قرآن\"",
+  "\"مطلوب معلم تجويد\" OR \"أبحث عن معلم قرآن\" OR \"إجازة قرآن\"",
+  "\"مطلوب مدرس لغة عربية\" OR \"أبحث عن معلم لغة عربية\" OR \"العربية لغير الناطقين بها\"",
+  "\"تحفيظ قرآن للأطفال\" OR \"تعليم أطفال\" OR \"حلقة قرآن\"",
+  "\"معلم قرآن متاح\" OR \"محفظ متاح\" OR \"مدرس عربي متاح\"",
+];
+
+function buildQuery(input: unknown) {
+  const requested = cleanText(input, 900);
+  const base = requested || EDUCATIONAL_QUERIES[0];
+  // Keep the collector educationally scoped even when a client sends a broad query.
+  return `${base} (قرآن OR تحفيظ OR تجويد OR إجازة OR "لغة عربية" OR "تعليم أطفال")`;
+}
+
+async function syncX(query: string, days: number, maxResults: number) {
+  const token = Deno.env.get("X_BEARER_TOKEN");
+  if (!token) { missing.push("X_BEARER_TOKEN"); return 0; }
+  const safeDays = Math.min(Math.max(days, 1), 7);
+  const url = new URL("https://api.x.com/2/tweets/search/recent");
+  url.searchParams.set("query", query);
+  url.searchParams.set("max_results", String(Math.min(Math.max(maxResults, 10), 100)));
+  url.searchParams.set("start_time", isoDaysAgo(safeDays));
+  url.searchParams.set("tweet.fields", "created_at,author_id,lang,public_metrics,entities,attachments");
+  url.searchParams.set("expansions", "author_id,attachments.media_keys");
+  url.searchParams.set("user.fields", "username,name");
+  url.searchParams.set("media.fields", "url,preview_image_url,type,alt_text");
+  const resp = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
+  const body = await resp.json();
+  if (!resp.ok) throw new Error(`X API ${resp.status}: ${cleanText(body?.detail || JSON.stringify(body), 600)}`);
+  const users = new Map<string, any>((body?.includes?.users || []).map((u: any) => [String(u.id), u]));
+  const media = new Map<string, any>((body?.includes?.media || []).map((m: any) => [String(m.media_key), m]));
+  const integrationId = await integration("x", "X Search", "recent-search", { window_days: safeDays });
+  let count = 0;
+  for (const post of body?.data || []) {
+    const user = users.get(String(post.author_id));
+    const username = user?.username;
+    const sourceUrl = username ? `https://x.com/${username}/status/${post.id}` : `https://x.com/i/web/status/${post.id}`;
+    const postMedia = (post?.attachments?.media_keys || []).map((k: string) => media.get(String(k))).filter(Boolean);
+    await storeItem({ integrationId, provider: "x", externalItemId: String(post.id), sourceUrl, title: username ? `@${username}` : "X", description: cleanText(post.text), media: postMedia, rawData: { ...post, username, author: user || null }, publishedAt: post.created_at });
+    count++;
+  }
+  return count;
+}
+
+async function syncYouTube(query: string, days: number, maxResults: number) {
+  const key = Deno.env.get("YOUTUBE_API_KEY");
+  if (!key) { missing.push("YOUTUBE_API_KEY"); return 0; }
+  const url = new URL("https://www.googleapis.com/youtube/v3/search");
+  url.searchParams.set("part", "snippet");
+  url.searchParams.set("type", "video");
+  url.searchParams.set("q", query);
+  url.searchParams.set("maxResults", String(Math.min(Math.max(maxResults, 1), 50)));
+  url.searchParams.set("publishedAfter", isoDaysAgo(Math.max(days, 1)));
+  url.searchParams.set("relevanceLanguage", "ar");
+  url.searchParams.set("order", "date");
+  url.searchParams.set("safeSearch", "moderate");
+  url.searchParams.set("key", key);
+  const resp = await fetch(url);
+  const body = await resp.json();
+  if (!resp.ok) throw new Error(`YouTube API ${resp.status}: ${cleanText(body?.error?.message || JSON.stringify(body), 600)}`);
+  const integrationId = await integration("youtube", "YouTube Search", "search", { window_days: days });
+  let count = 0;
+  for (const item of body?.items || []) {
+    const videoId = item?.id?.videoId;
+    if (!videoId) continue;
+    const sn = item?.snippet || {};
+    await storeItem({ integrationId, provider: "youtube", externalItemId: String(videoId), sourceUrl: `https://www.youtube.com/watch?v=${videoId}`, title: cleanText(sn.channelTitle || "YouTube"), description: cleanText(`${sn.title || ""} — ${sn.description || ""}`), media: sn.thumbnails ? [{ type: "thumbnail", ...sn.thumbnails }] : [], rawData: { ...sn, channelId: sn.channelId, videoId }, publishedAt: sn.publishedAt });
+    count++;
+  }
+  return count;
+}
+
+async function redditToken(clientId: string, clientSecret: string, userAgent: string) {
+  const body = new URLSearchParams({ grant_type: "client_credentials" });
+  const basic = btoa(`${clientId}:${clientSecret}`);
+  const resp = await fetch("https://www.reddit.com/api/v1/access_token", { method: "POST", headers: { Authorization: `Basic ${basic}`, "Content-Type": "application/x-www-form-urlencoded", "User-Agent": userAgent }, body });
+  const json = await resp.json();
+  if (!resp.ok) throw new Error(`Reddit token ${resp.status}: ${cleanText(json?.message || JSON.stringify(json), 600)}`);
+  return json.access_token as string;
+}
+
+async function syncReddit(query: string, days: number, maxResults: number) {
+  const clientId = Deno.env.get("REDDIT_CLIENT_ID");
+  const clientSecret = Deno.env.get("REDDIT_CLIENT_SECRET");
+  const userAgent = Deno.env.get("REDDIT_USER_AGENT") || "Wefaq/1.0 external-radar";
+  if (!clientId || !clientSecret) { if (!clientId) missing.push("REDDIT_CLIENT_ID"); if (!clientSecret) missing.push("REDDIT_CLIENT_SECRET"); return 0; }
+  const token = await redditToken(clientId, clientSecret, userAgent);
+  const url = new URL("https://oauth.reddit.com/search");
+  url.searchParams.set("q", query);
+  url.searchParams.set("sort", "new");
+  url.searchParams.set("t", "week");
+  url.searchParams.set("limit", String(Math.min(Math.max(maxResults, 1), 100)));
+  url.searchParams.set("raw_json", "1");
+  const resp = await fetch(url, { headers: { Authorization: `bearer ${token}`, "User-Agent": userAgent } });
+  const body = await resp.json();
+  if (!resp.ok) throw new Error(`Reddit API ${resp.status}: ${cleanText(body?.message || JSON.stringify(body), 600)}`);
+  const integrationId = await integration("reddit", "Reddit Search", "search", { window_days: days });
+  let count = 0;
+  for (const child of body?.data?.children || []) {
+    const d = child?.data;
+    if (!d?.id) continue;
+    await storeItem({ integrationId, provider: "reddit", externalItemId: String(d.id), sourceUrl: d.permalink ? `https://www.reddit.com${d.permalink}` : `https://www.reddit.com/comments/${d.id}/`, title: cleanText(d.subreddit_name_prefixed || "Reddit"), description: cleanText(`${d.title || ""} — ${d.selftext || ""}`), rawData: { id: d.id, subreddit: d.subreddit, permalink: d.permalink }, publishedAt: d.created_utc ? new Date(Number(d.created_utc) * 1000).toISOString() : null });
+    count++;
+  }
+  return count;
+}
+
+async function syncBrave(query: string, days: number, maxResults: number) {
+  const token = Deno.env.get("BRAVE_SEARCH_API_KEY");
+  if (!token) { missing.push("BRAVE_SEARCH_API_KEY"); return [] as any[]; }
+  const target = Math.min(Math.max(maxResults, 1), 50);
+  const freshness = days <= 1 ? "pd" : days <= 7 ? "pw" : "pm";
+  const results: any[] = [];
+  for (let page = 0; page < Math.min(3, Math.ceil(target / 20)); page++) {
+    const url = new URL("https://api.search.brave.com/res/v1/web/search");
+    url.searchParams.set("q", query.slice(0, 600));
+    url.searchParams.set("count", "20");
+    url.searchParams.set("offset", String(page));
+    url.searchParams.set("country", "SA");
+    url.searchParams.set("search_lang", "ar");
+    url.searchParams.set("ui_lang", "ar-SA");
+    url.searchParams.set("safesearch", "moderate");
+    url.searchParams.set("freshness", freshness);
+    const resp = await fetch(url, { headers: { Accept: "application/json", "X-Subscription-Token": token } });
+    const body = await resp.json();
+    if (!resp.ok) throw new Error(`Brave Search API ${resp.status}: ${cleanText(body?.error?.detail || JSON.stringify(body), 600)}`);
+    for (const item of body?.web?.results || []) {
+      if (!item?.url) continue;
+      results.push({ provider: "web_search", source_url: item.url, title: cleanText(item.title || "Web result", 500), description: cleanText(item.description || "", 4000), published_at: item.page_age && new Date(item.page_age).toString() !== "Invalid Date" ? new Date(item.page_age).toISOString() : null, raw: { provider: "brave", page_age: item.page_age || null, page_fetched: item.page_fetched || null, profile: item.profile || null } });
+      if (results.length >= target) break;
+    }
+    if (results.length >= target || body?.query?.more_results_available === false) break;
+  }
+  return results;
+}
+
+async function syncGoogle(query: string, days: number, maxResults: number) {
+  const key = Deno.env.get("GOOGLE_CSE_API_KEY");
+  const cx = Deno.env.get("GOOGLE_CSE_ID") || Deno.env.get("GOOGLE_CSE_CX");
+  if (!key || !cx) { missing.push("GOOGLE_CSE_API_KEY/GOOGLE_CSE_ID"); return 0; }
+  const url = new URL("https://www.googleapis.com/customsearch/v1");
+  url.searchParams.set("key", key); url.searchParams.set("cx", cx); url.searchParams.set("q", query); url.searchParams.set("num", String(Math.min(Math.max(maxResults, 1), 10))); url.searchParams.set("dateRestrict", `d${Math.min(Math.max(days, 1), 30)}`); url.searchParams.set("safe", "active");
+  const resp = await fetch(url); const body = await resp.json();
+  if (!resp.ok) throw new Error(`Google CSE ${resp.status}: ${cleanText(body?.error?.message || JSON.stringify(body), 600)}`);
+  const integrationId = await integration("web_search", "Google Programmable Search", "google-cse", { window_days: days, fallback: true });
+  let count = 0;
+  for (const item of body?.items || []) {
+    await storeItem({ integrationId, provider: "web_search", externalItemId: String(item.link), sourceUrl: item.link || null, title: cleanText(item.title || "Web result"), description: cleanText(item.snippet || ""), media: item.image?.thumbnailLink ? [{ type: "thumbnail", url: item.image.thumbnailLink }] : [], rawData: { provider: "google-cse", displayLink: item.displayLink }, publishedAt: new Date().toISOString() });
+    count++;
+  }
+  return count;
+}
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
-  if (req.method !== "POST") return new Response(JSON.stringify({ ok: true, service: "wefaq-smart-processor", role: "classifier" }), { headers: { ...corsHeaders, "content-type": "application/json" } });
+  if (req.method !== "POST") return new Response(JSON.stringify({ ok: true, service: "wefaq-social-radar-sync", role: "collector" }), { headers: { ...corsHeaders, "content-type": "application/json" } });
 
   try {
-    const authHeader = req.headers.get("Authorization") || "";
-    const accessToken = authHeader.replace(/^Bearer\s+/i, "");
-    const { data: userData, error: userError } = await supabaseAdmin.auth.getUser(accessToken);
-    if (userError || !userData?.user) return new Response(JSON.stringify({ ok: false, error: "auth_required" }), { status: 401, headers: { ...corsHeaders, "content-type": "application/json" } });
+    missing.length = 0;
+    const user = await verifyUser(req);
+    if (!user) return new Response(JSON.stringify({ ok: false, error: "auth_required" }), { status: 401, headers: { ...corsHeaders, "content-type": "application/json" } });
 
     const payload = await req.json().catch(() => ({}));
-    const hours = Math.min(Math.max(Number(payload?.hours || 336), 1), 720);
-    const limit = Math.min(Math.max(Number(payload?.limit || 500), 1), 1000);
-    const since = new Date(Date.now() - hours * 3600000).toISOString();
+    const query = buildQuery(payload?.query);
+    const provider = String(payload?.provider || "all");
+    const days = Math.min(Math.max(Number(payload?.days || 7), 1), 30);
+    const maxResults = Math.min(Math.max(Number(payload?.max_results || 50), 1), 100);
+    const synced: Record<string, number> = {};
+    const errors: Record<string, string> = {};
 
-    const { data: items, error: itemsError } = await supabaseAdmin
-      .from("source_items")
-      .select("id,provider,external_item_id,source_url,title,description,raw_data,published_at,last_seen_at,is_active")
-      .eq("is_active", true)
-      .gte("last_seen_at", since)
-      .order("last_seen_at", { ascending: false })
-      .limit(limit);
-    if (itemsError) throw itemsError;
+    const run = async (name: string, fn: () => Promise<number>) => {
+      try { synced[name] = await fn(); } catch (error) { errors[name] = cleanText(error instanceof Error ? error.message : String(error), 900); }
+    };
 
-    let found = 0, newCount = 0, updatedCount = 0, dedupedCount = 0, skipped = 0;
-    const errors: string[] = [];
+    if (provider === "all" || provider === "x") await run("x", () => syncX(query, days, maxResults));
+    if (provider === "all" || provider === "youtube") await run("youtube", () => syncYouTube(query, days, maxResults));
+    if (provider === "all" || provider === "reddit") await run("reddit", () => syncReddit(query, days, maxResults));
 
-    for (const item of items || []) {
-      found++;
-      try {
-        const combined = cleanText(`${item.title || ""} ${item.description || ""}`);
-        const cls = classify(combined, item.raw_data, item.published_at);
-        if (!cls) { skipped++; continue; }
-        const dedupeKey = await dedupeHash(cls.dedupeText);
-        const contentHash = await dedupeHash(normalize(combined));
-        const sourceType = String(item.provider || "web");
-        const externalId = String(item.external_item_id || item.id);
-
-        const { data: existingBySource, error: existingSourceError } = await supabaseAdmin
-          .from("radar_leads")
-          .select("id,discovered_at,dedupe_key,raw_meta")
-          .eq("source_type", sourceType)
-          .eq("external_id", externalId)
-          .maybeSingle();
-        if (existingSourceError) throw existingSourceError;
-
-        if (!existingBySource) {
-          const { data: duplicate } = await supabaseAdmin
-            .from("radar_leads")
-            .select("id,source_type,external_id,raw_meta,last_seen_at")
-            .eq("dedupe_key", dedupeKey)
-            .neq("status", "rejected")
-            .maybeSingle();
-
-          if (duplicate) {
-            const rawMeta = (duplicate.raw_meta && typeof duplicate.raw_meta === "object") ? duplicate.raw_meta as Record<string, unknown> : {};
-            const duplicateSources = Array.isArray(rawMeta.duplicate_sources) ? rawMeta.duplicate_sources as unknown[] : [];
-            duplicateSources.push({ source_type: sourceType, external_id: externalId, source_url: item.source_url || null, seen_at: new Date().toISOString() });
-            await supabaseAdmin.from("radar_leads").update({ last_seen_at: new Date().toISOString(), raw_meta: { ...rawMeta, duplicate_sources: duplicateSources.slice(-12) }, tags: [...new Set([...(Array.isArray(rawMeta.tags) ? rawMeta.tags as string[] : []), ...cls.tags])] }).eq("id", duplicate.id);
-            dedupedCount++;
-            continue;
-          }
-        }
-
-        const row: Record<string, unknown> = {
-          source_type: sourceType,
-          external_id: externalId,
-          title: cleanText(item.title || sourceType, 500),
-          snippet: cleanText(item.description || "", 4000),
-          persona: cls.persona,
-          category: cls.category,
-          priority: cls.priority,
-          source: sourceType,
-          source_url: item.source_url || null,
-          published_at: item.published_at || null,
-          last_seen_at: new Date().toISOString(),
-          score: cls.score,
-          triage_confidence: cls.triageConfidence,
-          consent_status: cls.consentStatus,
-          consent_basis: cls.consentBasis,
-          contact: cls.contact,
-          tags: cls.tags,
-          content_hash: contentHash,
-          dedupe_key: dedupeKey,
-          raw_meta: { processor: "wefaq-smart-processor-v15", source_item_id: item.id, educational_only: true, classified_at: new Date().toISOString(), intent_type: cls.intentType, languages: cls.languages },
-          region: cls.region,
-          country_code: cls.countryCode,
-          city: cls.city,
-          language: cls.language,
-          languages: cls.languages,
-          mode: cls.mode,
-          intent_type: cls.intentType,
-        };
-        if (!existingBySource) row.status = "new";
-
-        const { error: upsertError } = await supabaseAdmin.from("radar_leads").upsert(row, { onConflict: "source_type,external_id" });
-        if (upsertError) throw upsertError;
-        if (existingBySource) updatedCount++; else newCount++;
-      } catch (error) {
-        errors.push(cleanText(error instanceof Error ? error.message : String(error), 600));
+    let transientWeb: any[] = [];
+    if (provider === "all" || provider === "web_search") {
+      if (Deno.env.get("BRAVE_SEARCH_API_KEY")) {
+        try { transientWeb = await syncBrave(query, days, maxResults); synced.web_search = transientWeb.length; } catch (error) { errors.web_search = cleanText(error instanceof Error ? error.message : String(error), 900); }
+      } else {
+        await run("google_cse", () => syncGoogle(query, days, maxResults));
       }
     }
 
-    // Mark leads stale after 30 days without being seen. Never delete them automatically.
-    await supabaseAdmin.from("radar_leads").update({ status: "stale" }).in("status", ["new", "review", "saved"]).lt("last_seen_at", new Date(Date.now() - 30 * 24 * 3600000).toISOString());
-
-    return new Response(JSON.stringify({ ok: true, found, new_count: newCount, updated_count: updatedCount, deduped_count: dedupedCount, skipped, error_count: errors.length, errors: errors.slice(0, 20), processed_by: userData.user.id }), { headers: { ...corsHeaders, "content-type": "application/json" } });
+    return new Response(JSON.stringify({
+      ok: true,
+      query,
+      synced,
+      errors,
+      missing_credentials: [...new Set(missing)],
+      transient_web_results: transientWeb,
+      transient_web_results_persisted: false,
+      telegram: "webhook_only",
+      requested_by: user.id,
+    }), { headers: { ...corsHeaders, "content-type": "application/json" } });
   } catch (error) {
-    return new Response(JSON.stringify({ ok: false, error: "processing_failed", message: cleanText(error instanceof Error ? error.message : String(error), 900) }), { status: 500, headers: { ...corsHeaders, "content-type": "application/json" } });
+    return new Response(JSON.stringify({ ok: false, error: "external_sync_failed", message: cleanText(error instanceof Error ? error.message : String(error), 900), missing_credentials: [...new Set(missing)] }), { status: 500, headers: { ...corsHeaders, "content-type": "application/json" } });
   }
 });
