@@ -1521,21 +1521,18 @@
       }
       if (!supabaseClient) return;
       const {data:privateData,error:privateError}=await supabaseClient
-        .from('listings')
-        .select('phone,user_id')
-        .eq('id',id)
-        .eq('status','approved')
-        .maybeSingle();
+        .rpc('get_listing_contact',{p_listing_id:id});
       if(privateError){
         console.warn('Listing contact lookup failed:',privateError);
+        showRealtimeNotification(t('No direct contact available'));
+        return;
+      }
+      const listingContact=Array.isArray(privateData)?privateData[0]:privateData;
+      if(!listingContact?.phone){
         showRealtimeNotification(t('No phone number'));
         return;
       }
-      if(!privateData?.phone){
-        showRealtimeNotification(t('No phone number'));
-        return;
-      }
-      currentSelectedCardForContact = {...item, phone:privateData.phone, ownerId:privateData.user_id||null};
+      currentSelectedCardForContact = {...item, phone:listingContact.phone, ownerId:listingContact.user_id||null};
       const senderInput = document.getElementById('sender-name');
       if (senderInput && (!senderInput.value || senderInput.value === 'Investor / Quran seeker via Wefaq' || senderInput.value === 'مستثمر / طالب قرآن عبر وفاق')) senderInput.value = t('Investor / Quran seeker via Wefaq');
       recordEngagement(id, 'contact_open');
@@ -1837,8 +1834,9 @@
       if (!user) return;
       const item = opportunitiesData.find(x => String(x.id) === String(listingId));
       if (!item) return;
-      const {data:ownerRow,error:ownerError}=await supabaseClient.from('listings').select('user_id').eq('id',listingId).eq('status','approved').maybeSingle();
+      const {data:ownerData,error:ownerError}=await supabaseClient.rpc('get_listing_owner',{p_listing_id:listingId});
       if(ownerError){ console.warn('Listing owner lookup failed:',ownerError); showRealtimeNotification(t('Could not create connection')); return; }
+      const ownerRow=Array.isArray(ownerData)?ownerData[0]:ownerData;
       const ownerId=ownerRow?.user_id||null;
       if (!ownerId) { showRealtimeNotification(t('This legacy listing has no account owner yet')); return; }
       if (ownerId === user.id) { showRealtimeNotification(t('You cannot connect to your own listing')); return; }
@@ -1982,9 +1980,8 @@
       try {
         console.log("Synchronizing platform data from Supabase cloud...");
         const { data, error } = await supabaseClient
-          .from('listings')
+          .from('listing_directory')
           .select('id,title,category,region,type,amount,description,riwaya,sheikh,gender,badge,created_at')
-          .eq('status', 'approved')
           .order('created_at', { ascending: false })
           .limit(200);
 
@@ -2339,61 +2336,17 @@
         supabaseClient.removeChannel(realtimeChannel);
       }
 
+      if (!currentAuthUser) return;
       realtimeChannel = supabaseClient
         .channel('wefaq-listings')
         .on(
           'postgres_changes',
           { event: 'INSERT', schema: 'public', table: 'listings' },
-          (payload) => {
-            const row = payload.new;
-            if (!row || row.status !== 'approved') return;
-            const newItem = {
-              id: String(row.id),
-              title: row.title || '',
-              category: row.category || 'projects',
-              region: row.region || 'GLOBAL',
-              type: row.type || 'offer',
-              amount: Number(row.amount || 0),
-              description: row.description || '',
-              phone: '',
-              license: '',
-              badge: row.badge || 'unverified',
-              ownerId: null,
-              riwaya: row.riwaya || '',
-              sheikh: row.sheikh || '',
-              gender: row.gender || 'All',
-              createdAt: (row.created_at || '').split('T')[0]
-            };
-
-            if (!opportunitiesData.some(item => item.id === newItem.id)) {
-              opportunitiesData.unshift(newItem);
-              renderCards();
-              updateMetricCounters();
-              showRealtimeNotification(`New listing: "${newItem.title.substring(0, 40)}..."`);
-            }
+          () => {
+            fetchOpportunitiesFromSupabase();
           }
         )
-        .subscribe((status) => {
-          console.log('Realtime status:', status);
-          if (status === 'SUBSCRIBED') {
-            showRealtimeNotification(t('Live cloud sync active ✓'));
-          } else if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT') {
-            showRealtimeNotification(t('Live sync connection lost'));
-          }
-        });
-
-      supabaseClient.auth.getUser().then(({data}) => {
-        const uid=data?.user?.id;
-        if(!uid) return;
-        if(realtimeUserChannel) supabaseClient.removeChannel(realtimeUserChannel);
-        realtimeUserChannel=supabaseClient.channel('wefaq-user-'+uid)
-          .on('postgres_changes',{event:'INSERT',schema:'public',table:'messages',filter:`recipient_id=eq.${uid}`},payload=>{
-            if(activeConnectionId===payload.new.connection_id) loadChatMessages();
-            loadWorkspace();
-          })
-          .on('postgres_changes',{event:'INSERT',schema:'public',table:'notifications',filter:`user_id=eq.${uid}`},()=>loadNotifications())
-          .subscribe();
-      });
+        .subscribe();
     }
 
     function cloudOpportunityCardHtml(item){
