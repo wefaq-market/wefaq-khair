@@ -10,18 +10,18 @@
 <meta content="Wefaq" name="application-name"/>
 <meta content="yes" name="apple-mobile-web-app-capable"/>
 <meta content="yes" name="mobile-web-app-capable"/>
-<link href="https://wefaq-khair.org/" rel="canonical"/>
+<link href="https://wefaq-market.github.io/wefaq-khair/" rel="canonical"/>
 <meta content="website" property="og:type"/>
-<meta content="ar_SA" property="og:locale"/>
-<meta content="https://wefaq-khair.org/" property="og:url"/>
+<meta content="en_US" property="og:locale"/>
+<meta content="https://wefaq-market.github.io/wefaq-khair/" property="og:url"/>
 <meta content="Wefaq" property="og:site_name"/>
 <meta content="منصة وفاق التعليمية | القرآن واللغة العربية والتعليم" property="og:title"/>
 <meta content="شبكة تعليمية للقرآن الكريم واللغة العربية والتدريس والتواصل مع المعلمين والمراكز." property="og:description"/>
-<meta content="https://wefaq-khair.org/og.png" property="og:image"/>
+<meta content="https://wefaq-market.github.io/wefaq-khair/wefaq-quran-banner.png" property="og:image"/>
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="منصة وفاق التعليمية" name="twitter:title"/>
 <meta content="القرآن الكريم واللغة العربية والتعليم والتواصل مع المعلمين والمراكز." name="twitter:description"/>
-<meta content="https://wefaq-khair.org/og.png" name="twitter:image"/>
+<meta content="https://wefaq-market.github.io/wefaq-khair/wefaq-quran-banner.png" name="twitter:image"/>
 <link href="https://fonts.googleapis.com/" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
@@ -1137,7 +1137,7 @@
 <!-- ===================== MAIN SCRIPT ===================== -->
 <script>
     // ========== CONFIG (ONLY ONCE) ==========
-    const SITE = { name: 'Wefaq', url: 'https://wefaq-khair.org', domain: 'wefaq-khair.org' };
+    const SITE = { name: 'Wefaq', url: location.origin + location.pathname, domain: location.hostname };
     const SUPABASE_URL = "https://zwgkrwkrohkmnyoixude.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp3Z2tyd2tyb2hrbW55b2l4dWRlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA2NzY2NDksImV4cCI6MjEwNjI1MjY0OX0.m4oZowdJ0-UbZ4ZFkygSp7yWo4BXENV2rlkzGMPF2JE";
 
@@ -2925,7 +2925,7 @@
       loadSpecialists();
       ensureSessionKey();
       setTimeout(updateV8HeroStats, 350);
-      trackVisitor();          // cloud + safe local fallback
+      trackVisitor();          // cloud
       setTimeout(updateV8HeroStats, 1200);
       startRealtimeSync();
       if (supabaseClient) { supabaseClient.auth.onAuthStateChange(async () => { await refreshAuthState(); loadLiveRadarData(); }); refreshAuthState().then(() => loadLiveRadarData()); }
