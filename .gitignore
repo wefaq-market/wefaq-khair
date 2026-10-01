@@ -1,0 +1,23 @@
+# Local environment / secrets
+.env
+.env.*
+!.env.example
+*.local
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Temporary/build files
+node_modules/
+dist/
+build/
+coverage/
+
+# Supabase local runtime files
+.supabase/
