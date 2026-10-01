@@ -3,8 +3,8 @@
 <!-- saved from url=(0043)https://wefaq-market.github.io/wefaq-khair/ -->
 <html class="scroll-smooth" dir="rtl" lang="ar"><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
-<title>منصة وفاق التعليمية | القرآن الكريم واللغة العربية والتعليم</title>
-<meta content="Wefaq connects project owners, funding seekers, partners, Quran memorization circles, language teachers, services, tenders and auctions worldwide." name="description"/>
+<title>منصة وفاق التعليمية | القرآن الكريم واللغة العربية</title>
+<meta content="منصة وفاق التعليمية لربط الطلاب والأسر بمعلمي القرآن واللغة العربية والمتخصصين مع أدوات بحث وتواصل وذكاء اصطناعي." name="description"/>
 <meta content="#059669" name="theme-color"/>
 <meta content="strict-origin-when-cross-origin" name="referrer"/>
 <meta content="telephone=no" name="format-detection"/>
@@ -25,10 +25,10 @@
 <meta content="https://wefaq-khair.org/og.png" name="twitter:image"/>
 <link href="https://fonts.googleapis.com/" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
-<link href="./منصة وفاق التعليمية _ القرآن الكريم واللغة العربية والتعليم_files/css2" rel="stylesheet"/>
-<script src="./منصة وفاق التعليمية _ القرآن الكريم واللغة العربية والتعليم_files/saved_resource"></script>
-<link href="./منصة وفاق التعليمية _ القرآن الكريم واللغة العربية والتعليم_files/all.min.css" referrerpolicy="no-referrer" rel="stylesheet"/>
-<script src="./منصة وفاق التعليمية _ القرآن الكريم واللغة العربية والتعليم_files/supabase-js@2"></script>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" referrerpolicy="no-referrer" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
     tailwind.config = {
       darkMode: 'class',
@@ -137,7 +137,63 @@
     @media(max-width:1024px){.wf-hero-grid{grid-template-columns:1fr}.wf-hero-art{min-height:280px}.wf-intent-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.wf-specialist-rail{grid-template-columns:repeat(4,minmax(0,1fr))}.wf-search-row{grid-template-columns:1fr 1fr}.wf-search-button{grid-column:1/-1}}
     @media(max-width:640px){.wf-hero-title{font-size:2rem}.wf-intent-grid{grid-template-columns:1fr 1fr}.wf-specialist-rail{grid-template-columns:repeat(2,minmax(0,1fr))}.wf-search-row{grid-template-columns:1fr}.wf-search-button{grid-column:auto}.wf-mini-stats{grid-template-columns:1fr 1fr 1fr}.wf-intent{min-height:68px}.wf-hero-art{min-height:220px}}
 
+  
+    /* v9.0 visual merge: featured learning tracks + contact CTA */
+    .wf-tracks-shell{border:1px solid rgba(16,185,129,.16);background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(248,250,252,.98));}
+    .dark .wf-tracks-shell{background:linear-gradient(180deg,rgba(15,23,42,.98),rgba(2,6,23,.96));border-color:rgba(52,211,153,.16);}
+    .wf-track-card{position:relative;overflow:hidden;border-radius:1.35rem;border:1px solid rgba(226,232,240,.9);background:#fff;box-shadow:0 12px 28px rgba(15,23,42,.06);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;}
+    .wf-track-card:hover{transform:translateY(-5px);box-shadow:0 24px 48px rgba(15,23,42,.10);border-color:rgba(16,185,129,.28);}
+    .dark .wf-track-card{background:#0f172a;border-color:#1e293b;box-shadow:0 16px 34px rgba(0,0,0,.18);}
+    .wf-track-visual{height:150px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+    .wf-track-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,6,23,.03),rgba(2,6,23,.32));}
+    .wf-track-icon{position:relative;z-index:2;width:74px;height:74px;border-radius:1.35rem;display:flex;align-items:center;justify-content:center;color:#fff;background:rgba(2,6,23,.24);border:1px solid rgba(255,255,255,.32);backdrop-filter:blur(10px);box-shadow:0 12px 30px rgba(0,0,0,.22);font-size:1.9rem;}
+    .wf-track-visual-quran{background:linear-gradient(135deg,#064e3b,#10b981 55%,#164e63);}
+    .wf-track-visual-arabic{background:linear-gradient(135deg,#0c4a6e,#2563eb 55%,#4338ca);}
+    .wf-track-visual-kids{background:linear-gradient(135deg,#92400e,#f59e0b 55%,#ec4899);}
+    .wf-track-body{padding:1.25rem;display:flex;flex-direction:column;min-height:220px;}
+    .wf-track-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.9rem;}
+    .wf-track-tag{font-size:.62rem;font-weight:800;border-radius:999px;padding:.34rem .55rem;background:#f1f5f9;color:#475569;}
+    .dark .wf-track-tag{background:#1e293b;color:#cbd5e1;}
+    .wf-track-cta{margin-top:auto;display:grid;grid-template-columns:1fr auto;gap:.55rem;padding-top:1rem;}
+    .wf-contact-hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#052e2b 0%,#0b192c 58%,#0f172a 100%);}
+    .wf-contact-hero:before{content:"";position:absolute;width:320px;height:320px;left:-110px;bottom:-180px;background:radial-gradient(circle,rgba(16,185,129,.24),transparent 70%);}
+    @media(max-width:640px){.wf-track-body{min-height:205px}.wf-track-visual{height:135px}}
+
   </style>
+<style id="wefaq-visual-upgrade-v10">
+  /* v10: premium visual enhancements inspired by the supplied concept */
+  .wf-hero{
+    background:
+      radial-gradient(ellipse 70% 55% at 78% 18%,rgba(16,185,129,.20),transparent 65%),
+      radial-gradient(ellipse 55% 45% at 18% 85%,rgba(37,99,235,.12),transparent 68%),
+      linear-gradient(135deg,#052e2b 0%,#0b192c 52%,#07131f 100%);
+    box-shadow:0 28px 70px rgba(2,6,23,.18);
+  }
+  .wf-hero:before{inset:-10% -8% -55% 30%;height:520px;background:radial-gradient(circle,rgba(52,211,153,.18),transparent 65%);animation:wf-pulse-glow 8s ease-in-out infinite;}
+  .wf-hero:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 0 40%,rgba(255,255,255,.025) 50%,transparent 60%);opacity:.7;}
+  .wf-hero-copy,.wf-hero-art{z-index:1;}
+  .wf-search-box{background:rgba(2,6,23,.42);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 20px 55px rgba(0,0,0,.20),inset 0 1px 0 rgba(255,255,255,.05);}
+  .wf-search-button{position:relative;overflow:hidden;box-shadow:0 12px 30px rgba(16,185,129,.18);}
+  .wf-search-button:before{content:"";position:absolute;inset:-120% 40% -120% -40%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transform:translateX(-160%);transition:transform .6s ease;}
+  .wf-search-button:hover:before{transform:translateX(180%);}
+  .wf-specialist-card{transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s ease,border-color .3s ease;}
+  .wf-specialist-card:hover{transform:translateY(-8px) scale(1.012);box-shadow:0 25px 50px -16px rgba(16,185,129,.28),0 18px 35px rgba(15,23,42,.12);border-color:rgba(52,211,153,.35);}
+  .wf-track-card{transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s ease,border-color .3s ease;}
+  .wf-track-card:hover{transform:translateY(-8px) scale(1.012);box-shadow:0 25px 50px -14px rgba(15,23,42,.18);}
+  .wf-section-line{width:60px;height:4px;border-radius:999px;background:linear-gradient(90deg,#10b981,#34d399);margin:0 auto .9rem;}
+  .wf-how-card{position:relative;overflow:hidden;transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s ease,border-color .3s ease;}
+  .wf-how-card:before{content:"";position:absolute;inset:auto -20% -60% auto;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(16,185,129,.12),transparent 70%);pointer-events:none;}
+  .wf-how-card:hover{transform:translateY(-6px);box-shadow:0 24px 45px rgba(15,23,42,.10);border-color:rgba(16,185,129,.30);}
+  .wf-how-number{position:absolute;top:1rem;inset-inline-end:1.25rem;font-size:4.2rem;line-height:1;font-weight:900;color:rgba(148,163,184,.12);}
+  .wf-how-icon{width:3.6rem;height:3.6rem;border-radius:1.1rem;display:flex;align-items:center;justify-content:center;font-size:1.45rem;background:rgba(16,185,129,.10);color:#059669;border:1px solid rgba(16,185,129,.12);}
+  .dark .wf-how-icon{background:rgba(16,185,129,.13);color:#6ee7b7;border-color:rgba(110,231,183,.14);}
+  .wf-hero-status{display:inline-flex;align-items:center;gap:.45rem;border:1px solid rgba(255,255,255,.12);background:rgba(2,6,23,.42);backdrop-filter:blur(12px);border-radius:999px;padding:.45rem .7rem;font-size:.64rem;font-weight:800;color:#e2e8f0;}
+  .wf-hero-status .dot{width:.45rem;height:.45rem;border-radius:50%;background:#34d399;box-shadow:0 0 0 5px rgba(52,211,153,.10);}
+  .wf-hero-art-caption{box-shadow:0 18px 45px rgba(0,0,0,.24);}
+  @keyframes wf-pulse-glow{0%,100%{transform:scale(1);opacity:.75}50%{transform:scale(1.08);opacity:1}}
+  @media(max-width:640px){.wf-how-number{font-size:3.3rem}.wf-section-line{margin-bottom:.7rem}.wf-hero-status{font-size:.58rem}}
+  @media(prefers-reduced-motion:reduce){.wf-hero:before{animation:none}.wf-specialist-card,.wf-track-card,.wf-how-card{transition:none}}
+</style>
 <style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:Inter, Tajawal, sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.inset-x-0{left:0px;right:0px}.bottom-0{bottom:0px}.end-0{inset-inline-end:0px}.left-3{left:0.75rem}.right-4{right:1rem}.top-0{top:0px}.top-3{top:0.75rem}.top-4{top:1rem}.top-full{top:100%}.z-40{z-index:40}.z-50{z-index:50}.z-\[60\]{z-index:60}.z-\[65\]{z-index:65}.z-\[70\]{z-index:70}.z-\[80\]{z-index:80}.col-span-2{grid-column:span 2 / span 2}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:0.25rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-5{margin-bottom:1.25rem}.mr-1{margin-right:0.25rem}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-0\.5{margin-top:0.125rem}.mt-auto{margin-top:auto}.line-clamp-2{overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2}.line-clamp-4{overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4}.line-clamp-3{overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-1\.5{height:0.375rem}.h-10{height:2.5rem}.h-11{height:2.75rem}.h-12{height:3rem}.h-16{height:4rem}.h-2{height:0.5rem}.h-64{height:16rem}.h-9{height:2.25rem}.h-full{height:100%}.h-8{height:2rem}.max-h-\[90vh\]{max-height:90vh}.min-h-\[40px\]{min-height:40px}.min-h-\[44px\]{min-height:44px}.min-h-\[46px\]{min-height:46px}.min-h-screen{min-height:100vh}.w-1\.5{width:0.375rem}.w-10{width:2.5rem}.w-11{width:2.75rem}.w-12{width:3rem}.w-72{width:18rem}.w-9{width:2.25rem}.w-full{width:100%}.w-8{width:2rem}.min-w-0{min-width:0px}.max-w-2xl{max-width:42rem}.max-w-7xl{max-width:80rem}.max-w-lg{max-width:32rem}.max-w-md{max-width:28rem}.max-w-sm{max-width:24rem}.max-w-xl{max-width:36rem}.flex-1{flex:1 1 0%}.flex-grow{flex-grow:1}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes pulse{50%{opacity:.5}}.animate-pulse{animation:pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite}.resize-none{resize:none}.scroll-mt-20{scroll-margin-top:5rem}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-end{align-items:flex-end}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.justify-around{justify-content:space-around}.gap-0\.5{gap:0.125rem}.gap-1{gap:0.25rem}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-5{gap:1.25rem}.gap-6{gap:1.5rem}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-8 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(2rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(2rem * var(--tw-space-y-reverse))}.self-start{align-self:flex-start}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.overflow-y-auto{overflow-y:auto}.scroll-smooth{scroll-behavior:smooth}.whitespace-nowrap{white-space:nowrap}.break-all{word-break:break-all}.rounded{border-radius:0.25rem}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-md{border-radius:0.375rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-dashed{border-style:dashed}.border-amber-200{--tw-border-opacity:1;border-color:rgb(253 230 138 / var(--tw-border-opacity, 1))}.border-emerald-200{--tw-border-opacity:1;border-color:rgb(167 243 208 / var(--tw-border-opacity, 1))}.border-emerald-500\/20{border-color:rgb(16 185 129 / 0.2)}.border-sky-200{--tw-border-opacity:1;border-color:rgb(186 230 253 / var(--tw-border-opacity, 1))}.border-slate-100{--tw-border-opacity:1;border-color:rgb(241 245 249 / var(--tw-border-opacity, 1))}.border-slate-200{--tw-border-opacity:1;border-color:rgb(226 232 240 / var(--tw-border-opacity, 1))}.border-slate-300{--tw-border-opacity:1;border-color:rgb(203 213 225 / var(--tw-border-opacity, 1))}.border-slate-800{--tw-border-opacity:1;border-color:rgb(30 41 59 / var(--tw-border-opacity, 1))}.border-teal-500\/20{border-color:rgb(20 184 166 / 0.2)}.border-white\/10{border-color:rgb(255 255 255 / 0.1)}.border-amber-100{--tw-border-opacity:1;border-color:rgb(254 243 199 / var(--tw-border-opacity, 1))}.border-blue-500\/30{border-color:rgb(59 130 246 / 0.3)}.border-emerald-100{--tw-border-opacity:1;border-color:rgb(209 250 229 / var(--tw-border-opacity, 1))}.border-slate-500\/30{border-color:rgb(100 116 139 / 0.3)}.bg-amber-50{--tw-bg-opacity:1;background-color:rgb(255 251 235 / var(--tw-bg-opacity, 1))}.bg-blue-100{--tw-bg-opacity:1;background-color:rgb(219 234 254 / var(--tw-bg-opacity, 1))}.bg-brand-100{--tw-bg-opacity:1;background-color:rgb(220 252 231 / var(--tw-bg-opacity, 1))}.bg-brand-600{--tw-bg-opacity:1;background-color:rgb(5 150 105 / var(--tw-bg-opacity, 1))}.bg-cyan-100{--tw-bg-opacity:1;background-color:rgb(207 250 254 / var(--tw-bg-opacity, 1))}.bg-cyan-400{--tw-bg-opacity:1;background-color:rgb(34 211 238 / var(--tw-bg-opacity, 1))}.bg-emerald-100{--tw-bg-opacity:1;background-color:rgb(209 250 229 / var(--tw-bg-opacity, 1))}.bg-emerald-400{--tw-bg-opacity:1;background-color:rgb(52 211 153 / var(--tw-bg-opacity, 1))}.bg-emerald-50{--tw-bg-opacity:1;background-color:rgb(236 253 245 / var(--tw-bg-opacity, 1))}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.bg-emerald-500\/10{background-color:rgb(16 185 129 / 0.1)}.bg-emerald-600{--tw-bg-opacity:1;background-color:rgb(5 150 105 / var(--tw-bg-opacity, 1))}.bg-sky-100{--tw-bg-opacity:1;background-color:rgb(224 242 254 / var(--tw-bg-opacity, 1))}.bg-sky-50{--tw-bg-opacity:1;background-color:rgb(240 249 255 / var(--tw-bg-opacity, 1))}.bg-sky-500{--tw-bg-opacity:1;background-color:rgb(14 165 233 / var(--tw-bg-opacity, 1))}.bg-slate-100{--tw-bg-opacity:1;background-color:rgb(241 245 249 / var(--tw-bg-opacity, 1))}.bg-slate-200{--tw-bg-opacity:1;background-color:rgb(226 232 240 / var(--tw-bg-opacity, 1))}.bg-slate-400{--tw-bg-opacity:1;background-color:rgb(148 163 184 / var(--tw-bg-opacity, 1))}.bg-slate-50{--tw-bg-opacity:1;background-color:rgb(248 250 252 / var(--tw-bg-opacity, 1))}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42 / var(--tw-bg-opacity, 1))}.bg-slate-950\/60{background-color:rgb(2 6 23 / 0.6)}.bg-slate-950\/70{background-color:rgb(2 6 23 / 0.7)}.bg-slate-950\/95{background-color:rgb(2 6 23 / 0.95)}.bg-teal-500\/10{background-color:rgb(20 184 166 / 0.1)}.bg-transparent{background-color:transparent}.bg-violet-100{--tw-bg-opacity:1;background-color:rgb(237 233 254 / var(--tw-bg-opacity, 1))}.bg-violet-600{--tw-bg-opacity:1;background-color:rgb(124 58 237 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/5{background-color:rgb(255 255 255 / 0.05)}.bg-white\/90{background-color:rgb(255 255 255 / 0.9)}.bg-emerald-500\/95{background-color:rgb(16 185 129 / 0.95)}.bg-blue-500\/10{background-color:rgb(59 130 246 / 0.1)}.bg-slate-500\/10{background-color:rgb(100 116 139 / 0.1)}.bg-brand-50{--tw-bg-opacity:1;background-color:rgb(240 253 244 / var(--tw-bg-opacity, 1))}.bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--tw-gradient-stops))}.bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-stops))}.bg-gradient-to-tr{background-image:linear-gradient(to top right, var(--tw-gradient-stops))}.from-brand-700{--tw-gradient-from:#047857 var(--tw-gradient-from-position);--tw-gradient-to:rgb(4 120 87 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-brand-800{--tw-gradient-from:#065f46 var(--tw-gradient-from-position);--tw-gradient-to:rgb(6 95 70 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-slate-950{--tw-gradient-from:#020617 var(--tw-gradient-from-position);--tw-gradient-to:rgb(2 6 23 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.via-brand-600{--tw-gradient-to:rgb(5 150 105 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #059669 var(--tw-gradient-via-position), var(--tw-gradient-to)}.to-emerald-400{--tw-gradient-to:#34d399 var(--tw-gradient-to-position)}.to-emerald-500{--tw-gradient-to:#10b981 var(--tw-gradient-to-position)}.to-slate-900{--tw-gradient-to:#0f172a var(--tw-gradient-to-position)}.bg-clip-text{-webkit-background-clip:text;background-clip:text}.p-2{padding:0.5rem}.p-3{padding:0.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.pb-2{padding-bottom:0.5rem}.pb-\[max\(0\.5rem\2c env\(safe-area-inset-bottom\)\)\]{padding-bottom:max(0.5rem,env(safe-area-inset-bottom))}.pl-9{padding-left:2.25rem}.pr-3{padding-right:0.75rem}.pr-8{padding-right:2rem}.pt-2{padding-top:0.5rem}.pt-3{padding-top:0.75rem}.pt-4{padding-top:1rem}.text-center{text-align:center}.text-right{text-align:right}.font-mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}.text-2xl{font-size:1.5rem;line-height:2rem}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.text-\[9px\]{font-size:9px}.font-black{font-weight:900}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-5{line-height:1.25rem}.leading-relaxed{line-height:1.625}.tracking-wide{letter-spacing:0.025em}.tracking-wider{letter-spacing:0.05em}.text-amber-400{--tw-text-opacity:1;color:rgb(251 191 36 / var(--tw-text-opacity, 1))}.text-amber-800{--tw-text-opacity:1;color:rgb(146 64 14 / var(--tw-text-opacity, 1))}.text-blue-500{--tw-text-opacity:1;color:rgb(59 130 246 / var(--tw-text-opacity, 1))}.text-blue-600{--tw-text-opacity:1;color:rgb(37 99 235 / var(--tw-text-opacity, 1))}.text-blue-700{--tw-text-opacity:1;color:rgb(29 78 216 / var(--tw-text-opacity, 1))}.text-brand-500{--tw-text-opacity:1;color:rgb(16 185 129 / var(--tw-text-opacity, 1))}.text-brand-600{--tw-text-opacity:1;color:rgb(5 150 105 / var(--tw-text-opacity, 1))}.text-brand-800{--tw-text-opacity:1;color:rgb(6 95 70 / var(--tw-text-opacity, 1))}.text-cyan-600{--tw-text-opacity:1;color:rgb(8 145 178 / var(--tw-text-opacity, 1))}.text-emerald-200{--tw-text-opacity:1;color:rgb(167 243 208 / var(--tw-text-opacity, 1))}.text-emerald-300{--tw-text-opacity:1;color:rgb(110 231 183 / var(--tw-text-opacity, 1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153 / var(--tw-text-opacity, 1))}.text-emerald-500{--tw-text-opacity:1;color:rgb(16 185 129 / var(--tw-text-opacity, 1))}.text-emerald-600{--tw-text-opacity:1;color:rgb(5 150 105 / var(--tw-text-opacity, 1))}.text-emerald-700{--tw-text-opacity:1;color:rgb(4 120 87 / var(--tw-text-opacity, 1))}.text-red-600{--tw-text-opacity:1;color:rgb(220 38 38 / var(--tw-text-opacity, 1))}.text-sky-500{--tw-text-opacity:1;color:rgb(14 165 233 / var(--tw-text-opacity, 1))}.text-sky-600{--tw-text-opacity:1;color:rgb(2 132 199 / var(--tw-text-opacity, 1))}.text-sky-700{--tw-text-opacity:1;color:rgb(3 105 161 / var(--tw-text-opacity, 1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.text-slate-800{--tw-text-opacity:1;color:rgb(30 41 59 / var(--tw-text-opacity, 1))}.text-slate-900{--tw-text-opacity:1;color:rgb(15 23 42 / var(--tw-text-opacity, 1))}.text-teal-700{--tw-text-opacity:1;color:rgb(15 118 110 / var(--tw-text-opacity, 1))}.text-transparent{color:transparent}.text-violet-600{--tw-text-opacity:1;color:rgb(124 58 237 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-white\/60{color:rgb(255 255 255 / 0.6)}.text-amber-300{--tw-text-opacity:1;color:rgb(252 211 77 / var(--tw-text-opacity, 1))}.text-emerald-200\/90{color:rgb(167 243 208 / 0.9)}.text-slate-950{--tw-text-opacity:1;color:rgb(2 6 23 / var(--tw-text-opacity, 1))}.text-white\/70{color:rgb(255 255 255 / 0.7)}.text-amber-700{--tw-text-opacity:1;color:rgb(180 83 9 / var(--tw-text-opacity, 1))}.underline{-webkit-text-decoration-line:underline;text-decoration-line:underline}.shadow{--tw-shadow:0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-emerald-500\/20{--tw-shadow-color:rgb(16 185 129 / 0.2);--tw-shadow:var(--tw-shadow-colored)}.outline-none{outline:2px solid transparent;outline-offset:2px}.backdrop-blur{--tw-backdrop-blur:blur(8px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.hover\:bg-brand-700:hover{--tw-bg-opacity:1;background-color:rgb(4 120 87 / var(--tw-bg-opacity, 1))}.hover\:bg-emerald-700:hover{--tw-bg-opacity:1;background-color:rgb(4 120 87 / var(--tw-bg-opacity, 1))}.hover\:bg-red-50:hover{--tw-bg-opacity:1;background-color:rgb(254 242 242 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-200:hover{--tw-bg-opacity:1;background-color:rgb(226 232 240 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-300:hover{--tw-bg-opacity:1;background-color:rgb(203 213 225 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-50:hover{--tw-bg-opacity:1;background-color:rgb(248 250 252 / var(--tw-bg-opacity, 1))}.hover\:bg-violet-700:hover{--tw-bg-opacity:1;background-color:rgb(109 40 217 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/15:hover{background-color:rgb(255 255 255 / 0.15)}.hover\:bg-emerald-400:hover{--tw-bg-opacity:1;background-color:rgb(52 211 153 / var(--tw-bg-opacity, 1))}.hover\:text-brand-600:hover{--tw-text-opacity:1;color:rgb(5 150 105 / var(--tw-text-opacity, 1))}.hover\:text-emerald-400:hover{--tw-text-opacity:1;color:rgb(52 211 153 / var(--tw-text-opacity, 1))}.hover\:text-slate-600:hover{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.hover\:underline:hover{-webkit-text-decoration-line:underline;text-decoration-line:underline}.hover\:opacity-80:hover{opacity:0.8}.hover\:shadow-lg:hover{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\:ring-2:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.focus\:ring-brand-500:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(16 185 129 / var(--tw-ring-opacity, 1))}.focus\:ring-emerald-500:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(16 185 129 / var(--tw-ring-opacity, 1))}.focus\:ring-sky-500:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(14 165 233 / var(--tw-ring-opacity, 1))}.focus\:ring-violet-500:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(139 92 246 / var(--tw-ring-opacity, 1))}.active\:scale-95:active{--tw-scale-x:.95;--tw-scale-y:.95;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.dark\:border-amber-900:is(.dark *){--tw-border-opacity:1;border-color:rgb(120 53 15 / var(--tw-border-opacity, 1))}.dark\:border-emerald-900:is(.dark *){--tw-border-opacity:1;border-color:rgb(6 78 59 / var(--tw-border-opacity, 1))}.dark\:border-sky-900:is(.dark *){--tw-border-opacity:1;border-color:rgb(12 74 110 / var(--tw-border-opacity, 1))}.dark\:border-slate-700:is(.dark *){--tw-border-opacity:1;border-color:rgb(51 65 85 / var(--tw-border-opacity, 1))}.dark\:border-slate-800:is(.dark *){--tw-border-opacity:1;border-color:rgb(30 41 59 / var(--tw-border-opacity, 1))}.dark\:bg-amber-950\/20:is(.dark *){background-color:rgb(69 26 3 / 0.2)}.dark\:bg-blue-950:is(.dark *){--tw-bg-opacity:1;background-color:rgb(23 37 84 / var(--tw-bg-opacity, 1))}.dark\:bg-brand-900\/50:is(.dark *){background-color:rgb(6 78 59 / 0.5)}.dark\:bg-cyan-950\/50:is(.dark *){background-color:rgb(8 51 68 / 0.5)}.dark\:bg-emerald-950:is(.dark *){--tw-bg-opacity:1;background-color:rgb(2 44 34 / var(--tw-bg-opacity, 1))}.dark\:bg-emerald-950\/30:is(.dark *){background-color:rgb(2 44 34 / 0.3)}.dark\:bg-emerald-950\/40:is(.dark *){background-color:rgb(2 44 34 / 0.4)}.dark\:bg-emerald-950\/50:is(.dark *){background-color:rgb(2 44 34 / 0.5)}.dark\:bg-sky-950:is(.dark *){--tw-bg-opacity:1;background-color:rgb(8 47 73 / var(--tw-bg-opacity, 1))}.dark\:bg-sky-950\/30:is(.dark *){background-color:rgb(8 47 73 / 0.3)}.dark\:bg-sky-950\/50:is(.dark *){background-color:rgb(8 47 73 / 0.5)}.dark\:bg-slate-800:is(.dark *){--tw-bg-opacity:1;background-color:rgb(30 41 59 / var(--tw-bg-opacity, 1))}.dark\:bg-slate-900:is(.dark *){--tw-bg-opacity:1;background-color:rgb(15 23 42 / var(--tw-bg-opacity, 1))}.dark\:bg-slate-900\/90:is(.dark *){background-color:rgb(15 23 42 / 0.9)}.dark\:bg-slate-950:is(.dark *){--tw-bg-opacity:1;background-color:rgb(2 6 23 / var(--tw-bg-opacity, 1))}.dark\:bg-violet-950\/50:is(.dark *){background-color:rgb(46 16 101 / 0.5)}.dark\:bg-amber-950\/30:is(.dark *){background-color:rgb(69 26 3 / 0.3)}.dark\:from-emerald-400:is(.dark *){--tw-gradient-from:#34d399 var(--tw-gradient-from-position);--tw-gradient-to:rgb(52 211 153 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.dark\:to-teal-200:is(.dark *){--tw-gradient-to:#99f6e4 var(--tw-gradient-to-position)}.dark\:text-amber-300:is(.dark *){--tw-text-opacity:1;color:rgb(252 211 77 / var(--tw-text-opacity, 1))}.dark\:text-blue-400:is(.dark *){--tw-text-opacity:1;color:rgb(96 165 250 / var(--tw-text-opacity, 1))}.dark\:text-cyan-300:is(.dark *){--tw-text-opacity:1;color:rgb(103 232 249 / var(--tw-text-opacity, 1))}.dark\:text-emerald-300:is(.dark *){--tw-text-opacity:1;color:rgb(110 231 183 / var(--tw-text-opacity, 1))}.dark\:text-emerald-400:is(.dark *){--tw-text-opacity:1;color:rgb(52 211 153 / var(--tw-text-opacity, 1))}.dark\:text-sky-300:is(.dark *){--tw-text-opacity:1;color:rgb(125 211 252 / var(--tw-text-opacity, 1))}.dark\:text-slate-100:is(.dark *){--tw-text-opacity:1;color:rgb(241 245 249 / var(--tw-text-opacity, 1))}.dark\:text-slate-200:is(.dark *){--tw-text-opacity:1;color:rgb(226 232 240 / var(--tw-text-opacity, 1))}.dark\:text-slate-300:is(.dark *){--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.dark\:text-slate-400:is(.dark *){--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.dark\:text-teal-400:is(.dark *){--tw-text-opacity:1;color:rgb(45 212 191 / var(--tw-text-opacity, 1))}.dark\:text-violet-300:is(.dark *){--tw-text-opacity:1;color:rgb(196 181 253 / var(--tw-text-opacity, 1))}.dark\:text-violet-400:is(.dark *){--tw-text-opacity:1;color:rgb(167 139 250 / var(--tw-text-opacity, 1))}.dark\:text-white:is(.dark *){--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.dark\:hover\:bg-red-950\/30:hover:is(.dark *){background-color:rgb(69 10 10 / 0.3)}.dark\:hover\:bg-slate-700:hover:is(.dark *){--tw-bg-opacity:1;background-color:rgb(51 65 85 / var(--tw-bg-opacity, 1))}.dark\:hover\:bg-slate-800:hover:is(.dark *){--tw-bg-opacity:1;background-color:rgb(30 41 59 / var(--tw-bg-opacity, 1))}.dark\:hover\:text-emerald-400:hover:is(.dark *){--tw-text-opacity:1;color:rgb(52 211 153 / var(--tw-text-opacity, 1))}.dark\:hover\:text-slate-200:hover:is(.dark *){--tw-text-opacity:1;color:rgb(226 232 240 / var(--tw-text-opacity, 1))}@media (min-width: 640px){.sm\:inline{display:inline}.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.sm\:flex-row{flex-direction:row}.sm\:items-center{align-items:center}.sm\:gap-3{gap:0.75rem}.sm\:self-auto{align-self:auto}.sm\:p-5{padding:1.25rem}.sm\:p-6{padding:1.5rem}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}}@media (min-width: 768px){.md\:col-span-1{grid-column:span 1 / span 1}.md\:col-span-2{grid-column:span 2 / span 2}.md\:col-span-3{grid-column:span 3 / span 3}.md\:col-span-4{grid-column:span 4 / span 4}.md\:col-span-5{grid-column:span 5 / span 5}.md\:col-span-6{grid-column:span 6 / span 6}.md\:col-span-8{grid-column:span 8 / span 8}.md\:hidden{display:none}.md\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}}@media (min-width: 1024px){.lg\:block{display:block}.lg\:flex{display:flex}.lg\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.lg\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.lg\:flex-row{flex-direction:row}.lg\:items-center{align-items:center}.lg\:p-6{padding:1.5rem}.lg\:px-8{padding-left:2rem;padding-right:2rem}.lg\:pb-0{padding-bottom:0px}}@media (min-width: 1280px){.xl\:col-span-4{grid-column:span 4 / span 4}.xl\:col-span-8{grid-column:span 8 / span 8}.xl\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.xl\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.xl\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.xl\:flex-row{flex-direction:row}.xl\:items-center{align-items:center}}</style>
 <style id="wefaq-pro-polish">
   :root { color-scheme: light; scroll-padding-top: 5rem; }
@@ -171,20 +227,17 @@
 <div class="flex items-center gap-3">
 <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-700 via-brand-600 to-emerald-400 flex items-center justify-center text-white text-xl font-bold shadow-md shadow-emerald-500/20">W</div>
 <div>
-<span class="text-xl font-extrabold bg-gradient-to-r from-brand-800 via-brand-600 to-emerald-500 dark:from-emerald-400 dark:to-teal-200 bg-clip-text text-transparent">منصة وفاق العالمية</span>
-<span class="block text-[10px] font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase">رادار المطابقة العالمية والإقليمية</span>
+<span class="text-xl font-extrabold bg-gradient-to-r from-brand-800 via-brand-600 to-emerald-500 dark:from-emerald-400 dark:to-teal-200 bg-clip-text text-transparent">منصة وفاق التعليمية</span>
+<span class="block text-[10px] font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase">القرآن • العربية • التعليم الذكي</span>
 </div>
 </div>
 <nav class="hidden lg:flex items-center gap-6 text-xs font-semibold text-slate-600 dark:text-slate-300">
-<a class="hover:text-brand-600 dark:hover:text-emerald-400 transition flex items-center gap-1.5" href="https://wefaq-market.github.io/wefaq-khair/#radar-section">
-<i class="fa-solid fa-satellite-dish text-brand-500"></i> الرادار الكامل
-        </a>
-<a class="hover:text-brand-600 dark:hover:text-emerald-400 transition flex items-center gap-1.5" href="https://wefaq-market.github.io/wefaq-khair/#marketplace-section">
-<i class="fa-solid fa-earth-americas text-blue-500"></i> المكتبة التعليمية
-        </a>
-<a class="hover:text-brand-600 dark:hover:text-emerald-400 transition flex items-center gap-1.5" href="https://wefaq-market.github.io/wefaq-khair/#specialists-hub"><i class="fa-solid fa-book-quran text-emerald-500"></i> Specialists</a>
-
-
+<a class="hover:text-brand-600 dark:hover:text-emerald-400 transition flex items-center gap-1.5" href="#specialists-hub"><i class="fa-solid fa-user-graduate text-emerald-500"></i> المتخصصون</a>
+<a class="hover:text-brand-600 dark:hover:text-emerald-400 transition flex items-center gap-1.5" href="#learning-tracks"><i class="fa-solid fa-route text-blue-500"></i> مسارات التعلم</a>
+<a class="hover:text-brand-600 dark:hover:text-emerald-400 transition flex items-center gap-1.5" href="#how-wefaq-works"><i class="fa-solid fa-list-check text-emerald-500"></i> كيف تعمل وفاق</a>
+<a class="hover:text-brand-600 dark:hover:text-emerald-400 transition flex items-center gap-1.5" href="#ai-center"><i class="fa-solid fa-robot text-violet-500"></i> الذكاء الاصطناعي</a>
+<a class="hover:text-brand-600 dark:hover:text-emerald-400 transition flex items-center gap-1.5" href="#marketplace-section"><i class="fa-solid fa-book-open-reader text-amber-500"></i> المكتبة التعليمية</a>
+<a class="hover:text-brand-600 dark:hover:text-emerald-400 transition flex items-center gap-1.5" href="#contact"><i class="fa-solid fa-envelope text-sky-500"></i> تواصل معنا</a>
 </nav>
 <div class="flex items-center gap-2 sm:gap-3">
 <div class="relative hidden lg:block">
@@ -235,7 +288,7 @@
 <option value="student">طالب</option>
 <option value="parent_family">ولي أمر / أسرة مسلمة</option>
 </select>
-<button class="wf-search-button" onclick="launchHeroSearch()" type="button"><i class="fa-solid fa-magnifying-glass mr-1"></i> بحث</button>
+<button class="wf-search-button glow-btn" onclick="launchHeroSearch()" type="button"><i class="fa-solid fa-magnifying-glass mr-1"></i> بحث</button>
 </div>
 </div>
 <div class="wf-intent-grid">
@@ -254,11 +307,15 @@
 </div>
 </div>
 <div class="wf-hero-art">
-<img alt="Quran learning banner" loading="eager" onerror="this.style.display='none'" src="./منصة وفاق التعليمية _ القرآن الكريم واللغة العربية والتعليم_files/photo-1609599006353-e629aaabfeae"/>
+<img alt="Quran learning banner" loading="eager" onerror="this.style.display='none'" src="https://images.unsplash.com/photo-1609599006353-e629aaabfeae?auto=format&fit=crop&w=1000&q=85"/>
 <div class="wf-hero-art-caption">
 <div class="text-[10px] font-extrabold text-emerald-300 mb-1">مجتمع متخصص</div>
 <div class="text-sm font-black">الأسر والطلاب والمتخصصون في التعليم — في مساحة موثوقة واحدة.</div>
 <div class="text-[10px] text-slate-300 mt-2">ملفات سحابية · وسائل تواصل متعددة · أونلاين وحضوري</div>
+<div class="flex flex-wrap gap-2 mt-3">
+  <span class="wf-hero-status"><span class="dot"></span><span data-i18n-merge="Smart matching is active">المطابقة الذكية نشطة</span></span>
+  <span class="wf-hero-status"><i class="fa-solid fa-shield-halved text-emerald-300"></i><span data-i18n-merge="Profiles can be verified">إمكانية توثيق الملفات</span></span>
+</div>
 </div>
 </div>
 </div>
@@ -295,11 +352,131 @@
 <div class="hidden text-center py-10 rounded-2xl border border-dashed border-slate-300 dark:border-slate-800 text-slate-400 text-xs" id="specialists-empty">لا توجد ملفات لمتخصصين لهذا الفلتر حاليًا.</div>
 </div>
 </section>
-<!-- Live Social + Open Web Radar -->
+<!-- v10 Premium Visual Merge: tracks + how-it-works + premium interactions -->
+<section class="scroll-mt-20" id="learning-tracks">
+  <div class="wf-tracks-shell rounded-3xl p-5 sm:p-6 shadow-sm">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-5">
+      <div>
+        <div class="inline-flex items-center gap-2 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900 px-3 py-1.5 text-[10px] font-extrabold">
+          <i class="fa-solid fa-sparkles"></i> وفاق التعليمية
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mt-3" data-i18n-merge="Learning tracks for every stage">مسارات تعلم مصممة لكل مرحلة</h2>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-1" data-i18n-merge="Choose a path, then let Wefaq connect you with the right specialist.">اختر المسار، ثم دع وفاق تقرّبك من المتخصص المناسب.</p>
+      </div>
+      <button class="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-2.5 text-xs font-extrabold text-slate-700 dark:text-slate-200 hover:border-emerald-300 hover:text-emerald-700 transition" onclick="document.getElementById('specialists-hub')?.scrollIntoView({behavior:'smooth'})" type="button">
+        <i class="fa-solid fa-user-graduate"></i><span data-i18n-merge="Explore all specialists">استكشف جميع المتخصصين</span>
+      </button>
+    </div>
 
-<!-- Cloud Opportunities Hub -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <article class="wf-track-card">
+        <div class="wf-track-visual wf-track-visual-quran">
+          <div class="wf-track-icon"><i class="fa-solid fa-book-quran"></i></div>
+        </div>
+        <div class="wf-track-body">
+          <div class="text-[10px] font-extrabold text-emerald-600 dark:text-emerald-400 uppercase tracking-wide">QURAN</div>
+          <h3 class="text-lg font-black text-slate-900 dark:text-white mt-1" data-i18n-merge="Quran & Tajweed">القرآن والتجويد</h3>
+          <p class="text-xs leading-6 text-slate-600 dark:text-slate-300 mt-2" data-i18n-merge="Memorization, recitation correction and flexible online learning.">التحفيظ، تصحيح التلاوة، والتعلم المرن عبر الإنترنت.</p>
+          <div class="wf-track-tags">
+            <span class="wf-track-tag" data-i18n-merge="Memorization">التحفيظ</span>
+            <span class="wf-track-tag" data-i18n-merge="Tajweed">التجويد</span>
+            <span class="wf-track-tag" data-i18n-merge="Online & flexible">أونلاين ومرن</span>
+          </div>
+          <div class="wf-track-cta">
+            <button class="rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-extrabold py-2.5" onclick="heroChoose('quran_teacher')" type="button"><span data-i18n-merge="Explore Quran specialists">استكشف متخصصي القرآن</span></button>
+            <button class="rounded-xl border border-slate-200 dark:border-slate-700 px-3 py-2.5 text-slate-600 dark:text-slate-300" onclick="heroChoose('quran_memorizer')" type="button" title="تحفيظ"><i class="fa-solid fa-arrow-left"></i></button>
+          </div>
+        </div>
+      </article>
 
- مركز أداء ومطابقة الذكاء الاصطناعي 
+      <article class="wf-track-card">
+        <div class="wf-track-visual wf-track-visual-arabic">
+          <div class="wf-track-icon"><i class="fa-solid fa-language"></i></div>
+        </div>
+        <div class="wf-track-body">
+          <div class="text-[10px] font-extrabold text-blue-600 dark:text-blue-400 uppercase tracking-wide">ARABIC</div>
+          <h3 class="text-lg font-black text-slate-900 dark:text-white mt-1" data-i18n-merge="Arabic Language">اللغة العربية</h3>
+          <p class="text-xs leading-6 text-slate-600 dark:text-slate-300 mt-2" data-i18n-merge="Grammar, rhetoric, reading and Arabic for non-native speakers.">النحو والبلاغة والقراءة والعربية لغير الناطقين بها.</p>
+          <div class="wf-track-tags">
+            <span class="wf-track-tag" data-i18n-merge="Grammar">النحو</span>
+            <span class="wf-track-tag" data-i18n-merge="Rhetoric">البلاغة</span>
+            <span class="wf-track-tag" data-i18n-merge="For all levels">لكافة المستويات</span>
+          </div>
+          <div class="wf-track-cta">
+            <button class="rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-extrabold py-2.5" onclick="heroChoose('arabic_teacher')" type="button"><span data-i18n-merge="Explore Arabic specialists">استكشف متخصصي العربية</span></button>
+            <button class="rounded-xl border border-slate-200 dark:border-slate-700 px-3 py-2.5 text-slate-600 dark:text-slate-300" onclick="document.getElementById('ai-center')?.scrollIntoView({behavior:'smooth'})" type="button" title="الذكاء الاصطناعي"><i class="fa-solid fa-robot"></i></button>
+          </div>
+        </div>
+      </article>
+
+      <article class="wf-track-card">
+        <div class="wf-track-visual wf-track-visual-kids">
+          <div class="wf-track-icon"><i class="fa-solid fa-children"></i></div>
+        </div>
+        <div class="wf-track-body">
+          <div class="text-[10px] font-extrabold text-amber-600 dark:text-amber-400 uppercase tracking-wide">FAMILY</div>
+          <h3 class="text-lg font-black text-slate-900 dark:text-white mt-1" data-i18n-merge="Kids & Family Learning">تعلم الأطفال والأسرة</h3>
+          <p class="text-xs leading-6 text-slate-600 dark:text-slate-300 mt-2" data-i18n-merge="Gentle learning paths for children, families and home-based study.">مسارات لطيفة للأطفال والأسر والتعلم المنزلي.</p>
+          <div class="wf-track-tags">
+            <span class="wf-track-tag" data-i18n-merge="Children">الأطفال</span>
+            <span class="wf-track-tag" data-i18n-merge="Families">الأسر</span>
+            <span class="wf-track-tag" data-i18n-merge="Interactive">تفاعلي</span>
+          </div>
+          <div class="wf-track-cta">
+            <button class="rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-extrabold py-2.5" onclick="heroChoose('parent_family')" type="button"><span data-i18n-merge="Find support for my family">ابحث عن دعم لأسرتي</span></button>
+            <button class="rounded-xl border border-slate-200 dark:border-slate-700 px-3 py-2.5 text-slate-600 dark:text-slate-300" onclick="openSpecialistJoin()" type="button" title="انضم كمتخصص"><i class="fa-solid fa-user-plus"></i></button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="mt-5 rounded-2xl bg-slate-950 text-white p-5 sm:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <div class="text-emerald-300 text-[10px] font-extrabold uppercase tracking-wider" data-i18n-merge="Ready to teach?">هل أنت مستعد للتدريس؟</div>
+        <p class="text-sm sm:text-base font-extrabold mt-1" data-i18n-merge="Join Wefaq as a specialist and publish your real profile for students and families.">انضم إلى وفاق كمتخصص وانشر ملفك الحقيقي للطلاب والأسر.</p>
+      </div>
+      <button class="rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs px-5 py-3" onclick="openSpecialistJoin()" type="button"><i class="fa-solid fa-user-plus mr-1"></i><span data-i18n-merge="Join the specialist network">انضم إلى شبكة المتخصصين</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- v10 How Wefaq Works -->
+<section class="scroll-mt-20" id="how-wefaq-works">
+  <div class="bg-slate-50 dark:bg-slate-900/60 rounded-3xl p-5 sm:p-6 lg:p-8 border border-slate-200/80 dark:border-slate-800">
+    <div class="text-center mb-8 sm:mb-10">
+      <div class="wf-section-line"></div>
+      <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white" data-i18n-merge="How Wefaq Works">كيف تعمل وفاق</h2>
+      <p class="text-sm text-slate-500 dark:text-slate-400 mt-2" data-i18n-merge="A simple journey from your learning need to the right specialist and measurable progress.">رحلة بسيطة من احتياجك التعليمي إلى المتخصص المناسب ثم متابعة التقدم.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
+      <article class="wf-how-card bg-white dark:bg-slate-950 rounded-2xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800">
+        <span class="wf-how-number">01</span>
+        <div class="wf-how-icon mb-5"><i class="fa-solid fa-magnifying-glass"></i></div>
+        <h3 class="text-lg font-black text-slate-900 dark:text-white" data-i18n-merge="Find your specialist">اعثر على المتخصص المناسب</h3>
+        <p class="text-xs leading-6 text-slate-500 dark:text-slate-400 mt-2" data-i18n-merge="Search by specialty, audience, learning mode, location and experience.">ابحث حسب التخصص والفئة وطريقة التعليم والموقع والخبرة.</p>
+        <button class="mt-4 text-xs font-extrabold text-emerald-700 dark:text-emerald-400 hover:underline" onclick="document.getElementById('specialists-hub')?.scrollIntoView({behavior:'smooth'})" type="button"><i class="fa-solid fa-arrow-left mr-1"></i><span data-i18n-merge="Browse specialists">تصفح المتخصصين</span></button>
+      </article>
+
+      <article class="wf-how-card bg-white dark:bg-slate-950 rounded-2xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800">
+        <span class="wf-how-number">02</span>
+        <div class="wf-how-icon mb-5"><i class="fa-solid fa-calendar-check"></i></div>
+        <h3 class="text-lg font-black text-slate-900 dark:text-white" data-i18n-merge="Connect and start">تواصل وابدأ رحلة التعلم</h3>
+        <p class="text-xs leading-6 text-slate-500 dark:text-slate-400 mt-2" data-i18n-merge="Review the profile, choose the available contact method and agree on the learning arrangement.">راجع الملف، اختر وسيلة التواصل المتاحة، واتفق على آلية التعلم.</p>
+        <button class="mt-4 text-xs font-extrabold text-emerald-700 dark:text-emerald-400 hover:underline" onclick="document.getElementById('workspace-section')?.scrollIntoView({behavior:'smooth'})" type="button"><i class="fa-solid fa-arrow-left mr-1"></i><span data-i18n-merge="Open my Wefaq space">افتح مساحة وفاق الخاصة بي</span></button>
+      </article>
+
+      <article class="wf-how-card bg-white dark:bg-slate-950 rounded-2xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800">
+        <span class="wf-how-number">03</span>
+        <div class="wf-how-icon mb-5"><i class="fa-solid fa-chart-line"></i></div>
+        <h3 class="text-lg font-black text-slate-900 dark:text-white" data-i18n-merge="Track progress with AI">تابع تقدمك بالذكاء الاصطناعي</h3>
+        <p class="text-xs leading-6 text-slate-500 dark:text-slate-400 mt-2" data-i18n-merge="Use smart matching, activity signals and personalized recommendations to improve the next step.">استخدم المطابقة الذكية وإشارات التفاعل والتوصيات الشخصية لتحسين خطوتك التالية.</p>
+        <button class="mt-4 text-xs font-extrabold text-emerald-700 dark:text-emerald-400 hover:underline" onclick="document.getElementById('ai-center')?.scrollIntoView({behavior:'smooth'})" type="button"><i class="fa-solid fa-arrow-left mr-1"></i><span data-i18n-merge="Open AI tools">افتح أدوات الذكاء الاصطناعي</span></button>
+      </article>
+    </div>
+  </div>
+</section>
+
 <section class="grid grid-cols-1 xl:grid-cols-12 gap-5" id="ai-center">
 <div class="xl:col-span-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm">
 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
@@ -612,10 +789,33 @@
 </div>
 </div></section>
 </main>
+
+<!-- v9.0 Contact CTA -->
+<section class="scroll-mt-20 mt-8" id="contact">
+  <div class="wf-contact-hero rounded-3xl p-6 sm:p-8 text-white shadow-xl">
+    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+      <div class="lg:col-span-8">
+        <div class="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/10 px-3 py-1.5 text-[10px] font-extrabold text-emerald-300"><i class="fa-solid fa-envelope"></i> وفاق التعليمية</div>
+        <h2 class="text-2xl sm:text-3xl font-black mt-3" data-i18n-merge="Contact Wefaq">تواصل مع وفاق</h2>
+        <p class="text-sm text-slate-300 leading-6 mt-2 max-w-2xl" data-i18n-merge="We welcome teachers, students, families and educational centers.">نرحب بالمعلمين والطلاب والأسر والمراكز التعليمية.</p>
+      </div>
+      <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-2">
+        <a class="rounded-xl bg-white text-slate-900 text-center font-extrabold text-xs py-3 px-4 hover:bg-slate-100 transition" href="mailto:contact@wefaq.edu"><i class="fa-solid fa-paper-plane mr-1"></i><span data-i18n-merge="Send us an email">أرسل لنا بريدًا إلكترونيًا</span></a>
+        <button class="rounded-xl bg-white/10 border border-white/15 text-white text-center font-extrabold text-xs py-3 px-4 hover:bg-white/15 transition" onclick="openSpecialistJoin()" type="button"><i class="fa-solid fa-user-plus mr-1"></i><span data-i18n-merge="Open specialist join form">فتح نموذج انضمام المتخصص</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="mt-8 mb-20 md:mb-0 py-8 text-center text-xs text-slate-500 dark:text-slate-400">
+  <div class="font-bold" data-i18n-merge="All rights reserved © Wefaq Educational Platform 2026">جميع الحقوق محفوظة © منصة وفاق التعليمية 2026</div>
+  <div class="mt-1" data-i18n-merge="Learning, connection and smart matching in one educational space.">التعلم والتواصل والمطابقة الذكية في مساحة تعليمية واحدة.</div>
+</footer>
+
 <!-- Mobile bottom nav -->
 <nav class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-slate-950/95 backdrop-blur border-t border-slate-800 flex justify-around items-center py-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] text-[10px] font-semibold text-slate-400" id="mobile-bottom-nav">
-<a class="flex flex-col items-center gap-0.5 px-2 py-1 hover:text-emerald-400" href="https://wefaq-market.github.io/wefaq-khair/#radar-section"><i class="fa-solid fa-satellite-dish text-base"></i>الرادار</a>
-<a class="flex flex-col items-center gap-0.5 px-2 py-1 hover:text-emerald-400" href="https://wefaq-market.github.io/wefaq-khair/#marketplace-section"><i class="fa-solid fa-store text-base"></i>المكتبة التعليمية</a>
+<a class="flex flex-col items-center gap-0.5 px-2 py-1 hover:text-emerald-400" href="#specialists-hub"><i class="fa-solid fa-user-graduate text-base"></i>المتخصصون</a>
+<a class="flex flex-col items-center gap-0.5 px-2 py-1 hover:text-emerald-400" href="#learning-tracks"><i class="fa-solid fa-route text-base"></i>المسارات</a>
 <button class="flex flex-col items-center gap-0.5 px-2 py-1 text-emerald-400" onclick="openCreateModal()" type="button"><i class="fa-solid fa-plus-circle text-xl"></i>إضافة</button>
 <button class="flex flex-col items-center gap-0.5 px-2 py-1 hover:text-emerald-400" onclick="openMine()" type="button"><i class="fa-solid fa-user text-base"></i>الحساب</button>
 <button class="flex flex-col items-center gap-0.5 px-2 py-1 hover:text-emerald-400" onclick="openAuthModal()" type="button"><i class="fa-solid fa-right-to-bracket text-base"></i>تسجيل الدخول</button>
@@ -920,6 +1120,10 @@
       'Wefaq Global Platform':'منصة وفاق العالمية','Global & Regional Matching Radar':'رادار المطابقة العالمية والإقليمية','Full Radar':'الرادار الكامل','Marketplace':'المكتبة التعليمية','Post Request / Opportunity':'نشر طلب / فرصة','Investment Hub & Global Quran Memorization Circles':'مركز الاستثمار وحلقات تحفيظ القرآن العالمية','The unified platform for Arab projects, funding requests, partnerships, and global Quran memorization circles':'شبكة تعليمية متخصصة تربط معلمي وطلاب القرآن الكريم واللغة العربية والحديث حول العالم','We connect idea & project owners, partnership & funding seekers, and feasibility study providers across the Arab world, plus a global umbrella for Quran teachers and students with continuous sanad, and a language learning section with Arabic first.':'نربط معلمي وطلاب القرآن الكريم والحديث واللغة العربية، ونساعد الأسر والمراكز التعليمية على اكتشاف الدروس والحلقات والدورات ووسائل التواصل المعلنة.','Request / Offer Quran Memorization':'طلب / عرض تحفيظ القرآن','Teach / Learn a Language':'تعليم / تعلم لغة','نشر درس / حلقة / دورة تعليمية':'عرض مشروع / طلب تمويل وشريك','Sync Cloud':'مزامنة سحابية','Share Platform':'مشاركة المنصة','Metrics':'الإحصائيات','Quran Seekers & Circles':'طالبو القرآن والحلقات','Worldwide':'حول العالم','Projects & Exhibitors':'المشاريع والعارضون','Arab World':'العالم العربي','Funding & Partner Seekers':'طالبو التمويل والشركاء','Investment Opportunities':'فرص الاستثمار','Feasibility & Ideas':'دراسات الجدوى والأفكار','Ready to Execute':'جاهز للتنفيذ','Language Teachers & Learners':'معلمو ومتعلّمو اللغات','Arabic & Others':'العربية وغيرها','Visitor Counter (Cloud + Local)':'عداد الزوار (سحابي + محلي)','Platform Visitors':'زوار المنصة','Visitor Counter':'عداد الزوار','total visits':'إجمالي الزيارات','Online now':'متصلون الآن','Unread Messages':'الرسائل غير المقروءة','Today: 0':'اليوم: 0','Session: 1':'الجلسة: 1','Loading country breakdown...':'جاري تحميل توزيع الدول...','Smart Matching & Performance Center':'مركز أداء ومطابقة الذكاء الاصطناعي','Connect demand with providers, measure engagement, and surface improvement actions.':'اربط الطلب بمقدمي الخدمات، وقِس التفاعل، واكتشف إجراءات التحسين.','Smart matching active':'المحرك الذكي نشط','Opportunities':'الفرص','Demand signals':'إشارات الطلب','Supply signals':'إشارات العرض','Match readiness':'جاهزية المطابقة','What do you need?':'ماذا تحتاج؟','Category':'التصنيف','Any category':'أي تصنيف','Projects':'مشاريع','Funding':'تمويل','Languages':'لغات','Quran':'قرآن','Services':'خدمات','Service seekers':'طالبو الخدمات','Ideas':'أفكار','Region':'المنطقة','Anywhere':'أي مكان','Saudi Arabia':'السعودية','Egypt':'مصر','UAE':'الإمارات','GCC':'الخليج','Global':'عالمي','Smart Match':'مطابقة ذكية','Improvement Monitor':'مراقب التحسين','Recalculate insights':'إعادة حساب التحليلات','Client / Provider Workspace':'مساحة العميل / مقدم الخدمة','My Wefaq Workspace':'مساحة وفاق الخاصة بي','Manage your identity, matches, conversations and active connections.':'إدارة هويتك ومطابقاتك ومحادثاتك واتصالاتك النشطة.','Guest mode':'وضع الزائر','Create your secure account':'أنشئ حسابك الآمن','Unlock saved matches, private messaging, requests, reviews and your performance dashboard.':'فعّل المطابقات المحفوظة والرسائل الخاصة والطلبات والتقييمات ولوحة الأداء.','Sign in / Create account':'تسجيل الدخول / إنشاء حساب','Matches':'المطابقات','Saved':'المحفوظات','Connections':'الاتصالات','Messages':'الرسائل','Active Connections':'الاتصالات النشطة','Profile':'الملف الشخصي','Refresh':'تحديث','Notifications':'الإشعارات','Mark all read':'تحديد الكل كمقروء','Recommended Actions':'الإجراءات المقترحة','Trust & Quality':'الثقة والجودة','Profile completeness':'اكتمال الملف الشخصي','Verified signals':'إشارات التحقق','AI improvement loop':'حلقة تحسين الذكاء الاصطناعي','Relevant interactions such as matches, contacts, favorites, completed connections and reviews can improve future recommendations.':'كل مشاهدة ومطابقة وتواصل وإتمام وتقييم يمكن أن يحسن التوصيات المستقبلية.','Smart Filter Radar':'رادار التصفية الذكي','Smart Comprehensive Filter Radar':'رادار التصفية الذكي الشامل','All':'الكل','📖 Quran Memorization (Global)':'📖 تحفيظ القرآن (عالمي)','🏬 Projects & Exhibitors':'🏬 المشاريع والعارضون','🛒 Service Seekers':'🛒 طالبو الخدمات','💰 Funding & Partners':'💰 التمويل والشركاء','💡 Ideas & Feasibility':'💡 الأفكار ودراسات الجدوى','🌍 Language Learning':'🌍 تعلم اللغات','🛠 Service Offers':'🛠 عروض الخدمات','📑 Tenders':'📑 المناقصات','🔨 Auctions':'🔨 المزادات','All countries, Middle East & World':'كل الدول والشرق الأوسط والعالم','Global (Worldwide - Online)':'عالمي (حول العالم - أونلاين)','Palestine & Gaza':'فلسطين وغزة','Gaza specifically':'غزة تحديدًا','Africa (East, West & North)':'أفريقيا (شرق وغرب وشمال)','Foreign countries (Europe, Americas, Asia)':'الدول الأجنبية (أوروبا والأمريكتان وآسيا)','Saudi Arabia (KSA)':'السعودية (KSA)','United Arab Emirates (UAE)':'الإمارات (UAE)','Qatar':'قطر','Kuwait':'الكويت','Rest of GCC':'باقي دول الخليج','Maghreb':'المغرب العربي','Levant (Jordan, Syria, Lebanon)':'بلاد الشام (الأردن وسوريا ولبنان)','All request & offer types':'كل أنواع الطلب والعرض','Offer (Available for execution/sale)':'عرض (متاح للتنفيذ/البيع)','Demand (Seeking to buy/execute)':'طلب (يبحث عن شراء/تنفيذ)','Seeking Partner (Co-founder)':'طلب شريك (شريك مؤسس)','Seeking Funding':'طلب تمويل','All verification levels':'كل مستويات التحقق','Certified with continuous sanad':'موثق بسند متصل','Reviewed by admin (reciter / teacher)':'مراجَع من الإدارة (قارئ / معلم)','Feasibility study attached':'دراسة جدوى مرفقة','Licensed / Verified record':'سجل مرخص / موثق','Quranic narration / reading':'الرواية / القراءة القرآنية','All narrations & readings':'كل الروايات والقراءات','Hafs from Asim':'حفص عن عاصم','Warsh from Nafi':'ورش عن نافع','Qalun from Nafi':'قالون عن نافع','Al-Duri from Abu Amr':'الدوري عن أبي عمرو','The Ten Readings':'القراءات العشر','Target audience':'الفئة المستهدفة','All (Men / Women / Children)':'الجميع (رجال / نساء / أطفال)','Children & young students':'الأطفال والطلاب الصغار','Men only':'رجال فقط','Women & female teachers':'نساء ومعلمات','Study mode':'نمط الدراسة','Online (Global) & In-person':'أونلاين (عالمي) وحضوري','Remote (Electronic circles worldwide)':'عن بُعد (حلقات إلكترونية حول العالم)','In-person (Mosques & centers)':'حضوري (مساجد ومراكز)','Language / Track':'اللغة / المسار','All languages & tracks':'كل اللغات والمسارات','Arabic for Non-Native Speakers':'العربية لغير الناطقين بها','Classical Arabic & Language Sciences':'العربية الفصحى وعلوم اللغة','Quranic Arabic & Linguistic Tajweed':'العربية القرآنية والتجويد اللغوي','Language Exchange':'تبادل لغات','English':'الإنجليزية','Other Language':'لغة أخرى','Level':'المستوى','All levels':'كل المستويات','Beginner':'مبتدئ','Intermediate':'متوسط','Advanced':'متقدم','Registered Requests & Opportunities':'الطلبات والفرص المسجلة','0 results':'0 نتيجة','Quran Reciters in Africa':'قراء القرآن في أفريقيا','Export JSON':'تصدير JSON','No results match your current filters':'لا توجد نتائج تطابق الفلاتر الحالية','Try changing the search criteria or reset filters to browse all cards.':'جرّب تغيير معايير البحث أو إعادة ضبط الفلاتر لعرض جميع البطاقات.','Reset Filters':'إعادة ضبط الفلاتر','Mobile bottom nav':'التنقل السفلي للهاتف','Radar':'الرادار','Market':'المكتبة التعليمية','Add':'إضافة','Account':'الحساب','Login':'تسجيل الدخول','Direct contact with the poster':'تواصل مباشر مع صاحب المنشور','A ready agreement message has been prepared for you':'تم تجهيز رسالة اتفاق جاهزة لك','Your name or organization':'اسمك أو مؤسستك','Message preview':'معاينة الرسالة','Open WhatsApp chat':'فتح محادثة واتساب','Share this opportunity':'مشاركة هذه الفرصة','Spread the investment or Quran opportunity to reach more interested people':'شارك فرصة الاستثمار أو القرآن للوصول إلى المزيد من المهتمين','WhatsApp':'واتساب','Telegram':'تيليجرام','X / Twitter':'X / تويتر','LinkedIn':'لينكدإن','Copy':'نسخ','Private Conversation':'محادثة خاصة','Send':'إرسال','My Profile':'ملفي الشخصي','Save Profile':'حفظ الملف الشخصي','Wefaq AI Assistant':'مساعد وفاق بالذكاء الاصطناعي','Ask about matches, your profile, listings or next actions.':'اسأل عن المطابقات أو ملفك أو الإعلانات أو الخطوات التالية.','Ask':'اسأل','Post a new request / project / Quran circle':'نشر طلب / مشروع / حلقة قرآن جديدة','Choose the category and enter your details so matching people can reach you quickly':'اختر التصنيف وأدخل بياناتك ليصل إليك الأشخاص المناسبون بسرعة','Main title *':'العنوان الرئيسي *','Main category *':'التصنيف الرئيسي *','🏬 Existing Project / Project Exhibitor':'🏬 مشروع قائم / عارض مشروع','🛒 Service / Supply Seeker':'🛒 طالب خدمة / توريد','💰 Funding / Investment Partnership Seeker':'💰 طالب تمويل / شراكة استثمارية','💡 Idea or Feasibility Study':'💡 فكرة أو دراسة جدوى','🌍 Language Teaching':'🌍 تعليم لغة','🛠 Service Offer':'🛠 عرض خدمة','📑 Tender':'📑 مناقصة','🔨 Auction':'🔨 مزاد','Country / Region *':'الدولة / المنطقة *','Palestine':'فلسطين','Gaza':'غزة','Africa':'أفريقيا','Foreign':'أجنبي','Levant':'بلاد الشام','Listing type':'نوع الإعلان','Offer':'عرض','Demand':'طلب','Seeking Partner':'طلب شريك','Amount / Capital':'المبلغ / رأس المال','Full description *':'الوصف الكامل *','Quran Circle Details':'تفاصيل حلقة القرآن','Narration':'الرواية','Sheikh / Reciter':'الشيخ / القارئ','Audience':'الفئة المستهدفة','Children':'أطفال','Men':'رجال','Women':'نساء','Everyone':'الجميع','Language Lesson Details':'تفاصيل درس اللغة','Classical Arabic':'العربية الفصحى','Other':'أخرى','Teacher name':'اسم المعلم','WhatsApp number with country code *':'رقم واتساب مع رمز الدولة *','License / Certification (optional)':'الترخيص / الشهادة (اختياري)','Cancel':'إلغاء','Publish to Cloud':'نشر على السحابة','Wefaq Account':'حساب وفاق','Secure cloud identity':'هوية سحابية آمنة','Client':'عميل','Provider':'مقدم خدمة','Organization':'مؤسسة','Teacher':'معلم','Investor':'مستثمر','Sign in':'تسجيل الدخول','Create account':'إنشاء حساب','quran_banner_alt':'مصحف مفتوح للقراءة والحفظ ضمن منصة وفاق','Quran & Wefaq':'القرآن ووفاق','A trusted space for Quran learning, memorization and meaningful connections.':'مساحة موثوقة لتعلم القرآن وحفظه وبناء روابط نافعة.','Explore Quran Opportunities':'استكشف فرص القرآن','Cloud storage is not connected':'التخزين السحابي غير متصل','Cloud counter unavailable':'عداد السحابة غير متاح','Syncing with cloud...':'جارٍ المزامنة مع السحابة...','No current listing matches these constraints. Publish a request so providers can respond.':'لا توجد فرصة حالية تطابق هذه الشروط. انشر طلبًا ليتمكن مقدمو الخدمات من الرد.','Top matching opportunities':'أفضل الفرص المطابقة','Local smart ranking':'ترتيب خادم الذكاء الاصطناعي','Local smart fallback':'مطابقة ذكية محلية بديلة','Keyword, category, region and trust-signal relevance.':'مدى الصلة بالكلمات المفتاحية والتصنيف والمنطقة وإشارات الثقة.','Complete your profile to improve AI matching.':'أكمل ملفك الشخصي لتحسين المطابقة بالذكاء الاصطناعي.','Save relevant listings so recommendations learn your preferences.':'احفظ الفرص المناسبة لتتعلم التوصيات تفضيلاتك.','No active connections yet.':'لا توجد اتصالات نشطة بعد.','No notifications.':'لا توجد إشعارات.','Start the conversation.':'ابدأ المحادثة.','Hello. I can help improve your profile, find matches, explain opportunities, and suggest your next action.':'مرحبًا. يمكنني مساعدتك في تحسين ملفك والعثور على المطابقات وشرح الفرص واقتراح خطوتك التالية.','I recommend completing your profile, saving relevant listings, and using Smart Match with a specific need, region and budget.':'أوصي بإكمال ملفك الشخصي وحفظ الفرص المناسبة واستخدام المطابقة الذكية مع تحديد الحاجة والمنطقة والميزانية.','Please sign in before publishing':'سجّل الدخول قبل النشر','Published to cloud ✓':'تم النشر على السحابة ✓','Publish failed: cloud storage error':'فشل النشر: خطأ في التخزين السحابي','Please sign in first':'سجّل الدخول أولًا','Connection already requested':'تم إرسال طلب الاتصال بالفعل','You cannot connect to your own listing':'لا يمكنك الاتصال بإعلانك الخاص','Connection request sent ✓':'تم إرسال طلب الاتصال ✓','Connection updated ✓':'تم تحديث الاتصال ✓','Connection update failed':'تعذر تحديث الاتصال','Action not available for this connection':'هذا الإجراء غير متاح لهذه الحالة','Review access denied':'لا تملك صلاحية تقييم هذا الاتصال','Complete the connection before reviewing':'أكمل الاتصال أولًا قبل التقييم','Accept':'قبول','Reject':'رفض','Start':'بدء','Mark completed':'تحديد كمكتمل','accepted':'مقبول','in_progress':'قيد التنفيذ','rejected':'مرفوض','cancelled':'ملغى','Could not create connection':'تعذر إنشاء الاتصال','Saved ✓':'تم الحفظ ✓','Removed from saved':'تمت الإزالة من المحفوظات','Could not save listing':'تعذر حفظ الفرصة','Message failed':'فشل إرسال الرسالة','Review saved ✓':'تم حفظ التقييم ✓','Pending':'قيد المراجعة','Rating must be between 1 and 5':'يجب أن يكون التقييم بين 1 و5','Review could not be saved':'تعذر حفظ التقييم','No phone number':'لا يوجد رقم هاتف','Copied ✓':'تم النسخ ✓','Copy failed':'فشل النسخ','Link copied ✓':'تم نسخ الرابط ✓','Signing in...':'جارٍ تسجيل الدخول...','Signed in ✓':'تم تسجيل الدخول ✓','Cloud authentication is unavailable.':'مصادقة السحابة غير متاحة.','Account created ✓':'تم إنشاء الحساب ✓','Check your email to confirm your account.':'تحقق من بريدك الإلكتروني لتأكيد الحساب.','Creating account...':'جارٍ إنشاء الحساب...','Password must be at least 8 characters.':'يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.','Cloud sync failed':'فشلت مزامنة السحابة','Live cloud sync active ✓':'تم تفعيل المزامنة السحابية المباشرة ✓','Live sync connection lost':'انقطع اتصال المزامنة المباشرة','New listing:':'إعلان جديد:','This legacy listing has no account owner yet':'هذا الإعلان القديم لا يملك حسابًا مرتبطًا به بعد','Legacy':'قديم','Analyzing current opportunities...':'جارٍ تحليل الفرص الحالية...','Connect':'تواصل','No current listing matches these constraints. Publish a request so providers can respond.':'لا توجد فرصة حالية تطابق هذه الشروط. انشر طلبًا ليتمكن مقدمو الخدمات من الرد.','Please fill all required fields.':'يرجى تعبئة جميع الحقول المطلوبة.','Build marketplace density':'بناء كثافة المكتبة التعليمية','Add real providers and customer requests in your highest-value categories.':'أضف مقدمي خدمات حقيقيين وطلبات عملاء حقيقية في الفئات الأعلى قيمة.','Balance both sides':'موازنة جانبي المكتبة التعليمية','Capture both demand and supply so matching becomes meaningful.':'اجمع بين الطلب والعرض حتى تصبح المطابقة ذات معنى.','Improve listing quality':'تحسين جودة الإعلانات','Require clear descriptions, region, category, contact and verification fields.':'اطلب أوصافًا واضحة والمنطقة والتصنيف وبيانات التواصل والحقول الخاصة بالتحقق.','Track conversion':'تتبع التحويل','Record view → contact → accepted → completed to measure actual marketplace performance.':'سجل المشاهدة ← التواصل ← القبول ← الإتمام لقياس أداء المكتبة التعليمية الفعلي.','Smart keyword matching':'المطابقة الدلالية بالذكاء الاصطناعي','Use current listing data and matching signals to rank relevant opportunities.':'استخدم التضمينات على الخادم للمطابقة حسب المعنى وليس الكلمات المتطابقة فقط.','Quran Mushaf banner for Wefaq':'صورة مصحف للقرآن ضمن منصة وفاق','Connect Quran teachers and students worldwide, discover memorization circles, and use smart matching to find suitable opportunities.':'اربط معلمي وطلاب القرآن حول العالم، واكتشف حلقات التحفيظ، واستخدم المطابقة الذكية للعثور على الفرص المناسبة.','Sign out':'تسجيل الخروج','Chat':'محادثة','Review':'تقييم','Connection':'اتصال','pending':'قيد الانتظار','completed':'مكتمل','Profile saved ✓':'تم حفظ الملف الشخصي ✓','Investor / Quran seeker via Wefaq':'مستثمر / طالب قرآن عبر وفاق','Cloud storage is unavailable':'التخزين السحابي غير متاح','Posts':'منشور','Web result':'نتيجة ويب','Open source':'فتح المصدر','Contact source':'التواصل مع المصدر','No direct contact found':'لا يوجد تواصل مباشر مكتشف','Real external source':'مصدر خارجي حقيقي','Syncing':'جارٍ المزامنة','Credential missing':'بيانات اعتماد ناقصة','External sync completed':'اكتملت مزامنة المصادر الخارجية','External sync unavailable':'المزامنة الخارجية غير متاحة','Web results are live only':'نتائج الويب مباشرة ولا يتم تخزينها','Real external social posts are stored as source leads; open-web results are live and transient. Wefaq never invents external listings.':'يتم حفظ المنشورات الاجتماعية الخارجية الحقيقية كمصادر للفرص؛ أما نتائج الويب المفتوح فهي مباشرة ومؤقتة. وفاق لا يخترع إعلانات خارجية.','Web Search active':'البحث على الويب نشط','Telegram live':'تيليجرام مباشر','Other connectors can be enabled later':'يمكن تفعيل الموصلات الأخرى لاحقًا','Not connected':'غير متصل','X — Not connected':'X — غير متصل','YouTube — Not connected':'YouTube — غير متصل','Reddit — Not connected':'Reddit — غير متصل'
     };
     Object.assign(I18N, {
+      'QURAN': 'القرآن',
+      'ARABIC': 'العربية',
+      'FAMILY': 'الأسرة',
+      'وفاق التعليمية': 'Wefaq Educational',
       'Last 24 hours':'آخر 24 ساعة',
       'Last 3 days':'آخر 3 أيام',
       'Last 7 days':'آخر 7 أيام',
@@ -1084,6 +1288,60 @@
       'Hadith specialist':'متخصص حديث',
       'Arabic teacher':'معلم لغة عربية',
     });
+
+    Object.assign(I18N, {
+      'Learning tracks for every stage': 'مسارات تعلم مصممة لكل مرحلة',
+      'Choose a path, then let Wefaq connect you with the right specialist.': 'اختر المسار، ثم دع وفاق تقرّبك من المتخصص المناسب.',
+      'Quran & Tajweed': 'القرآن والتجويد',
+      'Memorization, recitation correction and flexible online learning.': 'التحفيظ، تصحيح التلاوة، والتعلم المرن عبر الإنترنت.',
+      'Memorization': 'التحفيظ',
+      'Tajweed': 'التجويد',
+      'Online & flexible': 'أونلاين ومرن',
+      'Explore Quran specialists': 'استكشف متخصصي القرآن',
+      'Arabic Language': 'اللغة العربية',
+      'Grammar, rhetoric, reading and Arabic for non-native speakers.': 'النحو والبلاغة والقراءة والعربية لغير الناطقين بها.',
+      'Grammar': 'النحو',
+      'Rhetoric': 'البلاغة',
+      'For all levels': 'لكافة المستويات',
+      'Explore Arabic specialists': 'استكشف متخصصي العربية',
+      'Kids & Family Learning': 'تعلم الأطفال والأسرة',
+      'Gentle learning paths for children, families and home-based study.': 'مسارات لطيفة للأطفال والأسر والتعلم المنزلي.',
+      'Children': 'الأطفال',
+      'Families': 'الأسر',
+      'Interactive': 'تفاعلي',
+      'Find support for my family': 'ابحث عن دعم لأسرتي',
+      'Ready to teach?': 'هل أنت مستعد للتدريس؟',
+      'Join Wefaq as a specialist and publish your real profile for students and families.': 'انضم إلى وفاق كمتخصص وانشر ملفك الحقيقي للطلاب والأسر.',
+      'Join the specialist network': 'انضم إلى شبكة المتخصصين',
+      'Explore all specialists': 'استكشف جميع المتخصصين',
+      'Contact Wefaq': 'تواصل مع وفاق',
+      'We welcome teachers, students, families and educational centers.': 'نرحب بالمعلمين والطلاب والأسر والمراكز التعليمية.',
+      'Send us an email': 'أرسل لنا بريدًا إلكترونيًا',
+      'Open specialist join form': 'فتح نموذج انضمام المتخصص',
+      'All rights reserved © Wefaq Educational Platform 2026': 'جميع الحقوق محفوظة © منصة وفاق التعليمية 2026',
+      'Smart matching is active': 'المطابقة الذكية نشطة',
+      'Profiles can be verified': 'إمكانية توثيق الملفات',
+      'How Wefaq Works': 'كيف تعمل وفاق',
+      'A simple journey from your learning need to the right specialist and measurable progress.': 'رحلة بسيطة من احتياجك التعليمي إلى المتخصص المناسب ثم متابعة التقدم.',
+      'Find your specialist': 'اعثر على المتخصص المناسب',
+      'Search by specialty, audience, learning mode, location and experience.': 'ابحث حسب التخصص والفئة وطريقة التعليم والموقع والخبرة.',
+      'Browse specialists': 'تصفح المتخصصين',
+      'Connect and start': 'تواصل وابدأ رحلة التعلم',
+      'Review the profile, choose the available contact method and agree on the learning arrangement.': 'راجع الملف، اختر وسيلة التواصل المتاحة، واتفق على آلية التعلم.',
+      'Open my Wefaq space': 'افتح مساحة وفاق الخاصة بي',
+      'Track progress with AI': 'تابع تقدمك بالذكاء الاصطناعي',
+      'Use smart matching, activity signals and personalized recommendations to improve the next step.': 'استخدم المطابقة الذكية وإشارات التفاعل والتوصيات الشخصية لتحسين خطوتك التالية.',
+      'Open AI tools': 'افتح أدوات الذكاء الاصطناعي',
+      'Learning, connection and smart matching in one educational space.': 'التعلم والتواصل والمطابقة الذكية في مساحة تعليمية واحدة.'
+    });
+
+    // Reverse dictionary for the English interface. The page source is Arabic,
+    // while I18N stores English -> Arabic, so English needs Arabic -> English lookup.
+    const EN_I18N = {};
+    Object.entries(I18N).forEach(([english, arabic]) => {
+      if (arabic && !EN_I18N[arabic]) EN_I18N[arabic] = english;
+    });
+
     let currentLang = safeGet('wefaq_lang', 'ar');
     if (!['ar','en'].includes(currentLang)) currentLang = 'ar';
 
@@ -1110,7 +1368,7 @@
 
         const original = originalTextNodes.get(node);
         if (!original) return;
-        const translated = isAr ? (I18N[original] || original) : original;
+        const translated = isAr ? (I18N[original] || original) : (EN_I18N[original] || original);
         const leading = node.nodeValue.match(/^\s*/)?.[0] || '';
         const trailing = node.nodeValue.match(/\s*$/)?.[0] || '';
         node.nodeValue = leading + translated + trailing;
@@ -1119,7 +1377,13 @@
       document.querySelectorAll('input[placeholder], textarea[placeholder]').forEach(el => {
         if (!originalPlaceholders.has(el)) originalPlaceholders.set(el, el.getAttribute('placeholder') || '');
         const original = originalPlaceholders.get(el);
-        el.setAttribute('placeholder', isAr ? (I18N[original] || original) : original);
+        el.setAttribute('placeholder', isAr ? (I18N[original] || original) : (EN_I18N[original] || original));
+      });
+
+      document.querySelectorAll('[data-i18n-merge]').forEach(el => {
+        const key = el.getAttribute('data-i18n-merge');
+        if (!key) return;
+        el.textContent = isAr ? (I18N[key] || key) : (EN_I18N[I18N[key] || key] || key);
       });
 
       document.querySelectorAll('[data-i18n-alt]').forEach(el => {
@@ -1129,8 +1393,8 @@
 
       // Keep the browser/tab title aligned with the selected language.
       document.title = isAr
-        ? 'منصة وفاق التعليمية | القرآن الكريم واللغة العربية والتعليم'
-        : 'Wefaq Platform | Opportunities, Funding, Quran, Languages, Tenders & Auctions';
+        ? 'منصة وفاق التعليمية | القرآن الكريم واللغة العربية'
+        : 'Wefaq Educational Platform | Quran, Arabic & Learning';
 
       const btn = document.getElementById('langToggleBtn');
       if (btn) btn.innerText = isAr ? 'English 🌐' : 'العربية 🌐';
@@ -1142,8 +1406,25 @@
       translatePage();
       renderCards();
       refreshPerformanceCenter();
-      if (typeof renderExternalRadar === 'function') renderExternalRadar();
+      // Dynamic cards/widgets are rendered after the initial pass, so translate them too.
+      translatePage();
     }
+    // ========== PREMIUM NAVBAR SCROLL ==========
+    function updatePremiumNavbar() {
+      const header = document.querySelector('body > header');
+      if (!header) return;
+      const dark = document.documentElement.classList.contains('dark');
+      const scrolled = window.scrollY > 18;
+      header.classList.toggle('shadow-sm', scrolled);
+      header.style.backdropFilter = scrolled ? 'blur(18px)' : 'blur(12px)';
+      header.style.webkitBackdropFilter = scrolled ? 'blur(18px)' : 'blur(12px)';
+      header.style.backgroundColor = dark
+        ? (scrolled ? 'rgba(2,6,23,.92)' : 'rgba(15,23,42,.90)')
+        : (scrolled ? 'rgba(255,255,255,.94)' : 'rgba(255,255,255,.90)');
+    }
+    window.addEventListener('scroll', updatePremiumNavbar, {passive:true});
+    document.addEventListener('DOMContentLoaded', updatePremiumNavbar);
+
     function toggleTheme() {
       const htmlEl = document.documentElement;
       const themeIcon = document.getElementById('theme-icon');
@@ -1154,6 +1435,8 @@
         htmlEl.classList.add('dark');
         themeIcon.className = 'fa-solid fa-sun text-amber-400';
       }
+      safeSet('wefaq_theme', htmlEl.classList.contains('dark') ? 'dark' : 'light');
+      updatePremiumNavbar();
     }
 
     // ========== STATE ==========
@@ -2275,125 +2558,6 @@
       translatePage();
     }
 
-    // ========== LIVE EXTERNAL RADAR ==========
-    let externalRadarItems = [];
-    let externalLiveWebItems = [];
-    const externalIntentRules = [
-      { key:'Freelance', words:['freelance','freelancer','freelancing','remote job','freelance project','upwork','freelancer.com','fiverr','عمل حر','عمل حر عن بعد','مشروع حر','مستقل','خمسات'] },
-      { key:'Funding', words:['تمويل','ممول','استثمار','funding','investor','investment'] },
-      { key:'Partner', words:['شريك','شراكة','partner','partnership','cofounder','co-founder'] },
-      { key:'Tender', words:['مناقصة','tender','rfp','request for proposal'] },
-      { key:'Auction', words:['مزاد','auction'] },
-      { key:'Quran', words:['قرآن','تحفيظ','حفظ القرآن','quran','hifz','tajweed'] },
-      { key:'Language', words:['لغة','العربية لغير الناطقين','مدرس لغة','language','arabic teacher','english teacher'] },
-      { key:'Service', words:['خدمة','خدمات','مقدم خدمة','service','services','provider'] },
-      { key:'Demand', words:['مطلوب','طلب','باحث','ابحث عن','يبحث عن','محتاج','seeking','looking for','wanted','need'] },
-      { key:'Offer', words:['متاح','عرض','أعرض','نوفر','available','offer','offering'] }
-    ];
-    function inferExternalIntent(item){const text=`${item.title||''} ${item.description||''}`.toLowerCase();for(const rule of externalIntentRules){if(rule.words.some(w=>text.includes(w.toLowerCase())))return rule.key;}return 'Unknown';}
-    function providerLabel(provider){return ({x:'X',youtube:'YouTube',reddit:'Reddit',telegram:'Telegram',web_search:t('Open Web Search')})[provider]||provider||'—';}
-    function providerIcon(provider){return ({x:'fa-x-twitter',youtube:'fa-youtube',reddit:'fa-reddit-alien',telegram:'fa-telegram'})[provider]||'fa-globe';}
-    function formatExternalDate(value){try{return value?new Date(value).toLocaleString(currentLang==='ar'?'ar-SA':'en-US',{dateStyle:'medium',timeStyle:'short'}):'—';}catch{return value||'—';}}
-    function mediaPreviewUrl(item){
-      const media=Array.isArray(item?.media)?item.media:[];
-      for(const m of media){
-        const candidates=[m?.url,m?.preview_image_url,m?.default?.url,m?.medium?.url,m?.high?.url,m?.maxres?.url];
-        const hit=candidates.find(v=>typeof v==='string'&&/^https:\/\//i.test(v));
-        if(hit)return hit;
-      }
-      return '';
-    }
-    function directContactUrl(item){
-      const text=String(item?.description||'');
-      const phone=(text.match(/(?:\+?\d[\d\s().-]{7,}\d)/)||[])[0]?.replace(/[^0-9]/g,'');
-      if(phone && phone.length>=8 && phone.length<=15) return `https://wa.me/${phone}`;
-      if(item.provider==='telegram' && item.source_url) return item.source_url;
-      return null;
-    }
-    function externalCardHtml(item){
-      const provider=providerLabel(item.provider), intent=inferExternalIntent(item), thumb=mediaPreviewUrl(item), contact=directContactUrl(item), url=item.source_url||'#';
-      const badge=intent==='Freelance'?'text-violet-700 bg-violet-50 dark:bg-violet-950/30':intent==='Tender'?'text-indigo-700 bg-indigo-50 dark:bg-indigo-950/30':intent==='Auction'?'text-orange-700 bg-orange-50 dark:bg-orange-950/30':intent==='Funding'?'text-amber-700 bg-amber-50 dark:bg-amber-950/30':intent==='Demand'?'text-blue-700 bg-blue-50 dark:bg-blue-950/30':intent==='Quran'?'text-emerald-700 bg-emerald-50 dark:bg-emerald-950/30':'text-slate-700 bg-slate-100 dark:bg-slate-800';
-      return `<article class="source-card rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col h-full">${thumb?`<img class="source-thumb" src="${esc(thumb)}" alt="" loading="lazy" referrerpolicy="no-referrer">`:''}<div class="p-4 flex flex-col flex-1"><div class="flex items-start justify-between gap-3 mb-3"><div class="flex items-center gap-2 min-w-0"><div class="w-9 h-9 rounded-xl bg-sky-100 dark:bg-sky-950/50 text-sky-600 dark:text-sky-300 flex items-center justify-center"><i class="fa-brands ${provider==='Open Web Search'?'':providerIcon(item.provider)} ${provider==='Open Web Search'?'fa-solid fa-globe':''}"></i></div><div class="min-w-0"><div class="text-[10px] font-extrabold text-slate-500 uppercase tracking-wide">${esc(provider)}</div><div class="text-[10px] text-slate-400 truncate">${esc(formatExternalDate(item.published_at))}</div></div></div><span class="text-[10px] font-extrabold px-2 py-1 rounded-full ${badge}">${esc(t(intent))}</span></div><h3 class="font-extrabold text-sm text-slate-900 dark:text-white line-clamp-3 mb-2">${esc(item.title||provider)}</h3><p class="text-xs text-slate-600 dark:text-slate-300 leading-5 line-clamp-5 flex-1">${esc(item.description||t('Real external source'))}</p><div class="mt-4 flex items-center gap-2"><a href="${esc(url)}" target="_blank" rel="noopener noreferrer" class="flex-1 text-center rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-extrabold py-2.5"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>${esc(t('Open source'))}</a>${contact?`<a href="${esc(contact)}" target="_blank" rel="noopener noreferrer" class="rounded-xl border border-emerald-200 dark:border-emerald-900 px-3 py-2.5 text-xs font-bold text-emerald-700 dark:text-emerald-300" title="${esc(t('Contact source'))}"><i class="fa-solid fa-comments"></i></a>`:`<button type="button" disabled class="rounded-xl border border-slate-200 dark:border-slate-800 px-3 py-2.5 text-xs font-bold text-slate-300 dark:text-slate-600" title="${esc(t('No direct contact found'))}"><i class="fa-solid fa-comments"></i></button>`}</div></div></article>`;
-    }
-    function externalOpportunityKey(intent){
-      return ({Freelance:'freelance',Tender:'tender',Auction:'auction',Funding:'funding',Partner:'partner',Service:'service',Quran:'quran',Language:'language',Demand:'demand'})[intent]||null;
-    }
-    function renderExternalRadar(){
-      const grid=document.getElementById('external-radar-grid'),empty=document.getElementById('external-radar-empty');if(!grid||!empty)return;
-      const provider=document.getElementById('external-source')?.value||'all';
-      const type=document.getElementById('external-opportunity-type')?.value||'all';
-      const data=externalRadarItems
-        .filter(i=>provider==='all'||i.provider===provider)
-        .map(i=>({item:i,intent:inferExternalIntent(i)}))
-        .filter(x=>x.intent!=='Unknown')
-        .filter(x=>type==='all'||externalOpportunityKey(x.intent)===type)
-        .map(x=>x.item);
-      grid.innerHTML=data.map(externalCardHtml).join('');
-      empty.classList.toggle('hidden',data.length>0);
-    }
-    function setExternalStatus(message,kind='idle'){const el=document.getElementById('external-radar-status');if(!el)return;const dot=kind==='live'?'bg-emerald-500':kind==='error'?'bg-red-500':'bg-slate-400';el.innerHTML=`<span class="w-1.5 h-1.5 rounded-full ${dot}"></span><span>${esc(message)}</span>`;}
-    async function loadExternalRadar(){
-      if(!supabaseClient)return;
-      try{
-        const provider=document.getElementById('external-source')?.value||'all';
-        const {data,error}=await supabaseClient.rpc('get_public_source_items',{p_provider:provider==='all'?null:(provider==='web_search'?null:provider),p_limit:120});
-        if(error)throw error;
-        const days=Math.min(Math.max(Number(document.getElementById('external-days')?.value||7),1),30);
-        const cutoff=Date.now()-days*24*60*60*1000;
-        const persisted=(data||[]).map(r=>({id:String(r.id),provider:r.provider,external_item_id:r.external_item_id,source_url:r.source_url,title:r.title||providerLabel(r.provider),description:r.description||'',media:r.media||[],published_at:r.published_at,last_seen_at:r.last_seen_at}))
-          .filter(item=>{ const ts=Date.parse(item.published_at||item.last_seen_at||''); return !Number.isFinite(ts)||ts>=cutoff; });
-        const persistentFiltered=provider==='all'||provider==='web_search'?persisted.filter(item=>item.provider!=='web_search'):persisted.filter(item=>item.provider===provider);
-        const liveWeb=(provider==='all'||provider==='web_search')
-          ? externalLiveWebItems.filter(item=>{const ts=Date.parse(item.published_at||'');return !Number.isFinite(ts)||ts>=cutoff;})
-          : [];
-        externalRadarItems=[...liveWeb,...persistentFiltered];
-        renderExternalRadar();
-        const label=externalRadarItems.length?`${externalRadarItems.length} ${t('Posts')} · ${days}d`:t('Waiting for sync');
-        setExternalStatus(label,externalRadarItems.length?'live':'idle');
-      }catch(err){console.warn('External radar load failed',err);setExternalStatus(t('External sync unavailable'),'error');}
-    }
-
-    async function syncExternalRadar(){
-      const user=await requireUser(); if(!user)return;
-      const query=document.getElementById('external-query')?.value.trim()||'freelance OR freelancer OR \"remote job\" OR \"freelance project\" OR tender OR RFP OR procurement OR auction OR \"عمل حر\" OR مناقصة OR مزاد -site:github.com -site:learn.microsoft.com';
-      const provider=document.getElementById('external-source')?.value||'all';
-      const days=Math.min(Math.max(Number(document.getElementById('external-days')?.value||7),1),30);
-      const icon=document.getElementById('external-sync-icon'); if(icon)icon.classList.add('fa-spin'); setExternalStatus(t('Syncing') + ` · ${days}d`);
-      try{
-        const {data,error}=await supabaseClient.functions.invoke('social-radar-sync',{body:{query,provider,days,max_results:40}}); 
-        if(error)throw error;
-        externalLiveWebItems = Array.isArray(data?.web_results) ? data.web_results.map((r,i)=>({
-          id:`brave:${i}:${r.source_url||''}`,
-          provider:'web_search',
-          external_item_id:`live:${r.source_url||i}`,
-          source_url:r.source_url||null,
-          title:r.title||t('Web result'),
-          description:r.description||'',
-          media:r.media||[],
-          published_at:r.published_at||null,
-          last_seen_at:new Date().toISOString(),
-        })) : [];
-        await loadExternalRadar();
-        const missingSet=new Set(Array.isArray(data?.missing_credentials)?data.missing_credentials:[]);
-        const credentialMap={
-          x:['X_BEARER_TOKEN'],
-          youtube:['YOUTUBE_API_KEY'],
-          reddit:['REDDIT_CLIENT_ID','REDDIT_CLIENT_SECRET']
-        };
-        const syncedEntries=data?.synced && typeof data.synced==='object' ? Object.entries(data.synced).filter(([k,v])=>{
-          const required=credentialMap[k];
-          const unconfigured=Array.isArray(required)&&required.some(name=>missingSet.has(name));
-          return !unconfigured || Number(v)>0;
-        }) : [];
-        const synced=syncedEntries.map(([k,v])=>`${k==='web_search'?t('Open Web Search'):k}: ${v}`).join(' · ');
-        const errorEntries=data?.errors && typeof data.errors==='object' ? Object.entries(data.errors) : [];
-        const errors=errorEntries.length ? ` · errors: ${errorEntries.map(([k,v])=>`${k}: ${v}`).join(' | ')}` : '';
-        const liveNote=data?.web_results_persisted===false&&data?.web_results?.length?` · ${t('Web results are live only')}`:'';
-        const msg=`${t('External sync completed')}${synced?' — '+synced:''}${errors}${liveNote}`; showRealtimeNotification(msg); setExternalStatus(msg,'live');
-      }catch(err){console.error('External sync failed',err);const msg=`${t('External sync unavailable')}${err?.message?' — '+err.message:''}`;showRealtimeNotification(msg);setExternalStatus(msg,'error');}
-      finally{if(icon)icon.classList.remove('fa-spin');}
-    }
-
     // ========== REALTIME CLOUD SYNC ==========
     let realtimeChannel = null;
     let realtimeUserChannel = null;
@@ -2420,30 +2584,6 @@
         )
         .subscribe();
     }
-
-    function cloudOpportunityCardHtml(item){
-      const typeLabel=({freelance:'تدريس وتعليم',tender:'برنامج تعليمي',auction:'مركز تحفيظ',quran:'القرآن الكريم',language:'اللغة العربية',education:'تعليم'})[item.opportunity_type]||item.opportunity_type||'محتوى تعليمي';
-      const date=item.deadline_at||item.ends_at||item.posted_at;
-      const budget=(item.budget_min!=null||item.budget_max!=null)?`${item.budget_min!=null?item.budget_min:'—'}${item.budget_max!=null?` - ${item.budget_max}`:''} ${item.currency||''}`.trim():'';
-      const meta=[item.location_text,budget,date?formatExternalDate(date):''].filter(Boolean);
-      return `<article class="source-card rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col h-full"><div class="p-4 flex flex-col flex-1"><div class="flex items-start justify-between gap-3 mb-3"><span class="text-[10px] font-extrabold uppercase tracking-wide text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/30 px-2.5 py-1 rounded-full">${esc(typeLabel)}</span><span class="text-[10px] font-bold text-slate-400">${esc(item.source_provider||'مصدر تعليمي')}</span></div><h3 class="font-extrabold text-sm text-slate-900 dark:text-white line-clamp-3 mb-2">${esc(item.title||'Opportunity')}</h3><p class="text-xs text-slate-600 dark:text-slate-300 leading-5 line-clamp-4 flex-1">${esc(item.description||'')}</p><div class="mt-3 flex flex-wrap gap-1.5">${meta.map(v=>`<span class="text-[10px] font-bold rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 px-2 py-1">${esc(String(v))}</span>`).join('')}</div><div class="mt-4">${item.source_url ? `<a href="${esc(item.source_url)}" target="_blank" rel="noopener noreferrer" class="block text-center rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-extrabold py-2.5"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>Open source</a>` : `<button type="button" disabled class="w-full rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 text-xs font-extrabold py-2.5">${esc(t('Source link unavailable'))}</button>`}</div></div></article>`;
-    }
-    async function loadCloudOpportunities(){
-      const grid=document.getElementById('cloud-opportunities-grid'),empty=document.getElementById('cloud-opportunities-empty');
-      if(!grid||!empty||!supabaseClient)return;
-      const type=document.getElementById('cloud-opportunity-type')?.value||'all';
-      try{
-        const {data,error}=await supabaseClient.rpc('get_opportunities',{p_type:type==='all'?null:type,p_category:null,p_provider:null,p_status:'active',p_search:null,p_limit:60,p_offset:0});
-        if(error)throw error;
-        const rows=Array.isArray(data)?data:[];
-        grid.innerHTML=rows.map(cloudOpportunityCardHtml).join('');
-        empty.classList.toggle('hidden',rows.length>0);
-      }catch(err){
-        console.warn('Cloud opportunities load failed',err);
-        grid.innerHTML=''; empty.classList.remove('hidden');
-      }
-    }
-
 
     // ========== v8.0 HERO SEARCH ==========
     function launchHeroSearch(){
@@ -2475,10 +2615,15 @@
     // Keep initial cloud loads to one call each to avoid duplicate network work.
     document.addEventListener('DOMContentLoaded', () => {
       toggleFormFields();
+      const savedTheme = safeGet('wefaq_theme', 'light');
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+        const icon = document.getElementById('theme-icon');
+        if (icon) icon.className = 'fa-solid fa-sun text-amber-400';
+      }
       translatePage();
+      updatePremiumNavbar();
       fetchOpportunitiesFromSupabase();
-      loadExternalRadar();
-      loadCloudOpportunities();
       loadSpecialists();
       ensureSessionKey();
       setTimeout(updateV8HeroStats, 350);
