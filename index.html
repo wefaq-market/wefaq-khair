@@ -738,7 +738,7 @@
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
 <div class="relative">
 <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 search-leading-icon" text-slate-400="" text-xs"=""></i>
-<input class="w-full search-leading-input pl-9 pr-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none" id="search-keyword" oninput="renderCards()" placeholder="Search by keyword, sheikh, project, country..." type="text"/>
+<input class="w-full search-leading-input pl-9 pr-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none" id="search-keyword" oninput="renderCards()" placeholder="Search by teacher, specialty, city or topic..." type="text"/>
 </div>
 <div>
 <select class="w-full py-2 px-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none" id="filter-region" onchange="renderCards()">
@@ -763,7 +763,6 @@
 <option value="all">كل أنواع الطلب والعرض</option>
 <option value="offer">عرض (متاح للتنفيذ/البيع)</option>
 <option value="demand">طلب (يبحث عن شراء/تنفيذ)</option>
-<option value="seeking_partner">طلب شريك (شريك مؤسس)</option>
 </select>
 </div>
 <div>
@@ -851,7 +850,7 @@
         <div class="wf-radar-stat"><div class="text-[10px] text-white/55" data-i18n-merge="New leads">عملاء محتملون جدد</div><div class="num mt-2" id="radar-stat-new">—</div><div class="text-[10px] text-emerald-300 mt-1" data-i18n-merge="last 24 hours">آخر 24 ساعة</div></div>
         <div class="wf-radar-stat"><div class="text-[10px] text-white/55" data-i18n-merge="Teacher / tutor leads">معلمون ومحفظون</div><div class="num mt-2" id="radar-stat-teachers">—</div><div class="text-[10px] text-white/45 mt-1" data-i18n-merge="supply signals">إشارات عرض</div></div>
         <div class="wf-radar-stat"><div class="text-[10px] text-white/55" data-i18n-merge="Student / family leads">طلاب وأسر</div><div class="num mt-2" id="radar-stat-students">—</div><div class="text-[10px] text-white/45 mt-1" data-i18n-merge="demand signals">إشارات طلب</div></div>
-        <div class="wf-radar-stat"><div class="text-[10px] text-white/55" data-i18n-merge="Sources ready">مصادر جاهزة</div><div class="num mt-2" id="radar-stat-sources">0/7</div><div class="text-[10px] text-white/45 mt-1" data-i18n-merge="authorized or public">مصرح بها أو عامة</div></div>
+        <div class="wf-radar-stat"><div class="text-[10px] text-white/55" data-i18n-merge="Sources ready">مصادر جاهزة</div><div class="num mt-2" id="radar-stat-sources">0/9</div><div class="text-[10px] text-white/45 mt-1" data-i18n-merge="authorized or public">مصرح بها أو عامة</div></div>
       </div>
 
       <div class="wf-radar-grid">
@@ -1122,7 +1121,7 @@
 <div class="space-y-4">
 <div>
 <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">اسمك أو مؤسستك</label>
-<input class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg py-2 px-3 text-xs focus:ring-2 focus:ring-brand-500" id="sender-name" oninput="updateWhatsAppTemplate()" type="text" value="Investor / Quran seeker via Wefaq"/>
+<input class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg py-2 px-3 text-xs focus:ring-2 focus:ring-brand-500" id="sender-name" oninput="updateWhatsAppTemplate()" type="text" value="Wefaq educational outreach"/>
 </div>
 <div>
 <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">معاينة الرسالة</label>
@@ -1143,7 +1142,7 @@
 <button class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200" onclick="closeShareModal()"><i class="fa-solid fa-xmark text-lg"></i></button>
 <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xl mx-auto mb-3"><i class="fa-solid fa-share-nodes"></i></div>
 <h3 class="font-bold text-slate-900 dark:text-white text-base mb-1">مشاركة هذه الفرصة</h3>
-<p class="text-xs text-slate-500 mb-5">شارك فرصة الاستثمار أو القرآن للوصول إلى المزيد من المهتمين</p>
+<p class="text-xs text-slate-500 mb-5">شارك فرصة القرآن أو التعليم للوصول إلى المزيد من المهتمين</p>
 <div class="grid grid-cols-4 gap-3 mb-5">
 <button class="flex flex-col items-center gap-1 text-emerald-600 hover:opacity-80 transition" onclick="shareVia('whatsapp')">
 <div class="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-950 flex items-center justify-center text-lg"><i class="fa-brands fa-whatsapp"></i></div>
@@ -1243,7 +1242,6 @@
 <select class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg py-2 px-3 text-xs focus:ring-2 focus:ring-brand-500" id="new-type" required="">
 <option value="offer">عرض</option>
 <option value="demand">طلب معلم / متعلم</option>
-<option value="seeking_partner">طلب شريك</option>
 </select>
 </div>
 <div>
@@ -1679,6 +1677,7 @@
     });
 
     Object.assign(I18N, {'Acquisition Radar':'رادار الاستقطاب'});
+    Object.assign(I18N, {'The real lead was saved to your Wefaq workspace.':'تم حفظ العميل المحتمل الحقيقي في مساحة وفاق الخاصة بك.','Live radar storage is not configured yet':'تخزين الرادار الحي غير مهيأ بعد'});
 
     Object.assign(I18N, {
       'Global & Regional Matching':'المطابقة الإقليمية والعالمية',
@@ -2189,6 +2188,8 @@
       {id:'web', name:'Open Web Search', icon:'fa-solid fa-globe', mode:'Search API / approved provider', status:'pending', count:0, note:'Requires server-side connector'},
       {id:'telegram', name:'Telegram', icon:'fa-brands fa-telegram', mode:'Authorized communities', status:'pending', count:0, note:'Requires bot/webhook access'},
       {id:'youtube', name:'YouTube', icon:'fa-brands fa-youtube', mode:'Official API', status:'pending', count:0, note:'Requires API key'},
+      {id:'x', name:'X / Twitter', icon:'fa-brands fa-x-twitter', mode:'Official API', status:'pending', count:0, note:'Requires bearer token'},
+      {id:'reddit', name:'Reddit', icon:'fa-brands fa-reddit-alien', mode:'Official OAuth API', status:'pending', count:0, note:'Requires app credentials'},
       {id:'rss', name:'RSS / Feeds', icon:'fa-solid fa-rss', mode:'Approved feeds', status:'pending', count:0, note:'Requires real feed URLs'},
       {id:'meta', name:'Meta official connectors', icon:'fa-brands fa-facebook', mode:'Official API', status:'pending', count:0, note:'Requires approved app/access'},
       {id:'linkedin', name:'LinkedIn official connectors', icon:'fa-brands fa-linkedin', mode:'Official API', status:'pending', count:0, note:'Requires approved access'},
@@ -2395,7 +2396,7 @@
       renderRegionalCRM();
     }
 
-    const RADAR_LEADS_STORAGE_ENABLED = false;
+    const RADAR_LEADS_STORAGE_ENABLED = true;
 
     async function loadLiveRadarData(){
       radarLeads=[]; radarLiveReady=false;
@@ -2415,13 +2416,11 @@
         return;
       }
 
-      // Storage is disabled in the current production schema, so this branch is
-      // deliberately unreachable until RADAR_LEADS_STORAGE_ENABLED is enabled.
       try{
-        const {data,error}=await supabaseClient.from('radar_leads').select('id,source_type,external_id,title,snippet,persona,category,priority,source,source_url,published_at,discovered_at,last_seen_at,score,consent_status,tags,status,created_at,updated_at').in('status',['new','review','saved','contacted','converted']).order('discovered_at',{ascending:false}).limit(200);
+        const {data,error}=await supabaseClient.rpc('get_public_radar_leads',{p_persona:null,p_region:null,p_category:null,p_mode:null,p_language:null,p_limit:200});
         if(error) throw error;
         radarLeads=(data||[]).map(x=>({
-          id:x.id, persona:x.persona||'service', category:x.category||'', priority:x.priority||'normal', title:x.title||'', snippet:x.snippet||'', source:x.source||t('Real external source'), sourceType:x.source_type||'web', sourceUrl:x.source_url||'#', region:x.region||x.country_code||'', type:x.type||x.intent_type||'', mode:x.mode||'', amount:x.amount??x.budget??null, currency:x.currency||x.budget_currency||'', hoursAgo:Math.max(0,(Date.now()-new Date(x.discovered_at||x.created_at||Date.now()).getTime())/3600000), score:Number(x.score||0), tags:Array.isArray(x.tags)?x.tags:[], contactable:x.consent_status==='public_contact'||x.consent_status==='opted_in', consentStatus:x.consent_status||'unknown'
+          id:x.id, persona:x.persona||'service', category:x.category||'', priority:x.priority||'normal', title:x.title||'', snippet:x.snippet||'', source:x.source||t('Real external source'), sourceType:x.source_type||'web', sourceUrl:x.source_url||'#', region:x.region||x.country_code||'', countryCode:x.country_code||'', city:x.city||'', language:x.language||'', languages:Array.isArray(x.languages)?x.languages:[], type:x.intent_type||'', mode:x.mode||'', amount:x.amount??null, currency:x.currency||'', hoursAgo:Math.max(0,(Date.now()-new Date(x.discovered_at||Date.now()).getTime())/3600000), score:Number(x.score||0), triage_confidence:Number(x.triage_confidence||x.score||0), tags:Array.isArray(x.tags)?x.tags:[], contactable:x.consent_status==='public_contact'||x.consent_status==='opted_in', consentStatus:x.consent_status||'unknown'
         }));
         radarLiveReady=true;
         if(last) last.textContent=radarLeads.length?`${radarLeads.length} ${t('live records loaded')}`:t('No live records yet');
@@ -2451,11 +2450,10 @@
       const lead=radarLeads.find(l=>String(l.id)===String(leadId)); if(!lead)return;
       if(!supabaseClient || !currentAuthUser){ showRealtimeNotification(t('Please sign in first')); return; }
       try{
-        const payload={external_id:String(lead.externalId||lead.external_id||lead.id),title:lead.title,snippet:lead.snippet,persona:lead.persona,category:lead.category,priority:lead.priority,source:lead.source,source_type:lead.sourceType,source_url:lead.sourceUrl,score:Number(lead.score||0),status:'saved'};
-        const {error}=await supabaseClient.from('radar_leads').upsert(payload,{onConflict:'source_type,external_id'});
+        const {error}=await supabaseClient.from('radar_user_saves').upsert({user_id:currentAuthUser.id,lead_id:lead.id,notes:null},{onConflict:'user_id,lead_id'});
         if(error) throw error;
         showRealtimeNotification(t('Lead saved'));
-        radarLog.unshift({time:t('Now'),text:t('A real lead was saved to the review queue.')}); renderRadarLog();
+        radarLog.unshift({time:t('Now'),text:t('The real lead was saved to your Wefaq workspace.')}); renderRadarLog();
       }catch(e){ console.warn(e); showRealtimeNotification(t('Cloud storage is unavailable')); }
     }
 
