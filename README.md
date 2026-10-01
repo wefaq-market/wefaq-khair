@@ -1,17 +1,12 @@
-# Wefaq Khair
+# منصة وفاق التعليمية — النسخة المدمجة الاحترافية
 
-Production frontend for Wefaq, deployed through GitHub Pages and served on:
+## ماذا تم دمجه؟
+تم دمج أفكار العرض المرئي من ملف الواجهة المرفوع مع النسخة التعليمية الحالية، مع الحفاظ على وظائف المتخصصين والمطابقة الذكية ومساحة الحساب والمكتبة التعليمية.
 
-https://wefaq-khair.org
+أضيفت طبقة عرض جديدة تشمل مسارات تعلم مرئية للقرآن والتجويد، واللغة العربية، وتعليم الأطفال والأسرة، مع أزرار تربط مباشرة بقسم المتخصصين. كما تمت إضافة دعوة تواصل احترافية في نهاية الصفحة، وتحويل روابط التنقل القديمة إلى روابط داخلية داخل المنصة.
 
-## Files
+## التشغيل
+افتح `index.html` مباشرة في المتصفح أو ارفعه إلى الاستضافة. تم تحويل الاعتمادات الأساسية إلى روابط CDN حتى يعمل الملف كصفحة واحدة دون الحاجة إلى مجلد أصول محلي.
 
-- `index.html` — production frontend.
-- `CNAME` — custom domain configuration.
-- `.github/workflows/deploy.yml` — GitHub Pages deployment workflow.
-- `.gitignore` — prevents local secrets and temporary files from being committed.
-
-## Important
-
-Do not commit `.env`, Supabase service-role keys, Telegram bot tokens, or other secrets.
-The browser may use the Supabase public/anon key, but database security must be enforced with Supabase RLS.
+## ملاحظة تقنية
+لم يتم تغيير إعدادات قاعدة البيانات أو مفاتيح الخدمات أو إعدادات Supabase الخلفية. النسخة هنا هي دمج واجهة وتجربة استخدام على ملف `index.html`.
