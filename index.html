@@ -1763,7 +1763,9 @@
       msg.textContent=t('Creating account...');
       const {data,error}=await supabaseClient.auth.signUp({email,password,options:{data:{display_name:name,account_type:type}}});
       if(error){msg.textContent=error.message;return;}
-      if(data.user){await supabaseClient.from('profiles').upsert({id:data.user.id,display_name:name||email.split('@')[0],account_type:type},{onConflict:'id'});}
+      // Profile creation is handled by the server-side auth trigger. Do not write to profiles here:
+      // with email confirmation enabled there is no authenticated session yet, so a client insert
+      // would fail against the RLS policy with SQLSTATE 42501.
       msg.textContent=data.session?t('Account created ✓'):t('Check your email to confirm your account, then sign in to continue.');
       if(data.session){closeAuthModal(true); await refreshAuthState(); loadWorkspace(); await resumePendingAuthAction();}
     }
