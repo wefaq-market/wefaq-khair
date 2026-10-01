@@ -80,6 +80,25 @@
     html[dir='rtl'] .search-leading-input { padding-left: 0.75rem; padding-right: 2.25rem; }
     html[dir='ltr'] .search-leading-input { padding-left: 2.25rem; padding-right: 0.75rem; }
   
+
+    /* v8.1 specialist role cards */
+    .wf-specialist-card{position:relative;overflow:hidden;min-height:390px;isolation:isolate;border:1px solid rgba(16,185,129,.18);background:#0b192c;box-shadow:0 10px 28px rgba(15,23,42,.08);}
+    .wf-specialist-card::before{content:"";position:absolute;inset:0;z-index:-2;background-image:var(--wf-specialist-bg);background-size:cover;background-position:center;transform:scale(1.01);transition:transform .35s ease;}
+    .wf-specialist-card::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(2,6,23,.10) 0%,rgba(2,6,23,.48) 36%,rgba(2,6,23,.96) 88%,rgba(2,6,23,.99) 100%),linear-gradient(90deg,rgba(2,6,23,.18),rgba(2,6,23,.18));}
+    .wf-specialist-card:hover::before{transform:scale(1.06);}
+    .wf-specialist-card .wf-specialist-content{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;}
+    .wf-specialist-card .wf-specialist-top{display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;}
+    .wf-specialist-avatar{width:58px;height:58px;border-radius:1rem;object-fit:cover;border:2px solid rgba(255,255,255,.82);box-shadow:0 8px 22px rgba(0,0,0,.22);background:rgba(255,255,255,.12);}
+    .wf-specialist-avatar-fallback{width:58px;height:58px;border-radius:1rem;display:flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,.82);background:rgba(5,46,43,.80);color:#a7f3d0;font-size:1.2rem;box-shadow:0 8px 22px rgba(0,0,0,.22);}
+    .wf-specialist-card h3{color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.35);}
+    .wf-specialist-card .wf-specialist-role{color:#a7f3d0;text-shadow:0 2px 8px rgba(0,0,0,.35);}
+    .wf-specialist-card .wf-specialist-meta{color:rgba(255,255,255,.76);}
+    .wf-specialist-card .wf-specialist-bio{color:rgba(255,255,255,.90);}
+    .wf-specialist-card .wf-specialist-chip{background:rgba(255,255,255,.12);color:#f8fafc;border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(8px);}
+    .wf-specialist-card .wf-specialist-btn-secondary{border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.08);color:#fff;backdrop-filter:blur(8px);}
+    .wf-specialist-card .wf-specialist-btn-secondary:hover{background:rgba(255,255,255,.14);}
+    .wf-specialist-badge{display:inline-flex;align-items:center;gap:.3rem;border-radius:999px;padding:.35rem .55rem;background:rgba(2,6,23,.54);border:1px solid rgba(255,255,255,.14);color:#fff;font-size:.60rem;font-weight:800;backdrop-filter:blur(8px);}
+
     /* v8.0 design system */
     .wf-hero{position:relative;overflow:hidden;border:1px solid rgba(16,185,129,.22);background:linear-gradient(135deg,#052e2b 0%,#0b192c 50%,#07131f 100%);}
     .wf-hero:before{content:"";position:absolute;inset:auto -10% -55% 35%;height:420px;background:radial-gradient(circle,rgba(16,185,129,.20),transparent 65%);pointer-events:none;}
@@ -2137,15 +2156,30 @@
       const values=[...(Array.isArray(profile?.subjects)?profile.subjects:[]),...(Array.isArray(profile?.qiraat)?profile.qiraat:[]),...(Array.isArray(profile?.languages)?profile.languages:[]),...(Array.isArray(profile?.audience)?profile.audience:[]),...(Array.isArray(profile?.teaching_mode)?profile.teaching_mode:[])];
       return [...new Set(values.map(v=>String(v||'').trim()).filter(Boolean))].slice(0,8);
     }
+    const SPECIALIST_ROLE_IMAGES = {
+      quran_teacher: 'https://images.unsplash.com/photo-1691607596037-5c6597b1d99a?auto=format&fit=crop&w=1200&q=82',
+      quran_memorizer: 'https://images.unsplash.com/photo-1715347783243-570c8f3605fc?auto=format&fit=crop&w=1200&q=82',
+      student: 'https://images.unsplash.com/photo-1715347783243-570c8f3605fc?auto=format&fit=crop&w=1200&q=82',
+      parent_family: 'https://images.squarespace-cdn.com/content/v1/6202aab616e7e14ef6ff0588/1651825497459-Z0YFLFF53WS2DJOY1N18/Column%2B1.jpg',
+      qari: 'https://i1.sndcdn.com/artworks-000544567062-6d8qyj-t500x500.jpg',
+      hadith_specialist: 'https://images.unsplash.com/photo-1641816514743-d264c1481585?auto=format&fit=crop&w=1200&q=82',
+      arabic_teacher: 'https://media.easy-peasy.ai/041e0582-9853-4a67-b66b-4c0953c16faa/c7c72c7f-4239-4626-b5ef-5441379c074f_medium.webp'
+    };
+
+    function specialistRoleImage(role) {
+      return SPECIALIST_ROLE_IMAGES[role] || SPECIALIST_ROLE_IMAGES.student;
+    }
+
     function specialistCardHtml(profile) {
       const links=specialistContactLinks(profile);
       const tags=specialistTags(profile);
       const location=[profile.city,profile.country].filter(Boolean).join(', ');
-      const verification=['verified','admin_reviewed'].includes(profile.verification_status)?`<span class="text-[10px] font-extrabold px-2 py-1 rounded-full text-blue-700 bg-blue-50 dark:bg-blue-950/30">${esc(t('Verified profile'))}</span>`:'';
+      const verification=['verified','admin_reviewed'].includes(profile.verification_status)?`<span class="wf-specialist-badge"><i class="fa-solid fa-circle-check"></i>${esc(t('Verified profile'))}</span>`:'';
       const title=profile.display_name||specialistRoleLabel(profile.role);
-      const image=profile.profile_image_url&&/^https:\/\//i.test(profile.profile_image_url)?`<img src="${esc(profile.profile_image_url)}" alt="" loading="lazy" referrerpolicy="no-referrer" class="w-14 h-14 rounded-2xl object-cover border border-slate-200 dark:border-slate-700">`:`<div class="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 flex items-center justify-center text-xl"><i class="fa-solid fa-user-graduate"></i></div>`;
-      const primary=`<button type="button" onclick="contactSpecialist('${esc(profile.id)}','Contact')" aria-label="${esc(t('Contact specialist'))}" class="text-center rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-extrabold py-2.5"><i class="fa-solid fa-comments mr-1"></i>${esc(t('Contact specialist'))}</button>`;
-      return `<article class="source-card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 flex flex-col h-full"><div class="flex items-start gap-3">${image}<div class="min-w-0 flex-1"><div class="flex items-start justify-between gap-2"><h3 class="font-extrabold text-sm text-slate-900 dark:text-white line-clamp-2">${esc(title)}</h3>${verification}</div><div class="text-[10px] font-bold text-emerald-700 dark:text-emerald-300 mt-1">${esc(t(specialistRoleLabel(profile.role)))}</div>${location?`<div class="text-[10px] text-slate-400 mt-1"><i class="fa-solid fa-location-dot mr-1"></i>${esc(location)}</div>`:''}</div></div><p class="text-xs text-slate-600 dark:text-slate-300 leading-5 mt-3 line-clamp-4 flex-1">${esc(profile.bio||profile.specialty||t('Language'))}</p>${profile.years_experience?`<div class="text-[10px] text-slate-500 mt-2"><span class="font-bold">${esc(t('Years experience'))}:</span> ${Number(profile.years_experience)}</div>`:''}${tags.length?`<div class="flex flex-wrap gap-1.5 mt-3">${tags.map(tag=>`<span class="text-[9px] font-bold px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">${esc(tag)}</span>`).join('')}</div>`:''}<div class="mt-4 grid grid-cols-2 gap-2">${primary}<button type="button" onclick="openSpecialistDetails('${esc(profile.id)}')" class="rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-xs font-bold py-2.5">${esc(t('Details'))}</button></div></article>`;
+      const bgImage=specialistRoleImage(profile.role);
+      const image=profile.profile_image_url&&/^https:\/\//i.test(profile.profile_image_url)?`<img src="${esc(profile.profile_image_url)}" alt="" loading="lazy" referrerpolicy="no-referrer" class="wf-specialist-avatar">`:`<div class="wf-specialist-avatar-fallback"><i class="fa-solid fa-user-graduate"></i></div>`;
+      const primary=`<button type="button" onclick="contactSpecialist('${esc(profile.id)}','Contact')" aria-label="${esc(t('Contact specialist'))}" class="text-center rounded-xl bg-emerald-500/95 hover:bg-emerald-400 text-slate-950 text-xs font-extrabold py-2.5 shadow-lg"><i class="fa-solid fa-comments mr-1"></i>${esc(t('Contact specialist'))}</button>`;
+      return `<article class="wf-specialist-card source-card rounded-2xl p-4 flex flex-col h-full" style="--wf-specialist-bg:url('${esc(bgImage)}')"><div class="wf-specialist-content"><div class="wf-specialist-top"><div class="flex items-start gap-3 min-w-0">${image}<div class="min-w-0 flex-1"><h3 class="font-extrabold text-sm line-clamp-2">${esc(title)}</h3><div class="wf-specialist-role text-[10px] font-bold mt-1">${esc(t(specialistRoleLabel(profile.role)))}</div>${location?`<div class="wf-specialist-meta text-[10px] mt-1"><i class="fa-solid fa-location-dot mr-1"></i>${esc(location)}</div>`:''}</div></div>${verification}</div><div class="mt-auto"><div class="wf-specialist-bio text-xs leading-5 mt-4 line-clamp-4">${esc(profile.bio||profile.specialty||t('Language'))}</div>${profile.specialty?`<div class="text-[10px] text-emerald-200/90 font-bold mt-2"><i class="fa-solid fa-book-open mr-1"></i>${esc(profile.specialty)}</div>`:''}${profile.years_experience?`<div class="text-[10px] text-white/70 mt-2"><span class="font-bold">${esc(t('Years experience'))}:</span> ${Number(profile.years_experience)}</div>`:''}${tags.length?`<div class="flex flex-wrap gap-1.5 mt-3">${tags.map(tag=>`<span class="wf-specialist-chip text-[9px] font-bold px-2 py-1 rounded-full">${esc(tag)}</span>`).join('')}</div>`:''}<div class="mt-4 grid grid-cols-2 gap-2">${primary}<button type="button" onclick="openSpecialistDetails('${esc(profile.id)}')" class="wf-specialist-btn-secondary rounded-xl border text-xs font-bold py-2.5">${esc(t('Details'))}</button></div></div></div></article>`;
     }
     async function loadSpecialists() {
       if(!supabaseClient)return;
