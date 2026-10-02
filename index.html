@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 
-<html class="scroll-smooth" dir="rtl" lang="ar"><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<html class="scroll-smooth" dir="rtl" lang="en"><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
-<title>منصة وفاق التعليمية | القرآن الكريم واللغة العربية</title>
+<title>Wefaq Education Platform | Quran and Arabic Learning</title>
 <meta content="منصة وفاق التعليمية لربط الطلاب والأسر بمعلمي القرآن واللغة العربية والمتخصصين مع أدوات بحث وتواصل وذكاء اصطناعي." name="description"/>
 <meta content="#059669" name="theme-color"/>
 <meta content="strict-origin-when-cross-origin" name="referrer"/>
@@ -834,7 +834,7 @@
             <span data-i18n-merge="Wefaq Acquisition Radar">رادار استقطاب وفاق</span>
           </div>
           <h2 class="text-2xl sm:text-3xl font-black" data-i18n-merge="Find demand, teachers and service leads before they become competitors' customers.">اكتشف الطلاب والمعلمين وطلبات الخدمات قبل ضياعها.</h2>
-          <p class="text-sm text-white/65 mt-2 max-w-3xl leading-6" data-i18n-merge="A controlled public-data workspace for authorized web sources, feeds, communities and official connectors.">رادار عام يكتشف الطلب والعرض والمبادرات المجانية والمنح التعليمية من العالم العربي وأفريقيا وآسيا وبقية العالم.</p>
+          <p class="text-sm text-white/65 mt-2 max-w-3xl leading-6" data-i18n-merge="A controlled public-data workspace for authorized web sources, feeds, communities and official connectors.">مساحة مضبوطة لاكتشاف البيانات العامة من مصادر الويب والتغذيات والمجتمعات والموصلات الرسمية.</p>
         </div>
         <div class="flex flex-wrap gap-2">
           <button type="button" onclick="runAcquisitionRadarSync()" class="rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs px-4 py-3 transition">
@@ -846,12 +846,11 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-5">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
         <div class="wf-radar-stat"><div class="text-[10px] text-white/55" data-i18n-merge="New leads">عملاء محتملون جدد</div><div class="num mt-2" id="radar-stat-new">—</div><div class="text-[10px] text-emerald-300 mt-1" data-i18n-merge="last 24 hours">آخر 24 ساعة</div></div>
         <div class="wf-radar-stat"><div class="text-[10px] text-white/55" data-i18n-merge="Teacher / tutor leads">معلمون ومحفظون</div><div class="num mt-2" id="radar-stat-teachers">—</div><div class="text-[10px] text-white/45 mt-1" data-i18n-merge="supply signals">إشارات عرض</div></div>
         <div class="wf-radar-stat"><div class="text-[10px] text-white/55" data-i18n-merge="Student / family leads">طلاب وأسر</div><div class="num mt-2" id="radar-stat-students">—</div><div class="text-[10px] text-white/45 mt-1" data-i18n-merge="demand signals">إشارات طلب</div></div>
-        <div class="wf-radar-stat"><div class="text-[10px] text-white/55" data-i18n-merge="Sources ready">مصادر جاهزة</div><div class="num mt-2" id="radar-stat-sources">0/8</div><div class="text-[10px] text-white/45 mt-1" data-i18n-merge="authorized or public">مصرح بها أو عامة</div></div>
-        <div class="wf-radar-stat"><div class="text-[10px] text-white/55">مقاعد مجانية ومنح</div><div class="num mt-2" id="radar-stat-free">—</div><div class="text-[10px] text-emerald-300 mt-1">مجاني / منحة</div></div>
+        <div class="wf-radar-stat"><div class="text-[10px] text-white/55" data-i18n-merge="Sources ready">مصادر جاهزة</div><div class="num mt-2" id="radar-stat-sources">0/9</div><div class="text-[10px] text-white/45 mt-1" data-i18n-merge="authorized or public">مصرح بها أو عامة</div></div>
       </div>
 
       <div class="wf-radar-grid">
@@ -870,12 +869,6 @@
               </select>
               <select id="radar-priority" onchange="renderAcquisitionRadar()" class="rounded-xl bg-slate-950/60 border border-white/10 text-white px-3 py-2.5 text-xs outline-none">
                 <option value="all">كل الأولويات</option><option value="hot">ساخن</option><option value="warm">دافئ</option><option value="normal">عادي</option>
-              </select>
-              <select id="radar-pricing" onchange="renderAcquisitionRadar()" class="rounded-xl bg-slate-950/60 border border-white/10 text-white px-3 py-2.5 text-xs outline-none">
-                <option value="all">كل طرق التعليم</option><option value="free">مجاني / تطوعي</option><option value="scholarship">منحة / رعاية</option><option value="symbolic">سعر رمزي</option><option value="paid">مدفوع</option><option value="unknown">غير محدد</option>
-              </select>
-              <select id="radar-region" onchange="renderAcquisitionRadar()" class="rounded-xl bg-slate-950/60 border border-white/10 text-white px-3 py-2.5 text-xs outline-none">
-                <option value="all">كل المناطق والدول</option><option value="GCC">الخليج</option><option value="NORTH_AFRICA">شمال أفريقيا</option><option value="LEVANT">بلاد الشام</option><option value="WEST_AFRICA">غرب أفريقيا</option><option value="EAST_AFRICA">شرق أفريقيا</option><option value="SOUTHEAST_ASIA">جنوب شرق آسيا</option><option value="SOUTH_ASIA">جنوب آسيا</option><option value="GLOBAL">عالمي</option>
               </select>
             </div>
           </div>
@@ -1359,410 +1352,7 @@
       try { return localStorage.getItem(key) || defaultValue; } catch (e) { return defaultValue; }
     }
     function safeSet(key, value) {
-      try { localStorage.setItem(key, value); } catch (e) { /* sandboxed – ignore */ }
-    }
-
-    // ========== LANGUAGE & THEME ==========
-    const I18N = {
-      'Wefaq Global Platform':'منصة وفاق العالمية','Global & Regional Matching Radar':'رادار المطابقة العالمية والإقليمية','Full Radar':'الرادار الكامل','Marketplace':'المكتبة التعليمية','Post Request / Opportunity':'نشر طلب / فرصة','Investment Hub & Global Quran Memorization Circles':'مركز الاستثمار وحلقات تحفيظ القرآن العالمية','The unified platform for Arab projects, funding requests, partnerships, and global Quran memorization circles':'شبكة تعليمية متخصصة تربط معلمي وطلاب القرآن الكريم واللغة العربية والحديث حول العالم','We connect idea & project owners, partnership & funding seekers, and feasibility study providers across the Arab world, plus a global umbrella for Quran teachers and students with continuous sanad, and a language learning section with Arabic first.':'نربط معلمي وطلاب القرآن الكريم والحديث واللغة العربية، ونساعد الأسر والمراكز التعليمية على اكتشاف الدروس والحلقات والدورات ووسائل التواصل المعلنة.','Request / Offer Quran Memorization':'طلب / عرض تحفيظ القرآن','Teach / Learn a Language':'تعليم / تعلم لغة','نشر درس / حلقة / دورة تعليمية':'عرض مشروع / طلب تمويل وشريك','Sync Cloud':'مزامنة سحابية','Share Platform':'مشاركة المنصة','Metrics':'الإحصائيات','Quran Seekers & Circles':'طالبو القرآن والحلقات','Worldwide':'حول العالم','Projects & Exhibitors':'المشاريع والعارضون','Arab World':'العالم العربي','Funding & Partner Seekers':'طالبو التمويل والشركاء','Investment Opportunities':'فرص الاستثمار','Feasibility & Ideas':'دراسات الجدوى والأفكار','Ready to Execute':'جاهز للتنفيذ','Language Teachers & Learners':'معلمو ومتعلّمو اللغات','Arabic & Others':'العربية وغيرها','Visitor Counter (Cloud + Local)':'عداد الزوار (سحابي + محلي)','Platform Visitors':'زوار المنصة','Visitor Counter':'عداد الزوار','total visits':'إجمالي الزيارات','Online now':'متصلون الآن','Unread Messages':'الرسائل غير المقروءة','Today: 0':'اليوم: 0','Session: 1':'الجلسة: 1','Loading country breakdown...':'جاري تحميل توزيع الدول...','Smart Matching & Performance Center':'مركز أداء ومطابقة الذكاء الاصطناعي','Connect demand with providers, measure engagement, and surface improvement actions.':'اربط الطلب بمقدمي الخدمات، وقِس التفاعل، واكتشف إجراءات التحسين.','Smart matching active':'المحرك الذكي نشط','Opportunities':'الفرص','Demand signals':'إشارات الطلب','Supply signals':'إشارات العرض','Match readiness':'جاهزية المطابقة','What do you need?':'ماذا تحتاج؟','Category':'التصنيف','Any category':'أي تصنيف','Projects':'مشاريع','Funding':'تمويل','Languages':'لغات','Quran':'قرآن','Services':'خدمات','Service seekers':'طالبو الخدمات','Ideas':'أفكار','Region':'المنطقة','Anywhere':'أي مكان','Saudi Arabia':'السعودية','Egypt':'مصر','UAE':'الإمارات','GCC':'الخليج','Global':'عالمي','Smart Match':'مطابقة ذكية','Improvement Monitor':'مراقب التحسين','Recalculate insights':'إعادة حساب التحليلات','Client / Provider Workspace':'مساحة العميل / مقدم الخدمة','My Wefaq Workspace':'مساحة وفاق الخاصة بي','Manage your identity, matches, conversations and active connections.':'إدارة هويتك ومطابقاتك ومحادثاتك واتصالاتك النشطة.','Guest mode':'وضع الزائر','Create your secure account':'أنشئ حسابك الآمن','Unlock saved matches, private messaging, requests, reviews and your performance dashboard.':'فعّل المطابقات المحفوظة والرسائل الخاصة والطلبات والتقييمات ولوحة الأداء.','Sign in / Create account':'تسجيل الدخول / إنشاء حساب','Matches':'المطابقات','Saved':'المحفوظات','Connections':'الاتصالات','Messages':'الرسائل','Active Connections':'الاتصالات النشطة','Profile':'الملف الشخصي','Refresh':'تحديث','Notifications':'الإشعارات','Mark all read':'تحديد الكل كمقروء','Recommended Actions':'الإجراءات المقترحة','Trust & Quality':'الثقة والجودة','Profile completeness':'اكتمال الملف الشخصي','Verified signals':'إشارات التحقق','AI improvement loop':'حلقة تحسين الذكاء الاصطناعي','Relevant interactions such as matches, contacts, favorites, completed connections and reviews can improve future recommendations.':'كل مشاهدة ومطابقة وتواصل وإتمام وتقييم يمكن أن يحسن التوصيات المستقبلية.','Smart Filter Radar':'رادار التصفية الذكي','Smart Comprehensive Filter Radar':'رادار التصفية الذكي الشامل','All':'الكل','📖 Quran Memorization (Global)':'📖 تحفيظ القرآن (عالمي)','🏬 Projects & Exhibitors':'🏬 المشاريع والعارضون','🛒 Service Seekers':'🛒 طالبو الخدمات','💰 Funding & Partners':'💰 التمويل والشركاء','💡 Ideas & Feasibility':'💡 الأفكار ودراسات الجدوى','🌍 Language Learning':'🌍 تعلم اللغات','🛠 Service Offers':'🛠 عروض الخدمات','📑 Tenders':'📑 المناقصات','🔨 Auctions':'🔨 المزادات','All countries, Middle East & World':'كل الدول والشرق الأوسط والعالم','Global (Worldwide - Online)':'عالمي (حول العالم - أونلاين)','Palestine & Gaza':'فلسطين وغزة','Gaza specifically':'غزة تحديدًا','Africa (East, West & North)':'أفريقيا (شرق وغرب وشمال)','Foreign countries (Europe, Americas, Asia)':'الدول الأجنبية (أوروبا والأمريكتان وآسيا)','Saudi Arabia (KSA)':'السعودية (KSA)','United Arab Emirates (UAE)':'الإمارات (UAE)','Qatar':'قطر','Kuwait':'الكويت','Rest of GCC':'باقي دول الخليج','Maghreb':'المغرب العربي','Levant (Jordan, Syria, Lebanon)':'بلاد الشام (الأردن وسوريا ولبنان)','All request & offer types':'كل أنواع الطلب والعرض','Offer (Available for execution/sale)':'عرض (متاح للتنفيذ/البيع)','Demand (Seeking to buy/execute)':'طلب (يبحث عن شراء/تنفيذ)','Seeking Partner (Co-founder)':'طلب شريك (شريك مؤسس)','Seeking Funding':'طلب تمويل','All verification levels':'كل مستويات التحقق','Certified with continuous sanad':'موثق بسند متصل','Reviewed by admin (reciter / teacher)':'مراجَع من الإدارة (قارئ / معلم)','Feasibility study attached':'دراسة جدوى مرفقة','Licensed / Verified record':'سجل مرخص / موثق','Quranic narration / reading':'الرواية / القراءة القرآنية','All narrations & readings':'كل الروايات والقراءات','Hafs from Asim':'حفص عن عاصم','Warsh from Nafi':'ورش عن نافع','Qalun from Nafi':'قالون عن نافع','Al-Duri from Abu Amr':'الدوري عن أبي عمرو','The Ten Readings':'القراءات العشر','Target audience':'الفئة المستهدفة','All (Men / Women / Children)':'الجميع (رجال / نساء / أطفال)','Children & young students':'الأطفال والطلاب الصغار','Men only':'رجال فقط','Women & female teachers':'نساء ومعلمات','Study mode':'نمط الدراسة','Online (Global) & In-person':'أونلاين (عالمي) وحضوري','Remote (Electronic circles worldwide)':'عن بُعد (حلقات إلكترونية حول العالم)','In-person (Mosques & centers)':'حضوري (مساجد ومراكز)','Language / Track':'اللغة / المسار','All languages & tracks':'كل اللغات والمسارات','Arabic for Non-Native Speakers':'العربية لغير الناطقين بها','Classical Arabic & Language Sciences':'العربية الفصحى وعلوم اللغة','Quranic Arabic & Linguistic Tajweed':'العربية القرآنية والتجويد اللغوي','Language Exchange':'تبادل لغات','English':'الإنجليزية','Other Language':'لغة أخرى','Level':'المستوى','All levels':'كل المستويات','Beginner':'مبتدئ','Intermediate':'متوسط','Advanced':'متقدم','Registered Requests & Opportunities':'الطلبات والفرص المسجلة','0 results':'0 نتيجة','Quran Reciters in Africa':'قراء القرآن في أفريقيا','Export JSON':'تصدير JSON','No results match your current filters':'لا توجد نتائج تطابق الفلاتر الحالية','Try changing the search criteria or reset filters to browse all cards.':'جرّب تغيير معايير البحث أو إعادة ضبط الفلاتر لعرض جميع البطاقات.','Reset Filters':'إعادة ضبط الفلاتر','Mobile bottom nav':'التنقل السفلي للهاتف','Radar':'الرادار','Market':'المكتبة التعليمية','Add':'إضافة','Account':'الحساب','Login':'تسجيل الدخول','Direct contact with the poster':'تواصل مباشر مع صاحب المنشور','A ready agreement message has been prepared for you':'تم تجهيز رسالة اتفاق جاهزة لك','Your name or organization':'اسمك أو مؤسستك','Message preview':'معاينة الرسالة','Open WhatsApp chat':'فتح محادثة واتساب','Share this opportunity':'مشاركة هذه الفرصة','Spread the investment or Quran opportunity to reach more interested people':'شارك فرصة الاستثمار أو القرآن للوصول إلى المزيد من المهتمين','WhatsApp':'واتساب','Telegram':'تيليجرام','X / Twitter':'X / تويتر','LinkedIn':'لينكدإن','Copy':'نسخ','Private Conversation':'محادثة خاصة','Send':'إرسال','My Profile':'ملفي الشخصي','Save Profile':'حفظ الملف الشخصي','Wefaq AI Assistant':'مساعد وفاق بالذكاء الاصطناعي','Ask about matches, your profile, listings or next actions.':'اسأل عن المطابقات أو ملفك أو الإعلانات أو الخطوات التالية.','Ask':'اسأل','Post a new request / project / Quran circle':'نشر طلب / مشروع / حلقة قرآن جديدة','Choose the category and enter your details so matching people can reach you quickly':'اختر التصنيف وأدخل بياناتك ليصل إليك الأشخاص المناسبون بسرعة','Main title *':'العنوان الرئيسي *','Main category *':'التصنيف الرئيسي *','🏬 Existing Project / Project Exhibitor':'🏬 مشروع قائم / عارض مشروع','🛒 Service / Supply Seeker':'🛒 طالب خدمة / توريد','💰 Funding / Investment Partnership Seeker':'💰 طالب تمويل / شراكة استثمارية','💡 Idea or Feasibility Study':'💡 فكرة أو دراسة جدوى','🌍 Language Teaching':'🌍 تعليم لغة','🛠 Service Offer':'🛠 عرض خدمة','📑 Tender':'📑 مناقصة','🔨 Auction':'🔨 مزاد','Country / Region *':'الدولة / المنطقة *','Palestine':'فلسطين','Gaza':'غزة','Africa':'أفريقيا','Foreign':'أجنبي','Levant':'بلاد الشام','Listing type':'نوع الإعلان','Offer':'عرض','Demand':'طلب','Seeking Partner':'طلب شريك','Amount / Capital':'المبلغ / رأس المال','Full description *':'الوصف الكامل *','Quran Circle Details':'تفاصيل حلقة القرآن','Narration':'الرواية','Sheikh / Reciter':'الشيخ / القارئ','Audience':'الفئة المستهدفة','Children':'أطفال','Men':'رجال','Women':'نساء','Everyone':'الجميع','Language Lesson Details':'تفاصيل درس اللغة','Classical Arabic':'العربية الفصحى','Other':'أخرى','Teacher name':'اسم المعلم','WhatsApp number with country code *':'رقم واتساب مع رمز الدولة *','License / Certification (optional)':'الترخيص / الشهادة (اختياري)','Cancel':'إلغاء','Publish to Cloud':'نشر على السحابة','Wefaq Account':'حساب وفاق','Secure cloud identity':'هوية سحابية آمنة','Client':'عميل','Provider':'مقدم خدمة','Organization':'مؤسسة','Teacher':'معلم','Investor':'مستثمر','Sign in':'تسجيل الدخول','Create account':'إنشاء حساب','quran_banner_alt':'مصحف مفتوح للقراءة والحفظ ضمن منصة وفاق','Quran & Wefaq':'القرآن ووفاق','A trusted space for Quran learning, memorization and meaningful connections.':'مساحة موثوقة لتعلم القرآن وحفظه وبناء روابط نافعة.','Explore Quran Opportunities':'استكشف فرص القرآن','Cloud storage is not connected':'التخزين السحابي غير متصل','Cloud counter unavailable':'عداد السحابة غير متاح','Syncing with cloud...':'جارٍ المزامنة مع السحابة...','No current listing matches these constraints. Publish a request so providers can respond.':'لا توجد فرصة حالية تطابق هذه الشروط. انشر طلبًا ليتمكن مقدمو الخدمات من الرد.','Top matching opportunities':'أفضل الفرص المطابقة','Local smart ranking':'ترتيب خادم الذكاء الاصطناعي','Local smart fallback':'مطابقة ذكية محلية بديلة','Keyword, category, region and trust-signal relevance.':'مدى الصلة بالكلمات المفتاحية والتصنيف والمنطقة وإشارات الثقة.','Complete your profile to improve AI matching.':'أكمل ملفك الشخصي لتحسين المطابقة بالذكاء الاصطناعي.','Save relevant listings so recommendations learn your preferences.':'احفظ الفرص المناسبة لتتعلم التوصيات تفضيلاتك.','No active connections yet.':'لا توجد اتصالات نشطة بعد.','No notifications.':'لا توجد إشعارات.','Start the conversation.':'ابدأ المحادثة.','Hello. I can help improve your profile, find matches, explain opportunities, and suggest your next action.':'مرحبًا. يمكنني مساعدتك في تحسين ملفك والعثور على المطابقات وشرح الفرص واقتراح خطوتك التالية.','I recommend completing your profile, saving relevant listings, and using Smart Match with a specific need, region and budget.':'أوصي بإكمال ملفك الشخصي وحفظ الفرص المناسبة واستخدام المطابقة الذكية مع تحديد الحاجة والمنطقة والميزانية.','Please sign in before publishing':'سجّل الدخول قبل النشر','Published to cloud ✓':'تم النشر على السحابة ✓','Publish failed: cloud storage error':'فشل النشر: خطأ في التخزين السحابي','Please sign in first':'سجّل الدخول أولًا','Connection already requested':'تم إرسال طلب الاتصال بالفعل','You cannot connect to your own listing':'لا يمكنك الاتصال بإعلانك الخاص','Connection request sent ✓':'تم إرسال طلب الاتصال ✓','Connection updated ✓':'تم تحديث الاتصال ✓','Connection update failed':'تعذر تحديث الاتصال','Action not available for this connection':'هذا الإجراء غير متاح لهذه الحالة','Review access denied':'لا تملك صلاحية تقييم هذا الاتصال','Complete the connection before reviewing':'أكمل الاتصال أولًا قبل التقييم','Accept':'قبول','Reject':'رفض','Start':'بدء','Mark completed':'تحديد كمكتمل','accepted':'مقبول','in_progress':'قيد التنفيذ','rejected':'مرفوض','cancelled':'ملغى','Could not create connection':'تعذر إنشاء الاتصال','Saved ✓':'تم الحفظ ✓','Removed from saved':'تمت الإزالة من المحفوظات','Could not save listing':'تعذر حفظ الفرصة','Message failed':'فشل إرسال الرسالة','Review saved ✓':'تم حفظ التقييم ✓','Pending':'قيد المراجعة','Rating must be between 1 and 5':'يجب أن يكون التقييم بين 1 و5','Review could not be saved':'تعذر حفظ التقييم','No phone number':'لا يوجد رقم هاتف','Copied ✓':'تم النسخ ✓','Copy failed':'فشل النسخ','Link copied ✓':'تم نسخ الرابط ✓','Signing in...':'جارٍ تسجيل الدخول...','Signed in ✓':'تم تسجيل الدخول ✓','Cloud authentication is unavailable.':'مصادقة السحابة غير متاحة.','Account created ✓':'تم إنشاء الحساب ✓','Check your email to confirm your account.':'تحقق من بريدك الإلكتروني لتأكيد الحساب.','Creating account...':'جارٍ إنشاء الحساب...','Password must be at least 8 characters.':'يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.','Cloud sync failed':'فشلت مزامنة السحابة','Live cloud sync active ✓':'تم تفعيل المزامنة السحابية المباشرة ✓','Live sync connection lost':'انقطع اتصال المزامنة المباشرة','New listing:':'إعلان جديد:','This legacy listing has no account owner yet':'هذا الإعلان القديم لا يملك حسابًا مرتبطًا به بعد','Legacy':'قديم','Analyzing current opportunities...':'جارٍ تحليل الفرص الحالية...','Connect':'تواصل','No current listing matches these constraints. Publish a request so providers can respond.':'لا توجد فرصة حالية تطابق هذه الشروط. انشر طلبًا ليتمكن مقدمو الخدمات من الرد.','Please fill all required fields.':'يرجى تعبئة جميع الحقول المطلوبة.','Build marketplace density':'بناء كثافة المكتبة التعليمية','Add real providers and customer requests in your highest-value categories.':'أضف مقدمي خدمات حقيقيين وطلبات عملاء حقيقية في الفئات الأعلى قيمة.','Balance both sides':'موازنة جانبي المكتبة التعليمية','Capture both demand and supply so matching becomes meaningful.':'اجمع بين الطلب والعرض حتى تصبح المطابقة ذات معنى.','Improve listing quality':'تحسين جودة الإعلانات','Require clear descriptions, region, category, contact and verification fields.':'اطلب أوصافًا واضحة والمنطقة والتصنيف وبيانات التواصل والحقول الخاصة بالتحقق.','Track conversion':'تتبع التحويل','Record view → contact → accepted → completed to measure actual marketplace performance.':'سجل المشاهدة ← التواصل ← القبول ← الإتمام لقياس أداء المكتبة التعليمية الفعلي.','Smart keyword matching':'المطابقة الدلالية بالذكاء الاصطناعي','Use current listing data and matching signals to rank relevant opportunities.':'استخدم التضمينات على الخادم للمطابقة حسب المعنى وليس الكلمات المتطابقة فقط.','Quran Mushaf banner for Wefaq':'صورة مصحف للقرآن ضمن منصة وفاق','Connect Quran teachers and students worldwide, discover memorization circles, and use smart matching to find suitable opportunities.':'اربط معلمي وطلاب القرآن حول العالم، واكتشف حلقات التحفيظ، واستخدم المطابقة الذكية للعثور على الفرص المناسبة.','Sign out':'تسجيل الخروج','Chat':'محادثة','Review':'تقييم','Connection':'اتصال','pending':'قيد الانتظار','completed':'مكتمل','Profile saved ✓':'تم حفظ الملف الشخصي ✓','Investor / Quran seeker via Wefaq':'مستثمر / طالب قرآن عبر وفاق','Cloud storage is unavailable':'التخزين السحابي غير متاح','Posts':'منشور','Web result':'نتيجة ويب','Open source':'فتح المصدر','Contact source':'التواصل مع المصدر','No direct contact found':'لا يوجد تواصل مباشر مكتشف','Real external source':'مصدر خارجي حقيقي','Syncing':'جارٍ المزامنة','Credential missing':'بيانات اعتماد ناقصة','External sync completed':'اكتملت مزامنة المصادر الخارجية','External sync unavailable':'المزامنة الخارجية غير متاحة','Web results are live only':'نتائج الويب مباشرة ولا يتم تخزينها','Real external social posts are stored as source leads; open-web results are live and transient. Wefaq never invents external listings.':'يتم حفظ المنشورات الاجتماعية الخارجية الحقيقية كمصادر للفرص؛ أما نتائج الويب المفتوح فهي مباشرة ومؤقتة. وفاق لا يخترع إعلانات خارجية.','Web Search active':'البحث على الويب نشط','Telegram live':'تيليجرام مباشر','Other connectors can be enabled later':'يمكن تفعيل الموصلات الأخرى لاحقًا','Not connected':'غير متصل','X — Not connected':'X — غير متصل','YouTube — Not connected':'YouTube — غير متصل','Reddit — Not connected':'Reddit — غير متصل'
-    };
-    Object.assign(I18N, {
-      'No live data':'لا توجد بيانات حية',
-      'No live radar activity yet.':'لا يوجد نشاط رادار حي حتى الآن.',
-      'No live leads match this filter.':'لا توجد إشارات حية تطابق هذا الفلتر.',
-      'No live radar data has been connected yet.':'لم يتم ربط بيانات الرادار الحية بعد.',
-      'Only real records returned by authorized connectors are shown here.':'يتم عرض السجلات الحقيقية فقط عند إرجاعها من موصلات مصرح بها.',
-      'Started a public-data radar sync. One Brave search connector feeds the educational source packs.':'بدأت مزامنة الرادار الحية. لا يتم استخدام أي بيانات بديلة تجريبية.',
-      'Live connector unavailable':'الموصل الحي غير متاح',
-      'Awaiting live sync':'بانتظار المزامنة الحية',
-      'Live sync completed':'اكتملت المزامنة الحية',
-      'real leads received':'إشارات حقيقية مستلمة',
-      'No live data was added':'لم تتم إضافة أي بيانات حية',
-      'No live connector is configured. Nothing was added.':'لا يوجد موصل حي مهيأ. لم تتم إضافة أي بيانات.',
-      'Sign in to access live acquisition data.':'سجّل الدخول للوصول إلى بيانات الاستقطاب الحية.',
-      'No live records yet':'لا توجد سجلات حية بعد',
-      'live records loaded':'سجلًا حيًا تم تحميله',
-      'Loaded only real records stored from public/authorized sources.':'تم تحميل السجلات القادمة من موصلات حقيقية فقط.',
-      'No live records are stored yet.':'لا توجد سجلات حية مخزنة حتى الآن.',
-      'Live radar data could not be read. Check RLS/admin access.':'تعذر قراءة بيانات الرادار الحية. تحقق من RLS وصلاحيات الإدارة.',
-      'No live lead selected.':'لم يتم اختيار إشارة حية.',
-      'No source URL':'لا يوجد رابط مصدر',
-      'Public/approved contact':'تواصل عام/مصرح به',
-      'Review source terms before contacting':'راجع شروط المصدر قبل التواصل',
-      'Needs human review before sending':'تحتاج الرسالة إلى مراجعة بشرية قبل الإرسال',
-      'A real lead was saved to the review queue.':'تم حفظ إشارة حقيقية في قائمة المراجعة.',
-      'Signed out. Live acquisition data is hidden.':'تم تسجيل الخروج. تم إخفاء بيانات الاستقطاب الحية.',
-      'QURAN': 'القرآن',
-      'ARABIC': 'العربية',
-      'FAMILY': 'الأسرة',
-      'وفاق التعليمية': 'Wefaq Educational',
-      'Last 24 hours':'آخر 24 ساعة',
-      'Last 3 days':'آخر 3 أيام',
-      'Last 7 days':'آخر 7 أيام',
-      'Last 30 days':'آخر 30 يومًا',
-      'Public-data mode:':'وضع البيانات العامة:',
-      'Live Social & Open-Web Radar':'الرادار الحي للسوشيال والويب المفتوح',
-      'Real external posts and public web results are stored as source leads. Wefaq never invents external listings.':'يتم حفظ المنشورات الخارجية الحقيقية ونتائج الويب العامة كمصادر للفرص، ولا تختلق وفاق أي إعلان خارجي.',
-      'Waiting for sync':'بانتظار المزامنة',
-      'Sync external sources':'مزامنة المصادر الخارجية',
-      'Recent posts':'منشورات حديثة',
-      'Current public search window':'نافذة البحث العامة الحالية',
-      'Videos / channels':'فيديوهات / قنوات',
-      'Public API search':'بحث عبر الواجهة العامة',
-      'Communities / posts':'مجتمعات / منشورات',
-      'Groups / channels':'مجموعات / قنوات',
-      'Live webhook feed':'تغذية مباشرة عبر Webhook',
-      'Live search query':'استعلام البحث الحي',
-      'Source':'المصدر',
-      'All connected sources':'كل المصادر المتصلة',
-      'Open Web Search':'بحث الويب المفتوح',
-      'Apply filter':'تطبيق الفلتر',
-      'External source APIs are enabled only when their official credentials or authorized access are configured on the server. Private messages and unrestricted private/group data are not collected. Facebook/Instagram and LinkedIn require separate approved authorization connectors for account/page data.':'تُفعّل واجهات المصادر الخارجية عند إعداد بيانات الاعتماد الرسمية أو الوصول المصرّح به على الخادم. لا يتم جمع الرسائل الخاصة أو بيانات المجموعات الخاصة غير المصرّح بها. ويتطلب Facebook/Instagram وLinkedIn موصلات تفويض منفصلة وموافقات للوصول إلى بيانات الحسابات والصفحات.',
-      'No external source items are available for this filter yet.':'لا توجد عناصر من المصادر الخارجية لهذا الفلتر حتى الآن.',
-      'Posts':'منشورات',
-      'External sync completed':'اكتملت مزامنة المصادر الخارجية',
-      'External sync unavailable':'المزامنة الخارجية غير متاحة حالياً',
-      'Credential missing':'بيانات الاعتماد غير مهيأة',
-      'Open source':'فتح المصدر',
-      'Contact source':'التواصل عبر المصدر',
-      'No direct contact found':'لم يتم العثور على وسيلة تواصل مباشرة',
-      'Real external source':'مصدر خارجي حقيقي',
-      'Funding':'تمويل',
-      'Partner':'شريك',
-      'Tender':'مناقصة',
-      'Auction':'مزاد',
-      'Quran':'قرآن',
-      'Language':'لغة',
-      'Service':'خدمة',
-      'Demand':'طلب',
-      'Offer':'عرض',
-      'Unknown':'غير محدد',
-      'Syncing':'جارٍ المزامنة…',
-      'Social radar requires an account for controlled API sync.':'يتطلب مزامنة الرادار الاجتماعي تسجيل الدخول للتحكم في استدعاءات الواجهات الخارجية.',
-      'Quran, Hadith & Arabic Specialists':'متخصصو القرآن والحديث واللغة العربية',
-      'Find teachers, students, reciters, memorization specialists, Hadith specialists and Arabic teachers through cloud profiles.':'اعثر على المعلمين والطلاب والقراء والمتخصصين في التحفيظ والحديث واللغة العربية عبر ملفات سحابية.',
-      'specialists':'متخصصون',
-      'Specialist role':'نوع المتخصص',
-      'All specialist roles':'كل أنواع المتخصصين',
-      'Student':'طالب',
-      'Parent / Muslim family':'ولي أمر / أسرة مسلمة',
-      'Quran teacher':'معلم قرآن',
-      'Qari / Reciter':'قارئ',
-      'Quran memorization specialist':'متخصص تحفيظ القرآن',
-      'Hadith specialist':'متخصص حديث',
-      'Arabic teacher':'معلم لغة عربية',
-      'Specialty':'التخصص',
-      'All specialties':'كل التخصصات',
-      'Hadith':'الحديث',
-      'Arabic language':'اللغة العربية',
-      'Tajweed':'التجويد',
-      'Qiraat':'القراءات',
-      'Memorization':'التحفيظ',
-      'Arabic for non-native speakers':'العربية لغير الناطقين بها',
-      'All audiences':'كل الفئات',
-      'Families':'الأسر',
-      'Adults':'الكبار',
-      'Students':'الطلاب',
-      'All modes':'كل طرق التعليم',
-      'Online':'أونلاين',
-      'In-person':'حضوري',
-      'Hybrid':'هجين',
-      'Search specialists':'البحث عن متخصصين',
-      'Search by name, specialty, country or expertise...':'ابحث بالاسم أو التخصص أو الدولة أو الخبرة...',
-      'Saudi Arabia, Egypt, Morocco...':'السعودية، مصر، المغرب...',
-      'No specialist profiles are available for this filter yet.':'لا توجد ملفات لمتخصصين لهذا الفلتر حاليًا.',
-      'Years experience':'سنوات الخبرة',
-      'Verified profile':'ملف موثق',
-      'Contact specialist':'التواصل مع المتخصص',
-      'No direct contact available':'لا توجد وسيلة تواصل مباشرة',
-      'Country / Region':'\u0627\u0644\u062f\u0648\u0644\u0629 / \u0627\u0644\u0645\u0646\u0637\u0642\u0629',
-      'Specialist role':'\u0646\u0648\u0639 \u0627\u0644\u0645\u062a\u062e\u0635\u0635',
-      'Target audience':'\u0627\u0644\u0641\u0626\u0629 \u0627\u0644\u0645\u0633\u062a\u0647\u062f\u0641\u0629',
-      'Study mode':'\u0646\u0645\u0637 \u0627\u0644\u062f\u0631\u0627\u0633\u0629',
-      'Search specialists':'\u0627\u0644\u0628\u062d\u062b \u0639\u0646 \u0645\u062a\u062e\u0635\u0635\u064a\u0646',
-      'Specialty':'\u0627\u0644\u062a\u062e\u0635\u0635',
-      'Availability':'\u0627\u0644\u0623\u0648\u0642\u0627\u062a \u0627\u0644\u0645\u062a\u0627\u062d\u0629',
-      'Profile information':'\u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0627\u0644\u0645\u0644\u0641',
-      'Contact options':'\u0637\u0631\u0642 \u0627\u0644\u062a\u0648\u0627\u0635\u0644',
-      'Close':'\u0625\u063a\u0644\u0627\u0642'
-    });
-    Object.assign(I18N, {
-      'Join the specialist network':'انضم إلى شبكة المتخصصين',
-      'Join the Quran, Hadith & Arabic network':'انضم إلى شبكة القرآن والحديث واللغة العربية',
-      'Create a real cloud profile so students, families and learners can find you.':'أنشئ ملفًا سحابيًا حقيقيًا ليتمكن الطلاب والأسر والمتعلمون من العثور عليك.',
-      'Display name *':'الاسم الظاهر *',
-      'Role *':'الدور *',
-      'Your public name':'اسمك الظاهر',
-      'Specialty':'التخصص',
-      'Country':'الدولة',
-      'City':'المدينة',
-      'WhatsApp':'واتساب',
-      'Telegram':'تيليجرام',
-      'Email':'البريد الإلكتروني',
-      'LinkedIn':'لينكدإن',
-      'Website':'الموقع الإلكتروني',
-      'Contact options':'طرق التواصل',
-      'No public contact options':'لا توجد وسائل تواصل عامة',
-      'Close':'إغلاق',
-      'Phone':'الهاتف',
-      'Profile information':'معلومات الملف',
-      'Teaching modes':'طرق التعليم',
-      'Audience':'الفئة المستهدفة',
-      'Subjects':'المواد',
-      'Qiraat':'القراءات',
-      'Languages':'اللغات',
-      'Years of experience':'سنوات الخبرة',
-      'Availability':'الأوقات المتاحة',
-      'Profile description *':'وصف الملف *',
-      'Publish cloud profile':'نشر الملف السحابي',
-      'Publishing cloud profile...':'جارٍ نشر الملف السحابي...',
-      'Cloud profile published ✓':'تم نشر الملف السحابي ✓'
-    });
-    Object.assign(I18N, {
-      'Quran, Hadith & Arabic Network':'شبكة القرآن والحديث واللغة العربية',
-      'Wefaq brings the right person closer to the right learning need.':'وفاق تقرّب الشخص المناسب من احتياج التعلّم المناسب.',
-      'Find Quran teachers, reciters, memorization specialists, Hadith experts and Arabic teachers. Families, students and educators can build trusted cloud profiles and connect through the contact methods they actually provide.':'اعثر على معلمي القرآن والقراء والمتخصصين في التحفيظ والحديث واللغة العربية، وأنشئ ملفًا سحابيًا للتواصل عبر وسائل الاتصال المتاحة فعليًا.',
-      'Find a specialist':'ابحث عن متخصص',
-      'Search by name, specialty, city or expertise...':'ابحث بالاسم أو التخصص أو المدينة أو الخبرة...',
-      'Find':'بحث',
-      'I need a Quran teacher':'أحتاج معلم قرآن',
-      'Students & families':'للطلاب والأسر',
-      'I need help for my family':'أحتاج مساعدة لأسرتي',
-      'Children & home learning':'الأطفال والتعلم المنزلي',
-      'I am a student':'أنا طالب',
-      'Find a suitable specialist':'اعثر على متخصص مناسب',
-      'I am a reciter':'أنا قارئ',
-      'Build your public profile':'أنشئ ملفك العام',
-      'I teach memorization':'أقوم بالتحفيظ',
-      'Connect with learners':'تواصل مع المتعلمين',
-      'I need a Hadith specialist':'أحتاج متخصص حديث',
-      'Study & consultation':'دراسة واستشارة',
-      'I need Arabic':'أحتاج اللغة العربية',
-      'Native & non-native learners':'للناطقين وغير الناطقين بها',
-      'Join as a specialist':'انضم كمتخصص',
-      'Create your cloud profile':'أنشئ ملفك السحابي',
-      'Specialist profiles':'ملفات المتخصصين',
-      'Platform visitors':'زوار المنصة',
-      'Online now':'متصلون الآن','Unread Messages':'الرسائل غير المقروءة',
-      'A focused community':'مجتمع متخصص',
-      'Families, students and qualified educators — connected in one trusted space.':'الأسر والطلاب والمتخصصون في التعليم — في مساحة موثوقة واحدة.',
-      'Cloud profiles · multiple contact options · online and in-person':'ملفات سحابية · وسائل تواصل متعددة · أونلاين وحضوري',
-      'Search the cloud network by role, specialty, audience and learning mode.':'ابحث في الشبكة السحابية حسب الدور والتخصص والفئة وطريقة التعليم.',
-      'Cloud profiles':'ملفات سحابية',
-      'Smart filters':'فلاتر ذكية',
-      'Direct contact':'تواصل مباشر',
-      'Verification status':'حالة التوثيق',
-      'Student':'طالب',
-      'Parent / Muslim family':'ولي أمر / أسرة مسلمة',
-      'Quran teacher':'معلم قرآن',
-      'Qari / Reciter':'قارئ',
-      'Quran memorization specialist':'متخصص تحفيظ القرآن',
-      'Hadith specialist':'متخصص حديث',
-      'Arabic teacher':'معلم لغة عربية',
-    });
-
-    Object.assign(I18N, {
-      'Learning tracks for every stage': 'مسارات تعلم مصممة لكل مرحلة',
-      'Choose a path, then let Wefaq connect you with the right specialist.': 'اختر المسار، ثم دع وفاق تقرّبك من المتخصص المناسب.',
-      'Quran & Tajweed': 'القرآن والتجويد',
-      'Memorization, recitation correction and flexible online learning.': 'التحفيظ، تصحيح التلاوة، والتعلم المرن عبر الإنترنت.',
-      'Memorization': 'التحفيظ',
-      'Tajweed': 'التجويد',
-      'Online & flexible': 'أونلاين ومرن',
-      'Explore Quran specialists': 'استكشف متخصصي القرآن',
-      'Arabic Language': 'اللغة العربية',
-      'Grammar, rhetoric, reading and Arabic for non-native speakers.': 'النحو والبلاغة والقراءة والعربية لغير الناطقين بها.',
-      'Grammar': 'النحو',
-      'Rhetoric': 'البلاغة',
-      'For all levels': 'لكافة المستويات',
-      'Explore Arabic specialists': 'استكشف متخصصي العربية',
-      'Kids & Family Learning': 'تعلم الأطفال والأسرة',
-      'Gentle learning paths for children, families and home-based study.': 'مسارات لطيفة للأطفال والأسر والتعلم المنزلي.',
-      'Children': 'الأطفال',
-      'Families': 'الأسر',
-      'Interactive': 'تفاعلي',
-      'Find support for my family': 'ابحث عن دعم لأسرتي',
-      'Ready to teach?': 'هل أنت مستعد للتدريس؟',
-      'Join Wefaq as a specialist and publish your real profile for students and families.': 'انضم إلى وفاق كمتخصص وانشر ملفك الحقيقي للطلاب والأسر.',
-      'Join the specialist network': 'انضم إلى شبكة المتخصصين',
-      'Explore all specialists': 'استكشف جميع المتخصصين',
-      'Contact Wefaq': 'تواصل مع وفاق',
-      'We welcome teachers, students, families and educational centers.': 'نرحب بالمعلمين والطلاب والأسر والمراكز التعليمية.',
-      'Send us an email': 'أرسل لنا بريدًا إلكترونيًا',
-      'Open specialist join form': 'فتح نموذج انضمام المتخصص',
-      'All rights reserved © Wefaq Educational Platform 2026': 'جميع الحقوق محفوظة © منصة وفاق التعليمية 2026',
-      'Smart matching is active': 'المطابقة الذكية نشطة',
-      'Profiles can be verified': 'إمكانية توثيق الملفات',
-      'How Wefaq Works': 'كيف تعمل وفاق',
-      'A simple journey from your learning need to the right specialist and measurable progress.': 'رحلة بسيطة من احتياجك التعليمي إلى المتخصص المناسب ثم متابعة التقدم.',
-      'Find your specialist': 'اعثر على المتخصص المناسب',
-      'Search by specialty, audience, learning mode, location and experience.': 'ابحث حسب التخصص والفئة وطريقة التعليم والموقع والخبرة.',
-      'Browse specialists': 'تصفح المتخصصين',
-      'Connect and start': 'تواصل وابدأ رحلة التعلم',
-      'Review the profile, choose the available contact method and agree on the learning arrangement.': 'راجع الملف، اختر وسيلة التواصل المتاحة، واتفق على آلية التعلم.',
-      'Open my Wefaq space': 'افتح مساحة وفاق الخاصة بي',
-      'Track progress with AI': 'تابع تقدمك بالذكاء الاصطناعي',
-      'Use smart matching, activity signals and personalized recommendations to improve the next step.': 'استخدم المطابقة الذكية وإشارات التفاعل والتوصيات الشخصية لتحسين خطوتك التالية.',
-      'Open AI tools': 'افتح أدوات الذكاء الاصطناعي',
-      'Learning, connection and smart matching in one educational space.': 'التعلم والتواصل والمطابقة الذكية في مساحة تعليمية واحدة.'
-    });
-
-
-    Object.assign(I18N, {
-      'Wefaq Acquisition Radar':'رادار استقطاب وفاق',
-      "Find demand, teachers and service leads before they become competitors' customers.":'اكتشف الطلاب والمعلمين وطلبات الخدمات قبل ضياعها.',
-      'A controlled public-data workspace for authorized web sources, feeds, communities and official connectors.':'رادار عام يكتشف الطلب والعرض والمبادرات المجانية والمنح التعليمية من العالم العربي وأفريقيا وآسيا وبقية العالم.',
-      'Run radar sync':'تشغيل مزامنة الرادار',
-      'Outreach center':'مركز التواصل',
-      'New leads':'عملاء محتملون جدد',
-      'last 24 hours':'آخر 24 ساعة',
-      'Teacher / tutor leads':'معلمون ومحفظون',
-      'Student / family leads':'طلاب وأسر',
-      'Sources ready':'مصادر جاهزة',
-      'authorized or public':'مصرح بها أو عامة',
-      'supply signals':'إشارات عرض',
-      'demand signals':'إشارات طلب',
-      'Find leads':'العثور على العملاء المحتملين',
-      'All ages':'كل الأعمار',
-      'Recent 24 hours':'آخر 24 ساعة',
-      'Last 3 days':'آخر 3 أيام',
-      'Last 7 days':'آخر 7 أيام',
-      'All priorities':'كل الأولويات',
-      'Hot':'ساخن',
-      'Warm':'دافئ',
-      'Normal':'عادي',
-      'Source health':'حالة المصادر',
-      'AI triage':'فرز بالذكاء الاصطناعي',
-      'Classify, deduplicate, score freshness and prepare a human-reviewed outreach action.':'يصنف الطلبات، يزيل التكرار، يقيس حداثة الإشارة، ويجهز إجراء تواصل للمراجعة البشرية.',
-      'Radar activity':'نشاط الرادار',
-      'Acquisition outreach center':'مركز تواصل الاستقطاب',
-      'Review the lead and choose an approved contact channel.':'راجع الطلب ثم اختر قناة تواصل مسموح بها.',
-      'This panel shows live data only. No external lead appears until it is fetched from a public source or an authorized connector, and private messages or unrestricted private-group data are never collected.':'هذه المساحة تعرض بيانات حقيقية فقط. لن تظهر أي إشارة خارجية حتى يتم جلبها من مصدر عام أو موصل/واجهة مصرح بها، ولا يتم جمع الرسائل الخاصة أو بيانات المجموعات الخاصة غير المصرح بها.',
-      'Demo':'تجريبي',
-      'Public signal':'إشارة عامة',
-      'Potential student':'طالب محتمل',
-      'Potential teacher':'معلم محتمل',
-      'Service demand':'طلب خدمة',
-      'Fresh':'حديث',
-      'Hot lead':'طلب ساخن',
-      'Open source':'فتح المصدر',
-      'Review & contact':'مراجعة وتواصل',
-      'No direct contact':'لا يوجد تواصل مباشر',
-      'Save lead':'حفظ العميل المحتمل',
-      'Saved to Wefaq':'تم حفظ العميل في وفاق',
-      'Lead saved':'تم حفظ العميل المحتمل',
-      'Syncing radar…':'جارٍ مزامنة الرادار…',
-      'Sync completed':'اكتملت المزامنة',
-      'Server connector is not configured yet':'موصل الخادم غير مهيأ بعد',
-      'Using demo queue until an authorized connector is deployed.':'لا توجد قائمة بديلة تجريبية؛ سيتم عرض البيانات الحية فقط.',
-      'Open contact channel':'فتح قناة التواصل',
-      'Source only':'المصدر فقط',
-      'Message draft':'مسودة الرسالة',
-      'Teacher recruitment':'استقطاب معلمين',
-      'Student acquisition':'استقطاب طلاب',
-      'Family support':'دعم الأسر',
-      'Service opportunity':'فرصة خدمة',
-      'New discovery':'اكتشاف جديد',
-      'Deduplicated':'تمت إزالة التكرار',
-      'Needs human review':'تحتاج مراجعة بشرية',
-      'Configured':'مهيأ',
-      'Authorized':'مصرح',
-      'Ready':'جاهز',
-      'Needs setup':'يحتاج إعدادًا',
-      'Disabled':'معطل',
-      'Open Web Search':'بحث الويب المفتوح',
-      'Telegram':'تيليجرام',
-      'YouTube':'يوتيوب',
-      'RSS / Feeds':'RSS / تغذيات',
-      'Meta official connectors':'موصلات Meta الرسمية',
-      'LinkedIn official connectors':'موصلات LinkedIn الرسمية',
-      'Arabic freelance sources':'مصادر العمل الحر العربية',
-      'Search queries':'استعلامات البحث',
-      'Authorized communities':'المجتمعات المصرح بها',
-      'Official API':'واجهة رسمية',
-      'Feed / webhook':'تغذية / Webhook'
-    });
-
-    Object.assign(I18N, {'Acquisition Radar':'رادار الاستقطاب'});
-    Object.assign(I18N, {'The real lead was saved to your Wefaq workspace.':'تم حفظ العميل المحتمل الحقيقي في مساحة وفاق الخاصة بك.','Live radar storage is not configured yet':'تخزين الرادار الحي غير مهيأ بعد'});
-
-    Object.assign(I18N, {
-      'Global & Regional Matching':'المطابقة الإقليمية والعالمية',
-      'Match the right learner with the right educator':'طابق المتعلم المناسب مع المتخصص المناسب',
-      'Regional and global matching using only real Wefaq listings, specialist profiles and live radar signals.':'مطابقة إقليمية وعالمية تعتمد على بيانات وفاق الحقيقية وملفات المتخصصين وإشارات الرادار الحية فقط.',
-      'Open acquisition radar':'افتح رادار الاستقطاب',
-      'Open my workspace':'افتح مساحة حسابي',
-      'Need type':'نوع الحاجة',
-      'Learning language':'لغة التعلم',
-      'Teaching mode':'نمط التعليم',
-      'Eligible live signals':'الإشارات الحية المؤهلة',
-      'Real specialists':'المتخصصون الحقيقيون',
-      'Potential matches':'مطابقات محتملة',
-      'Regions represented':'المناطق الممثلة',
-      'Live matching results':'نتائج المطابقة الحية',
-      'Calculated from real data already available to Wefaq.':'محسوبة من البيانات الحقيقية المتاحة حاليًا في وفاق.',
-      'Acquisition CRM':'CRM الاستقطاب',
-      'Track discovery, review, contact and conversion without fake counters.':'تتبع الاكتشاف والمراجعة والتواصل والتحويل دون عدادات وهمية.',
-      'New discoveries':'اكتشافات جديدة',
-      'Human review':'مراجعة بشرية',
-      'Saved leads':'محفوظة',
-      'Contacted':'تم التواصل',
-      'Converted':'تحولت إلى اتصال',
-      'Stale / closed':'قديمة / مغلقة',
-      'Source readiness':'جاهزية المصادر',
-      'Sync':'مزامنة',
-      'Outreach':'تواصل',
-      'No result is generated unless the source data exists. Matching is an assistive ranking, not a claim of user consent or availability.':'لا يتم توليد أي نتيجة ما لم توجد بيانات مصدر حقيقية. المطابقة ترتيب مساعد وليست إثباتًا للموافقة أو التفرغ.',
-      'No real matching records yet.':'لا توجد سجلات مطابقة حقيقية بعد.',
-      'Complete a profile or publish a request to unlock matching.':'أكمل ملفًا حقيقيًا أو انشر طلبًا لبدء المطابقة.',
-      'No eligible live signals for this filter.':'لا توجد إشارات حية مؤهلة لهذا الفلتر.',
-      'Real profile':'ملف حقيقي',
-      'Live signal':'إشارة حية',
-      'Match':'مطابقة',
-      'Source not connected':'المصدر غير متصل',
-      'Source connected':'المصدر متصل',
-      'No verified records yet':'لا توجد سجلات موثقة بعد'
-    });
-
-    // Reverse dictionary for the English interface. The page source is Arabic,
-    // while I18N stores English -> Arabic, so English needs Arabic -> English lookup.
-    Object.assign(I18N, {
-      'Live radar marketplace':'سوق الرادار المباشر','Requests and listings discovered by the radar':'قائمة الطلبات والإعلانات التي اكتشفها الرادار','A conversion-focused display for real requests, service offers and teacher signals returned by authorized sources.':'واجهة جذب مرتبة لعرض الطلبات والعروض وإشارات المعلمين الحقيقية القادمة من مصادر عامة أو موصلات مصرح بها.','Sync live sources':'مزامنة المصادر الحية','Publish a request':'انشر طلبك','Join as a teacher':'انضم كمعلم','Smart match suggestions':'اقتراحات المطابقة الذكية','Based on live records':'مبنية على السجلات الحية','Search live radar listings...':'ابحث داخل الطلبات والإعلانات الحية...','Only real records returned by public/authorized sources appear here. Run a live sync or publish a request to start the flow.':'يظهر هنا فقط ما تعيده الموصلات المصرح بها من سجلات حقيقية. شغّل مزامنة حية أو انشر طلبًا لبدء التدفق.','Budget / rate':'الميزانية / السعر','Signal':'إشارة','Educational':'تعليمي','Educational services':'خدمات تعليمية','Quran':'قرآن','Arabic':'العربية','Kids':'الأطفال','Global':'عالمي','Africa':'أفريقيا','Foreign':'أجنبي','Saudi Arabia':'السعودية','Egypt':'مصر','GCC':'الخليج','Potential student':'طالب محتمل','Potential teacher':'معلم محتمل','Service demand':'طلب خدمة','Demand':'طلب','Offer':'عرض','Review & contact':'مراجعة وتواصل'
-    });
-
-    const EN_I18N = {};
-    Object.entries(I18N).forEach(([english, arabic]) => {
-      if (arabic && !EN_I18N[arabic]) EN_I18N[arabic] = english;
-    });
-
-    let currentLang = safeGet('wefaq_lang', 'ar');
-    if (!['ar','en'].includes(currentLang)) currentLang = 'ar';
-
-    const originalTextNodes = new WeakMap();
-    const originalPlaceholders = new WeakMap();
-    function translatePage() {
-      const isAr = currentLang === 'ar';
-      document.documentElement.setAttribute('dir', isAr ? 'rtl' : 'ltr');
-      document.documentElement.setAttribute('lang', currentLang);
-      document.body.style.fontFamily = isAr ? "'Tajawal','Inter',sans-serif" : "'Inter','Tajawal',sans-serif";
-
-      // Translate every visible text node, including text inside buttons that also contain icons.
-      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-      const nodes = [];
-      while (walker.nextNode()) nodes.push(walker.currentNode);
-      nodes.forEach(node => {
-        const parent = node.parentElement;
-        if (!parent || ['SCRIPT','STYLE','NOSCRIPT'].includes(parent.tagName)) return;
-
-        if (!originalTextNodes.has(node)) {
-          const original = node.nodeValue.trim();
-          if (original) originalTextNodes.set(node, original);
-        }
-
-        const original = originalTextNodes.get(node);
-        if (!original) return;
-        const translated = isAr ? (I18N[original] || original) : (EN_I18N[original] || original);
-        const leading = node.nodeValue.match(/^\s*/)?.[0] || '';
+      try { localStorage.setItem(key, value); } catch (e) { /* Arabic UI/search data is preserved as Unicode escapes for localization and search coverage. */)?.[0] || '';
         const trailing = node.nodeValue.match(/\s*$/)?.[0] || '';
         node.nodeValue = leading + translated + trailing;
       });
@@ -1786,11 +1376,11 @@
 
       // Keep the browser/tab title aligned with the selected language.
       document.title = isAr
-        ? 'منصة وفاق التعليمية | القرآن الكريم واللغة العربية'
+        ? '\u0645\u0646\u0635\u0629 \u0648\u0641\u0627\u0642 \u0627\u0644\u062a\u0639\u0644\u064a\u0645\u064a\u0629 | \u0627\u0644\u0642\u0631\u0622\u0646 \u0627\u0644\u0643\u0631\u064a\u0645 \u0648\u0627\u0644\u0644\u063a\u0629 \u0627\u0644\u0639\u0631\u0628\u064a\u0629'
         : 'Wefaq Educational Platform | Quran, Arabic & Learning';
 
       const btn = document.getElementById('langToggleBtn');
-      if (btn) btn.innerText = isAr ? 'English 🌐' : 'العربية 🌐';
+      if (btn) btn.innerText = isAr ? 'English 🌐' : '\u0627\u0644\u0639\u0631\u0628\u064a\u0629 🌐';
       safeSet('wefaq_lang', currentLang);
     }
 
@@ -1886,7 +1476,7 @@
         today = Number(data?.today_visits || 0);
 
         const totalText = total.toLocaleString();
-        const todayText = currentLang === 'ar' ? 'اليوم: ' + today.toLocaleString() : 'Today: ' + today.toLocaleString();
+        const todayText = currentLang === 'ar' ? '\u0627\u0644\u064a\u0648\u0645: ' + today.toLocaleString() : 'Today: ' + today.toLocaleString();
         ['stat-visitors-v8'].forEach(id => {
           const el = document.getElementById(id);
           if (el) el.textContent = totalText;
@@ -1989,7 +1579,7 @@
         return true;
       });
 
-      if (resultsBadge) resultsBadge.innerText = `${filtered.length} ${currentLang === 'ar' ? 'نتيجة' : 'results'}`;
+      if (resultsBadge) resultsBadge.innerText = `${filtered.length} ${currentLang === 'ar' ? '\u0646\u062a\u064a\u062c\u0629' : 'results'}`;
 
       if (filtered.length === 0) {
         container.innerHTML = '';
@@ -2004,21 +1594,21 @@
     function createCardHTML(item, currency) {
       const regionLabel = REGION_LABELS[item.region] || item.region || '—';
       const numericAmount = Number(item.amount);
-      const amountFormatted = Number.isFinite(numericAmount) && numericAmount > 0 ? numericAmount.toLocaleString() : (currentLang === 'ar' ? 'حسب الاتفاق / مجانًا' : 'By agreement / Free');
+      const amountFormatted = Number.isFinite(numericAmount) && numericAmount > 0 ? numericAmount.toLocaleString() : (currentLang === 'ar' ? '\u062d\u0633\u0628 \u0627\u0644\u0627\u062a\u0641\u0627\u0642 / \u0645\u062c\u0627\u0646\u064b\u0627' : 'By agreement / Free');
 
       let categoryBadge = '', categoryIcon = 'fa-briefcase', categoryColor = 'text-blue-600 bg-blue-50 dark:bg-blue-950/50';
-      if (item.category === 'quran') { categoryIcon = 'fa-book-quran'; categoryColor = 'text-emerald-600 bg-emerald-50 dark:bg-emerald-950/50'; categoryBadge = currentLang === 'ar' ? '📖 قرآن' : '📖 Quran'; }
-      else if (item.category === 'hadith') { categoryIcon = 'fa-book'; categoryColor = 'text-indigo-600 bg-indigo-50 dark:bg-indigo-950/50'; categoryBadge = currentLang === 'ar' ? '📚 حديث' : '📚 Hadith'; }
-      else if (item.category === 'arabic') { categoryIcon = 'fa-language'; categoryColor = 'text-blue-600 bg-blue-50 dark:bg-blue-950/50'; categoryBadge = currentLang === 'ar' ? '📝 عربية' : '📝 Arabic'; }
-      else if (item.category === 'kids') { categoryIcon = 'fa-child'; categoryColor = 'text-amber-600 bg-amber-50 dark:bg-amber-950/50'; categoryBadge = currentLang === 'ar' ? '👧 أطفال' : '👧 Kids'; }
-      else if (item.category === 'languages') { categoryIcon = 'fa-language'; categoryColor = 'text-teal-600 bg-teal-50 dark:bg-teal-950/50'; categoryBadge = currentLang === 'ar' ? '🌍 لغات' : '🌍 Languages'; }
-      else if (item.category === 'services') { categoryIcon = 'fa-screwdriver-wrench'; categoryColor = 'text-emerald-600 bg-emerald-50 dark:bg-emerald-950/50'; categoryBadge = currentLang === 'ar' ? '🛠 خدمة تعليمية' : '🛠 Education service'; }
-      else if (item.category === 'demands') { categoryIcon = 'fa-bullseye'; categoryColor = 'text-violet-600 bg-violet-50 dark:bg-violet-950/50'; categoryBadge = currentLang === 'ar' ? '🎯 طلب تعليمي' : '🎯 Education demand'; }
+      if (item.category === 'quran') { categoryIcon = 'fa-book-quran'; categoryColor = 'text-emerald-600 bg-emerald-50 dark:bg-emerald-950/50'; categoryBadge = currentLang === 'ar' ? '📖 \u0642\u0631\u0622\u0646' : '📖 Quran'; }
+      else if (item.category === 'hadith') { categoryIcon = 'fa-book'; categoryColor = 'text-indigo-600 bg-indigo-50 dark:bg-indigo-950/50'; categoryBadge = currentLang === 'ar' ? '📚 \u062d\u062f\u064a\u062b' : '📚 Hadith'; }
+      else if (item.category === 'arabic') { categoryIcon = 'fa-language'; categoryColor = 'text-blue-600 bg-blue-50 dark:bg-blue-950/50'; categoryBadge = currentLang === 'ar' ? '📝 \u0639\u0631\u0628\u064a\u0629' : '📝 Arabic'; }
+      else if (item.category === 'kids') { categoryIcon = 'fa-child'; categoryColor = 'text-amber-600 bg-amber-50 dark:bg-amber-950/50'; categoryBadge = currentLang === 'ar' ? '👧 \u0623\u0637\u0641\u0627\u0644' : '👧 Kids'; }
+      else if (item.category === 'languages') { categoryIcon = 'fa-language'; categoryColor = 'text-teal-600 bg-teal-50 dark:bg-teal-950/50'; categoryBadge = currentLang === 'ar' ? '🌍 \u0644\u063a\u0627\u062a' : '🌍 Languages'; }
+      else if (item.category === 'services') { categoryIcon = 'fa-screwdriver-wrench'; categoryColor = 'text-emerald-600 bg-emerald-50 dark:bg-emerald-950/50'; categoryBadge = currentLang === 'ar' ? '🛠 \u062e\u062f\u0645\u0629 \u062a\u0639\u0644\u064a\u0645\u064a\u0629' : '🛠 Education service'; }
+      else if (item.category === 'demands') { categoryIcon = 'fa-bullseye'; categoryColor = 'text-violet-600 bg-violet-50 dark:bg-violet-950/50'; categoryBadge = currentLang === 'ar' ? '🎯 \u0637\u0644\u0628 \u062a\u0639\u0644\u064a\u0645\u064a' : '🎯 Education demand'; }
 
       let trust = '';
-      if (item.badge === 'sanad') trust = `<span class="bg-emerald-500/10 text-emerald-600 border border-emerald-500/30 text-[10px] font-bold px-2 py-0.5 rounded-full">${currentLang === 'ar' ? 'سند موثق' : 'Certified Sanad'}</span>`;
-      else if (item.badge === 'verified') trust = `<span class="bg-blue-500/10 text-blue-600 border border-blue-500/30 text-[10px] font-bold px-2 py-0.5 rounded-full">${currentLang === 'ar' ? 'موثق' : 'Verified'}</span>`;
-      else trust = `<span class="bg-slate-500/10 text-slate-500 border border-slate-500/30 text-[10px] font-bold px-2 py-0.5 rounded-full">${currentLang === 'ar' ? 'غير موثق' : 'Unverified'}</span>`;
+      if (item.badge === 'sanad') trust = `<span class="bg-emerald-500/10 text-emerald-600 border border-emerald-500/30 text-[10px] font-bold px-2 py-0.5 rounded-full">${currentLang === 'ar' ? '\u0633\u0646\u062f \u0645\u0648\u062b\u0642' : 'Certified Sanad'}</span>`;
+      else if (item.badge === 'verified') trust = `<span class="bg-blue-500/10 text-blue-600 border border-blue-500/30 text-[10px] font-bold px-2 py-0.5 rounded-full">${currentLang === 'ar' ? '\u0645\u0648\u062b\u0642' : 'Verified'}</span>`;
+      else trust = `<span class="bg-slate-500/10 text-slate-500 border border-slate-500/30 text-[10px] font-bold px-2 py-0.5 rounded-full">${currentLang === 'ar' ? '\u063a\u064a\u0631 \u0645\u0648\u062b\u0642' : 'Unverified'}</span>`;
 
       return `
         <div class="glass-card rounded-xl p-5 flex flex-col justify-between hover:shadow-lg transition border">
@@ -2033,15 +1623,15 @@
             <h3 class="font-extrabold text-slate-900 dark:text-white text-sm mb-2 line-clamp-2">${esc(item.title)}</h3>
             <p class="text-slate-600 dark:text-slate-300 text-xs line-clamp-3 mb-4">${esc(item.description)}</p>
             <div class="flex justify-between text-xs py-2 border-t border-slate-100 dark:border-slate-800 mb-3">
-              <span class="text-slate-400">${currentLang === 'ar' ? 'الميزانية / الرسوم' : 'Budget / Fee'}</span>
+              <span class="text-slate-400">${currentLang === 'ar' ? '\u0627\u0644\u0645\u064a\u0632\u0627\u0646\u064a\u0629 / \u0627\u0644\u0631\u0633\u0648\u0645' : 'Budget / Fee'}</span>
               <span class="font-extrabold text-brand-600 dark:text-emerald-400">${amountFormatted}</span>
             </div>
           </div>
           <div class="grid grid-cols-4 gap-2">
-            <button onclick="requestConnection('${esc(item.id)}')" class="col-span-2 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold py-2 rounded-lg"><i class="fa-solid fa-handshake mr-1"></i>${currentLang === 'ar' ? 'تواصل' : 'Connect'}</button>
-            <button onclick="toggleFavorite('${esc(item.id)}')" title="${currentLang === 'ar' ? 'حفظ الفرصة' : 'Save listing'}" class="bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-300 text-xs rounded-lg border border-amber-100 dark:border-amber-900"><i class="fa-regular fa-bookmark"></i></button>
-            <button type="button" onclick="handleListingContact('${esc(item.id)}')" aria-label="${currentLang === 'ar' ? 'التواصل مع صاحب الإعلان' : 'Contact listing owner'}" title="${currentLang === 'ar' ? 'تواصل' : 'Contact'}" class="bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 text-xs rounded-lg border border-emerald-100 dark:border-emerald-900"><i class="fa-brands fa-whatsapp"></i></button>
-            <button onclick="openShareModal('${esc(item.id)}')" title="${currentLang === 'ar' ? 'مشاركة' : 'Share'}" class="bg-slate-100 dark:bg-slate-800 text-xs rounded-lg"><i class="fa-solid fa-share-nodes"></i></button>
+            <button onclick="requestConnection('${esc(item.id)}')" class="col-span-2 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold py-2 rounded-lg"><i class="fa-solid fa-handshake mr-1"></i>${currentLang === 'ar' ? '\u062a\u0648\u0627\u0635\u0644' : 'Connect'}</button>
+            <button onclick="toggleFavorite('${esc(item.id)}')" title="${currentLang === 'ar' ? '\u062d\u0641\u0638 \u0627\u0644\u0641\u0631\u0635\u0629' : 'Save listing'}" class="bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-300 text-xs rounded-lg border border-amber-100 dark:border-amber-900"><i class="fa-regular fa-bookmark"></i></button>
+            <button type="button" onclick="handleListingContact('${esc(item.id)}')" aria-label="${currentLang === 'ar' ? '\u0627\u0644\u062a\u0648\u0627\u0635\u0644 \u0645\u0639 \u0635\u0627\u062d\u0628 \u0627\u0644\u0625\u0639\u0644\u0627\u0646' : 'Contact listing owner'}" title="${currentLang === 'ar' ? '\u062a\u0648\u0627\u0635\u0644' : 'Contact'}" class="bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 text-xs rounded-lg border border-emerald-100 dark:border-emerald-900"><i class="fa-brands fa-whatsapp"></i></button>
+            <button onclick="openShareModal('${esc(item.id)}')" title="${currentLang === 'ar' ? '\u0645\u0634\u0627\u0631\u0643\u0629' : 'Share'}" class="bg-slate-100 dark:bg-slate-800 text-xs rounded-lg"><i class="fa-solid fa-share-nodes"></i></button>
           </div>
         </div>`;
     }
@@ -2192,14 +1782,15 @@
 
     // ========== v11 ACQUISITION RADAR — LIVE DATA ONLY ==========
     const RADAR_SOURCES = [
-      {id:'web', name:'Open Web — Quran & Arabic', icon:'fa-solid fa-globe', mode:'Brave public search', status:'pending', count:0, note:'One server-side search key'},
-      {id:'mostaql', name:'مستقل', icon:'fa-solid fa-briefcase', mode:'Public search discovery', status:'pending', count:0, note:'No direct scraping'},
-      {id:'khamsat', name:'خمسات', icon:'fa-solid fa-tags', mode:'Public search discovery', status:'pending', count:0, note:'No direct scraping'},
-      {id:'kafiil', name:'كفيل', icon:'fa-solid fa-handshake', mode:'Public search discovery', status:'pending', count:0, note:'No direct scraping'},
-      {id:'ureed', name:'أُريد', icon:'fa-solid fa-language', mode:'Public search discovery', status:'pending', count:0, note:'No direct scraping'},
-      {id:'freelancer', name:'Freelancer', icon:'fa-solid fa-earth-africa', mode:'Public search discovery', status:'pending', count:0, note:'Public indexed pages only'},
-      {id:'learning', name:'Global learning platforms', icon:'fa-solid fa-chalkboard-user', mode:'Public search discovery', status:'pending', count:0, note:'Preply / TeacherOn / italki'},
-      {id:'telegram', name:'Telegram', icon:'fa-brands fa-telegram', mode:'Authorized bot/webhook', status:'pending', count:0, note:'Optional'}
+      {id:'web', name:'Open Web Search', icon:'fa-solid fa-globe', mode:'Search API / approved provider', status:'pending', count:0, note:'Requires server-side connector'},
+      {id:'telegram', name:'Telegram', icon:'fa-brands fa-telegram', mode:'Authorized communities', status:'pending', count:0, note:'Requires bot/webhook access'},
+      {id:'youtube', name:'YouTube', icon:'fa-brands fa-youtube', mode:'Official API', status:'pending', count:0, note:'Requires API key'},
+      {id:'x', name:'X / Twitter', icon:'fa-brands fa-x-twitter', mode:'Official API', status:'pending', count:0, note:'Requires bearer token'},
+      {id:'reddit', name:'Reddit', icon:'fa-brands fa-reddit-alien', mode:'Official OAuth API', status:'pending', count:0, note:'Requires app credentials'},
+      {id:'rss', name:'RSS / Feeds', icon:'fa-solid fa-rss', mode:'Approved feeds', status:'pending', count:0, note:'Requires real feed URLs'},
+      {id:'meta', name:'Meta official connectors', icon:'fa-brands fa-facebook', mode:'Official API', status:'pending', count:0, note:'Requires approved app/access'},
+      {id:'linkedin', name:'LinkedIn official connectors', icon:'fa-brands fa-linkedin', mode:'Official API', status:'pending', count:0, note:'Requires approved access'},
+      {id:'freelance', name:'Arabic freelance sources', icon:'fa-solid fa-briefcase', mode:'API / RSS / authorized connector', status:'pending', count:0, note:'Only supported access methods'}
     ];
 
     let radarPersona='all';
@@ -2225,38 +1816,29 @@
     }
     function radarPriorityLabel(p){return p==='hot'?t('Hot lead'):p==='warm'?t('Warm'):t('Normal');}
     function radarPersonaLabel(p){return p==='student'?t('Potential student'):p==='teacher'?t('Potential teacher'):t('Service demand');}
-    function radarSourceIcon(type){return ({telegram:'fa-brands fa-telegram',web:'fa-solid fa-globe',mostaql:'fa-solid fa-briefcase',khamsat:'fa-solid fa-tags',kafiil:'fa-solid fa-handshake',ureed:'fa-solid fa-language',freelancer:'fa-solid fa-earth-africa',preply:'fa-solid fa-chalkboard-user',teacheron:'fa-solid fa-chalkboard-user',italki:'fa-solid fa-chalkboard-user',learning:'fa-solid fa-chalkboard-user'})[type]||'fa-solid fa-satellite-dish';}
+    function radarSourceIcon(type){return ({telegram:'fa-brands fa-telegram',web:'fa-solid fa-globe',youtube:'fa-brands fa-youtube',rss:'fa-solid fa-rss',freelance:'fa-solid fa-briefcase',meta:'fa-brands fa-facebook',linkedin:'fa-brands fa-linkedin'})[type]||'fa-solid fa-satellite-dish';}
     function radarAgeText(hours){ if(hours<1)return t('Fresh'); if(hours<24)return `${Math.max(1,Math.floor(hours))}h`; return `${Math.floor(hours/24)}d`; }
-    function radarPricingLabel(mode){return mode==='free'?t('Free / volunteer'):mode==='scholarship'?t('Scholarship / sponsored'):mode==='symbolic'?t('Symbolic fee'):mode==='paid'?t('Paid'):t('Pricing not stated');}
-    function radarPricingClass(mode){return mode==='free'||mode==='scholarship'?'bg-emerald-500/15 text-emerald-200 border-emerald-400/25':mode==='symbolic'?'bg-amber-500/15 text-amber-200 border-amber-400/25':'bg-white/5 text-white/65 border-white/10';}
-    function radarLocationText(lead){return [lead.city,lead.countryCode,lead.region].filter(Boolean).join(' · ');}
-    function radarLanguageText(lead){return Array.isArray(lead.languages)?lead.languages.slice(0,3).join(' · '):String(lead.language||'');}
-
     function radarLeadCard(lead){
       const chips=(lead.tags||[]).map(x=>`<span class="wf-lead-chip">${radarEsc(x)}</span>`).join('');
-      const pricing=radarPricingLabel(lead.pricing_mode);
-      const priceBadge=`<span class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 border text-[9px] font-black ${radarPricingClass(lead.pricing_mode)}"><i class="fa-solid fa-hand-holding-heart"></i>${radarEsc(pricing)}</span>`;
-      const location=radarLocationText(lead), langs=radarLanguageText(lead);
-      const contactBtn=lead.contactable?`<button type="button" onclick="openRadarOutreach('${radarEsc(lead.id)}')" class="flex-1 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 py-2.5 text-[11px] font-black">${radarEsc(t('Review & contact'))}</button>`:`<button type="button" onclick="openRadarOutreach('${radarEsc(lead.id)}')" class="flex-1 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 py-2.5 text-[11px] font-black">${radarEsc(t('Review & contact'))}</button>`;
-      return `<article class="wf-lead-card"><div class="flex items-start justify-between gap-3"><div class="flex items-center gap-2"><span class="w-9 h-9 rounded-xl bg-white/5 flex items-center justify-center text-emerald-300"><i class="${radarSourceIcon(lead.sourceType)}"></i></span><div><div class="text-[9px] text-white/45">${radarEsc(lead.source||t('Real external source'))}</div><div class="text-[10px] text-emerald-200 font-extrabold mt-0.5">${radarEsc(radarPersonaLabel(lead.persona))}</div></div></div><div class="flex flex-col items-end gap-1"><span class="wf-lead-chip hot">${radarEsc(radarPriorityLabel(lead.priority))}</span>${priceBadge}</div></div><h3 class="font-black text-sm mt-4 leading-6">${radarEsc(lead.title)}</h3><p class="text-white/60 text-xs leading-5 mt-1.5 line-clamp-3">${radarEsc(lead.snippet||'')}</p><div class="flex flex-wrap gap-1.5 mt-3">${chips}</div><div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3 text-[9px] text-white/55"><div class="rounded-lg bg-white/5 px-2 py-1.5"><i class="fa-solid fa-location-dot mr-1 text-emerald-300"></i>${radarEsc(location||t('Worldwide'))}</div><div class="rounded-lg bg-white/5 px-2 py-1.5"><i class="fa-solid fa-language mr-1 text-emerald-300"></i>${radarEsc(langs||t('Language not stated'))}</div></div><div class="flex items-center justify-between text-[9px] text-white/40 mt-4"><span><i class="fa-solid fa-clock mr-1"></i>${radarEsc(radarAgeText(lead.hoursAgo||0))}</span><span><i class="fa-solid fa-bolt mr-1 text-amber-300"></i>${Number(lead.score||0)}%</span></div><div class="mt-2 h-1 rounded-full bg-white/10 overflow-hidden"><span class="block h-full rounded-full bg-gradient-to-r from-emerald-500 to-emerald-300" style="width:${Math.min(100,Math.max(0,Number(lead.score||0)))}%"></span></div><div class="grid grid-cols-2 gap-2 mt-4"><a href="${radarEsc(lead.sourceUrl||'#')}" target="_blank" rel="noopener noreferrer" class="rounded-xl bg-white text-slate-900 hover:bg-emerald-50 py-2.5 text-[11px] font-black text-center">${radarEsc(t('Open source'))}</a>${contactBtn}</div></article>`;
+      const contactBtn=lead.contactable ? `<button type="button" onclick="openRadarOutreach('${radarEsc(lead.id)}')" class="flex-1 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 py-2.5 text-[11px] font-black">${radarEsc(t('Review & contact'))}</button>` : `<button type="button" onclick="openRadarOutreach('${radarEsc(lead.id)}')" class="flex-1 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 py-2.5 text-[11px] font-black">${radarEsc(t('Review & contact'))}</button>`;
+      return `<article class="wf-lead-card"><div class="flex items-start justify-between gap-3"><div class="flex items-center gap-2"><span class="w-9 h-9 rounded-xl bg-white/5 flex items-center justify-center text-emerald-300"><i class="${radarSourceIcon(lead.sourceType)}"></i></span><div><div class="text-[9px] text-white/45">${radarEsc(lead.source||t('Real external source'))}</div><div class="text-[10px] text-emerald-200 font-extrabold mt-0.5">${radarEsc(radarPersonaLabel(lead.persona))}</div></div></div><div class="flex flex-col items-end gap-1"><span class="wf-lead-chip hot">${radarEsc(radarPriorityLabel(lead.priority))}</span></div></div><h3 class="font-black text-sm mt-4 leading-6">${radarEsc(lead.title)}</h3><p class="text-white/60 text-xs leading-5 mt-1.5 line-clamp-3">${radarEsc(lead.snippet||'')}</p><div class="flex flex-wrap gap-1.5 mt-3">${chips}</div><div class="flex items-center justify-between text-[9px] text-white/40 mt-4"><span><i class="fa-solid fa-clock mr-1"></i>${radarEsc(radarAgeText(lead.hoursAgo||0))}</span><span><i class="fa-solid fa-bolt mr-1 text-amber-300"></i>${Number(lead.score||0)}%</span></div><div class="mt-2 h-1 rounded-full bg-white/10 overflow-hidden"><span class="block h-full rounded-full bg-gradient-to-r from-emerald-500 to-emerald-300" style="width:${Math.min(100,Math.max(0,Number(lead.score||0)))}%"></span></div><div class="grid grid-cols-2 gap-2 mt-4"><a href="${radarEsc(lead.sourceUrl||'#')}" target="_blank" rel="noopener noreferrer" class="rounded-xl bg-white text-slate-900 hover:bg-emerald-50 py-2.5 text-[11px] font-black text-center">${radarEsc(t('Open source'))}</a>${contactBtn}</div></article>`;
     }
-
 
     // ========== v13 LIVE RADAR MARKETPLACE ==========
     let radarMarketplaceCategory='all';
     let radarMarketplaceRegion='all';
     let radarMarketplacePersona='all';
     function radarMarketCategoryLabel(category){return ({quran:t('Quran'),arabic:t('Arabic'),kids:t('Kids'),services:t('Educational services'),education_service:t('Educational services')})[category]||t('Educational');}
-    function radarMarketRegionLabel(region){return ({GLOBAL:t('Global'),KSA:t('Saudi Arabia'),EGP:t('Egypt'),GCC:t('GCC'),AFRICA:t('Africa'),WEST_AFRICA:t('West Africa'),EAST_AFRICA:t('East Africa'),NORTH_AFRICA:t('North Africa'),LEVANT:t('Levant'),SOUTHEAST_ASIA:t('Southeast Asia'),SOUTH_ASIA:t('South Asia'),MIDDLE_EAST:t('Middle East'),FOREIGN:t('Foreign'),PALESTINE:t('Palestine'),GAZA:t('Gaza'),UAE:t('UAE')})[region]||(region||t('Worldwide'));}
+    function radarMarketRegionLabel(region){return ({GLOBAL:t('Global'),KSA:t('Saudi Arabia'),EGP:t('Egypt'),GCC:t('GCC'),AFRICA:t('Africa'),FOREIGN:t('Foreign'),PALESTINE:t('Palestine'),GAZA:t('Gaza'),UAE:t('UAE')})[region]||(region||t('Worldwide'));}
     function radarMarketTypeLabel(type){return ({demand:t('Demand'),offer:t('Offer'),seeking:t('Demand'),request:t('Demand'),supply:t('Offer')})[type]||t('Signal');}
     function radarMarketPriorityClass(priority){return ['hot','warm','normal'].includes(priority)?priority:'normal';}
     function radarMarketSourceBadge(type,source){return `<span class="wf-radar-source-badge"><i class="${radarSourceIcon(type)}"></i>${radarEsc(source||t('Real external source'))}</span>`;}
     function radarMarketBudget(lead){const amount=lead.amount??lead.budget??lead.budget_amount;if(amount===undefined||amount===null||amount==='')return '';const n=Number(amount);if(!Number.isFinite(n))return '';const currency=lead.currency||lead.budget_currency||'';const formatted=new Intl.NumberFormat(currentLang==='ar'?'ar-EG':'en-US',{maximumFractionDigits:0}).format(n);return `<div class="wf-radar-market-budget"><span>${radarEsc(t('Budget / rate'))}</span><strong>${formatted}${currency?' '+radarEsc(currency):''}</strong></div>`;}
-    function radarMarketCard(lead){const tags=[];if(lead.category)tags.push(radarMarketCategoryLabel(lead.category));if(lead.region)tags.push(radarMarketRegionLabel(lead.region));if(lead.type)tags.push(radarMarketTypeLabel(lead.type));if(lead.pricing_mode)tags.push(radarPricingLabel(lead.pricing_mode));if(lead.countryCode)tags.push(lead.countryCode);(lead.tags||[]).slice(0,2).forEach(x=>tags.push(x));const tagHtml=tags.filter(Boolean).map(x=>`<span class="wf-radar-market-tag">${radarEsc(x)}</span>`).join('');const openSource=(lead.sourceUrl&&lead.sourceUrl!=='#')?`<a class="wf-radar-source-open" href="${radarEsc(lead.sourceUrl)}" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i>${radarEsc(t('Open source'))}</a>`:`<button type="button" class="wf-radar-source-open" disabled><i class="fa-solid fa-link-slash"></i>${radarEsc(t('No source URL'))}</button>`;const contact=`<button type="button" class="wf-radar-contact" onclick="openRadarOutreach('${radarEsc(lead.id)}')"><i class="fa-solid fa-paper-plane"></i>${radarEsc(t('Review & contact'))}</button>`;return `<article class="wf-radar-market-card" data-radar-market-card-id="${radarEsc(lead.id)}"><div class="wf-radar-market-top"><div>${radarMarketSourceBadge(lead.sourceType,lead.source)}</div><span class="wf-radar-priority ${radarMarketPriorityClass(lead.priority)}"><i class="fa-solid fa-bolt"></i>${radarEsc(radarPriorityLabel(lead.priority))}</span></div><div class="wf-radar-market-body"><div class="wf-radar-market-meta">${tagHtml}</div><h3>${radarEsc(lead.title||t('Untitled live lead'))}</h3><p class="wf-radar-market-desc">${radarEsc(lead.snippet||'')}</p>${radarMarketBudget(lead)}<div class="flex items-center justify-between gap-3 mt-3 text-[9px] text-slate-400"><span><i class="fa-regular fa-clock mr-1"></i>${radarEsc(radarAgeText(Number(lead.hoursAgo||0)))}</span><span><i class="fa-solid fa-signal mr-1 text-emerald-500"></i>${Number(lead.score||0)}%</span></div><div class="mt-2 h-1 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden"><span class="block h-full rounded-full bg-gradient-to-r from-emerald-500 to-emerald-300" style="width:${Math.min(100,Math.max(0,Number(lead.score||0)))}%"></span></div><div class="wf-radar-market-foot">${openSource}${contact}</div></div></article>`;}
-    function radarMarketSimilarity(a,b){let score=0;if(a.category&&b.category&&a.category===b.category)score+=55;const at=new Set((a.tags||[]).map(x=>String(x).toLowerCase())),bt=new Set((b.tags||[]).map(x=>String(x).toLowerCase()));let overlap=0;at.forEach(x=>{if(bt.has(x))overlap++;});score+=Math.min(25,overlap*10);if(a.region&&b.region&&a.region===b.region)score+=10;if(a.mode&&b.mode&&a.mode===b.mode)score+=10;if(['free','scholarship'].includes(String(a.pricing_mode||''))&&['free','scholarship'].includes(String(b.pricing_mode||'')))score+=10; if(a.countryCode&&b.countryCode&&a.countryCode===b.countryCode)score+=6; return Math.min(99,score);}
+    function radarMarketCard(lead){const tags=[];if(lead.category)tags.push(radarMarketCategoryLabel(lead.category));if(lead.region)tags.push(radarMarketRegionLabel(lead.region));if(lead.type)tags.push(radarMarketTypeLabel(lead.type));(lead.tags||[]).slice(0,3).forEach(x=>tags.push(x));const tagHtml=tags.filter(Boolean).map(x=>`<span class="wf-radar-market-tag">${radarEsc(x)}</span>`).join('');const openSource=(lead.sourceUrl&&lead.sourceUrl!=='#')?`<a class="wf-radar-source-open" href="${radarEsc(lead.sourceUrl)}" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i>${radarEsc(t('Open source'))}</a>`:`<button type="button" class="wf-radar-source-open" disabled><i class="fa-solid fa-link-slash"></i>${radarEsc(t('No source URL'))}</button>`;const contact=`<button type="button" class="wf-radar-contact" onclick="openRadarOutreach('${radarEsc(lead.id)}')"><i class="fa-solid fa-paper-plane"></i>${radarEsc(t('Review & contact'))}</button>`;return `<article class="wf-radar-market-card" data-radar-market-card-id="${radarEsc(lead.id)}"><div class="wf-radar-market-top"><div>${radarMarketSourceBadge(lead.sourceType,lead.source)}</div><span class="wf-radar-priority ${radarMarketPriorityClass(lead.priority)}"><i class="fa-solid fa-bolt"></i>${radarEsc(radarPriorityLabel(lead.priority))}</span></div><div class="wf-radar-market-body"><div class="wf-radar-market-meta">${tagHtml}</div><h3>${radarEsc(lead.title||t('Untitled live lead'))}</h3><p class="wf-radar-market-desc">${radarEsc(lead.snippet||'')}</p>${radarMarketBudget(lead)}<div class="flex items-center justify-between gap-3 mt-3 text-[9px] text-slate-400"><span><i class="fa-regular fa-clock mr-1"></i>${radarEsc(radarAgeText(Number(lead.hoursAgo||0)))}</span><span><i class="fa-solid fa-signal mr-1 text-emerald-500"></i>${Number(lead.score||0)}%</span></div><div class="mt-2 h-1 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden"><span class="block h-full rounded-full bg-gradient-to-r from-emerald-500 to-emerald-300" style="width:${Math.min(100,Math.max(0,Number(lead.score||0)))}%"></span></div><div class="wf-radar-market-foot">${openSource}${contact}</div></div></article>`;}
+    function radarMarketSimilarity(a,b){let score=0;if(a.category&&b.category&&a.category===b.category)score+=55;const at=new Set((a.tags||[]).map(x=>String(x).toLowerCase())),bt=new Set((b.tags||[]).map(x=>String(x).toLowerCase()));let overlap=0;at.forEach(x=>{if(bt.has(x))overlap++;});score+=Math.min(25,overlap*10);if(a.region&&b.region&&a.region===b.region)score+=10;if(a.mode&&b.mode&&a.mode===b.mode)score+=10;return Math.min(99,score);}
     function radarMarketSuggestions(data){const pairs=[];const students=data.filter(x=>x.persona==='student'||x.persona==='service'),teachers=data.filter(x=>x.persona==='teacher');students.slice(0,8).forEach(a=>teachers.slice(0,12).forEach(b=>{if(a.id===b.id)return;const s=radarMarketSimilarity(a,b);if(s>=60)pairs.push({a,b,score:s});}));pairs.sort((a,b)=>b.score-a.score);return pairs.slice(0,5);}
     function highlightRadarMarketplaceMatch(aId,bId){document.querySelectorAll('.wf-radar-highlight').forEach(el=>el.classList.remove('wf-radar-highlight'));[aId,bId].forEach(id=>document.querySelector(`[data-radar-market-card-id="${CSS.escape(String(id))}"]`)?.classList.add('wf-radar-highlight'));document.querySelector(`[data-radar-market-card-id="${CSS.escape(String(aId))}"]`)?.scrollIntoView({behavior:'smooth',block:'center'});}
-    function renderRadarMarketplace(){const grid=document.getElementById('radar-marketplace-grid');if(!grid)return;const q=(document.getElementById('radar-market-search')?.value||'').trim().toLowerCase();const category=document.getElementById('radar-market-category')?.value||radarMarketplaceCategory;const region=document.getElementById('radar-market-region')?.value||radarMarketplaceRegion;const persona=document.getElementById('radar-market-persona')?.value||radarMarketplacePersona;const pricing=document.getElementById('radar-pricing')?.value||'all';radarMarketplaceCategory=category;radarMarketplaceRegion=region;radarMarketplacePersona=persona;let data=Array.isArray(radarLeads)?radarLeads.slice():[];if(q)data=data.filter(l=>[l.title,l.snippet,l.source,l.category,l.region,l.countryCode,l.city,l.pricing_mode,...(l.tags||[]),...(l.languages||[])].join(' ').toLowerCase().includes(q));if(category!=='all')data=data.filter(l=>l.category===category);if(region!=='all')data=data.filter(l=>String(l.region||'')===region||String(l.countryCode||'')===region);if(persona!=='all')data=data.filter(l=>l.persona===persona);if(pricing!=='all')data=data.filter(l=>(l.pricing_mode||'unknown')===pricing);data.sort((a,b)=>Number(b.score||0)-Number(a.score||0)||Number(a.hoursAgo||0)-Number(b.hoursAgo||0));document.getElementById('radar-market-live-count')?.replaceChildren(document.createTextNode(String(data.length)));if(!data.length){grid.innerHTML=`<div class="wf-radar-empty"><div class="wf-radar-empty-icon"><i class="fa-solid fa-satellite-dish"></i></div><h3 class="font-black text-slate-800 dark:text-white text-sm">${radarEsc(t(radarLiveReady?'No live leads match this filter.':'No live records yet.'))}</h3><p class="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-lg mx-auto leading-6">${radarEsc(t('Only real records returned by public/authorized sources appear here. Run a live sync or publish a request to start the flow.'))}</p><div class="flex flex-wrap justify-center gap-2 mt-4"><button type="button" class="wf-radar-market-btn wf-radar-market-btn-primary" onclick="runAcquisitionRadarSync()"><i class="fa-solid fa-rotate"></i>${radarEsc(t('Sync live sources'))}</button><button type="button" class="wf-radar-market-btn wf-radar-market-btn-soft" onclick="openCreateModal()"><i class="fa-solid fa-bullhorn"></i>${radarEsc(t('Publish a request'))}</button></div></div>`;}else{grid.innerHTML=data.map(radarMarketCard).join('');}const bar=document.getElementById('radar-market-match-bar'),list=document.getElementById('radar-market-match-list'),suggestions=radarMarketSuggestions(data);if(bar&&list){if(suggestions.length){bar.classList.remove('hidden');list.innerHTML=suggestions.map(p=>`<button type="button" class="wf-radar-match-chip" onclick="highlightRadarMarketplaceMatch('${radarEsc(p.a.id)}','${radarEsc(p.b.id)}')"><span class="wf-radar-match-score">${p.score}%</span><span>${radarEsc((p.a.title||'').slice(0,50))}</span><span class="text-slate-400">↔</span><span>${radarEsc((p.b.title||'').slice(0,50))}</span></button>`).join('');}else{bar.classList.add('hidden');list.innerHTML='';}}}
+    function renderRadarMarketplace(){const grid=document.getElementById('radar-marketplace-grid');if(!grid)return;const q=(document.getElementById('radar-market-search')?.value||'').trim().toLowerCase();const category=document.getElementById('radar-market-category')?.value||radarMarketplaceCategory;const region=document.getElementById('radar-market-region')?.value||radarMarketplaceRegion;const persona=document.getElementById('radar-market-persona')?.value||radarMarketplacePersona;radarMarketplaceCategory=category;radarMarketplaceRegion=region;radarMarketplacePersona=persona;let data=Array.isArray(radarLeads)?radarLeads.slice():[];if(q)data=data.filter(l=>[l.title,l.snippet,l.source,l.category,l.region,...(l.tags||[])].join(' ').toLowerCase().includes(q));if(category!=='all')data=data.filter(l=>l.category===category);if(region!=='all')data=data.filter(l=>String(l.region||'')===region);if(persona!=='all')data=data.filter(l=>l.persona===persona);data.sort((a,b)=>Number(b.score||0)-Number(a.score||0)||Number(a.hoursAgo||0)-Number(b.hoursAgo||0));document.getElementById('radar-market-live-count')?.replaceChildren(document.createTextNode(String(data.length)));if(!data.length){grid.innerHTML=`<div class="wf-radar-empty"><div class="wf-radar-empty-icon"><i class="fa-solid fa-satellite-dish"></i></div><h3 class="font-black text-slate-800 dark:text-white text-sm">${radarEsc(t(radarLiveReady?'No live leads match this filter.':'No live records yet.'))}</h3><p class="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-lg mx-auto leading-6">${radarEsc(t('Only real records returned by authorized connectors appear here. Run a live sync or publish a request to start the flow.'))}</p><div class="flex flex-wrap justify-center gap-2 mt-4"><button type="button" class="wf-radar-market-btn wf-radar-market-btn-primary" onclick="runAcquisitionRadarSync()"><i class="fa-solid fa-rotate"></i>${radarEsc(t('Sync live sources'))}</button><button type="button" class="wf-radar-market-btn wf-radar-market-btn-soft" onclick="openCreateModal()"><i class="fa-solid fa-bullhorn"></i>${radarEsc(t('Publish a request'))}</button></div></div>`;}else{grid.innerHTML=data.map(radarMarketCard).join('');}const bar=document.getElementById('radar-market-match-bar'),list=document.getElementById('radar-market-match-list'),suggestions=radarMarketSuggestions(data);if(bar&&list){if(suggestions.length){bar.classList.remove('hidden');list.innerHTML=suggestions.map(p=>`<button type="button" class="wf-radar-match-chip" onclick="highlightRadarMarketplaceMatch('${radarEsc(p.a.id)}','${radarEsc(p.b.id)}')"><span class="wf-radar-match-score">${p.score}%</span><span>${radarEsc((p.a.title||'').slice(0,50))}</span><span class="text-slate-400">↔</span><span>${radarEsc((p.b.title||'').slice(0,50))}</span></button>`).join('');}else{bar.classList.add('hidden');list.innerHTML='';}}}
 
     function renderRadarLog(){
       const el=document.getElementById('radar-log'); if(!el)return;
@@ -2264,20 +1846,22 @@
     }
     function renderAcquisitionRadar(){
       const grid=document.getElementById('radar-leads-grid'); if(!grid)return;
-      const q=(document.getElementById('radar-search')?.value||'').trim().toLowerCase(), freshness=document.getElementById('radar-freshness')?.value||'all', priority=document.getElementById('radar-priority')?.value||'all', pricing=document.getElementById('radar-pricing')?.value||'all', region=document.getElementById('radar-region')?.value||'all';
+      const q=(document.getElementById('radar-search')?.value||'').trim().toLowerCase();
+      const freshness=document.getElementById('radar-freshness')?.value||'all';
+      const priority=document.getElementById('radar-priority')?.value||'all';
       let data=radarLeads.filter(l=>radarPersona==='all'||l.persona===radarPersona);
-      if(q)data=data.filter(l=>[l.title,l.snippet,l.source,l.category,l.region,l.countryCode,l.city,...(l.tags||[]),...(l.audience||[]),...(l.languages||[])].join(' ').toLowerCase().includes(q));
-      if(freshness!=='all')data=data.filter(l=>Number(l.hoursAgo||0)<=Number(freshness)); if(priority!=='all')data=data.filter(l=>l.priority===priority);
-      if(pricing!=='all')data=data.filter(l=>(l.pricing_mode||'unknown')===pricing);
-      if(region!=='all')data=data.filter(l=>String(l.region||'')===region||String(l.countryCode||'')===region);
-      data.sort((a,b)=>Number(b.score||0)-Number(a.score||0)||Number(a.hoursAgo||0)-Number(b.hoursAgo||0));
-      grid.innerHTML=data.length?data.map(radarLeadCard).join(''):`<div class="md:col-span-2 rounded-2xl border border-dashed border-white/15 p-10 text-center text-white/45"><i class="fa-solid fa-satellite-dish text-3xl mb-3"></i><div class="text-sm font-bold">${radarEsc(t(radarLiveReady?'No live leads match this filter.':'No live radar data has been connected yet.'))}</div><div class="text-[10px] leading-5 mt-2 max-w-md mx-auto">${radarEsc(t('Only real records returned by public or authorized sources are shown here.'))}</div></div>`;
+      if(q) data=data.filter(l=>[l.title,l.snippet,l.source,...(l.tags||[])].join(' ').toLowerCase().includes(q));
+      if(freshness!=='all') data=data.filter(l=>Number(l.hoursAgo||0)<=Number(freshness));
+      if(priority!=='all') data=data.filter(l=>l.priority===priority);
+      data.sort((a,b)=>Number(b.score||0)-Number(a.score||0) || Number(a.hoursAgo||0)-Number(b.hoursAgo||0));
+      grid.innerHTML=data.length?data.map(radarLeadCard).join(''):`<div class="md:col-span-2 rounded-2xl border border-dashed border-white/15 p-10 text-center text-white/45"><i class="fa-solid fa-satellite-dish text-3xl mb-3"></i><div class="text-sm font-bold">${radarEsc(t(radarLiveReady?'No live leads match this filter.':'No live radar data has been connected yet.'))}</div><div class="text-[10px] leading-5 mt-2 max-w-md mx-auto">${radarEsc(t('Only real records returned by authorized connectors are shown here.'))}</div></div>`;
       document.getElementById('radar-stat-new')?.replaceChildren(document.createTextNode(String(data.length||0)));
       document.getElementById('radar-stat-teachers')?.replaceChildren(document.createTextNode(String(radarLeads.filter(l=>l.persona==='teacher').length||0)));
       document.getElementById('radar-stat-students')?.replaceChildren(document.createTextNode(String(radarLeads.filter(l=>l.persona==='student').length||0)));
-      document.getElementById('radar-stat-free')?.replaceChildren(document.createTextNode(String(radarLeads.filter(l=>['free','scholarship'].includes(l.pricing_mode)).length||0)));
-      const aiRate=radarLeads.length?Math.round(radarLeads.reduce((a,l)=>a+Number(l.triage_confidence||l.score||0),0)/radarLeads.length):0; const aiRateEl=document.getElementById('radar-ai-rate');if(aiRateEl)aiRateEl.textContent=radarLeads.length?`${aiRate}%`:'—'; const aiBar=document.getElementById('radar-ai-bar');if(aiBar)aiBar.style.width=`${radarLeads.length?aiRate:0}%`;
-      renderRadarLog();renderRadarSources();renderRadarMarketplace();
+      const aiRate=radarLeads.length?Math.round(radarLeads.reduce((a,l)=>a+Number(l.triage_confidence||l.score||0),0)/radarLeads.length):0;
+      const aiRateEl=document.getElementById('radar-ai-rate'); if(aiRateEl)aiRateEl.textContent=radarLeads.length?`${aiRate}%`:'—';
+      const aiBar=document.getElementById('radar-ai-bar'); if(aiBar)aiBar.style.width=`${radarLeads.length?aiRate:0}%`;
+      renderRadarLog(); renderRadarSources(); renderRadarMarketplace();
     }
     function setRadarPersona(persona){
       radarPersona=persona;
@@ -2287,15 +1871,15 @@
     async function runAcquisitionRadarSync(){
       const stamp=new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
       const last=document.getElementById('radar-last-sync'); if(last)last.textContent=t('Syncing');
-      radarLog.unshift({time:stamp,text:t('Started a public-data radar sync. One Brave search connector feeds the educational source packs.')}); renderRadarLog();
+      radarLog.unshift({time:stamp,text:t('Started a live radar sync. No demo fallback is used.')}); renderRadarLog();
       let usedServer=false;
       try{
         if(supabaseClient && currentAuthUser){
-          const result=await supabaseClient.functions.invoke('radar-sync',{body:{days:14,requested_sources:RADAR_SOURCES.map(s=>s.id),max_results:12,live_only:true,mode:'public_search'}});
+          const result=await supabaseClient.functions.invoke('radar-sync',{body:{window:'24h',requested_sources:RADAR_SOURCES.map(s=>s.id),live_only:true}});
           if(!result.error && result.data){
             usedServer=true;
             if(Array.isArray(result.data.leads)){
-              radarLeads=result.data.leads.map(x=>({...x,sourceType:x.source_type||x.sourceType||'web',hoursAgo:Number(x.hours_ago??x.hoursAgo??0),region:x.region||x.country_code||'',type:x.type||x.intent_type||'',mode:x.mode||'',amount:x.amount??x.budget??null,currency:x.currency||x.budget_currency||'',pricing_mode:x.pricing_mode||'unknown',free_offer_scope:x.free_offer_scope||'',audience:Array.isArray(x.audience)?x.audience:[],sourceDomain:x.source_domain||'',sourceFamily:x.source_family||''}));
+              radarLeads=result.data.leads.map(x=>({...x,sourceType:x.source_type||x.sourceType||'web',hoursAgo:Number(x.hours_ago??x.hoursAgo??0),region:x.region||x.country_code||'',type:x.type||x.intent_type||'',mode:x.mode||'',amount:x.amount??x.budget??null,currency:x.currency||x.budget_currency||''}));
               radarLiveReady=true;
             }
             RADAR_SOURCES.forEach(s=>{ if(result.data.sources?.[s.id]) Object.assign(s,result.data.sources[s.id]); });
@@ -2340,12 +1924,12 @@
       const d=globalDemandText(demand), p=globalProviderText(provider);
       const category=String(demand.category||'').toLowerCase();
       const rules={
-        quran:['quran','قرآن','tajweed','تجويد','memor','تحفيظ','qiraat','قراءات'],
-        hadith:['hadith','حديث'],
-        arabic:['arabic','عربي','نحو','صرف','بلاغة'],
-        languages:['language','لغة','english','french','فرنسي','urdu','turkish'],
-        kids:['kids','child','children','أطفال','طفل'],
-        services:['service','خدمة']
+        quran:['quran','\u0642\u0631\u0622\u0646','tajweed','\u062a\u062c\u0648\u064a\u062f','memor','\u062a\u062d\u0641\u064a\u0638','qiraat','\u0642\u0631\u0627\u0621\u0627\u062a'],
+        hadith:['hadith','\u062d\u062f\u064a\u062b'],
+        arabic:['arabic','\u0639\u0631\u0628\u064a','\u0646\u062d\u0648','\u0635\u0631\u0641','\u0628\u0644\u0627\u063a\u0629'],
+        languages:['language','\u0644\u063a\u0629','english','french','\u0641\u0631\u0646\u0633\u064a','urdu','turkish'],
+        kids:['kids','child','children','\u0623\u0637\u0641\u0627\u0644','\u0637\u0641\u0644'],
+        services:['service','\u062e\u062f\u0645\u0629']
       };
       if(rules[category]) return rules[category].some(k=>p.includes(k)) ? 22 : 0;
       return Object.values(rules).reduce((sum,keys)=>sum + (keys.some(k=>d.includes(k))&&keys.some(k=>p.includes(k))?12:0),0);
@@ -2356,9 +1940,6 @@
       if(regionalRegionMatch(pRegion,dRegion) || regionalRegionMatch(dRegion,pRegion)) score+=28;
       if(demand.mode && globalIncludes(provider,demand.mode)) score+=12;
       score+=globalCategoryScore(demand,provider);
-      const demandPricing=String(demand.pricing_mode||'unknown'), providerPricing=String(provider.pricing_mode||'unknown');
-      if(demandPricing==='free' || demandPricing==='scholarship'){ if(['free','scholarship'].includes(providerPricing)) score+=14; else if(providerPricing==='symbolic') score+=5; }
-      if(demand.category==='quran' && (demand.region==='SOUTHEAST_ASIA'||demand.region==='WEST_AFRICA'||demand.region==='EAST_AFRICA'||demand.region==='SOUTH_ASIA')) score+=3;
       const dl=globalArray(demand.languages ? demand.languages : (demand.language?[demand.language]:[])); const pl=globalArray(provider.languages);
       if(dl.length&&pl.length&&dl.some(x=>pl.some(y=>String(y).toLowerCase().includes(String(x).toLowerCase())))) score+=18;
       const dq=globalDemandText(demand).split(/[^\p{L}\p{N}]+/u).filter(w=>w.length>3).slice(0,40); const pp=globalProviderText(provider);
@@ -2368,14 +1949,28 @@
       return Math.min(100,Math.round(score));
     }
     function globalBuildDemands(){
-      const radar=Array.isArray(radarLeads)?radarLeads.filter(x=>!['stale','rejected'].includes(x.status)):[];
+      // Live radar demands are explicit requests only. Signals and supply records stay out of the demand pool.
+      const radar=Array.isArray(radarLeads)?radarLeads.filter(x=>!['stale','rejected'].includes(x.status)&&['student','service'].includes(x.persona)&&x.intentType==='demand'):[];
       const listings=Array.isArray(opportunitiesData)?opportunitiesData.filter(x=>['quran','hadith','arabic','kids','languages','services','demands'].includes(x.category)&&x.type!=='offer'):[];
       return [...radar.map(x=>({...x,_kind:'radar'})),...listings.map(x=>({...x,_kind:'listing',snippet:x.description}))];
     }
     function globalBuildProviders(){
       const specialists=Array.isArray(specialistProfiles)?specialistProfiles.filter(p=>!['student','parent_family'].includes(p.role)&&p.is_active!==false):[];
       const listings=Array.isArray(opportunitiesData)?opportunitiesData.filter(x=>x.type==='offer'&&['quran','hadith','arabic','kids','languages','services'].includes(x.category)):[];
-      return {specialists,listings};
+      // Live radar teacher/supply signals are real provider candidates too. This closes the live radar -> matching loop.
+      const radarProviders=Array.isArray(radarLeads)?radarLeads.filter(x=>!['stale','rejected'].includes(x.status)&&x.persona==='teacher'&&x.intentType==='supply').map(x=>({
+        ...x,
+        _providerKind:'radar',
+        display_name:x.title||'Live teacher signal',
+        specialty:x.category||'',
+        bio:x.snippet||'',
+        country:x.countryCode||x.region||'',
+        languages:Array.isArray(x.languages)?x.languages:[],
+        teaching_mode:x.mode?[x.mode]:[],
+        role:'teacher',
+        is_active:true
+      })):[];
+      return {specialists,listings,radarProviders};
     }
     function renderRegionalSources(){
       const box=document.getElementById('global-source-readiness'); if(!box)return;
@@ -2395,8 +1990,12 @@
       const language=document.getElementById('global-match-language')?.value||'all';
       const mode=document.getElementById('global-match-mode')?.value||'all';
       const allDemands=globalBuildDemands();
-      const {specialists,listings}=globalBuildProviders();
-      const providers=[...specialists.map(x=>({...x,_providerKind:'profile'})),...listings.map(x=>({...x,_providerKind:'listing',display_name:x.sheikh||x.title,specialty:x.category,bio:x.description,country:x.region,languages:[]}))];
+      const {specialists,listings,radarProviders}=globalBuildProviders();
+      const providers=[
+        ...specialists.map(x=>({...x,_providerKind:'profile'})),
+        ...listings.map(x=>({...x,_providerKind:'listing',display_name:x.sheikh||x.title,specialty:x.category,bio:x.description,country:x.region,languages:[]})),
+        ...radarProviders
+      ];
       const filteredDemands=allDemands.filter(d=>{if(persona!=='all'&&d.persona!==persona)return false;if(region!=='all'&&!regionalRegionMatch(d.region||d.country||'',region))return false;if(mode!=='all'&&d.mode&&!globalIncludes(d,mode))return false;return true;});
       const eligibleProviders=providers.filter(p=>{if(region!=='all'&&!regionalRegionMatch(p.country||p.region||'',region))return false;if(language!=='all'&&!globalIncludes(p,language))return false;if(mode!=='all'&&!globalIncludes(p,mode))return false;return true;});
       const pairings=[]; filteredDemands.forEach(d=>eligibleProviders.forEach(p=>{const score=globalMatchScore(d,p);if(score>=40)pairings.push({d,p,score});})); pairings.sort((a,b)=>b.score-a.score);
@@ -2408,7 +2007,7 @@
       document.getElementById('global-metric-regions')?.replaceChildren(document.createTextNode(String(regions.size)));
       document.getElementById('global-match-status')?.replaceChildren(document.createTextNode(String(pairings.length)));
       if(!top.length){results.innerHTML=`<div class="wf-global-empty"><div class="text-emerald-600 text-xl mb-2"><i class="fa-solid fa-diagram-project"></i></div><div class="font-black text-sm text-slate-800 dark:text-white">${radarEsc(t(allDemands.length ? 'No eligible live signals for this filter.' : 'No real matching records yet.'))}</div><p class="text-[10px] text-slate-500 dark:text-slate-400 mt-1 leading-5">${radarEsc(t(allDemands.length?'Adjust region, language or teaching mode.':'Complete a profile or publish a request to unlock matching.'))}</p></div>`;}
-      else {results.innerHTML=top.map(({d,p,score})=>{const dTitle=d.title||d.description||t('Live signal');const pTitle=p.display_name||p.title||t('Real profile');const chips=[d.category,p.specialty,p.country||d.region,p._providerKind==='profile'?t('Real profile'):t('Live signal')].filter(Boolean).slice(0,4);const open=`${d._kind==='radar'?`openRadarOutreach('${radarEsc(d.id)}')`:`openCreateModal('${radarEsc(d.category||'quran')}')`}`;return `<article class="wf-global-result-card"><div class="wf-global-result-top"><span class="wf-global-kind">${radarEsc(d._kind==='radar'?t('Live signal'):t('Real profile'))} ↔ ${radarEsc(p._providerKind==='profile'?t('Real profile'):t('Live signal'))}</span><span class="wf-global-score">${score}%</span></div><h4>${radarEsc(dTitle)}</h4><p>${radarEsc(pTitle)} · ${radarEsc(p.specialty||'')}</p><div class="wf-global-chip-row">${chips.map(c=>`<span class="wf-global-chip">${radarEsc(c)}</span>`).join('')}</div><div class="wf-global-actions"><button type="button" class="bg-emerald-600 text-white" onclick="${open}"><i class="fa-solid fa-comments mr-1"></i>${radarEsc(t('Match'))}</button><button type="button" class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200" onclick="document.getElementById('specialists-hub')?.scrollIntoView({behavior:'smooth'})"><i class="fa-solid fa-user-graduate mr-1"></i>${radarEsc(t('Specialists'))}</button></div></article>`;}).join('');}
+      else {results.innerHTML=top.map(({d,p,score})=>{const dTitle=d.title||d.description||t('Live signal');const pTitle=p.display_name||p.title||t('Real profile');const chips=[d.category,p.specialty,p.country||d.region,p._providerKind==='profile'?t('Real profile'):t('Live radar teacher')].filter(Boolean).slice(0,4);const open=`${d._kind==='radar'?`openRadarOutreach('${radarEsc(d.id)}')`:`openCreateModal('${radarEsc(d.category||'quran')}')`}`;return `<article class="wf-global-result-card"><div class="wf-global-result-top"><span class="wf-global-kind">${radarEsc(d._kind==='radar'?t('Live signal'):t('Real profile'))} ↔ ${radarEsc(p._providerKind==='profile'?t('Real profile'):t('Live radar teacher'))}</span><span class="wf-global-score">${score}%</span></div><h4>${radarEsc(dTitle)}</h4><p>${radarEsc(pTitle)} · ${radarEsc(p.specialty||'')}</p><div class="wf-global-chip-row">${chips.map(c=>`<span class="wf-global-chip">${radarEsc(c)}</span>`).join('')}</div><div class="wf-global-actions"><button type="button" class="bg-emerald-600 text-white" onclick="${open}"><i class="fa-solid fa-comments mr-1"></i>${radarEsc(t('Match'))}</button><button type="button" class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200" onclick="document.getElementById('specialists-hub')?.scrollIntoView({behavior:'smooth'})"><i class="fa-solid fa-user-graduate mr-1"></i>${radarEsc(t('Specialists'))}</button></div></article>`;}).join('');}
       renderRegionalCRM();
     }
 
@@ -2436,11 +2035,11 @@
         const {data,error}=await supabaseClient.rpc('get_public_radar_leads',{p_persona:null,p_region:null,p_category:null,p_mode:null,p_language:null,p_limit:200});
         if(error) throw error;
         radarLeads=(data||[]).map(x=>({
-          id:x.id, persona:x.persona||'service', category:x.category||'', priority:x.priority||'normal', title:x.title||'', snippet:x.snippet||'', source:x.source||t('Real external source'), sourceType:x.source_type||'web', sourceUrl:x.source_url||'#', region:x.region||x.country_code||'', countryCode:x.country_code||'', city:x.city||'', language:x.language||'', languages:Array.isArray(x.languages)?x.languages:[], type:x.intent_type||'', mode:x.mode||'', amount:x.amount??null, currency:x.currency||'', pricing_mode:x.pricing_mode||'unknown', free_offer_scope:x.free_offer_scope||'', audience:Array.isArray(x.audience)?x.audience:[], sourceDomain:x.source_domain||'', sourceFamily:x.source_family||'', countryConfidence:Number(x.country_confidence||0), hoursAgo:Math.max(0,(Date.now()-new Date(x.discovered_at||Date.now()).getTime())/3600000), score:Number(x.score||0), triage_confidence:Number(x.triage_confidence||x.score||0), tags:Array.isArray(x.tags)?x.tags:[], contactable:x.consent_status==='public_contact'||x.consent_status==='opted_in', consentStatus:x.consent_status||'unknown'
+          id:x.id, persona:x.persona||'service', category:x.category||'', priority:x.priority||'normal', title:x.title||'', snippet:x.snippet||'', source:x.source||t('Real external source'), sourceType:x.source_type||'web', sourceUrl:x.source_url||'#', region:x.region||x.country_code||'', countryCode:x.country_code||'', city:x.city||'', language:x.language||'', languages:Array.isArray(x.languages)?x.languages:[], type:x.intent_type||'', mode:x.mode||'', amount:x.amount??null, currency:x.currency||'', pricing_mode:x.pricing_mode||'unknown', free_offer_scope:x.free_offer_scope||'', audience:Array.isArray(x.audience)?x.audience:[], hoursAgo:Math.max(0,(Date.now()-new Date(x.discovered_at||Date.now()).getTime())/3600000), score:Number(x.score||0), triage_confidence:Number(x.triage_confidence||x.score||0), tags:Array.isArray(x.tags)?x.tags:[], contactable:x.consent_status==='public_contact'||x.consent_status==='opted_in', consentStatus:x.consent_status||'unknown'
         }));
         radarLiveReady=true;
         if(last) last.textContent=radarLeads.length?`${radarLeads.length} ${t('live records loaded')}`:t('No live records yet');
-        radarLog=[{time:t('Now'),text:radarLeads.length?t('Loaded only real records stored from public/authorized sources.'):t('No live records are stored yet.')}];
+        radarLog=[{time:t('Now'),text:radarLeads.length?t('Loaded only records stored from real connectors.'):t('No live records are stored yet.')}];
       }catch(e){
         console.warn('Live radar load:',e);
         radarLog=[{time:t('Now'),text:t('Live radar data could not be read. Check RLS/admin access.')}];
@@ -2455,7 +2054,7 @@
         modal.classList.remove('hidden'); modal.classList.add('flex'); return;
       }
       const safeUrl=lead.sourceUrl&&lead.sourceUrl!=='#'?radarEsc(lead.sourceUrl):'#';
-      const defaultMsg='السلام عليكم، اطلعنا على طلبكم/عرضكم التعليمي المنشور علنًا، ونقترح التعرف على شبكة وفاق التعليمية والمتخصصين المناسبين لاحتياجكم. هذا المسودّة للمراجعة البشرية قبل أي تواصل.';
+      const defaultMsg='\u0627\u0644\u0633\u0644\u0627\u0645 \u0639\u0644\u064a\u0643\u0645\u060c \u0627\u0637\u0644\u0639\u0646\u0627 \u0639\u0644\u0649 \u0627\u0644\u0637\u0644\u0628 \u0627\u0644\u0645\u0646\u0634\u0648\u0631 \u0648\u0646\u0642\u062a\u0631\u062d \u0639\u0644\u064a\u0643\u0645 \u0627\u0644\u062a\u0639\u0631\u0641 \u0639\u0644\u0649 \u0634\u0628\u0643\u0629 \u0648\u0641\u0627\u0642 \u0627\u0644\u062a\u0639\u0644\u064a\u0645\u064a\u0629 \u0648\u0627\u0644\u0645\u062a\u062e\u0635\u0635\u064a\u0646 \u0627\u0644\u0645\u0646\u0627\u0633\u0628\u064a\u0646 \u0644\u0627\u062d\u062a\u064a\u0627\u062c\u0643\u0645. \u0646\u0631\u062d\u0628 \u0628\u062a\u0648\u0627\u0635\u0644\u0643\u0645 \u0639\u0628\u0631 \u0627\u0644\u0642\u0646\u0627\u0629 \u0627\u0644\u0645\u0639\u0644\u0646\u0629.';
       box.innerHTML=`<div class="space-y-4"><div class="rounded-xl border border-slate-200 dark:border-slate-800 p-4"><div class="flex items-center gap-2"><span class="w-9 h-9 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 flex items-center justify-center"><i class="${radarSourceIcon(lead.sourceType)}"></i></span><div><div class="font-black">${radarEsc(lead.title)}</div><div class="text-[10px] text-slate-500 mt-1">${radarEsc(lead.source||'')}</div></div></div><p class="text-xs text-slate-600 dark:text-slate-300 leading-6 mt-4">${radarEsc(lead.snippet||'')}</p></div><div class="grid sm:grid-cols-3 gap-2"><button type="button" onclick="saveRadarLead('${radarEsc(lead.id)}')" class="rounded-xl border border-slate-200 dark:border-slate-700 py-3 text-xs font-black"><i class="fa-solid fa-bookmark mr-1"></i>${radarEsc(t('Save lead'))}</button>${safeUrl!=='#'?`<a href="${safeUrl}" target="_blank" rel="noopener noreferrer" class="rounded-xl bg-slate-900 dark:bg-slate-800 text-white py-3 text-xs font-black text-center"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>${radarEsc(t('Open source'))}</a>`:'<div class="rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 py-3 text-xs font-black text-center">'+radarEsc(t('No source URL'))+'</div>'}<div class="rounded-xl bg-amber-50 dark:bg-amber-950/20 text-amber-700 dark:text-amber-300 py-3 text-xs font-black text-center">${radarEsc(lead.contactable?t('Public/approved contact'):t('Review source terms before contacting'))}</div></div><div class="rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 p-4"><div class="text-[10px] font-black text-slate-400 mb-2">${radarEsc(t('Message draft'))}</div><textarea id="radar-message-draft" rows="5" class="w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-2 text-xs leading-6">${radarEsc(defaultMsg)}</textarea><div class="text-[10px] text-slate-400 mt-2">${radarEsc(t('Needs human review before sending'))}</div></div></div>`;
       modal.classList.remove('hidden'); modal.classList.add('flex');
       translatePage();
@@ -2523,7 +2122,7 @@
       }
       currentSelectedCardForContact = {...item, phone:listingContact.phone, ownerId:listingContact.user_id||null};
       const senderInput = document.getElementById('sender-name');
-      if (senderInput && (!senderInput.value || senderInput.value === 'Investor / Quran seeker via Wefaq' || senderInput.value === 'مستثمر / طالب قرآن عبر وفاق')) senderInput.value = t('Investor / Quran seeker via Wefaq');
+      if (senderInput && (!senderInput.value || senderInput.value === 'Investor / Quran seeker via Wefaq' || senderInput.value === '\u0645\u0633\u062a\u062b\u0645\u0631 / \u0637\u0627\u0644\u0628 \u0642\u0631\u0622\u0646 \u0639\u0628\u0631 \u0648\u0641\u0627\u0642')) senderInput.value = t('Investor / Quran seeker via Wefaq');
       recordEngagement(id, 'contact_open');
       document.getElementById('contact-modal').classList.remove('hidden');
       updateWhatsAppTemplate();
@@ -2534,7 +2133,7 @@
       const item = currentSelectedCardForContact;
       if (!item) return;
       document.getElementById('whatsapp-template-text').value = currentLang === 'ar'
-        ? `مرحبًا، أنا ${name}.\nأنا مهتم بإعلانك على منصة وفاق:\n"${item.title}"\nيرجى التواصل معي. شكرًا لك.`
+        ? `\u0645\u0631\u062d\u0628\u064b\u0627\u060c \u0623\u0646\u0627 ${name}.\n\u0623\u0646\u0627 \u0645\u0647\u062a\u0645 \u0628\u0625\u0639\u0644\u0627\u0646\u0643 \u0639\u0644\u0649 \u0645\u0646\u0635\u0629 \u0648\u0641\u0627\u0642:\n"${item.title}"\n\u064a\u0631\u062c\u0649 \u0627\u0644\u062a\u0648\u0627\u0635\u0644 \u0645\u0639\u064a. \u0634\u0643\u0631\u064b\u0627 \u0644\u0643.`
         : `Hello, I am ${name}.\nI am interested in your listing on Wefaq:\n"${item.title}"\nPlease contact me. Thank you.`;
     }
     function sendWhatsAppMessage() {
@@ -2974,9 +2573,9 @@
       if(loadError||!row){showRealtimeNotification(t('Review could not be saved'));return;}
       if(row.requester_id!==user.id && row.provider_id!==user.id){showRealtimeNotification(t('Review access denied'));return;}
       if(String(row.status)!=='completed'){showRealtimeNotification(t('Complete the connection before reviewing'));return;}
-      const rating=Number(prompt(currentLang === 'ar' ? 'قيّم هذا الاتصال المكتمل من 1 إلى 5:' : 'Rate this completed connection from 1 to 5:', '5'));
+      const rating=Number(prompt(currentLang === 'ar' ? '\u0642\u064a\u0651\u0645 \u0647\u0630\u0627 \u0627\u0644\u0627\u062a\u0635\u0627\u0644 \u0627\u0644\u0645\u0643\u062a\u0645\u0644 \u0645\u0646 1 \u0625\u0644\u0649 5:' : 'Rate this completed connection from 1 to 5:', '5'));
       if(!Number.isInteger(rating)||rating<1||rating>5){showRealtimeNotification(t('Rating must be between 1 and 5'));return;}
-      const comment=(prompt(currentLang === 'ar' ? 'تعليق اختياري على التقييم:' : 'Optional review comment:','')||'').trim().slice(0,1200);
+      const comment=(prompt(currentLang === 'ar' ? '\u062a\u0639\u0644\u064a\u0642 \u0627\u062e\u062a\u064a\u0627\u0631\u064a \u0639\u0644\u0649 \u0627\u0644\u062a\u0642\u064a\u064a\u0645:' : 'Optional review comment:','')||'').trim().slice(0,1200);
       const {error}=await supabaseClient.from('reviews').upsert({connection_id:connectionId,reviewer_id:user.id,rating,comment},{onConflict:'connection_id,reviewer_id'});
       if(error){console.error(error);showRealtimeNotification(t('Review could not be saved'));return;}
       await recordEngagement(row.listing_id || null, 'review', { connection_id: connectionId, rating });
@@ -3340,4 +2939,5 @@
       closeChatModal(); closeProfileEditor(); closeAiAssistant(); closeSpecialistDetails();
     });
   </script>
+<!-- Wefaq V16.8 live matching -->
 </body></html>
