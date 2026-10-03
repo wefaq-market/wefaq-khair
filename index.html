@@ -262,6 +262,34 @@
 .wf-radar-highlight{animation:wfRadarPulse 1.8s ease 1;border-color:#10b981!important;box-shadow:0 0 0 4px rgba(16,185,129,.12),0 24px 50px rgba(16,185,129,.15)!important}@keyframes wfRadarPulse{0%{transform:translateY(0)}30%{transform:translateY(-4px)}100%{transform:translateY(0)}}
 @media(max-width:1024px){.wf-radar-market-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.wf-radar-market-filters{grid-template-columns:1fr 1fr}}
 @media(max-width:640px){.wf-radar-market-head{padding:1rem}.wf-radar-market-toolbar,.wf-radar-match-bar{margin-left:1rem;margin-right:1rem}.wf-radar-market-grid{padding:0 1rem 1rem;grid-template-columns:1fr}.wf-radar-market-filters{grid-template-columns:1fr}.wf-radar-market-actions{width:100%}.wf-radar-market-btn{flex:1}}
+/* v16.9 marketplace UI: clearer hierarchy, less visual noise, stronger information grouping */
+.wf-radar-market-shell{border-radius:1.75rem;box-shadow:0 16px 42px rgba(15,23,42,.055)}
+.wf-market-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.65rem;padding:0 1.25rem 1rem}
+.wf-market-summary-card{display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.7rem .8rem;border:1px solid #e2e8f0;border-radius:1rem;background:#fff}
+.wf-market-summary-icon{width:2rem;height:2rem;border-radius:.75rem;display:flex;align-items:center;justify-content:center;background:#ecfdf5;color:#059669;flex:none}
+.wf-market-summary-label{font-size:.58rem;font-weight:800;color:#64748b}.wf-market-summary-num{font-size:.95rem;font-weight:900;color:#0f172a;margin-top:.08rem}
+.dark .wf-market-summary-card{background:#0f172a;border-color:#1e293b}.dark .wf-market-summary-label{color:#94a3b8}.dark .wf-market-summary-num{color:#fff}.dark .wf-market-summary-icon{background:rgba(6,78,59,.35);color:#6ee7b7}
+.wf-radar-market-toolbar{margin:.15rem 1.25rem 1rem;padding:.7rem;border-radius:1rem;background:#f8fafc}
+.wf-radar-market-filters{grid-template-columns:minmax(0,1.8fr) repeat(3,minmax(0,.9fr))}
+.wf-radar-market-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem;padding:0 1.25rem 1.25rem}
+.wf-radar-market-card{border-radius:1.25rem;box-shadow:0 8px 22px rgba(15,23,42,.045)}
+.wf-radar-market-card:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(15,23,42,.09)}
+.wf-market-card-accent{height:4px;background:linear-gradient(90deg,#10b981,#6ee7b7)}
+.wf-market-card-main{padding:1rem 1rem .9rem}
+.wf-market-card-type{display:inline-flex;align-items:center;gap:.35rem;padding:.28rem .55rem;border-radius:999px;background:#f0fdf4;color:#047857;border:1px solid #bbf7d0;font-size:.57rem;font-weight:900}
+.wf-market-card-type.teacher{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}.wf-market-card-type.service{background:#fff7ed;color:#c2410c;border-color:#fed7aa}
+.dark .wf-market-card-type{background:rgba(6,78,59,.28);color:#6ee7b7;border-color:rgba(110,231,183,.2)}.dark .wf-market-card-type.teacher{background:rgba(30,64,175,.2);color:#93c5fd;border-color:rgba(96,165,250,.2)}.dark .wf-market-card-type.service{background:rgba(124,45,18,.2);color:#fdba74;border-color:rgba(251,146,60,.2)}
+.wf-market-card-title{font-size:.95rem;line-height:1.72;font-weight:900;color:#0f172a;margin-top:.65rem}.dark .wf-market-card-title{color:#fff}
+.wf-market-card-desc{font-size:.69rem;line-height:1.75;color:#64748b;margin-top:.35rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.dark .wf-market-card-desc{color:#94a3b8}
+.wf-market-card-info{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.4rem;margin-top:.75rem}
+.wf-market-info-item{display:flex;align-items:center;gap:.4rem;min-width:0;padding:.45rem .5rem;border-radius:.7rem;background:#f8fafc;color:#475569;font-size:.57rem;font-weight:800}.wf-market-info-item i{color:#10b981;width:.8rem;text-align:center}.dark .wf-market-info-item{background:#111827;color:#cbd5e1}
+.wf-market-score-row{display:flex;align-items:center;justify-content:space-between;gap:.7rem;margin-top:.75rem;padding-top:.7rem;border-top:1px solid #f1f5f9}.dark .wf-market-score-row{border-color:#1e293b}
+.wf-market-score-copy{font-size:.56rem;color:#94a3b8}.wf-market-score-value{font-size:.72rem;font-weight:900;color:#059669}.wf-market-score-track{height:.32rem;margin-top:.32rem;border-radius:999px;background:#ecfdf5;overflow:hidden}.wf-market-score-track span{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#059669,#34d399)}
+.wf-market-card-actions{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.8rem}.wf-market-card-actions a,.wf-market-card-actions button{min-height:38px;border-radius:.75rem;font-size:.61rem;font-weight:900;display:flex;align-items:center;justify-content:center;gap:.35rem}
+.wf-market-card-footer{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin-top:.55rem;font-size:.53rem;color:#94a3b8}
+@media(max-width:900px){.wf-market-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.wf-radar-market-filters{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.wf-market-summary{padding:0 1rem 1rem;gap:.5rem}.wf-radar-market-grid{padding:0 1rem 1rem;grid-template-columns:1fr}.wf-radar-market-filters{grid-template-columns:1fr}.wf-market-info-item{font-size:.54rem}}
+
 </style>
 
 <style id="wefaq-global-matching-v14">
@@ -901,7 +929,7 @@
 </section>
 
 
-<!-- v13 — Live Radar Marketplace / High-Conversion Requests & Listings -->
+<!-- v16.9 — Live Radar Marketplace / organized request & teacher discovery -->
 <section class="scroll-mt-20" id="radar-marketplace-live">
   <div class="wf-radar-market-shell">
     <div class="wf-radar-market-head">
@@ -911,8 +939,8 @@
             <span class="wf-radar-live-pill"><span class="wf-radar-live-dot"></span><span data-i18n-merge="Live radar marketplace">سوق الرادار المباشر</span></span>
             <span id="radar-market-live-count" class="text-xs font-black text-slate-500 dark:text-slate-400">0</span>
           </div>
-          <h2 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-2" data-i18n-merge="Requests and listings discovered by the radar">قائمة الطلبات والإعلانات التي اكتشفها الرادار</h2>
-          <p class="wf-radar-market-subtext" data-i18n-merge="A conversion-focused display for real requests, service offers and teacher signals returned by authorized sources.">واجهة جذب مرتبة لعرض الطلبات والعروض وإشارات المعلمين الحقيقية القادمة من مصادر عامة أو موصلات مصرح بها.</p>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-2" data-i18n-merge="Requests and listings discovered by the radar">اكتشافات حية مرتبة: طلبات طلاب ومعلمون وخدمات تعليمية</h2>
+          <p class="wf-radar-market-subtext" data-i18n-merge="A conversion-focused display for real requests, service offers and teacher signals returned by authorized sources.">عرض مرتب للطلبات والعروض وإشارات المعلمين الحقيقية القادمة من مصادر عامة أو موصلات مصرح بها.</p>
         </div>
         <div class="wf-radar-market-actions">
           <button type="button" class="wf-radar-market-btn wf-radar-market-btn-primary" onclick="runAcquisitionRadarSync()"><i class="fa-solid fa-satellite-dish"></i><span data-i18n-merge="Sync live sources">مزامنة المصادر الحية</span></button>
@@ -921,11 +949,19 @@
         </div>
       </div>
     </div>
+
+    <div class="wf-market-summary">
+      <div class="wf-market-summary-card"><div><div class="wf-market-summary-label">طلبات طلاب</div><div class="wf-market-summary-num" id="radar-market-demand-count">0</div></div><span class="wf-market-summary-icon"><i class="fa-solid fa-user-graduate"></i></span></div>
+      <div class="wf-market-summary-card"><div><div class="wf-market-summary-label">معلمون ومحفظون</div><div class="wf-market-summary-num" id="radar-market-teacher-count">0</div></div><span class="wf-market-summary-icon"><i class="fa-solid fa-person-chalkboard"></i></span></div>
+      <div class="wf-market-summary-card"><div><div class="wf-market-summary-label">خدمات تعليمية</div><div class="wf-market-summary-num" id="radar-market-service-count">0</div></div><span class="wf-market-summary-icon"><i class="fa-solid fa-layer-group"></i></span></div>
+      <div class="wf-market-summary-card"><div><div class="wf-market-summary-label">مطابقات مقترحة</div><div class="wf-market-summary-num" id="radar-market-match-count">0</div></div><span class="wf-market-summary-icon"><i class="fa-solid fa-diagram-project"></i></span></div>
+    </div>
+
     <div class="wf-radar-market-toolbar">
       <div class="wf-radar-market-filters">
         <div class="relative">
           <i class="fa-solid fa-magnifying-glass absolute start-3 top-3 text-slate-400 text-xs"></i>
-          <input id="radar-market-search" class="wf-radar-market-input ps-9" type="search" placeholder="ابحث داخل الطلبات والإعلانات الحية..." oninput="renderRadarMarketplace()" data-i18n-placeholder="Search live radar listings..." />
+          <input id="radar-market-search" class="wf-radar-market-input ps-9" type="search" placeholder="ابحث في الطلبات والمعلمين والخدمات..." oninput="renderRadarMarketplace()" data-i18n-placeholder="Search live radar listings..." />
         </div>
         <select id="radar-market-category" class="wf-radar-market-select" onchange="renderRadarMarketplace()">
           <option value="all">كل المجالات التعليمية</option><option value="quran">قرآن وتحفيظ</option><option value="arabic">اللغة العربية</option><option value="kids">الأطفال</option><option value="services">الخدمات التعليمية</option>
@@ -938,6 +974,7 @@
         </select>
       </div>
     </div>
+
     <div id="radar-market-match-bar" class="wf-radar-match-bar hidden">
       <div class="flex items-center justify-between gap-3 mb-2"><div class="flex items-center gap-2"><i class="fa-solid fa-wand-magic-sparkles text-indigo-500"></i><span class="text-xs font-black text-indigo-700 dark:text-indigo-300" data-i18n-merge="Smart match suggestions">اقتراحات المطابقة الذكية</span></div><span class="text-[10px] text-slate-400" data-i18n-merge="Based on live records">مبنية على السجلات الحية</span></div>
       <div id="radar-market-match-list" class="wf-radar-match-list"></div>
@@ -2237,11 +2274,71 @@
     function radarMarketPriorityClass(priority){return ['hot','warm','normal'].includes(priority)?priority:'normal';}
     function radarMarketSourceBadge(type,source){return `<span class="wf-radar-source-badge"><i class="${radarSourceIcon(type)}"></i>${radarEsc(source||t('Real external source'))}</span>`;}
     function radarMarketBudget(lead){const amount=lead.amount??lead.budget??lead.budget_amount;if(amount===undefined||amount===null||amount==='')return '';const n=Number(amount);if(!Number.isFinite(n))return '';const currency=lead.currency||lead.budget_currency||'';const formatted=new Intl.NumberFormat(currentLang==='ar'?'ar-EG':'en-US',{maximumFractionDigits:0}).format(n);return `<div class="wf-radar-market-budget"><span>${radarEsc(t('Budget / rate'))}</span><strong>${formatted}${currency?' '+radarEsc(currency):''}</strong></div>`;}
-    function radarMarketCard(lead){const tags=[];if(lead.category)tags.push(radarMarketCategoryLabel(lead.category));if(lead.region)tags.push(radarMarketRegionLabel(lead.region));if(lead.type)tags.push(radarMarketTypeLabel(lead.type));(lead.tags||[]).slice(0,3).forEach(x=>tags.push(x));const tagHtml=tags.filter(Boolean).map(x=>`<span class="wf-radar-market-tag">${radarEsc(x)}</span>`).join('');const openSource=(lead.sourceUrl&&lead.sourceUrl!=='#')?`<a class="wf-radar-source-open" href="${radarEsc(lead.sourceUrl)}" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i>${radarEsc(t('Open source'))}</a>`:`<button type="button" class="wf-radar-source-open" disabled><i class="fa-solid fa-link-slash"></i>${radarEsc(t('No source URL'))}</button>`;const contact=`<button type="button" class="wf-radar-contact" onclick="openRadarOutreach('${radarEsc(lead.id)}')"><i class="fa-solid fa-paper-plane"></i>${radarEsc(t('Review & contact'))}</button>`;return `<article class="wf-radar-market-card" data-radar-market-card-id="${radarEsc(lead.id)}"><div class="wf-radar-market-top"><div>${radarMarketSourceBadge(lead.sourceType,lead.source)}</div><span class="wf-radar-priority ${radarMarketPriorityClass(lead.priority)}"><i class="fa-solid fa-bolt"></i>${radarEsc(radarPriorityLabel(lead.priority))}</span></div><div class="wf-radar-market-body"><div class="wf-radar-market-meta">${tagHtml}</div><h3>${radarEsc(lead.title||t('Untitled live lead'))}</h3><p class="wf-radar-market-desc">${radarEsc(lead.snippet||'')}</p>${radarMarketBudget(lead)}<div class="flex items-center justify-between gap-3 mt-3 text-[9px] text-slate-400"><span><i class="fa-regular fa-clock mr-1"></i>${radarEsc(radarAgeText(Number(lead.hoursAgo||0)))}</span><span><i class="fa-solid fa-signal mr-1 text-emerald-500"></i>${Number(lead.score||0)}%</span></div><div class="mt-2 h-1 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden"><span class="block h-full rounded-full bg-gradient-to-r from-emerald-500 to-emerald-300" style="width:${Math.min(100,Math.max(0,Number(lead.score||0)))}%"></span></div><div class="wf-radar-market-foot">${openSource}${contact}</div></div></article>`;}
+    function radarMarketCard(lead){
+      const persona=lead.persona||'service';
+      const typeLabel=persona==='student'?t('Student / family'):persona==='teacher'?t('Teacher / tutor'):t('Service request');
+      const typeIcon=persona==='student'?'fa-user-graduate':persona==='teacher'?'fa-person-chalkboard':'fa-toolbox';
+      const typeClass=persona==='teacher'?'teacher':persona==='service'?'service':'';
+      const tags=[];
+      if(lead.category)tags.push(radarMarketCategoryLabel(lead.category));
+      if(lead.region)tags.push(radarMarketRegionLabel(lead.region));
+      if(lead.language)tags.push(lead.language);
+      if(lead.mode)tags.push(lead.mode);
+      (lead.tags||[]).slice(0,2).forEach(x=>tags.push(x));
+      const info=[
+        lead.region?`<span class="wf-market-info-item"><i class="fa-solid fa-location-dot"></i><span>${radarEsc(radarMarketRegionLabel(lead.region))}</span></span>`:'',
+        lead.language?`<span class="wf-market-info-item"><i class="fa-solid fa-language"></i><span>${radarEsc(lead.language)}</span></span>`:'',
+        lead.mode?`<span class="wf-market-info-item"><i class="fa-solid fa-video"></i><span>${radarEsc(lead.mode)}</span></span>`:'',
+        lead.type?`<span class="wf-market-info-item"><i class="fa-solid fa-tag"></i><span>${radarEsc(radarMarketTypeLabel(lead.type))}</span></span>`:''
+      ].filter(Boolean).slice(0,4).join('');
+      const openSource=(lead.sourceUrl&&lead.sourceUrl!=='#')?`<a class="wf-radar-source-open" href="${radarEsc(lead.sourceUrl)}" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i>${radarEsc(t('Open source'))}</a>`:`<button type="button" class="wf-radar-source-open" disabled><i class="fa-solid fa-link-slash"></i>${radarEsc(t('No source URL'))}</button>`;
+      const contact=`<button type="button" class="wf-radar-contact" onclick="openRadarOutreach('${radarEsc(lead.id)}')"><i class="fa-solid fa-paper-plane"></i>${radarEsc(t('Review & contact'))}</button>`;
+      const score=Math.min(100,Math.max(0,Number(lead.score||0)));
+      const budget=radarMarketBudget(lead);
+      return `<article class="wf-radar-market-card" data-radar-market-card-id="${radarEsc(lead.id)}"><div class="wf-market-card-accent"></div><div class="wf-market-card-main"><div class="flex items-start justify-between gap-2"><span class="wf-market-card-type ${typeClass}"><i class="fa-solid ${typeIcon}"></i>${radarEsc(typeLabel)}</span><span class="wf-radar-priority ${radarMarketPriorityClass(lead.priority)}"><i class="fa-solid fa-bolt"></i>${radarEsc(radarPriorityLabel(lead.priority))}</span></div><h3 class="wf-market-card-title">${radarEsc(lead.title||t('Untitled live lead'))}</h3><p class="wf-market-card-desc">${radarEsc(lead.snippet||'')}</p><div class="flex flex-wrap gap-1.5 mt-3">${tags.filter(Boolean).slice(0,4).map(x=>`<span class="wf-radar-market-tag">${radarEsc(x)}</span>`).join('')}</div>${info?`<div class="wf-market-card-info">${info}</div>`:''}${budget}<div class="wf-market-score-row"><div class="min-w-0 flex-1"><div class="wf-market-score-copy">${radarEsc(t('Match relevance'))}</div><div class="wf-market-score-track"><span style="width:${score}%"></span></div></div><div class="text-right shrink-0"><div class="wf-market-score-value">${score}%</div><div class="text-[9px] text-slate-400">${radarEsc(radarAgeText(Number(lead.hoursAgo||0)))}</div></div></div><div class="wf-market-card-actions">${openSource}${contact}</div><div class="wf-market-card-footer"><span><i class="fa-solid fa-globe mr-1"></i>${radarEsc(lead.source||t('Real external source'))}</span><span><i class="fa-solid fa-signal mr-1 text-emerald-500"></i>${radarEsc(t('Live'))}</span></div></div></article>`;
+    }
     function radarMarketSimilarity(a,b){let score=0;if(a.category&&b.category&&a.category===b.category)score+=55;const at=new Set((a.tags||[]).map(x=>String(x).toLowerCase())),bt=new Set((b.tags||[]).map(x=>String(x).toLowerCase()));let overlap=0;at.forEach(x=>{if(bt.has(x))overlap++;});score+=Math.min(25,overlap*10);if(a.region&&b.region&&a.region===b.region)score+=10;if(a.mode&&b.mode&&a.mode===b.mode)score+=10;return Math.min(99,score);}
     function radarMarketSuggestions(data){const pairs=[];const students=data.filter(x=>x.persona==='student'||x.persona==='service'),teachers=data.filter(x=>x.persona==='teacher');students.slice(0,8).forEach(a=>teachers.slice(0,12).forEach(b=>{if(a.id===b.id)return;const s=radarMarketSimilarity(a,b);if(s>=60)pairs.push({a,b,score:s});}));pairs.sort((a,b)=>b.score-a.score);return pairs.slice(0,5);}
     function highlightRadarMarketplaceMatch(aId,bId){document.querySelectorAll('.wf-radar-highlight').forEach(el=>el.classList.remove('wf-radar-highlight'));[aId,bId].forEach(id=>document.querySelector(`[data-radar-market-card-id="${CSS.escape(String(id))}"]`)?.classList.add('wf-radar-highlight'));document.querySelector(`[data-radar-market-card-id="${CSS.escape(String(aId))}"]`)?.scrollIntoView({behavior:'smooth',block:'center'});}
-    function renderRadarMarketplace(){const grid=document.getElementById('radar-marketplace-grid');if(!grid)return;const q=(document.getElementById('radar-market-search')?.value||'').trim().toLowerCase();const category=document.getElementById('radar-market-category')?.value||radarMarketplaceCategory;const region=document.getElementById('radar-market-region')?.value||radarMarketplaceRegion;const persona=document.getElementById('radar-market-persona')?.value||radarMarketplacePersona;radarMarketplaceCategory=category;radarMarketplaceRegion=region;radarMarketplacePersona=persona;let data=Array.isArray(radarLeads)?radarLeads.slice():[];if(q)data=data.filter(l=>[l.title,l.snippet,l.source,l.category,l.region,...(l.tags||[])].join(' ').toLowerCase().includes(q));if(category!=='all')data=data.filter(l=>l.category===category);if(region!=='all')data=data.filter(l=>String(l.region||'')===region);if(persona!=='all')data=data.filter(l=>l.persona===persona);data.sort((a,b)=>Number(b.score||0)-Number(a.score||0)||Number(a.hoursAgo||0)-Number(b.hoursAgo||0));document.getElementById('radar-market-live-count')?.replaceChildren(document.createTextNode(String(data.length)));if(!data.length){grid.innerHTML=`<div class="wf-radar-empty"><div class="wf-radar-empty-icon"><i class="fa-solid fa-satellite-dish"></i></div><h3 class="font-black text-slate-800 dark:text-white text-sm">${radarEsc(t(radarLiveReady?'No live leads match this filter.':'No live records yet.'))}</h3><p class="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-lg mx-auto leading-6">${radarEsc(t('Only real records returned by authorized connectors appear here. Run a live sync or publish a request to start the flow.'))}</p><div class="flex flex-wrap justify-center gap-2 mt-4"><button type="button" class="wf-radar-market-btn wf-radar-market-btn-primary" onclick="runAcquisitionRadarSync()"><i class="fa-solid fa-rotate"></i>${radarEsc(t('Sync live sources'))}</button><button type="button" class="wf-radar-market-btn wf-radar-market-btn-soft" onclick="openCreateModal()"><i class="fa-solid fa-bullhorn"></i>${radarEsc(t('Publish a request'))}</button></div></div>`;}else{grid.innerHTML=data.map(radarMarketCard).join('');}const bar=document.getElementById('radar-market-match-bar'),list=document.getElementById('radar-market-match-list'),suggestions=radarMarketSuggestions(data);if(bar&&list){if(suggestions.length){bar.classList.remove('hidden');list.innerHTML=suggestions.map(p=>`<button type="button" class="wf-radar-match-chip" onclick="highlightRadarMarketplaceMatch('${radarEsc(p.a.id)}','${radarEsc(p.b.id)}')"><span class="wf-radar-match-score">${p.score}%</span><span>${radarEsc((p.a.title||'').slice(0,50))}</span><span class="text-slate-400">↔</span><span>${radarEsc((p.b.title||'').slice(0,50))}</span></button>`).join('');}else{bar.classList.add('hidden');list.innerHTML='';}}}
+    function renderRadarMarketplace(){
+      const grid=document.getElementById('radar-marketplace-grid'); if(!grid)return;
+      const q=(document.getElementById('radar-market-search')?.value||'').trim().toLowerCase();
+      const category=document.getElementById('radar-market-category')?.value||radarMarketplaceCategory;
+      const region=document.getElementById('radar-market-region')?.value||radarMarketplaceRegion;
+      const persona=document.getElementById('radar-market-persona')?.value||radarMarketplacePersona;
+      radarMarketplaceCategory=category; radarMarketplaceRegion=region; radarMarketplacePersona=persona;
+      let data=Array.isArray(radarLeads)?radarLeads.slice():[];
+      if(q)data=data.filter(l=>[l.title,l.snippet,l.source,l.category,l.region,l.language,l.mode,...(l.tags||[])].join(' ').toLowerCase().includes(q));
+      if(category!=='all')data=data.filter(l=>l.category===category);
+      if(region!=='all')data=data.filter(l=>String(l.region||'')===region);
+      if(persona!=='all')data=data.filter(l=>l.persona===persona);
+      data.sort((a,b)=>{const pa=a.persona==='student'?0:a.persona==='teacher'?1:2;const pb=b.persona==='student'?0:b.persona==='teacher'?1:2;return pa-pb||Number(b.score||0)-Number(a.score||0)||Number(a.hoursAgo||0)-Number(b.hoursAgo||0);});
+      document.getElementById('radar-market-live-count')?.replaceChildren(document.createTextNode(String(data.length)));
+      const all=Array.isArray(radarLeads)?radarLeads:[];
+      const demandCount=all.filter(l=>l.persona==='student').length;
+      const teacherCount=all.filter(l=>l.persona==='teacher').length;
+      const serviceCount=all.filter(l=>l.persona==='service').length;
+      const suggestions=radarMarketSuggestions(all);
+      document.getElementById('radar-market-demand-count')?.replaceChildren(document.createTextNode(String(demandCount)));
+      document.getElementById('radar-market-teacher-count')?.replaceChildren(document.createTextNode(String(teacherCount)));
+      document.getElementById('radar-market-service-count')?.replaceChildren(document.createTextNode(String(serviceCount)));
+      document.getElementById('radar-market-match-count')?.replaceChildren(document.createTextNode(String(suggestions.length)));
+      if(!data.length){
+        grid.innerHTML=`<div class="wf-radar-empty"><div class="wf-radar-empty-icon"><i class="fa-solid fa-satellite-dish"></i></div><h3 class="font-black text-slate-800 dark:text-white text-sm">${radarEsc(t(radarLiveReady?'No live leads match this filter.':'No live records yet.'))}</h3><p class="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-lg mx-auto leading-6">${radarEsc(t('Only real records returned by authorized connectors appear here. Run a live sync or publish a request to start the flow.'))}</p><div class="flex flex-wrap justify-center gap-2 mt-4"><button type="button" class="wf-radar-market-btn wf-radar-market-btn-primary" onclick="runAcquisitionRadarSync()"><i class="fa-solid fa-rotate"></i>${radarEsc(t('Sync live sources'))}</button><button type="button" class="wf-radar-market-btn wf-radar-market-btn-soft" onclick="openCreateModal()"><i class="fa-solid fa-bullhorn"></i>${radarEsc(t('Publish a request'))}</button></div></div>`;
+      }else{
+        const demand=data.filter(x=>x.persona==='student'||x.persona==='service');
+        const supply=data.filter(x=>x.persona==='teacher');
+        const sections=[];
+        if(demand.length)sections.push(`<section class="col-span-full"><div class="flex items-center justify-between gap-3 mb-2 px-1"><div><h3 class="text-sm font-black text-slate-900 dark:text-white">طلبات وفرص الطلاب</h3><p class="text-[10px] text-slate-400 mt-1">الأولوية للطلبات التي تحتاج استجابة أو مدرس مناسب.</p></div><span class="text-[10px] font-black text-emerald-600 bg-emerald-50 border border-emerald-100 rounded-full px-2.5 py-1">${demand.length}</span></div><div class="grid grid-cols-1 md:grid-cols-2 gap-3">${demand.map(radarMarketCard).join('')}</div></section>`);
+        if(supply.length)sections.push(`<section class="col-span-full pt-1"><div class="flex items-center justify-between gap-3 mb-2 px-1"><div><h3 class="text-sm font-black text-slate-900 dark:text-white">المعلمون والمتخصصون</h3><p class="text-[10px] text-slate-400 mt-1">إشارات العرض المناسبة للطلبات المكتشفة.</p></div><span class="text-[10px] font-black text-blue-600 bg-blue-50 border border-blue-100 rounded-full px-2.5 py-1">${supply.length}</span></div><div class="grid grid-cols-1 md:grid-cols-2 gap-3">${supply.map(radarMarketCard).join('')}</div></section>`);
+        grid.innerHTML=sections.join('');
+      }
+      const bar=document.getElementById('radar-market-match-bar'),list=document.getElementById('radar-market-match-list');
+      if(bar&&list){
+        if(suggestions.length){bar.classList.remove('hidden');list.innerHTML=suggestions.map(p=>`<button type="button" class="wf-radar-match-chip" onclick="highlightRadarMarketplaceMatch('${radarEsc(p.a.id)}','${radarEsc(p.b.id)}')"><span class="wf-radar-match-score">${p.score}%</span><span>${radarEsc((p.a.title||'').slice(0,50))}</span><span class="text-slate-400">↔</span><span>${radarEsc((p.b.title||'').slice(0,50))}</span></button>`).join('');}
+        else{bar.classList.add('hidden');list.innerHTML='';}
+      }
+    }
 
     function renderRadarLog(){
       const el=document.getElementById('radar-log'); if(!el)return;
