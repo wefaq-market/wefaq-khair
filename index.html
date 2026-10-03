@@ -1050,6 +1050,33 @@
     </div>
     <button type="button" class="wf-v21-refresh" onclick="v21LoadCommunicationCenter()"><i class="fa-solid fa-arrows-rotate ml-1"></i> تحديث</button>
   </div>
+
+  <div class="wf-v22-journey" id="v22-journey-panel">
+    <div class="wf-v22-top">
+      <div class="wf-v22-next">
+        <div class="wf-v22-next-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+        <div class="min-w-0">
+          <div class="wf-v22-kicker">الخطوة التالية داخل وفاق</div>
+          <div class="wf-v22-headline" id="v22-next-headline">جاهز لبدء رحلة مطابقة جديدة</div>
+          <div class="wf-v22-sub" id="v22-next-sub">نرتّب لك أهم إجراء متاح الآن حتى لا تضيع بين الطلبات والمحادثات.</div>
+        </div>
+      </div>
+      <button type="button" class="wf-v22-next-btn" id="v22-next-action" onclick="v22RunNextAction()"><i class="fa-solid fa-arrow-left"></i><span>ابدأ الآن</span></button>
+    </div>
+    <div class="wf-v22-steps" aria-label="رحلة العميل">
+      <div class="wf-v22-step" data-v22-step="publish"><div class="wf-v22-step-dot">1</div><div><strong>انشر</strong><span>طلب أو فرصة</span></div></div>
+      <div class="wf-v22-step" data-v22-step="match"><div class="wf-v22-step-dot">2</div><div><strong>طابق</strong><span>مع متخصص مناسب</span></div></div>
+      <div class="wf-v22-step" data-v22-step="contact"><div class="wf-v22-step-dot">3</div><div><strong>تواصل</strong><span>اطلب أو ابدأ محادثة</span></div></div>
+      <div class="wf-v22-step" data-v22-step="complete"><div class="wf-v22-step-dot">4</div><div><strong>أكمل</strong><span>تنفيذ ثم تقييم</span></div></div>
+    </div>
+    <div class="wf-v22-connection-progress" id="v22-progress-chips">
+      <span class="wf-v22-progress-chip"><i class="fa-solid fa-link text-emerald-500"></i> اتصالات <strong id="v22-chip-connections">0</strong></span>
+      <span class="wf-v22-progress-chip"><i class="fa-solid fa-message text-cyan-500"></i> رسائل غير مقروءة <strong id="v22-chip-unread">0</strong></span>
+      <span class="wf-v22-progress-chip"><i class="fa-solid fa-circle-check text-violet-500"></i> مكتملة <strong id="v22-chip-completed">0</strong></span>
+    </div>
+    <div class="wf-v22-help" id="v22-help-text">نصيحة: أفضل نتائج المطابقة تأتي عندما يكون الطلب واضحًا ويحتوي على التخصص واللغة والمنطقة ونمط التعليم.</div>
+  </div>
+
   <div class="wf-v21-stats">
     <div class="wf-v21-stat"><div class="wf-v21-stat-label">طلبات تنتظر ردك</div><div class="wf-v21-stat-value" id="v21-stat-incoming">0</div></div>
     <div class="wf-v21-stat"><div class="wf-v21-stat-label">محادثات واتصالات نشطة</div><div class="wf-v21-stat-value" id="v21-stat-active">0</div></div>
@@ -4309,6 +4336,104 @@
       closeShareModal();
       closeChatModal(); closeProfileEditor(); closeAiAssistant(); closeSpecialistDetails();
     });
-  </script>
+  
+
+    // V22 — activation layer built on the existing real connections/messages data.
+    let v22NextActionKind='publish';
+    function v22SetStepStates(kind){
+      const order=['publish','match','contact','complete'];
+      const idx=Math.max(0,order.indexOf(kind));
+      document.querySelectorAll('[data-v22-step]').forEach(el=>{
+        const k=el.getAttribute('data-v22-step');
+        const i=order.indexOf(k);
+        el.classList.toggle('is-done',i<idx);
+        el.classList.toggle('is-current',i===idx);
+      });
+    }
+    function v22RunNextAction(){
+      switch(v22NextActionKind){
+        case 'incoming': v21SetCommunicationTab('incoming'); document.getElementById('v21-communication-center')?.scrollIntoView({behavior:'smooth',block:'center'}); break;
+        case 'unread': v21SetCommunicationTab('unread'); document.getElementById('v21-communication-center')?.scrollIntoView({behavior:'smooth',block:'center'}); break;
+        case 'active': v21SetCommunicationTab('active'); document.getElementById('v21-communication-center')?.scrollIntoView({behavior:'smooth',block:'center'}); break;
+        case 'profile': openProfileEditor(); break;
+        case 'publish': openCreateModal(); break;
+        default: document.getElementById('v21-communication-center')?.scrollIntoView({behavior:'smooth',block:'center'});
+      }
+    }
+    async function v22RefreshJourney(){
+      const headline=document.getElementById('v22-next-headline');
+      const sub=document.getElementById('v22-next-sub');
+      const btn=document.getElementById('v22-next-action');
+      if(!headline||!sub||!btn)return;
+      let all=Array.isArray(v21CommunicationData)?v21CommunicationData:[];
+      const incoming=all.filter(x=>!x._isRequester&&String(x.status)==='pending').length;
+      const active=all.filter(x=>v21IsActiveStatus(x.status)).length;
+      const unread=all.reduce((n,x)=>n+Number(x._unread||0),0);
+      const completed=all.filter(x=>String(x.status)==='completed').length;
+      document.getElementById('v22-chip-connections')?.replaceChildren(document.createTextNode(String(active)));
+      document.getElementById('v22-chip-unread')?.replaceChildren(document.createTextNode(String(unread)));
+      document.getElementById('v22-chip-completed')?.replaceChildren(document.createTextNode(String(completed)));
+      if(!currentAuthUser){
+        v22NextActionKind='profile';
+        headline.textContent='أنشئ حسابك وابدأ رحلة مطابقة محفوظة';
+        sub.textContent='الحساب يحفظ طلبات التواصل والمحادثات والمطابقات المهمة لك داخل وفاق.';
+        btn.innerHTML='<i class="fa-solid fa-user-plus"></i><span>إنشاء حساب</span>';
+        v22SetStepStates('publish');
+        return;
+      }
+      if(incoming>0){
+        v22NextActionKind='incoming';
+        headline.textContent=`لديك ${incoming} طلب تواصل يحتاج ردك`;
+        sub.textContent='قبول الطلب يفتح الطريق إلى المحادثة والمتابعة داخل وفاق.';
+        btn.innerHTML='<i class="fa-solid fa-inbox"></i><span>راجع الطلبات</span>';
+        v22SetStepStates('contact');
+      }else if(unread>0){
+        v22NextActionKind='unread';
+        headline.textContent=`لديك ${unread} رسالة غير مقروءة`;
+        sub.textContent='الرد السريع يحافظ على فرصة المطابقة ويقرّب الطرفين من الاتفاق.';
+        btn.innerHTML='<i class="fa-solid fa-message"></i><span>افتح الرسائل</span>';
+        v22SetStepStates('contact');
+      }else if(active>0){
+        v22NextActionKind='active';
+        headline.textContent=`لديك ${active} اتصال نشط`;
+        sub.textContent='افتح المحادثة وحدث الحالة إلى قيد التنفيذ أو مكتمل عند انتهاء الخدمة.';
+        btn.innerHTML='<i class="fa-solid fa-arrow-left"></i><span>تابع الاتصالات</span>';
+        v22SetStepStates('contact');
+      }else{
+        const completenessText=document.getElementById('trust-completeness')?.textContent||'0%';
+        const completeness=parseInt(completenessText,10)||0;
+        if(completeness<70){
+          v22NextActionKind='profile';
+          headline.textContent='أكمل ملفك لرفع جودة المطابقة';
+          sub.textContent='أضف الاسم والمنطقة وطبيعة عملك ليصبح الترشيح أكثر دقة.';
+          btn.innerHTML='<i class="fa-solid fa-user-pen"></i><span>أكمل الملف</span>';
+          v22SetStepStates('match');
+        }else{
+          v22NextActionKind='publish';
+          headline.textContent='جاهز لبدء فرصة جديدة؟';
+          sub.textContent='انشر احتياجك أو خدمتك، وسيعمل الرادار والمطابقة على توصيلك بالطرف المناسب.';
+          btn.innerHTML='<i class="fa-solid fa-plus"></i><span>انشر الآن</span>';
+          v22SetStepStates('publish');
+        }
+      }
+    }
+    const v22OriginalRenderCommunicationCenter=window.v21RenderCommunicationCenter;
+    if(typeof v22OriginalRenderCommunicationCenter==='function'){
+      window.v21RenderCommunicationCenter=function(){
+        const r=v22OriginalRenderCommunicationCenter.apply(this,arguments);
+        v22RefreshJourney();
+        return r;
+      };
+    }
+    const v22OriginalLoadCommunicationCenter=window.v21LoadCommunicationCenter;
+    if(typeof v22OriginalLoadCommunicationCenter==='function'){
+      window.v21LoadCommunicationCenter=async function(){
+        const r=await v22OriginalLoadCommunicationCenter.apply(this,arguments);
+        await v22RefreshJourney();
+        return r;
+      };
+    }
+
+</script>
 <!-- Wefaq V16.8 live matching -->
 </body></html>
