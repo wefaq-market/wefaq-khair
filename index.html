@@ -1731,6 +1731,16 @@
 </div>
 </div>
 
+
+<style id="wefaq-v25-referral-ui">
+.wf-v25-referral-strip{margin-top:.7rem;border:1px solid rgba(16,185,129,.18);background:linear-gradient(135deg,rgba(236,253,245,.9),rgba(239,246,255,.85));border-radius:1rem;padding:.7rem .8rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem;box-shadow:0 8px 24px rgba(15,23,42,.04)}
+.dark .wf-v25-referral-strip{border-color:rgba(52,211,153,.16);background:linear-gradient(135deg,rgba(6,78,59,.22),rgba(30,41,59,.5))}
+.wf-v25-referral-badge{display:inline-flex;align-items:center;gap:.35rem;border-radius:999px;padding:.28rem .55rem;font-size:.58rem;font-weight:900;background:#dcfce7;color:#166534;white-space:nowrap}
+.dark .wf-v25-referral-badge{background:rgba(22,101,52,.25);color:#86efac}
+.wf-v25-referral-meta{font-size:.59rem;line-height:1.65;color:#475569}
+.dark .wf-v25-referral-meta{color:#cbd5e1}
+@media(max-width:640px){.wf-v25-referral-strip{align-items:flex-start;flex-direction:column}.wf-v25-referral-badge{align-self:flex-start}}
+</style>
 <!-- V24 Share & Referral Hub -->
 <div class="fixed inset-0 z-[70] hidden bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4" id="v24-share-hub">
   <div class="wf-v24-hub bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 sm:p-6 shadow-2xl relative">
@@ -1763,6 +1773,13 @@
       <button type="button" class="rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 py-2.5 text-xs font-black border border-slate-200 dark:border-slate-700 transition" onclick="v24CopyReferralMessage()"><i class="fa-regular fa-copy ml-1"></i> نسخ رسالة الإحالة</button>
     </div>
     <div class="mt-3 text-[10px] leading-6 text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-950 rounded-2xl p-3" id="v24-share-message-preview"></div>
+    <div class="wf-v25-referral-strip" id="v25-referral-meta">
+      <div class="min-w-0">
+        <div class="wf-v25-referral-meta"><strong>إحالة قابلة للقياس</strong> — الرابط يحمل رمزًا آمنًا لقياس الزيارة والعودة دون كشف بيانات شخصية في الرابط.</div>
+        <div class="wf-v25-referral-meta mt-1" id="v25-referral-source-label">جاهز للمشاركة وربط الإحالة بمصدرها.</div>
+      </div>
+      <span class="wf-v25-referral-badge"><i class="fa-solid fa-chart-line"></i> قياس مفعّل</span>
+    </div>
   </div>
 </div>
 <!-- Connection / Chat / Profile / AI modals -->
@@ -3514,11 +3531,62 @@
     }
     function v24CloseShareHub(){ const hub=document.getElementById('v24-share-hub'); if(hub)hub.classList.add('hidden'); }
     function v24SetShareMode(mode){ v24ShareMode=mode; v24RenderShareHub(); }
+    function v25GetReferralCode(){
+      const key='wefaq_referral_code';
+      let code=safeGet(key,'');
+      if(!code || code==='0'){
+        try{
+          const raw=(window.crypto&&crypto.randomUUID)?crypto.randomUUID().replace(/-/g,''):Math.random().toString(36).slice(2)+Date.now().toString(36);
+          code='wf_'+raw.slice(0,14);
+        }catch(e){ code='wf_'+Math.random().toString(36).slice(2,16); }
+        safeSet(key,code);
+      }
+      return code;
+    }
+    function v25TrackedUrl(baseUrl, mode='referral', targetId=''){
+      try{
+        const u=new URL(baseUrl, location.href);
+        const code=v25GetReferralCode();
+        u.searchParams.set('ref',code);
+        u.searchParams.set('utm_source','wefaq');
+        u.searchParams.set('utm_medium',mode==='opportunity'?'share':'referral');
+        u.searchParams.set('utm_campaign','wefaq_growth');
+        if(targetId) u.searchParams.set('utm_content',String(targetId));
+        return u.toString();
+      }catch(e){ return baseUrl; }
+    }
+    function v25CaptureReferralVisit(){
+      try{
+        const u=new URL(location.href);
+        const ref=u.searchParams.get('ref');
+        const utmSource=u.searchParams.get('utm_source');
+        const utmMedium=u.searchParams.get('utm_medium');
+        const utmCampaign=u.searchParams.get('utm_campaign');
+        const utmContent=u.searchParams.get('utm_content');
+        if(!ref && !utmSource && !utmMedium && !utmCampaign) return;
+        safeSet('wefaq_inbound_referral',JSON.stringify({ref:ref||'',source:utmSource||'',medium:utmMedium||'',campaign:utmCampaign||'',content:utmContent||'',captured_at:new Date().toISOString()}));
+        try{ recordEngagement(null,'referral_visit',{referral_code:ref||null,utm_source:utmSource||null,utm_medium:utmMedium||null,utm_campaign:utmCampaign||null,utm_content:utmContent||null}); }catch(e){}
+        setTimeout(()=>{
+          const label=document.getElementById('v25-referral-source-label');
+          if(label) label.textContent = ref ? 'وصلت عبر رابط إحالة من وفاق — تم حفظ مصدر الزيارة.' : 'وصلت عبر حملة مشاركة — تم حفظ مصدر الزيارة.';
+          showRealtimeNotification('تم حفظ مصدر الإحالة ✓');
+        },450);
+      }catch(e){ console.warn('V25 referral capture failed',e); }
+    }
+    function v25ReferralSourceText(){
+      try{
+        const raw=safeGet('wefaq_inbound_referral','');
+        if(!raw || raw==='0') return 'جاهز للمشاركة وربط الإحالة بمصدرها.';
+        const d=JSON.parse(raw);
+        if(d.ref) return `مصدر وصول حالي: إحالة • ${d.medium||'مشاركة'}`;
+      }catch(e){}
+      return 'جاهز للمشاركة وربط الإحالة بمصدرها.';
+    }
     function v24CurrentShareTarget(){
       const item=currentSelectedCardForShare;
-      if(v24ShareMode==='opportunity' && item) return {url:listingUrl(item.id), title:item.title||'فرصة على منصة وفاق'};
-      if(v24ShareMode==='referral') return {url:location.origin + location.pathname, title:'دعوة إلى منصة وفاق'};
-      return {url:location.href.split('#')[0], title:'منصة وفاق التعليمية'};
+      if(v24ShareMode==='opportunity' && item) return {url:v25TrackedUrl(listingUrl(item.id),'opportunity',item.id), title:item.title||'فرصة على منصة وفاق'};
+      if(v24ShareMode==='referral') return {url:v25TrackedUrl(location.origin + location.pathname,'referral'), title:'دعوة إلى منصة وفاق'};
+      return {url:v25TrackedUrl(location.href.split('#')[0],'share'), title:'منصة وفاق التعليمية'};
     }
     function v24Message(){
       const target=v24CurrentShareTarget();
@@ -3538,6 +3606,8 @@
       sub.textContent=copyMode==='opportunity' ? 'أرسل رابط الفرصة مباشرة أو انشرها على الشبكات الاجتماعية.' : copyMode==='referral' ? 'رسالة جاهزة يمكنك إرسالها لصديق أو زميل مهتم بالتعليم والقرآن واللغة العربية.' : 'شارك المنصة بسرعة عبر واتساب أو تيليجرام أو فيسبوك أو X أو لينكدإن أو البريد.';
       link.value=target.url;
       preview.textContent=v24Message();
+      const sourceLabel=document.getElementById('v25-referral-source-label');
+      if(sourceLabel) sourceLabel.textContent=v25ReferralSourceText();
     }
     function v24ShareVia(platform){
       const target=v24CurrentShareTarget();
@@ -3550,13 +3620,13 @@
       else if(platform==='x') window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(message.split('\n').slice(0,2).join(' '))}&url=${url}`,'_blank','noopener,noreferrer');
       else if(platform==='linkedin') window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`,'_blank','noopener,noreferrer');
       else if(platform==='email') window.location.href=`mailto:?subject=${encodeURIComponent(target.title)}&body=${text}`;
-      try{ recordEngagement(null,'v24_share',{mode:v24ShareMode,method:platform}); }catch(e){}
+      try{ recordEngagement(null,'v24_share',{mode:v24ShareMode,method:platform,referral_code:v25GetReferralCode()}); }catch(e){}
     }
     async function v24NativeShare(){
       const target=v24CurrentShareTarget();
       const data={title:target.title,text:v24Message(),url:target.url};
       try{
-        if(navigator.share){ await navigator.share(data); try{recordEngagement(null,'v24_share',{mode:v24ShareMode,method:'native_share'});}catch(e){} return; }
+        if(navigator.share){ await navigator.share(data); try{recordEngagement(null,'v24_share',{mode:v24ShareMode,method:'native_share',referral_code:v25GetReferralCode()});}catch(e){} return; }
       }catch(e){ if(e?.name==='AbortError')return; }
       const ok=await copyText(target.url); showRealtimeNotification(ok?'تم نسخ رابط المشاركة ✓':'تعذر نسخ الرابط');
     }
@@ -3568,11 +3638,11 @@
     async function v24CopyShareLink(){
       const link=document.getElementById('v24-share-link'); if(!link)return;
       const ok=await copyText(link.value); showRealtimeNotification(ok?'تم نسخ رابط المشاركة ✓':'تعذر نسخ الرابط');
-      try{recordEngagement(null,'v24_share',{mode:v24ShareMode,method:'copy_link'});}catch(e){}
+      try{recordEngagement(null,'v24_share',{mode:v24ShareMode,method:'copy_link',referral_code:v25GetReferralCode()});}catch(e){}
     }
     async function v24CopyReferralMessage(){
       const ok=await copyText(v24Message()); showRealtimeNotification(ok?'تم نسخ رسالة الإحالة ✓':'تعذر نسخ الرسالة');
-      try{recordEngagement(null,'v24_share',{mode:'referral',method:'copy_message'});}catch(e){}
+      try{recordEngagement(null,'v24_share',{mode:'referral',method:'copy_message',referral_code:v25GetReferralCode()});}catch(e){}
     }
 
     // ========== PUBLISH (CLOUD) ==========
@@ -4540,6 +4610,7 @@
     // ========== INIT ==========
     // Keep initial cloud loads to one call each to avoid duplicate network work.
     document.addEventListener('DOMContentLoaded', () => {
+      v25CaptureReferralVisit();
       toggleFormFields();
       const savedTheme = safeGet('wefaq_theme', 'light');
       if (savedTheme === 'dark') {
@@ -4754,5 +4825,5 @@
     document.addEventListener('DOMContentLoaded',()=>{v23RenderInterest();setTimeout(v23RefreshLiveSummary,1000);});
 
 </script>
-<!-- Wefaq V16.8 live matching -->
+<!-- Wefaq V25 referral attribution -->
 </body></html>
