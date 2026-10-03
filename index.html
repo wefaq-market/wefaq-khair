@@ -158,7 +158,48 @@
     .wf-contact-hero:before{content:"";position:absolute;width:320px;height:320px;left:-110px;bottom:-180px;background:radial-gradient(circle,rgba(16,185,129,.24),transparent 70%);}
     @media(max-width:640px){.wf-track-body{min-height:205px}.wf-track-visual{height:135px}}
 
-  </style>
+  
+/* V20 — Publish Request / Opportunity Spotlight */
+.wf-publish-spotlight{position:relative;overflow:hidden;border-radius:30px;border:1px solid rgba(16,185,129,.20);background:linear-gradient(135deg,rgba(240,253,250,.98),rgba(248,250,252,.98) 55%,rgba(239,246,255,.98));box-shadow:0 24px 70px rgba(15,23,42,.10)}
+.dark .wf-publish-spotlight{background:linear-gradient(135deg,rgba(6,78,59,.34),rgba(15,23,42,.94) 58%,rgba(30,58,138,.28));border-color:rgba(52,211,153,.18)}
+.wf-publish-spotlight-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);gap:18px;align-items:stretch}
+.wf-publish-copy{padding:28px 30px 30px}
+.wf-publish-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:rgba(209,250,229,.85);color:#047857;border:1px solid rgba(16,185,129,.20);font-size:11px;font-weight:900}
+.dark .wf-publish-badge{background:rgba(6,78,59,.45);color:#a7f3d0;border-color:rgba(52,211,153,.24)}
+.wf-publish-title{margin-top:12px;font-size:clamp(26px,3.1vw,44px);line-height:1.08;font-weight:1000;letter-spacing:-.03em;color:#0f172a}
+.dark .wf-publish-title{color:#f8fafc}
+.wf-publish-subtitle{margin-top:13px;max-width:720px;font-size:15px;line-height:1.9;color:#64748b}
+.dark .wf-publish-subtitle{color:#cbd5e1}
+.wf-publish-benefits{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:20px}
+.wf-publish-benefit{padding:13px 11px;border-radius:18px;background:rgba(255,255,255,.84);border:1px solid rgba(148,163,184,.16);min-height:102px}
+.dark .wf-publish-benefit{background:rgba(15,23,42,.58);border-color:rgba(148,163,184,.12)}
+.wf-publish-benefit-icon{width:34px;height:34px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,#d1fae5,#e0f2fe);color:#047857;margin-bottom:8px}
+.wf-publish-benefit strong{display:block;font-size:12px;color:#0f172a;font-weight:950}.dark .wf-publish-benefit strong{color:#f8fafc}
+.wf-publish-benefit span{display:block;margin-top:4px;font-size:10px;line-height:1.6;color:#64748b}.dark .wf-publish-benefit span{color:#cbd5e1}
+.wf-publish-cta-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:20px}
+.wf-publish-cta{border:0;border-radius:16px;padding:13px 18px;background:linear-gradient(135deg,#059669,#047857);color:white;font-weight:950;box-shadow:0 12px 28px rgba(5,150,105,.24);display:inline-flex;align-items:center;gap:9px;transition:transform .18s ease,box-shadow .18s ease}
+.wf-publish-cta:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(5,150,105,.30)}
+.wf-publish-secondary{padding:12px 16px;border-radius:16px;background:rgba(255,255,255,.8);color:#334155;border:1px solid rgba(148,163,184,.20);font-weight:900}.dark .wf-publish-secondary{background:rgba(15,23,42,.65);color:#e2e8f0;border-color:rgba(148,163,184,.16)}
+.wf-publish-visual{position:relative;min-height:100%;padding:18px;display:flex;align-items:stretch;justify-content:center}
+.wf-publish-visual-card{position:relative;width:100%;border-radius:24px;background:linear-gradient(145deg,rgba(255,255,255,.92),rgba(236,253,245,.88));border:1px solid rgba(16,185,129,.18);padding:20px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+.dark .wf-publish-visual-card{background:linear-gradient(145deg,rgba(15,23,42,.90),rgba(6,78,59,.48))}
+.wf-publish-floating{position:absolute;top:10px;right:10px;width:88px;height:88px;border-radius:24px;background:linear-gradient(145deg,#10b981,#059669);color:#fff;display:grid;place-items:center;font-size:32px;box-shadow:0 18px 40px rgba(5,150,105,.30);transform:rotate(5deg)}
+.wf-publish-orbit{position:absolute;inset:auto -20px -42px auto;width:210px;height:210px;border-radius:50%;border:1px solid rgba(16,185,129,.16);box-shadow:0 0 0 30px rgba(16,185,129,.025),0 0 0 60px rgba(16,185,129,.018)}
+.wf-publish-mini-label{font-size:10px;font-weight:900;color:#64748b}.dark .wf-publish-mini-label{color:#94a3b8}
+.wf-publish-mini-head{font-size:20px;line-height:1.35;font-weight:1000;color:#0f172a;margin-top:7px}.dark .wf-publish-mini-head{color:#fff}
+.wf-publish-flow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}.wf-publish-flow div{padding:10px 8px;border-radius:15px;background:rgba(255,255,255,.72);border:1px solid rgba(148,163,184,.16);text-align:center;font-size:10px;font-weight:900;color:#334155}.dark .wf-publish-flow div{background:rgba(15,23,42,.62);color:#e2e8f0}
+@media(max-width:900px){.wf-publish-spotlight-grid{grid-template-columns:1fr}.wf-publish-visual{display:none}.wf-publish-benefits{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.wf-publish-copy{padding:22px 18px 22px}.wf-publish-title{font-size:28px}.wf-publish-benefits{grid-template-columns:1fr 1fr}.wf-publish-cta-row{flex-direction:column;align-items:stretch}.wf-publish-cta,.wf-publish-secondary{justify-content:center;width:100%}}
+
+
+.wf-publish-image-wrap{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:16px}
+.wf-publish-image{width:100%;max-width:560px;border-radius:24px;border:1px solid rgba(16,185,129,.18);box-shadow:0 24px 70px rgba(15,23,42,.12);display:block;transition:transform .2s ease,box-shadow .2s ease}
+.wf-publish-image:hover{transform:translateY(-3px) scale(1.01);box-shadow:0 30px 80px rgba(15,23,42,.16)}
+.dark .wf-publish-image{border-color:rgba(52,211,153,.18);box-shadow:0 24px 70px rgba(0,0,0,.28)}
+@media(max-width:900px){.wf-publish-image-wrap{padding:8px 18px 22px}.wf-publish-image{max-width:720px}}
+
+.wf-publish-image-button{border:0;background:transparent;padding:0;margin:0;width:100%;display:flex;justify-content:center;cursor:pointer}
+</style>
 <style id="wefaq-visual-upgrade-v10">
   /* v10: premium visual enhancements inspired by the supplied concept */
   .wf-hero{
@@ -480,6 +521,19 @@
 .wf-v19-callout{border-radius:1rem;background:linear-gradient(135deg,#0f172a,#064e3b);color:#fff;padding:1rem}
 .wf-v19-modal-option{display:flex;align-items:center;justify-content:space-between;gap:.7rem;padding:.8rem;border:1px solid #e2e8f0;border-radius:1rem;background:#fff;text-align:right;transition:.15s ease}.wf-v19-modal-option:hover{border-color:#34d399;box-shadow:0 8px 24px rgba(15,23,42,.06);transform:translateY(-1px)}.dark .wf-v19-modal-option{background:#0f172a;border-color:#334155}
 @media(max-width:1024px){.wf-v19-journey-grid{grid-template-columns:1fr}.wf-v19-pipeline{grid-template-columns:repeat(3,1fr)}}@media(max-width:640px){.wf-v19-pipeline{grid-template-columns:repeat(2,1fr)}}
+
+/* V21.1 — unified modern publish button */
+.wf-header-publish{position:relative;display:inline-flex;align-items:center;gap:.55rem;min-height:42px;padding:.55rem .85rem;border:1px solid rgba(16,185,129,.28);border-radius:14px;background:linear-gradient(135deg,#10b981 0%,#059669 55%,#047857 100%);color:#fff;font-size:.72rem;font-weight:950;box-shadow:0 10px 24px rgba(5,150,105,.20), inset 0 1px 0 rgba(255,255,255,.20);transition:transform .18s ease,box-shadow .18s ease,filter .18s ease;white-space:nowrap}
+.wf-header-publish:hover{transform:translateY(-2px);filter:saturate(1.06);box-shadow:0 15px 34px rgba(5,150,105,.27), inset 0 1px 0 rgba(255,255,255,.24)}
+.wf-header-publish:active{transform:translateY(0) scale(.98)}
+.wf-header-publish::after{content:'جديد';position:absolute;top:-8px;inset-inline-end:-6px;padding:2px 6px;border-radius:999px;background:#0f172a;color:#fff;font-size:8px;font-weight:1000;line-height:1.4;border:2px solid #fff;box-shadow:0 4px 10px rgba(15,23,42,.15)}
+.dark .wf-header-publish::after{border-color:#0f172a}
+.wf-header-publish-icon{width:27px;height:27px;border-radius:9px;display:grid;place-items:center;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.22);font-size:.86rem;flex:0 0 auto}
+.wf-header-publish-copy{display:flex;flex-direction:column;align-items:flex-start;line-height:1.15}
+.wf-header-publish-copy strong{font-size:.72rem;font-weight:1000}
+.wf-header-publish-copy span{font-size:8px;font-weight:800;opacity:.82;margin-top:2px}
+@media(max-width:520px){.wf-header-publish{min-height:40px;padding:.5rem .66rem;border-radius:12px}.wf-header-publish-copy span{display:none}.wf-header-publish-copy strong{font-size:.68rem}.wf-header-publish-icon{width:25px;height:25px;border-radius:8px}.wf-header-publish::after{top:-7px;inset-inline-end:-4px;font-size:7px;padding:1px 5px}}
+
 </style>
 
 </head>
@@ -524,9 +578,9 @@
 <button class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition" id="theme-toggle" onclick="toggleTheme()">
 <i class="fa-solid fa-moon" id="theme-icon"></i>
 </button>
-<button class="bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs px-3 py-2 rounded-lg shadow transition transform active:scale-95 flex items-center gap-1.5" onclick="openCreateModal()">
-<i class="fa-solid fa-plus"></i>
-<span class="hidden sm:inline">نشر طلب / فرصة</span>
+<button class="wf-header-publish" type="button" onclick="openCreateModal()" aria-label="نشر طلب أو فرصة" title="نشر طلب أو فرصة">
+<span class="wf-header-publish-icon"><i class="fa-solid fa-plus"></i></span>
+<span class="wf-header-publish-copy"><strong>نشر طلب / فرصة</strong><span>ابدأ مطابقة جديدة</span></span>
 </button>
 </div>
 </div>
@@ -984,17 +1038,34 @@
 <div class="rounded-xl border p-3"><div class="text-[10px] text-slate-400">الاتصالات النشطة</div><div class="text-xl font-black" id="ws-connections">0</div></div>
 <div class="rounded-xl border p-3"><div class="text-[10px] text-slate-400">الرسائل غير المقروءة</div><div class="text-xl font-black" id="ws-messages">0</div></div>
 </div>
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-<div class="rounded-xl border p-4">
-<div class="flex justify-between items-center mb-2"><h3 class="text-xs font-extrabold">الاتصالات النشطة</h3><div class="flex gap-2"><button class="text-[10px] text-brand-600" onclick="openProfileEditor()" type="button">الملف الشخصي</button><button class="text-[10px] text-brand-600" onclick="loadWorkspace()" type="button">تحديث</button></div></div>
-<div class="space-y-2 text-xs" id="ws-connections-list"><span class="text-slate-400">No connections yet.</span></div>
+<div id="v21-communication-center" class="wf-v21-communication">
+  <div class="wf-v21-head">
+    <div class="wf-v21-title-wrap">
+      <div class="wf-v21-icon"><i class="fa-solid fa-comments"></i></div>
+      <div class="min-w-0">
+        <div class="wf-v21-kicker">تواصل مباشر داخل وفاق</div>
+        <div class="wf-v21-title">مركز التواصل والمتابعة</div>
+        <div class="wf-v21-sub">طلبات التواصل والمحادثات والردود وحالة كل اتصال في مكان واحد.</div>
+      </div>
+    </div>
+    <button type="button" class="wf-v21-refresh" onclick="v21LoadCommunicationCenter()"><i class="fa-solid fa-arrows-rotate ml-1"></i> تحديث</button>
+  </div>
+  <div class="wf-v21-stats">
+    <div class="wf-v21-stat"><div class="wf-v21-stat-label">طلبات تنتظر ردك</div><div class="wf-v21-stat-value" id="v21-stat-incoming">0</div></div>
+    <div class="wf-v21-stat"><div class="wf-v21-stat-label">محادثات واتصالات نشطة</div><div class="wf-v21-stat-value" id="v21-stat-active">0</div></div>
+    <div class="wf-v21-stat"><div class="wf-v21-stat-label">رسائل غير مقروءة</div><div class="wf-v21-stat-value" id="v21-stat-unread">0</div></div>
+  </div>
+  <div class="wf-v21-tabs" role="tablist" aria-label="مركز التواصل">
+    <button type="button" class="wf-v21-tab is-active" data-v21-tab="all" onclick="v21SetCommunicationTab('all')">الكل</button>
+    <button type="button" class="wf-v21-tab" data-v21-tab="incoming" onclick="v21SetCommunicationTab('incoming')">طلبات واردة</button>
+    <button type="button" class="wf-v21-tab" data-v21-tab="active" onclick="v21SetCommunicationTab('active')">محادثات نشطة</button>
+    <button type="button" class="wf-v21-tab" data-v21-tab="unread" onclick="v21SetCommunicationTab('unread')">غير مقروء</button>
+  </div>
+  <div class="wf-v21-list" id="v21-communication-list">
+    <div class="wf-v21-empty"><i class="fa-solid fa-spinner fa-spin text-emerald-500 text-xl"></i><div class="text-xs font-bold mt-3">جاري تحميل اتصالاتك...</div></div>
+  </div>
 </div>
-<div class="rounded-xl border p-4">
-<div class="flex justify-between items-center mb-2"><h3 class="text-xs font-extrabold">الإشعارات</h3><button class="text-[10px] text-brand-600" onclick="markAllNotificationsRead()" type="button">تحديد الكل كمقروء</button></div>
-<div class="space-y-2 text-xs" id="ws-notifications"><span class="text-slate-400">لا توجد إشعارات.</span></div>
-</div>
-<div class="rounded-xl border p-4"><h3 class="text-xs font-extrabold mb-2">الإجراءات المقترحة</h3><div class="space-y-2 text-xs" id="ws-actions"><div class="rounded-lg bg-brand-50 dark:bg-brand-950/30 p-2">أكمل ملفك الشخصي لتحسين المطابقة بالذكاء الاصطناعي.</div><div class="rounded-lg bg-emerald-50 dark:bg-emerald-950/30 p-2">احفظ الفرص المناسبة لتتعلم التوصيات تفضيلاتك.</div></div></div>
-</div>
+<div class="rounded-xl border p-4 mt-4"><h3 class="text-xs font-extrabold mb-2">الإجراءات المقترحة</h3><div class="space-y-2 text-xs" id="ws-actions"><div class="rounded-lg bg-brand-50 dark:bg-brand-950/30 p-2">أكمل ملفك الشخصي لتحسين المطابقة بالذكاء الاصطناعي.</div><div class="rounded-lg bg-emerald-50 dark:bg-emerald-950/30 p-2">احفظ الفرص المناسبة لتتعلم التوصيات تفضيلاتك.</div></div></div>
 </div>
 </div>
 <aside class="xl:col-span-4 bg-gradient-to-br from-slate-950 to-slate-900 text-white rounded-2xl p-5 sm:p-6 border border-slate-800">
@@ -1245,6 +1316,31 @@
   </div>
 </section>
 
+
+<!-- V20 — High-conversion publish spotlight -->
+<section class="scroll-mt-20" id="publish-spotlight">
+  <div class="wf-publish-spotlight">
+    <div class="wf-publish-spotlight-grid">
+      <div class="wf-publish-copy">
+        <span class="wf-publish-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> ميزة مهمة في وفاق</span>
+        <h2 class="wf-publish-title">انشر طلبك أو فرصتك… ودَع المطابقة تعمل لصالحك.</h2>
+        <p class="wf-publish-subtitle">بدل البحث الطويل، اكتب احتياجك مرة واحدة. وفاق يحوّل الطلب إلى فرصة واضحة، ثم يوصلك بالمختصين والطلبات الأقرب لما تبحث عنه عبر البيانات المتاحة فعليًا.</p>
+        <div class="wf-publish-benefits">
+          <div class="wf-publish-benefit"><div class="wf-publish-benefit-icon"><i class="fa-solid fa-bullseye"></i></div><strong>مطابقات أدق</strong><span>تظهر لك النتائج الأقرب لاحتياجك.</span></div>
+          <div class="wf-publish-benefit"><div class="wf-publish-benefit-icon"><i class="fa-solid fa-bolt"></i></div><strong>توفير للوقت</strong><span>اختصر البحث المتكرر في خطوة واحدة.</span></div>
+          <div class="wf-publish-benefit"><div class="wf-publish-benefit-icon"><i class="fa-solid fa-users"></i></div><strong>وصول أوسع</strong><span>وسّع فرص وصول الطلب للمختصين.</span></div>
+          <div class="wf-publish-benefit"><div class="wf-publish-benefit-icon"><i class="fa-solid fa-shield-halved"></i></div><strong>بيانات موثوقة</strong><span>لا نخترع بيانات اتصال غير معلنة.</span></div>
+        </div>
+        <div class="wf-publish-cta-row">
+          <button type="button" class="wf-publish-cta" onclick="openCreateModal(); document.getElementById('publish-spotlight')?.scrollIntoView({behavior:'smooth',block:'center'});"><i class="fa-solid fa-paper-plane"></i> انشر طلبك أو فرصتك الآن</button>
+          <button type="button" class="wf-publish-secondary" onclick="document.getElementById('global-matching')?.scrollIntoView({behavior:'smooth'});"><i class="fa-solid fa-diagram-project"></i> شاهد كيف تعمل المطابقة</button>
+        </div>
+      </div>
+      <div class="wf-publish-visual"><div class="wf-publish-image-wrap"><button type="button" class="wf-publish-image-button" onclick="openCreateModal()" aria-label="فتح نموذج نشر طلب أو فرصة"><img class="wf-publish-image" src="wefaq-publish-spotlight.png" alt="مزايا نشر طلب أو فرصة في وفاق"></button></div></div>
+    </div>
+  </div>
+</section>
+
 <!-- v14 — Global & Regional Matching Hub + acquisition CRM -->
 <section class="scroll-mt-20 mt-2" id="global-matching">
   <div class="wf-global-shell">
@@ -1361,7 +1457,21 @@
 <button class="flex flex-col items-center gap-0.5 px-2 py-1 hover:text-emerald-400" onclick="openMine()" type="button"><i class="fa-solid fa-user text-base"></i>الحساب</button>
 <button class="flex flex-col items-center gap-0.5 px-2 py-1 hover:text-emerald-400" onclick="openAuthModal()" type="button"><i class="fa-solid fa-right-to-bracket text-base"></i>تسجيل الدخول</button>
 </nav>
-<style>@media(max-width:768px){body{padding-bottom:4.5rem}}</style>
+<style>@media(max-width:768px){body{padding-bottom:4.5rem}}
+/* ========== V21 — Communication Center ========== */
+.wf-v21-communication{margin-top:1rem;border:1px solid rgba(148,163,184,.20);background:linear-gradient(135deg,#ffffff 0%,#f8fffc 55%,#f0fdfa 100%);border-radius:1.5rem;box-shadow:0 16px 40px rgba(15,23,42,.06);overflow:hidden}
+.dark .wf-v21-communication{background:linear-gradient(135deg,#0f172a 0%,#0b211e 70%,#062e2b 100%);border-color:rgba(148,163,184,.15)}
+.wf-v21-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.1rem;border-bottom:1px solid rgba(148,163,184,.16)}
+.wf-v21-title-wrap{display:flex;align-items:center;gap:.7rem;min-width:0}.wf-v21-icon{width:2.6rem;height:2.6rem;border-radius:.9rem;background:#d1fae5;color:#047857;display:flex;align-items:center;justify-content:center;flex:none}.dark .wf-v21-icon{background:rgba(6,78,59,.35);color:#6ee7b7}
+.wf-v21-kicker{font-size:.62rem;font-weight:900;color:#059669}.wf-v21-title{font-size:.95rem;font-weight:950;color:#0f172a;margin-top:.12rem}.dark .wf-v21-title{color:#fff}.wf-v21-sub{font-size:.62rem;color:#64748b;margin-top:.18rem}.dark .wf-v21-sub{color:#94a3b8}
+.wf-v21-refresh{min-height:38px;padding:0 .8rem;border-radius:.75rem;border:1px solid #dbe5e2;background:#fff;color:#0f766e;font-size:.64rem;font-weight:900}.wf-v21-refresh:hover{background:#f0fdf4}.dark .wf-v21-refresh{background:rgba(15,23,42,.55);color:#a7f3d0;border-color:#334155}
+.wf-v21-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem;padding:.9rem 1.1rem 0}.wf-v21-stat{border-radius:1rem;padding:.75rem .8rem;border:1px solid rgba(148,163,184,.16);background:rgba(255,255,255,.72)}.dark .wf-v21-stat{background:rgba(15,23,42,.55);border-color:rgba(148,163,184,.12)}.wf-v21-stat-label{font-size:.58rem;color:#64748b}.dark .wf-v21-stat-label{color:#94a3b8}.wf-v21-stat-value{font-size:1.22rem;font-weight:950;color:#0f172a;margin-top:.15rem}.dark .wf-v21-stat-value{color:#fff}
+.wf-v21-tabs{display:flex;flex-wrap:wrap;gap:.45rem;padding:.9rem 1.1rem .55rem}.wf-v21-tab{min-height:36px;border-radius:.75rem;padding:0 .7rem;border:1px solid #dbe5e2;background:#fff;color:#475569;font-size:.62rem;font-weight:900}.wf-v21-tab.is-active{background:#047857;color:#fff;border-color:#047857}.dark .wf-v21-tab{background:#111827;border-color:#334155;color:#cbd5e1}.dark .wf-v21-tab.is-active{background:#059669;border-color:#059669;color:#042f2e}
+.wf-v21-list{display:grid;gap:.6rem;padding:0 1.1rem 1.1rem}.wf-v21-item{display:flex;align-items:flex-start;gap:.75rem;border:1px solid #e2e8f0;background:#fff;border-radius:1rem;padding:.8rem}.dark .wf-v21-item{background:#0b1220;border-color:#243244}.wf-v21-avatar{width:2.3rem;height:2.3rem;border-radius:.8rem;background:#ecfdf5;color:#047857;display:flex;align-items:center;justify-content:center;flex:none}.dark .wf-v21-avatar{background:rgba(6,78,59,.35);color:#6ee7b7}.wf-v21-main{min-width:0;flex:1}.wf-v21-item-top{display:flex;align-items:center;justify-content:space-between;gap:.5rem}.wf-v21-name{font-size:.72rem;font-weight:950;color:#0f172a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.dark .wf-v21-name{color:#fff}.wf-v21-time{font-size:.54rem;color:#94a3b8;white-space:nowrap}.wf-v21-meta{font-size:.59rem;color:#64748b;margin-top:.18rem}.dark .wf-v21-meta{color:#94a3b8}.wf-v21-message{font-size:.61rem;line-height:1.6;color:#475569;margin-top:.28rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.dark .wf-v21-message{color:#cbd5e1}.wf-v21-badge{display:inline-flex;align-items:center;gap:.25rem;border-radius:999px;padding:.16rem .42rem;font-size:.5rem;font-weight:950}.wf-v21-badge.pending{background:#fff7ed;color:#c2410c}.wf-v21-badge.accepted{background:#ecfdf5;color:#047857}.wf-v21-badge.in_progress{background:#eff6ff;color:#1d4ed8}.wf-v21-badge.completed{background:#f0fdf4;color:#166534}.wf-v21-badge.rejected,.wf-v21-badge.cancelled{background:#fef2f2;color:#b91c1c}
+.wf-v21-actions{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.55rem}.wf-v21-action{min-height:32px;border-radius:.7rem;padding:0 .65rem;font-size:.58rem;font-weight:900;border:1px solid #dbe5e2;background:#fff;color:#334155}.wf-v21-action.primary{background:#059669;color:#fff;border-color:#059669}.wf-v21-action.warn{background:#fff7ed;color:#c2410c;border-color:#fed7aa}.wf-v21-action.danger{background:#fff;color:#b91c1c;border-color:#fecaca}.dark .wf-v21-action{background:#111827;color:#cbd5e1;border-color:#334155}.dark .wf-v21-action.primary{background:#059669;color:#042f2e;border-color:#059669}.wf-v21-unread-dot{width:.42rem;height:.42rem;border-radius:999px;background:#ef4444;display:inline-block;box-shadow:0 0 0 3px rgba(239,68,68,.10)}
+.wf-v21-empty{padding:2rem 1rem;text-align:center;color:#94a3b8;border:1px dashed #cbd5e1;border-radius:1rem}.dark .wf-v21-empty{border-color:#334155}.wf-v21-quick{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.65rem}.wf-v21-quick button{border-radius:999px;border:1px solid #dbe5e2;background:#f8fafc;color:#334155;font-size:.56rem;font-weight:900;padding:.35rem .55rem}.wf-v21-quick button:hover{background:#ecfdf5;color:#047857}.dark .wf-v21-quick button{background:#111827;color:#cbd5e1;border-color:#334155}.dark .wf-v21-quick button:hover{background:#052e2b;color:#a7f3d0}
+@media (max-width:640px){.wf-v21-stats{grid-template-columns:1fr}.wf-v21-head{align-items:flex-start}.wf-v21-refresh{min-height:36px;padding:0 .65rem}.wf-v21-item{padding:.7rem}.wf-v21-actions{gap:.32rem}.wf-v21-action{flex:1 1 auto}}
+</style>
 <!-- Specialist Join Modal -->
 <div class="fixed inset-0 z-[65] hidden bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4" id="specialist-join-modal">
 <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
@@ -1471,7 +1581,7 @@
 <div class="bg-white dark:bg-slate-900 rounded-2xl max-w-lg w-full p-5 shadow-2xl border border-slate-200 dark:border-slate-800">
 <div class="flex items-center justify-between mb-3"><h3 class="font-extrabold">محادثة خاصة</h3><button class="text-slate-400" onclick="closeChatModal()" type="button"><i class="fa-solid fa-xmark"></i></button></div>
 <div class="h-64 overflow-y-auto space-y-2 rounded-xl bg-slate-50 dark:bg-slate-950 p-3" id="chat-list"></div>
-<form class="mt-3 flex gap-2" onsubmit="sendChatMessage(event)">
+<div id="v21-chat-quick-replies" class="wf-v21-quick"></div><form class="mt-3 flex gap-2" onsubmit="sendChatMessage(event)">
 <input class="flex-1 min-h-[44px] rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 text-sm" id="chat-input" maxlength="4000" placeholder="Write a message..." required=""/>
 <button class="px-4 rounded-xl bg-brand-600 text-white text-xs font-bold">إرسال</button>
 </form>
@@ -4011,6 +4121,158 @@
     function v19MarkContacted(id,kind){v19SetJourneyItem(`${kind}:${id}`,{stage:'contacted',kind,id});v19SetStep(4);recordEngagement(null,'contact_channel_used',{provider_id:String(id||''),provider_kind:String(kind||'')});}
     function v19ContactFromMatch(kind,id,title,demandId){v19OpenContactChoice(kind,id,title,demandId);}
 
+
+
+    // ========== V21 — REAL COMMUNICATION CENTER ==========
+    let v21CommunicationData = [];
+    let v21CommunicationTab = 'all';
+    let v21CommunicationTimer = null;
+    let v21RealtimeChannel = null;
+    let v21LastUnreadCount = null;
+
+    function v21Escape(value){ return esc(String(value??'')); }
+    function v21StatusLabel(status){ return ({pending:'بانتظار القبول',accepted:'مقبول',in_progress:'قيد التنفيذ',completed:'مكتمل',rejected:'مرفوض',cancelled:'ملغى'})[String(status||'pending')] || String(status||''); }
+    function v21StatusClass(status){ return ['pending','accepted','in_progress','completed','rejected','cancelled'].includes(String(status)) ? String(status) : 'pending'; }
+    function v21TimeText(value){ try{return new Date(value).toLocaleString(currentLang==='ar'?'ar-EG':'en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});}catch(e){return '';}}
+    function v21IsActiveStatus(status){ return ['accepted','in_progress'].includes(String(status)); }
+
+    function v21ApplyQuickReplies(){
+      const box=document.getElementById('v21-chat-quick-replies');
+      const input=document.getElementById('chat-input');
+      if(!box||!input) return;
+      const replies=['السلام عليكم، شكرًا على تواصلك.','يسعدني التعرف على احتياجك وتحديد التفاصيل.','ما الوقت المناسب لك للتواصل؟','هل يمكن توضيح المستوى والهدف المطلوب؟'];
+      box.innerHTML=replies.map(text=>`<button type="button" onclick="document.getElementById('chat-input').value=${JSON.stringify(text)};document.getElementById('chat-input').focus()">${v21Escape(text)}</button>`).join('');
+    }
+
+    function v21SetCommunicationTab(tab){
+      v21CommunicationTab=tab||'all';
+      document.querySelectorAll('[data-v21-tab]').forEach(el=>el.classList.toggle('is-active',el.getAttribute('data-v21-tab')===v21CommunicationTab));
+      v21RenderCommunicationCenter();
+    }
+
+    async function v21LoadCommunicationCenter(silent=false){
+      if(!supabaseClient) return;
+      const {data:ud}=await supabaseClient.auth.getUser();
+      const uid=ud?.user?.id;
+      if(!uid){
+        v21CommunicationData=[];
+        v21RenderCommunicationCenter();
+        return;
+      }
+      try{
+        const {data:connections,error:cError}=await supabaseClient.from('connections').select('id,status,listing_id,requester_id,provider_id,created_at,updated_at,listings(title)').or(`requester_id.eq.${uid},provider_id.eq.${uid}`).order('updated_at',{ascending:false}).limit(50);
+        if(cError) throw cError;
+        const rows=Array.isArray(connections)?connections:[];
+        const ids=rows.map(x=>x.id).filter(Boolean);
+        let latestMessages=[];
+        if(ids.length){
+          const {data:mdata,error:mError}=await supabaseClient.from('messages').select('id,connection_id,sender_id,recipient_id,body,created_at,read_at').in('connection_id',ids).order('created_at',{ascending:false}).limit(300);
+          if(!mError) latestMessages=Array.isArray(mdata)?mdata:[];
+        }
+        const unreadByConnection={};
+        latestMessages.forEach(m=>{if(m.recipient_id===uid&&!m.read_at) unreadByConnection[m.connection_id]=(unreadByConnection[m.connection_id]||0)+1;});
+        const latestByConnection={};
+        latestMessages.forEach(m=>{if(!latestByConnection[m.connection_id])latestByConnection[m.connection_id]=m;});
+        const otherIds=[...new Set(rows.map(c=>c.requester_id===uid?c.provider_id:c.requester_id).filter(Boolean))];
+        let profiles=[];
+        if(otherIds.length){
+          const {data:pdata}=await supabaseClient.from('profiles').select('id,display_name,region').in('id',otherIds).limit(50);
+          profiles=Array.isArray(pdata)?pdata:[];
+        }
+        const profileMap=Object.fromEntries(profiles.map(p=>[String(p.id),p]));
+        v21CommunicationData=rows.map(c=>{
+          const otherId=c.requester_id===uid?c.provider_id:c.requester_id;
+          const person=profileMap[String(otherId)]||{};
+          return {...c,_otherId:otherId,_isRequester:c.requester_id===uid,_personName:person.display_name||'الطرف المقابل',_personRegion:person.region||'',_latestMessage:latestByConnection[c.id]||null,_unread:Number(unreadByConnection[c.id]||0)};
+        });
+        v21LastUnreadCount=v21CommunicationData.reduce((n,x)=>n+x._unread,0);
+        v21RenderCommunicationCenter();
+      }catch(err){
+        console.warn('V21 communication load failed',err);
+        if(!silent){
+          const box=document.getElementById('v21-communication-list');
+          if(box)box.innerHTML='<div class="wf-v21-empty"><i class="fa-solid fa-triangle-exclamation text-amber-500 text-xl"></i><div class="text-xs font-bold mt-3">تعذر تحميل الاتصالات الآن. جرّب التحديث.</div></div>';
+        }
+      }
+    }
+
+    function v21RenderCommunicationCenter(){
+      const list=document.getElementById('v21-communication-list');
+      if(!list)return;
+      const all=Array.isArray(v21CommunicationData)?v21CommunicationData:[];
+      const incoming=all.filter(x=>!x._isRequester && String(x.status)==='pending');
+      const active=all.filter(x=>v21IsActiveStatus(x.status));
+      const unread=all.filter(x=>Number(x._unread)>0);
+      document.getElementById('v21-stat-incoming')?.replaceChildren(document.createTextNode(String(incoming.length)));
+      document.getElementById('v21-stat-active')?.replaceChildren(document.createTextNode(String(active.length)));
+      document.getElementById('v21-stat-unread')?.replaceChildren(document.createTextNode(String(unread.reduce((n,x)=>n+x._unread,0))));
+      let data=all;
+      if(v21CommunicationTab==='incoming')data=incoming;
+      else if(v21CommunicationTab==='active')data=active;
+      else if(v21CommunicationTab==='unread')data=unread;
+      if(!data.length){
+        const messages={all:'لا توجد اتصالات بعد. ابدأ من أي مطابقة واضغط «اختر طريقة التواصل».',incoming:'لا توجد طلبات تواصل واردة حاليًا.',active:'لا توجد محادثات نشطة حاليًا.',unread:'ممتاز، لا توجد رسائل غير مقروءة.'};
+        list.innerHTML=`<div class="wf-v21-empty"><i class="fa-solid fa-inbox text-emerald-500 text-2xl"></i><div class="text-xs font-bold mt-3">${v21Escape(messages[v21CommunicationTab]||messages.all)}</div></div>`;
+        return;
+      }
+      list.innerHTML=data.map(c=>{
+        const unreadBadge=c._unread?`<span class="wf-v21-unread-dot" title="رسائل غير مقروءة"></span>`:'';
+        const title=c.listings?.title||'اتصال تعليمي';
+        const last=c._latestMessage?.body||'لم تبدأ المحادثة بعد.';
+        const who=c._isRequester?'أرسلت طلب تواصل':'وصلك طلب تواصل';
+        const actions=[];
+        if(String(c.status)==='pending' && !c._isRequester){
+          actions.push(`<button type="button" class="wf-v21-action primary" onclick="updateConnectionStatus('${v21Escape(c.id)}','accepted');event.stopPropagation()">قبول الطلب</button>`);
+          actions.push(`<button type="button" class="wf-v21-action danger" onclick="updateConnectionStatus('${v21Escape(c.id)}','rejected');event.stopPropagation()">رفض</button>`);
+        }
+        if(String(c.status)==='pending' && c._isRequester){
+          actions.push(`<button type="button" class="wf-v21-action danger" onclick="updateConnectionStatus('${v21Escape(c.id)}','cancelled');event.stopPropagation()">إلغاء الطلب</button>`);
+        }
+        if(v21IsActiveStatus(c.status))actions.push(`<button type="button" class="wf-v21-action primary" onclick="openChat('${v21Escape(c.id)}','${v21Escape(c._otherId)}');event.stopPropagation()"><i class="fa-solid fa-message ml-1"></i>فتح المحادثة</button>`);
+        if(String(c.status)==='accepted' && !c._isRequester)actions.push(`<button type="button" class="wf-v21-action" onclick="updateConnectionStatus('${v21Escape(c.id)}','in_progress');event.stopPropagation()">بدء التنفيذ</button>`);
+        if(String(c.status)==='in_progress')actions.push(`<button type="button" class="wf-v21-action" onclick="updateConnectionStatus('${v21Escape(c.id)}','completed');event.stopPropagation()">تم الاتفاق / الإتمام</button>`);
+        if(String(c.status)==='completed')actions.push(`<button type="button" class="wf-v21-action warn" onclick="reviewConnection('${v21Escape(c.id)}');event.stopPropagation()">تقييم الاتصال</button>`);
+        const region=c._personRegion?` · ${v21Escape(c._personRegion)}`:'';
+        return `<article class="wf-v21-item"><div class="wf-v21-avatar"><i class="fa-solid ${c._isRequester?'fa-paper-plane':'fa-user-check'}"></i></div><div class="wf-v21-main"><div class="wf-v21-item-top"><div class="wf-v21-name">${unreadBadge}${v21Escape(c._personName)}</div><div class="wf-v21-time">${v21TimeText(c.updated_at||c.created_at)}</div></div><div class="mt-1 flex flex-wrap items-center gap-2"><span class="wf-v21-badge ${v21StatusClass(c.status)}">${v21Escape(v21StatusLabel(c.status))}</span><span class="wf-v21-meta">${v21Escape(who)} · ${v21Escape(title)}${region}</span></div><div class="wf-v21-message">${v21Escape(last)}</div><div class="wf-v21-actions">${actions.join('')||`<span class="text-[10px] text-slate-400">لا يوجد إجراء متاح الآن.</span>`}</div></div></article>`;
+      }).join('');
+    }
+
+    function v21StartCommunicationWatch(){
+      if(v21CommunicationTimer)clearInterval(v21CommunicationTimer);
+      v21CommunicationTimer=setInterval(async()=>{if(currentAuthUser)await v21LoadCommunicationCenter(true);else{clearInterval(v21CommunicationTimer);v21CommunicationTimer=null;}},30000);
+      try{
+        if(v21RealtimeChannel&&supabaseClient){supabaseClient.removeChannel(v21RealtimeChannel);v21RealtimeChannel=null;}
+        if(!supabaseClient||!currentAuthUser)return;
+        const uid=currentAuthUser.id;
+        v21RealtimeChannel=supabaseClient.channel('wefaq-v21-communication-'+uid)
+          .on('postgres_changes',{event:'INSERT',schema:'public',table:'messages',filter:`recipient_id=eq.${uid}`},async payload=>{await v21LoadCommunicationCenter(true);showRealtimeNotification('لديك رسالة جديدة داخل وفاق ✉️');})
+          .on('postgres_changes',{event:'UPDATE',schema:'public',table:'connections',filter:`provider_id=eq.${uid}`},async payload=>{await v21LoadCommunicationCenter(true);showRealtimeNotification('تحديث جديد على أحد طلبات التواصل');})
+          .on('postgres_changes',{event:'UPDATE',schema:'public',table:'connections',filter:`requester_id=eq.${uid}`},async payload=>{await v21LoadCommunicationCenter(true);showRealtimeNotification('تم تحديث حالة أحد اتصالاتك');})
+          .subscribe();
+      }catch(e){console.warn('V21 realtime communication channel unavailable',e);}
+    }
+
+    // Wrap the existing cloud workspace so the V21 center always refreshes with real data.
+    if(typeof window!=='undefined' && typeof window.loadWorkspace==='function'){
+      const v21OriginalLoadWorkspace=window.loadWorkspace;
+      window.loadWorkspace=async function(){
+        const result=await v21OriginalLoadWorkspace.apply(this,arguments);
+        await v21LoadCommunicationCenter(true);
+        v21ApplyQuickReplies();
+        return result;
+      };
+    }
+    if(typeof window!=='undefined' && typeof window.openChat==='function'){
+      const v21OriginalOpenChat=window.openChat;
+      window.openChat=async function(connectionId,recipientId){
+        const result=await v21OriginalOpenChat.apply(this,arguments);
+        v21ApplyQuickReplies();
+        setTimeout(()=>document.getElementById('chat-input')?.focus(),50);
+        await v21LoadCommunicationCenter(true);
+        return result;
+      };
+    }
+
     // ========== INIT ==========
     // Keep initial cloud loads to one call each to avoid duplicate network work.
     document.addEventListener('DOMContentLoaded', () => {
@@ -4030,12 +4292,14 @@
       trackVisitor();          // cloud
       setTimeout(updateV8HeroStats, 1200);
       startRealtimeSync();
-      if (supabaseClient) { supabaseClient.auth.onAuthStateChange(async () => { await refreshAuthState(); loadLiveRadarData(); }); refreshAuthState().then(() => loadLiveRadarData()); }
+      if (supabaseClient) { supabaseClient.auth.onAuthStateChange(async () => { await refreshAuthState(); loadLiveRadarData(); if(currentAuthUser){ v21StartCommunicationWatch(); await v21LoadCommunicationCenter(true); } else if(v21CommunicationTimer){ clearInterval(v21CommunicationTimer); v21CommunicationTimer=null; } }); refreshAuthState().then(async () => { await loadLiveRadarData(); if(currentAuthUser){ v21StartCommunicationWatch(); await v21LoadCommunicationCenter(true); } }); }
       renderCards();
       updateMetricCounters();
       refreshPerformanceCenter();
       renderAcquisitionRadar();
       v19RenderJourney();
+      v21ApplyQuickReplies();
+      setTimeout(()=>{ if(currentAuthUser){ v21LoadCommunicationCenter(true); v21StartCommunicationWatch(); } }, 800);
     });
 
     document.addEventListener('keydown', (event) => {
