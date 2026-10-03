@@ -2405,12 +2405,13 @@
           if(!result.error && result.data){
             usedServer=true;
             if(Array.isArray(result.data.leads)){
-              radarLeads=result.data.leads.map(x=>({...x,sourceType:x.source_type||x.sourceType||'web',hoursAgo:Number(x.hours_ago??x.hoursAgo??0),region:x.region||x.country_code||'',type:x.type||x.intent_type||'',mode:x.mode||'',amount:x.amount??x.budget??null,currency:x.currency||x.budget_currency||''}));
-              const rawRadarCount=(data||[]).length;
-        if(rawRadarCount>radarLeads.length){
-          radarLog=[{time:t('Now'),text:`${t('Live sync completed')}: ${rawRadarCount-radarLeads.length} duplicate records hidden.`}];
-        }
-        radarLiveReady=true;
+              const rawLeads=result.data.leads.map(x=>({...x,sourceType:x.source_type||x.sourceType||'web',hoursAgo:Number(x.hours_ago??x.hoursAgo??0),region:x.region||x.country_code||'',type:x.type||x.intent_type||'',mode:x.mode||'',amount:x.amount??x.budget??null,currency:x.currency||x.budget_currency||''}));
+              radarLeads=dedupeRadarLeads(rawLeads);
+              const hiddenCount=Math.max(0,rawLeads.length-radarLeads.length);
+              if(hiddenCount>0){
+                radarLog=[{time:t('Now'),text:`${t('Live sync completed')}: ${hiddenCount} duplicate records hidden.`}];
+              }
+              radarLiveReady=true;
             }
             RADAR_SOURCES.forEach(s=>{ if(result.data.sources?.[s.id]) Object.assign(s,result.data.sources[s.id]); });
             const stats=result.data.stats||{};
@@ -2599,7 +2600,10 @@
     function globalBuildDemands(){
       const radar=dedupeRadarLeads(Array.isArray(radarLeads)?radarLeads:[]).filter(x=>!['stale','rejected'].includes(x.status)&&['student','service'].includes(x.persona)&&x.intentType==='demand');
       const listings=Array.isArray(opportunitiesData)?opportunitiesData.filter(x=>['quran','hadith','arabic','kids','languages','services','demands'].includes(x.category)&&x.type!=='offer'):[];
-      return [...radar.map(x=>({...x,_kind:'radar'})),...listings.map(x=>({...x,_kind:'listing',snippet:x.description}))];
+      return globalCrossSourceDedupe([
+        ...radar.map(x=>({...x,_kind:'radar'})),
+        ...listings.map(x=>({...x,_kind:'listing',snippet:x.description}))
+      ],'demand');
     }
     function globalBuildProviders(){
       const specialists=Array.isArray(specialistProfiles)?specialistProfiles.filter(p=>!['student','parent_family'].includes(p.role)&&p.is_active!==false):[];
@@ -2608,7 +2612,11 @@
         ...x,_providerKind:'radar',display_name:x.title||'Live teacher signal',specialty:x.category||'',bio:x.snippet||'',country:x.countryCode||x.region||'',
         languages:Array.isArray(x.languages)?x.languages:(x.language?[x.language]:[]),teaching_mode:x.mode?[x.mode]:[],role:'teacher',is_active:true
       }));
-      return {specialists,listings,radarProviders};
+      return {
+        specialists:globalCrossSourceDedupe(specialists.map(x=>({...x,_providerKind:'profile'})),'provider'),
+        listings:globalCrossSourceDedupe(listings.map(x=>({...x,_providerKind:'listing'})),'provider'),
+        radarProviders:globalCrossSourceDedupe(radarProviders,'provider')
+      };
     }
     function renderRegionalSources(){
       const box=document.getElementById('global-source-readiness'); if(!box)return;
@@ -2620,6 +2628,55 @@
       (Array.isArray(radarLeads)?radarLeads:[]).forEach(x=>{const st=String(x.status||'review');if(groups[st]!==undefined)groups[st]++;});
       Object.entries(groups).forEach(([k,v])=>document.getElementById(`crm-stage-${k}`)?.replaceChildren(document.createTextNode(String(v))));
       renderRegionalSources();
+    }
+    function globalStableText(value){
+      return globalNorm(String(value||'')).replace(/[^\p{L}\p{N}]+/gu,' ').trim();
+    }
+    function globalCrossSourceDuplicate(a,b,kind){
+      if(!a||!b)return false;
+      if(a.id&&b.id&&String(a.id)===String(b.id))return true;
+      const au=radarDedupeUrl(a.sourceUrl||a.source_url||'');
+      const bu=radarDedupeUrl(b.sourceUrl||b.source_url||'');
+      if(au&&bu&&au===bu)return true;
+      const at=globalStableText(a.title||a.display_name||a.name||'');
+      const bt=globalStableText(b.title||b.display_name||b.name||'');
+      if(!at||!bt)return false;
+      const ac=globalCanonicalCategory(a.category,a.description||a.snippet||a.bio||'');
+      const bc=globalCanonicalCategory(b.category,b.description||b.snippet||b.bio||'');
+      const ar=globalCanonicalRegion(a.region||a.country||a.countryCode||'');
+      const br=globalCanonicalRegion(b.region||b.country||b.countryCode||'');
+      const as=globalStableText(a.specialty||a.role||a.persona||'');
+      const bs=globalStableText(b.specialty||b.role||b.persona||'');
+      if(kind==='demand'){
+        if(at===bt && (!ar||!br||ar===br) && (!ac||!bc||ac===bc)){
+          const ax=globalStableText(a.snippet||a.description||'');
+          const bx=globalStableText(b.snippet||b.description||'');
+          return !ax||!bx||ax===bx||radarTokenOverlap(ax,bx)>=0.62;
+        }
+        return false;
+      }
+      // Provider dedupe is intentionally conservative to avoid merging different people with common names.
+      if(at===bt && (!ar||!br||ar===br) && (!as||!bs||as===bs) && (!ac||!bc||ac===bc)){
+        const al=globalArray(a.languages||a.language).map(globalCanonicalLanguage).filter(Boolean).sort().join('|');
+        const bl=globalArray(b.languages||b.language).map(globalCanonicalLanguage).filter(Boolean).sort().join('|');
+        return !al||!bl||al===bl;
+      }
+      return false;
+    }
+    function globalCrossSourceDedupe(records,kind){
+      const out=[];
+      for(const record of (Array.isArray(records)?records:[])){
+        if(!record)continue;
+        const duplicateIndex=out.findIndex(existing=>globalCrossSourceDuplicate(existing,record,kind));
+        if(duplicateIndex===-1){out.push(record);continue;}
+        // Prefer registered Wefaq profiles/listings over an external radar copy of the same entity.
+        const existing=out[duplicateIndex];
+        const rank=r=>r?({_providerKind:{profile:0,listing:1,radar:2}[(r._providerKind||'')]??9,_kind:{listing:0,radar:1}[(r._kind||'')]??9}):{_providerKind:9,_kind:9};
+        const er=rank(existing), rr=rank(record);
+        if(kind==='provider' && rr._providerKind<er._providerKind) out[duplicateIndex]=record;
+        else if(kind==='demand' && rr._kind<er._kind) out[duplicateIndex]=record;
+      }
+      return out;
     }
     function globalDemandLabel(d){
       return d._kind==='radar' ? 'طلب مكتشف من مصدر حي' : 'طلب منشور داخل وفاق';
@@ -2646,11 +2703,11 @@
       const mode=document.getElementById('global-match-mode')?.value||'all';
       const allDemands=globalBuildDemands();
       const {specialists,listings,radarProviders}=globalBuildProviders();
-      const providers=[
+      const providers=globalCrossSourceDedupe([
         ...specialists.map(x=>({...x,_providerKind:'profile'})),
         ...listings.map(x=>({...x,_providerKind:'listing',display_name:x.sheikh||x.title,specialty:x.category,bio:x.description,country:x.region,languages:globalArray(x.languages)})),
         ...radarProviders
-      ];
+      ],'provider');
       const filteredDemands=allDemands.filter(d=>{
         if(persona!=='all'&&d.persona!==persona)return false;
         if(region!=='all'&&!regionalRegionMatch(d.region||d.country||'',region))return false;
