@@ -313,25 +313,39 @@
   .dark .wf-global-metric{background:rgba(15,23,42,.72);border-color:#1e293b}
   .wf-global-metric b{display:block;font-size:1.15rem;color:#0f172a}.dark .wf-global-metric b{color:#fff}
   .wf-global-metric span{font-size:.57rem;color:#64748b}.dark .wf-global-metric span{color:#94a3b8}
-  .wf-global-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.55fr) minmax(300px,.75fr);gap:1rem;padding:0 1.25rem 1.25rem}
-  .wf-global-results,.wf-crm-panel{background:rgba(255,255,255,.83);border:1px solid rgba(226,232,240,.9);border-radius:1.1rem;padding:.9rem}
-  .dark .wf-global-results,.dark .wf-crm-panel{background:rgba(15,23,42,.82);border-color:#1e293b}
+  .wf-global-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr);gap:1rem;padding:0 1.25rem 1.25rem}
+  .wf-global-results,.wf-crm-panel{background:rgba(255,255,255,.86);border:1px solid rgba(226,232,240,.9);border-radius:1.1rem;padding:.95rem}
+  .dark .wf-global-results,.dark .wf-crm-panel{background:rgba(15,23,42,.84);border-color:#1e293b}
   .wf-global-results-head,.wf-crm-head{display:flex;align-items:center;justify-content:space-between;gap:.75rem;margin-bottom:.7rem}
-  .wf-global-result-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem}
-  .wf-global-result-card{border:1px solid #e2e8f0;border-radius:.9rem;padding:.75rem;background:#fff;transition:.2s ease}
-  .wf-global-result-card:hover{transform:translateY(-2px);border-color:rgba(16,185,129,.3);box-shadow:0 12px 24px rgba(15,23,42,.07)}
+  .wf-global-result-list{display:grid;grid-template-columns:1fr;gap:.8rem}
+  .wf-global-result-card{border:1px solid #e2e8f0;border-radius:1rem;padding:.9rem;background:#fff;transition:.2s ease}
+  .wf-global-result-card:hover{transform:translateY(-1px);border-color:rgba(16,185,129,.38);box-shadow:0 12px 28px rgba(15,23,42,.06)}
   .dark .wf-global-result-card{background:#0b1220;border-color:#263244}
-  .wf-global-result-top{display:flex;justify-content:space-between;gap:.5rem;align-items:flex-start}
-  .wf-global-score{font-size:.58rem;font-weight:900;color:#059669;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:999px;padding:.25rem .42rem;white-space:nowrap}
+  .wf-global-result-top{display:flex;justify-content:space-between;gap:.75rem;align-items:flex-start}
+  .wf-global-score{font-size:.6rem;font-weight:950;color:#047857;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:999px;padding:.3rem .48rem;white-space:nowrap}
   .dark .wf-global-score{background:rgba(6,78,59,.28);color:#6ee7b7;border-color:rgba(110,231,183,.18)}
   .wf-global-kind{font-size:.56rem;color:#64748b;margin-top:.2rem}.dark .wf-global-kind{color:#94a3b8}
-  .wf-global-result-card h4{font-size:.75rem;line-height:1.55;font-weight:900;margin-top:.5rem;color:#0f172a}.dark .wf-global-result-card h4{color:#fff}
-  .wf-global-result-card p{font-size:.63rem;line-height:1.7;color:#64748b;margin-top:.35rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.dark .wf-global-result-card p{color:#94a3b8}
-  .wf-global-chip-row{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.45rem}
-  .wf-global-chip{font-size:.52rem;font-weight:800;border-radius:999px;padding:.25rem .4rem;background:#f1f5f9;color:#475569}.dark .wf-global-chip{background:#1e293b;color:#cbd5e1}
-  .wf-global-actions{display:grid;grid-template-columns:1fr 1fr;gap:.4rem;margin-top:.65rem}
-  .wf-global-actions button{min-height:34px;border-radius:.65rem;font-size:.58rem;font-weight:900}
-  .wf-global-empty{grid-column:1/-1;padding:2rem 1rem;border:1px dashed #cbd5e1;border-radius:.9rem;text-align:center;background:#f8fafc}.dark .wf-global-empty{background:#0b1220;border-color:#334155}
+  .wf-global-result-card h4{font-size:.82rem;line-height:1.6;font-weight:950;margin-top:.42rem;color:#0f172a}.dark .wf-global-result-card h4{color:#fff}
+  .wf-global-result-card p{font-size:.64rem;line-height:1.8;color:#64748b;margin-top:.3rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.dark .wf-global-result-card p{color:#94a3b8}
+  .wf-global-chip-row{display:flex;flex-wrap:wrap;gap:.36rem;margin-top:.55rem}
+  .wf-global-chip{font-size:.52rem;font-weight:850;border-radius:999px;padding:.28rem .46rem;background:#f8fafc;color:#475569;border:1px solid #e2e8f0}.dark .wf-global-chip{background:#111827;color:#cbd5e1;border-color:#263244}
+  .wf-global-actions{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.7rem}
+  .wf-global-actions button,.wf-global-actions a{min-height:34px;border-radius:.7rem;font-size:.58rem;font-weight:900;padding:.55rem .75rem;display:inline-flex;align-items:center;justify-content:center}
+  .wf-global-empty{padding:2.4rem 1rem;border:1px dashed #cbd5e1;border-radius:.95rem;text-align:center;background:#f8fafc}.dark .wf-global-empty{background:#0b1220;border-color:#334155}
+  .wf-match-demand{border-radius:.85rem;background:linear-gradient(135deg,#f8fafc,#f0fdf4);border:1px solid #dbeafe;padding:.72rem}
+  .dark .wf-match-demand{background:linear-gradient(135deg,#0f172a,#052e24);border-color:#243244}
+  .wf-match-demand-label{font-size:.52rem;font-weight:950;color:#64748b}.dark .wf-match-demand-label{color:#94a3b8}
+  .wf-match-provider-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem;margin-top:.7rem}
+  .wf-match-provider{border:1px solid #e2e8f0;border-radius:.85rem;padding:.7rem;background:#fff}.dark .wf-match-provider{background:#0f172a;border-color:#263244}
+  .wf-match-provider-head{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem}
+  .wf-match-provider-name{font-size:.64rem;font-weight:950;color:#0f172a;line-height:1.5}.dark .wf-match-provider-name{color:#fff}
+  .wf-match-provider-meta{font-size:.54rem;line-height:1.7;color:#64748b;margin-top:.28rem}.dark .wf-match-provider-meta{color:#94a3b8}
+  .wf-match-reasons{display:flex;flex-wrap:wrap;gap:.25rem;margin-top:.45rem}
+  .wf-match-reason{font-size:.47rem;font-weight:850;border-radius:999px;padding:.22rem .34rem;background:#ecfdf5;color:#047857}.dark .wf-match-reason{background:rgba(6,78,59,.3);color:#6ee7b7}
+  .wf-match-provider-actions{display:flex;gap:.35rem;margin-top:.55rem}
+  .wf-match-provider-actions button{flex:1;min-height:30px;border-radius:.6rem;font-size:.52rem;font-weight:900}
+  @media(max-width:900px){.wf-match-provider-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:640px){.wf-match-provider-grid{grid-template-columns:1fr}}
   .wf-crm-pipeline{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem}
   .wf-crm-stage{border:1px solid #e2e8f0;background:#fff;border-radius:.85rem;padding:.65rem}.dark .wf-crm-stage{background:#0b1220;border-color:#263244}
   .wf-crm-stage b{display:block;font-size:1rem;color:#0f172a}.dark .wf-crm-stage b{color:#fff}
@@ -1006,14 +1020,14 @@
       <div class="wf-global-control"><label for="global-match-mode" data-i18n-merge="Teaching mode">نمط التعليم</label><select id="global-match-mode" onchange="renderRegionalMatchingHub()"><option value="all">أي نمط</option><option value="online">عن بُعد</option><option value="in_person">حضوري</option><option value="hybrid">هجين</option></select></div>
     </div>
     <div class="wf-global-metrics">
-      <div class="wf-global-metric"><span data-i18n-merge="Eligible live signals">الإشارات الحية المؤهلة</span><b id="global-metric-signals">0</b></div>
-      <div class="wf-global-metric"><span data-i18n-merge="Real specialists">المتخصصون الحقيقيون</span><b id="global-metric-specialists">0</b></div>
-      <div class="wf-global-metric"><span data-i18n-merge="Potential matches">مطابقات محتملة</span><b id="global-metric-matches">0</b></div>
-      <div class="wf-global-metric"><span data-i18n-merge="Regions represented">المناطق الممثلة</span><b id="global-metric-regions">0</b></div>
+      <div class="wf-global-metric"><span>طلبات قابلة للمطابقة</span><b id="global-metric-signals">0</b></div>
+      <div class="wf-global-metric"><span>معلمون ومتخصصون</span><b id="global-metric-specialists">0</b></div>
+      <div class="wf-global-metric"><span>مطابقات قابلة للتنفيذ</span><b id="global-metric-matches">0</b></div>
+      <div class="wf-global-metric"><span>المناطق الممثلة</span><b id="global-metric-regions">0</b></div>
     </div>
     <div class="wf-global-grid">
       <div class="wf-global-results">
-        <div class="wf-global-results-head"><div><h3 class="font-black text-sm text-slate-900 dark:text-white" data-i18n-merge="Live matching results">نتائج المطابقة الحية</h3><p class="text-[10px] text-slate-500 mt-1" data-i18n-merge="Calculated from real data already available to Wefaq.">محسوبة من البيانات الحقيقية المتاحة حاليًا في وفاق.</p></div><span id="global-match-status" class="text-[10px] font-bold text-slate-400">0</span></div>
+        <div class="wf-global-results-head"><div><h3 class="font-black text-sm text-slate-900 dark:text-white">طلبات حقيقية ومعلمون مناسبون</h3><p class="text-[10px] text-slate-500 mt-1">كل نتيجة مبنية على السجلات الحقيقية الموجودة حاليًا في وفاق، مع توضيح سبب المطابقة.</p></div><span id="global-match-status" class="text-[10px] font-bold text-slate-400">0 مطابقة</span></div>
         <div id="global-match-results" class="wf-global-result-list"></div>
       </div>
       <aside class="wf-crm-panel">
@@ -1036,7 +1050,7 @@
         </div>
       </aside>
     </div>
-    <div class="px-4 pb-4 text-[9px] text-slate-500 dark:text-slate-400" data-i18n-merge="No result is generated unless the source data exists. Matching is an assistive ranking, not a claim of user consent or availability.">لا يتم توليد أي نتيجة ما لم توجد بيانات مصدر حقيقية. المطابقة ترتيب مساعد وليست إثباتًا للموافقة أو التفرغ.</div>
+    <div class="px-4 pb-4 text-[9px] text-slate-500 dark:text-slate-400">لا يتم إنشاء طلبات أو معلمين من العدم. الترتيب مساعد لاختيار النتائج ذات الصلة، ولا يثبت موافقة الطرف الآخر أو تفرغه.</div>
   </div>
 </section>
 
@@ -2402,54 +2416,122 @@
     // radar_leads is intentionally disabled until its real production schema is
     // created/exposed in Supabase. Do not query a table that does not exist and do
     // not manufacture fallback/demo leads.
-    // ========== v14 GLOBAL / REGIONAL MATCHING HUB ==========
-    function globalArray(value){ return Array.isArray(value) ? value.map(v=>String(v||'').trim()).filter(Boolean) : []; }
-    function globalIncludes(obj, needle){
-      if(!needle || needle==='all') return true;
-      const n=String(needle).toLowerCase();
-      const values=[obj?.country,obj?.city,obj?.region,obj?.language,obj?.category,obj?.specialty,obj?.type,obj?.mode,...globalArray(obj?.languages),...globalArray(obj?.subjects),...globalArray(obj?.teaching_mode),...globalArray(obj?.tags)];
-      return values.some(v=>String(v||'').toLowerCase().includes(n));
+    // ========== v17 GLOBAL / REGIONAL MATCHING HUB ==========
+    function globalArray(value){
+      return Array.isArray(value) ? value.map(v=>String(v||'').trim()).filter(Boolean) : [];
+    }
+    function globalNorm(value){
+      return String(value||'').toLowerCase().normalize('NFKD').replace(/[\u064B-\u065F\u0670]/g,'').replace(/ـ/g,'').trim();
+    }
+    function globalText(value){
+      return globalNorm(value).replace(/\s+/g,' ');
+    }
+    function globalAllText(obj){
+      return globalText([
+        obj?.title,obj?.snippet,obj?.description,obj?.specialty,obj?.bio,obj?.display_name,obj?.role,
+        ...globalArray(obj?.tags),...globalArray(obj?.languages),...globalArray(obj?.subjects),
+        ...globalArray(obj?.qiraat),...globalArray(obj?.teaching_mode),...globalArray(obj?.audience)
+      ].join(' '));
+    }
+    function globalCanonicalLanguage(value){
+      const v=globalNorm(value);
+      if(!v) return '';
+      if(/^(arabic|العربية|عربي|ar)$/.test(v)) return 'arabic';
+      if(/^(english|الانجليزية|الإنجليزية|انجليزي|en)$/.test(v)) return 'english';
+      if(/^(french|francais|français|الفرنسية|فرنسي|fr)$/.test(v)) return 'french';
+      if(/^(urdu|اردو|ur)$/.test(v)) return 'urdu';
+      if(/^(turkish|turkce|türkçe|تركي|tr)$/.test(v)) return 'turkish';
+      return v;
+    }
+    function globalCanonicalMode(value){
+      const v=globalNorm(value);
+      if(/online|remote|عن بعد|اونلاين|عن_بعد|electronic/.test(v)) return 'online';
+      if(/in.?person|onsite|حضوري|وجاهي/.test(v)) return 'in_person';
+      if(/hybrid|هجين|مختلط/.test(v)) return 'hybrid';
+      return v;
+    }
+    function globalCanonicalCategory(value,text=''){
+      const v=globalNorm(value);
+      const blob=`${v} ${globalNorm(text)}`;
+      if(/quran|قران|تحفيظ|تجويد|tajweed|hifz|qiraat|قراءات|memor/.test(blob)) return 'quran';
+      if(/hadith|حديث/.test(blob)) return 'hadith';
+      if(/arabic|عربي|العربية|نحو|صرف|بلاغة/.test(blob)) return 'arabic';
+      if(/kid|child|children|طفل|اطفال|أطفال/.test(blob)) return 'kids';
+      if(/language|لغة|english|french|urdu|turkish/.test(blob)) return 'languages';
+      if(/service|خدمة/.test(blob)) return 'services';
+      return v || 'services';
+    }
+    function globalCanonicalRegion(value){
+      const v=globalNorm(value);
+      if(!v) return '';
+      if(/global|world|worldwide|عالمي|حول العالم|international/.test(v)) return 'GLOBAL';
+      if(/saudi|ksa|السعودية|سعودي|riyadh|جدة|jeddah|makkah|mecca|الرياض/.test(v)) return 'KSA';
+      if(/egypt|egyptian|مصر|مصري|cairo|القاهرة/.test(v)) return 'EGP';
+      if(/uae|emirates|الامارات|الإمارات|dubai|دبي|abudhabi|abu dhabi/.test(v)) return 'UAE';
+      if(/qatar|قطر/.test(v)) return 'QAT';
+      if(/kuwait|الكويت/.test(v)) return 'KW';
+      if(/oman|عمان/.test(v)) return 'OMN';
+      if(/bahrain|البحرين/.test(v)) return 'BHR';
+      if(/gcc|gulf|الخليج|الخليجي/.test(v)) return 'GCC';
+      if(/africa|افريقيا|أفريقيا|morocco|المغرب|algeria|الجزائر|tunisia|تونس|libya|ليبيا|sudan|السودان|nigeria|نيجيريا|kenya|كينيا/.test(v)) return 'AFRICA';
+      if(/europe|eu|امريكا|أمريكا|america|canada|usa|uk|britain|european|asia|اسيا|آسيا|indonesia|اندونيسيا|india|الهند|pakistan|باكستان|japan|اليابان|turkey|تركيا/.test(v)) return 'FOREIGN';
+      return v.toUpperCase();
     }
     function regionalRegionMatch(value, selected){
       if(selected==='all') return true;
-      const v=String(value||'').toUpperCase();
-      if(v===selected) return true;
-      if(selected==='FOREIGN') return ['FOREIGN','EUROPE','AMERICAS','ASIA'].some(x=>v.includes(x));
-      if(selected==='GCC') return ['KSA','UAE','QAT','KW','GCC','OMN','BHR'].includes(v);
+      const v=globalCanonicalRegion(value);
+      const s=String(selected||'').toUpperCase();
+      if(v===s) return true;
+      if(s==='GCC') return ['GCC','KSA','UAE','QAT','KW','OMN','BHR'].includes(v);
+      if(s==='FOREIGN') return v==='FOREIGN';
+      if(s==='AFRICA') return v==='AFRICA';
       return false;
     }
-    function globalDemandText(x){ return [x.title,x.snippet,x.description,x.specialty,...globalArray(x.tags)].join(' ').toLowerCase(); }
-    function globalProviderText(x){ return [x.display_name,x.specialty,x.bio,x.role,...globalArray(x.subjects),...globalArray(x.qiraat),...globalArray(x.languages),...globalArray(x.teaching_mode)].join(' ').toLowerCase(); }
-    function globalCategoryScore(demand, provider){
-      const d=globalDemandText(demand), p=globalProviderText(provider);
-      const category=String(demand.category||'').toLowerCase();
-      const rules={
-        quran:['quran','قرآن','tajweed','تجويد','memor','تحفيظ','qiraat','قراءات'],
-        hadith:['hadith','حديث'],
-        arabic:['arabic','عربي','نحو','صرف','بلاغة'],
-        languages:['language','لغة','english','french','فرنسي','urdu','turkish'],
-        kids:['kids','child','children','أطفال','طفل'],
-        services:['service','خدمة']
-      };
-      if(rules[category]) return rules[category].some(k=>p.includes(k)) ? 22 : 0;
-      return Object.values(rules).reduce((sum,keys)=>sum + (keys.some(k=>d.includes(k))&&keys.some(k=>p.includes(k))?12:0),0);
+    function globalLanguageMatch(demand,provider){
+      const dl=globalArray(demand.languages?.length?demand.languages:(demand.language?[demand.language]:[])).map(globalCanonicalLanguage).filter(Boolean);
+      const pl=globalArray(provider.languages).map(globalCanonicalLanguage).filter(Boolean);
+      if(!dl.length||!pl.length) return false;
+      return dl.some(a=>pl.includes(a));
     }
-    function globalMatchScore(demand, provider){
-      let score=0;
-      const dRegion=demand.region||demand.country||''; const pRegion=provider.region||provider.country||'';
-      if(regionalRegionMatch(pRegion,dRegion) || regionalRegionMatch(dRegion,pRegion)) score+=28;
-      if(demand.mode && globalIncludes(provider,demand.mode)) score+=12;
-      score+=globalCategoryScore(demand,provider);
-      const dl=globalArray(demand.languages ? demand.languages : (demand.language?[demand.language]:[])); const pl=globalArray(provider.languages);
-      if(dl.length&&pl.length&&dl.some(x=>pl.some(y=>String(y).toLowerCase().includes(String(x).toLowerCase())))) score+=18;
-      const dq=globalDemandText(demand).split(/[^\p{L}\p{N}]+/u).filter(w=>w.length>3).slice(0,40); const pp=globalProviderText(provider);
-      let overlap=0; dq.forEach(w=>{if(pp.includes(w))overlap++;}); score+=Math.min(15,overlap*3);
-      if(['verified','admin_reviewed'].includes(String(provider.verification_status||''))) score+=7;
-      if(provider.years_experience) score+=Math.min(5,Math.max(0,Number(provider.years_experience)/4));
-      return Math.min(100,Math.round(score));
+    function globalModeMatch(demand,provider){
+      const dm=globalCanonicalMode(demand.mode||globalArray(demand.teaching_mode)[0]);
+      if(!dm) return false;
+      const pm=[provider.mode,...globalArray(provider.teaching_mode)].map(globalCanonicalMode).filter(Boolean);
+      return pm.includes(dm);
     }
+    function globalCategoryMatch(demand,provider){
+      const dcat=globalCanonicalCategory(demand.category,globalAllText(demand));
+      const pcat=globalCanonicalCategory(provider.specialty||provider.category,globalAllText(provider));
+      const pt=globalAllText(provider);
+      if(dcat===pcat) return true;
+      if(dcat==='quran' && /tajweed|تجويد|quran|قران|تحفيظ|hifz|qiraat|قراءات/.test(pt)) return true;
+      if(dcat==='kids' && /kid|child|children|طفل|اطفال|أطفال/.test(pt)) return true;
+      if(dcat==='arabic' && /arabic|عربي|نحو|صرف|بلاغة/.test(pt)) return true;
+      if(dcat==='languages' && /language|english|french|urdu|turkish|لغة/.test(pt)) return true;
+      return false;
+    }
+    function globalKeywordOverlap(demand,provider){
+      const stop=new Set(['the','and','for','with','from','this','that','need','needed','online','teacher','tutor','طلب','مطلوب','اريد','أريد','من','في','على','مع','لل','و','عن','الى','إلى']);
+      const dwords=globalAllText(demand).split(/[^\p{L}\p{N}]+/u).filter(w=>w.length>=4&&!stop.has(w));
+      const p=globalAllText(provider);
+      const hits=[]; for(const w of dwords){ if(p.includes(w)&&!hits.includes(w)) hits.push(w); if(hits.length>=5) break; }
+      return hits;
+    }
+    function globalMatchBreakdown(demand,provider){
+      const dRegion=globalCanonicalRegion(demand.region||demand.country||'');
+      const pRegion=globalCanonicalRegion(provider.region||provider.country||'');
+      const reasons=[]; let score=0;
+      if(dRegion && pRegion && (dRegion===pRegion || regionalRegionMatch(pRegion,dRegion) || (dRegion==='GLOBAL' || pRegion==='GLOBAL'))){ score+=20; reasons.push('الموقع متوافق'); }
+      if(globalLanguageMatch(demand,provider)){ score+=18; reasons.push('اللغة متوافقة'); }
+      if(globalModeMatch(demand,provider)){ score+=12; reasons.push('النمط متوافق'); }
+      if(globalCategoryMatch(demand,provider)){ score+=30; reasons.push('التخصص متوافق'); }
+      const overlap=globalKeywordOverlap(demand,provider); if(overlap.length){ score+=Math.min(12,overlap.length*3); reasons.push(`كلمات مشتركة: ${overlap.slice(0,2).join('، ')}`); }
+      if(['verified','admin_reviewed'].includes(String(provider.verification_status||''))){ score+=5; reasons.push('ملف موثق'); }
+      if(provider.years_experience){ score+=Math.min(3,Number(provider.years_experience)/8); }
+      return {score:Math.min(100,Math.round(score)),reasons};
+    }
+    function globalMatchScore(demand,provider){ return globalMatchBreakdown(demand,provider).score; }
     function globalBuildDemands(){
-      // Live radar demands are explicit requests only. Signals and supply records stay out of the demand pool.
       const radar=Array.isArray(radarLeads)?radarLeads.filter(x=>!['stale','rejected'].includes(x.status)&&['student','service'].includes(x.persona)&&x.intentType==='demand'):[];
       const listings=Array.isArray(opportunitiesData)?opportunitiesData.filter(x=>['quran','hadith','arabic','kids','languages','services','demands'].includes(x.category)&&x.type!=='offer'):[];
       return [...radar.map(x=>({...x,_kind:'radar'})),...listings.map(x=>({...x,_kind:'listing',snippet:x.description}))];
@@ -2457,19 +2539,10 @@
     function globalBuildProviders(){
       const specialists=Array.isArray(specialistProfiles)?specialistProfiles.filter(p=>!['student','parent_family'].includes(p.role)&&p.is_active!==false):[];
       const listings=Array.isArray(opportunitiesData)?opportunitiesData.filter(x=>x.type==='offer'&&['quran','hadith','arabic','kids','languages','services'].includes(x.category)):[];
-      // Live radar teacher/supply signals are real provider candidates too. This closes the live radar -> matching loop.
       const radarProviders=Array.isArray(radarLeads)?radarLeads.filter(x=>!['stale','rejected'].includes(x.status)&&x.persona==='teacher'&&x.intentType==='supply').map(x=>({
-        ...x,
-        _providerKind:'radar',
-        display_name:x.title||'Live teacher signal',
-        specialty:x.category||'',
-        bio:x.snippet||'',
-        country:x.countryCode||x.region||'',
-        languages:Array.isArray(x.languages)?x.languages:[],
-        teaching_mode:x.mode?[x.mode]:[],
-        role:'teacher',
-        is_active:true
-      })):[];
+        ...x,_providerKind:'radar',display_name:x.title||'Live teacher signal',specialty:x.category||'',bio:x.snippet||'',country:x.countryCode||x.region||'',
+        languages:Array.isArray(x.languages)?x.languages:(x.language?[x.language]:[]),teaching_mode:x.mode?[x.mode]:[],role:'teacher',is_active:true
+      })) : [];
       return {specialists,listings,radarProviders};
     }
     function renderRegionalSources(){
@@ -2483,6 +2556,23 @@
       Object.entries(groups).forEach(([k,v])=>document.getElementById(`crm-stage-${k}`)?.replaceChildren(document.createTextNode(String(v))));
       renderRegionalSources();
     }
+    function globalDemandLabel(d){
+      return d._kind==='radar' ? 'طلب مكتشف من مصدر حي' : 'طلب منشور داخل وفاق';
+    }
+    function globalProviderLabel(p){
+      if(p._providerKind==='profile') return 'متخصص مسجل في وفاق';
+      if(p._providerKind==='radar') return 'معلم مكتشف عبر الرادار';
+      return 'عرض تعليمي داخل وفاق';
+    }
+    function globalProviderAction(p){
+      if(p._providerKind==='profile') return `openSpecialistDetails('${radarEsc(p.id)}')`;
+      if(p._providerKind==='radar') return `openRadarOutreach('${radarEsc(p.id)}')`;
+      return `document.getElementById('radar-marketplace')?.scrollIntoView({behavior:'smooth',block:'start'})`;
+    }
+    function globalDemandAction(d){
+      if(d._kind==='radar') return `openRadarOutreach('${radarEsc(d.id)}')`;
+      return `openCreateModal('${radarEsc(d.category||'quran')}')`;
+    }
     function renderRegionalMatchingHub(){
       const results=document.getElementById('global-match-results'); if(!results)return;
       const persona=document.getElementById('global-match-persona')?.value||'all';
@@ -2493,21 +2583,63 @@
       const {specialists,listings,radarProviders}=globalBuildProviders();
       const providers=[
         ...specialists.map(x=>({...x,_providerKind:'profile'})),
-        ...listings.map(x=>({...x,_providerKind:'listing',display_name:x.sheikh||x.title,specialty:x.category,bio:x.description,country:x.region,languages:[]})),
+        ...listings.map(x=>({...x,_providerKind:'listing',display_name:x.sheikh||x.title,specialty:x.category,bio:x.description,country:x.region,languages:globalArray(x.languages)})),
         ...radarProviders
       ];
-      const filteredDemands=allDemands.filter(d=>{if(persona!=='all'&&d.persona!==persona)return false;if(region!=='all'&&!regionalRegionMatch(d.region||d.country||'',region))return false;if(mode!=='all'&&d.mode&&!globalIncludes(d,mode))return false;return true;});
-      const eligibleProviders=providers.filter(p=>{if(region!=='all'&&!regionalRegionMatch(p.country||p.region||'',region))return false;if(language!=='all'&&!globalIncludes(p,language))return false;if(mode!=='all'&&!globalIncludes(p,mode))return false;return true;});
-      const pairings=[]; filteredDemands.forEach(d=>eligibleProviders.forEach(p=>{const score=globalMatchScore(d,p);if(score>=40)pairings.push({d,p,score});})); pairings.sort((a,b)=>b.score-a.score);
-      const top=pairings.slice(0,10);
+      const filteredDemands=allDemands.filter(d=>{
+        if(persona!=='all'&&d.persona!==persona)return false;
+        if(region!=='all'&&!regionalRegionMatch(d.region||d.country||'',region))return false;
+        if(mode!=='all'&&d.mode&&!globalCanonicalMode(d.mode).includes(globalCanonicalMode(mode)))return false;
+        if(language!=='all'){
+          const dl=globalArray(d.languages?.length?d.languages:(d.language?[d.language]:[])).map(globalCanonicalLanguage);
+          if(dl.length&&!dl.includes(globalCanonicalLanguage(language))) return false;
+        }
+        return true;
+      });
+      const eligibleProviders=providers.filter(p=>{
+        if(region!=='all'&&!regionalRegionMatch(p.country||p.region||'',region))return false;
+        if(language!=='all'&&!globalLanguageMatch({languages:[language]},p))return false;
+        if(mode!=='all'&&!globalModeMatch({mode},p))return false;
+        return true;
+      });
+      const groups=[]; let pairingCount=0;
+      filteredDemands.forEach(d=>{
+        const ranked=eligibleProviders.map(p=>({p,detail:globalMatchBreakdown(d,p)})).filter(x=>x.detail.score>=40).sort((a,b)=>b.detail.score-a.detail.score).slice(0,3);
+        pairingCount+=ranked.length;
+        if(ranked.length) groups.push({d,matches:ranked});
+      });
+      const top=groups.slice(0,10);
       document.getElementById('global-metric-signals')?.replaceChildren(document.createTextNode(String(filteredDemands.length)));
       document.getElementById('global-metric-specialists')?.replaceChildren(document.createTextNode(String(eligibleProviders.length)));
-      document.getElementById('global-metric-matches')?.replaceChildren(document.createTextNode(String(pairings.length)));
-      const regions=new Set(filteredDemands.map(x=>x.region||x.country).filter(Boolean)); eligibleProviders.forEach(x=>{if(x.country||x.region)regions.add(x.country||x.region);});
+      document.getElementById('global-metric-matches')?.replaceChildren(document.createTextNode(String(pairingCount)));
+      const regions=new Set(); filteredDemands.forEach(x=>{const r=globalCanonicalRegion(x.region||x.country);if(r)regions.add(r);}); eligibleProviders.forEach(x=>{const r=globalCanonicalRegion(x.country||x.region);if(r)regions.add(r);});
       document.getElementById('global-metric-regions')?.replaceChildren(document.createTextNode(String(regions.size)));
-      document.getElementById('global-match-status')?.replaceChildren(document.createTextNode(String(pairings.length)));
-      if(!top.length){results.innerHTML=`<div class="wf-global-empty"><div class="text-emerald-600 text-xl mb-2"><i class="fa-solid fa-diagram-project"></i></div><div class="font-black text-sm text-slate-800 dark:text-white">${radarEsc(t(allDemands.length ? 'No eligible live signals for this filter.' : 'No real matching records yet.'))}</div><p class="text-[10px] text-slate-500 dark:text-slate-400 mt-1 leading-5">${radarEsc(t(allDemands.length?'Adjust region, language or teaching mode.':'Complete a profile or publish a request to unlock matching.'))}</p></div>`;}
-      else {results.innerHTML=top.map(({d,p,score})=>{const dTitle=d.title||d.description||t('Live signal');const pTitle=p.display_name||p.title||t('Real profile');const chips=[d.category,p.specialty,p.country||d.region,p._providerKind==='profile'?t('Real profile'):t('Live radar teacher')].filter(Boolean).slice(0,4);const open=`${d._kind==='radar'?`openRadarOutreach('${radarEsc(d.id)}')`:`openCreateModal('${radarEsc(d.category||'quran')}')`}`;return `<article class="wf-global-result-card"><div class="wf-global-result-top"><span class="wf-global-kind">${radarEsc(d._kind==='radar'?t('Live signal'):t('Real profile'))} ↔ ${radarEsc(p._providerKind==='profile'?t('Real profile'):t('Live radar teacher'))}</span><span class="wf-global-score">${score}%</span></div><h4>${radarEsc(dTitle)}</h4><p>${radarEsc(pTitle)} · ${radarEsc(p.specialty||'')}</p><div class="wf-global-chip-row">${chips.map(c=>`<span class="wf-global-chip">${radarEsc(c)}</span>`).join('')}</div><div class="wf-global-actions"><button type="button" class="bg-emerald-600 text-white" onclick="${open}"><i class="fa-solid fa-comments mr-1"></i>${radarEsc(t('Match'))}</button><button type="button" class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200" onclick="document.getElementById('specialists-hub')?.scrollIntoView({behavior:'smooth'})"><i class="fa-solid fa-user-graduate mr-1"></i>${radarEsc(t('Specialists'))}</button></div></article>`;}).join('');}
+      document.getElementById('global-match-status')?.replaceChildren(document.createTextNode(`${pairingCount} مطابقة`));
+      if(!top.length){
+        results.innerHTML=`<div class="wf-global-empty"><div class="text-emerald-600 text-2xl mb-2"><i class="fa-solid fa-diagram-project"></i></div><div class="font-black text-sm text-slate-800 dark:text-white">${radarEsc(allDemands.length?'لا توجد مطابقة مؤهلة بهذه الفلاتر.':'لا توجد بيانات حقيقية كافية للمطابقة بعد.')}</div><p class="text-[10px] text-slate-500 dark:text-slate-400 mt-1 leading-6">${radarEsc(allDemands.length?'جرّب إزالة أحد الفلاتر أو تشغيل مزامنة حية.':'أكمل ملفًا حقيقيًا أو انشر طلبًا أو شغّل الرادار لجلب سجلات حقيقية.')}</p></div>`;
+      } else {
+        results.innerHTML=top.map(({d,matches})=>{
+          const dTitle=d.title||d.description||t('Live signal');
+          const meta=[globalCanonicalCategory(d.category,globalAllText(d)),d.country||d.region,d.language||globalArray(d.languages)[0],d.mode].filter(Boolean).slice(0,4);
+          return `<article class="wf-global-result-card">
+            <div class="wf-global-result-top">
+              <div><span class="wf-global-kind">${radarEsc(globalDemandLabel(d))}</span><h4>${radarEsc(dTitle)}</h4></div>
+              <button type="button" class="text-[9px] font-black text-emerald-700 dark:text-emerald-300" onclick="${globalDemandAction(d)}"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>فتح الطلب</button>
+            </div>
+            <p>${radarEsc(d.snippet||d.description||'')}</p>
+            <div class="wf-global-chip-row">${meta.map(c=>`<span class="wf-global-chip">${radarEsc(c)}</span>`).join('')}</div>
+            <div class="mt-3 text-[10px] font-black text-slate-700 dark:text-slate-200">أفضل المعلمين والمتخصصين لهذا الطلب</div>
+            <div class="wf-match-provider-grid">${matches.map(({p,detail})=>{
+              const pTitle=p.display_name||p.title||t('Real profile');
+              const pMeta=[globalProviderLabel(p),p.country||p.region,p.specialty].filter(Boolean).slice(0,3).join(' · ');
+              const action=globalProviderAction(p);
+              const reasons=detail.reasons.slice(0,4);
+              const secondary=p._providerKind==='radar'?`<button type="button" class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200" onclick="openRadarOutreach('${radarEsc(p.id)}')">المصدر</button>`:`<button type="button" class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200" onclick="document.getElementById('specialists-hub')?.scrollIntoView({behavior:'smooth',block:'start'})">المتخصصون</button>`;
+              return `<div class="wf-match-provider"><div class="wf-match-provider-head"><div class="wf-match-provider-name">${radarEsc(pTitle)}</div><span class="wf-global-score">${detail.score}%</span></div><div class="wf-match-provider-meta">${radarEsc(pMeta)}</div><div class="wf-match-reasons">${reasons.map(r=>`<span class="wf-match-reason">${radarEsc(r)}</span>`).join('')}</div><div class="wf-match-provider-actions"><button type="button" class="bg-emerald-600 text-white" onclick="${action}">عرض</button>${secondary}</div></div>`;
+            }).join('')}</div>
+          </article>`;
+        }).join('');
+      }
       renderRegionalCRM();
     }
 
