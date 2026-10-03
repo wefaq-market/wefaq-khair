@@ -457,6 +457,31 @@
 @media(max-width:640px){.wf-v18-flow{grid-template-columns:1fr}.wf-v18-cta{width:100%}}
 </style>
 
+<style id="wefaq-v19-growth-ui">
+.wf-v19-journey{position:relative;overflow:hidden;border:1px solid rgba(15,23,42,.08);border-radius:1.75rem;background:linear-gradient(135deg,#ffffff 0%,#f8fafc 55%,#ecfdf5 100%);box-shadow:0 18px 50px rgba(15,23,42,.06)}
+.dark .wf-v19-journey{border-color:rgba(148,163,184,.12);background:linear-gradient(135deg,rgba(15,23,42,.98),rgba(15,23,42,.94),rgba(6,78,59,.28))}
+.wf-v19-journey-grid{display:grid;grid-template-columns:1.18fr .82fr;gap:1rem}
+.wf-v19-panel{border:1px solid rgba(148,163,184,.22);border-radius:1.25rem;background:rgba(255,255,255,.86);backdrop-filter:blur(10px)}
+.dark .wf-v19-panel{border-color:rgba(148,163,184,.14);background:rgba(15,23,42,.70)}
+.wf-v19-step{display:flex;gap:.7rem;align-items:flex-start}
+.wf-v19-step-dot{width:2rem;height:2rem;border-radius:.75rem;display:flex;align-items:center;justify-content:center;flex:none;background:#0f172a;color:#fff;font-size:.68rem;font-weight:900}
+.wf-v19-step.is-active .wf-v19-step-dot{background:#059669;box-shadow:0 8px 20px rgba(5,150,105,.20)}
+.wf-v19-action{min-height:46px;padding:.75rem .95rem;border-radius:.9rem;font-size:.72rem;font-weight:900;display:inline-flex;align-items:center;justify-content:center;gap:.45rem;transition:.16s ease}
+.wf-v19-action:hover{transform:translateY(-1px);filter:brightness(1.02)}
+.wf-v19-primary{background:#059669;color:#fff;box-shadow:0 12px 24px rgba(5,150,105,.18)}
+.wf-v19-soft{background:#ecfdf5;color:#047857;border:1px solid #a7f3d0}
+.dark .wf-v19-soft{background:rgba(6,78,59,.32);color:#a7f3d0;border-color:rgba(167,243,208,.18)}
+.wf-v19-mini{padding:.62rem .8rem;border-radius:.8rem;background:#f8fafc;border:1px solid #e2e8f0;font-size:.68rem;font-weight:800;color:#334155}
+.dark .wf-v19-mini{background:#0f172a;border-color:#334155;color:#e2e8f0}
+.wf-v19-pipeline{display:grid;grid-template-columns:repeat(5,1fr);gap:.55rem}
+.wf-v19-pipeline-item{padding:.7rem .45rem;border-radius:.85rem;border:1px solid rgba(148,163,184,.18);background:rgba(248,250,252,.9);text-align:center}
+.dark .wf-v19-pipeline-item{background:rgba(15,23,42,.80);border-color:rgba(148,163,184,.14)}
+.wf-v19-pipeline-item strong{display:block;font-size:.68rem}.wf-v19-pipeline-item span{display:block;margin-top:.25rem;font-size:1rem;font-weight:950;color:#0f172a}.dark .wf-v19-pipeline-item span{color:#fff}
+.wf-v19-callout{border-radius:1rem;background:linear-gradient(135deg,#0f172a,#064e3b);color:#fff;padding:1rem}
+.wf-v19-modal-option{display:flex;align-items:center;justify-content:space-between;gap:.7rem;padding:.8rem;border:1px solid #e2e8f0;border-radius:1rem;background:#fff;text-align:right;transition:.15s ease}.wf-v19-modal-option:hover{border-color:#34d399;box-shadow:0 8px 24px rgba(15,23,42,.06);transform:translateY(-1px)}.dark .wf-v19-modal-option{background:#0f172a;border-color:#334155}
+@media(max-width:1024px){.wf-v19-journey-grid{grid-template-columns:1fr}.wf-v19-pipeline{grid-template-columns:repeat(3,1fr)}}@media(max-width:640px){.wf-v19-pipeline{grid-template-columns:repeat(2,1fr)}}
+</style>
+
 </head>
 <body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300" style="font-family: Tajawal, Inter, sans-serif;">
 <!-- Header -->
@@ -655,6 +680,35 @@
     </div>
   </div>
 </section>
+
+<!-- v19 — Customer journey, conversion and communication hub -->
+<section class="scroll-mt-20" id="customer-journey">
+  <div class="wf-v19-journey p-5 sm:p-6 lg:p-7">
+    <div class="relative z-10">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-5">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-[10px] font-extrabold text-emerald-700 dark:bg-emerald-950/30 dark:border-emerald-900/50 dark:text-emerald-300"><i class="fa-solid fa-route"></i> رحلة العميل والتواصل</div>
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mt-3">من أول احتياج إلى تواصل فعلي — بدون لفّ ودوران</h2>
+          <p class="text-sm leading-6 text-slate-600 dark:text-slate-300 mt-2 max-w-3xl">وفاق يجمع بين اكتشاف الاحتياج، المطابقة، اختيار قناة التواصل، ثم متابعة حالة التواصل. بيانات الاستقطاب الخارجية تظل مرتبطة بمصادرها العامة، ولا يتم اختراع بيانات اتصال غير معلنة.</p>
+        </div>
+        <div class="flex flex-wrap gap-2"><button type="button" class="wf-v19-action wf-v19-primary" onclick="v19StartJourney()"><i class="fa-solid fa-wand-magic-sparkles"></i> ابدأ رحلة العميل</button><button type="button" class="wf-v19-action wf-v19-soft" onclick="document.getElementById('global-matching')?.scrollIntoView({behavior:'smooth',block:'start'})"><i class="fa-solid fa-diagram-project"></i> افتح المطابقات</button></div>
+      </div>
+      <div class="wf-v19-journey-grid">
+        <div class="wf-v19-panel p-4 sm:p-5"><div class="flex items-center justify-between gap-3 mb-4"><div><div class="text-[10px] font-black text-slate-400">المسار المقترح</div><div class="text-sm font-black text-slate-900 dark:text-white mt-1">كل نقرة لها خطوة تالية واضحة</div></div><span id="v19-journey-state" class="text-[10px] font-black text-emerald-700 dark:text-emerald-300">جاهز للبدء</span></div>
+          <div class="space-y-3">
+            <div class="wf-v19-step is-active" id="v19-step-1"><span class="wf-v19-step-dot">1</span><div><b class="text-sm text-slate-900 dark:text-white">حدد الاحتياج</b><div class="text-[10px] leading-5 text-slate-500 dark:text-slate-400">مجال، لغة، منطقة ونمط تعلم.</div></div></div>
+            <div class="wf-v19-step" id="v19-step-2"><span class="wf-v19-step-dot">2</span><div><b class="text-sm text-slate-900 dark:text-white">شاهد المطابقات</b><div class="text-[10px] leading-5 text-slate-500 dark:text-slate-400">يعرض النظام الأشخاص أو الفرص المرتبطة بالاحتياج.</div></div></div>
+            <div class="wf-v19-step" id="v19-step-3"><span class="wf-v19-step-dot">3</span><div><b class="text-sm text-slate-900 dark:text-white">اختر قناة التواصل</b><div class="text-[10px] leading-5 text-slate-500 dark:text-slate-400">محادثة داخل وفاق، اتصال معلن، أو فتح المصدر العام.</div></div></div>
+            <div class="wf-v19-step" id="v19-step-4"><span class="wf-v19-step-dot">4</span><div><b class="text-sm text-slate-900 dark:text-white">تابع الحالة</b><div class="text-[10px] leading-5 text-slate-500 dark:text-slate-400">جديد → مرشح → تم التواصل → بانتظار الرد → تم الاتفاق.</div></div></div>
+          </div></div>
+        <div class="space-y-3"><div class="wf-v19-callout"><div class="text-[10px] font-black text-emerald-200">تحويل أسرع للزائر</div><div class="text-base font-black mt-1">لا تترك العميل أمام عشرات الكروت.</div><p class="text-[11px] leading-5 text-slate-300 mt-2">ابدأ من الاحتياج ثم اعرض المطابقات المرتبطة به، وبعدها امنحه إجراءً واحدًا واضحًا للتواصل.</p><button type="button" class="wf-v19-action mt-3 bg-white text-slate-900 w-full" onclick="runV18QuickMatch()"><i class="fa-solid fa-bolt"></i> احصل على المطابقات الآن</button></div>
+          <div class="wf-v19-panel p-4"><div class="flex items-center justify-between mb-3"><span class="text-[10px] font-black text-slate-500 dark:text-slate-400">رحلة التفاعل الحالية</span><button type="button" class="text-[10px] font-black text-emerald-700 dark:text-emerald-300" onclick="v19ResetJourney()">إعادة ضبط</button></div><div class="wf-v19-pipeline"><div class="wf-v19-pipeline-item"><strong>جديد</strong><span id="v19-stage-new">0</span></div><div class="wf-v19-pipeline-item"><strong>مرشح</strong><span id="v19-stage-shortlisted">0</span></div><div class="wf-v19-pipeline-item"><strong>تم التواصل</strong><span id="v19-stage-contacted">0</span></div><div class="wf-v19-pipeline-item"><strong>بانتظار الرد</strong><span id="v19-stage-replied">0</span></div><div class="wf-v19-pipeline-item"><strong>تم الاتفاق</strong><span id="v19-stage-converted">0</span></div></div></div></div>
+      </div>
+      <div class="mt-4 wf-v19-panel p-4"><div class="flex flex-col md:flex-row md:items-center justify-between gap-3"><div><div class="text-sm font-black text-slate-900 dark:text-white">طرق التواصل في وفاق</div><div class="text-[10px] text-slate-500 dark:text-slate-400 mt-1">يتم استخدام القناة المتاحة فعليًا فقط لكل ملف.</div></div><div class="flex flex-wrap gap-2"><span class="wf-v19-mini"><i class="fa-solid fa-comments text-emerald-600"></i> محادثة داخل وفاق</span><span class="wf-v19-mini"><i class="fa-brands fa-whatsapp text-emerald-600"></i> واتساب معلن</span><span class="wf-v19-mini"><i class="fa-solid fa-phone text-sky-600"></i> اتصال معلن</span><span class="wf-v19-mini"><i class="fa-solid fa-envelope text-slate-700"></i> بريد</span><span class="wf-v19-mini"><i class="fa-solid fa-arrow-up-right-from-square text-slate-600"></i> المصدر العام</span></div></div></div>
+    </div>
+  </div>
+</section>
+<div class="fixed inset-0 z-[85] hidden bg-slate-950/60 backdrop-blur-sm items-center justify-center p-4" id="v19-contact-choice-modal"><div class="bg-white dark:bg-slate-900 rounded-2xl w-full max-w-xl p-5 sm:p-6 shadow-2xl border border-slate-200 dark:border-slate-800 max-h-[90vh] overflow-y-auto"><div class="flex items-start justify-between gap-4 mb-4"><div><div class="text-[10px] font-black text-emerald-700 dark:text-emerald-300">اختيار قناة التواصل</div><h3 id="v19-contact-title" class="text-lg font-black text-slate-900 dark:text-white mt-1">تواصل مناسب وواضح</h3><p id="v19-contact-subtitle" class="text-xs text-slate-500 dark:text-slate-400 mt-1">سنستخدم فقط القنوات المتاحة لهذا الطرف.</p></div><button type="button" onclick="v19CloseContactChoice()" class="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"><i class="fa-solid fa-xmark text-lg"></i></button></div><div id="v19-contact-options" class="grid gap-2"></div><div class="mt-4 rounded-xl bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/40 p-3 text-[10px] leading-5 text-amber-800 dark:text-amber-200">للطلبات المكتشفة من المصادر الخارجية: وفاق لا يعرض بيانات اتصال خاصة غير معلنة. يتم توجيهك إلى المصدر العام أو إلى قناة اتصال معلنة فقط.</div></div></div>
 
 <!-- v8.0 Specialists Hub -->
 <section class="scroll-mt-20" id="specialists-hub">
@@ -2951,11 +3005,11 @@
               const action=globalProviderAction(p);
               const reasons=detail.reasons.slice(0,4);
               const contactAction = p._providerKind==='profile'
-                ? `contactSpecialist('${radarEsc(p.id)}','Contact')`
+                ? `v19ContactFromMatch('profile','${radarEsc(p.id)}','${radarEsc(pTitle)}','${radarEsc(d.id||'')}')`
                 : p._providerKind==='listing'
-                  ? `requestConnection('${radarEsc(p.id)}')`
-                  : `openRadarOutreach('${radarEsc(p.id)}')`;
-              const contactLabel = p._providerKind==='profile' ? 'تواصل الآن' : p._providerKind==='listing' ? 'اطلب اتصالًا' : 'مراجعة وتواصل';
+                  ? `v19ContactFromMatch('listing','${radarEsc(p.id)}','${radarEsc(pTitle)}','${radarEsc(d.id||'')}')`
+                  : `v19ContactFromMatch('radar','${radarEsc(p.id)}','${radarEsc(pTitle)}','${radarEsc(d.id||'')}')`;
+              const contactLabel = p._providerKind==='profile' ? 'اختر طريقة التواصل' : p._providerKind==='listing' ? 'اطلب اتصالًا' : 'مراجعة وتواصل';
               const secondary=p._providerKind==='radar'?`<button type="button" class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200" onclick="openRadarOutreach('${radarEsc(p.id)}')">المصدر</button>`:`<button type="button" class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200" onclick="${action}">الملف</button>`;
               return `<div class="wf-match-provider"><div class="wf-match-provider-head"><div class="wf-match-provider-name">${radarEsc(pTitle)}</div><span class="wf-global-score">${detail.score}%</span></div><div class="wf-match-provider-meta">${radarEsc(pMeta)}</div><div class="wf-match-reasons">${reasons.map(r=>`<span class="wf-match-reason">${radarEsc(r)}</span>`).join('')}</div><div class="wf-match-provider-actions"><button type="button" class="bg-emerald-600 text-white" onclick="${contactAction}">${contactLabel}</button>${secondary}</div><div class="wf-v18-match-tools"><button type="button" class="wf-v18-match-tool wf-v18-share" onclick="shareMatchSuggestion('${radarEsc(p.id)}','${radarEsc(pTitle)}')"><i class="fa-solid fa-share-nodes"></i> مشاركة</button><button type="button" class="wf-v18-match-tool" onclick="recordEngagement(null,'match_cta',{provider_id:'${radarEsc(p.id)}',provider_kind:'${radarEsc(p._providerKind||'')}'});"><i class="fa-solid fa-chart-line"></i> متابعة</button></div></div>`;
             }).join('')}</div>
@@ -3930,6 +3984,33 @@
       const ok=await copyText(url); showRealtimeNotification(ok?'تم نسخ رابط المطابقة ✓':'تعذر نسخ الرابط'); recordEngagement(null,'match_share',{provider_id:providerId,method:'copy'});
     }
 
+
+
+    // ========== v19 — CUSTOMER JOURNEY + CONTACT ROUTING ==========
+    const V19_JOURNEY_KEY = 'wefaq_v19_customer_journey';
+    let v19SelectedContext = null;
+    function v19ReadJourney(){ try{ const raw=localStorage.getItem(V19_JOURNEY_KEY); const parsed=raw?JSON.parse(raw):{}; return parsed&&typeof parsed==='object'?parsed:{}; }catch(e){ return {}; } }
+    function v19WriteJourney(state){ try{localStorage.setItem(V19_JOURNEY_KEY,JSON.stringify(state||{}));}catch(e){} v19RenderJourney(); }
+    function v19SetJourneyItem(id,patch){ if(!id)return; const state=v19ReadJourney(); const key=String(id); state[key]={...(state[key]||{stage:'new'}),...(patch||{}),updated_at:new Date().toISOString()}; v19WriteJourney(state); }
+    function v19RenderJourney(){ const state=v19ReadJourney(); const counts={new:0,shortlisted:0,contacted:0,replied:0,converted:0}; Object.values(state).forEach(item=>{const st=String(item?.stage||'new');if(counts[st]!==undefined)counts[st]++;}); Object.entries(counts).forEach(([k,v])=>document.getElementById(`v19-stage-${k}`)?.replaceChildren(document.createTextNode(String(v)))); }
+    function v19SetStep(active){ for(let i=1;i<=4;i++){document.getElementById(`v19-step-${i}`)?.classList.toggle('is-active',i<=active);} const labels={1:'جاهز للبدء',2:'تم العثور على المطابقات',3:'اختر قناة التواصل',4:'متابعة التواصل'}; const el=document.getElementById('v19-journey-state');if(el)el.textContent=labels[active]||labels[1]; }
+    function v19StartJourney(){v19SetStep(1);document.getElementById('quick-match-growth')?.scrollIntoView({behavior:'smooth',block:'start'});recordEngagement(null,'customer_journey_start',{version:'v19'});}
+    function v19ResetJourney(){try{localStorage.removeItem(V19_JOURNEY_KEY);}catch(e){}v19RenderJourney();v19SetStep(1);showRealtimeNotification('تم إعادة ضبط مسار التواصل');}
+    function v19FindProvider(kind,id){ if(kind==='profile')return(Array.isArray(specialistProfiles)?specialistProfiles:[]).find(p=>String(p.id)===String(id))||null; if(kind==='listing')return(Array.isArray(opportunitiesData)?opportunitiesData:[]).find(x=>String(x.id)===String(id))||null; if(kind==='radar')return(Array.isArray(radarLeads)?radarLeads:[]).find(x=>String(x.id)===String(id))||null; return null; }
+    function v19OpenContactChoice(kind,id,title,demandId){ const item=v19FindProvider(kind,id);if(!item)return;v19SelectedContext={kind:String(kind||''),id:String(id||''),title:String(title||item.display_name||item.title||''),demandId:String(demandId||'')};const modal=document.getElementById('v19-contact-choice-modal'),box=document.getElementById('v19-contact-options');if(!modal||!box)return;const itemTitle=v19SelectedContext.title||'الطرف المقابل';document.getElementById('v19-contact-title').textContent=`التواصل مع ${itemTitle}`;let html='';
+      if(kind==='profile'){const links=specialistContactLinks(item);if(links.length)html+=`<button type="button" class="wf-v19-modal-option" onclick="v19DoProfileContact('${radarEsc(id)}','${radarEsc(links[0].key)}')"><span><i class="fa-solid fa-comments text-emerald-600 ml-2"></i><b>استخدم قناة المتخصص المعلنة</b><small class="block text-[10px] text-slate-500 mt-1">يتم فتح قناة اتصال متاحة بعد التحقق من الحساب.</small></span><i class="fa-solid fa-arrow-left text-slate-400"></i></button>`;else html+=`<div class="rounded-xl border border-dashed border-slate-300 dark:border-slate-700 p-4 text-center text-xs text-slate-500">لا توجد قناة اتصال معلنة لهذا الملف حاليًا.</div>`;if(currentAuthUser)html+=`<button type="button" class="wf-v19-modal-option" onclick="v19OpenMyWorkspace()"><span><i class="fa-solid fa-inbox text-sky-600 ml-2"></i><b>متابعة المحادثات داخل وفاق</b><small class="block text-[10px] text-slate-500 mt-1">تابع الاتصالات والردود التي تمت داخل المنصة.</small></span><i class="fa-solid fa-arrow-left text-slate-400"></i></button>`;}
+      else if(kind==='listing'){html+=`<button type="button" class="wf-v19-modal-option" onclick="v19DoListingConnection('${radarEsc(id)}')"><span><i class="fa-solid fa-handshake text-emerald-600 ml-2"></i><b>اطلب اتصالًا عبر وفاق</b><small class="block text-[10px] text-slate-500 mt-1">ينشئ طلب اتصال للحساب صاحب المنشور عند توفر مالك للحساب.</small></span><i class="fa-solid fa-arrow-left text-slate-400"></i></button>`;html+=`<button type="button" class="wf-v19-modal-option" onclick="v19OpenListing('${radarEsc(id)}')"><span><i class="fa-solid fa-file-lines text-slate-600 ml-2"></i><b>راجع تفاصيل الطلب</b><small class="block text-[10px] text-slate-500 mt-1">راجع الوصف والبيانات قبل بدء التواصل.</small></span><i class="fa-solid fa-arrow-left text-slate-400"></i></button>`;}
+      else if(kind==='radar'){const safeUrl=item.sourceUrl&&item.sourceUrl!=='#'?String(item.sourceUrl):'';if(item.contactable&&safeUrl)html+=`<a class="wf-v19-modal-option" href="${radarEsc(safeUrl)}" target="_blank" rel="noopener noreferrer" onclick="v19MarkContacted('${radarEsc(id)}','radar')"><span><i class="fa-solid fa-arrow-up-right-from-square text-emerald-600 ml-2"></i><b>فتح المصدر العام</b><small class="block text-[10px] text-slate-500 mt-1">المصدر يعلن مساحة أو قناة عامة للتواصل.</small></span><i class="fa-solid fa-arrow-left text-slate-400"></i></a>`;else if(safeUrl)html+=`<a class="wf-v19-modal-option" href="${radarEsc(safeUrl)}" target="_blank" rel="noopener noreferrer" onclick="v19MarkShortlisted('${radarEsc(id)}','radar')"><span><i class="fa-solid fa-globe text-sky-600 ml-2"></i><b>فتح المصدر ومراجعة الطلب</b><small class="block text-[10px] text-slate-500 mt-1">راجع شروط المصدر قبل أي تواصل.</small></span><i class="fa-solid fa-arrow-left text-slate-400"></i></a>`;html+=`<button type="button" class="wf-v19-modal-option" onclick="openRadarOutreach('${radarEsc(id)}');v19CloseContactChoice();v19MarkShortlisted('${radarEsc(id)}','radar')"><span><i class="fa-solid fa-pen-to-square text-amber-600 ml-2"></i><b>تجهيز مسودة تواصل للمراجعة</b><small class="block text-[10px] text-slate-500 mt-1">لا يتم الإرسال تلقائيًا؛ المسودة تحتاج مراجعة بشرية.</small></span><i class="fa-solid fa-arrow-left text-slate-400"></i></button>`;}
+      box.innerHTML=html;modal.classList.remove('hidden');modal.classList.add('flex');v19SetStep(3);recordEngagement(null,'contact_channel_opened',{provider_id:String(id||''),provider_kind:String(kind||''),demand_id:String(demandId||'')}); }
+    function v19CloseContactChoice(){const modal=document.getElementById('v19-contact-choice-modal');if(modal){modal.classList.add('hidden');modal.classList.remove('flex');}v19SelectedContext=null;}
+    async function v19DoProfileContact(id,key){v19MarkContacted(id,'profile');v19CloseContactChoice();await contactSpecialist(id,key);}
+    async function v19DoListingConnection(id){v19MarkContacted(id,'listing');v19CloseContactChoice();await requestConnection(id);}
+    function v19OpenListing(id){v19CloseContactChoice();if(typeof openCardModal==='function')openCardModal(id);else document.getElementById('marketplace-section')?.scrollIntoView({behavior:'smooth'});}
+    function v19OpenMyWorkspace(){v19CloseContactChoice();document.getElementById('workspace-section')?.scrollIntoView({behavior:'smooth',block:'start'});}
+    function v19MarkShortlisted(id,kind){v19SetJourneyItem(`${kind}:${id}`,{stage:'shortlisted',kind,id});v19SetStep(2);recordEngagement(null,'match_shortlisted',{provider_id:String(id||''),provider_kind:String(kind||'')});}
+    function v19MarkContacted(id,kind){v19SetJourneyItem(`${kind}:${id}`,{stage:'contacted',kind,id});v19SetStep(4);recordEngagement(null,'contact_channel_used',{provider_id:String(id||''),provider_kind:String(kind||'')});}
+    function v19ContactFromMatch(kind,id,title,demandId){v19OpenContactChoice(kind,id,title,demandId);}
+
     // ========== INIT ==========
     // Keep initial cloud loads to one call each to avoid duplicate network work.
     document.addEventListener('DOMContentLoaded', () => {
@@ -3954,6 +4035,7 @@
       updateMetricCounters();
       refreshPerformanceCenter();
       renderAcquisitionRadar();
+      v19RenderJourney();
     });
 
     document.addEventListener('keydown', (event) => {
