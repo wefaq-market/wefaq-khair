@@ -421,6 +421,42 @@
   @media(max-width:1024px){.wf-radar-grid{grid-template-columns:1fr}}
 </style>
 
+
+<style id="wefaq-v18-growth-ui">
+.wf-v18-growth{position:relative;overflow:hidden;border:1px solid rgba(16,185,129,.18);border-radius:1.75rem;background:linear-gradient(135deg,#f0fdf4 0%,#eff6ff 48%,#ffffff 100%);box-shadow:0 18px 50px rgba(15,23,42,.06)}
+.dark .wf-v18-growth{border-color:rgba(52,211,153,.16);background:linear-gradient(135deg,rgba(6,78,59,.22),rgba(30,64,175,.16),rgba(15,23,42,.98))}
+.wf-v18-growth:before,.wf-v18-growth:after{content:"";position:absolute;border-radius:999px;filter:blur(2px);pointer-events:none}
+.wf-v18-growth:before{width:260px;height:260px;inset-inline-start:-110px;top:-140px;background:radial-gradient(circle,rgba(16,185,129,.16),transparent 70%)}
+.wf-v18-growth:after{width:260px;height:260px;inset-inline-end:-120px;bottom:-150px;background:radial-gradient(circle,rgba(59,130,246,.12),transparent 70%)}
+.wf-v18-intake-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:1rem}
+.wf-v18-intake-card{border:1px solid rgba(148,163,184,.22);border-radius:1.25rem;background:rgba(255,255,255,.86);backdrop-filter:blur(10px)}
+.dark .wf-v18-intake-card{border-color:rgba(148,163,184,.15);background:rgba(15,23,42,.72)}
+.wf-v18-option{width:100%;min-height:44px;border:1px solid #e2e8f0;border-radius:.85rem;background:#fff;color:#334155;padding:.65rem .8rem;font-size:.72rem;font-weight:800;text-align:right;outline:none;transition:.16s ease}
+.wf-v18-option:hover,.wf-v18-option:focus{border-color:#34d399;box-shadow:0 0 0 3px rgba(16,185,129,.09)}
+.dark .wf-v18-option{background:#0f172a;border-color:#334155;color:#e2e8f0}
+.wf-v18-step{display:flex;align-items:flex-start;gap:.65rem}
+.wf-v18-step-num{width:2rem;height:2rem;border-radius:.7rem;display:flex;align-items:center;justify-content:center;flex:none;background:#ecfdf5;color:#047857;font-weight:900;border:1px solid #a7f3d0}
+.dark .wf-v18-step-num{background:rgba(6,78,59,.35);color:#6ee7b7;border-color:rgba(110,231,183,.18)}
+.wf-v18-cta{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;border-radius:.9rem;min-height:44px;padding:.7rem 1rem;font-size:.72rem;font-weight:900;cursor:pointer;transition:transform .16s ease,box-shadow .16s ease,filter .16s ease;border:1px solid transparent}
+.wf-v18-cta:hover{transform:translateY(-1px);filter:brightness(1.02)}
+.wf-v18-cta-primary{background:#059669;color:#fff;box-shadow:0 12px 24px rgba(5,150,105,.18)}
+.wf-v18-cta-secondary{background:#0f172a;color:#fff;box-shadow:0 10px 20px rgba(15,23,42,.12)}
+.dark .wf-v18-cta-secondary{background:#111827}
+.wf-v18-cta-soft{background:#fff;color:#334155;border-color:#e2e8f0}
+.dark .wf-v18-cta-soft{background:#0f172a;color:#e2e8f0;border-color:#334155}
+.wf-v18-flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.55rem;margin-top:1rem}
+.wf-v18-flow-card{border:1px solid rgba(148,163,184,.20);border-radius:1rem;background:rgba(255,255,255,.78);padding:.75rem}
+.dark .wf-v18-flow-card{border-color:rgba(148,163,184,.14);background:rgba(15,23,42,.60)}
+.wf-v18-flow-card b{display:block;font-size:.72rem;color:#0f172a}.dark .wf-v18-flow-card b{color:#fff}
+.wf-v18-flow-card span{display:block;margin-top:.25rem;font-size:.58rem;line-height:1.6;color:#64748b}.dark .wf-v18-flow-card span{color:#94a3b8}
+.wf-v18-match-tools{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.6rem}
+.wf-v18-match-tool{display:inline-flex;align-items:center;gap:.3rem;border-radius:.72rem;padding:.38rem .55rem;font-size:.56rem;font-weight:900;border:1px solid #e2e8f0;background:#f8fafc;color:#475569;cursor:pointer}
+.dark .wf-v18-match-tool{background:#0b1220;border-color:#334155;color:#cbd5e1}
+.wf-v18-share{cursor:pointer}
+@media(max-width:900px){.wf-v18-intake-grid{grid-template-columns:1fr}.wf-v18-flow{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.wf-v18-flow{grid-template-columns:1fr}.wf-v18-cta{width:100%}}
+</style>
+
 </head>
 <body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300" style="font-family: Tajawal, Inter, sans-serif;">
 <!-- Header -->
@@ -524,6 +560,102 @@
 </div>
 </div>
 </section>
+
+<!-- v18 — Growth, quick matching and customer conversion -->
+<section class="scroll-mt-20" id="quick-match-growth">
+  <div class="wf-v18-growth p-5 sm:p-6 lg:p-7">
+    <div class="relative z-10">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900/50 text-[10px] font-extrabold text-emerald-700 dark:text-emerald-300">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> مساعد وفاق للعثور على الشخص المناسب
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mt-3">ابدأ من احتياجك — ووفاق توصلك إلى الطريق المناسب</h2>
+          <p class="text-sm leading-6 text-slate-600 dark:text-slate-300 mt-2 max-w-3xl">بدل البحث العشوائي، حدّد ما تحتاجه في ثوانٍ ثم انتقل مباشرة إلى نتائج المطابقة أو أنشئ طلبًا واضحًا يصل إلى المتخصصين المناسبين.</p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button type="button" class="wf-v18-cta wf-v18-cta-primary" onclick="runV18QuickMatch()"><i class="fa-solid fa-diagram-project"></i> ابدأ المطابقة الآن</button>
+          <button type="button" class="wf-v18-cta wf-v18-cta-soft" onclick="openV18Share()"><i class="fa-solid fa-share-nodes"></i> شارك وفاق</button>
+        </div>
+      </div>
+
+      <div class="wf-v18-intake-grid mt-5">
+        <div class="wf-v18-intake-card p-4 sm:p-5">
+          <div class="text-[10px] font-black text-slate-500 dark:text-slate-400 mb-3">أخبرنا بما تحتاجه</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-[10px] font-extrabold text-slate-600 dark:text-slate-300 mb-1">أنا</label>
+              <select id="v18-intent" class="wf-v18-option">
+                <option value="student">طالب / ولي أمر</option>
+                <option value="teacher">معلم / محفظ</option>
+                <option value="service">طالب خدمة تعليمية</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[10px] font-extrabold text-slate-600 dark:text-slate-300 mb-1">المجال</label>
+              <select id="v18-subject" class="wf-v18-option">
+                <option value="quran">القرآن والتجويد</option>
+                <option value="arabic">اللغة العربية</option>
+                <option value="hadith">الحديث</option>
+                <option value="kids">تعليم الأطفال</option>
+                <option value="languages">اللغات</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[10px] font-extrabold text-slate-600 dark:text-slate-300 mb-1">اللغة</label>
+              <select id="v18-language" class="wf-v18-option">
+                <option value="all">أي لغة</option>
+                <option value="Arabic">العربية</option>
+                <option value="English">English</option>
+                <option value="French">Français</option>
+                <option value="Urdu">اردو</option>
+                <option value="Turkish">Türkçe</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[10px] font-extrabold text-slate-600 dark:text-slate-300 mb-1">طريقة التعلم</label>
+              <select id="v18-mode" class="wf-v18-option">
+                <option value="all">أي نمط</option>
+                <option value="online">أونلاين</option>
+                <option value="in_person">حضوري</option>
+                <option value="hybrid">هجين</option>
+              </select>
+            </div>
+          </div>
+          <div class="mt-3">
+            <label class="block text-[10px] font-extrabold text-slate-600 dark:text-slate-300 mb-1">الدولة / المنطقة (اختياري)</label>
+            <input id="v18-region" class="wf-v18-option" maxlength="80" placeholder="السعودية، مصر، المغرب، عالمي..."/>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-2 mt-4">
+            <button type="button" class="wf-v18-cta wf-v18-cta-primary flex-1" onclick="runV18QuickMatch()"><i class="fa-solid fa-magnifying-glass"></i> اعرض لي المطابقات</button>
+            <button type="button" class="wf-v18-cta wf-v18-cta-secondary flex-1" onclick="publishV18Request()"><i class="fa-solid fa-bullhorn"></i> انشر طلبي</button>
+          </div>
+        </div>
+
+        <div class="wf-v18-intake-card p-4 sm:p-5">
+          <div class="text-[10px] font-black text-slate-500 dark:text-slate-400 mb-3">كيف نحول الزائر إلى اتصال فعلي؟</div>
+          <div class="space-y-3">
+            <div class="wf-v18-step"><span class="wf-v18-step-num">1</span><div><b class="text-sm text-slate-900 dark:text-white">حدد الاحتياج</b><div class="text-[10px] text-slate-500 dark:text-slate-400 mt-1">مجال، لغة، منطقة ونمط تعلم.</div></div></div>
+            <div class="wf-v18-step"><span class="wf-v18-step-num">2</span><div><b class="text-sm text-slate-900 dark:text-white">شاهد المطابقات</b><div class="text-[10px] text-slate-500 dark:text-slate-400 mt-1">النتائج مرتبة مع أسباب المطابقة.</div></div></div>
+            <div class="wf-v18-step"><span class="wf-v18-step-num">3</span><div><b class="text-sm text-slate-900 dark:text-white">اختر قناة التواصل</b><div class="text-[10px] text-slate-500 dark:text-slate-400 mt-1">محادثة وفاق أو وسيلة اتصال معلنة حسب الملف.</div></div></div>
+            <div class="wf-v18-step"><span class="wf-v18-step-num">4</span><div><b class="text-sm text-slate-900 dark:text-white">أكمل الاتصال</b><div class="text-[10px] text-slate-500 dark:text-slate-400 mt-1">قبول، تنفيذ، إتمام ثم تقييم عند توفر الصلاحية.</div></div></div>
+          </div>
+          <div class="mt-4 rounded-xl bg-amber-50 dark:bg-amber-950/20 border border-amber-200/70 dark:border-amber-900/40 p-3 text-[10px] leading-5 text-amber-800 dark:text-amber-200">
+            <i class="fa-solid fa-shield-halved mr-1"></i> لا يتم وعد أي طرف بالتوفر أو القبول. المطابقة تساعد في الاكتشاف، والتواصل يتم عبر القنوات المسموح بها فقط.
+          </div>
+        </div>
+      </div>
+
+      <div class="wf-v18-flow">
+        <div class="wf-v18-flow-card"><b>🎓 للطلاب والأسر</b><span>طلب واضح + متخصصون مناسبون + تواصل أسرع.</span></div>
+        <div class="wf-v18-flow-card"><b>📚 للمعلمين</b><span>ملف قابل للاكتشاف + احتياجات حقيقية + فرص تواصل.</span></div>
+        <div class="wf-v18-flow-card"><b>🛰 للرادار</b><span>إشارة حقيقية ثم مراجعة بشرية قبل التواصل.</span></div>
+        <div class="wf-v18-flow-card"><b>💬 للتواصل</b><span>انتقال من الاكتشاف إلى اتصال منظم داخل وفاق.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- v8.0 Specialists Hub -->
 <section class="scroll-mt-20" id="specialists-hub">
 <div class="wf-specialists-shell rounded-3xl p-5 sm:p-6 shadow-sm">
@@ -2818,8 +2950,14 @@
               const pMeta=[globalProviderLabel(p),p.country||p.region,p.specialty].filter(Boolean).slice(0,3).join(' · ');
               const action=globalProviderAction(p);
               const reasons=detail.reasons.slice(0,4);
-              const secondary=p._providerKind==='radar'?`<button type="button" class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200" onclick="openRadarOutreach('${radarEsc(p.id)}')">المصدر</button>`:`<button type="button" class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200" onclick="document.getElementById('specialists-hub')?.scrollIntoView({behavior:'smooth',block:'start'})">المتخصصون</button>`;
-              return `<div class="wf-match-provider"><div class="wf-match-provider-head"><div class="wf-match-provider-name">${radarEsc(pTitle)}</div><span class="wf-global-score">${detail.score}%</span></div><div class="wf-match-provider-meta">${radarEsc(pMeta)}</div><div class="wf-match-reasons">${reasons.map(r=>`<span class="wf-match-reason">${radarEsc(r)}</span>`).join('')}</div><div class="wf-match-provider-actions"><button type="button" class="bg-emerald-600 text-white" onclick="${action}">عرض</button>${secondary}</div></div>`;
+              const contactAction = p._providerKind==='profile'
+                ? `contactSpecialist('${radarEsc(p.id)}','Contact')`
+                : p._providerKind==='listing'
+                  ? `requestConnection('${radarEsc(p.id)}')`
+                  : `openRadarOutreach('${radarEsc(p.id)}')`;
+              const contactLabel = p._providerKind==='profile' ? 'تواصل الآن' : p._providerKind==='listing' ? 'اطلب اتصالًا' : 'مراجعة وتواصل';
+              const secondary=p._providerKind==='radar'?`<button type="button" class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200" onclick="openRadarOutreach('${radarEsc(p.id)}')">المصدر</button>`:`<button type="button" class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200" onclick="${action}">الملف</button>`;
+              return `<div class="wf-match-provider"><div class="wf-match-provider-head"><div class="wf-match-provider-name">${radarEsc(pTitle)}</div><span class="wf-global-score">${detail.score}%</span></div><div class="wf-match-provider-meta">${radarEsc(pMeta)}</div><div class="wf-match-reasons">${reasons.map(r=>`<span class="wf-match-reason">${radarEsc(r)}</span>`).join('')}</div><div class="wf-match-provider-actions"><button type="button" class="bg-emerald-600 text-white" onclick="${contactAction}">${contactLabel}</button>${secondary}</div><div class="wf-v18-match-tools"><button type="button" class="wf-v18-match-tool wf-v18-share" onclick="shareMatchSuggestion('${radarEsc(p.id)}','${radarEsc(pTitle)}')"><i class="fa-solid fa-share-nodes"></i> مشاركة</button><button type="button" class="wf-v18-match-tool" onclick="recordEngagement(null,'match_cta',{provider_id:'${radarEsc(p.id)}',provider_kind:'${radarEsc(p._providerKind||'')}'});"><i class="fa-solid fa-chart-line"></i> متابعة</button></div></div>`;
             }).join('')}</div>
           </article>`;
         }).join('');
@@ -3719,6 +3857,77 @@
     function updateV8HeroStats(){
       const a=document.getElementById('stat-specialists-v8');
       if(a) a.textContent=String(specialistProfiles.length||0);
+    }
+
+
+    // ========== v18 GROWTH + CONVERSION TOOLS ==========
+    function v18SetSelect(id,value){ const el=document.getElementById(id); if(el && value!=null){ const exists=[...el.options].some(o=>String(o.value)===String(value)); if(exists) el.value=String(value); } }
+    function runV18QuickMatch(){
+      const intent=document.getElementById('v18-intent')?.value||'student';
+      const subject=document.getElementById('v18-subject')?.value||'quran';
+      const language=document.getElementById('v18-language')?.value||'all';
+      const mode=document.getElementById('v18-mode')?.value||'all';
+      const regionText=String(document.getElementById('v18-region')?.value||'').trim();
+      v18SetSelect('global-match-persona',intent);
+      v18SetSelect('global-match-language',language);
+      v18SetSelect('global-match-mode',mode);
+      const regionMap={quran:'all',arabic:'all',hadith:'all',kids:'all',languages:'all'};
+      if(regionText){
+        const gm=document.getElementById('global-match-region');
+        if(gm){
+          const normalized=regionText.toLowerCase();
+          let val='all';
+          if(/السعود|ksa|saudi/.test(normalized)) val='KSA';
+          else if(/مصر|egypt|egp/.test(normalized)) val='EGP';
+          else if(/الخليج|gcc|uae|الإمارات|قطر|الكويت/.test(normalized)) val='GCC';
+          else if(/أفريقيا|africa/.test(normalized)) val='AFRICA';
+          else if(/أوروبا|أمريكا|آسيا|europe|america|asia/.test(normalized)) val='FOREIGN';
+          else if(/عالمي|global|world/.test(normalized)) val='GLOBAL';
+          v18SetSelect('global-match-region',val);
+        }
+      } else {
+        v18SetSelect('global-match-region','all');
+      }
+      // Align specialist discovery as a secondary route.
+      const specialistRole=document.getElementById('specialist-role');
+      if(specialistRole){
+        const roleBySubject={quran:'quran_teacher',arabic:'arabic_teacher',hadith:'hadith_specialist',kids:'quran_teacher',languages:'arabic_teacher'};
+        v18SetSelect('specialist-role',roleBySubject[subject]||'all');
+      }
+      if(typeof renderRegionalMatchingHub==='function') renderRegionalMatchingHub();
+      document.getElementById('global-matching')?.scrollIntoView({behavior:'smooth',block:'start'});
+      recordEngagement(null,'quick_match_start',{intent,subject,language,mode,region:regionText});
+    }
+    async function publishV18Request(){
+      const intent=document.getElementById('v18-intent')?.value||'student';
+      const subject=document.getElementById('v18-subject')?.value||'quran';
+      const regionText=String(document.getElementById('v18-region')?.value||'').trim();
+      const subjectLabel={quran:'القرآن والتجويد',arabic:'اللغة العربية',hadith:'الحديث',kids:'تعليم الأطفال',languages:'اللغات'}[subject]||'التعليم';
+      const title=intent==='teacher' ? `معلم / محفظ يبحث عن متعلمين في ${subjectLabel}` : intent==='service' ? `طلب خدمة تعليمية في ${subjectLabel}` : `أحتاج متخصصًا في ${subjectLabel}`;
+      const desc=`أبحث عن ${subjectLabel} مناسب. اللغة: ${document.getElementById('v18-language')?.selectedOptions?.[0]?.text||'أي لغة'}، نمط التعلم: ${document.getElementById('v18-mode')?.selectedOptions?.[0]?.text||'أي نمط'}${regionText?`، المنطقة: ${regionText}`:''}. أرجو ترشيح الأشخاص المناسبين والتواصل عبر القنوات المتاحة.`;
+      try{
+        const user=await requireUser({kind:'create_listing',category:subject});
+        if(!user)return;
+      }catch(e){ return; }
+      await openCreateModal(subject,true);
+      const titleEl=document.getElementById('new-title'); const descEl=document.getElementById('new-description'); const typeEl=document.getElementById('new-type');
+      if(titleEl) titleEl.value=title; if(descEl) descEl.value=desc; if(typeEl) typeEl.value=intent==='teacher'?'offer':'demand';
+      recordEngagement(null,'quick_request_prefill',{intent,subject});
+    }
+    async function openV18Share(){
+      const shareData={title:'منصة وفاق التعليمية',text:'اكتشف المعلمين والطلاب والمطابقات التعليمية عبر منصة وفاق.',url:location.href};
+      try{
+        if(navigator.share){ await navigator.share(shareData); recordEngagement(null,'platform_share',{method:'native_share'}); return; }
+      }catch(e){ if(e?.name==='AbortError') return; }
+      const ok=await copyText(location.href); showRealtimeNotification(ok?'تم نسخ رابط وفاق ✓':'تعذر نسخ الرابط'); recordEngagement(null,'platform_share',{method:'copy'});
+    }
+    async function shareMatchSuggestion(providerId,providerTitle){
+      const url=location.href.split('#')[0]+'#global-matching';
+      const text=`ترشيح عبر منصة وفاق: ${providerTitle}`;
+      try{
+        if(navigator.share){ await navigator.share({title:providerTitle,text,url}); recordEngagement(null,'match_share',{provider_id:providerId,method:'native_share'}); return; }
+      }catch(e){ if(e?.name==='AbortError') return; }
+      const ok=await copyText(url); showRealtimeNotification(ok?'تم نسخ رابط المطابقة ✓':'تعذر نسخ الرابط'); recordEngagement(null,'match_share',{provider_id:providerId,method:'copy'});
     }
 
     // ========== INIT ==========
