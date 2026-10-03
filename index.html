@@ -2321,14 +2321,15 @@
       const region=document.getElementById('radar-market-region')?.value||radarMarketplaceRegion;
       const persona=document.getElementById('radar-market-persona')?.value||radarMarketplacePersona;
       radarMarketplaceCategory=category; radarMarketplaceRegion=region; radarMarketplacePersona=persona;
-      let data=Array.isArray(radarLeads)?radarLeads.slice():[];
+      const uniqueRadar=dedupeRadarLeads(radarLeads);
+      let data=uniqueRadar.slice();
       if(q)data=data.filter(l=>[l.title,l.snippet,l.source,l.category,l.region,l.language,l.mode,...(l.tags||[])].join(' ').toLowerCase().includes(q));
       if(category!=='all')data=data.filter(l=>l.category===category);
       if(region!=='all')data=data.filter(l=>String(l.region||'')===region);
       if(persona!=='all')data=data.filter(l=>l.persona===persona);
       data.sort((a,b)=>{const pa=a.persona==='student'?0:a.persona==='teacher'?1:2;const pb=b.persona==='student'?0:b.persona==='teacher'?1:2;return pa-pb||Number(b.score||0)-Number(a.score||0)||Number(a.hoursAgo||0)-Number(b.hoursAgo||0);});
       document.getElementById('radar-market-live-count')?.replaceChildren(document.createTextNode(String(data.length)));
-      const all=Array.isArray(radarLeads)?radarLeads:[];
+      const all=uniqueRadar;
       const demandCount=all.filter(l=>l.persona==='student').length;
       const teacherCount=all.filter(l=>l.persona==='teacher').length;
       const serviceCount=all.filter(l=>l.persona==='service').length;
@@ -2354,6 +2355,14 @@
       }
     }
 
+    function radarCompactLiveRow(lead){
+      const typeLabel=radarMarketTypeLabel(lead.intentType||lead.type||lead.persona);
+      const safeUrl=lead.sourceUrl&&/^https?:\/\//i.test(lead.sourceUrl)?lead.sourceUrl:'#';
+      const meta=[lead.region,lead.language,lead.mode].filter(Boolean).slice(0,3).join(' · ');
+      const source=lead.source||t('Real external source');
+      const age=radarAgeText(Number(lead.hoursAgo||0));
+      return `<div class=\"rounded-xl bg-white/5 border border-white/10 px-3 py-3 hover:bg-white/[.08] transition\" data-radar-compact-id=\"${radarEsc(lead.id)}\"><div class=\"flex items-center gap-3\"><span class=\"w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-400/10 text-emerald-300 flex items-center justify-center shrink-0\"><i class=\"${radarSourceIcon(lead.sourceType)}\"></i></span><div class=\"min-w-0 flex-1\"><div class=\"flex flex-wrap items-center gap-2\"><span class=\"text-[9px] font-black text-emerald-200\">${radarEsc(typeLabel)}</span><span class=\"text-[9px] text-white/35\">${radarEsc(age)}</span></div><div class=\"text-xs font-black text-white truncate mt-0.5\">${radarEsc(lead.title||t('Untitled live lead'))}</div><div class=\"text-[9px] text-white/40 truncate mt-0.5\">${radarEsc([meta,source].filter(Boolean).join(' · '))}</div></div>${safeUrl!=='#'?`<a href=\"${radarEsc(safeUrl)}\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"shrink-0 rounded-lg bg-white/10 hover:bg-white/15 border border-white/10 text-white text-[9px] font-black px-2.5 py-2\">${radarEsc(t('Open source'))}</a>`:''}</div></div>`;
+    }
     function renderRadarLog(){
       const el=document.getElementById('radar-log'); if(!el)return;
       el.innerHTML=radarLog.length ? radarLog.map(item=>`<div class="wf-radar-log-item"><div class="flex gap-2"><span class="text-emerald-300 mt-0.5"><i class="fa-solid fa-circle-check"></i></span><div><div class="text-white/75">${radarEsc(item.text)}</div><div class="text-white/30 text-[9px] mt-1">${radarEsc(item.time)}</div></div></div></div>`).join('') : `<div class="text-white/40 text-[11px]">${radarEsc(t('No live radar activity yet.'))}</div>`;
@@ -2363,16 +2372,19 @@
       const q=(document.getElementById('radar-search')?.value||'').trim().toLowerCase();
       const freshness=document.getElementById('radar-freshness')?.value||'all';
       const priority=document.getElementById('radar-priority')?.value||'all';
-      let data=radarLeads.filter(l=>radarPersona==='all'||l.persona===radarPersona);
+      const uniqueRadar=dedupeRadarLeads(radarLeads);
+      let data=uniqueRadar.filter(l=>radarPersona==='all'||l.persona===radarPersona);
       if(q) data=data.filter(l=>[l.title,l.snippet,l.source,...(l.tags||[])].join(' ').toLowerCase().includes(q));
       if(freshness!=='all') data=data.filter(l=>Number(l.hoursAgo||0)<=Number(freshness));
       if(priority!=='all') data=data.filter(l=>l.priority===priority);
       data.sort((a,b)=>Number(b.score||0)-Number(a.score||0) || Number(a.hoursAgo||0)-Number(b.hoursAgo||0));
-      grid.innerHTML=data.length?data.map(radarLeadCard).join(''):`<div class="md:col-span-2 rounded-2xl border border-dashed border-white/15 p-10 text-center text-white/45"><i class="fa-solid fa-satellite-dish text-3xl mb-3"></i><div class="text-sm font-bold">${radarEsc(t(radarLiveReady?'No live leads match this filter.':'No live radar data has been connected yet.'))}</div><div class="text-[10px] leading-5 mt-2 max-w-md mx-auto">${radarEsc(t('Only real records returned by authorized connectors are shown here.'))}</div></div>`;
+      grid.className='space-y-2';
+      const visible=data.slice(0,10);
+      grid.innerHTML=visible.length?visible.map(radarCompactLiveRow).join('')+(data.length>visible.length?`<div class="text-center text-[10px] text-white/35 pt-1">${radarEsc(`${data.length-visible.length} ${t('more live records are available in the organized marketplace')}`)}</div>`:''):`<div class="rounded-2xl border border-dashed border-white/15 p-10 text-center text-white/45"><i class="fa-solid fa-satellite-dish text-3xl mb-3"></i><div class="text-sm font-bold">${radarEsc(t(radarLiveReady?'No live leads match this filter.':'No live radar data has been connected yet.'))}</div><div class="text-[10px] leading-5 mt-2 max-w-md mx-auto">${radarEsc(t('Only real records returned by authorized connectors are shown here.'))}</div></div>`;
       document.getElementById('radar-stat-new')?.replaceChildren(document.createTextNode(String(data.length||0)));
-      document.getElementById('radar-stat-teachers')?.replaceChildren(document.createTextNode(String(radarLeads.filter(l=>l.persona==='teacher').length||0)));
-      document.getElementById('radar-stat-students')?.replaceChildren(document.createTextNode(String(radarLeads.filter(l=>l.persona==='student').length||0)));
-      const aiRate=radarLeads.length?Math.round(radarLeads.reduce((a,l)=>a+Number(l.triage_confidence||l.score||0),0)/radarLeads.length):0;
+      document.getElementById('radar-stat-teachers')?.replaceChildren(document.createTextNode(String(uniqueRadar.filter(l=>l.persona==='teacher').length||0)));
+      document.getElementById('radar-stat-students')?.replaceChildren(document.createTextNode(String(uniqueRadar.filter(l=>l.persona==='student').length||0)));
+      const aiRate=uniqueRadar.length?Math.round(uniqueRadar.reduce((a,l)=>a+Number(l.triage_confidence||l.score||0),0)/uniqueRadar.length):0;
       const aiRateEl=document.getElementById('radar-ai-rate'); if(aiRateEl)aiRateEl.textContent=radarLeads.length?`${aiRate}%`:'—';
       const aiBar=document.getElementById('radar-ai-bar'); if(aiBar)aiBar.style.width=`${radarLeads.length?aiRate:0}%`;
       renderRadarLog(); renderRadarSources(); renderRadarMarketplace();
@@ -2394,7 +2406,11 @@
             usedServer=true;
             if(Array.isArray(result.data.leads)){
               radarLeads=result.data.leads.map(x=>({...x,sourceType:x.source_type||x.sourceType||'web',hoursAgo:Number(x.hours_ago??x.hoursAgo??0),region:x.region||x.country_code||'',type:x.type||x.intent_type||'',mode:x.mode||'',amount:x.amount??x.budget??null,currency:x.currency||x.budget_currency||''}));
-              radarLiveReady=true;
+              const rawRadarCount=(data||[]).length;
+        if(rawRadarCount>radarLeads.length){
+          radarLog=[{time:t('Now'),text:`${t('Live sync completed')}: ${rawRadarCount-radarLeads.length} duplicate records hidden.`}];
+        }
+        radarLiveReady=true;
             }
             RADAR_SOURCES.forEach(s=>{ if(result.data.sources?.[s.id]) Object.assign(s,result.data.sources[s.id]); });
             const stats=result.data.stats||{};
@@ -2425,6 +2441,55 @@
     }
     function globalText(value){
       return globalNorm(value).replace(/\s+/g,' ');
+    }
+    function radarDedupeText(value){
+      return globalText(String(value||'')
+        .replace(/<[^>]*>/g,' ')
+        .replace(/&#x27;|&#39;/gi,"'")
+        .replace(/&quot;/gi,'\"')
+        .replace(/&amp;/gi,'&')
+        .replace(/\b(online|freelancer|teacheron|urgent|needed)\b/gi,' ')
+      );
+    }
+    function radarDedupeUrl(value){
+      const raw=String(value||'').trim();
+      if(!raw || raw==='#') return '';
+      try{
+        const u=new URL(raw);
+        u.hash='';
+        [...u.searchParams.keys()].forEach(k=>{if(/^utm_/i.test(k)||/^(fbclid|gclid|msclkid)$/i.test(k))u.searchParams.delete(k);});
+        return u.toString().replace(/\/$/,'').toLowerCase();
+      }catch{
+        return raw.split('#')[0].replace(/\/$/,'').toLowerCase();
+      }
+    }
+    function radarTokenOverlap(a,b){
+      const aa=new Set(radarDedupeText(a).split(/[^\p{L}\p{N}]+/u).filter(x=>x.length>=3));
+      const bb=new Set(radarDedupeText(b).split(/[^\p{L}\p{N}]+/u).filter(x=>x.length>=3));
+      if(!aa.size||!bb.size) return 0;
+      let hit=0; aa.forEach(x=>{if(bb.has(x))hit++;});
+      return hit/Math.min(aa.size,bb.size);
+    }
+    function radarLeadsAreDuplicates(a,b){
+      if(a.id && b.id && String(a.id)===String(b.id)) return true;
+      const au=radarDedupeUrl(a.sourceUrl), bu=radarDedupeUrl(b.sourceUrl);
+      if(au && bu && au===bu) return true;
+      const as=radarDedupeText(a.source), bs=radarDedupeText(b.source);
+      const at=radarDedupeText(a.title), bt=radarDedupeText(b.title);
+      if(!at || !bt || at!==bt || (as && bs && as!==bs)) return false;
+      const ax=radarDedupeText(a.snippet), bx=radarDedupeText(b.snippet);
+      if(!ax || !bx) return true;
+      if(ax===bx || ax.includes(bx) || bx.includes(ax)) return true;
+      return radarTokenOverlap(ax,bx)>=0.72;
+    }
+    function dedupeRadarLeads(records){
+      const out=[];
+      for(const record of (Array.isArray(records)?records:[])){
+        if(!record) continue;
+        if(out.some(existing=>radarLeadsAreDuplicates(existing,record))) continue;
+        out.push(record);
+      }
+      return out;
     }
     function globalAllText(obj){
       return globalText([
@@ -2532,17 +2597,17 @@
     }
     function globalMatchScore(demand,provider){ return globalMatchBreakdown(demand,provider).score; }
     function globalBuildDemands(){
-      const radar=Array.isArray(radarLeads)?radarLeads.filter(x=>!['stale','rejected'].includes(x.status)&&['student','service'].includes(x.persona)&&x.intentType==='demand'):[];
+      const radar=dedupeRadarLeads(Array.isArray(radarLeads)?radarLeads:[]).filter(x=>!['stale','rejected'].includes(x.status)&&['student','service'].includes(x.persona)&&x.intentType==='demand');
       const listings=Array.isArray(opportunitiesData)?opportunitiesData.filter(x=>['quran','hadith','arabic','kids','languages','services','demands'].includes(x.category)&&x.type!=='offer'):[];
       return [...radar.map(x=>({...x,_kind:'radar'})),...listings.map(x=>({...x,_kind:'listing',snippet:x.description}))];
     }
     function globalBuildProviders(){
       const specialists=Array.isArray(specialistProfiles)?specialistProfiles.filter(p=>!['student','parent_family'].includes(p.role)&&p.is_active!==false):[];
       const listings=Array.isArray(opportunitiesData)?opportunitiesData.filter(x=>x.type==='offer'&&['quran','hadith','arabic','kids','languages','services'].includes(x.category)):[];
-      const radarProviders=Array.isArray(radarLeads)?radarLeads.filter(x=>!['stale','rejected'].includes(x.status)&&x.persona==='teacher'&&x.intentType==='supply').map(x=>({
+      const radarProviders=dedupeRadarLeads(Array.isArray(radarLeads)?radarLeads:[]).filter(x=>!['stale','rejected'].includes(x.status)&&x.persona==='teacher'&&x.intentType==='supply').map(x=>({
         ...x,_providerKind:'radar',display_name:x.title||'Live teacher signal',specialty:x.category||'',bio:x.snippet||'',country:x.countryCode||x.region||'',
         languages:Array.isArray(x.languages)?x.languages:(x.language?[x.language]:[]),teaching_mode:x.mode?[x.mode]:[],role:'teacher',is_active:true
-      })) : [];
+      }));
       return {specialists,listings,radarProviders};
     }
     function renderRegionalSources(){
@@ -2666,9 +2731,9 @@
       try{
         const {data,error}=await supabaseClient.rpc('get_public_radar_leads',{p_persona:null,p_region:null,p_category:null,p_mode:null,p_language:null,p_limit:200});
         if(error) throw error;
-        radarLeads=(data||[]).map(x=>({
+        radarLeads=dedupeRadarLeads((data||[]).map(x=>({
           id:x.id, persona:x.persona||'service', category:x.category||'', priority:x.priority||'normal', title:x.title||'', snippet:x.snippet||'', source:x.source||t('Real external source'), sourceType:x.source_type||'web', sourceUrl:x.source_url||'#', region:x.region||x.country_code||'', countryCode:x.country_code||'', city:x.city||'', language:x.language||'', languages:Array.isArray(x.languages)?x.languages:[], type:x.intent_type||'', mode:x.mode||'', amount:x.amount??null, currency:x.currency||'', pricing_mode:x.pricing_mode||'unknown', free_offer_scope:x.free_offer_scope||'', audience:Array.isArray(x.audience)?x.audience:[], hoursAgo:Math.max(0,(Date.now()-new Date(x.discovered_at||Date.now()).getTime())/3600000), score:Number(x.score||0), triage_confidence:Number(x.triage_confidence||x.score||0), tags:Array.isArray(x.tags)?x.tags:[], contactable:x.consent_status==='public_contact'||x.consent_status==='opted_in', consentStatus:x.consent_status||'unknown'
-        }));
+        })));
         radarLiveReady=true;
         if(last) last.textContent=radarLeads.length?`${radarLeads.length} ${t('live records loaded')}`:t('No live records yet');
         radarLog=[{time:t('Now'),text:radarLeads.length?t('Loaded only records stored from real connectors.'):t('No live records are stored yet.')}];
