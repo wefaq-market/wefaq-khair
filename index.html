@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<!-- saved from url=(0055)https://wefaq-market.github.io/wefaq-khair/#communities -->
-<html dir="rtl" lang="ar" class="scroll-smooth"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html dir="rtl" lang="ar" class="scroll-smooth"><head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>منصة وفاق التعليمية | القرآن والعربية والمطابقة الذكية</title>
-<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;rect width='100' height='100' rx='20' fill='%23059669'/&gt;&lt;text x='50' y='72' font-size='60' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'&gt;%D9%88&lt;/text&gt;&lt;/svg&gt;">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23059669'/><text x='50' y='72' font-size='60' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'>و</text></svg>">
 <meta name="description" content="منصة وفاق تربط الطلاب والأسر بمعلمي القرآن واللغة العربية.">
 <meta name="theme-color" content="#059669">
 
-<link rel="preconnect" href="https://fonts.googleapis.com/">
-<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-<link href="./منصة وفاق التعليمية _ القرآن والعربية والمطابقة الذكية_files/css2" rel="stylesheet">
-<link rel="stylesheet" href="./منصة وفاق التعليمية _ القرآن والعربية والمطابقة الذكية_files/all.min.css">
-<script src="./منصة وفاق التعليمية _ القرآن والعربية والمطابقة الذكية_files/saved_resource"></script>
-<script src="./منصة وفاق التعليمية _ القرآن والعربية والمطابقة الذكية_files/supabase-js@2"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" referrerpolicy="no-referrer">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 tailwind.config = {
@@ -61,13 +60,13 @@ tailwind.config = {
   .dark .wf-badge-demand { background:rgba(124,45,18,.22); color:#fdba74; border-color:rgba(251,146,60,.24); }
   .dark .wf-badge-offer  { background:rgba(6,78,59,.28); color:#6ee7b7; border-color:rgba(110,231,183,.22); }
 </style>
-<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:Tajawal, system-ui, sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.bottom-24{bottom:6rem}.bottom-5{bottom:1.25rem}.left-4{left:1rem}.left-5{left:1.25rem}.right-3{right:0.75rem}.top-0{top:0px}.top-3\.5{top:0.875rem}.top-4{top:1rem}.z-10{z-index:10}.z-40{z-index:40}.z-\[150\]{z-index:150}.z-\[200\]{z-index:200}.col-span-full{grid-column:1 / -1}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:0.25rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-5{margin-bottom:1.25rem}.mb-6{margin-bottom:1.5rem}.ml-1{margin-left:0.25rem}.mt-0\.5{margin-top:0.125rem}.mt-1{margin-top:0.25rem}.mt-10{margin-top:2.5rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.mb-2{margin-bottom:0.5rem}.mr-1{margin-right:0.25rem}.line-clamp-2{overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2}.line-clamp-3{overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-10{height:2.5rem}.h-11{height:2.75rem}.h-14{height:3.5rem}.h-16{height:4rem}.h-72{height:18rem}.h-8{height:2rem}.max-h-80{max-height:20rem}.max-h-\[90vh\]{max-height:90vh}.max-h-\[92vh\]{max-height:92vh}.min-h-screen{min-height:100vh}.min-h-\[1rem\]{min-height:1rem}.min-h-\[42px\]{min-height:42px}.min-h-\[46px\]{min-height:46px}.min-h-0{min-height:0px}.w-10{width:2.5rem}.w-11{width:2.75rem}.w-8{width:2rem}.w-full{width:100%}.w-14{width:3.5rem}.min-w-0{min-width:0px}.max-w-2xl{max-width:42rem}.max-w-4xl{max-width:56rem}.max-w-7xl{max-width:80rem}.max-w-lg{max-width:32rem}.max-w-md{max-width:28rem}.max-w-xl{max-width:36rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.flex-grow{flex-grow:1}.resize-none{resize:none}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.place-items-center{place-items:center}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-2\.5{gap:0.625rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-5{gap:1.25rem}.gap-8{gap:2rem}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.scroll-smooth{scroll-behavior:smooth}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.rounded-t-3xl{border-top-left-radius:1.5rem;border-top-right-radius:1.5rem}.border{border-width:1px}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-dashed{border-style:dashed}.border-brand-200{--tw-border-opacity:1;border-color:rgb(167 243 208 / var(--tw-border-opacity, 1))}.border-brand-300{--tw-border-opacity:1;border-color:rgb(110 231 183 / var(--tw-border-opacity, 1))}.border-emerald-200{--tw-border-opacity:1;border-color:rgb(167 243 208 / var(--tw-border-opacity, 1))}.border-emerald-300{--tw-border-opacity:1;border-color:rgb(110 231 183 / var(--tw-border-opacity, 1))}.border-slate-100{--tw-border-opacity:1;border-color:rgb(241 245 249 / var(--tw-border-opacity, 1))}.border-slate-200{--tw-border-opacity:1;border-color:rgb(226 232 240 / var(--tw-border-opacity, 1))}.border-slate-300{--tw-border-opacity:1;border-color:rgb(203 213 225 / var(--tw-border-opacity, 1))}.border-violet-300{--tw-border-opacity:1;border-color:rgb(196 181 253 / var(--tw-border-opacity, 1))}.border-white\/10{border-color:rgb(255 255 255 / 0.1)}.border-amber-200{--tw-border-opacity:1;border-color:rgb(253 230 138 / var(--tw-border-opacity, 1))}.border-violet-200{--tw-border-opacity:1;border-color:rgb(221 214 254 / var(--tw-border-opacity, 1))}.bg-slate-50{--tw-bg-opacity:1;background-color:rgb(248 250 252 / var(--tw-bg-opacity, 1))}.bg-amber-50{--tw-bg-opacity:1;background-color:rgb(255 251 235 / var(--tw-bg-opacity, 1))}.bg-brand-100{--tw-bg-opacity:1;background-color:rgb(209 250 229 / var(--tw-bg-opacity, 1))}.bg-brand-50{--tw-bg-opacity:1;background-color:rgb(236 253 245 / var(--tw-bg-opacity, 1))}.bg-brand-600{--tw-bg-opacity:1;background-color:rgb(5 150 105 / var(--tw-bg-opacity, 1))}.bg-emerald-100{--tw-bg-opacity:1;background-color:rgb(209 250 229 / var(--tw-bg-opacity, 1))}.bg-emerald-50{--tw-bg-opacity:1;background-color:rgb(236 253 245 / var(--tw-bg-opacity, 1))}.bg-emerald-600{--tw-bg-opacity:1;background-color:rgb(5 150 105 / var(--tw-bg-opacity, 1))}.bg-orange-50{--tw-bg-opacity:1;background-color:rgb(255 247 237 / var(--tw-bg-opacity, 1))}.bg-sky-50{--tw-bg-opacity:1;background-color:rgb(240 249 255 / var(--tw-bg-opacity, 1))}.bg-slate-100{--tw-bg-opacity:1;background-color:rgb(241 245 249 / var(--tw-bg-opacity, 1))}.bg-slate-50\/60{background-color:rgb(248 250 252 / 0.6)}.bg-slate-950\/40{background-color:rgb(2 6 23 / 0.4)}.bg-slate-950\/50{background-color:rgb(2 6 23 / 0.5)}.bg-slate-950\/60{background-color:rgb(2 6 23 / 0.6)}.bg-slate-950\/70{background-color:rgb(2 6 23 / 0.7)}.bg-slate-950\/80{background-color:rgb(2 6 23 / 0.8)}.bg-violet-100{--tw-bg-opacity:1;background-color:rgb(237 233 254 / var(--tw-bg-opacity, 1))}.bg-violet-50{--tw-bg-opacity:1;background-color:rgb(245 243 255 / var(--tw-bg-opacity, 1))}.bg-violet-600{--tw-bg-opacity:1;background-color:rgb(124 58 237 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/5{background-color:rgb(255 255 255 / 0.05)}.bg-white\/90{background-color:rgb(255 255 255 / 0.9)}.bg-amber-100{--tw-bg-opacity:1;background-color:rgb(254 243 199 / var(--tw-bg-opacity, 1))}.bg-indigo-100{--tw-bg-opacity:1;background-color:rgb(224 231 255 / var(--tw-bg-opacity, 1))}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42 / var(--tw-bg-opacity, 1))}.bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--tw-gradient-stops))}.bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-stops))}.bg-gradient-to-tr{background-image:linear-gradient(to top right, var(--tw-gradient-stops))}.bg-gradient-to-l{background-image:linear-gradient(to left, var(--tw-gradient-stops))}.from-brand-50\/60{--tw-gradient-from:rgb(236 253 245 / 0.6) var(--tw-gradient-from-position);--tw-gradient-to:rgb(236 253 245 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-brand-700{--tw-gradient-from:#047857 var(--tw-gradient-from-position);--tw-gradient-to:rgb(4 120 87 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-emerald-50\/60{--tw-gradient-from:rgb(236 253 245 / 0.6) var(--tw-gradient-from-position);--tw-gradient-to:rgb(236 253 245 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-emerald-500{--tw-gradient-from:#10b981 var(--tw-gradient-from-position);--tw-gradient-to:rgb(16 185 129 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-violet-50\/60{--tw-gradient-from:rgb(245 243 255 / 0.6) var(--tw-gradient-from-position);--tw-gradient-to:rgb(245 243 255 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-amber-50{--tw-gradient-from:#fffbeb var(--tw-gradient-from-position);--tw-gradient-to:rgb(255 251 235 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-emerald-50{--tw-gradient-from:#ecfdf5 var(--tw-gradient-from-position);--tw-gradient-to:rgb(236 253 245 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-indigo-50{--tw-gradient-from:#eef2ff var(--tw-gradient-from-position);--tw-gradient-to:rgb(238 242 255 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-slate-50{--tw-gradient-from:#f8fafc var(--tw-gradient-from-position);--tw-gradient-to:rgb(248 250 252 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-violet-50{--tw-gradient-from:#f5f3ff var(--tw-gradient-from-position);--tw-gradient-to:rgb(245 243 255 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.via-brand-600{--tw-gradient-to:rgb(5 150 105 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #059669 var(--tw-gradient-via-position), var(--tw-gradient-to)}.to-emerald-400{--tw-gradient-to:#34d399 var(--tw-gradient-to-position)}.to-emerald-600{--tw-gradient-to:#059669 var(--tw-gradient-to-position)}.to-white{--tw-gradient-to:#fff var(--tw-gradient-to-position)}.p-1{padding:0.25rem}.p-3{padding:0.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.p-8{padding:2rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-3\.5{padding-left:0.875rem;padding-right:0.875rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-8{padding-top:2rem;padding-bottom:2rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.pl-3{padding-left:0.75rem}.pr-9{padding-right:2.25rem}.pt-2{padding-top:0.5rem}.text-center{text-align:center}.text-right{text-align:right}.font-mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.text-\[9px\]{font-size:9px}.font-black{font-weight:900}.font-bold{font-weight:700}.leading-5{line-height:1.25rem}.leading-8{line-height:2rem}.leading-tight{line-height:1.25}.leading-6{line-height:1.5rem}.text-slate-800{--tw-text-opacity:1;color:rgb(30 41 59 / var(--tw-text-opacity, 1))}.text-amber-600{--tw-text-opacity:1;color:rgb(217 119 6 / var(--tw-text-opacity, 1))}.text-brand-500{--tw-text-opacity:1;color:rgb(16 185 129 / var(--tw-text-opacity, 1))}.text-brand-600{--tw-text-opacity:1;color:rgb(5 150 105 / var(--tw-text-opacity, 1))}.text-brand-700{--tw-text-opacity:1;color:rgb(4 120 87 / var(--tw-text-opacity, 1))}.text-emerald-300{--tw-text-opacity:1;color:rgb(110 231 183 / var(--tw-text-opacity, 1))}.text-emerald-600{--tw-text-opacity:1;color:rgb(5 150 105 / var(--tw-text-opacity, 1))}.text-emerald-700{--tw-text-opacity:1;color:rgb(4 120 87 / var(--tw-text-opacity, 1))}.text-emerald-800{--tw-text-opacity:1;color:rgb(6 95 70 / var(--tw-text-opacity, 1))}.text-orange-600{--tw-text-opacity:1;color:rgb(234 88 12 / var(--tw-text-opacity, 1))}.text-red-600{--tw-text-opacity:1;color:rgb(220 38 38 / var(--tw-text-opacity, 1))}.text-sky-600{--tw-text-opacity:1;color:rgb(2 132 199 / var(--tw-text-opacity, 1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.text-slate-900{--tw-text-opacity:1;color:rgb(15 23 42 / var(--tw-text-opacity, 1))}.text-slate-950{--tw-text-opacity:1;color:rgb(2 6 23 / var(--tw-text-opacity, 1))}.text-violet-600{--tw-text-opacity:1;color:rgb(124 58 237 / var(--tw-text-opacity, 1))}.text-violet-700{--tw-text-opacity:1;color:rgb(109 40 217 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-white\/40{color:rgb(255 255 255 / 0.4)}.text-white\/50{color:rgb(255 255 255 / 0.5)}.text-white\/75{color:rgb(255 255 255 / 0.75)}.text-amber-700{--tw-text-opacity:1;color:rgb(180 83 9 / var(--tw-text-opacity, 1))}.text-emerald-500{--tw-text-opacity:1;color:rgb(16 185 129 / var(--tw-text-opacity, 1))}.text-indigo-600{--tw-text-opacity:1;color:rgb(79 70 229 / var(--tw-text-opacity, 1))}.text-indigo-700{--tw-text-opacity:1;color:rgb(67 56 202 / var(--tw-text-opacity, 1))}.text-orange-300{--tw-text-opacity:1;color:rgb(253 186 116 / var(--tw-text-opacity, 1))}.text-sky-500{--tw-text-opacity:1;color:rgb(14 165 233 / var(--tw-text-opacity, 1))}.shadow{--tw-shadow:0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.outline-none{outline:2px solid transparent;outline-offset:2px}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.placeholder\:text-white\/35::placeholder{color:rgb(255 255 255 / 0.35)}.hover\:-translate-y-0\.5:hover{--tw-translate-y:-0.125rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:border-brand-400:hover{--tw-border-opacity:1;border-color:rgb(52 211 153 / var(--tw-border-opacity, 1))}.hover\:border-emerald-400:hover{--tw-border-opacity:1;border-color:rgb(52 211 153 / var(--tw-border-opacity, 1))}.hover\:border-violet-400:hover{--tw-border-opacity:1;border-color:rgb(167 139 250 / var(--tw-border-opacity, 1))}.hover\:bg-brand-100:hover{--tw-bg-opacity:1;background-color:rgb(209 250 229 / var(--tw-bg-opacity, 1))}.hover\:bg-brand-50:hover{--tw-bg-opacity:1;background-color:rgb(236 253 245 / var(--tw-bg-opacity, 1))}.hover\:bg-brand-700:hover{--tw-bg-opacity:1;background-color:rgb(4 120 87 / var(--tw-bg-opacity, 1))}.hover\:bg-emerald-700:hover{--tw-bg-opacity:1;background-color:rgb(4 120 87 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-200:hover{--tw-bg-opacity:1;background-color:rgb(226 232 240 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-50:hover{--tw-bg-opacity:1;background-color:rgb(248 250 252 / var(--tw-bg-opacity, 1))}.hover\:bg-violet-700:hover{--tw-bg-opacity:1;background-color:rgb(109 40 217 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-800:hover{--tw-bg-opacity:1;background-color:rgb(30 41 59 / var(--tw-bg-opacity, 1))}.hover\:text-brand-700:hover{--tw-text-opacity:1;color:rgb(4 120 87 / var(--tw-text-opacity, 1))}.hover\:text-emerald-700:hover{--tw-text-opacity:1;color:rgb(4 120 87 / var(--tw-text-opacity, 1))}.hover\:text-slate-700:hover{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.hover\:text-violet-700:hover{--tw-text-opacity:1;color:rgb(109 40 217 / var(--tw-text-opacity, 1))}.hover\:underline:hover{-webkit-text-decoration-line:underline;text-decoration-line:underline}.hover\:shadow-lg:hover{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.focus\:border-brand-500:focus{--tw-border-opacity:1;border-color:rgb(16 185 129 / var(--tw-border-opacity, 1))}.focus\:border-emerald-400:focus{--tw-border-opacity:1;border-color:rgb(52 211 153 / var(--tw-border-opacity, 1))}.group:hover .group-hover\:bg-brand-100{--tw-bg-opacity:1;background-color:rgb(209 250 229 / var(--tw-bg-opacity, 1))}.group:hover .group-hover\:bg-emerald-100{--tw-bg-opacity:1;background-color:rgb(209 250 229 / var(--tw-bg-opacity, 1))}.group:hover .group-hover\:bg-violet-100{--tw-bg-opacity:1;background-color:rgb(237 233 254 / var(--tw-bg-opacity, 1))}.group:hover .group-hover\:bg-brand-600{--tw-bg-opacity:1;background-color:rgb(5 150 105 / var(--tw-bg-opacity, 1))}.group:hover .group-hover\:text-brand-600{--tw-text-opacity:1;color:rgb(5 150 105 / var(--tw-text-opacity, 1))}.group:hover .group-hover\:text-emerald-600{--tw-text-opacity:1;color:rgb(5 150 105 / var(--tw-text-opacity, 1))}.group:hover .group-hover\:text-violet-600{--tw-text-opacity:1;color:rgb(124 58 237 / var(--tw-text-opacity, 1))}@media (min-width: 640px){.sm\:inline-flex{display:inline-flex}.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.sm\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.sm\:grid-cols-\[1fr_180px_auto\]{grid-template-columns:1fr 180px auto}.sm\:grid-cols-\[1fr_auto\]{grid-template-columns:1fr auto}.sm\:grid-cols-\[1fr_auto_auto_auto_auto\]{grid-template-columns:1fr auto auto auto auto}.sm\:flex-row{flex-direction:row}.sm\:items-end{align-items:flex-end}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:py-16{padding-top:4rem;padding-bottom:4rem}.sm\:text-3xl{font-size:1.875rem;line-height:2.25rem}.sm\:text-4xl{font-size:2.25rem;line-height:2.5rem}.sm\:text-base{font-size:1rem;line-height:1.5rem}}@media (min-width: 768px){.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}}@media (min-width: 1024px){.lg\:block{display:block}.lg\:flex{display:flex}.lg\:hidden{display:none}.lg\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.lg\:grid-cols-\[1\.15fr_\.85fr\]{grid-template-columns:1.15fr .85fr}.lg\:px-8{padding-left:2rem;padding-right:2rem}.lg\:py-20{padding-top:5rem;padding-bottom:5rem}.lg\:text-5xl{font-size:3rem;line-height:1}}</style></head>
+</head>
 
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
 
 <header class="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/90 backdrop-blur-md">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
-    <a href="https://wefaq-market.github.io/wefaq-khair/#" class="flex items-center gap-2.5 shrink-0">
+    <a href="#" class="flex items-center gap-2.5 shrink-0">
       <span class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-700 via-brand-600 to-emerald-400 grid place-items-center text-white font-black shadow-md">و</span>
       <span class="leading-tight">
         <span class="block text-base font-black text-slate-900">منصة وفاق</span>
@@ -75,18 +74,18 @@ tailwind.config = {
       </span>
     </a>
     <nav class="hidden lg:flex items-center gap-1 text-xs font-bold text-slate-600">
-      <a href="https://wefaq-market.github.io/wefaq-khair/#radar" class="px-3 py-2 rounded-lg hover:bg-brand-50 hover:text-brand-700">الرادار الحي</a>
-      <a href="https://wefaq-market.github.io/wefaq-khair/#specialists" class="px-3 py-2 rounded-lg hover:bg-brand-50 hover:text-brand-700">المتخصصون</a>
-      <a href="https://wefaq-market.github.io/wefaq-khair/#listings" class="px-3 py-2 rounded-lg hover:bg-brand-50 hover:text-brand-700">الطلبات</a>
-      <a href="https://wefaq-market.github.io/wefaq-khair/#communities" class="px-3 py-2 rounded-lg hover:bg-brand-50 hover:text-brand-700">المجتمعات</a>
-      <a href="https://wefaq-market.github.io/wefaq-khair/#workspace" class="px-3 py-2 rounded-lg hover:bg-brand-50 hover:text-brand-700">مساحتي</a>
+      <a href="#radar" class="px-3 py-2 rounded-lg hover:bg-brand-50 hover:text-brand-700">الرادار الحي</a>
+      <a href="#specialists" class="px-3 py-2 rounded-lg hover:bg-brand-50 hover:text-brand-700">المتخصصون</a>
+      <a href="#listings" class="px-3 py-2 rounded-lg hover:bg-brand-50 hover:text-brand-700">الطلبات</a>
+      <a href="#communities" class="px-3 py-2 rounded-lg hover:bg-brand-50 hover:text-brand-700">المجتمعات</a>
+      <a href="#workspace" class="px-3 py-2 rounded-lg hover:bg-brand-50 hover:text-brand-700">مساحتي</a>
     </nav>
     <div class="flex items-center gap-2">
       <button id="theme-toggle" class="w-10 h-10 rounded-xl border border-slate-200 grid place-items-center hover:bg-slate-50" title="الوضع الليلي">
         <i class="fa-solid fa-moon" id="theme-icon"></i>
       </button>
       <button id="auth-btn" class="hidden sm:inline-flex items-center gap-1.5 rounded-xl border border-slate-200 px-3 py-2 text-xs font-bold hover:bg-slate-50">
-        <i class="fa-solid fa-user"></i><span id="auth-btn-label">faragmibrahimm</span>
+        <i class="fa-solid fa-user"></i><span id="auth-btn-label">دخول</span>
       </button>
       <button onclick="openCreateModal()" class="inline-flex items-center gap-1.5 rounded-xl bg-brand-600 hover:bg-brand-700 px-3.5 py-2.5 text-xs font-black text-white shadow">
         <i class="fa-solid fa-plus"></i><span>نشر</span>
@@ -98,11 +97,11 @@ tailwind.config = {
   </div>
   <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-100 bg-white">
     <nav class="px-4 py-3 space-y-1 text-sm font-bold">
-      <a href="https://wefaq-market.github.io/wefaq-khair/#radar" class="block px-3 py-2.5 rounded-xl hover:bg-brand-50">الرادار الحي</a>
-      <a href="https://wefaq-market.github.io/wefaq-khair/#specialists" class="block px-3 py-2.5 rounded-xl hover:bg-brand-50">المتخصصون</a>
-      <a href="https://wefaq-market.github.io/wefaq-khair/#listings" class="block px-3 py-2.5 rounded-xl hover:bg-brand-50">الطلبات والعروض</a>
-      <a href="https://wefaq-market.github.io/wefaq-khair/#communities" class="block px-3 py-2.5 rounded-xl hover:bg-brand-50">المجتمعات</a>
-      <a href="https://wefaq-market.github.io/wefaq-khair/#workspace" class="block px-3 py-2.5 rounded-xl hover:bg-brand-50">مساحتي</a>
+      <a href="#radar" class="block px-3 py-2.5 rounded-xl hover:bg-brand-50">الرادار الحي</a>
+      <a href="#specialists" class="block px-3 py-2.5 rounded-xl hover:bg-brand-50">المتخصصون</a>
+      <a href="#listings" class="block px-3 py-2.5 rounded-xl hover:bg-brand-50">الطلبات والعروض</a>
+      <a href="#communities" class="block px-3 py-2.5 rounded-xl hover:bg-brand-50">المجتمعات</a>
+      <a href="#workspace" class="block px-3 py-2.5 rounded-xl hover:bg-brand-50">مساحتي</a>
     </nav>
   </div>
 </header>
@@ -147,9 +146,13 @@ tailwind.config = {
       <div class="hidden lg:block rounded-2xl border border-white/10 bg-slate-950/50 p-5">
         <div class="flex items-center justify-between text-xs">
           <span class="font-black text-emerald-300"><span class="wf-radar-pulse inline-block"></span> الرادار نشط</span>
-          <span class="text-white/40" id="radar-timestamp">٠١:٠١ ص</span>
+          <span class="text-white/40" id="radar-timestamp">—</span>
         </div>
-        <div class="mt-4 space-y-3" id="hero-radar-preview"><div class="rounded-xl bg-white/5 border border-white/10 p-3"><div class="flex items-center justify-between mb-1"><div class="text-[10px] font-black text-emerald-300">إعلانات الدورات والدروس</div><span class="text-[9px] font-black text-orange-300">طلب</span></div><div class="text-xs font-bold text-white line-clamp-2">قيام الليل.. تلك اللحظة التي ينفرد فيها القلب بربه، حينما تسكن الأصوات ويهدأ الكون، ويصبح السجود حدي...</div></div><div class="rounded-xl bg-white/5 border border-white/10 p-3"><div class="flex items-center justify-between mb-1"><div class="text-[10px] font-black text-emerald-300">إعلانات الدورات والدروس</div></div><div class="text-xs font-bold text-white line-clamp-2">✨ بشرى سارّة…بابٌ جديد للعلم والوعي يُفتح لكم!يسر «مركز حصين» أن يعلن لكم عن بدء التسجيل في دورة «ال...</div></div><div class="rounded-xl bg-white/5 border border-white/10 p-3"><div class="flex items-center justify-between mb-1"><div class="text-[10px] font-black text-emerald-300">إعلانات الدورات والدروس</div></div><div class="text-xs font-bold text-white line-clamp-2">📚 خطوةٌ منهجية في علم الحديث، تبدأ من المتن وتمتد بالقراءة والسماع والمتابعة.تعلن جمعية الدعوة بالب...</div></div></div>
+        <div class="mt-4 space-y-3" id="hero-radar-preview">
+          <div class="h-14 rounded-xl bg-white/5 wf-skeleton"></div>
+          <div class="h-14 rounded-xl bg-white/5 wf-skeleton"></div>
+          <div class="h-14 rounded-xl bg-white/5 wf-skeleton"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -161,7 +164,7 @@ tailwind.config = {
       <span class="text-xs font-black text-brand-700"><i class="fa-solid fa-satellite-dish"></i> رادار وفاق الحي</span>
       <h2 class="mt-2 text-2xl sm:text-3xl font-black text-slate-900">اكتشافات حقيقية من المصادر العامة</h2>
       <p class="mt-1 text-sm text-slate-500">تيليجرام · خمسات · Freelancer · TeacherOn · الويب المفتوح. تُحدّث تلقائياً كل 20 دقيقة.</p>
-      <p class="mt-1 text-[10px] text-slate-400" id="radar-last-sync">آخر مزامنة: الآن</p>
+      <p class="mt-1 text-[10px] text-slate-400" id="radar-last-sync">آخر مزامنة: —</p>
     </div>
     <div class="flex gap-2">
       <button onclick="syncRadar(true)" id="radar-sync-btn" class="inline-flex items-center gap-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white px-4 py-2.5 text-xs font-black shadow"><i class="fa-solid fa-rotate"></i> مزامنة الآن</button>
@@ -169,10 +172,10 @@ tailwind.config = {
   </div>
 
   <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
-    <div class="rounded-2xl border border-slate-200 bg-white p-3"><div class="flex items-center justify-between"><span class="text-[10px] font-black text-slate-500">إجمالي الإشارات</span><span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 grid place-items-center"><i class="fa-solid fa-layer-group text-xs"></i></span></div><div class="mt-2 text-2xl font-black" id="radar-stat-total">118</div></div>
-    <div class="rounded-2xl border border-slate-200 bg-white p-3"><div class="flex items-center justify-between"><span class="text-[10px] font-black text-slate-500">تيليجرام</span><span class="w-8 h-8 rounded-lg bg-sky-50 text-sky-600 grid place-items-center"><i class="fa-brands fa-telegram text-xs"></i></span></div><div class="mt-2 text-2xl font-black" id="radar-stat-telegram">20</div></div>
+    <div class="rounded-2xl border border-slate-200 bg-white p-3"><div class="flex items-center justify-between"><span class="text-[10px] font-black text-slate-500">إجمالي الإشارات</span><span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 grid place-items-center"><i class="fa-solid fa-layer-group text-xs"></i></span></div><div class="mt-2 text-2xl font-black" id="radar-stat-total">0</div></div>
+    <div class="rounded-2xl border border-slate-200 bg-white p-3"><div class="flex items-center justify-between"><span class="text-[10px] font-black text-slate-500">تيليجرام</span><span class="w-8 h-8 rounded-lg bg-sky-50 text-sky-600 grid place-items-center"><i class="fa-brands fa-telegram text-xs"></i></span></div><div class="mt-2 text-2xl font-black" id="radar-stat-telegram">0</div></div>
     <div class="rounded-2xl border border-slate-200 bg-white p-3"><div class="flex items-center justify-between"><span class="text-[10px] font-black text-slate-500">خمسات</span><span class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 grid place-items-center"><i class="fa-solid fa-briefcase text-xs"></i></span></div><div class="mt-2 text-2xl font-black" id="radar-stat-khamsat">0</div></div>
-    <div class="rounded-2xl border border-slate-200 bg-white p-3"><div class="flex items-center justify-between"><span class="text-[10px] font-black text-slate-500">طلبات (لا عروض)</span><span class="w-8 h-8 rounded-lg bg-orange-50 text-orange-600 grid place-items-center"><i class="fa-solid fa-user-graduate text-xs"></i></span></div><div class="mt-2 text-2xl font-black" id="radar-stat-demand">50</div></div>
+    <div class="rounded-2xl border border-slate-200 bg-white p-3"><div class="flex items-center justify-between"><span class="text-[10px] font-black text-slate-500">طلبات (لا عروض)</span><span class="w-8 h-8 rounded-lg bg-orange-50 text-orange-600 grid place-items-center"><i class="fa-solid fa-user-graduate text-xs"></i></span></div><div class="mt-2 text-2xl font-black" id="radar-stat-demand">0</div></div>
   </div>
 
   <div class="rounded-2xl border border-slate-200 bg-white p-3 mb-5">
@@ -208,338 +211,12 @@ tailwind.config = {
   </div>
 
   <div id="radar-grid" class="space-y-6">
-      <section class="rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm">
-        <header class="flex items-center justify-between gap-3 px-5 py-4 bg-gradient-to-l from-amber-50 to-white border-b border-slate-100">
-          <div class="flex items-center gap-3 min-w-0">
-            <span class="w-11 h-11 rounded-2xl bg-amber-100 text-amber-600 grid place-items-center text-lg shrink-0">
-              <i class="fa-solid fa-briefcase"></i>
-            </span>
-            <div class="min-w-0">
-              <h3 class="font-black text-slate-900 text-base truncate">خمسات</h3>
-              <p class="text-[11px] text-slate-500 truncate">خدمات تعليمية عربية</p>
-            </div>
-          </div>
-          <span class="text-[11px] font-black px-3 py-1 rounded-full bg-amber-100 text-amber-700 shrink-0">1 إشارة</span>
-        </header>
-        <div class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-4 flex flex-col">
-    <div class="flex items-start justify-between gap-2 mb-2 flex-wrap">
-      <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full bg-slate-100 text-slate-700"><i class="fa-solid fa-globe text-emerald-500"></i> خمسات</span>
-      <div class="flex items-center gap-1.5 flex-wrap"><span class="text-[10px] text-slate-400">قبل 12 ي</span></div>
+    <div class="rounded-2xl border border-dashed border-slate-300 p-8 text-center text-slate-400 text-sm">
+      <i class="fa-solid fa-satellite-dish text-3xl mb-3 text-brand-500"></i>
+      <div class="font-black text-slate-700">جارٍ المزامنة الأولى...</div>
+      <div class="text-xs mt-1">قد تستغرق 5-15 ثانية</div>
     </div>
-    <h3 class="font-black text-sm text-slate-900 leading-6 line-clamp-2">محفظة قرآن كريم\ التعليم عبر السكايب - .Smart I - مجتمع خمسات</h3>
-    <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">عملت متطوعة في تحفيظ القران باحد مساجد مدينة نصر لمدة تزيد عن خمس سنوات . اعمل منذ تخرجي معلمة لغة عربية لغير الناطقين بها عن طريق برنامج الزووم سأكون في اجازة من تاريخ ١٠ يناير حتى نهاية مارس ارجو التواصل لرؤية المواعيد المناسبة .</p>
-    <div class="mt-3 flex flex-wrap gap-1.5">
-      <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-50 text-brand-700">قرآن</span>
-      <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700">أولوية 65%</span>
-      
-    </div>
-    <div class="mt-4 flex gap-2">
-      <a href="https://khamsat.com/community/requests/341942-%D9%85%D8%AD%D9%81%D8%B8%D8%A9-%D9%82%D8%B1%D8%A2%D9%86-%D9%83%D8%B1%D9%8A%D9%85-%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%B9%D8%A8%D8%B1-%D8%A7%D9%84%D8%B3%D9%83%D8%A7%D9%8A%D8%A8" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2"><i class="fa-solid fa-arrow-up-right-from-square"></i> فتح</a>
-      <button onclick="shareRadarLead('sb_1eca69e1-a1f0-4358-88bb-21dfda679de8')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="مشاركة"><i class="fa-solid fa-share-nodes"></i></button>
-      <button onclick="saveLeadToWorkspace('sb_1eca69e1-a1f0-4358-88bb-21dfda679de8')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="حفظ"><i class="fa-regular fa-bookmark"></i></button>
-    </div>
-  </article>
-          
-        </div>
-      </section>
-    
-      <section class="rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm">
-        <header class="flex items-center justify-between gap-3 px-5 py-4 bg-gradient-to-l from-indigo-50 to-white border-b border-slate-100">
-          <div class="flex items-center gap-3 min-w-0">
-            <span class="w-11 h-11 rounded-2xl bg-indigo-100 text-indigo-600 grid place-items-center text-lg shrink-0">
-              <i class="fa-solid fa-laptop-code"></i>
-            </span>
-            <div class="min-w-0">
-              <h3 class="font-black text-slate-900 text-base truncate">Freelancer</h3>
-              <p class="text-[11px] text-slate-500 truncate">مشاريع ووظائف تعليمية عالمية</p>
-            </div>
-          </div>
-          <span class="text-[11px] font-black px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 shrink-0">16 إشارة</span>
-        </header>
-        <div class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-4 flex flex-col">
-    <div class="flex items-start justify-between gap-2 mb-2 flex-wrap">
-      <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full bg-slate-100 text-slate-700"><i class="fa-solid fa-globe text-emerald-500"></i> Freelancer</span>
-      <div class="flex items-center gap-1.5 flex-wrap"><span class="text-[9px] font-black px-2 py-0.5 rounded-full wf-badge-demand"><i class="fa-solid fa-user-graduate"></i> طلب</span><span class="text-[10px] text-slate-400">قبل 1 ي</span></div>
-    </div>
-    <h3 class="font-black text-sm text-slate-900 leading-6 line-clamp-2">Need Quran Expert for Tutoring | Freelancer</h3>
-    <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">I am mahmoud from Egypt 22 years old. i am very interested to work within your academy for teaching Quran recitation. i have experience in teaching Quran online. i am hafiz all Quran and can explain tajweed rules in a simple way for beginners and also for advanced. i communicate with my students in English. i have experience 9 months in teaching Quran recitation online. also i worked in memorization. i depend on making the student memorize with me inside class. i worked private and for 5 months in andalus academy and 4 months private. and hope i can join your academy in shaa Allah. jazzakum Allahu khaira. ... assalamualaikum I&amp;#x27;m an Arabic teacher with 8 years of experience We teach pure tajweed like hifz, nazera, qirat learning, etc..</p>
-    <div class="mt-3 flex flex-wrap gap-1.5">
-      <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-50 text-brand-700">قرآن</span>
-      <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700">أولوية 83%</span>
-      
-    </div>
-    <div class="mt-4 flex gap-2">
-      <a href="https://www.freelancer.com/projects/teaching-lecturing/need-quran-expert-for-tutoring" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2"><i class="fa-solid fa-arrow-up-right-from-square"></i> فتح</a>
-      <button onclick="shareRadarLead('sb_7fc05282-4a7c-462d-9337-702c999d5463')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="مشاركة"><i class="fa-solid fa-share-nodes"></i></button>
-      <button onclick="saveLeadToWorkspace('sb_7fc05282-4a7c-462d-9337-702c999d5463')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="حفظ"><i class="fa-regular fa-bookmark"></i></button>
-    </div>
-  </article><article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-4 flex flex-col">
-    <div class="flex items-start justify-between gap-2 mb-2 flex-wrap">
-      <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full bg-slate-100 text-slate-700"><i class="fa-solid fa-globe text-emerald-500"></i> Freelancer</span>
-      <div class="flex items-center gap-1.5 flex-wrap"><span class="text-[10px] text-slate-400">قبل 1 ي</span></div>
-    </div>
-    <h3 class="font-black text-sm text-slate-900 leading-6 line-clamp-2">Islamic studies and Quran teacher | Freelancer</h3>
-    <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">asslamualaikom . i graduated form Baghdad University in Islamic Studies major . i have experience in teaching for 7 years ,physically and Online class . i teach Quranic and Islamic studies from year 1 to year 11 which from age 6 until 17 in international school that located in Malaysia . thanks , my regards , Ustaz Mustafa ... Assalam o alaikum I am Hira Rasool And I done my Nazra from Madrassa tul Madina from Karachi Pakistan, I can teach Qur&amp;#x27;an with tajweed.</p>
-    <div class="mt-3 flex flex-wrap gap-1.5">
-      <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-50 text-brand-700">قرآن</span>
-      <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700">أولوية 80%</span>
-      
-    </div>
-    <div class="mt-4 flex gap-2">
-      <a href="https://www.freelancer.com/projects/articles/islamic-studies-quran-teacher" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2"><i class="fa-solid fa-arrow-up-right-from-square"></i> فتح</a>
-      <button onclick="shareRadarLead('sb_c54d825a-f0b8-4d74-b624-1f433fd1a137')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="مشاركة"><i class="fa-solid fa-share-nodes"></i></button>
-      <button onclick="saveLeadToWorkspace('sb_c54d825a-f0b8-4d74-b624-1f433fd1a137')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="حفظ"><i class="fa-regular fa-bookmark"></i></button>
-    </div>
-  </article><article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-4 flex flex-col">
-    <div class="flex items-start justify-between gap-2 mb-2 flex-wrap">
-      <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full bg-slate-100 text-slate-700"><i class="fa-solid fa-globe text-emerald-500"></i> Freelancer</span>
-      <div class="flex items-center gap-1.5 flex-wrap"><span class="text-[9px] font-black px-2 py-0.5 rounded-full wf-badge-offer"><i class="fa-solid fa-bullhorn"></i> عرض</span><span class="text-[10px] text-slate-400">قبل 1 ي</span></div>
-    </div>
-    <h3 class="font-black text-sm text-slate-900 leading-6 line-clamp-2">Freelance Online Teacher / Tutor / Instructor / ESL Teacher | Freelancer</h3>
-    <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">I can be a good choice for your project as I have vast experience in medical teaching (basic medical subject anatomy, physiology, pathology, medicine, surgery, obs and gynacology, nursing) and writing. I can provide you high-quality and at the time. Let me know if you want any other information. Thanks &amp;amp; regards, ... i can teach grammer of tajweed ul quran ...and i can also teach urdu grammer and translate arabi to urdu and english</p>
-    <div class="mt-3 flex flex-wrap gap-1.5">
-      <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-50 text-brand-700">قرآن</span>
-      <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700">أولوية 65%</span>
-      
-    </div>
-    <div class="mt-4 flex gap-2">
-      <a href="https://www.freelancer.com/projects/teaching-lecturing/freelance-online-teacher-tutor" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2"><i class="fa-solid fa-arrow-up-right-from-square"></i> فتح</a>
-      <button onclick="shareRadarLead('sb_f2aa84e0-9904-4780-8b4a-ca94975d8d3c')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="مشاركة"><i class="fa-solid fa-share-nodes"></i></button>
-      <button onclick="saveLeadToWorkspace('sb_f2aa84e0-9904-4780-8b4a-ca94975d8d3c')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="حفظ"><i class="fa-regular fa-bookmark"></i></button>
-    </div>
-  </article>
-          <div class="col-span-full text-center pt-2">
-          <button onclick="togglePlatformExpand('freelancer')" class="inline-flex items-center gap-2 rounded-xl border-2 border-dashed border-slate-300 bg-white hover:bg-brand-50 hover:border-brand-400 text-brand-700 px-5 py-2.5 text-xs font-black transition">
-            <i class="fa-solid fa-plus-circle"></i> عرض 13 إشارة إضافية
-          </button>
-        </div>
-        </div>
-      </section>
-    
-      <section class="rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm">
-        <header class="flex items-center justify-between gap-3 px-5 py-4 bg-gradient-to-l from-violet-50 to-white border-b border-slate-100">
-          <div class="flex items-center gap-3 min-w-0">
-            <span class="w-11 h-11 rounded-2xl bg-violet-100 text-violet-600 grid place-items-center text-lg shrink-0">
-              <i class="fa-solid fa-chalkboard-user"></i>
-            </span>
-            <div class="min-w-0">
-              <h3 class="font-black text-slate-900 text-base truncate">TeacherOn</h3>
-              <p class="text-[11px] text-slate-500 truncate">معلمون خصوصيون ومدرسون</p>
-            </div>
-          </div>
-          <span class="text-[11px] font-black px-3 py-1 rounded-full bg-violet-100 text-violet-700 shrink-0">17 إشارة</span>
-        </header>
-        <div class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-4 flex flex-col">
-    <div class="flex items-start justify-between gap-2 mb-2 flex-wrap">
-      <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full bg-slate-100 text-slate-700"><i class="fa-solid fa-globe text-emerald-500"></i> TeacherOn</span>
-      <div class="flex items-center gap-1.5 flex-wrap"><span class="text-[10px] text-slate-400">قبل 1 ي</span></div>
-    </div>
-    <h3 class="font-black text-sm text-slate-900 leading-6 line-clamp-2">▷ Hifz Quran tutors - Page 2 - TeacherOn</h3>
-    <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">Assalamu Alaikum, Welcome to my Islamic learning journey! I’m &lt;strong&gt;Mufti Mutee urrahman&lt;/strong&gt;, a dedicated teacher with five years of experience in Quran, including Noorani Qaida, Nazrah E Quran, Memorization of Quran (Hifz), Tajweed, Translation of Quran,Tafseer, Hadith, Arabic, Fiqh and Usul al-Fiqh.</p>
-    <div class="mt-3 flex flex-wrap gap-1.5">
-      <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-50 text-brand-700">قرآن</span>
-      <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700">أولوية 67%</span>
-      
-    </div>
-    <div class="mt-4 flex gap-2">
-      <a href="https://www.teacheron.com/tutors/hifz_quran-tutors?p=2" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2"><i class="fa-solid fa-arrow-up-right-from-square"></i> فتح</a>
-      <button onclick="shareRadarLead('sb_d57b093a-6898-4e89-9b6a-bd3587aa8dea')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="مشاركة"><i class="fa-solid fa-share-nodes"></i></button>
-      <button onclick="saveLeadToWorkspace('sb_d57b093a-6898-4e89-9b6a-bd3587aa8dea')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="حفظ"><i class="fa-regular fa-bookmark"></i></button>
-    </div>
-  </article><article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-4 flex flex-col">
-    <div class="flex items-start justify-between gap-2 mb-2 flex-wrap">
-      <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full bg-slate-100 text-slate-700"><i class="fa-solid fa-globe text-emerald-500"></i> TeacherOn</span>
-      <div class="flex items-center gap-1.5 flex-wrap"><span class="text-[10px] text-slate-400">قبل 5 ي</span></div>
-    </div>
-    <h3 class="font-black text-sm text-slate-900 leading-6 line-clamp-2">▷ Online تحفيظ قرآن كريم tutors in Egypt - TeacherOn</h3>
-    <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">I am a Quran teacher from Egypt and a teacher of Islamic studies. I teach Quran recitation, memorization and Tajweed for kids and adults. I can also teach basic Islamic studies such as Aqeedah, Fiqh and daily supplications.</p>
-    <div class="mt-3 flex flex-wrap gap-1.5">
-      <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-50 text-brand-700">قرآن</span>
-      <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700">أولوية 83%</span>
-      
-    </div>
-    <div class="mt-4 flex gap-2">
-      <a href="https://www.teacheron.com/tutors/online-memorizing_the_holy_quran_arabic-tutors-in-egypt?ll=igcse" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2"><i class="fa-solid fa-arrow-up-right-from-square"></i> فتح</a>
-      <button onclick="shareRadarLead('sb_fa8e7f00-fb68-4b05-88bf-c408ce884a49')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="مشاركة"><i class="fa-solid fa-share-nodes"></i></button>
-      <button onclick="saveLeadToWorkspace('sb_fa8e7f00-fb68-4b05-88bf-c408ce884a49')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="حفظ"><i class="fa-regular fa-bookmark"></i></button>
-    </div>
-  </article><article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-4 flex flex-col">
-    <div class="flex items-start justify-between gap-2 mb-2 flex-wrap">
-      <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full bg-slate-100 text-slate-700"><i class="fa-solid fa-globe text-emerald-500"></i> TeacherOn</span>
-      <div class="flex items-center gap-1.5 flex-wrap"><span class="text-[9px] font-black px-2 py-0.5 rounded-full wf-badge-demand"><i class="fa-solid fa-user-graduate"></i> طلب</span><span class="text-[10px] text-slate-400">قبل 5 ي</span></div>
-    </div>
-    <h3 class="font-black text-sm text-slate-900 leading-6 line-clamp-2">▷ Online Quran with Tarjama and Tafseer tutor jobs | TeacherOn</h3>
-    <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">If you can please get back to me on my number ********* Jazakallah ... We are looking for a male Quran tutor for our online institute. &lt;strong&gt;The tutor must be a non-Arab, fluent in English, and have experience teaching Quran with Tajweed&lt;/strong&gt;.</p>
-    <div class="mt-3 flex flex-wrap gap-1.5">
-      <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-50 text-brand-700">قرآن</span>
-      <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700">أولوية 56%</span>
-      
-    </div>
-    <div class="mt-4 flex gap-2">
-      <a href="https://www.teacheron.com/online-quran_with_tarjama_and_tafseer-tutor-jobs" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2"><i class="fa-solid fa-arrow-up-right-from-square"></i> فتح</a>
-      <button onclick="shareRadarLead('sb_8717a7e0-7bd3-4ea6-8044-697284dc6d7b')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="مشاركة"><i class="fa-solid fa-share-nodes"></i></button>
-      <button onclick="saveLeadToWorkspace('sb_8717a7e0-7bd3-4ea6-8044-697284dc6d7b')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="حفظ"><i class="fa-regular fa-bookmark"></i></button>
-    </div>
-  </article>
-          <div class="col-span-full text-center pt-2">
-          <button onclick="togglePlatformExpand('teacheron')" class="inline-flex items-center gap-2 rounded-xl border-2 border-dashed border-slate-300 bg-white hover:bg-brand-50 hover:border-brand-400 text-brand-700 px-5 py-2.5 text-xs font-black transition">
-            <i class="fa-solid fa-plus-circle"></i> عرض 14 إشارة إضافية
-          </button>
-        </div>
-        </div>
-      </section>
-    
-      <section class="rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm">
-        <header class="flex items-center justify-between gap-3 px-5 py-4 bg-gradient-to-l from-emerald-50 to-white border-b border-slate-100">
-          <div class="flex items-center gap-3 min-w-0">
-            <span class="w-11 h-11 rounded-2xl bg-emerald-100 text-emerald-600 grid place-items-center text-lg shrink-0">
-              <i class="fa-solid fa-globe"></i>
-            </span>
-            <div class="min-w-0">
-              <h3 class="font-black text-slate-900 text-base truncate">الويب المفتوح</h3>
-              <p class="text-[11px] text-slate-500 truncate">نتائج بحث عامة</p>
-            </div>
-          </div>
-          <span class="text-[11px] font-black px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 shrink-0">45 إشارة</span>
-        </header>
-        <div class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-4 flex flex-col">
-    <div class="flex items-start justify-between gap-2 mb-2 flex-wrap">
-      <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full bg-slate-100 text-slate-700"><i class="fa-solid fa-globe text-emerald-500"></i> Open Web</span>
-      <div class="flex items-center gap-1.5 flex-wrap"><span class="text-[9px] font-black px-2 py-0.5 rounded-full wf-badge-demand"><i class="fa-solid fa-user-graduate"></i> طلب</span><span class="text-[10px] text-slate-400">قبل 1 ي</span></div>
-    </div>
-    <h3 class="font-black text-sm text-slate-900 leading-6 line-clamp-2">مدرس / مدرسة لتعليم و تحفيظ القرآن الكريم - Alexandria job at Arabic Localizer in Alexandria, Egypt – Apply on Wuzzuf</h3>
-    <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">مطلوب مدرسين ومدرسات لتعليم و تحفيظ القرآن الكريم لطلبة و طالبات اجانب عن طريق الأنترنت</p>
-    <div class="mt-3 flex flex-wrap gap-1.5">
-      <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-50 text-brand-700">قرآن</span>
-      <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700">أولوية 64%</span>
-      
-    </div>
-    <div class="mt-4 flex gap-2">
-      <a href="https://wuzzuf.net/jobs/p/26820-%D9%85%D8%AF%D8%B1%D8%B3---%D9%85%D8%AF%D8%B1%D8%B3%D8%A9--%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D9%88-%D8%AA%D8%AD%D9%81%D9%8A%D8%B8-%D8%A7%D9%84%D9%82%D8%B1%D8%A2%D9%86-%D8%A7%D9%84%D9%83%D8%B1%D9%8A%D9%85---Alexandria-Arabic-Localizer-Alexandria-Egypt" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2"><i class="fa-solid fa-arrow-up-right-from-square"></i> فتح</a>
-      <button onclick="shareRadarLead('sb_ece03995-2956-4dbe-a71d-0bdce5b138b7')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="مشاركة"><i class="fa-solid fa-share-nodes"></i></button>
-      <button onclick="saveLeadToWorkspace('sb_ece03995-2956-4dbe-a71d-0bdce5b138b7')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="حفظ"><i class="fa-regular fa-bookmark"></i></button>
-    </div>
-  </article><article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-4 flex flex-col">
-    <div class="flex items-start justify-between gap-2 mb-2 flex-wrap">
-      <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full bg-slate-100 text-slate-700"><i class="fa-solid fa-globe text-emerald-500"></i> Open Web</span>
-      <div class="flex items-center gap-1.5 flex-wrap"><span class="text-[9px] font-black px-2 py-0.5 rounded-full wf-badge-demand"><i class="fa-solid fa-user-graduate"></i> طلب</span><span class="text-[10px] text-slate-400">قبل 4 ي</span></div>
-    </div>
-    <h3 class="font-black text-sm text-slate-900 leading-6 line-clamp-2">The Quran Hour | Online Quran Lessons | Quran Tutor</h3>
-    <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">&lt;strong&gt;I specialize in helping Arabic-speaking women and children learn Quranic recitation, Tajweed, and understanding through engaging methods like games, multimedia, and translation when needed&lt;/strong&gt;.</p>
-    <div class="mt-3 flex flex-wrap gap-1.5">
-      <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-50 text-brand-700">قرآن</span>
-      <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700">أولوية 72%</span>
-      
-    </div>
-    <div class="mt-4 flex gap-2">
-      <a href="https://www.thequranhour.com/" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2"><i class="fa-solid fa-arrow-up-right-from-square"></i> فتح</a>
-      <button onclick="shareRadarLead('sb_ae3e6868-22ce-4a8c-975b-2298788fba6a')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="مشاركة"><i class="fa-solid fa-share-nodes"></i></button>
-      <button onclick="saveLeadToWorkspace('sb_ae3e6868-22ce-4a8c-975b-2298788fba6a')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="حفظ"><i class="fa-regular fa-bookmark"></i></button>
-    </div>
-  </article><article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-4 flex flex-col">
-    <div class="flex items-start justify-between gap-2 mb-2 flex-wrap">
-      <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full bg-slate-100 text-slate-700"><i class="fa-solid fa-globe text-emerald-500"></i> Open Web</span>
-      <div class="flex items-center gap-1.5 flex-wrap"><span class="text-[9px] font-black px-2 py-0.5 rounded-full wf-badge-demand"><i class="fa-solid fa-user-graduate"></i> طلب</span><span class="text-[10px] text-slate-400">قبل 5 ي</span></div>
-    </div>
-    <h3 class="font-black text-sm text-slate-900 leading-6 line-clamp-2">مطلوب معلم قرآن online tutors</h3>
-    <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">Popular groups · Find communities for you · Over 1 billion people across the globe are using Facebook Groups to explore their favorite topics · Log in · Categories · Science &amp;amp; tech · Travel · Animals · Sports &amp;amp; fitness · Entertainment</p>
-    <div class="mt-3 flex flex-wrap gap-1.5">
-      <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-50 text-brand-700">قرآن</span>
-      <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700">أولوية 53%</span>
-      
-    </div>
-    <div class="mt-4 flex gap-2">
-      <a href="https://www.facebook.com/groups/quran.teacher.online.com.eg/?locale=ar_AR" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2"><i class="fa-solid fa-arrow-up-right-from-square"></i> فتح</a>
-      <button onclick="shareRadarLead('sb_c5bfea49-189d-49d1-8483-05160f46e57e')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="مشاركة"><i class="fa-solid fa-share-nodes"></i></button>
-      <button onclick="saveLeadToWorkspace('sb_c5bfea49-189d-49d1-8483-05160f46e57e')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="حفظ"><i class="fa-regular fa-bookmark"></i></button>
-    </div>
-  </article>
-          <div class="col-span-full text-center pt-2">
-          <button onclick="togglePlatformExpand('web')" class="inline-flex items-center gap-2 rounded-xl border-2 border-dashed border-slate-300 bg-white hover:bg-brand-50 hover:border-brand-400 text-brand-700 px-5 py-2.5 text-xs font-black transition">
-            <i class="fa-solid fa-plus-circle"></i> عرض 42 إشارة إضافية
-          </button>
-        </div>
-        </div>
-      </section>
-    
-      <section class="rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm">
-        <header class="flex items-center justify-between gap-3 px-5 py-4 bg-gradient-to-l from-slate-50 to-white border-b border-slate-100">
-          <div class="flex items-center gap-3 min-w-0">
-            <span class="w-11 h-11 rounded-2xl bg-slate-100 text-slate-600 grid place-items-center text-lg shrink-0">
-              <i class="fa-solid fa-layer-group"></i>
-            </span>
-            <div class="min-w-0">
-              <h3 class="font-black text-slate-900 text-base truncate">مصادر أخرى</h3>
-              <p class="text-[11px] text-slate-500 truncate">مصادر متنوعة</p>
-            </div>
-          </div>
-          <span class="text-[11px] font-black px-3 py-1 rounded-full bg-slate-100 text-slate-700 shrink-0">39 إشارة</span>
-        </header>
-        <div class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-4 flex flex-col">
-    <div class="flex items-start justify-between gap-2 mb-2 flex-wrap">
-      <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full bg-slate-100 text-slate-700"><i class="fa-brands fa-telegram text-sky-500"></i> إعلانات الدورات والدروس</span>
-      <div class="flex items-center gap-1.5 flex-wrap"><span class="text-[9px] font-black px-2 py-0.5 rounded-full wf-badge-demand"><i class="fa-solid fa-user-graduate"></i> طلب</span><span class="text-[10px] text-slate-400">قبل 1 س</span></div>
-    </div>
-    <h3 class="font-black text-sm text-slate-900 leading-6 line-clamp-2">قيام الليل.. تلك اللحظة التي ينفرد فيها القلب بربه، حينما تسكن الأصوات ويهدأ الكون، ويصبح السجود حدي...</h3>
-    <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">قيام الليل.. تلك اللحظة التي ينفرد فيها القلب بربه، حينما تسكن الأصوات ويهدأ الكون، ويصبح السجود حديثًا خاصًا بين العبد وسيده. كم من همّ ثقيل رفعه الله في ظلمة الليل! وكم من دعوة خفية سكنت السماء قبل أن يطلع عليها الفجر!تخيل نفسك وقد استيقظت وسط السكون، لترفع يديك بالدعاء وترفع معهما همومك وأثقالك. الليل ليس وقتًا للنوم فقط، بل هو زمن الأوابين، والركعات فيه تُصبح سفينة نجاة تحملك إلى شاطئ الأمان. </p>
-    <div class="mt-3 flex flex-wrap gap-1.5">
-      <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-50 text-brand-700">قرآن</span>
-      <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700">أولوية 89%</span>
-      
-    </div>
-    <div class="mt-4 flex gap-2">
-      <a href="https://t.me/CoursesIslam/122676" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2"><i class="fa-solid fa-arrow-up-right-from-square"></i> فتح</a>
-      <button onclick="shareRadarLead('tg_CoursesIslam_0_1792101685177')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="مشاركة"><i class="fa-solid fa-share-nodes"></i></button>
-      <button onclick="saveLeadToWorkspace('tg_CoursesIslam_0_1792101685177')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="حفظ"><i class="fa-regular fa-bookmark"></i></button>
-    </div>
-  </article><article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-4 flex flex-col">
-    <div class="flex items-start justify-between gap-2 mb-2 flex-wrap">
-      <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full bg-slate-100 text-slate-700"><i class="fa-brands fa-telegram text-sky-500"></i> إعلانات الدورات والدروس</span>
-      <div class="flex items-center gap-1.5 flex-wrap"><span class="text-[10px] text-slate-400">قبل 1 س</span></div>
-    </div>
-    <h3 class="font-black text-sm text-slate-900 leading-6 line-clamp-2">✨ بشرى سارّة…بابٌ جديد للعلم والوعي يُفتح لكم!يسر «مركز حصين» أن يعلن لكم عن بدء التسجيل في دورة «ال...</h3>
-    <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">✨ بشرى سارّة…بابٌ جديد للعلم والوعي يُفتح لكم!يسر «مركز حصين» أن يعلن لكم عن بدء التسجيل في دورة «العلمانية»ضمن دورات برنامج «مذاهب فكرية معاصرة».يقدّمها فضيلة الشيخ الدكتور عبدالله السويدي، وفّقه الله، عبر «أكاديمية ركين».مميزات الدورة:1- 🎁 الدورة مجانية.2- 💻 تُقام عن بعد.3- 🎓 شهادة معتمدة.اغتنم الفرصة، وسجّل الآن؛ لتبدأ رحلتك في فهم المذاهب الفكرية المعاصرة، وتزداد وعيًا.🔗 التسجيل من خلال ال</p>
-    <div class="mt-3 flex flex-wrap gap-1.5">
-      <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-50 text-brand-700">قرآن</span>
-      <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700">أولوية 83%</span>
-      
-    </div>
-    <div class="mt-4 flex gap-2">
-      <a href="https://t.me/CoursesIslam/122675" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2"><i class="fa-solid fa-arrow-up-right-from-square"></i> فتح</a>
-      <button onclick="shareRadarLead('tg_CoursesIslam_1_1792101685177')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="مشاركة"><i class="fa-solid fa-share-nodes"></i></button>
-      <button onclick="saveLeadToWorkspace('tg_CoursesIslam_1_1792101685177')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="حفظ"><i class="fa-regular fa-bookmark"></i></button>
-    </div>
-  </article><article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-4 flex flex-col">
-    <div class="flex items-start justify-between gap-2 mb-2 flex-wrap">
-      <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full bg-slate-100 text-slate-700"><i class="fa-brands fa-telegram text-sky-500"></i> إعلانات الدورات والدروس</span>
-      <div class="flex items-center gap-1.5 flex-wrap"><span class="text-[10px] text-slate-400">قبل 1 س</span></div>
-    </div>
-    <h3 class="font-black text-sm text-slate-900 leading-6 line-clamp-2">📚 خطوةٌ منهجية في علم الحديث، تبدأ من المتن وتمتد بالقراءة والسماع والمتابعة.تعلن جمعية الدعوة بالب...</h3>
-    <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">📚 خطوةٌ منهجية في علم الحديث، تبدأ من المتن وتمتد بالقراءة والسماع والمتابعة.تعلن جمعية الدعوة بالبصر بالشراكة مع جمعية تأصيل التعليمية عن فتح التسجيل في برنامج نماء | المسار الحديثي لدراسة متون مختارة بأسلوب ميسّر ومتدرّج، عن بُعد وبمتابعة مستمرة. 🌱🔗 التسجيل:https://forms.taseel.one/aduh/</p>
-    <div class="mt-3 flex flex-wrap gap-1.5">
-      <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-50 text-brand-700">قرآن</span>
-      <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700">أولوية 83%</span>
-      
-    </div>
-    <div class="mt-4 flex gap-2">
-      <a href="https://t.me/CoursesIslam/122674" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2"><i class="fa-solid fa-arrow-up-right-from-square"></i> فتح</a>
-      <button onclick="shareRadarLead('tg_CoursesIslam_2_1792101685177')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="مشاركة"><i class="fa-solid fa-share-nodes"></i></button>
-      <button onclick="saveLeadToWorkspace('tg_CoursesIslam_2_1792101685177')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="حفظ"><i class="fa-regular fa-bookmark"></i></button>
-    </div>
-  </article>
-          <div class="col-span-full text-center pt-2">
-          <button onclick="togglePlatformExpand('other')" class="inline-flex items-center gap-2 rounded-xl border-2 border-dashed border-slate-300 bg-white hover:bg-brand-50 hover:border-brand-400 text-brand-700 px-5 py-2.5 text-xs font-black transition">
-            <i class="fa-solid fa-plus-circle"></i> عرض 36 إشارة إضافية
-          </button>
-        </div>
-        </div>
-      </section>
-    </div>
+  </div>
 </section>
 
 <section id="specialists" class="bg-slate-50 py-12">
@@ -573,41 +250,7 @@ tailwind.config = {
         </select>
       </div>
     </div>
-    <div id="spec-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"><article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-5 flex flex-col">
-      <div class="flex items-start gap-3">
-        <div class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-700 grid place-items-center text-xl font-black shrink-0">و</div>
-        <div class="min-w-0 flex-1">
-          <h3 class="font-black text-sm text-slate-900 truncate">متخصص</h3>
-          <div class="text-[10px] font-bold text-brand-700 mt-0.5">parent_family</div>
-          <div class="text-[10px] text-slate-500 mt-1"><i class="fa-solid fa-location-dot"></i> القاهره، مصر</div>
-          
-        </div>
-      </div>
-      <div class="mt-3 text-xs text-slate-600"><i class="fa-solid fa-book-open text-brand-600"></i> قران كريم</div>
-      <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">تحفيظ</p>
-      <div class="mt-2 text-[10px] text-slate-500">الخبرة: 2 سنوات</div>
-      <div class="mt-4 flex gap-2">
-        <a href="https://wa.me/00966583580480" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-black py-2.5"><i class="fa-brands fa-whatsapp"></i> واتساب</a>
-        <button onclick="openSpecialistDetails('2cb712ae-6649-48ae-94e4-85e68302d20f')" class="flex-1 rounded-xl border border-slate-200 text-xs font-bold py-2.5 hover:bg-slate-50">تفاصيل</button>
-      </div>
-    </article><article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-5 flex flex-col">
-      <div class="flex items-start gap-3">
-        <div class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-700 grid place-items-center text-xl font-black shrink-0">و</div>
-        <div class="min-w-0 flex-1">
-          <h3 class="font-black text-sm text-slate-900 truncate">متخصص</h3>
-          <div class="text-[10px] font-bold text-brand-700 mt-0.5">معلم قرآن</div>
-          <div class="text-[10px] text-slate-500 mt-1"><i class="fa-solid fa-location-dot"></i> القاهره، مصر</div>
-          
-        </div>
-      </div>
-      <div class="mt-3 text-xs text-slate-600"><i class="fa-solid fa-book-open text-brand-600"></i> محفظ قرآن كريم</div>
-      <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">تحفيظ القران الكريم وتعليم اللغه العربيه</p>
-      <div class="mt-2 text-[10px] text-slate-500">الخبرة: 5 سنوات</div>
-      <div class="mt-4 flex gap-2">
-        <a href="https://wa.me/00201063223381" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-black py-2.5"><i class="fa-brands fa-whatsapp"></i> واتساب</a>
-        <button onclick="openSpecialistDetails('136e7ba9-a952-4d93-b872-a2db9a471522')" class="flex-1 rounded-xl border border-slate-200 text-xs font-bold py-2.5 hover:bg-slate-50">تفاصيل</button>
-      </div>
-    </article></div>
+    <div id="spec-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
 
     <div class="mt-10 rounded-3xl border-2 border-dashed border-brand-300 bg-gradient-to-br from-brand-50/60 to-white p-6">
       <div class="text-center mb-5">
@@ -685,37 +328,7 @@ tailwind.config = {
         </select>
       </div>
     </div>
-    <div id="list-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"><article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-5 flex flex-col">
-    <div class="flex items-center justify-between gap-2 mb-3">
-      <span class="text-[10px] font-black px-2 py-1 rounded-full bg-brand-50 text-brand-700">📖 قرآن</span>
-      <span class="text-[10px] font-bold px-2 py-1 rounded-full bg-emerald-50 text-emerald-700">عرض</span>
-    </div>
-    <h3 class="font-black text-sm text-slate-900 line-clamp-2">تحفيظ القرآن الكريم</h3>
-    <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3 flex-1">تحفيظ القرآن الكريم</p>
-    <div class="mt-4 flex items-center justify-between text-xs">
-      <span class="text-slate-400">قبل 14 ي</span>
-      <span class="text-slate-400 text-[10px]">حسب الاتفاق</span>
-    </div>
-    <div class="mt-4 flex gap-2">
-      <button onclick="openListingDetails('8b87bdb9-0185-47fe-84fe-dedf33fc3b1d')" class="flex-1 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2.5"><i class="fa-solid fa-circle-info"></i> التفاصيل</button>
-      <button onclick="openContact('8b87bdb9-0185-47fe-84fe-dedf33fc3b1d')" class="flex-1 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-black py-2.5"><i class="fa-solid fa-handshake"></i> تواصل</button>
-    </div>
-  </article><article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-5 flex flex-col">
-    <div class="flex items-center justify-between gap-2 mb-3">
-      <span class="text-[10px] font-black px-2 py-1 rounded-full bg-brand-50 text-brand-700">📖 قرآن</span>
-      <span class="text-[10px] font-bold px-2 py-1 rounded-full bg-amber-50 text-amber-700">طلب</span>
-    </div>
-    <h3 class="font-black text-sm text-slate-900 line-clamp-2">القرآن الكريم</h3>
-    <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3 flex-1">تحفيظ القران الكريم شهريا</p>
-    <div class="mt-4 flex items-center justify-between text-xs">
-      <span class="text-slate-400">قبل 15 ي</span>
-      <span class="font-black text-brand-700">200 ر.س</span>
-    </div>
-    <div class="mt-4 flex gap-2">
-      <button onclick="openListingDetails('6e650b6f-3ba9-44df-9615-713b641beb68')" class="flex-1 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2.5"><i class="fa-solid fa-circle-info"></i> التفاصيل</button>
-      <button onclick="openContact('6e650b6f-3ba9-44df-9615-713b641beb68')" class="flex-1 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-black py-2.5"><i class="fa-solid fa-handshake"></i> تواصل</button>
-    </div>
-  </article></div>
+    <div id="list-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
 
     <div class="mt-10 rounded-3xl border-2 border-dashed border-emerald-300 bg-gradient-to-br from-emerald-50/60 to-white p-6">
       <div class="text-center mb-5">
@@ -784,43 +397,7 @@ tailwind.config = {
         </div>
       </div>
     </div>
-    <div id="comm-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"><article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-5">
-      <div class="flex items-center gap-2 mb-3"><span class="text-lg"><i class="fa-brands fa-telegram text-sky-500"></i></span><span class="text-[10px] font-black text-slate-500">تيليجرام</span></div>
-      <h3 class="font-black text-sm text-slate-900">قناة محمد عبد الرؤف للتوظيف</h3>
-      <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-2">عمل وسفر</p>
-      <div class="mt-3 flex flex-wrap gap-1.5">
-        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-50 text-brand-700">السفر للخارج</span>
-        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">مصر / السعوديه</span>
-      </div>
-      <div class="mt-4 flex gap-2">
-        <a href="https://t.me/mohamed2024Am" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2.5"><i class="fa-solid fa-arrow-up-right-from-square"></i> زيارة</a>
-        <button onclick="shareCommunity('c_1792098029094')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="مشاركة"><i class="fa-solid fa-share-nodes"></i></button>
-      </div>
-    </article><article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-5">
-      <div class="flex items-center gap-2 mb-3"><span class="text-lg"><i class="fa-brands fa-telegram text-sky-500"></i></span><span class="text-[10px] font-black text-slate-500">تيليجرام</span></div>
-      <h3 class="font-black text-sm text-slate-900">قناة محمد عبد الرؤف للتوظيف</h3>
-      <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-2">سفر للسعوديه</p>
-      <div class="mt-3 flex flex-wrap gap-1.5">
-        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-50 text-brand-700">وظائف</span>
-        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">مصر</span>
-      </div>
-      <div class="mt-4 flex gap-2">
-        <a href="https://t.me/la2et3ard" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2.5"><i class="fa-solid fa-arrow-up-right-from-square"></i> زيارة</a>
-        <button onclick="shareCommunity('c_1792097927279')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="مشاركة"><i class="fa-solid fa-share-nodes"></i></button>
-      </div>
-    </article><article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-5">
-      <div class="flex items-center gap-2 mb-3"><span class="text-lg"><i class="fa-brands fa-telegram text-sky-500"></i></span><span class="text-[10px] font-black text-slate-500">تيليجرام</span></div>
-      <h3 class="font-black text-sm text-slate-900">job</h3>
-      <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-2">transfer-travel</p>
-      <div class="mt-3 flex flex-wrap gap-1.5">
-        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-50 text-brand-700">work</span>
-        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">saudi arabia</span>
-      </div>
-      <div class="mt-4 flex gap-2">
-        <a href="https://t.me/trustgroupksa" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2.5"><i class="fa-solid fa-arrow-up-right-from-square"></i> زيارة</a>
-        <button onclick="shareCommunity('c_1792090587462')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="مشاركة"><i class="fa-solid fa-share-nodes"></i></button>
-      </div>
-    </article></div>
+    <div id="comm-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
 
     <div class="mt-10 rounded-3xl border-2 border-dashed border-violet-300 bg-gradient-to-br from-violet-50/60 to-white p-6">
       <div class="text-center mb-5">
@@ -875,9 +452,9 @@ tailwind.config = {
           <span class="text-xs font-black text-brand-700"><i class="fa-solid fa-user-shield"></i> مساحة الحساب</span>
           <h2 class="mt-2 text-2xl font-black text-slate-900">مساحتي في وفاق</h2>
         </div>
-        <button id="signout-btn" class="text-xs font-bold text-red-600 hover:underline" onclick="signOut()">تسجيل الخروج</button>
+        <button id="signout-btn" class="hidden text-xs font-bold text-red-600 hover:underline" onclick="signOut()">تسجيل الخروج</button>
       </div>
-      <div id="workspace-guest" class="text-center py-10 rounded-2xl border border-dashed border-slate-300 hidden">
+      <div id="workspace-guest" class="hidden text-center py-10 rounded-2xl border border-dashed border-slate-300">
         <i class="fa-solid fa-user-lock text-3xl text-slate-400"></i>
         <h3 class="mt-3 font-black text-slate-800">سجّل الدخول للوصول إلى مساحتك</h3>
         <p class="mt-1 text-xs text-slate-500">المطابقات المحفوظة · المحادثات · الاتصالات النشطة</p>
@@ -885,12 +462,12 @@ tailwind.config = {
           <i class="fa-solid fa-right-to-bracket"></i> تسجيل الدخول / حساب جديد
         </button>
       </div>
-      <div id="workspace-user" class="">
+      <div id="workspace-user">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
           <div class="rounded-xl border border-slate-200 p-3"><div class="text-[10px] text-slate-400">الاتصالات</div><div class="text-2xl font-black" id="ws-connections">0</div></div>
           <div class="rounded-xl border border-slate-200 p-3"><div class="text-[10px] text-slate-400">المحفوظات</div><div class="text-2xl font-black" id="ws-saved">0</div></div>
           <div class="rounded-xl border border-slate-200 p-3"><div class="text-[10px] text-slate-400">رسائل غير مقروءة</div><div class="text-2xl font-black" id="ws-unread">0</div></div>
-          <div class="rounded-xl border border-slate-200 p-3"><div class="text-[10px] text-slate-400">اكتمال الملف</div><div class="text-2xl font-black" id="ws-completeness">100%</div></div>
+          <div class="rounded-xl border border-slate-200 p-3"><div class="text-[10px] text-slate-400">اكتمال الملف</div><div class="text-2xl font-black" id="ws-completeness">0%</div></div>
         </div>
         <div class="grid lg:grid-cols-2 gap-5">
           <div class="rounded-2xl border border-slate-200 p-4">
@@ -920,13 +497,13 @@ tailwind.config = {
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-xs text-slate-500">
     <div class="font-black text-slate-800">منصة وفاق التعليمية</div>
     <div class="mt-1">القرآن · اللغة العربية · الرادار الحي · المطابقة الذكية</div>
-    <div class="mt-3">© <span id="year">2026</span> جميع الحقوق محفوظة</div>
+    <div class="mt-3">© <span id="year"></span> جميع الحقوق محفوظة</div>
   </div>
 </footer>
 
 <div id="toast-container" class="fixed bottom-5 left-5 z-[200] space-y-2"></div>
 
-<button id="to-top" class="fixed bottom-24 left-5 z-40 w-11 h-11 rounded-full bg-brand-600 text-white shadow-xl grid place-items-center hidden" aria-label="أعلى">
+<button id="to-top" class="hidden fixed bottom-24 left-5 z-40 w-11 h-11 rounded-full bg-brand-600 text-white shadow-xl grid place-items-center" aria-label="أعلى">
   <i class="fa-solid fa-arrow-up"></i>
 </button>
 
@@ -943,8 +520,8 @@ tailwind.config = {
     </div>
     <form onsubmit="submitAuth(event)" class="space-y-3">
       <input id="a-name" type="text" placeholder="الاسم الكامل" class="hidden w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-3 text-sm outline-none">
-      <input id="a-email" type="email" required="" placeholder="البريد الإلكتروني" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-3 text-sm outline-none">
-      <input id="a-password" type="password" required="" minlength="8" placeholder="كلمة المرور (8+ أحرف)" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-3 text-sm outline-none">
+      <input id="a-email" type="email" required placeholder="البريد الإلكتروني" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-3 text-sm outline-none">
+      <input id="a-password" type="password" required minlength="8" placeholder="كلمة المرور (8+ أحرف)" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-3 text-sm outline-none">
       <select id="a-type" class="hidden w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-3 text-sm outline-none">
         <option value="student">طالب</option>
         <option value="parent_family">ولي أمر</option>
@@ -965,8 +542,8 @@ tailwind.config = {
     <p class="text-xs text-slate-500 mb-5">سيظهر منشورك في السوق مباشرة ويصبح قابلاً للتواصل.</p>
     <form id="create-form" onsubmit="submitListing(event)" class="space-y-3">
       <div class="grid sm:grid-cols-2 gap-3">
-        <input id="c-title" required="" maxlength="160" placeholder="العنوان الرئيسي *" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
-        <select id="c-category" required="" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+        <input id="c-title" required maxlength="160" placeholder="العنوان الرئيسي *" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+        <select id="c-category" required class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
           <option value="quran">📖 قرآن وتحفيظ</option>
           <option value="hadith">📚 حديث</option>
           <option value="arabic">📝 لغة عربية</option>
@@ -976,7 +553,7 @@ tailwind.config = {
         </select>
       </div>
       <div class="grid sm:grid-cols-3 gap-3">
-        <select id="c-region" required="" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+        <select id="c-region" required class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
           <option value="GLOBAL">عالمي (أونلاين)</option>
           <option value="KSA">السعودية</option>
           <option value="EGP">مصر</option>
@@ -985,14 +562,14 @@ tailwind.config = {
           <option value="AFRICA">أفريقيا</option>
           <option value="FOREIGN">أوروبا / أمريكا / آسيا</option>
         </select>
-        <select id="c-type" required="" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+        <select id="c-type" required class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
           <option value="offer">عرض</option>
           <option value="demand">طلب</option>
         </select>
         <input id="c-amount" type="number" min="0" placeholder="السعر / الميزانية" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
       </div>
-      <textarea id="c-desc" required="" rows="4" maxlength="2000" placeholder="الوصف الكامل *" class="w-full rounded-xl bg-slate-50 border border-slate-200 p-3 text-sm outline-none resize-none"></textarea>
-      <input id="c-phone" required="" placeholder="واتساب مع رمز الدولة (مثال: 966500000000) *" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+      <textarea id="c-desc" required rows="4" maxlength="2000" placeholder="الوصف الكامل *" class="w-full rounded-xl bg-slate-50 border border-slate-200 p-3 text-sm outline-none resize-none"></textarea>
+      <input id="c-phone" required placeholder="واتساب مع رمز الدولة (مثال: 966500000000) *" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
       <div class="flex gap-2">
         <button type="submit" class="flex-1 rounded-xl bg-brand-600 hover:bg-brand-700 text-white py-3 text-sm font-black">
           <i class="fa-solid fa-cloud-arrow-up"></i> نشر على السحابة
@@ -1011,8 +588,8 @@ tailwind.config = {
     <p class="text-xs text-slate-500 mb-5">أنشئ ملفاً سحابياً حقيقياً ليظهر لك الطلاب والأسر.</p>
     <form onsubmit="submitSpecialist(event)" class="space-y-3">
       <div class="grid sm:grid-cols-2 gap-3">
-        <input id="s-name" required="" maxlength="120" placeholder="الاسم الظاهر *" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
-        <select id="s-role" required="" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+        <input id="s-name" required maxlength="120" placeholder="الاسم الظاهر *" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+        <select id="s-role" required class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
           <option value="quran_teacher">معلم قرآن</option>
           <option value="qari">قارئ</option>
           <option value="quran_memorizer">محفّظ</option>
@@ -1032,7 +609,7 @@ tailwind.config = {
         <input id="s-experience" type="number" min="0" max="80" placeholder="سنوات الخبرة" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
         <input id="s-modes" placeholder="أنماط التعليم (online,in_person)" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
       </div>
-      <textarea id="s-bio" required="" rows="4" maxlength="1600" placeholder="وصف مختصر لخبرتك وما تقدمه *" class="w-full rounded-xl bg-slate-50 border border-slate-200 p-3 text-sm outline-none resize-none"></textarea>
+      <textarea id="s-bio" required rows="4" maxlength="1600" placeholder="وصف مختصر لخبرتك وما تقدمه *" class="w-full rounded-xl bg-slate-50 border border-slate-200 p-3 text-sm outline-none resize-none"></textarea>
       <div class="flex gap-2">
         <button type="submit" class="flex-1 rounded-xl bg-brand-600 hover:bg-brand-700 text-white py-3 text-sm font-black">
           <i class="fa-solid fa-cloud-arrow-up"></i> نشر الملف
@@ -1049,12 +626,12 @@ tailwind.config = {
     <button onclick="closeModal('comm-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark"></i></button>
     <h2 class="font-black text-lg mb-4">أضف مجتمعاً عاماً</h2>
     <form onsubmit="submitCommunity(event)" class="space-y-3">
-      <select id="cm-platform" required="" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+      <select id="cm-platform" required class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
         <option value="telegram">تيليجرام</option>
         <option value="facebook">فيسبوك</option>
       </select>
-      <input id="cm-name" required="" maxlength="120" placeholder="اسم المجموعة / القناة *" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
-      <input id="cm-url" required="" type="url" dir="ltr" placeholder="https://t.me/example *" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+      <input id="cm-name" required maxlength="120" placeholder="اسم المجموعة / القناة *" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+      <input id="cm-url" required type="url" dir="ltr" placeholder="https://t.me/example *" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
       <input id="cm-category" placeholder="المجال (قرآن، عربية...)" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
       <input id="cm-region" placeholder="الدولة / المنطقة" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
       <textarea id="cm-desc" rows="2" maxlength="180" placeholder="وصف مختصر" class="w-full rounded-xl bg-slate-50 border border-slate-200 p-3 text-sm outline-none resize-none"></textarea>
@@ -1089,7 +666,7 @@ tailwind.config = {
     </div>
     <div id="chat-list" class="h-72 overflow-y-auto space-y-2 rounded-xl bg-slate-50 p-3 mb-3"></div>
     <form onsubmit="sendChat(event)" class="flex gap-2">
-      <input id="chat-input" required="" maxlength="2000" placeholder="اكتب رسالة..." class="flex-1 rounded-xl border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-brand-500">
+      <input id="chat-input" required maxlength="2000" placeholder="اكتب رسالة..." class="flex-1 rounded-xl border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-brand-500">
       <button class="rounded-xl bg-brand-600 hover:bg-brand-700 text-white px-4 text-xs font-black">إرسال</button>
     </form>
   </div>
@@ -1102,133 +679,19 @@ tailwind.config = {
   </div>
 </div>
 
-<div id="sources-modal" class="fixed inset-0 z-[200] bg-slate-950/80 backdrop-blur-md items-center justify-center p-4 hidden">
+<div id="sources-modal" class="hidden fixed inset-0 z-[200] bg-slate-950/80 backdrop-blur-md items-center justify-center p-4">
   <div class="bg-white rounded-3xl w-full max-w-4xl shadow-2xl relative max-h-[90vh] overflow-y-auto">
     <div class="sticky top-0 bg-white border-b border-slate-200 p-5 flex items-center justify-between rounded-t-3xl z-10">
       <div>
         <span class="text-[10px] font-black text-brand-700" id="sources-modal-badge">🔗 مصادر موثوقة</span>
-        <h2 class="text-xl font-black text-slate-900 mt-1" id="sources-modal-title">كتب ومراجع مجانية</h2>
-        <p class="text-[11px] text-slate-500 mt-1" id="sources-modal-subtitle">مكتبات رقمية قانونية</p>
+        <h2 class="text-xl font-black text-slate-900 mt-1" id="sources-modal-title">المصادر</h2>
+        <p class="text-[11px] text-slate-500 mt-1" id="sources-modal-subtitle">روابط رسمية مباشرة</p>
       </div>
       <button onclick="closeSources()" class="w-10 h-10 rounded-xl bg-slate-100 hover:bg-slate-200 grid place-items-center text-slate-500" aria-label="إغلاق">
         <i class="fa-solid fa-xmark"></i>
       </button>
     </div>
-    <div class="p-5 bg-slate-50/60" id="sources-modal-body"><div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <a href="https://noor-book.com/" target="_blank" rel="noopener noreferrer" class="group block rounded-2xl border border-slate-200 bg-white p-4 flex flex-col hover:border-brand-400 hover:-translate-y-0.5 hover:shadow-lg transition">
-        <div class="flex items-center justify-between gap-2 mb-3 flex-wrap">
-          <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full border bg-amber-50 text-amber-700 border-amber-200">
-            <i class="fa-solid fa-globe"></i> منصة
-          </span>
-          <span class="text-[10px] font-bold text-slate-400">🌐 دولي</span>
-        </div>
-        <div class="flex-1 min-h-0">
-          <h4 class="font-black text-sm text-slate-900 leading-6 line-clamp-2">مكتبة نور</h4>
-          <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">ملايين الكتب العربية</p>
-          <p class="mt-2 text-[10px] text-slate-400 font-mono truncate" dir="ltr">noor-book.com</p>
-        </div>
-        <div class="mt-4">
-          <span class="block text-center rounded-xl bg-slate-900 group-hover:bg-brand-600 text-white text-xs font-black py-2.5 transition">
-            <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> زيارة المصدر
-          </span>
-        </div>
-      </a>
-    
-      <a href="https://waqfeya.net/" target="_blank" rel="noopener noreferrer" class="group block rounded-2xl border border-slate-200 bg-white p-4 flex flex-col hover:border-brand-400 hover:-translate-y-0.5 hover:shadow-lg transition">
-        <div class="flex items-center justify-between gap-2 mb-3 flex-wrap">
-          <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full border bg-amber-50 text-amber-700 border-amber-200">
-            <i class="fa-solid fa-globe"></i> منصة
-          </span>
-          <span class="text-[10px] font-bold text-slate-400">🌐 دولي</span>
-        </div>
-        <div class="flex-1 min-h-0">
-          <h4 class="font-black text-sm text-slate-900 leading-6 line-clamp-2">المكتبة الوقفية</h4>
-          <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">كتب إسلامية وعلمية</p>
-          <p class="mt-2 text-[10px] text-slate-400 font-mono truncate" dir="ltr">waqfeya.net</p>
-        </div>
-        <div class="mt-4">
-          <span class="block text-center rounded-xl bg-slate-900 group-hover:bg-brand-600 text-white text-xs font-black py-2.5 transition">
-            <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> زيارة المصدر
-          </span>
-        </div>
-      </a>
-    
-      <a href="https://hindawi.org/" target="_blank" rel="noopener noreferrer" class="group block rounded-2xl border border-slate-200 bg-white p-4 flex flex-col hover:border-brand-400 hover:-translate-y-0.5 hover:shadow-lg transition">
-        <div class="flex items-center justify-between gap-2 mb-3 flex-wrap">
-          <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full border bg-violet-50 text-violet-700 border-violet-200">
-            <i class="fa-solid fa-hand-holding-heart"></i> منظمة
-          </span>
-          <span class="text-[10px] font-bold text-slate-400">🌐 دولي</span>
-        </div>
-        <div class="flex-1 min-h-0">
-          <h4 class="font-black text-sm text-slate-900 leading-6 line-clamp-2">مؤسسة هنداوي</h4>
-          <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">كتب أدبية وعلمية</p>
-          <p class="mt-2 text-[10px] text-slate-400 font-mono truncate" dir="ltr">hindawi.org</p>
-        </div>
-        <div class="mt-4">
-          <span class="block text-center rounded-xl bg-slate-900 group-hover:bg-brand-600 text-white text-xs font-black py-2.5 transition">
-            <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> زيارة المصدر
-          </span>
-        </div>
-      </a>
-    
-      <a href="https://gutenberg.org/" target="_blank" rel="noopener noreferrer" class="group block rounded-2xl border border-slate-200 bg-white p-4 flex flex-col hover:border-brand-400 hover:-translate-y-0.5 hover:shadow-lg transition">
-        <div class="flex items-center justify-between gap-2 mb-3 flex-wrap">
-          <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full border bg-violet-50 text-violet-700 border-violet-200">
-            <i class="fa-solid fa-hand-holding-heart"></i> منظمة
-          </span>
-          <span class="text-[10px] font-bold text-slate-400">🌐 دولي</span>
-        </div>
-        <div class="flex-1 min-h-0">
-          <h4 class="font-black text-sm text-slate-900 leading-6 line-clamp-2">Project Gutenberg</h4>
-          <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">كتب عالمية مجانية</p>
-          <p class="mt-2 text-[10px] text-slate-400 font-mono truncate" dir="ltr">gutenberg.org</p>
-        </div>
-        <div class="mt-4">
-          <span class="block text-center rounded-xl bg-slate-900 group-hover:bg-brand-600 text-white text-xs font-black py-2.5 transition">
-            <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> زيارة المصدر
-          </span>
-        </div>
-      </a>
-    
-      <a href="https://archive.org/" target="_blank" rel="noopener noreferrer" class="group block rounded-2xl border border-slate-200 bg-white p-4 flex flex-col hover:border-brand-400 hover:-translate-y-0.5 hover:shadow-lg transition">
-        <div class="flex items-center justify-between gap-2 mb-3 flex-wrap">
-          <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full border bg-violet-50 text-violet-700 border-violet-200">
-            <i class="fa-solid fa-hand-holding-heart"></i> منظمة
-          </span>
-          <span class="text-[10px] font-bold text-slate-400">🌐 دولي</span>
-        </div>
-        <div class="flex-1 min-h-0">
-          <h4 class="font-black text-sm text-slate-900 leading-6 line-clamp-2">Internet Archive</h4>
-          <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">أرشيف الإنترنت</p>
-          <p class="mt-2 text-[10px] text-slate-400 font-mono truncate" dir="ltr">archive.org</p>
-        </div>
-        <div class="mt-4">
-          <span class="block text-center rounded-xl bg-slate-900 group-hover:bg-brand-600 text-white text-xs font-black py-2.5 transition">
-            <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> زيارة المصدر
-          </span>
-        </div>
-      </a>
-    
-      <a href="https://openlibrary.org/" target="_blank" rel="noopener noreferrer" class="group block rounded-2xl border border-slate-200 bg-white p-4 flex flex-col hover:border-brand-400 hover:-translate-y-0.5 hover:shadow-lg transition">
-        <div class="flex items-center justify-between gap-2 mb-3 flex-wrap">
-          <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full border bg-violet-50 text-violet-700 border-violet-200">
-            <i class="fa-solid fa-hand-holding-heart"></i> منظمة
-          </span>
-          <span class="text-[10px] font-bold text-slate-400">🌐 دولي</span>
-        </div>
-        <div class="flex-1 min-h-0">
-          <h4 class="font-black text-sm text-slate-900 leading-6 line-clamp-2">Open Library</h4>
-          <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">مكتبة مفتوحة</p>
-          <p class="mt-2 text-[10px] text-slate-400 font-mono truncate" dir="ltr">openlibrary.org</p>
-        </div>
-        <div class="mt-4">
-          <span class="block text-center rounded-xl bg-slate-900 group-hover:bg-brand-600 text-white text-xs font-black py-2.5 transition">
-            <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> زيارة المصدر
-          </span>
-        </div>
-      </a>
-    </div></div>
+    <div class="p-5 bg-slate-50/60" id="sources-modal-body"></div>
   </div>
 </div>
 
@@ -1247,11 +710,11 @@ tailwind.config = {
     <form onsubmit="submitSuggestSource(event)" class="p-5 space-y-3">
       <div>
         <label class="block text-xs font-bold text-slate-700 mb-1">اسم المصدر *</label>
-        <input id="sg-name" required="" maxlength="120" placeholder="مثال: منصة إدراك" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-brand-500">
+        <input id="sg-name" required maxlength="120" placeholder="مثال: منصة إدراك" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-brand-500">
       </div>
       <div>
         <label class="block text-xs font-bold text-slate-700 mb-1">الرابط *</label>
-        <input id="sg-url" required="" type="url" dir="ltr" placeholder="https://example.com" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-brand-500">
+        <input id="sg-url" required type="url" dir="ltr" placeholder="https://example.com" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-brand-500">
       </div>
       <div>
         <label class="block text-xs font-bold text-slate-700 mb-1">القسم المقترح</label>
@@ -1936,7 +1399,6 @@ function renderRadar() {
     return;
   }
 
-  // تجميع حسب المنصة
   const grouped = {};
   list.forEach(l => {
     const k = getPlatformKey(l);
@@ -1944,7 +1406,6 @@ function renderRadar() {
     grouped[k].push(l);
   });
 
-  // ترتيب داخل كل مجموعة
   Object.keys(grouped).forEach(k => {
     if (sort === 'score') grouped[k].sort((a, b) => (b.score || 0) - (a.score || 0));
     else grouped[k].sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -2683,7 +2144,5 @@ document.addEventListener('keydown', e => {
   }
 });
 </script>
-
-
 
 </body></html>
