@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>منصة وفاق التعليمية | القرآن والعربية والمطابقة الذكية</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23059669'/><text x='50' y='72' font-size='60' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'>و</text></svg>">
 <meta name="description" content="منصة وفاق تربط الطلاب والأسر بمعلمي القرآن واللغة العربية، مع رادار حي من تيليجرام وخمسات والمصادر العامة.">
 <meta name="theme-color" content="#059669">
 
@@ -580,10 +581,10 @@ const RADAR_SOURCES = {
   ]
 };
 
+/* ✅ محدّث: proxy محسّن يستخدم AllOrigins فقط */
 const CORS_PROXIES = [
   url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
-  url => `https://corsproxy.io/?url=${encodeURIComponent(url)}`,
-  url => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`
+  url => `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`
 ];
 
 /* =========================================================
@@ -788,13 +789,28 @@ sb.auth.onAuthStateChange((event, session) => {
 /* =========================================================
    RADAR
 ========================================================= */
+
+/* ✅ محدّث: fetchViaProxy يستخدم AllOrigins فقط (raw ثم get كبديل) */
 async function fetchViaProxy(url) {
-  for (const p of CORS_PROXIES) {
-    try {
-      const res = await fetch(p(url), { signal: AbortSignal.timeout(9000) });
-      if (res.ok) return await res.text();
-    } catch (e) { continue; }
-  }
+  // 1) محاولة raw — يعطي HTML مباشر
+  try {
+    const res = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`, {
+      signal: AbortSignal.timeout(11000)
+    });
+    if (res.ok) return await res.text();
+  } catch (e) {}
+
+  // 2) محاولة get — يعطي JSON يحتوي HTML
+  try {
+    const res = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`, {
+      signal: AbortSignal.timeout(11000)
+    });
+    if (res.ok) {
+      const json = await res.json();
+      if (json && json.contents) return json.contents;
+    }
+  } catch (e) {}
+
   return null;
 }
 
