@@ -60,6 +60,317 @@ tailwind.config = {
   .wf-badge-offer  { background:#ecfdf5; color:#047857; border:1px solid #a7f3d0; }
   .dark .wf-badge-demand { background:rgba(124,45,18,.22); color:#fdba74; border-color:rgba(251,146,60,.24); }
   .dark .wf-badge-offer  { background:rgba(6,78,59,.28); color:#6ee7b7; border-color:rgba(110,231,183,.22); }
+
+  /* ═══════════════════════════════════════════════════════
+     COMPACT SOURCE CARDS — تصميم مضغوط احترافي
+     ═══════════════════════════════════════════════════════ */
+  .wf-src-tabs {
+    display: flex;
+    gap: .35rem;
+    padding: .35rem;
+    background: rgba(255,255,255,.6);
+    border: 1px solid rgba(226,232,240,.9);
+    border-radius: 1rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .wf-src-tabs::-webkit-scrollbar { display: none; }
+  .wf-src-tab {
+    flex: none;
+    padding: .55rem .95rem;
+    border-radius: .75rem;
+    font-size: .72rem;
+    font-weight: 800;
+    color: #475569;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all .2s ease;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+  }
+  .wf-src-tab:hover { background: rgba(16,185,129,.08); color: #059669; }
+  .wf-src-tab.active {
+    background: linear-gradient(135deg, #059669, #10b981);
+    color: #fff;
+    box-shadow: 0 6px 16px -6px rgba(5,150,105,.45);
+  }
+  .wf-src-tab .wf-src-tab-count {
+    background: rgba(255,255,255,.22);
+    border-radius: 999px;
+    padding: .1rem .4rem;
+    font-size: .62rem;
+    font-weight: 900;
+  }
+  .wf-src-tab:not(.active) .wf-src-tab-count {
+    background: #e2e8f0;
+    color: #64748b;
+  }
+
+  .wf-src-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: .65rem;
+    margin-top: 1rem;
+  }
+  @media (min-width: 768px) { .wf-src-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1024px) { .wf-src-grid { grid-template-columns: repeat(4, 1fr); } }
+
+  .wf-src-card {
+    display: flex;
+    flex-direction: column;
+    padding: .85rem;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    text-decoration: none;
+    color: inherit;
+    transition: all .2s ease;
+    min-height: 130px;
+    position: relative;
+    overflow: hidden;
+  }
+  .wf-src-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; left: 0;
+    height: 3px;
+    background: var(--accent, #10b981);
+    opacity: 0;
+    transition: opacity .2s ease;
+  }
+  .wf-src-card:hover {
+    border-color: var(--accent, #10b981);
+    transform: translateY(-3px);
+    box-shadow: 0 14px 26px -10px rgba(15,23,42,.14);
+  }
+  .wf-src-card:hover::before { opacity: 1; }
+  .wf-src-card[data-accent="emerald"] { --accent: #10b981; }
+  .wf-src-card[data-accent="blue"]    { --accent: #3b82f6; }
+  .wf-src-card[data-accent="violet"]  { --accent: #8b5cf6; }
+  .wf-src-card[data-accent="amber"]   { --accent: #f59e0b; }
+
+  .wf-src-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .5rem;
+    margin-bottom: .55rem;
+  }
+  .wf-src-icon {
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: .65rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .95rem;
+    flex: none;
+    background: var(--accent, #10b981);
+    color: #fff;
+    box-shadow: 0 6px 12px -6px var(--accent, #10b981);
+  }
+  .wf-src-badges {
+    display: flex;
+    gap: .25rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .wf-src-badge {
+    font-size: .55rem;
+    font-weight: 900;
+    padding: .2rem .45rem;
+    border-radius: 999px;
+    border: 1px solid;
+    line-height: 1;
+  }
+  .wf-src-badge.gov { background:#ecfdf5; color:#047857; border-color:#a7f3d0; }
+  .wf-src-badge.edu { background:#eff6ff; color:#1d4ed8; border-color:#bfdbfe; }
+  .wf-src-badge.org { background:#f5f3ff; color:#6d28d9; border-color:#ddd6fe; }
+  .wf-src-badge.plat { background:#fffbeb; color:#b45309; border-color:#fde68a; }
+  .dark .wf-src-badge.gov { background:rgba(6,78,59,.3); color:#6ee7b7; border-color:rgba(110,231,183,.24); }
+  .dark .wf-src-badge.edu { background:rgba(30,64,175,.25); color:#93c5fd; border-color:rgba(147,197,253,.24); }
+  .dark .wf-src-badge.org { background:rgba(76,29,149,.28); color:#c4b5fd; border-color:rgba(196,181,253,.24); }
+  .dark .wf-src-badge.plat { background:rgba(120,53,15,.28); color:#fcd34d; border-color:rgba(252,211,77,.24); }
+
+  .wf-src-title {
+    font-size: .78rem;
+    font-weight: 900;
+    color: #0f172a;
+    line-height: 1.35;
+    margin-bottom: .25rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+  .wf-src-desc {
+    font-size: .68rem;
+    color: #64748b;
+    line-height: 1.5;
+    flex: 1;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  .wf-src-url {
+    font-size: .58rem;
+    color: #94a3b8;
+    font-family: ui-monospace, monospace;
+    direction: ltr;
+    text-align: left;
+    margin-top: .5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .dark .wf-src-card { background: #0f172a; border-color: #1e293b; }
+  .dark .wf-src-title { color: #f1f5f9; }
+  .dark .wf-src-desc { color: #94a3b8; }
+
+  /* ─── شبكة المصادر الرئيسية ─── */
+  .wf-sources-shell {
+    background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(248,250,252,.98));
+    border: 1px solid rgba(226,232,240,.9);
+    border-radius: 1.5rem;
+    padding: 1.25rem;
+    box-shadow: 0 1px 3px rgba(15,23,42,.04);
+  }
+  .dark .wf-sources-shell {
+    background: linear-gradient(180deg, rgba(15,23,42,.98), rgba(2,6,23,.96));
+    border-color: #1e293b;
+  }
+  .wf-sources-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  .wf-sources-title {
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+  }
+  .wf-sources-title-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: .85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.05rem;
+    color: #fff;
+    box-shadow: 0 8px 18px -8px currentColor;
+  }
+  .wf-sources-title h3 {
+    font-size: 1rem;
+    font-weight: 900;
+    color: #0f172a;
+    margin: 0;
+  }
+  .wf-sources-title p {
+    font-size: .7rem;
+    color: #64748b;
+    margin: .15rem 0 0;
+  }
+  .wf-suggest-link {
+    font-size: .62rem;
+    font-weight: 800;
+    color: #64748b;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color .2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: .3rem;
+    padding: .35rem .7rem;
+    border-radius: .55rem;
+  }
+  .wf-suggest-link:hover { color: var(--accent, #059669); background: rgba(5,150,105,.06); }
+
+  /* accordion */
+  .wf-src-section { border-bottom: 1px solid rgba(226,232,240,.7); }
+  .dark .wf-src-section { border-color: #1e293b; }
+  .wf-src-section:last-child { border-bottom: none; }
+  .wf-src-section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: .85rem .35rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: right;
+    gap: 1rem;
+    transition: background .2s ease;
+    border-radius: .5rem;
+  }
+  .wf-src-section-head:hover { background: rgba(5,150,105,.04); }
+  .wf-src-section-head .wf-ss-title {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    min-width: 0;
+    flex: 1;
+  }
+  .wf-src-section-head .wf-ss-icon {
+    width: 1.85rem;
+    height: 1.85rem;
+    border-radius: .55rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .82rem;
+    flex: none;
+    color: #fff;
+  }
+  .wf-src-section-head .wf-ss-text { min-width: 0; text-align: right; }
+  .wf-src-section-head .wf-ss-text strong {
+    display: block;
+    font-size: .8rem;
+    font-weight: 900;
+    color: #0f172a;
+    line-height: 1.3;
+  }
+  .wf-src-section-head .wf-ss-text span {
+    display: block;
+    font-size: .65rem;
+    color: #64748b;
+    margin-top: .1rem;
+  }
+  .dark .wf-src-section-head .wf-ss-text strong { color: #f1f5f9; }
+  .wf-src-section-head .wf-ss-count {
+    font-size: .6rem;
+    font-weight: 900;
+    padding: .2rem .5rem;
+    border-radius: 999px;
+    background: #ecfdf5;
+    color: #047857;
+    border: 1px solid #a7f3d0;
+  }
+  .dark .wf-src-section-head .wf-ss-count { background: rgba(6,78,59,.3); color: #6ee7b7; border-color: rgba(110,231,183,.24); }
+  .wf-src-section-head .wf-ss-chevron {
+    color: #94a3b8;
+    transition: transform .25s ease;
+    font-size: .8rem;
+  }
+  .wf-src-section.open .wf-ss-chevron { transform: rotate(180deg); }
+  .wf-src-section-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s ease;
+  }
+  .wf-src-section.open .wf-src-section-body {
+    max-height: 2000px;
+    padding-bottom: .5rem;
+  }
 </style>
 </head>
 
@@ -224,6 +535,9 @@ tailwind.config = {
   </div>
 </section>
 
+<!-- ═══════════════════════════════════════════════════════
+     SPECIALISTS — مع بوابة المصادر المحسّنة
+     ═══════════════════════════════════════════════════════ -->
 <section id="specialists" class="bg-slate-50 py-12">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
@@ -258,84 +572,52 @@ tailwind.config = {
     </div>
     <div id="spec-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
 
-    <!-- 🌐 بوابة مصادر المعلمين -->
-    <div class="mt-10 rounded-3xl border-2 border-dashed border-brand-300 bg-gradient-to-br from-brand-50/60 to-white p-6">
-      <div class="text-center mb-5">
-        <span class="text-[10px] font-black text-brand-700 bg-brand-100 px-3 py-1 rounded-full">🔗 مصادر إضافية للمعلمين</span>
-        <h3 class="font-black text-xl mt-3 text-slate-900">أدوات ومراجع مهنية مفيدة</h3>
-        <p class="text-xs text-slate-500 mt-1">مصادر رسمية موثوقة — توجّهك للمصدر الأصلي مباشرة</p>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-        <button onclick="openSources('teacher-certs')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-brand-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-brand-50 group-hover:bg-brand-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-certificate text-brand-600"></i>
+    <!-- 🌐 بوابة مصادر المعلمين — تصميم مضغوط احترافي -->
+    <div class="mt-10 wf-sources-shell">
+      <div class="wf-sources-header">
+        <div class="wf-sources-title">
+          <span class="wf-sources-title-icon bg-brand-600">
+            <i class="fa-solid fa-book-bookmark"></i>
           </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">شهادات معتمدة</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">شهادات معترف بها للمعلمين</span>
-          </span>
-          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-brand-600 transition"></i>
-        </button>
-        <button onclick="openSources('teacher-courses')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-brand-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-brand-50 group-hover:bg-brand-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-graduation-cap text-brand-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">دورات تدريب</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">لتطوير مهارات التدريس</span>
-          </span>
-          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-brand-600 transition"></i>
-        </button>
-        <button onclick="openSources('teacher-ijazat')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-brand-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-brand-50 group-hover:bg-brand-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-book-quran text-brand-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">إجازات قرآنية</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">إجازة بالسند المتصل</span>
-          </span>
-          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-brand-600 transition"></i>
-        </button>
-        <button onclick="openSources('teacher-platforms')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-brand-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-brand-50 group-hover:bg-brand-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-chalkboard-user text-brand-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">منصات تعليمية</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">اعرض دروسك وابنِ سمعتك</span>
-          </span>
-          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-brand-600 transition"></i>
-        </button>
-        <button onclick="openSources('teacher-jobs')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-brand-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-brand-50 group-hover:bg-brand-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-briefcase text-brand-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">وظائف تعليمية</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">فرص في المدارس والمراكز</span>
-          </span>
-          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-brand-600 transition"></i>
-        </button>
-        <button onclick="openSources('teacher-tools')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-brand-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-brand-50 group-hover:bg-brand-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-toolbox text-brand-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">أدوات مهنية</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">تسهّل عملك اليومي</span>
-          </span>
-          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-brand-600 transition"></i>
+          <div>
+            <h3>مصادر مهنية للمعلمين والمتخصصين</h3>
+            <p>6 أقسام · 36 مصدراً موثوقاً — اختر قسماً للتصفّح</p>
+          </div>
+        </div>
+        <button onclick="openSuggestSource('teacher')" class="wf-suggest-link">
+          <i class="fa-solid fa-lightbulb"></i> اقترح مصدراً
         </button>
       </div>
-      <div class="mt-4 text-center">
-        <button onclick="openSuggestSource('teacher')" class="text-[10px] font-bold text-slate-500 hover:text-brand-700">
-          💡 اقترح مصدراً جديداً لهذا القسم
+
+      <div class="wf-src-tabs" role="tablist">
+        <button class="wf-src-tab active" data-target="teacher-certs" onclick="activateSourceTab(this, 'teacher-certs')" role="tab">
+          <i class="fa-solid fa-certificate"></i> شهادات <span class="wf-src-tab-count">6</span>
+        </button>
+        <button class="wf-src-tab" data-target="teacher-courses" onclick="activateSourceTab(this, 'teacher-courses')" role="tab">
+          <i class="fa-solid fa-graduation-cap"></i> دورات <span class="wf-src-tab-count">6</span>
+        </button>
+        <button class="wf-src-tab" data-target="teacher-ijazat" onclick="activateSourceTab(this, 'teacher-ijazat')" role="tab">
+          <i class="fa-solid fa-book-quran"></i> إجازات <span class="wf-src-tab-count">6</span>
+        </button>
+        <button class="wf-src-tab" data-target="teacher-platforms" onclick="activateSourceTab(this, 'teacher-platforms')" role="tab">
+          <i class="fa-solid fa-chalkboard-user"></i> منصات <span class="wf-src-tab-count">6</span>
+        </button>
+        <button class="wf-src-tab" data-target="teacher-jobs" onclick="activateSourceTab(this, 'teacher-jobs')" role="tab">
+          <i class="fa-solid fa-briefcase"></i> وظائف <span class="wf-src-tab-count">6</span>
+        </button>
+        <button class="wf-src-tab" data-target="teacher-tools" onclick="activateSourceTab(this, 'teacher-tools')" role="tab">
+          <i class="fa-solid fa-toolbox"></i> أدوات <span class="wf-src-tab-count">6</span>
         </button>
       </div>
+
+      <div id="teacher-sources-grid" class="wf-src-grid" data-accent="emerald"></div>
     </div>
   </div>
 </section>
 
+<!-- ═══════════════════════════════════════════════════════
+     LISTINGS — مع بوابة مصادر الطلاب
+     ═══════════════════════════════════════════════════════ -->
 <section id="listings" class="py-12">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
@@ -370,84 +652,52 @@ tailwind.config = {
     </div>
     <div id="list-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
 
-    <!-- 🌐 بوابة مصادر الطلاب -->
-    <div class="mt-10 rounded-3xl border-2 border-dashed border-emerald-300 bg-gradient-to-br from-emerald-50/60 to-white p-6">
-      <div class="text-center mb-5">
-        <span class="text-[10px] font-black text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">🔗 مصادر إضافية للطلاب والأسر</span>
-        <h3 class="font-black text-xl mt-3 text-slate-900">مصادر تعليمية موثوقة ومجانية</h3>
-        <p class="text-xs text-slate-500 mt-1">مناهج، دورات، كتب، اختبارات — كلها رسمية</p>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-        <button onclick="openSources('student-curricula')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-emerald-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-emerald-50 group-hover:bg-emerald-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-book text-emerald-600"></i>
+    <!-- 🌐 بوابة مصادر الطلاب — نفس التصميم -->
+    <div class="mt-10 wf-sources-shell">
+      <div class="wf-sources-header">
+        <div class="wf-sources-title">
+          <span class="wf-sources-title-icon" style="background:#10b981">
+            <i class="fa-solid fa-graduation-cap"></i>
           </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">مناهج دراسية</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">مناهج وزارة التعليم</span>
-          </span>
-          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-emerald-600 transition"></i>
-        </button>
-        <button onclick="openSources('student-courses')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-emerald-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-emerald-50 group-hover:bg-emerald-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-play-circle text-emerald-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">دورات أونلاين</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">كورسات جامعات عالمية</span>
-          </span>
-          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-emerald-600 transition"></i>
-        </button>
-        <button onclick="openSources('student-books')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-emerald-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-emerald-50 group-hover:bg-emerald-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-book-open text-emerald-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">كتب ومراجع</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">مكتبات رقمية قانونية</span>
-          </span>
-          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-emerald-600 transition"></i>
-        </button>
-        <button onclick="openSources('student-quizzes')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-emerald-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-emerald-50 group-hover:bg-emerald-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-clipboard-question text-emerald-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">اختبارات مستوى</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">قيّم مستواك مجاناً</span>
-          </span>
-          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-emerald-600 transition"></i>
-        </button>
-        <button onclick="openSources('student-exams')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-emerald-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-emerald-50 group-hover:bg-emerald-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-file-pen text-emerald-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">نماذج اختبارات</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">تدرب على الامتحانات</span>
-          </span>
-          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-emerald-600 transition"></i>
-        </button>
-        <button onclick="openSources('student-scholarships')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-emerald-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-emerald-50 group-hover:bg-emerald-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-award text-emerald-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">منح دراسية</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">فرص تمويل للتعليم</span>
-          </span>
-          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-emerald-600 transition"></i>
+          <div>
+            <h3>مصادر تعليمية للطلاب والأسر</h3>
+            <p>6 أقسام · 36 مصدراً مجانياً معتمداً</p>
+          </div>
+        </div>
+        <button onclick="openSuggestSource('student')" class="wf-suggest-link" style="--accent:#10b981">
+          <i class="fa-solid fa-lightbulb"></i> اقترح مصدراً
         </button>
       </div>
-      <div class="mt-4 text-center">
-        <button onclick="openSuggestSource('student')" class="text-[10px] font-bold text-slate-500 hover:text-emerald-700">
-          💡 اقترح مصدراً جديداً لهذا القسم
+
+      <div class="wf-src-tabs" role="tablist">
+        <button class="wf-src-tab active" data-target="student-curricula" onclick="activateSourceTab(this, 'student-curricula')" role="tab">
+          <i class="fa-solid fa-book"></i> مناهج <span class="wf-src-tab-count">6</span>
+        </button>
+        <button class="wf-src-tab" data-target="student-courses" onclick="activateSourceTab(this, 'student-courses')" role="tab">
+          <i class="fa-solid fa-play-circle"></i> دورات <span class="wf-src-tab-count">6</span>
+        </button>
+        <button class="wf-src-tab" data-target="student-books" onclick="activateSourceTab(this, 'student-books')" role="tab">
+          <i class="fa-solid fa-book-open"></i> كتب <span class="wf-src-tab-count">6</span>
+        </button>
+        <button class="wf-src-tab" data-target="student-quizzes" onclick="activateSourceTab(this, 'student-quizzes')" role="tab">
+          <i class="fa-solid fa-clipboard-question"></i> اختبارات <span class="wf-src-tab-count">6</span>
+        </button>
+        <button class="wf-src-tab" data-target="student-exams" onclick="activateSourceTab(this, 'student-exams')" role="tab">
+          <i class="fa-solid fa-file-pen"></i> نماذج <span class="wf-src-tab-count">6</span>
+        </button>
+        <button class="wf-src-tab" data-target="student-scholarships" onclick="activateSourceTab(this, 'student-scholarships')" role="tab">
+          <i class="fa-solid fa-award"></i> منح <span class="wf-src-tab-count">6</span>
         </button>
       </div>
+
+      <div id="student-sources-grid" class="wf-src-grid" data-accent="blue"></div>
     </div>
   </div>
 </section>
 
+<!-- ═══════════════════════════════════════════════════════
+     COMMUNITIES — مع بوابة مصادر المهنيين
+     ═══════════════════════════════════════════════════════ -->
 <section id="communities" class="bg-slate-50 py-12">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
@@ -474,79 +724,44 @@ tailwind.config = {
     <div id="comm-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
 
     <!-- 🌐 بوابة مصادر المهنيين -->
-    <div class="mt-10 rounded-3xl border-2 border-dashed border-violet-300 bg-gradient-to-br from-violet-50/60 to-white p-6">
-      <div class="text-center mb-5">
-        <span class="text-[10px] font-black text-violet-700 bg-violet-100 px-3 py-1 rounded-full">🔗 مصادر إضافية للمهنيين</span>
-        <h3 class="font-black text-xl mt-3 text-slate-900">فرص وشبكات مهنية</h3>
-        <p class="text-xs text-slate-500 mt-1">وظائف، منح، تدريب معتمد، مجتمعات مهنية</p>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-        <button onclick="openSources('pro-jobs')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-violet-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-violet-50 group-hover:bg-violet-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-briefcase text-violet-600"></i>
+    <div class="mt-10 wf-sources-shell">
+      <div class="wf-sources-header">
+        <div class="wf-sources-title">
+          <span class="wf-sources-title-icon" style="background:#8b5cf6">
+            <i class="fa-solid fa-briefcase"></i>
           </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">وظائف تعليمية</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">حكومي وخاص</span>
-          </span>
-          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-violet-600 transition"></i>
-        </button>
-        <button onclick="openSources('pro-scholarships')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-violet-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-violet-50 group-hover:bg-violet-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-graduation-cap text-violet-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">منح وبعثات</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">فرص تمويل مهني</span>
-          </span>
-          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-violet-600 transition"></i>
-        </button>
-        <button onclick="openSources('pro-training')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-violet-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-violet-50 group-hover:bg-violet-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-certificate text-violet-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">تدريب معتمد</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">شهادات معترف بها</span>
-          </span>
-          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-violet-600 transition"></i>
-        </button>
-        <button onclick="openSources('pro-networks')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-violet-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-violet-50 group-hover:bg-violet-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-users text-violet-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">شبكات مهنية</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">تواصل مع المحترفين</span>
-          </span>
-          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-violet-600 transition"></i>
-        </button>
-        <button onclick="openSources('pro-events')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-violet-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-violet-50 group-hover:bg-violet-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-calendar text-violet-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">مؤتمرات وملتقيات</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">فرص للتطوير</span>
-          </span>
-          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-violet-600 transition"></i>
-        </button>
-        <button onclick="openSources('pro-tools')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-violet-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-violet-50 group-hover:bg-violet-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-toolbox text-violet-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">أدوات مهنية</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">تسهّل عملك</span>
-          </span>
-          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-violet-600 transition"></i>
+          <div>
+            <h3>مصادر مهنية وشبكات</h3>
+            <p>6 أقسام · 36 مصدراً للباحثين والمهنيين</p>
+          </div>
+        </div>
+        <button onclick="openSuggestSource('pro')" class="wf-suggest-link" style="--accent:#8b5cf6">
+          <i class="fa-solid fa-lightbulb"></i> اقترح مصدراً
         </button>
       </div>
-      <div class="mt-4 text-center">
-        <button onclick="openSuggestSource('pro')" class="text-[10px] font-bold text-slate-500 hover:text-violet-700">
-          💡 اقترح مصدراً جديداً لهذا القسم
+
+      <div class="wf-src-tabs" role="tablist">
+        <button class="wf-src-tab active" data-target="pro-jobs" onclick="activateSourceTab(this, 'pro-jobs')" role="tab">
+          <i class="fa-solid fa-briefcase"></i> وظائف <span class="wf-src-tab-count">6</span>
+        </button>
+        <button class="wf-src-tab" data-target="pro-scholarships" onclick="activateSourceTab(this, 'pro-scholarships')" role="tab">
+          <i class="fa-solid fa-graduation-cap"></i> منح <span class="wf-src-tab-count">6</span>
+        </button>
+        <button class="wf-src-tab" data-target="pro-training" onclick="activateSourceTab(this, 'pro-training')" role="tab">
+          <i class="fa-solid fa-certificate"></i> تدريب <span class="wf-src-tab-count">6</span>
+        </button>
+        <button class="wf-src-tab" data-target="pro-networks" onclick="activateSourceTab(this, 'pro-networks')" role="tab">
+          <i class="fa-solid fa-users"></i> شبكات <span class="wf-src-tab-count">6</span>
+        </button>
+        <button class="wf-src-tab" data-target="pro-events" onclick="activateSourceTab(this, 'pro-events')" role="tab">
+          <i class="fa-solid fa-calendar"></i> مؤتمرات <span class="wf-src-tab-count">6</span>
+        </button>
+        <button class="wf-src-tab" data-target="pro-tools" onclick="activateSourceTab(this, 'pro-tools')" role="tab">
+          <i class="fa-solid fa-toolbox"></i> أدوات <span class="wf-src-tab-count">6</span>
         </button>
       </div>
+
+      <div id="pro-sources-grid" class="wf-src-grid" data-accent="violet"></div>
     </div>
   </div>
 </section>
@@ -786,22 +1001,6 @@ tailwind.config = {
   </div>
 </div>
 
-<div id="sources-modal" class="hidden fixed inset-0 z-[200] bg-slate-950/80 backdrop-blur-md items-center justify-center p-4">
-  <div class="bg-white rounded-3xl w-full max-w-4xl shadow-2xl relative max-h-[90vh] overflow-y-auto">
-    <div class="sticky top-0 bg-white border-b border-slate-200 p-5 flex items-center justify-between rounded-t-3xl z-10">
-      <div>
-        <span class="text-[10px] font-black text-brand-700" id="sources-modal-badge">🔗 مصادر موثوقة</span>
-        <h2 class="text-xl font-black text-slate-900 mt-1" id="sources-modal-title">المصادر</h2>
-        <p class="text-[11px] text-slate-500 mt-1" id="sources-modal-subtitle">روابط رسمية مباشرة</p>
-      </div>
-      <button onclick="closeSources()" class="w-10 h-10 rounded-xl bg-slate-100 hover:bg-slate-200 grid place-items-center text-slate-500" aria-label="إغلاق">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-    </div>
-    <div class="p-5 bg-slate-50/60" id="sources-modal-body"></div>
-  </div>
-</div>
-
 <div id="suggest-modal" class="hidden fixed inset-0 z-[200] bg-slate-950/80 backdrop-blur-md items-center justify-center p-4">
   <div class="bg-white rounded-3xl w-full max-w-lg shadow-2xl relative">
     <div class="border-b border-slate-200 p-5 flex items-center justify-between">
@@ -852,266 +1051,193 @@ tailwind.config = {
 </div>
 
 <script>
-/* =========================================================
-   CONFIG — v5.0: publishable key + base tables + sources PRO
-========================================================= */
+/* ═══════════════════════════════════════════════════════
+   CONFIG
+   ═══════════════════════════════════════════════════════ */
 const SUPABASE_URL = "https://zwgkrwkrohkmnyoixude.supabase.co";
+
+// ⚠️ تنبيه: هذا المفتاح يبدو غير كامل. راجع Supabase Dashboard → Settings → API → anon public.
 const SUPABASE_ANON_KEY = "sb_publishable_-tSaRUJ2HWDMSCfEg5CUEQ_dm4-uYAe";
 
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 const RADAR_SOURCES = {
   telegram: [
-    { id: 'tg_courses_islam',   channel: 'CoursesIslam',        category: 'quran',    label: 'إعلانات الدورات والدروس' },
-    { id: 'tg_online_quran',    channel: 'onlinequranteachers', category: 'quran',    label: 'وظائف معلمات قرآن للأعاجم' },
-    { id: 'tg_saudi_edu',       channel: 'stohy11111',          category: 'services', label: 'الوظائف التعليمية بالسعودية' },
-    { id: 'tg_dim_women',       channel: 'kamstreh1441',        category: 'quran',    label: 'ديم النسائية - حلقات قرآنية' },
-    { id: 'tg_bawsala',         channel: 'wq2030',              category: 'quran',    label: 'بوصلة - وظائف المعاهد القرآنية' },
-    { id: 'tg_teachers_009',    channel: 'teachers009',         category: 'arabic',   label: 'وظائف معلمين للطلاب الأعاجم' }
+    { id: 'tg_courses_islam', channel: 'CoursesIslam',        category: 'quran',    label: 'إعلانات الدورات والدروس' },
+    { id: 'tg_online_quran',  channel: 'onlinequranteachers', category: 'quran',    label: 'وظائف معلمات قرآن للأعاجم' },
+    { id: 'tg_saudi_edu',     channel: 'stohy11111',          category: 'services', label: 'الوظائف التعليمية بالسعودية' },
+    { id: 'tg_dim_women',     channel: 'kamstreh1441',        category: 'quran',    label: 'ديم النسائية - حلقات قرآنية' },
+    { id: 'tg_bawsala',       channel: 'wq2030',              category: 'quran',    label: 'بوصلة - وظائف المعاهد القرآنية' },
+    { id: 'tg_teachers_009',  channel: 'teachers009',         category: 'arabic',   label: 'وظائف معلمين للطلاب الأعاجم' }
   ],
   khamsat: [
     { id: 'kh_main', url: 'https://khamsat.com/rss', category: 'services', label: 'خمسات - RSS' }
   ]
 };
 
+// ✅ قائمة proxies محدّثة وأكثر استقراراً
 const CORS_PROXIES = [
-  url => `https://api.cors.lol/?url=${encodeURIComponent(url)}`,
-  url => `https://cors.eu.org/${url}`,
-  url => `https://test.cors.workers.dev/?${url}`,
   url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
-  url => `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`
+  url => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`,
+  url => `https://corsproxy.io/?${encodeURIComponent(url)}`,
+  url => `https://thingproxy.freeboard.io/fetch/${url}`
 ];
 
-/* =========================================================
-   SOURCES — قائمة المصادر المفتوحة
-========================================================= */
+/* ═══════════════════════════════════════════════════════
+   SOURCES — مصادر لكل قسم
+   ═══════════════════════════════════════════════════════ */
 const SOURCES = {
-  // ============ قسم المعلمين ============
-  'teacher-certs': {
-    title: 'شهادات مهنية معتمدة',
-    subtitle: 'شهادات معترف بها للمعلمين والمحفظين',
-    items: [
-      { name: 'هيئة تقويم التعليم والتدريب', url: 'https://etec.gov.sa', desc: 'الرخص المهنية للمعلمين في السعودية' },
-      { name: 'المركز الوطني للتعليم الإلكتروني', url: 'https://nelc.gov.sa', desc: 'اعتماد المنصات والشهادات الإلكترونية' },
-      { name: 'جمعية تحفيظ القرآن الكريم', url: 'https://quran.org.sa', desc: 'إجازات قرآنية معتمدة' },
-      { name: 'Coursera Certificates', url: 'https://coursera.org', desc: 'شهادات من جامعات عالمية' },
-      { name: 'edX Professional', url: 'https://edx.org', desc: 'شهادات احترافية من MIT وHarvard' },
-      { name: 'Microsoft Educator', url: 'https://education.microsoft.com', desc: 'شهادات تعليمية من مايكروسوفت' }
-    ]
-  },
-  'teacher-courses': {
-    title: 'دورات تدريب مهني',
-    subtitle: 'دورات لتطوير مهارات التدريس والتحفيظ',
-    items: [
-      { name: 'إدراك', url: 'https://edraak.org', desc: 'دورات عربية مجانية' },
-      { name: 'رواق', url: 'https://rwaq.org', desc: 'منصة عربية للتعليم المفتوح' },
-      { name: 'مهارات Google', url: 'https://learndigital.withgoogle.com', desc: 'دورات جوجل بالعربية' },
-      { name: 'Coursera for Teachers', url: 'https://coursera.org', desc: 'دورات تدريب المعلمين' },
-      { name: 'FutureLearn', url: 'https://futurelearn.com', desc: 'دورات بريطانية معتمدة' },
-      { name: 'Khan Academy', url: 'https://khanacademy.org', desc: 'أدوات تعليمية تفاعلية' }
-    ]
-  },
-  'teacher-ijazat': {
-    title: 'إجازات قرآنية معتمدة',
-    subtitle: 'الحصول على إجازة بالسند المتصل',
-    items: [
-      { name: 'مجمع الملك فهد', url: 'https://qurancomplex.gov.sa', desc: 'إجازات ومراجع المصحف' },
-      { name: 'الجمعية الخيرية لتحفيظ القرآن', url: 'https://quran.org.sa', desc: 'حلقات وإجازات في السعودية' },
-      { name: 'الهيئة العالمية لتحفيظ القرآن', url: 'https://quran-world.org', desc: 'شبكة عالمية للإجازات' },
-      { name: 'Ijazah Online', url: 'https://ijazah.online', desc: 'منصة إجازة أونلاين' },
-      { name: 'Quranic Arabic Institute', url: 'https://quranicarabic.org', desc: 'إجازات بالقراءات العشر' },
-      { name: 'Al-Azhar', url: 'https://azhar.edu.eg', desc: 'إجازات الأزهر الشريف' }
-    ]
-  },
-  'teacher-platforms': {
-    title: 'منصات تعليمية للتدريس',
-    subtitle: 'اعرض دروسك وابنِ سمعتك',
-    items: [
-      { name: 'منصة مدرستي', url: 'https://schools.madrasati.sa', desc: 'المنصة الرسمية للتعليم السعودي' },
-      { name: 'منصة عين', url: 'https://ien.edu.sa', desc: 'محتوى تعليمي رسمي' },
-      { name: 'نون أكاديمي', url: 'https://noonacademy.com', desc: 'منصة دورات عربية' },
-      { name: 'Udemy', url: 'https://udemy.com', desc: 'بيع دوراتك عالمياً' },
-      { name: 'Teachable', url: 'https://teachable.com', desc: 'ابن منصتك التعليمية' },
-      { name: 'Thinkific', url: 'https://thinkific.com', desc: 'منصة دورات احترافية' }
-    ]
-  },
-  'teacher-jobs': {
-    title: 'وظائف تعليمية',
-    subtitle: 'فرص عمل في المدارس والمراكز',
-    items: [
-      { name: 'جدارات', url: 'https://jadarat.sa', desc: 'الوظائف الحكومية السعودية' },
-      { name: 'طاقات', url: 'https://taqat.sa', desc: 'وظائف القطاع الخاص' },
-      { name: 'منصة سبل', url: 'https://sbl.sa', desc: 'وظائف تعليمية متخصصة' },
-      { name: 'LinkedIn Jobs', url: 'https://linkedin.com/jobs', desc: 'وظائف دولية' },
-      { name: 'Bayt.com', url: 'https://bayt.com', desc: 'أكبر موقع توظيف عربي' },
-      { name: 'GulfTalent', url: 'https://gulftalent.com', desc: 'وظائف الخليج' }
-    ]
-  },
-  'teacher-tools': {
-    title: 'أدوات مهنية للمعلمين',
-    subtitle: 'أدوات تسهّل عملك اليومي',
-    items: [
-      { name: 'Canva for Education', url: 'https://canva.com/education', desc: 'تصميم عروض تعليمية' },
-      { name: 'Google Classroom', url: 'https://classroom.google.com', desc: 'إدارة الصفوف والواجبات' },
-      { name: 'Kahoot', url: 'https://kahoot.com', desc: 'اختبارات تفاعلية' },
-      { name: 'Quizizz', url: 'https://quizizz.com', desc: 'اختبارات أونلاين' },
-      { name: 'Nearpod', url: 'https://nearpod.com', desc: 'دروس تفاعلية' },
-      { name: 'Padlet', url: 'https://padlet.com', desc: 'لوحات تعاونية للطلاب' }
-    ]
-  },
+  'teacher-certs': { title: 'شهادات مهنية معتمدة', subtitle: 'شهادات معترف بها', items: [
+    { name: 'هيئة تقويم التعليم والتدريب', url: 'https://etec.gov.sa', desc: 'الرخص المهنية للمعلمين' },
+    { name: 'المركز الوطني للتعليم الإلكتروني', url: 'https://nelc.gov.sa', desc: 'اعتماد المنصات والشهادات' },
+    { name: 'جمعية تحفيظ القرآن', url: 'https://quran.org.sa', desc: 'إجازات قرآنية معتمدة' },
+    { name: 'Coursera Certificates', url: 'https://coursera.org', desc: 'شهادات جامعات عالمية' },
+    { name: 'edX Professional', url: 'https://edx.org', desc: 'شهادات من MIT وHarvard' },
+    { name: 'Microsoft Educator', url: 'https://education.microsoft.com', desc: 'شهادات تعليمية' }
+  ]},
+  'teacher-courses': { title: 'دورات تدريب مهني', subtitle: 'تطوير مهارات التدريس', items: [
+    { name: 'إدراك', url: 'https://edraak.org', desc: 'دورات عربية مجانية' },
+    { name: 'رواق', url: 'https://rwaq.org', desc: 'منصة عربية مفتوحة' },
+    { name: 'مهارات Google', url: 'https://learndigital.withgoogle.com', desc: 'دورات جوجل بالعربية' },
+    { name: 'Coursera for Teachers', url: 'https://coursera.org', desc: 'دورات تدريب المعلمين' },
+    { name: 'FutureLearn', url: 'https://futurelearn.com', desc: 'دورات بريطانية' },
+    { name: 'Khan Academy', url: 'https://khanacademy.org', desc: 'أدوات تعليمية' }
+  ]},
+  'teacher-ijazat': { title: 'إجازات قرآنية معتمدة', subtitle: 'الحصول على إجازة بالسند', items: [
+    { name: 'مجمع الملك فهد', url: 'https://qurancomplex.gov.sa', desc: 'إجازات ومراجع المصحف' },
+    { name: 'الجمعية الخيرية لتحفيظ القرآن', url: 'https://quran.org.sa', desc: 'حلقات وإجازات' },
+    { name: 'الهيئة العالمية لتحفيظ القرآن', url: 'https://quran-world.org', desc: 'شبكة عالمية' },
+    { name: 'Ijazah Online', url: 'https://ijazah.online', desc: 'منصة إجازة أونلاين' },
+    { name: 'Quranic Arabic Institute', url: 'https://quranicarabic.org', desc: 'إجازات بالقراءات' },
+    { name: 'Al-Azhar', url: 'https://azhar.edu.eg', desc: 'إجازات الأزهر' }
+  ]},
+  'teacher-platforms': { title: 'منصات تعليمية للتدريس', subtitle: 'اعرض دروسك', items: [
+    { name: 'منصة مدرستي', url: 'https://schools.madrasati.sa', desc: 'منصة رسمية سعودية' },
+    { name: 'منصة عين', url: 'https://ien.edu.sa', desc: 'محتوى رسمي' },
+    { name: 'نون أكاديمي', url: 'https://noonacademy.com', desc: 'منصة دورات عربية' },
+    { name: 'Udemy', url: 'https://udemy.com', desc: 'بيع دوراتك عالمياً' },
+    { name: 'Teachable', url: 'https://teachable.com', desc: 'ابن منصتك' },
+    { name: 'Thinkific', url: 'https://thinkific.com', desc: 'منصة احترافية' }
+  ]},
+  'teacher-jobs': { title: 'وظائف تعليمية', subtitle: 'فرص عمل', items: [
+    { name: 'جدارات', url: 'https://jadarat.sa', desc: 'الوظائف الحكومية' },
+    { name: 'طاقات', url: 'https://taqat.sa', desc: 'القطاع الخاص' },
+    { name: 'منصة سبل', url: 'https://sbl.sa', desc: 'وظائف تعليمية' },
+    { name: 'LinkedIn Jobs', url: 'https://linkedin.com/jobs', desc: 'وظائف دولية' },
+    { name: 'Bayt.com', url: 'https://bayt.com', desc: 'أكبر موقع عربي' },
+    { name: 'GulfTalent', url: 'https://gulftalent.com', desc: 'وظائف الخليج' }
+  ]},
+  'teacher-tools': { title: 'أدوات مهنية', subtitle: 'تسهّل العمل اليومي', items: [
+    { name: 'Canva for Education', url: 'https://canva.com/education', desc: 'تصميم عروض' },
+    { name: 'Google Classroom', url: 'https://classroom.google.com', desc: 'إدارة الصفوف' },
+    { name: 'Kahoot', url: 'https://kahoot.com', desc: 'اختبارات تفاعلية' },
+    { name: 'Quizizz', url: 'https://quizizz.com', desc: 'اختبارات أونلاين' },
+    { name: 'Nearpod', url: 'https://nearpod.com', desc: 'دروس تفاعلية' },
+    { name: 'Padlet', url: 'https://padlet.com', desc: 'لوحات تعاونية' }
+  ]},
 
-  // ============ قسم الطلاب ============
-  'student-curricula': {
-    title: 'مناهج دراسية رسمية',
-    subtitle: 'مناهج وزارة التعليم السعودية',
-    items: [
-      { name: 'منصة عين', url: 'https://ien.edu.sa', desc: 'المناهج الرسمية السعودية' },
-      { name: 'منصة مدرستي', url: 'https://schools.madrasati.sa', desc: 'الدروس والواجبات' },
-      { name: 'بوابة نور', url: 'https://noor.moe.gov.sa', desc: 'نتائج الطلاب' },
-      { name: 'Khan Academy Arabic', url: 'https://ar.khanacademy.org', desc: 'شرح مبسط لكل المواد' },
-      { name: 'CK-12 Foundation', url: 'https://ck12.org', desc: 'مناهج علمية مبسطة' },
-      { name: 'OpenStax', url: 'https://openstax.org', desc: 'كتب جامعية مجانية' }
-    ]
-  },
-  'student-courses': {
-    title: 'دورات أونلاين مجانية',
-    subtitle: 'كورسات معتمدة من أفضل الجامعات',
-    items: [
-      { name: 'إدراك', url: 'https://edraak.org', desc: 'دورات عربية مجانية' },
-      { name: 'رواق', url: 'https://rwaq.org', desc: 'منصة عربية مفتوحة' },
-      { name: 'مهارات Google', url: 'https://learndigital.withgoogle.com', desc: 'شهادات جوجل' },
-      { name: 'Coursera', url: 'https://coursera.org', desc: 'دورات جامعات عالمية' },
-      { name: 'edX', url: 'https://edx.org', desc: 'دورات MIT وHarvard' },
-      { name: 'freeCodeCamp', url: 'https://freecodecamp.org', desc: 'تعلم البرمجة مجاناً' }
-    ]
-  },
-  'student-books': {
-    title: 'كتب ومراجع مجانية',
-    subtitle: 'مكتبات رقمية قانونية',
-    items: [
-      { name: 'مكتبة نور', url: 'https://noor-book.com', desc: 'ملايين الكتب العربية' },
-      { name: 'المكتبة الوقفية', url: 'https://waqfeya.net', desc: 'كتب إسلامية وعلمية' },
-      { name: 'مؤسسة هنداوي', url: 'https://hindawi.org', desc: 'كتب أدبية وعلمية' },
-      { name: 'Project Gutenberg', url: 'https://gutenberg.org', desc: 'كتب عالمية مجانية' },
-      { name: 'Internet Archive', url: 'https://archive.org', desc: 'أرشيف الإنترنت' },
-      { name: 'Open Library', url: 'https://openlibrary.org', desc: 'مكتبة مفتوحة' }
-    ]
-  },
-  'student-quizzes': {
-    title: 'اختبارات مستوى تفاعلية',
-    subtitle: 'قيّم مستواك باختبارات مجانية',
-    items: [
-      { name: 'اختبار مستوى العربية', url: 'https://arabic-test.com', desc: 'قيّم مستواك في العربية' },
-      { name: 'اختبار حفظ القرآن', url: 'https://quran-test.com', desc: 'اختبر حفظك' },
-      { name: 'Kahoot', url: 'https://kahoot.com', desc: 'اختبارات تفاعلية' },
-      { name: 'Quizizz', url: 'https://quizizz.com', desc: 'اختبارات أونلاين' },
-      { name: 'Duolingo Test', url: 'https://duolingo.com', desc: 'اختبر مستوى الإنجليزية' },
-      { name: '16Personalities', url: 'https://16personalities.com', desc: 'اختبر شخصيتك ومسارك' }
-    ]
-  },
-  'student-exams': {
-    title: 'نماذج اختبارات سابقة',
-    subtitle: 'تدرب على الامتحانات الرسمية',
-    items: [
-      { name: 'قياس', url: 'https://etec.gov.sa', desc: 'نماذج اختبارات قياس' },
-      { name: 'وزارة التعليم', url: 'https://moe.gov.sa', desc: 'نماذج رسمية' },
-      { name: 'منصة عين', url: 'https://ien.edu.sa', desc: 'اختبارات إلكترونية' },
-      { name: 'SAT Practice', url: 'https://khanacademy.org/sat', desc: 'تدريب SAT' },
-      { name: 'IELTS Practice', url: 'https://ielts.org', desc: 'نماذج آيلتس' },
-      { name: 'TOEFL Practice', url: 'https://ets.org/toefl', desc: 'نماذج توفل' }
-    ]
-  },
-  'student-scholarships': {
-    title: 'منح دراسية',
-    subtitle: 'فرص تمويل للتعليم',
-    items: [
-      { name: 'منح وزارة التعليم', url: 'https://moe.gov.sa', desc: 'البعثات الحكومية' },
-      { name: 'منح KAUST', url: 'https://kaust.edu.sa', desc: 'منح كاملة للدراسات العليا' },
-      { name: 'منح المسك', url: 'https://misk.org.sa', desc: 'برامج ومنح للشباب' },
-      { name: 'Chevening', url: 'https://chevening.org', desc: 'منح بريطانية حكومية' },
-      { name: 'Fulbright', url: 'https://fulbright.org', desc: 'منح أمريكية' },
-      { name: 'DAAD', url: 'https://daad.de', desc: 'منح ألمانية' }
-    ]
-  },
+  'student-curricula': { title: 'مناهج دراسية رسمية', subtitle: 'مناهج وزارة التعليم', items: [
+    { name: 'منصة عين', url: 'https://ien.edu.sa', desc: 'المناهج الرسمية' },
+    { name: 'منصة مدرستي', url: 'https://schools.madrasati.sa', desc: 'الدروس والواجبات' },
+    { name: 'بوابة نور', url: 'https://noor.moe.gov.sa', desc: 'نتائج الطلاب' },
+    { name: 'Khan Academy Arabic', url: 'https://ar.khanacademy.org', desc: 'شرح مبسط' },
+    { name: 'CK-12 Foundation', url: 'https://ck12.org', desc: 'مناهج علمية' },
+    { name: 'OpenStax', url: 'https://openstax.org', desc: 'كتب جامعية' }
+  ]},
+  'student-courses': { title: 'دورات أونلاين مجانية', subtitle: 'كورسات معتمدة', items: [
+    { name: 'إدراك', url: 'https://edraak.org', desc: 'دورات عربية مجانية' },
+    { name: 'رواق', url: 'https://rwaq.org', desc: 'منصة عربية' },
+    { name: 'مهارات Google', url: 'https://learndigital.withgoogle.com', desc: 'شهادات جوجل' },
+    { name: 'Coursera', url: 'https://coursera.org', desc: 'جامعات عالمية' },
+    { name: 'edX', url: 'https://edx.org', desc: 'MIT وHarvard' },
+    { name: 'freeCodeCamp', url: 'https://freecodecamp.org', desc: 'تعلم البرمجة' }
+  ]},
+  'student-books': { title: 'كتب ومراجع مجانية', subtitle: 'مكتبات رقمية قانونية', items: [
+    { name: 'مكتبة نور', url: 'https://noor-book.com', desc: 'ملايين الكتب' },
+    { name: 'المكتبة الوقفية', url: 'https://waqfeya.net', desc: 'كتب إسلامية' },
+    { name: 'مؤسسة هنداوي', url: 'https://hindawi.org', desc: 'كتب أدبية' },
+    { name: 'Project Gutenberg', url: 'https://gutenberg.org', desc: 'كتب عالمية' },
+    { name: 'Internet Archive', url: 'https://archive.org', desc: 'أرشيف الإنترنت' },
+    { name: 'Open Library', url: 'https://openlibrary.org', desc: 'مكتبة مفتوحة' }
+  ]},
+  'student-quizzes': { title: 'اختبارات مستوى', subtitle: 'قيّم مستواك', items: [
+    { name: 'اختبار مستوى العربية', url: 'https://arabic-test.com', desc: 'قيّم مستواك' },
+    { name: 'اختبار حفظ القرآن', url: 'https://quran-test.com', desc: 'اختبر حفظك' },
+    { name: 'Kahoot', url: 'https://kahoot.com', desc: 'اختبارات تفاعلية' },
+    { name: 'Quizizz', url: 'https://quizizz.com', desc: 'اختبارات أونلاين' },
+    { name: 'Duolingo Test', url: 'https://duolingo.com', desc: 'اختبر الإنجليزية' },
+    { name: '16Personalities', url: 'https://16personalities.com', desc: 'اختبر شخصيتك' }
+  ]},
+  'student-exams': { title: 'نماذج اختبارات', subtitle: 'تدرب على الامتحانات', items: [
+    { name: 'قياس', url: 'https://etec.gov.sa', desc: 'نماذج قياس' },
+    { name: 'وزارة التعليم', url: 'https://moe.gov.sa', desc: 'نماذج رسمية' },
+    { name: 'منصة عين', url: 'https://ien.edu.sa', desc: 'اختبارات إلكترونية' },
+    { name: 'SAT Practice', url: 'https://khanacademy.org/sat', desc: 'تدريب SAT' },
+    { name: 'IELTS Practice', url: 'https://ielts.org', desc: 'نماذج آيلتس' },
+    { name: 'TOEFL Practice', url: 'https://ets.org/toefl', desc: 'نماذج توفل' }
+  ]},
+  'student-scholarships': { title: 'منح دراسية', subtitle: 'فرص تمويل', items: [
+    { name: 'منح وزارة التعليم', url: 'https://moe.gov.sa', desc: 'البعثات الحكومية' },
+    { name: 'منح KAUST', url: 'https://kaust.edu.sa', desc: 'منح كاملة' },
+    { name: 'منح المسك', url: 'https://misk.org.sa', desc: 'برامج شباب' },
+    { name: 'Chevening', url: 'https://chevening.org', desc: 'منح بريطانية' },
+    { name: 'Fulbright', url: 'https://fulbright.org', desc: 'منح أمريكية' },
+    { name: 'DAAD', url: 'https://daad.de', desc: 'منح ألمانية' }
+  ]},
 
-  // ============ قسم المهنيين ============
-  'pro-jobs': {
-    title: 'وظائف تعليمية',
-    subtitle: 'فرص في القطاعين الحكومي والخاص',
-    items: [
-      { name: 'جدارات', url: 'https://jadarat.sa', desc: 'الوظائف الحكومية' },
-      { name: 'طاقات', url: 'https://taqat.sa', desc: 'وظائف القطاع الخاص' },
-      { name: 'منصة سبل', url: 'https://sbl.sa', desc: 'وظائف تعليمية' },
-      { name: 'LinkedIn', url: 'https://linkedin.com/jobs', desc: 'وظائف دولية' },
-      { name: 'Bayt', url: 'https://bayt.com', desc: 'أكبر موقع توظيف عربي' },
-      { name: 'Indeed', url: 'https://indeed.com', desc: 'وظائف عالمية' }
-    ]
-  },
-  'pro-scholarships': {
-    title: 'منح وبعثات',
-    subtitle: 'فرص تمويل مهني وأكاديمي',
-    items: [
-      { name: 'بعثات وزارة التعليم', url: 'https://moe.gov.sa', desc: 'البرامج الرسمية' },
-      { name: 'منح KAUST', url: 'https://kaust.edu.sa', desc: 'دراسات عليا' },
-      { name: 'منح المسك', url: 'https://misk.org.sa', desc: 'برامج شباب' },
-      { name: 'Chevening', url: 'https://chevening.org', desc: 'منح بريطانية' },
-      { name: 'Fulbright', url: 'https://fulbright.org', desc: 'منح أمريكية' },
-      { name: 'Erasmus+', url: 'https://erasmus-plus.ec.europa.eu', desc: 'منح أوروبية' }
-    ]
-  },
-  'pro-training': {
-    title: 'تدريب معتمد',
-    subtitle: 'شهادات مهنية معترف بها',
-    items: [
-      { name: 'إدراك', url: 'https://edraak.org', desc: 'دورات عربية' },
-      { name: 'رواق', url: 'https://rwaq.org', desc: 'منصة عربية' },
-      { name: 'Coursera', url: 'https://coursera.org', desc: 'شهادات معتمدة' },
-      { name: 'edX', url: 'https://edx.org', desc: 'شهادات احترافية' },
-      { name: 'Udacity', url: 'https://udacity.com', desc: 'نانو ديجري' },
-      { name: 'Pluralsight', url: 'https://pluralsight.com', desc: 'تدريب تقني' }
-    ]
-  },
-  'pro-networks': {
-    title: 'شبكات مهنية',
-    subtitle: 'تواصل مع المحترفين',
-    items: [
-      { name: 'LinkedIn', url: 'https://linkedin.com', desc: 'أكبر شبكة مهنية' },
-      { name: 'Bayt', url: 'https://bayt.com', desc: 'شبكة عربية' },
-      { name: 'GulfTalent', url: 'https://gulftalent.com', desc: 'شبكة الخليج' },
-      { name: 'AngelList', url: 'https://angel.co', desc: 'شبكة ريادة أعمال' },
-      { name: 'Meetup', url: 'https://meetup.com', desc: 'لقاءات مهنية' },
-      { name: 'Slack Communities', url: 'https://slack.com/community', desc: 'مجتمعات تقنية' }
-    ]
-  },
-  'pro-events': {
-    title: 'مؤتمرات وملتقيات',
-    subtitle: 'فرص للتطوير المهني',
-    items: [
-      { name: 'ملتقى التعليم السعودي', url: 'https://moe.gov.sa', desc: 'فعاليات وزارة التعليم' },
-      { name: 'LEAP', url: 'https://onegiantleap.com', desc: 'مؤتمر التقنية' },
-      { name: 'GITEX', url: 'https://gitex.com', desc: 'معرض التقنية' },
-      { name: 'TEDx', url: 'https://ted.com', desc: 'محادثات ملهمة' },
-      { name: 'EdTech Summit', url: 'https://edtechsummit.com', desc: 'قمة التعليم' },
-      { name: 'Eventbrite', url: 'https://eventbrite.com', desc: 'اكتشف الفعاليات' }
-    ]
-  },
-  'pro-tools': {
-    title: 'أدوات مهنية',
-    subtitle: 'أدوات تسهّل عملك',
-    items: [
-      { name: 'Notion', url: 'https://notion.so', desc: 'تنظيم المهام' },
-      { name: 'Trello', url: 'https://trello.com', desc: 'إدارة المشاريع' },
-      { name: 'Slack', url: 'https://slack.com', desc: 'تواصل الفرق' },
-      { name: 'Zoom', url: 'https://zoom.us', desc: 'اجتماعات أونلاين' },
-      { name: 'Google Workspace', url: 'https://workspace.google.com', desc: 'أدوات جوجل' },
-      { name: 'Canva', url: 'https://canva.com', desc: 'تصميم احترافي' }
-    ]
-  }
+  'pro-jobs': { title: 'وظائف تعليمية', subtitle: 'القطاعين', items: [
+    { name: 'جدارات', url: 'https://jadarat.sa', desc: 'وظائف حكومية' },
+    { name: 'طاقات', url: 'https://taqat.sa', desc: 'قطاع خاص' },
+    { name: 'منصة سبل', url: 'https://sbl.sa', desc: 'وظائف تعليمية' },
+    { name: 'LinkedIn', url: 'https://linkedin.com/jobs', desc: 'وظائف دولية' },
+    { name: 'Bayt', url: 'https://bayt.com', desc: 'موقع عربي' },
+    { name: 'Indeed', url: 'https://indeed.com', desc: 'وظائف عالمية' }
+  ]},
+  'pro-scholarships': { title: 'منح وبعثات', subtitle: 'تمويل مهني', items: [
+    { name: 'بعثات وزارة التعليم', url: 'https://moe.gov.sa', desc: 'برامج رسمية' },
+    { name: 'منح KAUST', url: 'https://kaust.edu.sa', desc: 'دراسات عليا' },
+    { name: 'منح المسك', url: 'https://misk.org.sa', desc: 'برامج شباب' },
+    { name: 'Chevening', url: 'https://chevening.org', desc: 'منح بريطانية' },
+    { name: 'Fulbright', url: 'https://fulbright.org', desc: 'منح أمريكية' },
+    { name: 'Erasmus+', url: 'https://erasmus-plus.ec.europa.eu', desc: 'منح أوروبية' }
+  ]},
+  'pro-training': { title: 'تدريب معتمد', subtitle: 'شهادات مهنية', items: [
+    { name: 'إدراك', url: 'https://edraak.org', desc: 'دورات عربية' },
+    { name: 'رواق', url: 'https://rwaq.org', desc: 'منصة عربية' },
+    { name: 'Coursera', url: 'https://coursera.org', desc: 'شهادات معتمدة' },
+    { name: 'edX', url: 'https://edx.org', desc: 'شهادات احترافية' },
+    { name: 'Udacity', url: 'https://udacity.com', desc: 'نانو ديجري' },
+    { name: 'Pluralsight', url: 'https://pluralsight.com', desc: 'تدريب تقني' }
+  ]},
+  'pro-networks': { title: 'شبكات مهنية', subtitle: 'تواصل مع المحترفين', items: [
+    { name: 'LinkedIn', url: 'https://linkedin.com', desc: 'شبكة مهنية' },
+    { name: 'Bayt', url: 'https://bayt.com', desc: 'شبكة عربية' },
+    { name: 'GulfTalent', url: 'https://gulftalent.com', desc: 'شبكة الخليج' },
+    { name: 'AngelList', url: 'https://angel.co', desc: 'ريادة أعمال' },
+    { name: 'Meetup', url: 'https://meetup.com', desc: 'لقاءات' },
+    { name: 'Slack Communities', url: 'https://slack.com/community', desc: 'مجتمعات تقنية' }
+  ]},
+  'pro-events': { title: 'مؤتمرات وملتقيات', subtitle: 'تطوير مهني', items: [
+    { name: 'ملتقى التعليم', url: 'https://moe.gov.sa', desc: 'فعاليات الوزارة' },
+    { name: 'LEAP', url: 'https://onegiantleap.com', desc: 'مؤتمر تقني' },
+    { name: 'GITEX', url: 'https://gitex.com', desc: 'معرض تقني' },
+    { name: 'TEDx', url: 'https://ted.com', desc: 'محادثات ملهمة' },
+    { name: 'EdTech Summit', url: 'https://edtechsummit.com', desc: 'قمة التعليم' },
+    { name: 'Eventbrite', url: 'https://eventbrite.com', desc: 'اكتشف الفعاليات' }
+  ]},
+  'pro-tools': { title: 'أدوات مهنية', subtitle: 'تسهّل العمل', items: [
+    { name: 'Notion', url: 'https://notion.so', desc: 'تنظيم المهام' },
+    { name: 'Trello', url: 'https://trello.com', desc: 'إدارة المشاريع' },
+    { name: 'Slack', url: 'https://slack.com', desc: 'تواصل الفرق' },
+    { name: 'Zoom', url: 'https://zoom.us', desc: 'اجتماعات' },
+    { name: 'Google Workspace', url: 'https://workspace.google.com', desc: 'أدوات جوجل' },
+    { name: 'Canva', url: 'https://canva.com', desc: 'تصميم' }
+  ]}
 };
 
-/* =========================================================
+/* ═══════════════════════════════════════════════════════
    STATE
-========================================================= */
+   ═══════════════════════════════════════════════════════ */
 let currentUser = null;
 let currentAuthMode = 'login';
 let radarLeads = [];
@@ -1123,9 +1249,9 @@ let activeRecipient = null;
 let realtimeChannels = [];
 let syncTimer = null;
 
-/* =========================================================
+/* ═══════════════════════════════════════════════════════
    UTILITIES
-========================================================= */
+   ═══════════════════════════════════════════════════════ */
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
 
@@ -1159,10 +1285,7 @@ function timeAgo(iso) {
 
 function debounce(fn, wait = 300) {
   let t;
-  return function(...args) {
-    clearTimeout(t);
-    t = setTimeout(() => fn.apply(this, args), wait);
-  };
+  return function(...args) { clearTimeout(t); t = setTimeout(() => fn.apply(this, args), wait); };
 }
 const debounceRenderRadar = debounce(() => renderRadar(), 280);
 const debounceLoadSpecialists = debounce(() => loadSpecialists(), 350);
@@ -1175,7 +1298,6 @@ function detectIntentType(text) {
   if (/متاح|أقدم|نقدم|لدي|لديّ|available|offering|provide|عرض|خدمات/.test(t)) return 'offer';
   return 'unknown';
 }
-
 function extractPhone(text) {
   if (!text) return null;
   const cleaned = String(text).replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
@@ -1185,22 +1307,16 @@ function extractPhone(text) {
   if (phoneMatch) return phoneMatch[1];
   return null;
 }
-
 function extractEmail(text) {
   if (!text) return null;
   const m = String(text).match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
   return m ? m[0] : null;
 }
-
 function computeScore(lead) {
   let score = 50;
   const age = (Date.now() - new Date(lead.date).getTime()) / (1000 * 60 * 60);
-  if (age < 1) score += 30;
-  else if (age < 6) score += 22;
-  else if (age < 24) score += 15;
-  else if (age < 72) score += 8;
-  if (lead.category === 'quran') score += 8;
-  else if (lead.category === 'arabic') score += 6;
+  if (age < 1) score += 30; else if (age < 6) score += 22; else if (age < 24) score += 15; else if (age < 72) score += 8;
+  if (lead.category === 'quran') score += 8; else if (lead.category === 'arabic') score += 6;
   if (lead.phone) score += 10;
   if (lead.email) score += 5;
   if (lead.intentType === 'demand') score += 6;
@@ -1208,9 +1324,9 @@ function computeScore(lead) {
   return Math.min(99, Math.max(20, score));
 }
 
-/* =========================================================
+/* ═══════════════════════════════════════════════════════
    THEME + MENU
-========================================================= */
+   ═══════════════════════════════════════════════════════ */
 function initTheme() {
   const saved = localStorage.getItem('wefaq_theme');
   if (saved === 'dark' || (!saved && matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -1231,9 +1347,89 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 $('to-top').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-/* =========================================================
+/* ═══════════════════════════════════════════════════════
+   SOURCES — Tabs + Grid
+   ═══════════════════════════════════════════════════════ */
+function activateSourceTab(btn, key) {
+  // تعطيل كل الأزرار في نفس المجموعة
+  const tabsWrap = btn.parentElement;
+  tabsWrap.querySelectorAll('.wf-src-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  // تحديد grid الهدف
+  const gridId = tabsWrap.nextElementSibling?.id;
+  const grid = $(gridId);
+  if (!grid) return;
+
+  const accent = grid.dataset.accent || 'emerald';
+  renderSourcesGrid(grid, key, accent);
+}
+
+function detectSourceMeta(url) {
+  const u = url.toLowerCase();
+  if (/\.gov\.|gov\.sa|\.gov$|gov\.eg|gov\.ae/.test(u)) return { badge: 'gov', label: 'حكومي' };
+  if (/\.edu\.|edu\.sa|\.edu$|\.ac\.|university/.test(u)) return { badge: 'edu', label: 'تعليمي' };
+  if (/\.org\.|\.org$|org\.sa/.test(u)) return { badge: 'org', label: 'منظمة' };
+  return { badge: 'plat', label: 'منصة' };
+}
+
+function renderSourcesGrid(grid, key, accent) {
+  const data = SOURCES[key];
+  if (!data) { grid.innerHTML = ''; return; }
+
+  const icons = {
+    'teacher-certs': 'fa-certificate',
+    'teacher-courses': 'fa-graduation-cap',
+    'teacher-ijazat': 'fa-book-quran',
+    'teacher-platforms': 'fa-chalkboard-user',
+    'teacher-jobs': 'fa-briefcase',
+    'teacher-tools': 'fa-toolbox',
+    'student-curricula': 'fa-book',
+    'student-courses': 'fa-play-circle',
+    'student-books': 'fa-book-open',
+    'student-quizzes': 'fa-clipboard-question',
+    'student-exams': 'fa-file-pen',
+    'student-scholarships': 'fa-award',
+    'pro-jobs': 'fa-briefcase',
+    'pro-scholarships': 'fa-graduation-cap',
+    'pro-training': 'fa-certificate',
+    'pro-networks': 'fa-users',
+    'pro-events': 'fa-calendar',
+    'pro-tools': 'fa-toolbox'
+  };
+  const icon = icons[key] || 'fa-globe';
+
+  grid.dataset.accent = accent;
+  grid.innerHTML = data.items.map(item => {
+    const meta = detectSourceMeta(item.url);
+    const cleanUrl = item.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+    return `
+      <a href="${esc(item.url)}" target="_blank" rel="noopener noreferrer"
+         class="wf-src-card" data-accent="${accent}">
+        <div class="wf-src-head">
+          <span class="wf-src-icon"><i class="fa-solid ${icon}"></i></span>
+          <div class="wf-src-badges">
+            <span class="wf-src-badge ${meta.badge}">${meta.label}</span>
+          </div>
+        </div>
+        <div class="wf-src-title">${esc(item.name)}</div>
+        <div class="wf-src-desc">${esc(item.desc)}</div>
+        <div class="wf-src-url">${esc(cleanUrl)}</div>
+      </a>
+    `;
+  }).join('');
+}
+
+/* تهيئة أولية لأقسام المصادر */
+function initSourcesGrids() {
+  renderSourcesGrid($('teacher-sources-grid'), 'teacher-certs', 'emerald');
+  renderSourcesGrid($('student-sources-grid'), 'student-curricula', 'blue');
+  renderSourcesGrid($('pro-sources-grid'), 'pro-jobs', 'violet');
+}
+
+/* ═══════════════════════════════════════════════════════
    AUTH
-========================================================= */
+   ═══════════════════════════════════════════════════════ */
 function openAuthModal() { openModal('auth-modal'); }
 function switchAuthTab(mode) {
   currentAuthMode = mode;
@@ -1262,10 +1458,7 @@ async function submitAuth(e) {
     toast('تم تسجيل الدخول ✓', 'success');
   } else {
     if (password.length < 8) { msg.textContent = 'كلمة المرور 8 أحرف على الأقل'; return; }
-    const { data, error } = await sb.auth.signUp({
-      email, password,
-      options: { data: { display_name: name, account_type: type } }
-    });
+    const { data, error } = await sb.auth.signUp({ email, password, options: { data: { display_name: name, account_type: type } } });
     if (error) { msg.textContent = error.message; return; }
     msg.textContent = data.session ? 'تم إنشاء الحساب ✓' : 'تفقد بريدك لتأكيد الحساب';
     if (data.session) { closeModal('auth-modal'); toast('مرحباً بك في وفاق ✓', 'success'); }
@@ -1308,28 +1501,20 @@ sb.auth.onAuthStateChange((event, session) => {
   else teardownRealtime();
 });
 
-/* =========================================================
+/* ═══════════════════════════════════════════════════════
    RADAR
-========================================================= */
+   ═══════════════════════════════════════════════════════ */
 async function fetchViaProxy(url) {
   for (const proxyFn of CORS_PROXIES) {
     try {
       const proxyUrl = proxyFn(url);
-      const res = await fetch(proxyUrl, {
-        signal: AbortSignal.timeout(12000),
-        headers: { 'Accept': 'text/html,application/xhtml+xml,application/xml' }
-      });
+      const res = await fetch(proxyUrl, { signal: AbortSignal.timeout(12000), headers: { 'Accept': 'text/html,application/xhtml+xml,application/xml' } });
       if (!res.ok) continue;
       let html = await res.text();
       if (html.trim().startsWith('{')) {
-        try {
-          const json = JSON.parse(html);
-          if (json.contents) html = json.contents;
-        } catch (e) {}
+        try { const json = JSON.parse(html); if (json.contents) html = json.contents; } catch (e) {}
       }
-      if (html.includes('tgme_widget_message') || html.length > 500) {
-        return html;
-      }
+      if (html.includes('tgme_widget_message') || html.length > 500) return html;
     } catch (e) { continue; }
   }
   return null;
@@ -1370,28 +1555,23 @@ async function fetchKhamsat(url, category, label) {
   try {
     const doc = new DOMParser().parseFromString(xml, 'application/xml');
     const items = [...doc.querySelectorAll('item')].slice(0, 15);
-    if (items.length) {
-      return items.map((it, i) => {
-        const title = it.querySelector('title')?.textContent || '';
-        const desc = it.querySelector('description')?.textContent || '';
-        const link = it.querySelector('link')?.textContent || '';
-        const pub = it.querySelector('pubDate')?.textContent || new Date().toISOString();
-        const plain = desc.replace(/<[^>]*>/g, ' ');
-        const lead = {
-          id: `kh_${i}_${Date.now()}`,
-          source: 'khamsat', sourceLabel: label, sourceUrl: link,
-          title: title.slice(0, 100),
-          snippet: plain.slice(0, 400), fullText: plain.slice(0, 800),
-          category: detectCategory(title + ' ' + plain),
-          date: new Date(pub).toISOString(),
-          phone: extractPhone(plain), email: extractEmail(plain),
-          intentType: detectIntentType(title + ' ' + plain)
-        };
-        lead.score = computeScore(lead);
-        return lead;
-      }).filter(x => x.title);
-    }
-    return [];
+    return items.map((it, i) => {
+      const title = it.querySelector('title')?.textContent || '';
+      const desc = it.querySelector('description')?.textContent || '';
+      const link = it.querySelector('link')?.textContent || '';
+      const pub = it.querySelector('pubDate')?.textContent || new Date().toISOString();
+      const plain = desc.replace(/<[^>]*>/g, ' ');
+      const lead = {
+        id: `kh_${i}_${Date.now()}`,
+        source: 'khamsat', sourceLabel: label, sourceUrl: link,
+        title: title.slice(0, 100), snippet: plain.slice(0, 400), fullText: plain.slice(0, 800),
+        category: detectCategory(title + ' ' + plain), date: new Date(pub).toISOString(),
+        phone: extractPhone(plain), email: extractEmail(plain),
+        intentType: detectIntentType(title + ' ' + plain)
+      };
+      lead.score = computeScore(lead);
+      return lead;
+    }).filter(x => x.title);
   } catch (e) { return []; }
 }
 
@@ -1399,19 +1579,14 @@ async function fetchSupabaseLeads() {
   try {
     const { data, error } = await sb.from('radar_leads')
       .select('id, title, snippet, category, source, source_url, score, created_at')
-      .order('created_at', { ascending: false })
-      .limit(100);
+      .order('created_at', { ascending: false }).limit(100);
     if (error || !data) return [];
     return data.map(d => {
       const lead = {
-        id: `sb_${d.id}`, source: 'web',
-        sourceLabel: d.source || 'مصدر محفوظ',
-        sourceUrl: d.source_url || '#',
-        title: d.title, snippet: d.snippet || '',
-        fullText: d.snippet || '',
-        category: d.category || 'services', date: d.created_at,
-        phone: extractPhone(d.snippet || ''),
-        email: extractEmail(d.snippet || ''),
+        id: `sb_${d.id}`, source: 'web', sourceLabel: d.source || 'مصدر محفوظ',
+        sourceUrl: d.source_url || '#', title: d.title, snippet: d.snippet || '',
+        fullText: d.snippet || '', category: d.category || 'services', date: d.created_at,
+        phone: extractPhone(d.snippet || ''), email: extractEmail(d.snippet || ''),
         intentType: detectIntentType(d.title + ' ' + (d.snippet || ''))
       };
       lead.score = Number(d.score) || computeScore(lead);
@@ -1559,31 +1734,35 @@ async function saveLeadToWorkspace(leadId) {
 
   if (lead.id.startsWith('sb_')) {
     const uuid = lead.id.replace('sb_', '');
-    const { error } = await sb.from('radar_user_saves').insert({
-      user_id: currentUser.id, lead_id: uuid, notes: lead.sourceLabel || null
-    });
-    if (error) {
-      if (error.code === '23505' || error.message.includes('duplicate')) toast('محفوظة مسبقاً ✓', 'info');
-      else toast('لم يتم الحفظ: ' + error.message, 'error');
-    } else toast('تم حفظ الإشارة في مساحتك ✓', 'success');
+    if (!/^[0-9a-f-]{36}$/i.test(uuid)) { toast('معرّف غير صالح', 'error'); return; }
+    try {
+      const { error } = await sb.from('radar_user_saves').insert({ user_id: currentUser.id, lead_id: uuid, notes: lead.sourceLabel || null });
+      if (error) {
+        if (error.code === '23505' || error.message?.includes('duplicate')) toast('محفوظة مسبقاً ✓', 'info');
+        else toast('لم يتم الحفظ: ' + error.message, 'error');
+      } else toast('تم حفظ الإشارة في مساحتك ✓', 'success');
+    } catch (e) { toast('لم يتم الحفظ', 'error'); }
     return;
   }
 
-  const { data: inserted, error: insErr } = await sb.from('radar_leads').insert({
-    title: lead.title, snippet: lead.snippet, category: lead.category,
-    source: lead.sourceLabel, source_url: lead.sourceUrl, score: lead.score
-  }).select('id').single();
+  try {
+    const { data: inserted, error: insErr } = await sb.from('radar_leads').insert({
+      title: lead.title?.slice(0, 500) || 'بدون عنوان',
+      snippet: lead.snippet?.slice(0, 2000) || '',
+      category: lead.category || 'services',
+      source: lead.sourceLabel || lead.source || 'web',
+      source_url: lead.sourceUrl || null,
+      score: Math.min(100, Math.max(0, Number(lead.score) || 50))
+    }).select('id').single();
 
-  if (insErr || !inserted) { toast('لم يتم الحفظ: ' + (insErr?.message || 'خطأ'), 'error'); return; }
+    if (insErr || !inserted) { toast('لم يتم الحفظ: ' + (insErr?.message || 'خطأ'), 'error'); return; }
 
-  const { error: saveErr } = await sb.from('radar_user_saves').insert({
-    user_id: currentUser.id, lead_id: inserted.id, notes: null
-  });
-
-  if (saveErr) {
-    if (saveErr.code === '23505' || saveErr.message.includes('duplicate')) toast('محفوظة مسبقاً ✓', 'info');
-    else toast('لم يتم الحفظ: ' + saveErr.message, 'error');
-  } else toast('تم حفظ الإشارة ✓', 'success');
+    const { error: saveErr } = await sb.from('radar_user_saves').insert({ user_id: currentUser.id, lead_id: inserted.id, notes: null });
+    if (saveErr) {
+      if (saveErr.code === '23505' || saveErr.message?.includes('duplicate')) toast('محفوظة مسبقاً ✓', 'info');
+      else toast('لم يتم الحفظ: ' + saveErr.message, 'error');
+    } else toast('تم حفظ الإشارة ✓', 'success');
+  } catch (e) { console.error('saveLead failed:', e); toast('لم يتم الحفظ', 'error'); }
 }
 
 async function shareRadarLead(leadId) {
@@ -1601,75 +1780,9 @@ async function copyText(text) {
   catch { toast('تعذر النسخ', 'error'); }
 }
 
-/* =========================================================
-   SOURCES PRO — تصميم احترافي بنفس أسلوب كروت الرادار
-========================================================= */
-function openSources(key) {
-  const data = SOURCES[key];
-  if (!data) return;
-
-  const badge = $('sources-modal-badge');
-  const title = $('sources-modal-title');
-  const subtitle = $('sources-modal-subtitle');
-  const body = $('sources-modal-body');
-
-  badge.textContent = '🔗 مصادر موثوقة';
-  title.textContent = data.title;
-  subtitle.textContent = data.subtitle;
-
-  // كشف نوع المصدر تلقائياً
-  const detectSourceType = (url) => {
-    const u = url.toLowerCase();
-    if (/\.gov\.|gov\.sa|\.gov$|gov\.eg|gov\.ae/.test(u)) return { label: 'حكومي', icon: 'fa-solid fa-landmark', cls: 'bg-emerald-50 text-emerald-700 border-emerald-200' };
-    if (/\.edu\.|edu\.sa|\.edu$|\.ac\.|university/.test(u)) return { label: 'تعليمي', icon: 'fa-solid fa-graduation-cap', cls: 'bg-blue-50 text-blue-700 border-blue-200' };
-    if (/\.org\.|\.org$|org\.sa/.test(u)) return { label: 'منظمة', icon: 'fa-solid fa-hand-holding-heart', cls: 'bg-violet-50 text-violet-700 border-violet-200' };
-    return { label: 'منصة', icon: 'fa-solid fa-globe', cls: 'bg-amber-50 text-amber-700 border-amber-200' };
-  };
-
-  // كشف اللغة
-  const detectLang = (url) => {
-    const u = url.toLowerCase();
-    if (/\.sa|\.eg|\.ae|\.jo|\.ma|\.dz|\.tn|\.iq|\.ps|\.om|\.qa|\.kw|\.bh|\.ye|\.sd|\.ly|\.lb|\.sy|\.edu\.sa/.test(u)) return { label: 'عربي', flag: '🌍' };
-    if (/\.de|\.fr|\.uk|\.com$/.test(u) && !/\.sa|\.eg|\.ae/.test(u)) return { label: 'دولي', flag: '🌐' };
-    return { label: 'دولي', flag: '🌐' };
-  };
-
-  body.innerHTML = `<div class="grid grid-cols-1 md:grid-cols-2 gap-4">` +
-    data.items.map((item) => {
-      const src = detectSourceType(item.url);
-      const lang = detectLang(item.url);
-      const cleanUrl = item.url.replace(/^https?:\/\//,'').replace(/\/$/,'');
-      return `
-      <a href="${esc(item.url)}" target="_blank" rel="noopener noreferrer"
-         class="group block rounded-2xl border border-slate-200 bg-white p-4 flex flex-col hover:border-brand-400 hover:-translate-y-0.5 hover:shadow-lg transition">
-        <div class="flex items-center justify-between gap-2 mb-3 flex-wrap">
-          <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full border ${src.cls}">
-            <i class="${src.icon}"></i> ${src.label}
-          </span>
-          <span class="text-[10px] font-bold text-slate-400">${lang.flag} ${lang.label}</span>
-        </div>
-        <div class="flex-1 min-h-0">
-          <h4 class="font-black text-sm text-slate-900 leading-6 line-clamp-2">${esc(item.name)}</h4>
-          <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">${esc(item.desc)}</p>
-          <p class="mt-2 text-[10px] text-slate-400 font-mono truncate" dir="ltr">${esc(cleanUrl)}</p>
-        </div>
-        <div class="mt-4">
-          <span class="block text-center rounded-xl bg-slate-900 group-hover:bg-brand-600 text-white text-xs font-black py-2.5 transition">
-            <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> زيارة المصدر
-          </span>
-        </div>
-      </a>
-    `;
-    }).join('') +
-  `</div>`;
-
-  openModal('sources-modal');
-}
-
-function closeSources() {
-  closeModal('sources-modal');
-}
-
+/* ═══════════════════════════════════════════════════════
+   SUGGEST SOURCE
+   ═══════════════════════════════════════════════════════ */
 function openSuggestSource(section) {
   const select = $('sg-section');
   const map = { teacher: 'teacher', student: 'student', pro: 'pro' };
@@ -1677,10 +1790,7 @@ function openSuggestSource(section) {
   $('sg-msg').textContent = '';
   openModal('suggest-modal');
 }
-
-function closeSuggestSource() {
-  closeModal('suggest-modal');
-}
+function closeSuggestSource() { closeModal('suggest-modal'); }
 
 async function submitSuggestSource(e) {
   e.preventDefault();
@@ -1694,15 +1804,8 @@ async function submitSuggestSource(e) {
   if (!/^https?:\/\//i.test(url)) { msg.textContent = 'الرابط يجب أن يبدأ بـ https://'; return; }
 
   msg.textContent = 'جارٍ الإرسال...';
-
   try {
-    const { error } = await sb.from('source_suggestions').insert({
-      name, url, section,
-      reason: reason || null,
-      submitted_by: currentUser?.id || null,
-      status: 'pending'
-    });
-
+    const { error } = await sb.from('source_suggestions').insert({ name, url, section, reason: reason || null, submitted_by: currentUser?.id || null, status: 'pending' });
     if (error) {
       const list = JSON.parse(localStorage.getItem('wefaq_source_suggestions') || '[]');
       list.unshift({ name, url, section, reason, created_at: new Date().toISOString() });
@@ -1713,19 +1816,16 @@ async function submitSuggestSource(e) {
       setTimeout(closeSuggestSource, 900);
       return;
     }
-
     msg.textContent = 'تم الإرسال ✓';
     toast('شكراً لك! سنراجع اقتراحك قريباً ✓', 'success');
     e.target.reset();
     setTimeout(closeSuggestSource, 900);
-  } catch (err) {
-    msg.textContent = 'حدث خطأ، حاول مرة أخرى';
-  }
+  } catch (err) { msg.textContent = 'حدث خطأ، حاول مرة أخرى'; }
 }
 
-/* =========================================================
-   SPECIALISTS — uses education_profiles
-========================================================= */
+/* ═══════════════════════════════════════════════════════
+   SPECIALISTS
+   ═══════════════════════════════════════════════════════ */
 async function loadSpecialists() {
   const q = $('spec-search').value.trim();
   const role = $('spec-role').value;
@@ -1838,9 +1938,9 @@ function openSpecialistJoin() {
   openModal('spec-modal');
 }
 
-/* =========================================================
-   LISTINGS — uses listings directly
-========================================================= */
+/* ═══════════════════════════════════════════════════════
+   LISTINGS
+   ═══════════════════════════════════════════════════════ */
 async function loadListings() {
   const q = $('list-search').value.trim().toLowerCase();
   const cat = $('list-cat').value;
@@ -1959,9 +2059,9 @@ async function submitListing(e) {
   loadListings();
 }
 
-/* =========================================================
+/* ═══════════════════════════════════════════════════════
    CONTACT
-========================================================= */
+   ═══════════════════════════════════════════════════════ */
 async function openContact(listingId) {
   if (!currentUser) { openAuthModal(); return; }
   const { data, error } = await sb.rpc('get_listing_contact', { p_listing_id: listingId });
@@ -1984,9 +2084,9 @@ function sendContactWhatsApp() {
 
 async function copyContactMsg() { copyText($('contact-msg').value); }
 
-/* =========================================================
+/* ═══════════════════════════════════════════════════════
    WORKSPACE
-========================================================= */
+   ═══════════════════════════════════════════════════════ */
 async function loadWorkspace() {
   if (!currentUser) return;
   const [connRes, favRes, msgRes, profRes] = await Promise.all([
@@ -2045,9 +2145,9 @@ async function updateConnection(id, status) {
   else { toast('تم التحديث ✓', 'success'); loadWorkspace(); }
 }
 
-/* =========================================================
+/* ═══════════════════════════════════════════════════════
    REALTIME
-========================================================= */
+   ═══════════════════════════════════════════════════════ */
 function setupRealtime() {
   if (!currentUser) return;
   teardownRealtime();
@@ -2057,13 +2157,11 @@ function setupRealtime() {
         toast('<i class="fa-solid fa-envelope"></i> لديك رسالة جديدة', 'info');
         if (activeConnection && payload.new.connection_id === activeConnection) loadChat();
         loadWorkspace();
-      })
-    .subscribe();
+      }).subscribe();
   realtimeChannels.push(msgChannel);
   const connChannel = sb.channel('wefaq_conns')
     .on('postgres_changes', { event: '*', schema: 'public', table: 'connections', filter: `provider_id=eq.${currentUser.id}` },
-      () => { toast('<i class="fa-solid fa-handshake"></i> تحديث على طلب اتصال', 'info'); loadWorkspace(); })
-    .subscribe();
+      () => { toast('<i class="fa-solid fa-handshake"></i> تحديث على طلب اتصال', 'info'); loadWorkspace(); }).subscribe();
   realtimeChannels.push(connChannel);
 }
 
@@ -2072,9 +2170,9 @@ function teardownRealtime() {
   realtimeChannels = [];
 }
 
-/* =========================================================
+/* ═══════════════════════════════════════════════════════
    CHAT
-========================================================= */
+   ═══════════════════════════════════════════════════════ */
 async function openChat(connectionId, recipientId) {
   activeConnection = connectionId;
   activeRecipient = recipientId;
@@ -2107,9 +2205,9 @@ async function sendChat(e) {
 
 function closeChat() { closeModal('chat-modal'); activeConnection = null; activeRecipient = null; }
 
-/* =========================================================
+/* ═══════════════════════════════════════════════════════
    COMMUNITIES
-========================================================= */
+   ═══════════════════════════════════════════════════════ */
 const COMM_KEY = 'wefaq_communities_v1';
 let commFilter = 'all';
 
@@ -2188,9 +2286,9 @@ async function shareCommunity(id) {
   } else copyText(text);
 }
 
-/* =========================================================
+/* ═══════════════════════════════════════════════════════
    HERO SEARCH
-========================================================= */
+   ═══════════════════════════════════════════════════════ */
 function heroSearch() {
   const q = $('hero-search').value.trim();
   const role = $('hero-role').value;
@@ -2200,12 +2298,13 @@ function heroSearch() {
   loadSpecialists();
 }
 
-/* =========================================================
+/* ═══════════════════════════════════════════════════════
    INIT
-========================================================= */
+   ═══════════════════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', async () => {
   initTheme();
   $('year').textContent = new Date().getFullYear();
+  initSourcesGrids();
   loadRadarFromCache();
   renderRadar();
   updateRadarStats();
@@ -2229,7 +2328,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
-    ['auth-modal','create-modal','spec-modal','comm-modal','contact-modal','chat-modal','details-modal','sources-modal','suggest-modal'].forEach(closeModal);
+    ['auth-modal','create-modal','spec-modal','comm-modal','contact-modal','chat-modal','details-modal','suggest-modal'].forEach(closeModal);
   }
 });
 </script>
