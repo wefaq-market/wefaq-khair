@@ -165,7 +165,7 @@ tailwind.config = {
     <div>
       <span class="text-xs font-black text-brand-700"><i class="fa-solid fa-satellite-dish"></i> رادار وفاق الحي</span>
       <h2 class="mt-2 text-2xl sm:text-3xl font-black text-slate-900">اكتشافات حقيقية من المصادر العامة</h2>
-      <p class="mt-1 text-sm text-slate-500">تيليجرام · خمسات · الويب المفتوح · إشارات محفوظة. تُحدّث تلقائياً كل 20 دقيقة.</p>
+      <p class="mt-1 text-sm text-slate-500">تيليجرام · خمسات · الويب المفتوح · إشارات محفوظة. تُحدّث عند الطلب فقط.</p>
       <p class="mt-1 text-[10px] text-slate-400" id="radar-last-sync">آخر مزامنة: —</p>
     </div>
     <div class="flex gap-2">
@@ -182,44 +182,33 @@ tailwind.config = {
     <div class="rounded-2xl border border-slate-200 bg-white p-3"><div class="flex items-center justify-between"><span class="text-[10px] font-black text-slate-500">طلبات (لا عروض)</span><span class="w-8 h-8 rounded-lg bg-orange-50 text-orange-600 grid place-items-center"><i class="fa-solid fa-user-graduate text-xs"></i></span></div><div class="mt-2 text-2xl font-black" id="radar-stat-demand">0</div></div>
   </div>
 
-  <div class="rounded-2xl border border-slate-200 bg-white p-3 mb-5">
-    <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto_auto_auto_auto] gap-2">
-      <div class="relative">
-        <i class="fa-solid fa-magnifying-glass absolute right-3 top-3.5 text-slate-400 text-xs"></i>
-        <input id="radar-search" oninput="debounceRenderRadar()" type="search" placeholder="ابحث في الإشارات..."
-               class="w-full min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 pr-9 pl-3 text-sm outline-none focus:border-brand-500">
-      </div>
-      <select id="radar-filter-source" onchange="renderRadar()" class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm font-bold outline-none">
-        <option value="all">🌐 كل المصادر</option>
-        <option value="telegram">تيليجرام</option>
-        <option value="khamsat">خمسات</option>
-        <option value="web">الويب المفتوح</option>
-      </select>
-      <select id="radar-filter-category" onchange="renderRadar()" class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm font-bold outline-none">
-        <option value="all">📚 كل المجالات</option>
-        <option value="quran">قرآن وتحفيظ</option>
-        <option value="arabic">لغة عربية</option>
-        <option value="hadith">حديث</option>
-        <option value="kids">أطفال</option>
-        <option value="services">خدمات</option>
-      </select>
-      <select id="radar-filter-type" onchange="renderRadar()" class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm font-bold outline-none">
-        <option value="all">🔀 الكل</option>
-        <option value="demand">📥 طلبات فقط</option>
-        <option value="offer">📤 عروض فقط</option>
-      </select>
-      <select id="radar-filter-sort" onchange="renderRadar()" class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm font-bold outline-none">
-        <option value="fresh">🕐 الأحدث</option>
-        <option value="score">⭐ الأولوية</option>
-      </select>
-    </div>
-  </div>
+  <!-- 🔹 فئات الرادار الثلاث -->
+  <div id="radar-categories" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
 
-  <div id="radar-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
-    <div class="col-span-full rounded-2xl border border-dashed border-slate-300 p-8 text-center text-slate-400 text-sm">
-      <i class="fa-solid fa-satellite-dish text-3xl mb-3 text-brand-500"></i>
-      <div class="font-black text-slate-700">جارٍ المزامنة الأولى...</div>
-      <div class="text-xs mt-1">قد تستغرق 5-15 ثانية</div>
+  <!-- 🔹 منطقة عرض الكروت المصنّفة -->
+  <div id="radar-content-area" class="hidden">
+    <div class="flex flex-wrap items-center justify-between gap-3 mb-5 pb-4 border-b border-slate-200">
+      <button onclick="showRadarCategories()" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 px-4 py-2.5 text-xs font-black text-slate-700">
+        <i class="fa-solid fa-arrow-right"></i> رجوع للفئات
+      </button>
+
+      <div class="flex items-center gap-2 text-sm">
+        <span id="radar-content-title" class="font-black text-slate-900">—</span>
+        <span id="radar-content-count" class="text-[10px] font-bold px-2 py-1 rounded-full bg-brand-50 text-brand-700">0</span>
+      </div>
+
+      <div class="w-32 hidden md:block"></div>
+    </div>
+
+    <div id="radar-cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6"></div>
+
+    <!-- 🔹 زر "المزيد" -->
+    <div id="radar-load-more-wrap" class="hidden text-center">
+      <button onclick="loadMoreRadarCards()" id="radar-load-more-btn" class="inline-flex items-center gap-2 rounded-2xl bg-brand-600 hover:bg-brand-700 text-white px-8 py-3.5 text-sm font-black shadow-lg transition hover:scale-105">
+        <i class="fa-solid fa-plus-circle"></i>
+        <span id="radar-load-more-text">عرض المزيد</span>
+      </button>
+      <p id="radar-load-more-hint" class="mt-3 text-xs text-slate-400">—</p>
     </div>
   </div>
 </section>
@@ -328,7 +317,318 @@ tailwind.config = {
           <option value="languages">لغات</option>
           <option value="services">خدمات</option>
         </select>
-        <select id="list-type" onchange="loadListings()" class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm outline-none">
+        <select id="list-type" onchange="loadListings()" class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-
+           px-3 text-sm outline-none">
+          <option value="all">الكل</option>
+          <option value="offer">عرض</option>
+          <option value="demand">طلب</option>
+        </select>
+      </div>
+    </div>
+    <div id="list-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+
+    <div class="mt-10 rounded-3xl border-2 border-dashed border-emerald-300 bg-gradient-to-br from-emerald-50/60 to-white p-6">
+      <div class="text-center mb-5">
+        <span class="text-[10px] font-black text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">🔗 مصادر إضافية للطلاب والأسر</span>
+        <h3 class="font-black text-xl mt-3 text-slate-900">مصادر تعليمية موثوقة ومجانية</h3>
+        <p class="text-xs text-slate-500 mt-1">مناهج، دورات، كتب، اختبارات — كلها رسمية</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+        <button onclick="openSources('student-curricula')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-emerald-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
+          <span class="w-11 h-11 rounded-xl bg-emerald-50 group-hover:bg-emerald-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-book text-emerald-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">مناهج دراسية</span><span class="block text-[10px] text-slate-400 mt-0.5">مناهج وزارة التعليم</span></span>
+          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-emerald-600 transition"></i>
+        </button>
+        <button onclick="openSources('student-courses')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-emerald-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
+          <span class="w-11 h-11 rounded-xl bg-emerald-50 group-hover:bg-emerald-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-play-circle text-emerald-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">دورات أونلاين</span><span class="block text-[10px] text-slate-400 mt-0.5">كورسات جامعات عالمية</span></span>
+          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-emerald-600 transition"></i>
+        </button>
+        <button onclick="openSources('student-books')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-emerald-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
+          <span class="w-11 h-11 rounded-xl bg-emerald-50 group-hover:bg-emerald-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-book-open text-emerald-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">كتب ومراجع</span><span class="block text-[10px] text-slate-400 mt-0.5">مكتبات رقمية قانونية</span></span>
+          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-emerald-600 transition"></i>
+        </button>
+        <button onclick="openSources('student-quizzes')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-emerald-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
+          <span class="w-11 h-11 rounded-xl bg-emerald-50 group-hover:bg-emerald-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-clipboard-question text-emerald-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">اختبارات مستوى</span><span class="block text-[10px] text-slate-400 mt-0.5">قيّم مستواك مجاناً</span></span>
+          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-emerald-600 transition"></i>
+        </button>
+        <button onclick="openSources('student-exams')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-emerald-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
+          <span class="w-11 h-11 rounded-xl bg-emerald-50 group-hover:bg-emerald-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-file-pen text-emerald-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">نماذج اختبارات</span><span class="block text-[10px] text-slate-400 mt-0.5">تدرب على الامتحانات</span></span>
+          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-emerald-600 transition"></i>
+        </button>
+        <button onclick="openSources('student-scholarships')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-emerald-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
+          <span class="w-11 h-11 rounded-xl bg-emerald-50 group-hover:bg-emerald-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-award text-emerald-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">منح دراسية</span><span class="block text-[10px] text-slate-400 mt-0.5">فرص تمويل للتعليم</span></span>
+          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-emerald-600 transition"></i>
+        </button>
+      </div>
+      <div class="mt-4 text-center">
+        <button onclick="openSuggestSource('student')" class="text-[10px] font-bold text-slate-500 hover:text-emerald-700">💡 اقترح مصدراً جديداً لهذا القسم</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="communities" class="bg-slate-50 py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+      <div>
+        <span class="text-xs font-black text-brand-700"><i class="fa-solid fa-users"></i> شبكة المجتمعات</span>
+        <h2 class="mt-2 text-2xl sm:text-3xl font-black text-slate-900">مجموعات وقنوات تعليمية عامة</h2>
+        <p class="mt-1 text-sm text-slate-500">روابط عامة لفيسبوك وتيليجرام — تُحفظ محلياً للتصفح السريع.</p>
+      </div>
+      <button onclick="openCommunityModal()" class="inline-flex items-center gap-2 rounded-xl border border-brand-200 bg-brand-50 hover:bg-brand-100 text-brand-700 px-4 py-2.5 text-xs font-black">
+        <i class="fa-solid fa-plus"></i> أضف مجتمعاً
+      </button>
+    </div>
+    <div class="rounded-2xl border border-slate-200 bg-white p-3 mb-5">
+      <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-2">
+        <input id="comm-search" oninput="debounceRenderCommunities()" type="search" placeholder="ابحث باسم المجموعة أو المجال..."
+               class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm outline-none focus:border-brand-500">
+        <div class="flex gap-2">
+          <button data-cf="all" onclick="setCommunityFilter('all')" class="cf-btn px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-black">الكل</button>
+          <button data-cf="facebook" onclick="setCommunityFilter('facebook')" class="cf-btn px-4 py-2 rounded-xl bg-slate-100 text-xs font-bold"><i class="fa-brands fa-facebook-f"></i> فيسبوك</button>
+          <button data-cf="telegram" onclick="setCommunityFilter('telegram')" class="cf-btn px-4 py-2 rounded-xl bg-slate-100 text-xs font-bold"><i class="fa-brands fa-telegram"></i> تيليجرام</button>
+        </div>
+      </div>
+    </div>
+    <div id="comm-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+
+    <div class="mt-10 rounded-3xl border-2 border-dashed border-violet-300 bg-gradient-to-br from-violet-50/60 to-white p-6">
+      <div class="text-center mb-5">
+        <span class="text-[10px] font-black text-violet-700 bg-violet-100 px-3 py-1 rounded-full">🔗 مصادر إضافية للمهنيين</span>
+        <h3 class="font-black text-xl mt-3 text-slate-900">فرص وشبكات مهنية</h3>
+        <p class="text-xs text-slate-500 mt-1">وظائف، منح، تدريب معتمد، مجتمعات مهنية</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+        <button onclick="openSources('pro-jobs')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-violet-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
+          <span class="w-11 h-11 rounded-xl bg-violet-50 group-hover:bg-violet-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-briefcase text-violet-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">وظائف تعليمية</span><span class="block text-[10px] text-slate-400 mt-0.5">حكومي وخاص</span></span>
+          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-violet-600 transition"></i>
+        </button>
+        <button onclick="openSources('pro-scholarships')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-violet-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
+          <span class="w-11 h-11 rounded-xl bg-violet-50 group-hover:bg-violet-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-graduation-cap text-violet-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">منح وبعثات</span><span class="block text-[10px] text-slate-400 mt-0.5">فرص تمويل مهني</span></span>
+          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-violet-600 transition"></i>
+        </button>
+        <button onclick="openSources('pro-training')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-violet-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
+          <span class="w-11 h-11 rounded-xl bg-violet-50 group-hover:bg-violet-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-certificate text-violet-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">تدريب معتمد</span><span class="block text-[10px] text-slate-400 mt-0.5">شهادات معترف بها</span></span>
+          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-violet-600 transition"></i>
+        </button>
+        <button onclick="openSources('pro-networks')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-violet-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
+          <span class="w-11 h-11 rounded-xl bg-violet-50 group-hover:bg-violet-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-users text-violet-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">شبكات مهنية</span><span class="block text-[10px] text-slate-400 mt-0.5">تواصل مع المحترفين</span></span>
+          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-violet-600 transition"></i>
+        </button>
+        <button onclick="openSources('pro-events')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-violet-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
+          <span class="w-11 h-11 rounded-xl bg-violet-50 group-hover:bg-violet-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-calendar text-violet-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">مؤتمرات وملتقيات</span><span class="block text-[10px] text-slate-400 mt-0.5">فرص للتطوير</span></span>
+          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-violet-600 transition"></i>
+        </button>
+        <button onclick="openSources('pro-tools')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-violet-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
+          <span class="w-11 h-11 rounded-xl bg-violet-50 group-hover:bg-violet-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-toolbox text-violet-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">أدوات مهنية</span><span class="block text-[10px] text-slate-400 mt-0.5">تسهّل عملك</span></span>
+          <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-violet-600 transition"></i>
+        </button>
+      </div>
+      <div class="mt-4 text-center">
+        <button onclick="openSuggestSource('pro')" class="text-[10px] font-bold text-slate-500 hover:text-violet-700">💡 اقترح مصدراً جديداً لهذا القسم</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="workspace" class="py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="rounded-3xl border border-slate-200 bg-white p-6">
+      <div class="flex items-center justify-between gap-4 mb-5">
+        <div>
+          <span class="text-xs font-black text-brand-700"><i class="fa-solid fa-user-shield"></i> مساحة الحساب</span>
+          <h2 class="mt-2 text-2xl font-black text-slate-900">مساحتي في وفاق</h2>
+        </div>
+        <button id="signout-btn" class="hidden text-xs font-bold text-red-600 hover:underline" onclick="signOut()">تسجيل الخروج</button>
+      </div>
+      <div id="workspace-guest" class="text-center py-10 rounded-2xl border border-dashed border-slate-300">
+        <i class="fa-solid fa-user-lock text-3xl text-slate-400"></i>
+        <h3 class="mt-3 font-black text-slate-800">سجّل الدخول للوصول إلى مساحتك</h3>
+        <p class="mt-1 text-xs text-slate-500">المطابقات المحفوظة · المحادثات · الاتصالات النشطة</p>
+        <button onclick="openAuthModal()" class="mt-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 text-xs font-black">
+          <i class="fa-solid fa-right-to-bracket"></i> تسجيل الدخول / حساب جديد
+        </button>
+      </div>
+      <div id="workspace-user" class="hidden">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+          <div class="rounded-xl border border-slate-200 p-3"><div class="text-[10px] text-slate-400">الاتصالات</div><div class="text-2xl font-black" id="ws-connections">0</div></div>
+          <div class="rounded-xl border border-slate-200 p-3"><div class="text-[10px] text-slate-400">المحفوظات</div><div class="text-2xl font-black" id="ws-saved">0</div></div>
+          <div class="rounded-xl border border-slate-200 p-3"><div class="text-[10px] text-slate-400">رسائل غير مقروءة</div><div class="text-2xl font-black" id="ws-unread">0</div></div>
+          <div class="rounded-xl border border-slate-200 p-3"><div class="text-[10px] text-slate-400">اكتمال الملف</div><div class="text-2xl font-black" id="ws-completeness">0%</div></div>
+        </div>
+        <div class="grid lg:grid-cols-2 gap-5">
+          <div class="rounded-2xl border border-slate-200 p-4">
+            <h3 class="font-black text-sm mb-3"><i class="fa-solid fa-comments text-brand-600"></i> اتصالاتي ومحادثاتي</h3>
+            <div id="ws-connections-list" class="space-y-2 max-h-80 overflow-y-auto"></div>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-4">
+            <h3 class="font-black text-sm mb-3"><i class="fa-solid fa-user-pen text-brand-600"></i> ملفي الشخصي</h3>
+            <form onsubmit="saveProfile(event)" class="space-y-2">
+              <input id="p-name" placeholder="الاسم الظاهر" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+              <input id="p-phone" placeholder="واتساب / هاتف" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+              <input id="p-region" placeholder="الدولة / المدينة" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+              <textarea id="p-bio" rows="3" placeholder="نبذة قصيرة..." class="w-full rounded-xl bg-slate-50 border border-slate-200 p-3 text-sm outline-none resize-none"></textarea>
+              <button class="w-full rounded-xl bg-brand-600 hover:bg-brand-700 text-white py-2.5 text-xs font-black">حفظ</button>
+              <p id="p-msg" class="text-[10px] text-slate-500"></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="border-t border-slate-200 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-xs text-slate-500">
+    <div class="font-black text-slate-800">منصة وفاق التعليمية</div>
+    <div class="mt-1">القرآن · اللغة العربية · الرادار الحي · المطابقة الذكية</div>
+    <div class="mt-3">© <span id="year"></span> جميع الحقوق محفوظة</div>
+  </div>
+</footer>
+
+<div id="toast-container" class="fixed bottom-5 left-5 z-[200] space-y-2"></div>
+
+<button id="to-top" class="hidden fixed bottom-24 left-5 z-40 w-11 h-11 rounded-full bg-brand-600 text-white shadow-xl grid place-items-center" aria-label="أعلى">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<div id="auth-modal" class="hidden fixed inset-0 z-[150] bg-slate-950/60 backdrop-blur-sm items-center justify-center p-4">
+  <div class="bg-white rounded-2xl w-full max-w-md p-6 shadow-2xl relative">
+    <button onclick="closeModal('auth-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark"></i></button>
+    <div class="flex items-center gap-3 mb-5">
+      <div class="w-11 h-11 rounded-xl bg-brand-100 text-brand-700 grid place-items-center"><i class="fa-solid fa-user-shield"></i></div>
+      <div><h2 class="font-black">حساب وفاق</h2><p class="text-[11px] text-slate-500">ادخل أو أنشئ حساباً جديداً</p></div>
+    </div>
+    <div class="grid grid-cols-2 gap-2 mb-4 p-1 bg-slate-100 rounded-xl text-xs font-black">
+      <button id="tab-login" onclick="switchAuthTab('login')" class="py-2 rounded-lg bg-white shadow-sm">دخول</button>
+      <button id="tab-signup" onclick="switchAuthTab('signup')" class="py-2 rounded-lg text-slate-500">حساب جديد</button>
+    </div>
+    <form onsubmit="submitAuth(event)" class="space-y-3">
+      <input id="a-name" type="text" placeholder="الاسم الكامل" class="hidden w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-3 text-sm outline-none">
+      <input id="a-email" type="email" required placeholder="البريد الإلكتروني" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-3 text-sm outline-none">
+      <input id="a-password" type="password" required minlength="8" placeholder="كلمة المرور (8+ أحرف)" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-3 text-sm outline-none">
+      <select id="a-type" class="hidden w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-3 text-sm outline-none">
+        <option value="student">طالب</option>
+        <option value="parent_family">ولي أمر</option>
+        <option value="teacher">معلم</option>
+        <option value="quran_memorizer">محفّظ</option>
+        <option value="arabic_teacher">معلم عربية</option>
+      </select>
+      <button class="w-full rounded-xl bg-brand-600 hover:bg-brand-700 text-white py-3 text-sm font-black" id="auth-submit">دخول</button>
+      <p id="auth-msg" class="text-xs text-center text-slate-500 min-h-[1rem]"></p>
+    </form>
+  </div>
+</div>
+
+<div id="create-modal" class="hidden fixed inset-0 z-[150] bg-slate-950/60 backdrop-blur-sm items-center justify-center p-4">
+  <div class="bg-white rounded-2xl w-full max-w-xl p-6 shadow-2xl relative max-h-[92vh] overflow-y-auto">
+    <button onclick="closeModal('create-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark"></i></button>
+    <h2 class="font-black text-lg mb-1">نشر طلب / عرض تعليمي</h2>
+    <p class="text-xs text-slate-500 mb-5">سيظهر منشورك في السوق مباشرة ويصبح قابلاً للتواصل.</p>
+    <form id="create-form" onsubmit="submitListing(event)" class="space-y-3">
+      <div class="grid sm:grid-cols-2 gap-3">
+        <input id="c-title" required maxlength="160" placeholder="العنوان الرئيسي *" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+        <select id="c-category" required class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+          <option value="quran">📖 قرآن وتحفيظ</option>
+          <option value="hadith">📚 حديث</option>
+          <option value="arabic">📝 لغة عربية</option>
+          <option value="kids">👧 أطفال</option>
+          <option value="languages">🌍 لغات</option>
+          <option value="services">🛠 خدمة تعليمية</option>
+        </select>
+      </div>
+      <div class="grid sm:grid-cols-3 gap-3">
+        <select id="c-region" required class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+          <option value="GLOBAL">عالمي (أونلاين)</option>
+          <option value="KSA">السعودية</option>
+          <option value="EGP">مصر</option>
+          <option value="UAE">الإمارات</option>
+          <option value="GCC">الخليج</option>
+          <option value="AFRICA">أفريقيا</option>
+          <option value="FOREIGN">أوروبا / أمريكا / آسيا</option>
+        </select>
+        <select id="c-type" required class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+          <option value="offer">عرض</option>
+          <option value="demand">طلب</option>
+        </select>
+        <input id="c-amount" type="number" min="0" placeholder="السعر / الميزانية" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+      </div>
+      <textarea id="c-desc" required rows="4" maxlength="2000" placeholder="الوصف الكامل *" class="w-full rounded-xl bg-slate-50 border border-slate-200 p-3 text-sm outline-none resize-none"></textarea>
+      <input id="c-phone" required placeholder="واتساب مع رمز الدولة (مثال: 966500000000) *" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+      <div class="flex gap-2">
+        <button type="submit" class="flex-1 rounded-xl bg-brand-600 hover:bg-brand-700 text-white py-3 text-sm font-black">
+          <i class="fa-solid fa-cloud-arrow-up"></i> نشر على السحابة
+        </button>
+        <button type="button" onclick="closeModal('create-modal')" class="rounded-xl border border-slate-200 px-4 py-3 text-sm font-bold">إلغاء</button>
+      </div>
+      <p id="c-msg" class="text-xs text-center text-slate-500"></p>
+    </form>
+  </div>
+</div>
+
+<div id="spec-modal" class="hidden fixed inset-0 z-[150] bg-slate-950/60 backdrop-blur-sm items-center justify-center p-4">
+  <div class="bg-white rounded-2xl w-full max-w-2xl p-6 shadow-2xl relative max-h-[92vh] overflow-y-auto">
+    <button onclick="closeModal('spec-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark"></i></button>
+    <h2 class="font-black text-lg mb-1">انضم كمتخصص</h2>
+    <p class="text-xs text-slate-500 mb-5">أنشئ ملفاً سحابياً حقيقياً ليظهر لك الطلاب والأسر.</p>
+    <form onsubmit="submitSpecialist(event)" class="space-y-3">
+      <div class="grid sm:grid-cols-2 gap-3">
+        <input id="s-name" required maxlength="120" placeholder="الاسم الظاهر *" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+        <select id="s-role" required class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+          <option value="quran_teacher">معلم قرآن</option>
+          <option value="qari">قارئ</option>
+          <option value="quran_memorizer">محفّظ</option>
+          <option value="hadith_specialist">متخصص حديث</option>
+          <option value="arabic_teacher">معلم لغة عربية</option>
+        </select>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-3">
+        <input id="s-specialty" placeholder="التخصص (تجويد، قراءات، نحو...)" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+        <input id="s-country" placeholder="الدولة" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+      </div>
+      <div class="grid sm:grid-cols-2 gap-3">
+        <input id="s-whatsapp" placeholder="واتساب (966500000000)" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+        <input id="s-telegram" placeholder="تيليجرام (@username)" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+      </div>
+      <div class="grid sm:grid-cols-2 gap-3">
+        <input id="s-experience" type="number" min="0" max="80" placeholder="سنوات الخبرة" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+        <input id="s-modes" placeholder="أنماط التعليم (online,in_person)" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+      </div>
+      <textarea id="s-bio" required rows="4" maxlength="1600" placeholder="وصف مختصر لخبرتك وما تقدمه *" class="w-full rounded-xl bg-slate-50 border border-slate-200 p-3 text-sm outline-none resize-none"></textarea>
+      <div class="flex gap-2">
+        <button type="submit" class="flex-1 rounded-xl bg-brand-600 hover:bg-brand-700 text-white py-3 text-sm font-black">
+          <i class="fa-solid fa-cloud-arrow-up"></i> نشر الملف
+        </button>
+        <button type="button" onclick="closeModal('spec-modal')" class="rounded-xl border border-slate-200 px-4 py-3 text-sm font-bold">إلغاء</button>
+      </div>
+      <p id="s-msg" class="text-xs text-center text-slate-500"></p>
+    </form>
+  </div>
+</div>
+
+<div id="comm-modal" class="hidden fixed inset-0 z-[150] bg-slate-950/60 backdrop-blur-sm items-center justify-center p-4">
+  <div class="bg-white rounded-2xl w-full max-w-lg p-6 shadow-2xl relative">
+    <button onclick="closeModal('comm-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark"></i></button>
+    <h2 class="font-black text-lg mb-4">أضف مجتمعاً عاماً</h2>
+    <form onsubmit="submitCommunity(event)" class="space-y-3">
+      <select id="cm-platform" required class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+        <option value="telegram">تيليجرام</option>
+        <option value="facebook">فيسبوك</option>
+      </select>
+       px-3 text-sm outline-none">
           <option value="all">الكل</option>
           <option value="offer">عرض</option>
           <option value="demand">طلب</option>
@@ -754,7 +1054,9 @@ tailwind.config = {
 
 <script>
 /* =========================================================
-   CONFIG — v5.1: RADAR PRO (4 columns + colored accents)
+   CONFIG — v6.0 RADAR CATEGORIES
+   3 فئات → عند الضغط 5 كروت → زر "المزيد"
+   بدون تحديث تلقائي
 ========================================================= */
 const SUPABASE_URL = "https://zwgkrwkrohkmnyoixude.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_-tSaRUJ2HWDMSCfEg5CUEQ_dm4-uYAe";
@@ -1019,6 +1321,11 @@ let activeRecipient = null;
 let realtimeChannels = [];
 let syncTimer = null;
 
+/* فئات الرادار */
+let currentRadarCategory = null;      // 'demand' | 'offer' | 'unknown'
+let currentCategoryDisplayCount = 5;  // عدد الكروت المعروضة حالياً
+const CARDS_PER_PAGE = 5;             // كمية "المزيد" لكل ضغطة
+
 /* =========================================================
    UTILITIES
 ========================================================= */
@@ -1060,7 +1367,6 @@ function debounce(fn, wait = 300) {
     t = setTimeout(() => fn.apply(this, args), wait);
   };
 }
-const debounceRenderRadar = debounce(() => renderRadar(), 280);
 const debounceLoadSpecialists = debounce(() => loadSpecialists(), 350);
 const debounceLoadListings = debounce(() => loadListings(), 350);
 const debounceRenderCommunities = debounce(() => renderCommunities(), 280);
@@ -1205,7 +1511,570 @@ sb.auth.onAuthStateChange((event, session) => {
 });
 
 /* =========================================================
-   RADAR ENGINE
+   RADAR ENGINE — جلب البيانات
+========================================================= */
+async function fetchViaProxy(url) {
+  for (const proxyFn of CORS_PROXIES) {
+    try {
+      const proxyUrl = proxyFn(url);
+      const res = await fetch(proxyUrl, {
+        signal: AbortSignal.timeout(12000),
+        headers: { 'Accept': 'text/html,application/xhtml+xml,application/xml' }
+      });
+      if (!res.ok) continue;
+      let html = await res.text();
+      if (html.trim().startsWith('{')) {
+        try {
+          const json = JSON.parse(html);
+          if (json.contents) html = json.contents;
+        } catch (e) {}
+      }
+      if (html.includes('tgme_widget_message') || html.length > 500) {
+        return html;
+      }
+    } catch (e) { continue; }
+  }
+  return null;
+}
+
+async function fetchTelegramChannel(channel, category, label) {
+  const url = `https://t.me/s/${channel}`;
+  const html = await fetchViaProxy(url);
+  if (!html) return [];
+  try {
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    const posts = [...doc.querySelectorAll('.tgme_widget_message')].slice(-20).reverse();
+    return posts.map((p, i) => {
+      const text = (p.querySelector('.tgme_widget_message_text')?.textContent || '').trim();
+      if (!text) return null;
+      const timeEl = p.querySelector('time');
+      const date = timeEl?.getAttribute('datetime') || new Date().toISOString();
+      const link = p.querySelector('a.tgme_widget_message_date')?.getAttribute('href') || url;
+      const lead = {
+        id: `tg_${channel}_${i}_${Date.now()}`,
+        source: 'telegram', sourceLabel: label, sourceUrl: link, channel,
+        title: text.slice(0, 100) + (text.length > 100 ? '...' : ''),
+        snippet: text.slice(0, 400), fullText: text.slice(0, 800),
+        category, date,
+        phone: extractPhone(text), email: extractEmail(text),
+        intentType: detectIntentType(text)
+      };
+      lead.score = computeScore(lead);
+      return lead;
+    }).filter(Boolean);
+  } catch (e) { return []; }
+}
+
+async function fetchKhamsat(url, category, label) {
+  const rssProxyUrl = url.includes('rss') ? url : `${url}/rss`;
+  const xml = await fetchViaProxy(rssProxyUrl);
+  if (!xml) return [];
+  try {
+    const doc = new DOMParser().parseFromString(xml, 'application/xml');
+    const items = [...doc.querySelectorAll('item')].slice(0, 15);
+    if (items.length) {
+      return items.map((it, i) => {
+        const title = it.querySelector('title')?.textContent || '';
+        const desc = it.querySelector('description')?.textContent || '';
+        const link = it.querySelector('link')?.textContent || '';
+        const pub = it.querySelector('pubDate')?.textContent || new Date().toISOString();
+        const plain = desc.replace(/<[^>]*>/g, ' ');
+        const lead = {
+          id: `kh_${i}_${Date.now()}`,
+          source: 'khamsat', sourceLabel: label, sourceUrl: link,
+          title: title.slice(0, 100),
+          snippet: plain.slice(0, 400), fullText: plain.slice(0, 800),
+          category: detectCategory(title + ' ' + plain),
+          date: new Date(pub).toISOString(),
+          phone: extractPhone(plain), email: extractEmail(plain),
+          intentType: detectIntentType(title + ' ' + plain)
+        };
+        lead.score = computeScore(lead);
+        return lead;
+      }).filter(x => x.title);
+    }
+    return [];
+  } catch (e) { return []; }
+}
+
+async function fetchSupabaseLeads() {
+  try {
+    const { data, error } = await sb.from('radar_leads')
+      .select('id, title, snippet, category, source, source_url, score, created_at')
+      .order('created_at', { ascending: false })
+      .limit(100);
+    if (error || !data) return [];
+    return data.map(d => {
+      const lead = {
+        id: `sb_${d.id}`, source: 'web',
+        sourceLabel: d.source || 'مصدر محفوظ',
+        sourceUrl: d.source_url || '#',
+        title: d.title, snippet: d.snippet || '',
+        fullText: d.snippet || '',
+        category: d.category || 'services', date: d.created_at,
+        phone: extractPhone(d.snippet || ''),
+        email: extractEmail(d.snippet || ''),
+        intentType: detectIntent
+        <script>
+/* =========================================================
+   CONFIG — v6.0 RADAR CATEGORIES
+   3 فئات → عند الضغط 5 كروت → زر "المزيد"
+   بدون تحديث تلقائي
+========================================================= */
+const SUPABASE_URL = "https://zwgkrwkrohkmnyoixude.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_-tSaRUJ2HWDMSCfEg5CUEQ_dm4-uYAe";
+
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+const RADAR_SOURCES = {
+  telegram: [
+    { id: 'tg_courses_islam',   channel: 'CoursesIslam',        category: 'quran',    label: 'إعلانات الدورات والدروس' },
+    { id: 'tg_online_quran',    channel: 'onlinequranteachers', category: 'quran',    label: 'وظائف معلمات قرآن للأعاجم' },
+    { id: 'tg_saudi_edu',       channel: 'stohy11111',          category: 'services', label: 'الوظائف التعليمية بالسعودية' },
+    { id: 'tg_dim_women',       channel: 'kamstreh1441',        category: 'quran',    label: 'ديم النسائية - حلقات قرآنية' },
+    { id: 'tg_bawsala',         channel: 'wq2030',              category: 'quran',    label: 'بوصلة - وظائف المعاهد القرآنية' },
+    { id: 'tg_teachers_009',    channel: 'teachers009',         category: 'arabic',   label: 'وظائف معلمين للطلاب الأعاجم' }
+  ],
+  khamsat: [
+    { id: 'kh_main', url: 'https://khamsat.com/rss', category: 'services', label: 'خمسات - RSS' }
+  ]
+};
+
+const CORS_PROXIES = [
+  url => `https://api.cors.lol/?url=${encodeURIComponent(url)}`,
+  url => `https://cors.eu.org/${url}`,
+  url => `https://test.cors.workers.dev/?${url}`,
+  url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+  url => `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`
+];
+
+/* =========================================================
+   SOURCES — قائمة المصادر المفتوحة
+========================================================= */
+const SOURCES = {
+  'teacher-certs': {
+    title: 'شهادات مهنية معتمدة',
+    subtitle: 'شهادات معترف بها للمعلمين والمحفظين',
+    items: [
+      { name: 'هيئة تقويم التعليم والتدريب', url: 'https://etec.gov.sa', desc: 'الرخص المهنية للمعلمين في السعودية' },
+      { name: 'المركز الوطني للتعليم الإلكتروني', url: 'https://nelc.gov.sa', desc: 'اعتماد المنصات والشهادات الإلكترونية' },
+      { name: 'جمعية تحفيظ القرآن الكريم', url: 'https://quran.org.sa', desc: 'إجازات قرآنية معتمدة' },
+      { name: 'Coursera Certificates', url: 'https://coursera.org', desc: 'شهادات من جامعات عالمية' },
+      { name: 'edX Professional', url: 'https://edx.org', desc: 'شهادات احترافية من MIT وHarvard' },
+      { name: 'Microsoft Educator', url: 'https://education.microsoft.com', desc: 'شهادات تعليمية من مايكروسوفت' }
+    ]
+  },
+  'teacher-courses': {
+    title: 'دورات تدريب مهني',
+    subtitle: 'دورات لتطوير مهارات التدريس والتحفيظ',
+    items: [
+      { name: 'إدراك', url: 'https://edraak.org', desc: 'دورات عربية مجانية' },
+      { name: 'رواق', url: 'https://rwaq.org', desc: 'منصة عربية للتعليم المفتوح' },
+      { name: 'مهارات Google', url: 'https://learndigital.withgoogle.com', desc: 'دورات جوجل بالعربية' },
+      { name: 'Coursera for Teachers', url: 'https://coursera.org', desc: 'دورات تدريب المعلمين' },
+      { name: 'FutureLearn', url: 'https://futurelearn.com', desc: 'دورات بريطانية معتمدة' },
+      { name: 'Khan Academy', url: 'https://khanacademy.org', desc: 'أدوات تعليمية تفاعلية' }
+    ]
+  },
+  'teacher-ijazat': {
+    title: 'إجازات قرآنية معتمدة',
+    subtitle: 'الحصول على إجازة بالسند المتصل',
+    items: [
+      { name: 'مجمع الملك فهد', url: 'https://qurancomplex.gov.sa', desc: 'إجازات ومراجع المصحف' },
+      { name: 'الجمعية الخيرية لتحفيظ القرآن', url: 'https://quran.org.sa', desc: 'حلقات وإجازات في السعودية' },
+      { name: 'الهيئة العالمية لتحفيظ القرآن', url: 'https://quran-world.org', desc: 'شبكة عالمية للإجازات' },
+      { name: 'Ijazah Online', url: 'https://ijazah.online', desc: 'منصة إجازة أونلاين' },
+      { name: 'Quranic Arabic Institute', url: 'https://quranicarabic.org', desc: 'إجازات بالقراءات العشر' },
+      { name: 'Al-Azhar', url: 'https://azhar.edu.eg', desc: 'إجازات الأزهر الشريف' }
+    ]
+  },
+  'teacher-platforms': {
+    title: 'منصات تعليمية للتدريس',
+    subtitle: 'اعرض دروسك وابنِ سمعتك',
+    items: [
+      { name: 'منصة مدرستي', url: 'https://schools.madrasati.sa', desc: 'المنصة الرسمية للتعليم السعودي' },
+      { name: 'منصة عين', url: 'https://ien.edu.sa', desc: 'محتوى تعليمي رسمي' },
+      { name: 'نون أكاديمي', url: 'https://noonacademy.com', desc: 'منصة دورات عربية' },
+      { name: 'Udemy', url: 'https://udemy.com', desc: 'بيع دوراتك عالمياً' },
+      { name: 'Teachable', url: 'https://teachable.com', desc: 'ابن منصتك التعليمية' },
+      { name: 'Thinkific', url: 'https://thinkific.com', desc: 'منصة دورات احترافية' }
+    ]
+  },
+  'teacher-jobs': {
+    title: 'وظائف تعليمية',
+    subtitle: 'فرص عمل في المدارس والمراكز',
+    items: [
+      { name: 'جدارات', url: 'https://jadarat.sa', desc: 'الوظائف الحكومية السعودية' },
+      { name: 'طاقات', url: 'https://taqat.sa', desc: 'وظائف القطاع الخاص' },
+      { name: 'منصة سبل', url: 'https://sbl.sa', desc: 'وظائف تعليمية متخصصة' },
+      { name: 'LinkedIn Jobs', url: 'https://linkedin.com/jobs', desc: 'وظائف دولية' },
+      { name: 'Bayt.com', url: 'https://bayt.com', desc: 'أكبر موقع توظيف عربي' },
+      { name: 'GulfTalent', url: 'https://gulftalent.com', desc: 'وظائف الخليج' }
+    ]
+  },
+  'teacher-tools': {
+    title: 'أدوات مهنية للمعلمين',
+    subtitle: 'أدوات تسهّل عملك اليومي',
+    items: [
+      { name: 'Canva for Education', url: 'https://canva.com/education', desc: 'تصميم عروض تعليمية' },
+      { name: 'Google Classroom', url: 'https://classroom.google.com', desc: 'إدارة الصفوف والواجبات' },
+      { name: 'Kahoot', url: 'https://kahoot.com', desc: 'اختبارات تفاعلية' },
+      { name: 'Quizizz', url: 'https://quizizz.com', desc: 'اختبارات أونلاين' },
+      { name: 'Nearpod', url: 'https://nearpod.com', desc: 'دروس تفاعلية' },
+      { name: 'Padlet', url: 'https://padlet.com', desc: 'لوحات تعاونية للطلاب' }
+    ]
+  },
+  'student-curricula': {
+    title: 'مناهج دراسية رسمية',
+    subtitle: 'مناهج وزارة التعليم السعودية',
+    items: [
+      { name: 'منصة عين', url: 'https://ien.edu.sa', desc: 'المناهج الرسمية السعودية' },
+      { name: 'منصة مدرستي', url: 'https://schools.madrasati.sa', desc: 'الدروس والواجبات' },
+      { name: 'بوابة نور', url: 'https://noor.moe.gov.sa', desc: 'نتائج الطلاب' },
+      { name: 'Khan Academy Arabic', url: 'https://ar.khanacademy.org', desc: 'شرح مبسط لكل المواد' },
+      { name: 'CK-12 Foundation', url: 'https://ck12.org', desc: 'مناهج علمية مبسطة' },
+      { name: 'OpenStax', url: 'https://openstax.org', desc: 'كتب جامعية مجانية' }
+    ]
+  },
+  'student-courses': {
+    title: 'دورات أونلاين مجانية',
+    subtitle: 'كورسات معتمدة من أفضل الجامعات',
+    items: [
+      { name: 'إدراك', url: 'https://edraak.org', desc: 'دورات عربية مجانية' },
+      { name: 'رواق', url: 'https://rwaq.org', desc: 'منصة عربية مفتوحة' },
+      { name: 'مهارات Google', url: 'https://learndigital.withgoogle.com', desc: 'شهادات جوجل' },
+      { name: 'Coursera', url: 'https://coursera.org', desc: 'دورات جامعات عالمية' },
+      { name: 'edX', url: 'https://edx.org', desc: 'دورات MIT وHarvard' },
+      { name: 'freeCodeCamp', url: 'https://freecodecamp.org', desc: 'تعلم البرمجة مجاناً' }
+    ]
+  },
+  'student-books': {
+    title: 'كتب ومراجع مجانية',
+    subtitle: 'مكتبات رقمية قانونية',
+    items: [
+      { name: 'مكتبة نور', url: 'https://noor-book.com', desc: 'ملايين الكتب العربية' },
+      { name: 'المكتبة الوقفية', url: 'https://waqfeya.net', desc: 'كتب إسلامية وعلمية' },
+      { name: 'مؤسسة هنداوي', url: 'https://hindawi.org', desc: 'كتب أدبية وعلمية' },
+      { name: 'Project Gutenberg', url: 'https://gutenberg.org', desc: 'كتب عالمية مجانية' },
+      { name: 'Internet Archive', url: 'https://archive.org', desc: 'أرشيف الإنترنت' },
+      { name: 'Open Library', url: 'https://openlibrary.org', desc: 'مكتبة مفتوحة' }
+    ]
+  },
+  'student-quizzes': {
+    title: 'اختبارات مستوى تفاعلية',
+    subtitle: 'قيّم مستواك باختبارات مجانية',
+    items: [
+      { name: 'اختبار مستوى العربية', url: 'https://arabic-test.com', desc: 'قيّم مستواك في العربية' },
+      { name: 'اختبار حفظ القرآن', url: 'https://quran-test.com', desc: 'اختبر حفظك' },
+      { name: 'Kahoot', url: 'https://kahoot.com', desc: 'اختبارات تفاعلية' },
+      { name: 'Quizizz', url: 'https://quizizz.com', desc: 'اختبارات أونلاين' },
+      { name: 'Duolingo Test', url: 'https://duolingo.com', desc: 'اختبر مستوى الإنجليزية' },
+      { name: '16Personalities', url: 'https://16personalities.com', desc: 'اختبر شخصيتك ومسارك' }
+    ]
+  },
+  'student-exams': {
+    title: 'نماذج اختبارات سابقة',
+    subtitle: 'تدرب على الامتحانات الرسمية',
+    items: [
+      { name: 'قياس', url: 'https://etec.gov.sa', desc: 'نماذج اختبارات قياس' },
+      { name: 'وزارة التعليم', url: 'https://moe.gov.sa', desc: 'نماذج رسمية' },
+      { name: 'منصة عين', url: 'https://ien.edu.sa', desc: 'اختبارات إلكترونية' },
+      { name: 'SAT Practice', url: 'https://khanacademy.org/sat', desc: 'تدريب SAT' },
+      { name: 'IELTS Practice', url: 'https://ielts.org', desc: 'نماذج آيلتس' },
+      { name: 'TOEFL Practice', url: 'https://ets.org/toefl', desc: 'نماذج توفل' }
+    ]
+  },
+  'student-scholarships': {
+    title: 'منح دراسية',
+    subtitle: 'فرص تمويل للتعليم',
+    items: [
+      { name: 'منح وزارة التعليم', url: 'https://moe.gov.sa', desc: 'البعثات الحكومية' },
+      { name: 'منح KAUST', url: 'https://kaust.edu.sa', desc: 'منح كاملة للدراسات العليا' },
+      { name: 'منح المسك', url: 'https://misk.org.sa', desc: 'برامج ومنح للشباب' },
+      { name: 'Chevening', url: 'https://chevening.org', desc: 'منح بريطانية حكومية' },
+      { name: 'Fulbright', url: 'https://fulbright.org', desc: 'منح أمريكية' },
+      { name: 'DAAD', url: 'https://daad.de', desc: 'منح ألمانية' }
+    ]
+  },
+  'pro-jobs': {
+    title: 'وظائف تعليمية',
+    subtitle: 'فرص في القطاعين الحكومي والخاص',
+    items: [
+      { name: 'جدارات', url: 'https://jadarat.sa', desc: 'الوظائف الحكومية' },
+      { name: 'طاقات', url: 'https://taqat.sa', desc: 'وظائف القطاع الخاص' },
+      { name: 'منصة سبل', url: 'https://sbl.sa', desc: 'وظائف تعليمية' },
+      { name: 'LinkedIn', url: 'https://linkedin.com/jobs', desc: 'وظائف دولية' },
+      { name: 'Bayt', url: 'https://bayt.com', desc: 'أكبر موقع توظيف عربي' },
+      { name: 'Indeed', url: 'https://indeed.com', desc: 'وظائف عالمية' }
+    ]
+  },
+  'pro-scholarships': {
+    title: 'منح وبعثات',
+    subtitle: 'فرص تمويل مهني وأكاديمي',
+    items: [
+      { name: 'بعثات وزارة التعليم', url: 'https://moe.gov.sa', desc: 'البرامج الرسمية' },
+      { name: 'منح KAUST', url: 'https://kaust.edu.sa', desc: 'دراسات عليا' },
+      { name: 'منح المسك', url: 'https://misk.org.sa', desc: 'برامج شباب' },
+      { name: 'Chevening', url: 'https://chevening.org', desc: 'منح بريطانية' },
+      { name: 'Fulbright', url: 'https://fulbright.org', desc: 'منح أمريكية' },
+      { name: 'Erasmus+', url: 'https://erasmus-plus.ec.europa.eu', desc: 'منح أوروبية' }
+    ]
+  },
+  'pro-training': {
+    title: 'تدريب معتمد',
+    subtitle: 'شهادات مهنية معترف بها',
+    items: [
+      { name: 'إدراك', url: 'https://edraak.org', desc: 'دورات عربية' },
+      { name: 'رواق', url: 'https://rwaq.org', desc: 'منصة عربية' },
+      { name: 'Coursera', url: 'https://coursera.org', desc: 'شهادات معتمدة' },
+      { name: 'edX', url: 'https://edx.org', desc: 'شهادات احترافية' },
+      { name: 'Udacity', url: 'https://udacity.com', desc: 'نانو ديجري' },
+      { name: 'Pluralsight', url: 'https://pluralsight.com', desc: 'تدريب تقني' }
+    ]
+  },
+  'pro-networks': {
+    title: 'شبكات مهنية',
+    subtitle: 'تواصل مع المحترفين',
+    items: [
+      { name: 'LinkedIn', url: 'https://linkedin.com', desc: 'أكبر شبكة مهنية' },
+      { name: 'Bayt', url: 'https://bayt.com', desc: 'شبكة عربية' },
+      { name: 'GulfTalent', url: 'https://gulftalent.com', desc: 'شبكة الخليج' },
+      { name: 'AngelList', url: 'https://angel.co', desc: 'شبكة ريادة أعمال' },
+      { name: 'Meetup', url: 'https://meetup.com', desc: 'لقاءات مهنية' },
+      { name: 'Slack Communities', url: 'https://slack.com/community', desc: 'مجتمعات تقنية' }
+    ]
+  },
+  'pro-events': {
+    title: 'مؤتمرات وملتقيات',
+    subtitle: 'فرص للتطوير المهني',
+    items: [
+      { name: 'ملتقى التعليم السعودي', url: 'https://moe.gov.sa', desc: 'فعاليات وزارة التعليم' },
+      { name: 'LEAP', url: 'https://onegiantleap.com', desc: 'مؤتمر التقنية' },
+      { name: 'GITEX', url: 'https://gitex.com', desc: 'معرض التقنية' },
+      { name: 'TEDx', url: 'https://ted.com', desc: 'محادثات ملهمة' },
+      { name: 'EdTech Summit', url: 'https://edtechsummit.com', desc: 'قمة التعليم' },
+      { name: 'Eventbrite', url: 'https://eventbrite.com', desc: 'اكتشف الفعاليات' }
+    ]
+  },
+  'pro-tools': {
+    title: 'أدوات مهنية',
+    subtitle: 'أدوات تسهّل عملك',
+    items: [
+      { name: 'Notion', url: 'https://notion.so', desc: 'تنظيم المهام' },
+      { name: 'Trello', url: 'https://trello.com', desc: 'إدارة المشاريع' },
+      { name: 'Slack', url: 'https://slack.com', desc: 'تواصل الفرق' },
+      { name: 'Zoom', url: 'https://zoom.us', desc: 'اجتماعات أونلاين' },
+      { name: 'Google Workspace', url: 'https://workspace.google.com', desc: 'أدوات جوجل' },
+      { name: 'Canva', url: 'https://canva.com', desc: 'تصميم احترافي' }
+    ]
+  }
+};
+
+/* =========================================================
+   STATE
+========================================================= */
+let currentUser = null;
+let currentAuthMode = 'login';
+let radarLeads = [];
+let specialistData = [];
+let listingData = [];
+let contactTarget = null;
+let activeConnection = null;
+let activeRecipient = null;
+let realtimeChannels = [];
+let syncTimer = null;
+
+/* فئات الرادار */
+let currentRadarCategory = null;      // 'demand' | 'offer' | 'unknown'
+let currentCategoryDisplayCount = 5;  // عدد الكروت المعروضة حالياً
+const CARDS_PER_PAGE = 5;             // كمية "المزيد" لكل ضغطة
+
+/* =========================================================
+   UTILITIES
+========================================================= */
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+
+function toast(msg, type='info') {
+  const colors = { info:'bg-slate-900', success:'bg-emerald-600', error:'bg-red-600', warn:'bg-amber-500' };
+  const icons  = { info:'fa-circle-info', success:'fa-circle-check', error:'fa-circle-xmark', warn:'fa-triangle-exclamation' };
+  const el = document.createElement('div');
+  el.className = `${colors[type]} text-white text-xs font-bold px-4 py-3 rounded-xl shadow-2xl flex items-center gap-2`;
+  el.innerHTML = `<i class="fa-solid ${icons[type]}"></i><span>${msg}</span>`;
+  $('toast-container').appendChild(el);
+  setTimeout(() => { el.style.opacity = '0'; el.style.transition = 'opacity .3s'; setTimeout(() => el.remove(), 350); }, 3800);
+}
+
+function scrollTo(id) { $(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+function closeModal(id) { $(id)?.classList.add('hidden'); $(id)?.classList.remove('flex'); }
+function openModal(id) { $(id)?.classList.remove('hidden'); $(id)?.classList.add('flex'); }
+
+function timeAgo(iso) {
+  if (!iso) return 'الآن';
+  const d = new Date(iso).getTime();
+  if (isNaN(d)) return 'الآن';
+  const m = Math.floor((Date.now() - d) / 60000);
+  if (m < 1) return 'الآن';
+  if (m < 60) return `قبل ${m} د`;
+  const h = Math.floor(m / 60);
+  if (h < 24) return `قبل ${h} س`;
+  const days = Math.floor(h / 24);
+  if (days < 30) return `قبل ${days} ي`;
+  return new Date(iso).toLocaleDateString('ar-EG');
+}
+
+function debounce(fn, wait = 300) {
+  let t;
+  return function(...args) {
+    clearTimeout(t);
+    t = setTimeout(() => fn.apply(this, args), wait);
+  };
+}
+const debounceLoadSpecialists = debounce(() => loadSpecialists(), 350);
+const debounceLoadListings = debounce(() => loadListings(), 350);
+const debounceRenderCommunities = debounce(() => renderCommunities(), 280);
+
+function detectIntentType(text) {
+  const t = (text || '').toLowerCase();
+  if (/مطلوب|أبحث عن|ابحث عن|نحتاج|نبحث عن|بحاجة إلى|looking for|need|wanted|seeking|طلب/.test(t)) return 'demand';
+  if (/متاح|أقدم|نقدم|لدي|لديّ|available|offering|provide|عرض|خدمات/.test(t)) return 'offer';
+  return 'unknown';
+}
+
+function extractPhone(text) {
+  if (!text) return null;
+  const cleaned = String(text).replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
+  const waMatch = cleaned.match(/(?:wa\.me\/|whatsapp\.com\/send\?phone=)(\+?\d{8,15})/i);
+  if (waMatch) return waMatch[1].replace(/^\+/, '');
+  const phoneMatch = cleaned.match(/(?:\+|00)(\d{9,15})/);
+  if (phoneMatch) return phoneMatch[1];
+  return null;
+}
+
+function extractEmail(text) {
+  if (!text) return null;
+  const m = String(text).match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
+  return m ? m[0] : null;
+}
+
+function computeScore(lead) {
+  let score = 50;
+  const age = (Date.now() - new Date(lead.date).getTime()) / (1000 * 60 * 60);
+  if (age < 1) score += 30;
+  else if (age < 6) score += 22;
+  else if (age < 24) score += 15;
+  else if (age < 72) score += 8;
+  if (lead.category === 'quran') score += 8;
+  else if (lead.category === 'arabic') score += 6;
+  if (lead.phone) score += 10;
+  if (lead.email) score += 5;
+  if (lead.intentType === 'demand') score += 6;
+  if (lead.source === 'telegram') score += 3;
+  return Math.min(99, Math.max(20, score));
+}
+
+/* =========================================================
+   THEME + MENU
+========================================================= */
+function initTheme() {
+  const saved = localStorage.getItem('wefaq_theme');
+  if (saved === 'dark' || (!saved && matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark');
+    $('theme-icon').className = 'fa-solid fa-sun text-amber-400';
+  }
+}
+$('theme-toggle').addEventListener('click', () => {
+  const isDark = document.documentElement.classList.toggle('dark');
+  localStorage.setItem('wefaq_theme', isDark ? 'dark' : 'light');
+  $('theme-icon').className = isDark ? 'fa-solid fa-sun text-amber-400' : 'fa-solid fa-moon';
+});
+$('menu-btn').addEventListener('click', () => $('mobile-menu').classList.toggle('hidden'));
+window.addEventListener('scroll', () => {
+  const toTop = $('to-top');
+  if (window.scrollY > 500) toTop.classList.remove('hidden');
+  else toTop.classList.add('hidden');
+}, { passive: true });
+$('to-top').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* =========================================================
+   AUTH
+========================================================= */
+function openAuthModal() { openModal('auth-modal'); }
+function switchAuthTab(mode) {
+  currentAuthMode = mode;
+  const isLogin = mode === 'login';
+  $('tab-login').className = `py-2 rounded-lg ${isLogin ? 'bg-white shadow-sm' : 'text-slate-500'}`;
+  $('tab-signup').className = `py-2 rounded-lg ${!isLogin ? 'bg-white shadow-sm' : 'text-slate-500'}`;
+  $('a-name').classList.toggle('hidden', isLogin);
+  $('a-type').classList.toggle('hidden', isLogin);
+  $('auth-submit').textContent = isLogin ? 'دخول' : 'إنشاء حساب';
+  $('auth-msg').textContent = '';
+}
+
+async function submitAuth(e) {
+  e.preventDefault();
+  const email = $('a-email').value.trim();
+  const password = $('a-password').value;
+  const name = $('a-name').value.trim();
+  const type = $('a-type').value;
+  const msg = $('auth-msg');
+  msg.textContent = 'جارٍ المعالجة...';
+
+  if (currentAuthMode === 'login') {
+    const { error } = await sb.auth.signInWithPassword({ email, password });
+    if (error) { msg.textContent = error.message; return; }
+    closeModal('auth-modal');
+    toast('تم تسجيل الدخول ✓', 'success');
+  } else {
+    if (password.length < 8) { msg.textContent = 'كلمة المرور 8 أحرف على الأقل'; return; }
+    const { data, error } = await sb.auth.signUp({
+      email, password,
+      options: { data: { display_name: name, account_type: type } }
+    });
+    if (error) { msg.textContent = error.message; return; }
+    msg.textContent = data.session ? 'تم إنشاء الحساب ✓' : 'تفقد بريدك لتأكيد الحساب';
+    if (data.session) { closeModal('auth-modal'); toast('مرحباً بك في وفاق ✓', 'success'); }
+  }
+}
+
+async function signOut() {
+  await sb.auth.signOut();
+  currentUser = null;
+  updateAuthUI();
+  teardownRealtime();
+  toast('تم تسجيل الخروج');
+}
+
+function updateAuthUI() {
+  const label = $('auth-btn-label');
+  const wsGuest = $('workspace-guest'), wsUser = $('workspace-user'), soBtn = $('signout-btn');
+  if (currentUser) {
+    label.textContent = (currentUser.email || '').split('@')[0];
+    wsGuest.classList.add('hidden');
+    wsUser.classList.remove('hidden');
+    soBtn.classList.remove('hidden');
+  } else {
+    label.textContent = 'دخول';
+    wsGuest.classList.remove('hidden');
+    wsUser.classList.add('hidden');
+    soBtn.classList.add('hidden');
+  }
+}
+
+$('auth-btn').addEventListener('click', () => {
+  if (currentUser) scrollTo('workspace');
+  else openAuthModal();
+});
+
+sb.auth.onAuthStateChange((event, session) => {
+  currentUser = session?.user || null;
+  updateAuthUI();
+  if (currentUser) { loadWorkspace(); setupRealtime(); }
+  else teardownRealtime();
+});
+
+/* =========================================================
+   RADAR ENGINE — جلب البيانات
 ========================================================= */
 async function fetchViaProxy(url) {
   for (const proxyFn of CORS_PROXIES) {
@@ -1358,7 +2227,15 @@ async function syncRadar(manual = false) {
   localStorage.setItem('wefaq_radar_cache', JSON.stringify({ leads: radarLeads.slice(0, 200), ts: Date.now() }));
   localStorage.setItem('wefaq_radar_last_sync', String(Date.now()));
 
-  renderRadar(); updateRadarStats(); renderHeroRadarPreview();
+  updateRadarStats();
+  renderHeroRadarPreview();
+
+  // تحديث العرض الحالي بدون تغيير الصفحة
+  if (!currentRadarCategory) {
+    showRadarCategories();
+  } else {
+    renderCategoryCards();
+  }
 
   if (manual) {
     $('radar-sync-btn').disabled = false;
@@ -1388,68 +2265,218 @@ function updateRadarStats() {
 }
 
 /* =========================================================
-   RENDER RADAR — v5.1 PRO
-   4 أعمدة + شريط جانبي ملوّن + بج مميز
+   RADAR CATEGORIES — الدوال الجديدة
+   3 فئات → عند الضغط 5 كروت → زر "المزيد"
 ========================================================= */
-function renderRadar() {
-  const q = $('radar-search').value.trim().toLowerCase();
-  const src = $('radar-filter-source').value;
-  const cat = $('radar-filter-category').value;
-  const typ = $('radar-filter-type').value;
-  const sort = $('radar-filter-sort').value;
 
-  let list = radarLeads.filter(l => {
-    if (src !== 'all' && l.source !== src) return false;
-    if (cat !== 'all' && l.category !== cat) return false;
-    if (typ !== 'all' && l.intentType !== typ) return false;
-    if (q && !(`${l.title} ${l.snippet}`.toLowerCase().includes(q))) return false;
-    return true;
+function getCategoryStats() {
+  const demand = radarLeads.filter(l => l.intentType === 'demand');
+  const offer = radarLeads.filter(l => l.intentType === 'offer');
+  const unknown = radarLeads.filter(l => !l.intentType || l.intentType === 'unknown');
+
+  return {
+    demand: { count: demand.length, items: demand },
+    offer: { count: offer.length, items: offer },
+    unknown: { count: unknown.length, items: unknown }
+  };
+}
+
+function showRadarCategories() {
+  currentRadarCategory = null;
+  currentCategoryDisplayCount = CARDS_PER_PAGE;
+
+  const categoriesContainer = $('radar-categories');
+  const contentArea = $('radar-content-area');
+  if (categoriesContainer) categoriesContainer.classList.remove('hidden');
+  if (contentArea) contentArea.classList.add('hidden');
+
+  const stats = getCategoryStats();
+
+  const categories = [
+    {
+      key: 'demand',
+      icon: 'fa-user-graduate',
+      label: 'طلاب',
+      description: 'باحثون عن معلم أو خدمة تعليمية',
+      count: stats.demand.count,
+      gradient: 'from-orange-500 to-orange-600',
+      border: 'border-orange-200 hover:border-orange-400',
+      text: 'text-orange-700'
+    },
+    {
+      key: 'offer',
+      icon: 'fa-bullhorn',
+      label: 'عارضون',
+      description: 'معلمون ومتخصصون يقدمون خدمات',
+      count: stats.offer.count,
+      gradient: 'from-emerald-500 to-emerald-600',
+      border: 'border-emerald-200 hover:border-emerald-400',
+      text: 'text-emerald-700'
+    },
+    {
+      key: 'unknown',
+      icon: 'fa-circle-question',
+      label: 'غير محدد',
+      description: 'إشارات عامة تحتاج تصنيفاً',
+      count: stats.unknown.count,
+      gradient: 'from-slate-500 to-slate-600',
+      border: 'border-slate-200 hover:border-slate-400',
+      text: 'text-slate-700'
+    }
+  ];
+
+  if (!categoriesContainer) return;
+
+  categoriesContainer.innerHTML = categories.map(cat => `
+    <button onclick="showRadarCategory('${cat.key}')"
+            class="group relative overflow-hidden rounded-3xl border-2 ${cat.border} bg-white p-6 text-right transition-all hover:-translate-y-1 hover:shadow-2xl">
+      <div class="flex items-start gap-4">
+        <span class="w-16 h-16 rounded-2xl bg-gradient-to-br ${cat.gradient} text-white grid place-items-center shrink-0 shadow-lg">
+          <i class="fa-solid ${cat.icon} text-2xl"></i>
+        </span>
+        <div class="flex-1 min-w-0">
+          <h3 class="text-xl font-black text-slate-900">${cat.label}</h3>
+          <p class="text-xs text-slate-500 mt-1 leading-5">${cat.description}</p>
+          <div class="mt-4 flex items-baseline gap-2">
+            <span class="text-4xl font-black ${cat.text}">${cat.count}</span>
+            <span class="text-xs font-bold text-slate-400">إشارة</span>
+          </div>
+        </div>
+      </div>
+      <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between">
+        <span class="text-xs font-black ${cat.text}">اضغط لعرض الكروت</span>
+        <i class="fa-solid fa-arrow-left text-slate-400 group-hover:-translate-x-1 transition-transform"></i>
+      </div>
+    </button>
+  `).join('');
+}
+
+function showRadarCategory(categoryKey) {
+  currentRadarCategory = categoryKey;
+  currentCategoryDisplayCount = CARDS_PER_PAGE;
+
+  const categoriesContainer = $('radar-categories');
+  const contentArea = $('radar-content-area');
+  if (categoriesContainer) categoriesContainer.classList.add('hidden');
+  if (contentArea) contentArea.classList.remove('hidden');
+
+  renderCategoryCards();
+
+  // تمرير تلقائي للقسم
+  $('radar')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function renderCategoryCards() {
+  if (!currentRadarCategory) return;
+
+  const grid = $('radar-cards-grid');
+  const titleEl = $('radar-content-title');
+  const countEl = $('radar-content-count');
+  const loadMoreWrap = $('radar-load-more-wrap');
+  const loadMoreText = $('radar-load-more-text');
+  const loadMoreHint = $('radar-load-more-hint');
+  if (!grid) return;
+
+  const stats = getCategoryStats();
+  const categoryData = {
+    demand: { items: stats.demand.items, label: '🎓 طلبات الطلاب', color: 'orange' },
+    offer: { items: stats.offer.items, label: '📢 عروض المعلمين', color: 'emerald' },
+    unknown: { items: stats.unknown.items, label: '📡 إشارات غير محددة', color: 'slate' }
+  }[currentRadarCategory];
+
+  if (!categoryData) return;
+
+  const sorted = [...categoryData.items].sort((a, b) => {
+    const scoreDiff = (b.score || 0) - (a.score || 0);
+    if (scoreDiff !== 0) return scoreDiff;
+    return new Date(b.date) - new Date(a.date);
   });
-  if (sort === 'score') list.sort((a, b) => (b.score || 0) - (a.score || 0));
-  else list.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  const grid = $('radar-grid');
-  if (list.length === 0) {
-    grid.innerHTML = `<div class="col-span-full rounded-2xl border border-dashed border-slate-300 p-8 text-center text-slate-400 text-sm"><i class="fa-solid fa-inbox text-3xl mb-3 text-slate-300"></i><div class="font-black text-slate-700">لا توجد إشارات حالية بهذه الفلاتر</div><div class="text-xs mt-1">جرّب مزامنة جديدة أو غيّر الفلتر</div></div>`;
+  const total = sorted.length;
+  const shown = Math.min(currentCategoryDisplayCount, total);
+  const visibleItems = sorted.slice(0, shown);
+
+  if (titleEl) titleEl.textContent = categoryData.label;
+  if (countEl) countEl.textContent = `${shown} من ${total}`;
+
+  if (visibleItems.length === 0) {
+    grid.innerHTML = `
+      <div class="col-span-full rounded-2xl border border-dashed border-slate-300 p-12 text-center">
+        <i class="fa-solid fa-inbox text-4xl text-slate-300 mb-3"></i>
+        <div class="font-black text-slate-700">لا توجد إشارات في هذه الفئة</div>
+        <div class="text-xs text-slate-400 mt-1">جرّب مزامنة جديدة</div>
+      </div>`;
+    if (loadMoreWrap) loadMoreWrap.classList.add('hidden');
     return;
   }
 
   const srcIcon = { telegram: 'fa-brands fa-telegram text-sky-500', khamsat: 'fa-solid fa-briefcase text-amber-500', web: 'fa-solid fa-globe text-emerald-500' };
   const catLabel = { quran: 'قرآن', arabic: 'عربية', hadith: 'حديث', kids: 'أطفال', services: 'خدمات' };
+  const colorClasses = {
+    orange: { accent: 'border-r-4 border-r-orange-400' },
+    emerald: { accent: 'border-r-4 border-r-emerald-400' },
+    slate: { accent: 'border-r-4 border-r-slate-400' }
+  }[categoryData.color];
 
-  const typeInfo = {
-    demand: { label: 'طلب', icon: 'fa-user-graduate', badgeCls: 'bg-orange-100 text-orange-700 border-orange-300', accent: 'border-r-4 border-r-orange-400' },
-    offer:  { label: 'عرض', icon: 'fa-bullhorn', badgeCls: 'bg-emerald-100 text-emerald-700 border-emerald-300', accent: 'border-r-4 border-r-emerald-400' },
-    unknown: { label: 'إشارة', icon: 'fa-circle-question', badgeCls: 'bg-slate-100 text-slate-500 border-slate-200', accent: 'border-r-4 border-r-slate-300' }
-  };
-
-  grid.innerHTML = list.slice(0, 80).map(l => {
-    const t = typeInfo[l.intentType] || typeInfo.unknown;
+  grid.innerHTML = visibleItems.map((l, idx) => {
     const phoneChip = l.phone ? `<span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200"><i class="fa-solid fa-phone"></i> ${esc(l.phone)}</span>` : '';
-    return `<article class="wf-card-hover rounded-2xl border border-slate-200 ${t.accent} bg-white p-3 flex flex-col">
-      <div class="flex items-center justify-between gap-1.5 mb-2 flex-wrap">
-        <span class="inline-flex items-center gap-1 text-[9px] font-black px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-600">
+    const rankBadge = idx === 0 ? '<span class="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 text-white text-[10px] font-black grid place-items-center shadow-lg z-10">#1</span>' : '';
+    return `<article class="relative wf-card-hover rounded-2xl border border-slate-200 ${colorClasses.accent} bg-white p-4 flex flex-col">
+      ${rankBadge}
+      <div class="flex items-center justify-between gap-2 mb-2 flex-wrap">
+        <span class="inline-flex items-center gap-1 text-[10px] font-black px-2 py-1 rounded-full bg-slate-100 text-slate-600">
           <i class="${srcIcon[l.source]}"></i> ${esc(l.sourceLabel || l.source)}
         </span>
-        <div class="flex items-center gap-1 flex-wrap">
-          <span class="text-[9px] font-black px-1.5 py-0.5 rounded-full ${t.badgeCls} border"><i class="fa-solid ${t.icon}"></i> ${t.label}</span>
-          <span class="text-[9px] text-slate-400">${timeAgo(l.date)}</span>
-        </div>
+        <span class="text-[10px] text-slate-400">${timeAgo(l.date)}</span>
       </div>
-      <h3 class="font-black text-xs text-slate-900 leading-5 line-clamp-2">${esc(l.title)}</h3>
-      ${l.snippet ? `<p class="mt-1.5 text-[10px] text-slate-500 leading-4 line-clamp-2">${esc(l.snippet)}</p>` : ''}
-      <div class="mt-2 flex flex-wrap gap-1">
-        <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-brand-50 text-brand-700">${catLabel[l.category] || l.category}</span>
-        <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-50 text-amber-700">${l.score}%</span>
+      <h3 class="font-black text-sm text-slate-900 leading-6 line-clamp-3">${esc(l.title)}</h3>
+      ${l.snippet ? `<p class="mt-2 text-xs text-slate-500 leading-5 line-clamp-3">${esc(l.snippet)}</p>` : ''}
+      <div class="mt-3 flex flex-wrap gap-1.5">
+        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-50 text-brand-700">${catLabel[l.category] || l.category}</span>
+        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700">أولوية ${l.score}%</span>
         ${phoneChip}
       </div>
-      <div class="mt-3 flex gap-1.5">
-        <a href="${esc(l.sourceUrl)}" target="_blank" rel="noopener" class="flex-1 text-center rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-[10px] font-black py-1.5"><i class="fa-solid fa-arrow-up-right-from-square"></i> فتح</a>
-        <button onclick="shareRadarLead('${esc(l.id)}')" class="rounded-lg border border-slate-200 px-2 py-1.5 text-[10px] hover:bg-slate-50" title="مشاركة"><i class="fa-solid fa-share-nodes"></i></button>
-        <button onclick="saveLeadToWorkspace('${esc(l.id)}')" class="rounded-lg border border-slate-200 px-2 py-1.5 text-[10px] hover:bg-slate-50" title="حفظ"><i class="fa-regular fa-bookmark"></i></button>
+      <div class="mt-4 flex gap-2">
+        <a href="${esc(l.sourceUrl)}" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2.5"><i class="fa-solid fa-arrow-up-right-from-square"></i> فتح المصدر</a>
+        <button onclick="shareRadarLead('${esc(l.id)}')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="مشاركة"><i class="fa-solid fa-share-nodes"></i></button>
+        <button onclick="saveLeadToWorkspace('${esc(l.id)}')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="حفظ"><i class="fa-regular fa-bookmark"></i></button>
       </div>
     </article>`;
   }).join('');
+
+  if (loadMoreWrap) {
+    if (shown < total) {
+      loadMoreWrap.classList.remove('hidden');
+      const remaining = total - shown;
+      if (loadMoreText) loadMoreText.textContent = `عرض المزيد (${Math.min(CARDS_PER_PAGE, remaining)} كروت)`;
+      if (loadMoreHint) loadMoreHint.textContent = `يتبقى ${remaining} إشارة أخرى`;
+    } else {
+      loadMoreWrap.classList.add('hidden');
+    }
+  }
+}
+
+function loadMoreRadarCards() {
+  if (!currentRadarCategory) return;
+  const stats = getCategoryStats();
+  const total = {
+    demand: stats.demand.count,
+    offer: stats.offer.count,
+    unknown: stats.unknown.count
+  }[currentRadarCategory] || 0;
+
+  if (currentCategoryDisplayCount >= total) return;
+
+  currentCategoryDisplayCount += CARDS_PER_PAGE;
+  renderCategoryCards();
+
+  setTimeout(() => {
+    const grid = $('radar-cards-grid');
+    if (grid) {
+      const lastCard = grid.lastElementChild;
+      if (lastCard) lastCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, 100);
 }
 
 function renderHeroRadarPreview() {
@@ -2112,7 +3139,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   initTheme();
   $('year').textContent = new Date().getFullYear();
   loadRadarFromCache();
-  renderRadar();
+  showRadarCategories();          // ✅ عرض الفئات الثلاث بدلاً من الكروت
   updateRadarStats();
   renderHeroRadarPreview();
   loadSpecialists();
@@ -2124,12 +3151,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   updateAuthUI();
   if (currentUser) { loadWorkspace(); setupRealtime(); }
 
+  // مزامنة أولى فقط إذا لم تتم خلال 20 دقيقة (بدون تحديث تلقائي بعدها)
   const lastSync = Number(localStorage.getItem('wefaq_radar_last_sync') || 0);
-  if (Date.now() - lastSync > 20 * 60 * 1000) setTimeout(() => syncRadar(false), 800);
+  if (Date.now() - lastSync > 20 * 60 * 1000) {
+    setTimeout(() => syncRadar(false), 800);
+  }
 
-  syncTimer = setInterval(() => {
-    if (document.visibilityState === 'visible') syncRadar(false);
-  }, 20 * 60 * 1000);
+  // ⚠️ لا يوجد setInterval للتحديث التلقائي — التحديث يدوي فقط
 });
 
 document.addEventListener('keydown', e => {
