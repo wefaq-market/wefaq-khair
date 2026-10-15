@@ -6,9 +6,6 @@
 <title>منصة وفاق التعليمية | القرآن والعربية والمطابقة الذكية</title>
 <meta name="description" content="منصة وفاق تربط الطلاب والأسر بمعلمي القرآن واللغة العربية، مع رادار حي من تيليجرام وخمسات والمصادر العامة.">
 <meta name="theme-color" content="#059669">
-<meta property="og:title" content="منصة وفاق التعليمية">
-<meta property="og:description" content="رادار حي + شبكة متخصصين + مطابقة ذكية.">
-<meta property="og:type" content="website">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,15 +16,10 @@
 
 <script>
 tailwind.config = {
-  theme: {
-    extend: {
-      fontFamily: { sans: ['Tajawal', 'system-ui', 'sans-serif'] },
-      colors: {
-        brand: { 50:'#ecfdf5',100:'#d1fae5',200:'#a7f3d0',300:'#6ee7b7',400:'#34d399',
-                 500:'#10b981',600:'#059669',700:'#047857',800:'#065f46',900:'#064e3b' }
-      }
-    }
-  }
+  theme: { extend: {
+    fontFamily: { sans: ['Tajawal', 'system-ui', 'sans-serif'] },
+    colors: { brand: { 50:'#ecfdf5',100:'#d1fae5',200:'#a7f3d0',300:'#6ee7b7',400:'#34d399',500:'#10b981',600:'#059669',700:'#047857',800:'#065f46',900:'#064e3b' } }
+  }}
 }
 </script>
 
@@ -37,67 +29,41 @@ tailwind.config = {
   section[id] { scroll-margin-top: 5.5rem; }
   ::-webkit-scrollbar { width: 6px; height: 6px; }
   ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 4px; }
-
-  /* Hero gradient */
-  .wf-hero {
-    background:
-      radial-gradient(ellipse 70% 55% at 78% 18%, rgba(16,185,129,.18), transparent 65%),
-      linear-gradient(135deg, #052e2b 0%, #0b192c 52%, #07131f 100%);
-    color: #fff;
-  }
-  .wf-eyebrow {
-    display: inline-flex; align-items: center; gap: .5rem;
-    border: 1px solid rgba(110,231,183,.22); background: rgba(16,185,129,.10);
-    color: #a7f3d0; padding: .45rem .75rem; border-radius: 999px;
-    font-size: .72rem; font-weight: 800;
-  }
-  .wf-intent {
-    display: flex; align-items: center; gap: .65rem;
-    min-height: 74px; padding: .65rem;
-    border: 1px solid rgba(255,255,255,.10);
-    background: rgba(255,255,255,.045);
-    color: #e2e8f0; border-radius: 1rem; text-align: right;
-    transition: .18s ease;
-  }
+  .wf-hero { background: radial-gradient(ellipse 70% 55% at 78% 18%, rgba(16,185,129,.18), transparent 65%), linear-gradient(135deg, #052e2b 0%, #0b192c 52%, #07131f 100%); color: #fff; }
+  .wf-eyebrow { display: inline-flex; align-items: center; gap: .5rem; border: 1px solid rgba(110,231,183,.22); background: rgba(16,185,129,.10); color: #a7f3d0; padding: .45rem .75rem; border-radius: 999px; font-size: .72rem; font-weight: 800; }
+  .wf-intent { display: flex; align-items: center; gap: .65rem; min-height: 74px; padding: .65rem; border: 1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.045); color: #e2e8f0; border-radius: 1rem; text-align: right; transition: .18s ease; }
   .wf-intent:hover { transform: translateY(-2px); border-color: rgba(110,231,183,.35); background: rgba(16,185,129,.08); }
-  .wf-intent-icon {
-    width: 2.5rem; height: 2.5rem; border-radius: .8rem; flex: none;
-    display: flex; align-items: center; justify-content: center;
-    background: rgba(16,185,129,.12); color: #6ee7b7;
-  }
-
+  .wf-intent-icon { width: 2.5rem; height: 2.5rem; border-radius: .8rem; flex: none; display: flex; align-items: center; justify-content: center; background: rgba(16,185,129,.12); color: #6ee7b7; }
   .wf-card-hover { transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
   .wf-card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -12px rgba(15,23,42,.12); border-color: rgba(16,185,129,.35); }
-
-  .wf-radar-pulse {
-    position: relative; width: 10px; height: 10px; border-radius: 50%;
-    background: #34d399; box-shadow: 0 0 0 5px rgba(52,211,153,.15);
-    animation: pulse 1.8s ease-in-out infinite;
-  }
+  .wf-radar-pulse { position: relative; width: 10px; height: 10px; border-radius: 50%; background: #34d399; box-shadow: 0 0 0 5px rgba(52,211,153,.15); animation: pulse 1.8s ease-in-out infinite; }
   @keyframes pulse { 0%,100%{opacity:.6;transform:scale(1)} 50%{opacity:1;transform:scale(1.15)} }
-
   .wf-loading { display: inline-block; width: 1rem; height: 1rem; border: 2px solid rgba(16,185,129,.25); border-top-color: #10b981; border-radius: 50%; animation: spin .8s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
-
   .wf-skeleton { background: linear-gradient(90deg,#f1f5f9 25%,#e2e8f0 50%,#f1f5f9 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite; }
   @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
-
-  /* Dark mode tweaks */
+  .line-clamp-2 { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .line-clamp-3 { display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
   .dark body { background: #020617; color: #e2e8f0; }
   .dark .bg-white { background: #0f172a !important; }
   .dark .bg-slate-50 { background: #0b1220 !important; }
   .dark .border-slate-200 { border-color: #1e293b !important; }
   .dark .text-slate-900 { color: #f1f5f9 !important; }
+  .dark .text-slate-800 { color: #e2e8f0 !important; }
+  .dark .text-slate-700 { color: #cbd5e1 !important; }
   .dark .text-slate-600 { color: #94a3b8 !important; }
   .dark .text-slate-500 { color: #64748b !important; }
-
+  .dark .bg-slate-100 { background: #1e293b !important; }
   [hidden] { display: none !important; }
+  .wf-badge-demand { background:#fff7ed; color:#c2410c; border:1px solid #fed7aa; }
+  .wf-badge-offer  { background:#ecfdf5; color:#047857; border:1px solid #a7f3d0; }
+  .dark .wf-badge-demand { background:rgba(124,45,18,.22); color:#fdba74; border-color:rgba(251,146,60,.24); }
+  .dark .wf-badge-offer  { background:rgba(6,78,59,.28); color:#6ee7b7; border-color:rgba(110,231,183,.22); }
 </style>
 </head>
 
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
 
-<!-- ==================== HEADER ==================== -->
 <header class="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/90 backdrop-blur-md">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
     <a href="#" class="flex items-center gap-2.5 shrink-0">
@@ -107,7 +73,6 @@ tailwind.config = {
         <span class="block text-[10px] font-bold text-slate-500">القرآن • العربية • الرادار الحي</span>
       </span>
     </a>
-
     <nav class="hidden lg:flex items-center gap-1 text-xs font-bold text-slate-600">
       <a href="#radar" class="px-3 py-2 rounded-lg hover:bg-brand-50 hover:text-brand-700">الرادار الحي</a>
       <a href="#specialists" class="px-3 py-2 rounded-lg hover:bg-brand-50 hover:text-brand-700">المتخصصون</a>
@@ -115,7 +80,6 @@ tailwind.config = {
       <a href="#communities" class="px-3 py-2 rounded-lg hover:bg-brand-50 hover:text-brand-700">المجتمعات</a>
       <a href="#workspace" class="px-3 py-2 rounded-lg hover:bg-brand-50 hover:text-brand-700">مساحتي</a>
     </nav>
-
     <div class="flex items-center gap-2">
       <button id="theme-toggle" class="w-10 h-10 rounded-xl border border-slate-200 grid place-items-center hover:bg-slate-50" title="الوضع الليلي">
         <i class="fa-solid fa-moon" id="theme-icon"></i>
@@ -131,7 +95,6 @@ tailwind.config = {
       </button>
     </div>
   </div>
-
   <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-100 bg-white">
     <nav class="px-4 py-3 space-y-1 text-sm font-bold">
       <a href="#radar" class="block px-3 py-2.5 rounded-xl hover:bg-brand-50">الرادار الحي</a>
@@ -145,7 +108,6 @@ tailwind.config = {
 
 <main class="flex-grow">
 
-<!-- ==================== HERO ==================== -->
 <section class="wf-hero">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
     <div class="grid lg:grid-cols-[1.15fr_.85fr] gap-8 items-center">
@@ -158,7 +120,6 @@ tailwind.config = {
           اعثر على معلمي القرآن والقراء والمتخصصين في التحفيظ والحديث واللغة العربية.
           الرادار يلتقط الطلبات الحقيقية من تيليجرام وخمسات والويب، ثم يرتّبها لك حسب الأولوية.
         </p>
-
         <div class="mt-6 rounded-2xl border border-white/10 bg-slate-950/40 p-3">
           <div class="grid sm:grid-cols-[1fr_180px_auto] gap-2">
             <input id="hero-search" type="search" placeholder="ابحث بالاسم أو التخصص أو المدينة..."
@@ -176,7 +137,6 @@ tailwind.config = {
             </button>
           </div>
         </div>
-
         <div class="mt-5 grid grid-cols-2 sm:grid-cols-4 gap-2">
           <button onclick="scrollTo('radar')" class="wf-intent"><span class="wf-intent-icon"><i class="fa-solid fa-satellite-dish"></i></span><span><strong class="block text-xs">الرادار الحي</strong><span class="text-[10px] text-white/50">تحديث فوري</span></span></button>
           <button onclick="scrollTo('specialists')" class="wf-intent"><span class="wf-intent-icon"><i class="fa-solid fa-user-graduate"></i></span><span><strong class="block text-xs">المتخصصون</strong><span class="text-[10px] text-white/50">قرآن وعربية</span></span></button>
@@ -184,7 +144,6 @@ tailwind.config = {
           <button onclick="openSpecialistJoin()" class="wf-intent"><span class="wf-intent-icon"><i class="fa-solid fa-user-plus"></i></span><span><strong class="block text-xs">انضم كمتخصص</strong><span class="text-[10px] text-white/50">ملف سحابي</span></span></button>
         </div>
       </div>
-
       <div class="hidden lg:block rounded-2xl border border-white/10 bg-slate-950/50 p-5">
         <div class="flex items-center justify-between text-xs">
           <span class="font-black text-emerald-300"><span class="wf-radar-pulse inline-block"></span> الرادار نشط</span>
@@ -200,13 +159,13 @@ tailwind.config = {
   </div>
 </section>
 
-<!-- ==================== RADAR ==================== -->
 <section id="radar" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
   <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
     <div>
       <span class="text-xs font-black text-brand-700"><i class="fa-solid fa-satellite-dish"></i> رادار وفاق الحي</span>
       <h2 class="mt-2 text-2xl sm:text-3xl font-black text-slate-900">اكتشافات حقيقية من المصادر العامة</h2>
-      <p class="mt-1 text-sm text-slate-500">تيليجرام · خمسات · الويب المفتوح · إشارات محفوظة. تُحدّث عند كل تشغيل أو مزامنة يدوية.</p>
+      <p class="mt-1 text-sm text-slate-500">تيليجرام · خمسات · الويب المفتوح · إشارات محفوظة. تُحدّث تلقائياً كل 20 دقيقة.</p>
+      <p class="mt-1 text-[10px] text-slate-400" id="radar-last-sync">آخر مزامنة: —</p>
     </div>
     <div class="flex gap-2">
       <button onclick="syncRadar(true)" id="radar-sync-btn" class="inline-flex items-center gap-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white px-4 py-2.5 text-xs font-black shadow">
@@ -215,32 +174,18 @@ tailwind.config = {
     </div>
   </div>
 
-  <!-- مصادر -->
   <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
-    <div class="rounded-2xl border border-slate-200 bg-white p-3">
-      <div class="flex items-center justify-between"><span class="text-[10px] font-black text-slate-500">إجمالي الإشارات</span><span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 grid place-items-center"><i class="fa-solid fa-layer-group text-xs"></i></span></div>
-      <div class="mt-2 text-2xl font-black" id="radar-stat-total">0</div>
-    </div>
-    <div class="rounded-2xl border border-slate-200 bg-white p-3">
-      <div class="flex items-center justify-between"><span class="text-[10px] font-black text-slate-500">تيليجرام</span><span class="w-8 h-8 rounded-lg bg-sky-50 text-sky-600 grid place-items-center"><i class="fa-brands fa-telegram text-xs"></i></span></div>
-      <div class="mt-2 text-2xl font-black" id="radar-stat-telegram">0</div>
-    </div>
-    <div class="rounded-2xl border border-slate-200 bg-white p-3">
-      <div class="flex items-center justify-between"><span class="text-[10px] font-black text-slate-500">خمسات</span><span class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 grid place-items-center"><i class="fa-solid fa-briefcase text-xs"></i></span></div>
-      <div class="mt-2 text-2xl font-black" id="radar-stat-khamsat">0</div>
-    </div>
-    <div class="rounded-2xl border border-slate-200 bg-white p-3">
-      <div class="flex items-center justify-between"><span class="text-[10px] font-black text-slate-500">ويب مفتوح</span><span class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 grid place-items-center"><i class="fa-solid fa-globe text-xs"></i></span></div>
-      <div class="mt-2 text-2xl font-black" id="radar-stat-web">0</div>
-    </div>
+    <div class="rounded-2xl border border-slate-200 bg-white p-3"><div class="flex items-center justify-between"><span class="text-[10px] font-black text-slate-500">إجمالي الإشارات</span><span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 grid place-items-center"><i class="fa-solid fa-layer-group text-xs"></i></span></div><div class="mt-2 text-2xl font-black" id="radar-stat-total">0</div></div>
+    <div class="rounded-2xl border border-slate-200 bg-white p-3"><div class="flex items-center justify-between"><span class="text-[10px] font-black text-slate-500">تيليجرام</span><span class="w-8 h-8 rounded-lg bg-sky-50 text-sky-600 grid place-items-center"><i class="fa-brands fa-telegram text-xs"></i></span></div><div class="mt-2 text-2xl font-black" id="radar-stat-telegram">0</div></div>
+    <div class="rounded-2xl border border-slate-200 bg-white p-3"><div class="flex items-center justify-between"><span class="text-[10px] font-black text-slate-500">خمسات</span><span class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 grid place-items-center"><i class="fa-solid fa-briefcase text-xs"></i></span></div><div class="mt-2 text-2xl font-black" id="radar-stat-khamsat">0</div></div>
+    <div class="rounded-2xl border border-slate-200 bg-white p-3"><div class="flex items-center justify-between"><span class="text-[10px] font-black text-slate-500">طلبات (لا عروض)</span><span class="w-8 h-8 rounded-lg bg-orange-50 text-orange-600 grid place-items-center"><i class="fa-solid fa-user-graduate text-xs"></i></span></div><div class="mt-2 text-2xl font-black" id="radar-stat-demand">0</div></div>
   </div>
 
-  <!-- فلاتر -->
   <div class="rounded-2xl border border-slate-200 bg-white p-3 mb-5">
-    <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto_auto_auto] gap-2">
+    <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto_auto_auto_auto] gap-2">
       <div class="relative">
         <i class="fa-solid fa-magnifying-glass absolute right-3 top-3.5 text-slate-400 text-xs"></i>
-        <input id="radar-search" oninput="renderRadar()" type="search" placeholder="ابحث في الإشارات..."
+        <input id="radar-search" oninput="debounceRenderRadar()" type="search" placeholder="ابحث في الإشارات..."
                class="w-full min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 pr-9 pl-3 text-sm outline-none focus:border-brand-500">
       </div>
       <select id="radar-filter-source" onchange="renderRadar()" class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm outline-none">
@@ -248,7 +193,6 @@ tailwind.config = {
         <option value="telegram">تيليجرام</option>
         <option value="khamsat">خمسات</option>
         <option value="web">الويب المفتوح</option>
-        <option value="saved">محفوظ</option>
       </select>
       <select id="radar-filter-category" onchange="renderRadar()" class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm outline-none">
         <option value="all">كل المجالات</option>
@@ -258,6 +202,11 @@ tailwind.config = {
         <option value="kids">أطفال</option>
         <option value="services">خدمات</option>
       </select>
+      <select id="radar-filter-type" onchange="renderRadar()" class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm outline-none">
+        <option value="all">طلبات وعروض</option>
+        <option value="demand">طلبات فقط</option>
+        <option value="offer">عروض فقط</option>
+      </select>
       <select id="radar-filter-sort" onchange="renderRadar()" class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm outline-none">
         <option value="fresh">الأحدث</option>
         <option value="score">الأولوية</option>
@@ -265,17 +214,15 @@ tailwind.config = {
     </div>
   </div>
 
-  <!-- شبكة الإشارات -->
   <div id="radar-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     <div class="col-span-full rounded-2xl border border-dashed border-slate-300 p-8 text-center text-slate-400 text-sm">
       <i class="fa-solid fa-satellite-dish text-3xl mb-3 text-brand-500"></i>
-      <div class="font-black text-slate-700">اضغط "مزامنة الآن" لجلب الإشارات الحية</div>
-      <div class="text-xs mt-1">أول مزامنة قد تستغرق بضع ثوانٍ</div>
+      <div class="font-black text-slate-700">جارٍ المزامنة الأولى...</div>
+      <div class="text-xs mt-1">قد تستغرق 5-15 ثانية</div>
     </div>
   </div>
 </section>
 
-<!-- ==================== SPECIALISTS ==================== -->
 <section id="specialists" class="bg-slate-50 py-12">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
@@ -288,10 +235,9 @@ tailwind.config = {
         <i class="fa-solid fa-user-plus"></i> انضم كمتخصص
       </button>
     </div>
-
     <div class="rounded-2xl border border-slate-200 bg-white p-3 mb-5">
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-        <input id="spec-search" oninput="loadSpecialists()" type="search" placeholder="اسم / تخصص / مدينة..."
+        <input id="spec-search" oninput="debounceLoadSpecialists()" type="search" placeholder="اسم / تخصص / مدينة..."
                class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm outline-none focus:border-brand-500">
         <select id="spec-role" onchange="loadSpecialists()" class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm outline-none">
           <option value="all">كل الأدوار</option>
@@ -309,12 +255,10 @@ tailwind.config = {
         </select>
       </div>
     </div>
-
     <div id="spec-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
   </div>
 </section>
 
-<!-- ==================== LISTINGS ==================== -->
 <section id="listings" class="py-12">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
@@ -327,10 +271,9 @@ tailwind.config = {
         <i class="fa-solid fa-plus"></i> انشر طلبًا أو عرضًا
       </button>
     </div>
-
     <div class="rounded-2xl border border-slate-200 bg-white p-3 mb-5">
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-        <input id="list-search" oninput="loadListings()" type="search" placeholder="ابحث في الطلبات والعروض..."
+        <input id="list-search" oninput="debounceLoadListings()" type="search" placeholder="ابحث في الطلبات والعروض..."
                class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm outline-none focus:border-brand-500">
         <select id="list-cat" onchange="loadListings()" class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm outline-none">
           <option value="all">كل التصنيفات</option>
@@ -348,28 +291,25 @@ tailwind.config = {
         </select>
       </div>
     </div>
-
     <div id="list-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
   </div>
 </section>
 
-<!-- ==================== COMMUNITIES ==================== -->
 <section id="communities" class="bg-slate-50 py-12">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
       <div>
         <span class="text-xs font-black text-brand-700"><i class="fa-solid fa-users"></i> شبكة المجتمعات</span>
         <h2 class="mt-2 text-2xl sm:text-3xl font-black text-slate-900">مجموعات وقنوات تعليمية عامة</h2>
-        <p class="mt-1 text-sm text-slate-500">روابط عامة لفيسبوك وتيليجرام — تُحفظ محليًا للتصفح السريع.</p>
+        <p class="mt-1 text-sm text-slate-500">روابط عامة لفيسبوك وتيليجرام — تُحفظ محلياً للتصفح السريع.</p>
       </div>
       <button onclick="openCommunityModal()" class="inline-flex items-center gap-2 rounded-xl border border-brand-200 bg-brand-50 hover:bg-brand-100 text-brand-700 px-4 py-2.5 text-xs font-black">
-        <i class="fa-solid fa-plus"></i> أضف مجتمعًا
+        <i class="fa-solid fa-plus"></i> أضف مجتمعاً
       </button>
     </div>
-
     <div class="rounded-2xl border border-slate-200 bg-white p-3 mb-5">
       <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-2">
-        <input id="comm-search" oninput="renderCommunities()" type="search" placeholder="ابحث باسم المجموعة أو المجال..."
+        <input id="comm-search" oninput="debounceRenderCommunities()" type="search" placeholder="ابحث باسم المجموعة أو المجال..."
                class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm outline-none focus:border-brand-500">
         <div class="flex gap-2">
           <button data-cf="all" onclick="setCommunityFilter('all')" class="cf-btn px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-black">الكل</button>
@@ -378,12 +318,10 @@ tailwind.config = {
         </div>
       </div>
     </div>
-
     <div id="comm-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
   </div>
 </section>
 
-<!-- ==================== WORKSPACE ==================== -->
 <section id="workspace" class="py-12">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="rounded-3xl border border-slate-200 bg-white p-6">
@@ -394,7 +332,6 @@ tailwind.config = {
         </div>
         <button id="signout-btn" class="hidden text-xs font-bold text-red-600 hover:underline" onclick="signOut()">تسجيل الخروج</button>
       </div>
-
       <div id="workspace-guest" class="text-center py-10 rounded-2xl border border-dashed border-slate-300">
         <i class="fa-solid fa-user-lock text-3xl text-slate-400"></i>
         <h3 class="mt-3 font-black text-slate-800">سجّل الدخول للوصول إلى مساحتك</h3>
@@ -403,7 +340,6 @@ tailwind.config = {
           <i class="fa-solid fa-right-to-bracket"></i> تسجيل الدخول / حساب جديد
         </button>
       </div>
-
       <div id="workspace-user" class="hidden">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
           <div class="rounded-xl border border-slate-200 p-3"><div class="text-[10px] text-slate-400">الاتصالات</div><div class="text-2xl font-black" id="ws-connections">0</div></div>
@@ -411,7 +347,6 @@ tailwind.config = {
           <div class="rounded-xl border border-slate-200 p-3"><div class="text-[10px] text-slate-400">رسائل غير مقروءة</div><div class="text-2xl font-black" id="ws-unread">0</div></div>
           <div class="rounded-xl border border-slate-200 p-3"><div class="text-[10px] text-slate-400">اكتمال الملف</div><div class="text-2xl font-black" id="ws-completeness">0%</div></div>
         </div>
-
         <div class="grid lg:grid-cols-2 gap-5">
           <div class="rounded-2xl border border-slate-200 p-4">
             <h3 class="font-black text-sm mb-3"><i class="fa-solid fa-comments text-brand-600"></i> اتصالاتي ومحادثاتي</h3>
@@ -436,7 +371,6 @@ tailwind.config = {
 
 </main>
 
-<!-- ==================== FOOTER ==================== -->
 <footer class="border-t border-slate-200 bg-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-xs text-slate-500">
     <div class="font-black text-slate-800">منصة وفاق التعليمية</div>
@@ -445,16 +379,18 @@ tailwind.config = {
   </div>
 </footer>
 
-<!-- ==================== TOAST ==================== -->
 <div id="toast-container" class="fixed bottom-5 left-5 z-[200] space-y-2"></div>
 
-<!-- ==================== MODAL: AUTH ==================== -->
+<button id="to-top" class="hidden fixed bottom-24 left-5 z-40 w-11 h-11 rounded-full bg-brand-600 text-white shadow-xl grid place-items-center" aria-label="أعلى">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
 <div id="auth-modal" class="hidden fixed inset-0 z-[150] bg-slate-950/60 backdrop-blur-sm items-center justify-center p-4">
   <div class="bg-white rounded-2xl w-full max-w-md p-6 shadow-2xl relative">
     <button onclick="closeModal('auth-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark"></i></button>
     <div class="flex items-center gap-3 mb-5">
       <div class="w-11 h-11 rounded-xl bg-brand-100 text-brand-700 grid place-items-center"><i class="fa-solid fa-user-shield"></i></div>
-      <div><h2 class="font-black">حساب وفاق</h2><p class="text-[11px] text-slate-500">ادخل أو أنشئ حسابًا جديدًا</p></div>
+      <div><h2 class="font-black">حساب وفاق</h2><p class="text-[11px] text-slate-500">ادخل أو أنشئ حساباً جديداً</p></div>
     </div>
     <div class="grid grid-cols-2 gap-2 mb-4 p-1 bg-slate-100 rounded-xl text-xs font-black">
       <button id="tab-login" onclick="switchAuthTab('login')" class="py-2 rounded-lg bg-white shadow-sm">دخول</button>
@@ -477,13 +413,12 @@ tailwind.config = {
   </div>
 </div>
 
-<!-- ==================== MODAL: CREATE LISTING ==================== -->
 <div id="create-modal" class="hidden fixed inset-0 z-[150] bg-slate-950/60 backdrop-blur-sm items-center justify-center p-4">
   <div class="bg-white rounded-2xl w-full max-w-xl p-6 shadow-2xl relative max-h-[92vh] overflow-y-auto">
     <button onclick="closeModal('create-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark"></i></button>
     <h2 class="font-black text-lg mb-1">نشر طلب / عرض تعليمي</h2>
     <p class="text-xs text-slate-500 mb-5">سيظهر منشورك في السوق مباشرة ويصبح قابلاً للتواصل.</p>
-    <form onsubmit="submitListing(event)" class="space-y-3">
+    <form id="create-form" onsubmit="submitListing(event)" class="space-y-3">
       <div class="grid sm:grid-cols-2 gap-3">
         <input id="c-title" required maxlength="160" placeholder="العنوان الرئيسي *" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
         <select id="c-category" required class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
@@ -524,12 +459,11 @@ tailwind.config = {
   </div>
 </div>
 
-<!-- ==================== MODAL: SPECIALIST JOIN ==================== -->
 <div id="spec-modal" class="hidden fixed inset-0 z-[150] bg-slate-950/60 backdrop-blur-sm items-center justify-center p-4">
   <div class="bg-white rounded-2xl w-full max-w-2xl p-6 shadow-2xl relative max-h-[92vh] overflow-y-auto">
     <button onclick="closeModal('spec-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark"></i></button>
     <h2 class="font-black text-lg mb-1">انضم كمتخصص</h2>
-    <p class="text-xs text-slate-500 mb-5">أنشئ ملفًا سحابيًا حقيقيًا ليظهر لك الطلاب والأسر.</p>
+    <p class="text-xs text-slate-500 mb-5">أنشئ ملفاً سحابياً حقيقياً ليظهر لك الطلاب والأسر.</p>
     <form onsubmit="submitSpecialist(event)" class="space-y-3">
       <div class="grid sm:grid-cols-2 gap-3">
         <input id="s-name" required maxlength="120" placeholder="الاسم الظاهر *" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
@@ -542,7 +476,7 @@ tailwind.config = {
         </select>
       </div>
       <div class="grid sm:grid-cols-2 gap-3">
-        <input id="s-specialty" placeholder="التخصص (مثال: تجويد، قراءات، نحو)" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+        <input id="s-specialty" placeholder="التخصص (تجويد، قراءات، نحو...)" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
         <input id="s-country" placeholder="الدولة" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
       </div>
       <div class="grid sm:grid-cols-2 gap-3">
@@ -565,11 +499,10 @@ tailwind.config = {
   </div>
 </div>
 
-<!-- ==================== MODAL: COMMUNITY ==================== -->
 <div id="comm-modal" class="hidden fixed inset-0 z-[150] bg-slate-950/60 backdrop-blur-sm items-center justify-center p-4">
   <div class="bg-white rounded-2xl w-full max-w-lg p-6 shadow-2xl relative">
     <button onclick="closeModal('comm-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark"></i></button>
-    <h2 class="font-black text-lg mb-4">أضف مجتمعًا عامًا</h2>
+    <h2 class="font-black text-lg mb-4">أضف مجتمعاً عاماً</h2>
     <form onsubmit="submitCommunity(event)" class="space-y-3">
       <select id="cm-platform" required class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
         <option value="telegram">تيليجرام</option>
@@ -588,7 +521,6 @@ tailwind.config = {
   </div>
 </div>
 
-<!-- ==================== MODAL: CONTACT ==================== -->
 <div id="contact-modal" class="hidden fixed inset-0 z-[150] bg-slate-950/60 backdrop-blur-sm items-center justify-center p-4">
   <div class="bg-white rounded-2xl w-full max-w-md p-6 shadow-2xl relative">
     <button onclick="closeModal('contact-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark"></i></button>
@@ -604,7 +536,6 @@ tailwind.config = {
   </div>
 </div>
 
-<!-- ==================== MODAL: CHAT ==================== -->
 <div id="chat-modal" class="hidden fixed inset-0 z-[150] bg-slate-950/60 backdrop-blur-sm items-center justify-center p-4">
   <div class="bg-white rounded-2xl w-full max-w-lg p-5 shadow-2xl">
     <div class="flex items-center justify-between mb-3">
@@ -619,6 +550,13 @@ tailwind.config = {
   </div>
 </div>
 
+<div id="details-modal" class="hidden fixed inset-0 z-[150] bg-slate-950/60 backdrop-blur-sm items-center justify-center p-4">
+  <div class="bg-white rounded-2xl w-full max-w-2xl p-6 shadow-2xl relative max-h-[92vh] overflow-y-auto">
+    <button onclick="closeModal('details-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark"></i></button>
+    <div id="details-content"></div>
+  </div>
+</div>
+
 <script>
 /* =========================================================
    CONFIG
@@ -628,13 +566,14 @@ const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-/* مصادر الرادار - قابلة للتوسيع */
 const RADAR_SOURCES = {
   telegram: [
-    { id: 'tg_quran_ksa', channel: 'quran_ksa', category: 'quran', label: 'قرآن - السعودية' },
-    { id: 'tg_arabic_lessons', channel: 'arabic_lessons', category: 'arabic', label: 'دروس العربية' },
-    { id: 'tg_hifz_channel', channel: 'hifz_quran', category: 'quran', label: 'حلقات التحفيظ' },
-    { id: 'tg_education_hub', channel: 'arab_education_hub', category: 'services', label: 'مركز التعليم العربي' }
+    { id: 'tg_courses_islam',   channel: 'CoursesIslam',        category: 'quran',    label: 'إعلانات الدورات والدروس' },
+    { id: 'tg_online_quran',    channel: 'onlinequranteachers', category: 'quran',    label: 'وظائف معلمات قرآن للأعاجم' },
+    { id: 'tg_saudi_edu',       channel: 'stohy11111',          category: 'services', label: 'الوظائف التعليمية بالسعودية' },
+    { id: 'tg_dim_women',       channel: 'kamstreh1441',        category: 'quran',    label: 'ديم النسائية - حلقات قرآنية' },
+    { id: 'tg_bawsala',         channel: 'wq2030',              category: 'quran',    label: 'بوصلة - وظائف المعاهد القرآنية' },
+    { id: 'tg_teachers_009',    channel: 'teachers009',         category: 'arabic',   label: 'وظائف معلمين للطلاب الأعاجم' }
   ],
   khamsat: [
     { id: 'kh_main', url: 'https://khamsat.com/rss', category: 'services', label: 'خمسات - RSS' }
@@ -658,6 +597,8 @@ let listingData = [];
 let contactTarget = null;
 let activeConnection = null;
 let activeRecipient = null;
+let realtimeChannels = [];
+let syncTimer = null;
 
 /* =========================================================
    UTILITIES
@@ -667,9 +608,10 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&l
 
 function toast(msg, type='info') {
   const colors = { info:'bg-slate-900', success:'bg-emerald-600', error:'bg-red-600', warn:'bg-amber-500' };
+  const icons  = { info:'fa-circle-info', success:'fa-circle-check', error:'fa-circle-xmark', warn:'fa-triangle-exclamation' };
   const el = document.createElement('div');
-  el.className = `${colors[type]} text-white text-xs font-bold px-4 py-3 rounded-xl shadow-2xl`;
-  el.innerHTML = msg;
+  el.className = `${colors[type]} text-white text-xs font-bold px-4 py-3 rounded-xl shadow-2xl flex items-center gap-2`;
+  el.innerHTML = `<i class="fa-solid ${icons[type]}"></i><span>${msg}</span>`;
   $('toast-container').appendChild(el);
   setTimeout(() => { el.style.opacity = '0'; el.style.transition = 'opacity .3s'; setTimeout(() => el.remove(), 350); }, 3800);
 }
@@ -677,18 +619,74 @@ function toast(msg, type='info') {
 function scrollTo(id) { $(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
 function closeModal(id) { $(id)?.classList.add('hidden'); $(id)?.classList.remove('flex'); }
 function openModal(id) { $(id)?.classList.remove('hidden'); $(id)?.classList.add('flex'); }
+
 function timeAgo(iso) {
+  if (!iso) return 'الآن';
   const d = new Date(iso).getTime();
+  if (isNaN(d)) return 'الآن';
   const m = Math.floor((Date.now() - d) / 60000);
+  if (m < 1) return 'الآن';
   if (m < 60) return `قبل ${m} د`;
   const h = Math.floor(m / 60);
   if (h < 24) return `قبل ${h} س`;
   const days = Math.floor(h / 24);
-  return `قبل ${days} ي`;
+  if (days < 30) return `قبل ${days} ي`;
+  return new Date(iso).toLocaleDateString('ar-EG');
+}
+
+function debounce(fn, wait = 300) {
+  let t;
+  return function(...args) {
+    clearTimeout(t);
+    t = setTimeout(() => fn.apply(this, args), wait);
+  };
+}
+const debounceRenderRadar = debounce(() => renderRadar(), 280);
+const debounceLoadSpecialists = debounce(() => loadSpecialists(), 350);
+const debounceLoadListings = debounce(() => loadListings(), 350);
+const debounceRenderCommunities = debounce(() => renderCommunities(), 280);
+
+function detectIntentType(text) {
+  const t = (text || '').toLowerCase();
+  if (/مطلوب|أبحث عن|ابحث عن|نحتاج|نبحث عن|بحاجة إلى|looking for|need|wanted|seeking|طلب/.test(t)) return 'demand';
+  if (/متاح|أقدم|نقدم|لدي|لديّ|available|offering|provide|عرض|خدمات/.test(t)) return 'offer';
+  return 'unknown';
+}
+
+function extractPhone(text) {
+  if (!text) return null;
+  const cleaned = String(text).replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
+  const waMatch = cleaned.match(/(?:wa\.me\/|whatsapp\.com\/send\?phone=)(\+?\d{8,15})/i);
+  if (waMatch) return waMatch[1].replace(/^\+/, '');
+  const phoneMatch = cleaned.match(/(?:\+|00)(\d{9,15})/);
+  if (phoneMatch) return phoneMatch[1];
+  return null;
+}
+
+function extractEmail(text) {
+  if (!text) return null;
+  const m = String(text).match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
+  return m ? m[0] : null;
+}
+
+function computeScore(lead) {
+  let score = 50;
+  const age = (Date.now() - new Date(lead.date).getTime()) / (1000 * 60 * 60);
+  if (age < 1) score += 30;
+  else if (age < 6) score += 22;
+  else if (age < 24) score += 15;
+  else if (age < 72) score += 8;
+  if (lead.category === 'quran') score += 8;
+  else if (lead.category === 'arabic') score += 6;
+  if (lead.phone) score += 10;
+  if (lead.email) score += 5;
+  if (lead.intentType === 'demand') score += 6;
+  if (lead.source === 'telegram') score += 3;
+  return Math.min(99, Math.max(20, score));
 }
 
 /* =========================================================
-   THEME
+   THEME + MENU
 ========================================================= */
 function initTheme() {
   const saved = localStorage.getItem('wefaq_theme');
@@ -702,11 +700,13 @@ $('theme-toggle').addEventListener('click', () => {
   localStorage.setItem('wefaq_theme', isDark ? 'dark' : 'light');
   $('theme-icon').className = isDark ? 'fa-solid fa-sun text-amber-400' : 'fa-solid fa-moon';
 });
-
-/* =========================================================
-   MOBILE MENU
-========================================================= */
 $('menu-btn').addEventListener('click', () => $('mobile-menu').classList.toggle('hidden'));
+window.addEventListener('scroll', () => {
+  const toTop = $('to-top');
+  if (window.scrollY > 500) toTop.classList.remove('hidden');
+  else toTop.classList.add('hidden');
+}, { passive: true });
+$('to-top').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
 /* =========================================================
    AUTH
@@ -745,7 +745,7 @@ async function submitAuth(e) {
     });
     if (error) { msg.textContent = error.message; return; }
     msg.textContent = data.session ? 'تم إنشاء الحساب ✓' : 'تفقد بريدك لتأكيد الحساب';
-    if (data.session) { closeModal('auth-modal'); toast('مرحبًا بك في وفاق ✓', 'success'); }
+    if (data.session) { closeModal('auth-modal'); toast('مرحباً بك في وفاق ✓', 'success'); }
   }
 }
 
@@ -753,11 +753,12 @@ async function signOut() {
   await sb.auth.signOut();
   currentUser = null;
   updateAuthUI();
+  teardownRealtime();
   toast('تم تسجيل الخروج');
 }
 
 function updateAuthUI() {
-  const btn = $('auth-btn'), label = $('auth-btn-label');
+  const label = $('auth-btn-label');
   const wsGuest = $('workspace-guest'), wsUser = $('workspace-user'), soBtn = $('signout-btn');
   if (currentUser) {
     label.textContent = (currentUser.email || '').split('@')[0];
@@ -780,11 +781,12 @@ $('auth-btn').addEventListener('click', () => {
 sb.auth.onAuthStateChange((event, session) => {
   currentUser = session?.user || null;
   updateAuthUI();
-  if (currentUser) loadWorkspace();
+  if (currentUser) { loadWorkspace(); setupRealtime(); }
+  else teardownRealtime();
 });
 
 /* =========================================================
-   RADAR ENGINE
+   RADAR
 ========================================================= */
 async function fetchViaProxy(url) {
   for (const p of CORS_PROXIES) {
@@ -797,37 +799,35 @@ async function fetchViaProxy(url) {
 }
 
 async function fetchTelegramChannel(channel, category, label) {
-  // t.me/s/channel returns public post previews in HTML
   const url = `https://t.me/s/${channel}`;
   const html = await fetchViaProxy(url);
   if (!html) return [];
   try {
     const doc = new DOMParser().parseFromString(html, 'text/html');
-    const posts = [...doc.querySelectorAll('.tgme_widget_message')].slice(-15).reverse();
+    const posts = [...doc.querySelectorAll('.tgme_widget_message')].slice(-20).reverse();
     return posts.map((p, i) => {
       const text = (p.querySelector('.tgme_widget_message_text')?.textContent || '').trim();
+      if (!text) return null;
       const timeEl = p.querySelector('time');
       const date = timeEl?.getAttribute('datetime') || new Date().toISOString();
       const link = p.querySelector('a.tgme_widget_message_date')?.getAttribute('href') || url;
-      if (!text) return null;
-      return {
+      const lead = {
         id: `tg_${channel}_${i}_${Date.now()}`,
-        source: 'telegram',
-        sourceLabel: label,
-        sourceUrl: link,
-        channel,
-        title: text.slice(0, 90) + (text.length > 90 ? '...' : ''),
-        snippet: text.slice(0, 320),
-        category,
-        date,
-        score: 70 + Math.floor(Math.random() * 25)
+        source: 'telegram', sourceLabel: label, sourceUrl: link, channel,
+        title: text.slice(0, 100) + (text.length > 100 ? '...' : ''),
+        snippet: text.slice(0, 400), fullText: text.slice(0, 800),
+        category, date,
+        phone: extractPhone(text),
+        email: extractEmail(text),
+        intentType: detectIntentType(text)
       };
+      lead.score = computeScore(lead);
+      return lead;
     }).filter(Boolean);
   } catch (e) { return []; }
 }
 
 async function fetchKhamsat(url, category, label) {
-  // Try RSS first, then fallback to page fetch
   const rssProxyUrl = url.includes('rss') ? url : `${url}/rss`;
   const xml = await fetchViaProxy(rssProxyUrl);
   if (!xml) return [];
@@ -840,54 +840,58 @@ async function fetchKhamsat(url, category, label) {
         const desc = it.querySelector('description')?.textContent || '';
         const link = it.querySelector('link')?.textContent || '';
         const pub = it.querySelector('pubDate')?.textContent || new Date().toISOString();
-        return {
+        const plain = desc.replace(/<[^>]*>/g, ' ');
+        const lead = {
           id: `kh_${i}_${Date.now()}`,
-          source: 'khamsat',
-          sourceLabel: label,
-          sourceUrl: link,
-          title,
-          snippet: desc.replace(/<[^>]*>/g, '').slice(0, 300),
-          category,
+          source: 'khamsat', sourceLabel: label, sourceUrl: link,
+          title: title.slice(0, 100),
+          snippet: plain.slice(0, 400), fullText: plain.slice(0, 800),
+          category: detectCategory(title + ' ' + plain),
           date: new Date(pub).toISOString(),
-          score: 65 + Math.floor(Math.random() * 25)
+          phone: extractPhone(plain), email: extractEmail(plain),
+          intentType: detectIntentType(title + ' ' + plain)
         };
+        lead.score = computeScore(lead);
+        return lead;
       }).filter(x => x.title);
     }
-    // Fallback: parse HTML
-    const doc = new DOMParser().parseFromString(xml, 'text/html');
-    const links = [...doc.querySelectorAll('a[href*="/services/"], a[href*="/requests/"]')].slice(0, 15);
-    return links.map((a, i) => ({
-      id: `kh_html_${i}_${Date.now()}`,
-      source: 'khamsat',
-      sourceLabel: label,
-      sourceUrl: a.href,
-      title: a.textContent.trim().slice(0, 90),
-      snippet: '',
-      category,
-      date: new Date().toISOString(),
-      score: 60
-    })).filter(x => x.title.length > 5);
+    const doc2 = new DOMParser().parseFromString(xml, 'text/html');
+    const links = [...doc2.querySelectorAll('a[href*="/services/"], a[href*="/requests/"]')].slice(0, 15);
+    return links.map((a, i) => {
+      const lead = {
+        id: `kh_html_${i}_${Date.now()}`, source: 'khamsat', sourceLabel: label,
+        sourceUrl: a.href, title: a.textContent.trim().slice(0, 100),
+        snippet: '', fullText: '', category, date: new Date().toISOString(),
+        phone: null, email: null, intentType: 'offer'
+      };
+      lead.score = computeScore(lead);
+      return lead;
+    }).filter(x => x.title.length > 5);
   } catch (e) { return []; }
 }
 
 async function fetchSupabaseLeads() {
   try {
     const { data, error } = await sb.from('radar_leads')
-      .select('*')
+      .select('id, title, snippet, category, source, source_url, score, created_at')
       .order('created_at', { ascending: false })
       .limit(100);
     if (error || !data) return [];
-    return data.map(d => ({
-      id: `sb_${d.id}`,
-      source: 'web',
-      sourceLabel: d.source || 'إشارة محفوظة',
-      sourceUrl: d.source_url || '#',
-      title: d.title,
-      snippet: d.snippet,
-      category: d.category || 'services',
-      date: d.created_at,
-      score: d.score || 70
-    }));
+    return data.map(d => {
+      const lead = {
+        id: `sb_${d.id}`, source: 'web',
+        sourceLabel: d.source || 'مصدر محفوظ',
+        sourceUrl: d.source_url || '#',
+        title: d.title, snippet: d.snippet || '',
+        fullText: d.snippet || '',
+        category: d.category || 'services', date: d.created_at,
+        phone: extractPhone(d.snippet || ''),
+        email: extractEmail(d.snippet || ''),
+        intentType: detectIntentType(d.title + ' ' + (d.snippet || ''))
+      };
+      lead.score = Number(d.score) || computeScore(lead);
+      return lead;
+    });
   } catch (e) { return []; }
 }
 
@@ -897,7 +901,6 @@ function detectCategory(text) {
   if (/عربي|عربية|نحو|صرف|بلاغة|arabic/.test(t)) return 'arabic';
   if (/حديث|hadith|سنة/.test(t)) return 'hadith';
   if (/طفل|أطفال|اطفال|kids|child/.test(t)) return 'kids';
-  if (/خدمة|تصميم|برمجة|service/.test(t)) return 'services';
   return 'services';
 }
 
@@ -907,47 +910,34 @@ async function syncRadar(manual = false) {
     $('radar-sync-btn').innerHTML = '<span class="wf-loading"></span> جارٍ المزامنة...';
     toast('جارٍ جلب الإشارات الحية...', 'info');
   }
-
   const allLeads = [];
+  const tgPromises = RADAR_SOURCES.telegram.map(ch => fetchTelegramChannel(ch.channel, ch.category, ch.label));
+  const khPromises = RADAR_SOURCES.khamsat.map(k => fetchKhamsat(k.url, k.category, k.label));
+  const [tgResults, khResults, sbResults] = await Promise.all([
+    Promise.allSettled(tgPromises),
+    Promise.allSettled(khPromises),
+    fetchSupabaseLeads()
+  ]);
+  tgResults.forEach(r => { if (r.status === 'fulfilled') allLeads.push(...r.value); });
+  khResults.forEach(r => { if (r.status === 'fulfilled') allLeads.push(...r.value); });
+  allLeads.push(...sbResults);
 
-  // Telegram channels
-  for (const ch of RADAR_SOURCES.telegram) {
-    const leads = await fetchTelegramChannel(ch.channel, ch.category, ch.label);
-    allLeads.push(...leads);
-  }
-
-  // Khamsat feeds
-  for (const k of RADAR_SOURCES.khamsat) {
-    const leads = await fetchKhamsat(k.url, k.category, k.label);
-    allLeads.push(...leads);
-  }
-
-  // Supabase stored leads
-  const savedLeads = await fetchSupabaseLeads();
-  allLeads.push(...savedLeads);
-
-  // If everything failed, keep old data
   if (allLeads.length === 0 && radarLeads.length > 0) {
     if (manual) toast('لم يتم جلب بيانات جديدة — العرض القديم محفوظ', 'warn');
   } else {
-    // Deduplicate by title
     const seen = new Set();
     radarLeads = allLeads.filter(l => {
-      const key = l.title.slice(0, 60);
+      const key = (l.title || '').slice(0, 60);
       if (seen.has(key)) return false;
       seen.add(key);
       return true;
     }).map(l => ({ ...l, category: l.category || detectCategory(l.title + ' ' + l.snippet) }));
   }
 
-  localStorage.setItem('wefaq_radar_cache', JSON.stringify({
-    leads: radarLeads.slice(0, 200),
-    ts: Date.now()
-  }));
+  localStorage.setItem('wefaq_radar_cache', JSON.stringify({ leads: radarLeads.slice(0, 200), ts: Date.now() }));
+  localStorage.setItem('wefaq_radar_last_sync', String(Date.now()));
 
-  renderRadar();
-  updateRadarStats();
-  renderHeroRadarPreview();
+  renderRadar(); updateRadarStats(); renderHeroRadarPreview();
 
   if (manual) {
     $('radar-sync-btn').disabled = false;
@@ -962,6 +952,8 @@ function loadRadarFromCache() {
     if (!raw) return;
     const { leads } = JSON.parse(raw);
     if (Array.isArray(leads)) radarLeads = leads;
+    const lastSync = Number(localStorage.getItem('wefaq_radar_last_sync') || 0);
+    if (lastSync) $('radar-last-sync').textContent = `آخر مزامنة: ${timeAgo(new Date(lastSync).toISOString())}`;
   } catch (e) {}
 }
 
@@ -969,94 +961,142 @@ function updateRadarStats() {
   $('radar-stat-total').textContent = radarLeads.length;
   $('radar-stat-telegram').textContent = radarLeads.filter(l => l.source === 'telegram').length;
   $('radar-stat-khamsat').textContent = radarLeads.filter(l => l.source === 'khamsat').length;
-  $('radar-stat-web').textContent = radarLeads.filter(l => l.source === 'web').length;
+  $('radar-stat-demand').textContent = radarLeads.filter(l => l.intentType === 'demand').length;
   $('radar-timestamp').textContent = new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
+  $('radar-last-sync').textContent = `آخر مزامنة: ${timeAgo(new Date().toISOString())}`;
 }
 
 function renderRadar() {
   const q = $('radar-search').value.trim().toLowerCase();
   const src = $('radar-filter-source').value;
   const cat = $('radar-filter-category').value;
+  const typ = $('radar-filter-type').value;
   const sort = $('radar-filter-sort').value;
 
   let list = radarLeads.filter(l => {
     if (src !== 'all' && l.source !== src) return false;
     if (cat !== 'all' && l.category !== cat) return false;
+    if (typ !== 'all' && l.intentType !== typ) return false;
     if (q && !(`${l.title} ${l.snippet}`.toLowerCase().includes(q))) return false;
     return true;
   });
-
   if (sort === 'score') list.sort((a, b) => (b.score || 0) - (a.score || 0));
   else list.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   const grid = $('radar-grid');
   if (list.length === 0) {
-    grid.innerHTML = `
-      <div class="col-span-full rounded-2xl border border-dashed border-slate-300 p-8 text-center text-slate-400 text-sm">
-        <i class="fa-solid fa-inbox text-3xl mb-3 text-slate-300"></i>
-        <div class="font-black text-slate-700">لا توجد إشارات حالية بهذه الفلاتر</div>
-        <div class="text-xs mt-1">جرّب مزامنة جديدة أو غيّر الفلتر</div>
-      </div>`;
+    grid.innerHTML = `<div class="col-span-full rounded-2xl border border-dashed border-slate-300 p-8 text-center text-slate-400 text-sm"><i class="fa-solid fa-inbox text-3xl mb-3 text-slate-300"></i><div class="font-black text-slate-700">لا توجد إشارات حالية بهذه الفلاتر</div><div class="text-xs mt-1">جرّب مزامنة جديدة أو غيّر الفلتر</div></div>`;
     return;
   }
-
   const srcIcon = { telegram: 'fa-brands fa-telegram text-sky-500', khamsat: 'fa-solid fa-briefcase text-amber-500', web: 'fa-solid fa-globe text-emerald-500' };
   const catLabel = { quran: 'قرآن', arabic: 'عربية', hadith: 'حديث', kids: 'أطفال', services: 'خدمات' };
 
-  grid.innerHTML = list.slice(0, 60).map(l => `
-    <article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-4 flex flex-col">
-      <div class="flex items-start justify-between gap-2 mb-2">
-        <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full bg-slate-100 text-slate-700">
-          <i class="${srcIcon[l.source]}"></i> ${esc(l.sourceLabel || l.source)}
-        </span>
-        <span class="text-[10px] text-slate-400">${timeAgo(l.date)}</span>
+  grid.innerHTML = list.slice(0, 60).map(l => {
+    const typeBadge = l.intentType === 'demand'
+      ? '<span class="text-[9px] font-black px-2 py-0.5 rounded-full wf-badge-demand"><i class="fa-solid fa-user-graduate"></i> طلب</span>'
+      : l.intentType === 'offer'
+        ? '<span class="text-[9px] font-black px-2 py-0.5 rounded-full wf-badge-offer"><i class="fa-solid fa-bullhorn"></i> عرض</span>'
+        : '';
+    const phoneChip = l.phone ? `<span class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700"><i class="fa-solid fa-phone"></i> ${esc(l.phone)}</span>` : '';
+    return `<article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-4 flex flex-col">
+      <div class="flex items-start justify-between gap-2 mb-2 flex-wrap">
+        <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full bg-slate-100 text-slate-700"><i class="${srcIcon[l.source]}"></i> ${esc(l.sourceLabel || l.source)}</span>
+        <div class="flex items-center gap-1.5 flex-wrap">${typeBadge}<span class="text-[10px] text-slate-400">${timeAgo(l.date)}</span></div>
       </div>
       <h3 class="font-black text-sm text-slate-900 leading-6 line-clamp-2">${esc(l.title)}</h3>
       ${l.snippet ? `<p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">${esc(l.snippet)}</p>` : ''}
       <div class="mt-3 flex flex-wrap gap-1.5">
         <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-50 text-brand-700">${catLabel[l.category] || l.category}</span>
         <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700">أولوية ${l.score}%</span>
+        ${phoneChip}
       </div>
       <div class="mt-4 flex gap-2">
-        <a href="${esc(l.sourceUrl)}" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2">
-          <i class="fa-solid fa-arrow-up-right-from-square"></i> فتح المصدر
-        </a>
-        <button onclick="saveLeadToWorkspace('${esc(l.id)}')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="حفظ">
-          <i class="fa-regular fa-bookmark"></i>
-        </button>
+        <a href="${esc(l.sourceUrl)}" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2"><i class="fa-solid fa-arrow-up-right-from-square"></i> فتح</a>
+        <button onclick="shareRadarLead('${esc(l.id)}')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="مشاركة"><i class="fa-solid fa-share-nodes"></i></button>
+        <button onclick="saveLeadToWorkspace('${esc(l.id)}')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="حفظ"><i class="fa-regular fa-bookmark"></i></button>
       </div>
-    </article>
-  `).join('');
+    </article>`;
+  }).join('');
 }
 
 function renderHeroRadarPreview() {
   const box = $('hero-radar-preview');
   if (!box) return;
   const top = radarLeads.slice(0, 3);
-  if (top.length === 0) return;
-  box.innerHTML = top.map(l => `
-    <div class="rounded-xl bg-white/5 border border-white/10 p-3">
-      <div class="text-[10px] font-black text-emerald-300">${esc(l.sourceLabel || l.source)}</div>
-      <div class="text-xs font-bold text-white mt-1 line-clamp-2">${esc(l.title)}</div>
-    </div>
-  `).join('');
+  if (top.length === 0) { box.innerHTML = `<div class="text-xs text-white/50 text-center py-4">لا توجد إشارات بعد</div>`; return; }
+  box.innerHTML = top.map(l => `<div class="rounded-xl bg-white/5 border border-white/10 p-3"><div class="flex items-center justify-between mb-1"><div class="text-[10px] font-black text-emerald-300">${esc(l.sourceLabel || l.source)}</div>${l.intentType === 'demand' ? '<span class="text-[9px] font-black text-orange-300">طلب</span>' : ''}</div><div class="text-xs font-bold text-white line-clamp-2">${esc(l.title)}</div></div>`).join('');
 }
 
 async function saveLeadToWorkspace(leadId) {
   if (!currentUser) { openAuthModal(); return; }
   const lead = radarLeads.find(l => l.id === leadId);
   if (!lead) return;
-  const { error } = await sb.from('radar_leads').insert({
-    user_id: currentUser.id,
+
+  // إشارة موجودة أصلاً في قاعدة البيانات (من radar_leads)
+  if (lead.id.startsWith('sb_')) {
+    const uuid = lead.id.replace('sb_', '');
+    const { error } = await sb.from('radar_user_saves').insert({
+      user_id: currentUser.id,
+      lead_id: uuid,
+      notes: lead.sourceLabel || null
+    });
+    if (error) {
+      if (error.code === '23505' || error.message.includes('duplicate')) {
+        toast('هذه الإشارة محفوظة مسبقاً ✓', 'info');
+      } else {
+        toast('لم يتم الحفظ: ' + error.message, 'error');
+      }
+    } else {
+      toast('تم حفظ الإشارة في مساحتك ✓', 'success');
+    }
+    return;
+  }
+
+  // إشارة جديدة (من تيليجرام/خمسات) — نحفظها أولاً ثم نربطها
+  const { data: inserted, error: insErr } = await sb.from('radar_leads').insert({
     title: lead.title,
     snippet: lead.snippet,
     category: lead.category,
     source: lead.sourceLabel,
     source_url: lead.sourceUrl,
     score: lead.score
+  }).select('id').single();
+
+  if (insErr || !inserted) {
+    toast('لم يتم الحفظ: ' + (insErr?.message || 'خطأ غير متوقع'), 'error');
+    return;
+  }
+
+  const { error: saveErr } = await sb.from('radar_user_saves').insert({
+    user_id: currentUser.id,
+    lead_id: inserted.id,
+    notes: null
   });
-  if (error) toast('لم يتم الحفظ: ' + error.message, 'error');
-  else toast('تم حفظ الإشارة في مساحتك ✓', 'success');
+
+  if (saveErr) {
+    if (saveErr.code === '23505' || saveErr.message.includes('duplicate')) {
+      toast('هذه الإشارة محفوظة مسبقاً ✓', 'info');
+    } else {
+      toast('لم يتم الحفظ: ' + saveErr.message, 'error');
+    }
+  } else {
+    toast('تم حفظ الإشارة في مساحتك ✓', 'success');
+  }
+}
+
+async function shareRadarLead(leadId) {
+  const lead = radarLeads.find(l => l.id === leadId);
+  if (!lead) return;
+  const text = `${lead.title}\n${lead.snippet?.slice(0, 200) || ''}\n${lead.sourceUrl}`;
+  if (navigator.share) {
+    try { await navigator.share({ title: lead.title, text, url: lead.sourceUrl }); }
+    catch (e) { if (e.name !== 'AbortError') copyText(text); }
+  } else copyText(text);
+}
+
+async function copyText(text) {
+  try { await navigator.clipboard.writeText(text); toast('تم النسخ ✓', 'success'); }
+  catch { toast('تعذر النسخ', 'error'); }
 }
 
 /* =========================================================
@@ -1066,63 +1106,71 @@ async function loadSpecialists() {
   const q = $('spec-search').value.trim();
   const role = $('spec-role').value;
   const mode = $('spec-mode').value;
-
   let query = sb.from('specialist_directory').select('*').limit(60);
   if (role !== 'all') query = query.eq('role', role);
-
   const { data, error } = await query;
   const grid = $('spec-grid');
-
-  if (error) {
-    grid.innerHTML = `<div class="col-span-full text-center text-sm text-slate-400 py-8">تعذر تحميل المتخصصين (${esc(error.message)})</div>`;
-    return;
-  }
-
+  if (error) { grid.innerHTML = `<div class="col-span-full text-center text-sm text-slate-400 py-8">تعذر تحميل المتخصصين</div>`; return; }
   let list = (data || []);
   if (q) list = list.filter(s => `${s.display_name || ''} ${s.specialty || ''} ${s.country || ''} ${s.city || ''}`.toLowerCase().includes(q.toLowerCase()));
   if (mode !== 'all') list = list.filter(s => Array.isArray(s.teaching_mode) && s.teaching_mode.includes(mode));
-
+  specialistData = list;
   if (list.length === 0) {
-    grid.innerHTML = `
-      <div class="col-span-full text-center py-10 rounded-2xl border border-dashed border-slate-300">
-        <i class="fa-solid fa-user-graduate text-3xl text-slate-300"></i>
-        <div class="mt-3 font-black text-slate-700">لا توجد ملفات مطابقة</div>
-        <p class="text-xs text-slate-500 mt-1">كن أول من ينضم إلى الشبكة</p>
-        <button onclick="openSpecialistJoin()" class="mt-3 rounded-xl bg-brand-600 text-white px-4 py-2 text-xs font-black">انضم كمتخصص</button>
-      </div>`;
+    grid.innerHTML = `<div class="col-span-full text-center py-10 rounded-2xl border border-dashed border-slate-300"><i class="fa-solid fa-user-graduate text-3xl text-slate-300"></i><div class="mt-3 font-black text-slate-700">لا توجد ملفات مطابقة</div><p class="text-xs text-slate-500 mt-1">كن أول من ينضم إلى الشبكة</p><button onclick="openSpecialistJoin()" class="mt-3 rounded-xl bg-brand-600 text-white px-4 py-2 text-xs font-black">انضم كمتخصص</button></div>`;
     return;
   }
-
-  const roleLabels = {
-    quran_teacher: 'معلم قرآن', qari: 'قارئ', quran_memorizer: 'محفّظ',
-    hadith_specialist: 'متخصص حديث', arabic_teacher: 'معلم عربية'
-  };
-
+  const roleLabels = { quran_teacher: 'معلم قرآن', qari: 'قارئ', quran_memorizer: 'محفّظ', hadith_specialist: 'متخصص حديث', arabic_teacher: 'معلم عربية' };
   grid.innerHTML = list.map(s => {
     const wa = String(s.whatsapp || '').replace(/[^0-9]/g, '');
     const verified = ['verified', 'admin_reviewed'].includes(s.verification_status);
-    return `
-      <article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-5 flex flex-col">
-        <div class="flex items-start gap-3">
-          <div class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-700 grid place-items-center text-xl font-black shrink-0">
-            ${esc((s.display_name || 'و').slice(0, 1))}
-          </div>
-          <div class="min-w-0 flex-1">
-            <h3 class="font-black text-sm text-slate-900 truncate">${esc(s.display_name || 'متخصص')}</h3>
-            <div class="text-[10px] font-bold text-brand-700 mt-0.5">${esc(roleLabels[s.role] || s.role || '')}</div>
-            ${s.city || s.country ? `<div class="text-[10px] text-slate-500 mt-1"><i class="fa-solid fa-location-dot"></i> ${esc([s.city, s.country].filter(Boolean).join('، '))}</div>` : ''}
-            ${verified ? `<div class="text-[10px] font-bold text-emerald-600 mt-1"><i class="fa-solid fa-circle-check"></i> ملف موثق</div>` : ''}
-          </div>
+    return `<article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-5 flex flex-col">
+      <div class="flex items-start gap-3">
+        <div class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-700 grid place-items-center text-xl font-black shrink-0">${esc((s.display_name || 'و').slice(0, 1))}</div>
+        <div class="min-w-0 flex-1">
+          <h3 class="font-black text-sm text-slate-900 truncate">${esc(s.display_name || 'متخصص')}</h3>
+          <div class="text-[10px] font-bold text-brand-700 mt-0.5">${esc(roleLabels[s.role] || s.role || '')}</div>
+          ${s.city || s.country ? `<div class="text-[10px] text-slate-500 mt-1"><i class="fa-solid fa-location-dot"></i> ${esc([s.city, s.country].filter(Boolean).join('، '))}</div>` : ''}
+          ${verified ? `<div class="text-[10px] font-bold text-emerald-600 mt-1"><i class="fa-solid fa-circle-check"></i> ملف موثق</div>` : ''}
         </div>
-        ${s.specialty ? `<div class="mt-3 text-xs text-slate-600"><i class="fa-solid fa-book-open text-brand-600"></i> ${esc(s.specialty)}</div>` : ''}
-        ${s.bio ? `<p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">${esc(s.bio)}</p>` : ''}
-        ${s.years_experience ? `<div class="mt-2 text-[10px] text-slate-500">الخبرة: ${Number(s.years_experience)} سنوات</div>` : ''}
-        <div class="mt-4 flex gap-2">
-          ${wa ? `<a href="https://wa.me/${wa}" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-black py-2.5"><i class="fa-brands fa-whatsapp"></i> واتساب</a>` : ''}
-          <button onclick="contactSpecialist('${esc(s.id)}')" class="flex-1 rounded-xl border border-slate-200 text-xs font-bold py-2.5 hover:bg-slate-50">تفاصيل</button>
-        </div>
-      </article>`;
+      </div>
+      ${s.specialty ? `<div class="mt-3 text-xs text-slate-600"><i class="fa-solid fa-book-open text-brand-600"></i> ${esc(s.specialty)}</div>` : ''}
+      ${s.bio ? `<p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">${esc(s.bio)}</p>` : ''}
+      ${s.years_experience ? `<div class="mt-2 text-[10px] text-slate-500">الخبرة: ${Number(s.years_experience)} سنوات</div>` : ''}
+      <div class="mt-4 flex gap-2">
+        ${wa ? `<a href="https://wa.me/${wa}" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-black py-2.5"><i class="fa-brands fa-whatsapp"></i> واتساب</a>` : ''}
+        <button onclick="openSpecialistDetails('${esc(s.id)}')" class="flex-1 rounded-xl border border-slate-200 text-xs font-bold py-2.5 hover:bg-slate-50">تفاصيل</button>
+      </div>
+    </article>`;
   }).join('');
+}
+
+function openSpecialistDetails(id) {
+  const s = specialistData.find(x => String(x.id) === String(id));
+  if (!s) return;
+  const roleLabels = { quran_teacher: 'معلم قرآن', qari: 'قارئ', quran_memorizer: 'محفّظ', hadith_specialist: 'متخصص حديث', arabic_teacher: 'معلم عربية' };
+  const wa = String(s.whatsapp || '').replace(/[^0-9]/g, '');
+  const tg = String(s.telegram || '').replace(/^@/, '');
+  $('details-content').innerHTML = `
+    <div class="flex items-start gap-4">
+      <div class="w-20 h-20 rounded-2xl bg-brand-100 text-brand-700 grid place-items-center text-3xl font-black shrink-0">${esc((s.display_name || 'و').slice(0, 1))}</div>
+      <div class="min-w-0 flex-1">
+        <h2 class="text-xl font-black text-slate-900">${esc(s.display_name || 'متخصص')}</h2>
+        <div class="text-sm font-bold text-brand-700 mt-1">${esc(roleLabels[s.role] || s.role || '')}</div>
+        ${s.city || s.country ? `<div class="text-xs text-slate-500 mt-2"><i class="fa-solid fa-location-dot"></i> ${esc([s.city, s.country].filter(Boolean).join('، '))}</div>` : ''}
+      </div>
+    </div>
+    <div class="mt-5 grid grid-cols-2 gap-3">
+      ${s.specialty ? `<div class="rounded-xl border border-slate-200 p-3"><div class="text-[10px] font-black text-slate-400 mb-1">التخصص</div><div class="text-sm font-bold">${esc(s.specialty)}</div></div>` : ''}
+      ${s.years_experience ? `<div class="rounded-xl border border-slate-200 p-3"><div class="text-[10px] font-black text-slate-400 mb-1">الخبرة</div><div class="text-sm font-bold">${Number(s.years_experience)} سنوات</div></div>` : ''}
+      ${Array.isArray(s.teaching_mode) && s.teaching_mode.length ? `<div class="rounded-xl border border-slate-200 p-3"><div class="text-[10px] font-black text-slate-400 mb-1">أنماط التعليم</div><div class="text-sm font-bold">${esc(s.teaching_mode.join(' · '))}</div></div>` : ''}
+      ${Array.isArray(s.languages) && s.languages.length ? `<div class="rounded-xl border border-slate-200 p-3"><div class="text-[10px] font-black text-slate-400 mb-1">اللغات</div><div class="text-sm font-bold">${esc(s.languages.join(' · '))}</div></div>` : ''}
+    </div>
+    ${s.bio ? `<div class="mt-4 rounded-xl border border-slate-200 p-4"><div class="text-[10px] font-black text-slate-400 mb-2">نبذة</div><p class="text-sm text-slate-600 leading-7">${esc(s.bio)}</p></div>` : ''}
+    <div class="mt-5 grid grid-cols-2 gap-2">
+      ${wa ? `<a href="https://wa.me/${wa}" target="_blank" rel="noopener" class="text-center rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white py-3 text-sm font-black"><i class="fa-brands fa-whatsapp"></i> واتساب</a>` : ''}
+      ${tg ? `<a href="https://t.me/${tg}" target="_blank" rel="noopener" class="text-center rounded-xl bg-sky-500 hover:bg-sky-600 text-white py-3 text-sm font-black"><i class="fa-brands fa-telegram"></i> تيليجرام</a>` : ''}
+    </div>`;
+  openModal('details-modal');
 }
 
 async function submitSpecialist(e) {
@@ -1130,7 +1178,6 @@ async function submitSpecialist(e) {
   if (!currentUser) { closeModal('spec-modal'); openAuthModal(); return; }
   const msg = $('s-msg');
   msg.textContent = 'جارٍ النشر...';
-
   const payload = {
     id: currentUser.id,
     display_name: $('s-name').value.trim(),
@@ -1145,18 +1192,9 @@ async function submitSpecialist(e) {
     is_active: true,
     verification_status: 'pending'
   };
-
   const { error } = await sb.from('education_profiles').upsert(payload, { onConflict: 'id' });
   if (error) { msg.textContent = error.message; toast('فشل النشر: ' + error.message, 'error'); return; }
-
-  await sb.from('profiles').upsert({
-    id: currentUser.id,
-    display_name: payload.display_name,
-    region: payload.country,
-    bio: payload.bio,
-    updated_at: new Date().toISOString()
-  }, { onConflict: 'id' });
-
+  await sb.from('profiles').upsert({ id: currentUser.id, display_name: payload.display_name, region: payload.country, bio: payload.bio, updated_at: new Date().toISOString() }, { onConflict: 'id' });
   msg.textContent = 'تم النشر ✓';
   toast('تم نشر ملفك ✓', 'success');
   closeModal('spec-modal');
@@ -1168,12 +1206,6 @@ function openSpecialistJoin() {
   openModal('spec-modal');
 }
 
-function contactSpecialist(id) {
-  const s = specialistData.find(x => String(x.id) === String(id));
-  if (!s) return;
-  toast(`للتواصل مع ${esc(s.display_name)}: استخدم واتساب أو أرسل طلب اتصال`, 'info');
-}
-
 /* =========================================================
    LISTINGS
 ========================================================= */
@@ -1181,51 +1213,79 @@ async function loadListings() {
   const q = $('list-search').value.trim().toLowerCase();
   const cat = $('list-cat').value;
   const type = $('list-type').value;
-
   let query = sb.from('listing_directory').select('*').order('created_at', { ascending: false }).limit(60);
   if (cat !== 'all') query = query.eq('category', cat);
   if (type !== 'all') query = query.eq('type', type);
-
   const { data, error } = await query;
   const grid = $('list-grid');
-
-  if (error) {
-    grid.innerHTML = `<div class="col-span-full text-center text-sm text-slate-400 py-8">تعذر تحميل المنشورات</div>`;
-    return;
-  }
-
+  if (error) { grid.innerHTML = `<div class="col-span-full text-center text-sm text-slate-400 py-8">تعذر تحميل المنشورات</div>`; return; }
   let list = (data || []);
   if (q) list = list.filter(l => `${l.title || ''} ${l.description || ''}`.toLowerCase().includes(q));
-
+  listingData = list;
   if (list.length === 0) {
-    grid.innerHTML = `
-      <div class="col-span-full text-center py-10 rounded-2xl border border-dashed border-slate-300">
-        <i class="fa-solid fa-inbox text-3xl text-slate-300"></i>
-        <div class="mt-3 font-black text-slate-700">لا توجد منشورات بعد</div>
-        <button onclick="openCreateModal()" class="mt-3 rounded-xl bg-brand-600 text-white px-4 py-2 text-xs font-black">كن أول من ينشر</button>
-      </div>`;
+    grid.innerHTML = `<div class="col-span-full text-center py-10 rounded-2xl border border-dashed border-slate-300"><i class="fa-solid fa-inbox text-3xl text-slate-300"></i><div class="mt-3 font-black text-slate-700">لا توجد منشورات بعد</div><button onclick="openCreateModal()" class="mt-3 rounded-xl bg-brand-600 text-white px-4 py-2 text-xs font-black">كن أول من ينشر</button></div>`;
     return;
   }
-
   const catLabel = { quran: '📖 قرآن', arabic: '📝 عربية', hadith: '📚 حديث', kids: '👧 أطفال', languages: '🌍 لغات', services: '🛠 خدمات' };
+  grid.innerHTML = list.map(l => `<article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-5 flex flex-col">
+    <div class="flex items-center justify-between gap-2 mb-3">
+      <span class="text-[10px] font-black px-2 py-1 rounded-full bg-brand-50 text-brand-700">${catLabel[l.category] || l.category}</span>
+      <span class="text-[10px] font-bold px-2 py-1 rounded-full ${l.type === 'offer' ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700'}">${l.type === 'offer' ? 'عرض' : 'طلب'}</span>
+    </div>
+    <h3 class="font-black text-sm text-slate-900 line-clamp-2">${esc(l.title)}</h3>
+    <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3 flex-1">${esc(l.description)}</p>
+    <div class="mt-4 flex items-center justify-between text-xs">
+      <span class="text-slate-400">${timeAgo(l.created_at)}</span>
+      ${Number(l.amount) > 0 ? `<span class="font-black text-brand-700">${Number(l.amount).toLocaleString()} ر.س</span>` : '<span class="text-slate-400 text-[10px]">حسب الاتفاق</span>'}
+    </div>
+    <div class="mt-4 flex gap-2">
+      <button onclick="openListingDetails('${esc(l.id)}')" class="flex-1 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2.5"><i class="fa-solid fa-circle-info"></i> التفاصيل</button>
+      <button onclick="openContact('${esc(l.id)}')" class="flex-1 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-black py-2.5"><i class="fa-solid fa-handshake"></i> تواصل</button>
+    </div>
+  </article>`).join('');
+}
 
-  grid.innerHTML = list.map(l => `
-    <article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-5 flex flex-col">
-      <div class="flex items-center justify-between gap-2 mb-3">
-        <span class="text-[10px] font-black px-2 py-1 rounded-full bg-brand-50 text-brand-700">${catLabel[l.category] || l.category}</span>
-        <span class="text-[10px] font-bold px-2 py-1 rounded-full ${l.type === 'offer' ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700'}">${l.type === 'offer' ? 'عرض' : 'طلب'}</span>
+function openListingDetails(id) {
+  const l = listingData.find(x => String(x.id) === String(id));
+  if (!l) return;
+  const catLabel = { quran: '📖 قرآن وتحفيظ', arabic: '📝 لغة عربية', hadith: '📚 حديث', kids: '👧 أطفال', languages: '🌍 لغات', services: '🛠 خدمات' };
+  const regionLabels = { GLOBAL:'عالمي', KSA:'السعودية', EGP:'مصر', UAE:'الإمارات', GCC:'الخليج', AFRICA:'أفريقيا', FOREIGN:'أوروبا/أمريكا/آسيا' };
+  $('details-content').innerHTML = `
+    <div class="mb-4">
+      <span class="text-[10px] font-black px-2 py-1 rounded-full bg-brand-50 text-brand-700">${catLabel[l.category] || l.category}</span>
+      <span class="ms-2 text-[10px] font-bold px-2 py-1 rounded-full ${l.type === 'offer' ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700'}">${l.type === 'offer' ? 'عرض' : 'طلب'}</span>
+      <h2 class="text-xl font-black text-slate-900 mt-3">${esc(l.title)}</h2>
+      <div class="text-xs text-slate-500 mt-2"><i class="fa-solid fa-location-dot"></i> ${esc(regionLabels[l.region] || l.region || '—')} · ${timeAgo(l.created_at)}</div>
+    </div>
+    <div class="rounded-xl border border-slate-200 p-4 mb-4">
+      <div class="text-[10px] font-black text-slate-400 mb-2">الوصف</div>
+      <p class="text-sm text-slate-700 leading-7 whitespace-pre-wrap">${esc(l.description)}</p>
+    </div>
+    <div class="grid grid-cols-2 gap-3 mb-4">
+      <div class="rounded-xl border border-slate-200 p-3">
+        <div class="text-[10px] font-black text-slate-400 mb-1">الميزانية</div>
+        <div class="text-lg font-black text-brand-700">${Number(l.amount) > 0 ? Number(l.amount).toLocaleString() + ' ر.س' : 'حسب الاتفاق'}</div>
       </div>
-      <h3 class="font-black text-sm text-slate-900 line-clamp-2">${esc(l.title)}</h3>
-      <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3 flex-1">${esc(l.description)}</p>
-      <div class="mt-4 flex items-center justify-between text-xs">
-        <span class="text-slate-400">${timeAgo(l.created_at)}</span>
-        ${Number(l.amount) > 0 ? `<span class="font-black text-brand-700">${Number(l.amount).toLocaleString()} ر.س</span>` : '<span class="text-slate-400 text-[10px]">حسب الاتفاق</span>'}
+      <div class="rounded-xl border border-slate-200 p-3">
+        <div class="text-[10px] font-black text-slate-400 mb-1">التحقق</div>
+        <div class="text-sm font-bold ${l.badge && l.badge !== 'unverified' ? 'text-emerald-600' : 'text-slate-400'}">${l.badge && l.badge !== 'unverified' ? 'موثق' : 'غير موثق'}</div>
       </div>
-      <button onclick="openContact('${esc(l.id)}')" class="mt-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-black py-2.5">
-        <i class="fa-solid fa-handshake"></i> تواصل
-      </button>
-    </article>
-  `).join('');
+    </div>
+    <div class="flex gap-2">
+      <button onclick="closeModal('details-modal'); openContact('${esc(l.id)}')" class="flex-1 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white py-3 text-sm font-black"><i class="fa-solid fa-handshake"></i> تواصل مع صاحب المنشور</button>
+      <button onclick="shareListing('${esc(l.id)}')" class="rounded-xl border border-slate-200 px-4 py-3 text-sm font-bold hover:bg-slate-50"><i class="fa-solid fa-share-nodes"></i></button>
+    </div>`;
+  openModal('details-modal');
+}
+
+async function shareListing(id) {
+  const l = listingData.find(x => String(x.id) === String(id));
+  if (!l) return;
+  const text = `${l.title}\n${(l.description || '').slice(0, 200)}`;
+  if (navigator.share) {
+    try { await navigator.share({ title: l.title, text }); }
+    catch (e) { if (e.name !== 'AbortError') copyText(text); }
+  } else copyText(text);
 }
 
 function openCreateModal() {
@@ -1238,7 +1298,6 @@ async function submitListing(e) {
   if (!currentUser) { openAuthModal(); return; }
   const msg = $('c-msg');
   msg.textContent = 'جارٍ النشر...';
-
   const payload = {
     title: $('c-title').value.trim(),
     category: $('c-category').value,
@@ -1251,13 +1310,12 @@ async function submitListing(e) {
     status: 'approved',
     user_id: currentUser.id
   };
-
   const { error } = await sb.from('listings').insert(payload);
   if (error) { msg.textContent = error.message; toast('فشل النشر: ' + error.message, 'error'); return; }
-
   toast('تم النشر بنجاح ✓', 'success');
   closeModal('create-modal');
-  $('create-card-form')?.reset();
+  $('create-form').reset();
+  msg.textContent = '';
   loadListings();
 }
 
@@ -1272,7 +1330,7 @@ async function openContact(listingId) {
   contactTarget = { id: listingId, phone: row.phone };
   const { data: listing } = await sb.from('listing_directory').select('title').eq('id', listingId).single();
   const name = currentUser.email.split('@')[0];
-  $('contact-msg').value = `مرحبًا، أنا ${name}.\nأنا مهتم بإعلانك على منصة وفاق:\n"${listing?.title || ''}"\nيرجى التواصل معي. شكرًا.`;
+  $('contact-msg').value = `مرحباً، أنا ${name}.\nأنا مهتم بإعلانك على منصة وفاق:\n"${listing?.title || ''}"\nيرجى التواصل معي. شكراً.`;
   $('contact-title').textContent = `تواصل: ${listing?.title?.slice(0, 40) || 'منشور'}`;
   openModal('contact-modal');
 }
@@ -1284,64 +1342,48 @@ function sendContactWhatsApp() {
   window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
 }
 
-async function copyContactMsg() {
-  try { await navigator.clipboard.writeText($('contact-msg').value); toast('تم النسخ ✓', 'success'); }
-  catch { toast('تعذر النسخ', 'error'); }
-}
+async function copyContactMsg() { copyText($('contact-msg').value); }
 
 /* =========================================================
    WORKSPACE
 ========================================================= */
 async function loadWorkspace() {
   if (!currentUser) return;
-
   const [connRes, favRes, msgRes, profRes] = await Promise.all([
     sb.from('connections').select('*').or(`requester_id.eq.${currentUser.id},provider_id.eq.${currentUser.id}`).order('created_at', { ascending: false }).limit(20),
     sb.from('favorites').select('id').eq('user_id', currentUser.id),
     sb.from('messages').select('id').eq('recipient_id', currentUser.id).is('read_at', null),
     sb.from('profiles').select('*').eq('id', currentUser.id).maybeSingle()
   ]);
-
   const connections = connRes.data || [];
   const active = connections.filter(c => ['accepted', 'in_progress'].includes(c.status));
-
   $('ws-connections').textContent = active.length;
   $('ws-saved').textContent = (favRes.data || []).length;
   $('ws-unread').textContent = (msgRes.data || []).length;
-
-  // Completeness
   const p = profRes.data || {};
   const fields = [p.display_name, p.phone, p.region, p.bio];
   const done = fields.filter(Boolean).length;
-  const pct = Math.round((done / fields.length) * 100);
-  $('ws-completeness').textContent = pct + '%';
-
-  // Prefill
+  $('ws-completeness').textContent = Math.round((done / fields.length) * 100) + '%';
   $('p-name').value = p.display_name || '';
   $('p-phone').value = p.phone || '';
   $('p-region').value = p.region || '';
   $('p-bio').value = p.bio || '';
-
-  // Connections list
   const list = $('ws-connections-list');
   if (connections.length === 0) {
     list.innerHTML = '<div class="text-center text-xs text-slate-400 py-6">لا توجد اتصالات بعد</div>';
   } else {
+    const statusMap = { pending: 'طلب اتصال', accepted: 'مقبول', in_progress: 'قيد التنفيذ', completed: 'مكتمل', rejected: 'مرفوض', cancelled: 'ملغى' };
     list.innerHTML = connections.map(c => {
       const isIncoming = c.provider_id === currentUser.id;
       const canAccept = isIncoming && c.status === 'pending';
       const canChat = ['accepted', 'in_progress'].includes(c.status);
-      return `
-        <div class="rounded-xl border border-slate-200 p-3">
-          <div class="flex items-center justify-between gap-2">
-            <span class="text-xs font-bold truncate">${c.status === 'pending' ? 'طلب اتصال' : c.status === 'accepted' ? 'مقبول' : c.status === 'in_progress' ? 'قيد التنفيذ' : c.status}</span>
-            <span class="text-[10px] text-slate-400">${timeAgo(c.created_at)}</span>
-          </div>
-          <div class="mt-2 flex gap-2">
-            ${canAccept ? `<button onclick="updateConnection('${c.id}','accepted')" class="flex-1 rounded-lg bg-emerald-600 text-white text-[10px] font-black py-1.5">قبول</button>` : ''}
-            ${canChat ? `<button onclick="openChat('${c.id}','${isIncoming ? c.requester_id : c.provider_id}')" class="flex-1 rounded-lg bg-brand-600 text-white text-[10px] font-black py-1.5">محادثة</button>` : ''}
-          </div>
-        </div>`;
+      return `<div class="rounded-xl border border-slate-200 p-3">
+        <div class="flex items-center justify-between gap-2"><span class="text-xs font-bold truncate">${statusMap[c.status] || c.status}</span><span class="text-[10px] text-slate-400">${timeAgo(c.created_at)}</span></div>
+        <div class="mt-2 flex gap-2">
+          ${canAccept ? `<button onclick="updateConnection('${c.id}','accepted')" class="flex-1 rounded-lg bg-emerald-600 text-white text-[10px] font-black py-1.5">قبول</button>` : ''}
+          ${canChat ? `<button onclick="openChat('${c.id}','${isIncoming ? c.requester_id : c.provider_id}')" class="flex-1 rounded-lg bg-brand-600 text-white text-[10px] font-black py-1.5">محادثة</button>` : ''}
+        </div>
+      </div>`;
     }).join('');
   }
 }
@@ -1350,12 +1392,9 @@ async function saveProfile(e) {
   e.preventDefault();
   if (!currentUser) return;
   const { error } = await sb.from('profiles').upsert({
-    id: currentUser.id,
-    display_name: $('p-name').value.trim(),
-    phone: $('p-phone').value.trim(),
-    region: $('p-region').value.trim(),
-    bio: $('p-bio').value.trim(),
-    updated_at: new Date().toISOString()
+    id: currentUser.id, display_name: $('p-name').value.trim(),
+    phone: $('p-phone').value.trim(), region: $('p-region').value.trim(),
+    bio: $('p-bio').value.trim(), updated_at: new Date().toISOString()
   }, { onConflict: 'id' });
   $('p-msg').textContent = error ? error.message : 'تم الحفظ ✓';
   if (!error) { toast('تم حفظ الملف ✓', 'success'); loadWorkspace(); }
@@ -1365,6 +1404,33 @@ async function updateConnection(id, status) {
   const { error } = await sb.from('connections').update({ status, updated_at: new Date().toISOString() }).eq('id', id);
   if (error) toast('فشل التحديث', 'error');
   else { toast('تم التحديث ✓', 'success'); loadWorkspace(); }
+}
+
+/* =========================================================
+   REALTIME
+========================================================= */
+function setupRealtime() {
+  if (!currentUser) return;
+  teardownRealtime();
+  const msgChannel = sb.channel('wefaq_msgs')
+    .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages', filter: `recipient_id=eq.${currentUser.id}` },
+      payload => {
+        toast('<i class="fa-solid fa-envelope"></i> لديك رسالة جديدة', 'info');
+        if (activeConnection && payload.new.connection_id === activeConnection) loadChat();
+        loadWorkspace();
+      })
+    .subscribe();
+  realtimeChannels.push(msgChannel);
+  const connChannel = sb.channel('wefaq_conns')
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'connections', filter: `provider_id=eq.${currentUser.id}` },
+      () => { toast('<i class="fa-solid fa-handshake"></i> تحديث على طلب اتصال', 'info'); loadWorkspace(); })
+    .subscribe();
+  realtimeChannels.push(connChannel);
+}
+
+function teardownRealtime() {
+  realtimeChannels.forEach(ch => sb.removeChannel(ch));
+  realtimeChannels = [];
 }
 
 /* =========================================================
@@ -1378,33 +1444,23 @@ async function openChat(connectionId, recipientId) {
 }
 
 async function loadChat() {
-  if (!activeConnection) return;
+  if (!activeConnection || !currentUser) return;
   const { data } = await sb.from('messages').select('*').eq('connection_id', activeConnection).order('created_at', { ascending: true }).limit(100);
   const list = $('chat-list');
   if (!data || data.length === 0) {
     list.innerHTML = '<div class="text-center text-xs text-slate-400 py-8">ابدأ المحادثة</div>';
   } else {
-    list.innerHTML = data.map(m => `
-      <div class="max-w-[80%] ${m.sender_id === currentUser.id ? 'ms-auto bg-brand-600 text-white' : 'bg-white border border-slate-200'} rounded-xl px-3 py-2 text-xs">
-        ${esc(m.body)}
-        <div class="text-[9px] opacity-60 mt-1">${new Date(m.created_at).toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' })}</div>
-      </div>`).join('');
+    list.innerHTML = data.map(m => `<div class="max-w-[80%] ${m.sender_id === currentUser.id ? 'ms-auto bg-brand-600 text-white' : 'bg-white border border-slate-200'} rounded-xl px-3 py-2 text-xs">${esc(m.body)}<div class="text-[9px] opacity-60 mt-1">${new Date(m.created_at).toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' })}</div></div>`).join('');
     list.scrollTop = list.scrollHeight;
   }
-  await sb.from('messages').update({ read_at: new Date().toISOString() })
-    .eq('connection_id', activeConnection).eq('recipient_id', currentUser.id).is('read_at', null);
+  await sb.from('messages').update({ read_at: new Date().toISOString() }).eq('connection_id', activeConnection).eq('recipient_id', currentUser.id).is('read_at', null);
 }
 
 async function sendChat(e) {
   e.preventDefault();
   const body = $('chat-input').value.trim();
-  if (!body || !activeConnection) return;
-  const { error } = await sb.from('messages').insert({
-    connection_id: activeConnection,
-    sender_id: currentUser.id,
-    recipient_id: activeRecipient,
-    body
-  });
+  if (!body || !activeConnection || !currentUser) return;
+  const { error } = await sb.from('messages').insert({ connection_id: activeConnection, sender_id: currentUser.id, recipient_id: activeRecipient, body });
   if (error) { toast('فشل الإرسال', 'error'); return; }
   $('chat-input').value = '';
   await loadChat();
@@ -1423,7 +1479,6 @@ function getCommunities() {
   catch { return []; }
 }
 function setCommunities(list) { localStorage.setItem(COMM_KEY, JSON.stringify(list.slice(0, 200))); }
-
 function openCommunityModal() { openModal('comm-modal'); }
 function setCommunityFilter(f) {
   commFilter = f;
@@ -1442,10 +1497,8 @@ function submitCommunity(e) {
   if (!host.test(url)) { toast('الرابط غير صالح لهذه المنصة', 'error'); return; }
   const list = getCommunities();
   list.unshift({
-    id: 'c_' + Date.now(),
-    platform,
-    name: $('cm-name').value.trim(),
-    url,
+    id: 'c_' + Date.now(), platform,
+    name: $('cm-name').value.trim(), url,
     category: $('cm-category').value.trim(),
     region: $('cm-region').value.trim(),
     description: $('cm-desc').value.trim(),
@@ -1453,7 +1506,7 @@ function submitCommunity(e) {
   });
   setCommunities(list);
   closeModal('comm-modal');
-  $('cm-name').value = ''; $('cm-url').value = '';
+  $('cm-name').value = ''; $('cm-url').value = ''; $('cm-category').value = ''; $('cm-region').value = ''; $('cm-desc').value = '';
   toast('تمت إضافة المجتمع ✓', 'success');
   renderCommunities();
 }
@@ -1463,37 +1516,37 @@ function renderCommunities() {
   const list = getCommunities()
     .filter(c => commFilter === 'all' || c.platform === commFilter)
     .filter(c => !q || `${c.name} ${c.category} ${c.region}`.toLowerCase().includes(q));
-
   const grid = $('comm-grid');
   if (list.length === 0) {
-    grid.innerHTML = `
-      <div class="col-span-full text-center py-10 rounded-2xl border border-dashed border-slate-300">
-        <i class="fa-solid fa-users text-3xl text-slate-300"></i>
-        <div class="mt-3 font-black text-slate-700">لا توجد مجتمعات بعد</div>
-        <button onclick="openCommunityModal()" class="mt-3 rounded-xl bg-brand-600 text-white px-4 py-2 text-xs font-black">أضف أول مجتمع</button>
-      </div>`;
+    grid.innerHTML = `<div class="col-span-full text-center py-10 rounded-2xl border border-dashed border-slate-300"><i class="fa-solid fa-users text-3xl text-slate-300"></i><div class="mt-3 font-black text-slate-700">لا توجد مجتمعات بعد</div><button onclick="openCommunityModal()" class="mt-3 rounded-xl bg-brand-600 text-white px-4 py-2 text-xs font-black">أضف أول مجتمع</button></div>`;
     return;
   }
-
   grid.innerHTML = list.map(c => {
     const icon = c.platform === 'telegram' ? 'fa-brands fa-telegram text-sky-500' : 'fa-brands fa-facebook-f text-blue-600';
-    return `
-      <article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-5">
-        <div class="flex items-center gap-2 mb-3">
-          <span class="text-lg"><i class="${icon}"></i></span>
-          <span class="text-[10px] font-black text-slate-500">${c.platform === 'telegram' ? 'تيليجرام' : 'فيسبوك'}</span>
-        </div>
-        <h3 class="font-black text-sm text-slate-900">${esc(c.name)}</h3>
-        ${c.description ? `<p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-2">${esc(c.description)}</p>` : ''}
-        <div class="mt-3 flex flex-wrap gap-1.5">
-          ${c.category ? `<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-50 text-brand-700">${esc(c.category)}</span>` : ''}
-          ${c.region ? `<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">${esc(c.region)}</span>` : ''}
-        </div>
-        <a href="${esc(c.url)}" target="_blank" rel="noopener" class="mt-4 block text-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2.5">
-          <i class="fa-solid fa-arrow-up-right-from-square"></i> زيارة
-        </a>
-      </article>`;
+    return `<article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-5">
+      <div class="flex items-center gap-2 mb-3"><span class="text-lg"><i class="${icon}"></i></span><span class="text-[10px] font-black text-slate-500">${c.platform === 'telegram' ? 'تيليجرام' : 'فيسبوك'}</span></div>
+      <h3 class="font-black text-sm text-slate-900">${esc(c.name)}</h3>
+      ${c.description ? `<p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-2">${esc(c.description)}</p>` : ''}
+      <div class="mt-3 flex flex-wrap gap-1.5">
+        ${c.category ? `<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-50 text-brand-700">${esc(c.category)}</span>` : ''}
+        ${c.region ? `<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">${esc(c.region)}</span>` : ''}
+      </div>
+      <div class="mt-4 flex gap-2">
+        <a href="${esc(c.url)}" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2.5"><i class="fa-solid fa-arrow-up-right-from-square"></i> زيارة</a>
+        <button onclick="shareCommunity('${esc(c.id)}')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="مشاركة"><i class="fa-solid fa-share-nodes"></i></button>
+      </div>
+    </article>`;
   }).join('');
+}
+
+async function shareCommunity(id) {
+  const c = getCommunities().find(x => x.id === id);
+  if (!c) return;
+  const text = `${c.name}\n${c.description || ''}\n${c.url}`;
+  if (navigator.share) {
+    try { await navigator.share({ title: c.name, text, url: c.url }); }
+    catch (e) { if (e.name !== 'AbortError') copyText(text); }
+  } else copyText(text);
 }
 
 /* =========================================================
@@ -1514,36 +1567,30 @@ function heroSearch() {
 document.addEventListener('DOMContentLoaded', async () => {
   initTheme();
   $('year').textContent = new Date().getFullYear();
-
-  // Load cache first (instant render)
   loadRadarFromCache();
   renderRadar();
   updateRadarStats();
   renderHeroRadarPreview();
-
-  // Then load real data
   loadSpecialists();
   loadListings();
   renderCommunities();
 
-  // Auth state
   const { data: { session } } = await sb.auth.getSession();
   currentUser = session?.user || null;
   updateAuthUI();
-  if (currentUser) loadWorkspace();
+  if (currentUser) { loadWorkspace(); setupRealtime(); }
 
-  // Auto-sync radar once (with 30-min throttle)
   const lastSync = Number(localStorage.getItem('wefaq_radar_last_sync') || 0);
-  if (Date.now() - lastSync > 30 * 60 * 1000) {
-    localStorage.setItem('wefaq_radar_last_sync', String(Date.now()));
-    setTimeout(() => syncRadar(false), 800);
-  }
+  if (Date.now() - lastSync > 20 * 60 * 1000) setTimeout(() => syncRadar(false), 800);
+
+  syncTimer = setInterval(() => {
+    if (document.visibilityState === 'visible') syncRadar(false);
+  }, 20 * 60 * 1000);
 });
 
-/* Escape key */
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
-    ['auth-modal','create-modal','spec-modal','comm-modal','contact-modal','chat-modal'].forEach(closeModal);
+    ['auth-modal','create-modal','spec-modal','comm-modal','contact-modal','chat-modal','details-modal'].forEach(closeModal);
   }
 });
 </script>
