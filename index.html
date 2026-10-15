@@ -754,7 +754,7 @@ tailwind.config = {
 
 <script>
 /* =========================================================
-   CONFIG — v5.0: publishable key + base tables + sources PRO
+   CONFIG
 ========================================================= */
 const SUPABASE_URL = "https://zwgkrwkrohkmnyoixude.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_-tSaRUJ2HWDMSCfEg5CUEQ_dm4-uYAe";
@@ -787,222 +787,150 @@ const CORS_PROXIES = [
    SOURCES
 ========================================================= */
 const SOURCES = {
-  'teacher-certs': {
-    title: 'شهادات مهنية معتمدة',
-    subtitle: 'شهادات معترف بها للمعلمين والمحفظين',
-    items: [
-      { name: 'هيئة تقويم التعليم والتدريب', url: 'https://etec.gov.sa', desc: 'الرخص المهنية للمعلمين في السعودية' },
-      { name: 'المركز الوطني للتعليم الإلكتروني', url: 'https://nelc.gov.sa', desc: 'اعتماد المنصات والشهادات الإلكترونية' },
-      { name: 'جمعية تحفيظ القرآن الكريم', url: 'https://quran.org.sa', desc: 'إجازات قرآنية معتمدة' },
-      { name: 'Coursera Certificates', url: 'https://coursera.org', desc: 'شهادات من جامعات عالمية' },
-      { name: 'edX Professional', url: 'https://edx.org', desc: 'شهادات احترافية من MIT وHarvard' },
-      { name: 'Microsoft Educator', url: 'https://education.microsoft.com', desc: 'شهادات تعليمية من مايكروسوفت' }
-    ]
-  },
-  'teacher-courses': {
-    title: 'دورات تدريب مهني',
-    subtitle: 'دورات لتطوير مهارات التدريس والتحفيظ',
-    items: [
-      { name: 'إدراك', url: 'https://edraak.org', desc: 'دورات عربية مجانية' },
-      { name: 'رواق', url: 'https://rwaq.org', desc: 'منصة عربية للتعليم المفتوح' },
-      { name: 'مهارات Google', url: 'https://learndigital.withgoogle.com', desc: 'دورات جوجل بالعربية' },
-      { name: 'Coursera for Teachers', url: 'https://coursera.org', desc: 'دورات تدريب المعلمين' },
-      { name: 'FutureLearn', url: 'https://futurelearn.com', desc: 'دورات بريطانية معتمدة' },
-      { name: 'Khan Academy', url: 'https://khanacademy.org', desc: 'أدوات تعليمية تفاعلية' }
-    ]
-  },
-  'teacher-ijazat': {
-    title: 'إجازات قرآنية معتمدة',
-    subtitle: 'الحصول على إجازة بالسند المتصل',
-    items: [
-      { name: 'مجمع الملك فهد', url: 'https://qurancomplex.gov.sa', desc: 'إجازات ومراجع المصحف' },
-      { name: 'الجمعية الخيرية لتحفيظ القرآن', url: 'https://quran.org.sa', desc: 'حلقات وإجازات في السعودية' },
-      { name: 'الهيئة العالمية لتحفيظ القرآن', url: 'https://quran-world.org', desc: 'شبكة عالمية للإجازات' },
-      { name: 'Ijazah Online', url: 'https://ijazah.online', desc: 'منصة إجازة أونلاين' },
-      { name: 'Quranic Arabic Institute', url: 'https://quranicarabic.org', desc: 'إجازات بالقراءات العشر' },
-      { name: 'Al-Azhar', url: 'https://azhar.edu.eg', desc: 'إجازات الأزهر الشريف' }
-    ]
-  },
-  'teacher-platforms': {
-    title: 'منصات تعليمية للتدريس',
-    subtitle: 'اعرض دروسك وابنِ سمعتك',
-    items: [
-      { name: 'منصة مدرستي', url: 'https://schools.madrasati.sa', desc: 'المنصة الرسمية للتعليم السعودي' },
-      { name: 'منصة عين', url: 'https://ien.edu.sa', desc: 'محتوى تعليمي رسمي' },
-      { name: 'نون أكاديمي', url: 'https://noonacademy.com', desc: 'منصة دورات عربية' },
-      { name: 'Udemy', url: 'https://udemy.com', desc: 'بيع دوراتك عالمياً' },
-      { name: 'Teachable', url: 'https://teachable.com', desc: 'ابن منصتك التعليمية' },
-      { name: 'Thinkific', url: 'https://thinkific.com', desc: 'منصة دورات احترافية' }
-    ]
-  },
-  'teacher-jobs': {
-    title: 'وظائف تعليمية',
-    subtitle: 'فرص عمل في المدارس والمراكز',
-    items: [
-      { name: 'جدارات', url: 'https://jadarat.sa', desc: 'الوظائف الحكومية السعودية' },
-      { name: 'طاقات', url: 'https://taqat.sa', desc: 'وظائف القطاع الخاص' },
-      { name: 'منصة سبل', url: 'https://sbl.sa', desc: 'وظائف تعليمية متخصصة' },
-      { name: 'LinkedIn Jobs', url: 'https://linkedin.com/jobs', desc: 'وظائف دولية' },
-      { name: 'Bayt.com', url: 'https://bayt.com', desc: 'أكبر موقع توظيف عربي' },
-      { name: 'GulfTalent', url: 'https://gulftalent.com', desc: 'وظائف الخليج' }
-    ]
-  },
-  'teacher-tools': {
-    title: 'أدوات مهنية للمعلمين',
-    subtitle: 'أدوات تسهّل عملك اليومي',
-    items: [
-      { name: 'Canva for Education', url: 'https://canva.com/education', desc: 'تصميم عروض تعليمية' },
-      { name: 'Google Classroom', url: 'https://classroom.google.com', desc: 'إدارة الصفوف والواجبات' },
-      { name: 'Kahoot', url: 'https://kahoot.com', desc: 'اختبارات تفاعلية' },
-      { name: 'Quizizz', url: 'https://quizizz.com', desc: 'اختبارات أونلاين' },
-      { name: 'Nearpod', url: 'https://nearpod.com', desc: 'دروس تفاعلية' },
-      { name: 'Padlet', url: 'https://padlet.com', desc: 'لوحات تعاونية للطلاب' }
-    ]
-  },
-  'student-curricula': {
-    title: 'مناهج دراسية رسمية',
-    subtitle: 'مناهج وزارة التعليم السعودية',
-    items: [
-      { name: 'منصة عين', url: 'https://ien.edu.sa', desc: 'المناهج الرسمية السعودية' },
-      { name: 'منصة مدرستي', url: 'https://schools.madrasati.sa', desc: 'الدروس والواجبات' },
-      { name: 'بوابة نور', url: 'https://noor.moe.gov.sa', desc: 'نتائج الطلاب' },
-      { name: 'Khan Academy Arabic', url: 'https://ar.khanacademy.org', desc: 'شرح مبسط لكل المواد' },
-      { name: 'CK-12 Foundation', url: 'https://ck12.org', desc: 'مناهج علمية مبسطة' },
-      { name: 'OpenStax', url: 'https://openstax.org', desc: 'كتب جامعية مجانية' }
-    ]
-  },
-  'student-courses': {
-    title: 'دورات أونلاين مجانية',
-    subtitle: 'كورسات معتمدة من أفضل الجامعات',
-    items: [
-      { name: 'إدراك', url: 'https://edraak.org', desc: 'دورات عربية مجانية' },
-      { name: 'رواق', url: 'https://rwaq.org', desc: 'منصة عربية مفتوحة' },
-      { name: 'مهارات Google', url: 'https://learndigital.withgoogle.com', desc: 'شهادات جوجل' },
-      { name: 'Coursera', url: 'https://coursera.org', desc: 'دورات جامعات عالمية' },
-      { name: 'edX', url: 'https://edx.org', desc: 'دورات MIT وHarvard' },
-      { name: 'freeCodeCamp', url: 'https://freecodecamp.org', desc: 'تعلم البرمجة مجاناً' }
-    ]
-  },
-  'student-books': {
-    title: 'كتب ومراجع مجانية',
-    subtitle: 'مكتبات رقمية قانونية',
-    items: [
-      { name: 'مكتبة نور', url: 'https://noor-book.com', desc: 'ملايين الكتب العربية' },
-      { name: 'المكتبة الوقفية', url: 'https://waqfeya.net', desc: 'كتب إسلامية وعلمية' },
-      { name: 'مؤسسة هنداوي', url: 'https://hindawi.org', desc: 'كتب أدبية وعلمية' },
-      { name: 'Project Gutenberg', url: 'https://gutenberg.org', desc: 'كتب عالمية مجانية' },
-      { name: 'Internet Archive', url: 'https://archive.org', desc: 'أرشيف الإنترنت' },
-      { name: 'Open Library', url: 'https://openlibrary.org', desc: 'مكتبة مفتوحة' }
-    ]
-  },
-  'student-quizzes': {
-    title: 'اختبارات مستوى تفاعلية',
-    subtitle: 'قيّم مستواك باختبارات مجانية',
-    items: [
-      { name: 'اختبار مستوى العربية', url: 'https://arabic-test.com', desc: 'قيّم مستواك في العربية' },
-      { name: 'اختبار حفظ القرآن', url: 'https://quran-test.com', desc: 'اختبر حفظك' },
-      { name: 'Kahoot', url: 'https://kahoot.com', desc: 'اختبارات تفاعلية' },
-      { name: 'Quizizz', url: 'https://quizizz.com', desc: 'اختبارات أونلاين' },
-      { name: 'Duolingo Test', url: 'https://duolingo.com', desc: 'اختبر مستوى الإنجليزية' },
-      { name: '16Personalities', url: 'https://16personalities.com', desc: 'اختبر شخصيتك ومسارك' }
-    ]
-  },
-  'student-exams': {
-    title: 'نماذج اختبارات سابقة',
-    subtitle: 'تدرب على الامتحانات الرسمية',
-    items: [
-      { name: 'قياس', url: 'https://etec.gov.sa', desc: 'نماذج اختبارات قياس' },
-      { name: 'وزارة التعليم', url: 'https://moe.gov.sa', desc: 'نماذج رسمية' },
-      { name: 'منصة عين', url: 'https://ien.edu.sa', desc: 'اختبارات إلكترونية' },
-      { name: 'SAT Practice', url: 'https://khanacademy.org/sat', desc: 'تدريب SAT' },
-      { name: 'IELTS Practice', url: 'https://ielts.org', desc: 'نماذج آيلتس' },
-      { name: 'TOEFL Practice', url: 'https://ets.org/toefl', desc: 'نماذج توفل' }
-    ]
-  },
-  'student-scholarships': {
-    title: 'منح دراسية',
-    subtitle: 'فرص تمويل للتعليم',
-    items: [
-      { name: 'منح وزارة التعليم', url: 'https://moe.gov.sa', desc: 'البعثات الحكومية' },
-      { name: 'منح KAUST', url: 'https://kaust.edu.sa', desc: 'منح كاملة للدراسات العليا' },
-      { name: 'منح المسك', url: 'https://misk.org.sa', desc: 'برامج ومنح للشباب' },
-      { name: 'Chevening', url: 'https://chevening.org', desc: 'منح بريطانية حكومية' },
-      { name: 'Fulbright', url: 'https://fulbright.org', desc: 'منح أمريكية' },
-      { name: 'DAAD', url: 'https://daad.de', desc: 'منح ألمانية' }
-    ]
-  },
-  'pro-jobs': {
-    title: 'وظائف تعليمية',
-    subtitle: 'فرص في القطاعين الحكومي والخاص',
-    items: [
-      { name: 'جدارات', url: 'https://jadarat.sa', desc: 'الوظائف الحكومية' },
-      { name: 'طاقات', url: 'https://taqat.sa', desc: 'وظائف القطاع الخاص' },
-      { name: 'منصة سبل', url: 'https://sbl.sa', desc: 'وظائف تعليمية' },
-      { name: 'LinkedIn', url: 'https://linkedin.com/jobs', desc: 'وظائف دولية' },
-      { name: 'Bayt', url: 'https://bayt.com', desc: 'أكبر موقع توظيف عربي' },
-      { name: 'Indeed', url: 'https://indeed.com', desc: 'وظائف عالمية' }
-    ]
-  },
-  'pro-scholarships': {
-    title: 'منح وبعثات',
-    subtitle: 'فرص تمويل مهني وأكاديمي',
-    items: [
-      { name: 'بعثات وزارة التعليم', url: 'https://moe.gov.sa', desc: 'البرامج الرسمية' },
-      { name: 'منح KAUST', url: 'https://kaust.edu.sa', desc: 'دراسات عليا' },
-      { name: 'منح المسك', url: 'https://misk.org.sa', desc: 'برامج شباب' },
-      { name: 'Chevening', url: 'https://chevening.org', desc: 'منح بريطانية' },
-      { name: 'Fulbright', url: 'https://fulbright.org', desc: 'منح أمريكية' },
-      { name: 'Erasmus+', url: 'https://erasmus-plus.ec.europa.eu', desc: 'منح أوروبية' }
-    ]
-  },
-  'pro-training': {
-    title: 'تدريب معتمد',
-    subtitle: 'شهادات مهنية معترف بها',
-    items: [
-      { name: 'إدراك', url: 'https://edraak.org', desc: 'دورات عربية' },
-      { name: 'رواق', url: 'https://rwaq.org', desc: 'منصة عربية' },
-      { name: 'Coursera', url: 'https://coursera.org', desc: 'شهادات معتمدة' },
-      { name: 'edX', url: 'https://edx.org', desc: 'شهادات احترافية' },
-      { name: 'Udacity', url: 'https://udacity.com', desc: 'نانو ديجري' },
-      { name: 'Pluralsight', url: 'https://pluralsight.com', desc: 'تدريب تقني' }
-    ]
-  },
-  'pro-networks': {
-    title: 'شبكات مهنية',
-    subtitle: 'تواصل مع المحترفين',
-    items: [
-      { name: 'LinkedIn', url: 'https://linkedin.com', desc: 'أكبر شبكة مهنية' },
-      { name: 'Bayt', url: 'https://bayt.com', desc: 'شبكة عربية' },
-      { name: 'GulfTalent', url: 'https://gulftalent.com', desc: 'شبكة الخليج' },
-      { name: 'AngelList', url: 'https://angel.co', desc: 'شبكة ريادة أعمال' },
-      { name: 'Meetup', url: 'https://meetup.com', desc: 'لقاءات مهنية' },
-      { name: 'Slack Communities', url: 'https://slack.com/community', desc: 'مجتمعات تقنية' }
-    ]
-  },
-  'pro-events': {
-    title: 'مؤتمرات وملتقيات',
-    subtitle: 'فرص للتطوير المهني',
-    items: [
-      { name: 'ملتقى التعليم السعودي', url: 'https://moe.gov.sa', desc: 'فعاليات وزارة التعليم' },
-      { name: 'LEAP', url: 'https://onegiantleap.com', desc: 'مؤتمر التقنية' },
-      { name: 'GITEX', url: 'https://gitex.com', desc: 'معرض التقنية' },
-      { name: 'TEDx', url: 'https://ted.com', desc: 'محادثات ملهمة' },
-      { name: 'EdTech Summit', url: 'https://edtechsummit.com', desc: 'قمة التعليم' },
-      { name: 'Eventbrite', url: 'https://eventbrite.com', desc: 'اكتشف الفعاليات' }
-    ]
-  },
-  'pro-tools': {
-    title: 'أدوات مهنية',
-    subtitle: 'أدوات تسهّل عملك',
-    items: [
-      { name: 'Notion', url: 'https://notion.so', desc: 'تنظيم المهام' },
-      { name: 'Trello', url: 'https://trello.com', desc: 'إدارة المشاريع' },
-      { name: 'Slack', url: 'https://slack.com', desc: 'تواصل الفرق' },
-      { name: 'Zoom', url: 'https://zoom.us', desc: 'اجتماعات أونلاين' },
-      { name: 'Google Workspace', url: 'https://workspace.google.com', desc: 'أدوات جوجل' },
-      { name: 'Canva', url: 'https://canva.com', desc: 'تصميم احترافي' }
-    ]
-  }
+  'teacher-certs': { title: 'شهادات مهنية معتمدة', subtitle: 'شهادات معترف بها للمعلمين والمحفظين', items: [
+    { name: 'هيئة تقويم التعليم والتدريب', url: 'https://etec.gov.sa', desc: 'الرخص المهنية للمعلمين في السعودية' },
+    { name: 'المركز الوطني للتعليم الإلكتروني', url: 'https://nelc.gov.sa', desc: 'اعتماد المنصات والشهادات الإلكترونية' },
+    { name: 'جمعية تحفيظ القرآن الكريم', url: 'https://quran.org.sa', desc: 'إجازات قرآنية معتمدة' },
+    { name: 'Coursera Certificates', url: 'https://coursera.org', desc: 'شهادات من جامعات عالمية' },
+    { name: 'edX Professional', url: 'https://edx.org', desc: 'شهادات احترافية من MIT وHarvard' },
+    { name: 'Microsoft Educator', url: 'https://education.microsoft.com', desc: 'شهادات تعليمية من مايكروسوفت' }
+  ]},
+  'teacher-courses': { title: 'دورات تدريب مهني', subtitle: 'دورات لتطوير مهارات التدريس والتحفيظ', items: [
+    { name: 'إدراك', url: 'https://edraak.org', desc: 'دورات عربية مجانية' },
+    { name: 'رواق', url: 'https://rwaq.org', desc: 'منصة عربية للتعليم المفتوح' },
+    { name: 'مهارات Google', url: 'https://learndigital.withgoogle.com', desc: 'دورات جوجل بالعربية' },
+    { name: 'Coursera for Teachers', url: 'https://coursera.org', desc: 'دورات تدريب المعلمين' },
+    { name: 'FutureLearn', url: 'https://futurelearn.com', desc: 'دورات بريطانية معتمدة' },
+    { name: 'Khan Academy', url: 'https://khanacademy.org', desc: 'أدوات تعليمية تفاعلية' }
+  ]},
+  'teacher-ijazat': { title: 'إجازات قرآنية معتمدة', subtitle: 'الحصول على إجازة بالسند المتصل', items: [
+    { name: 'مجمع الملك فهد', url: 'https://qurancomplex.gov.sa', desc: 'إجازات ومراجع المصحف' },
+    { name: 'الجمعية الخيرية لتحفيظ القرآن', url: 'https://quran.org.sa', desc: 'حلقات وإجازات في السعودية' },
+    { name: 'الهيئة العالمية لتحفيظ القرآن', url: 'https://quran-world.org', desc: 'شبكة عالمية للإجازات' },
+    { name: 'Ijazah Online', url: 'https://ijazah.online', desc: 'منصة إجازة أونلاين' },
+    { name: 'Quranic Arabic Institute', url: 'https://quranicarabic.org', desc: 'إجازات بالقراءات العشر' },
+    { name: 'Al-Azhar', url: 'https://azhar.edu.eg', desc: 'إجازات الأزهر الشريف' }
+  ]},
+  'teacher-platforms': { title: 'منصات تعليمية للتدريس', subtitle: 'اعرض دروسك وابنِ سمعتك', items: [
+    { name: 'منصة مدرستي', url: 'https://schools.madrasati.sa', desc: 'المنصة الرسمية للتعليم السعودي' },
+    { name: 'منصة عين', url: 'https://ien.edu.sa', desc: 'محتوى تعليمي رسمي' },
+    { name: 'نون أكاديمي', url: 'https://noonacademy.com', desc: 'منصة دورات عربية' },
+    { name: 'Udemy', url: 'https://udemy.com', desc: 'بيع دوراتك عالمياً' },
+    { name: 'Teachable', url: 'https://teachable.com', desc: 'ابن منصتك التعليمية' },
+    { name: 'Thinkific', url: 'https://thinkific.com', desc: 'منصة دورات احترافية' }
+  ]},
+  'teacher-jobs': { title: 'وظائف تعليمية', subtitle: 'فرص عمل في المدارس والمراكز', items: [
+    { name: 'جدارات', url: 'https://jadarat.sa', desc: 'الوظائف الحكومية السعودية' },
+    { name: 'طاقات', url: 'https://taqat.sa', desc: 'وظائف القطاع الخاص' },
+    { name: 'منصة سبل', url: 'https://sbl.sa', desc: 'وظائف تعليمية متخصصة' },
+    { name: 'LinkedIn Jobs', url: 'https://linkedin.com/jobs', desc: 'وظائف دولية' },
+    { name: 'Bayt.com', url: 'https://bayt.com', desc: 'أكبر موقع توظيف عربي' },
+    { name: 'GulfTalent', url: 'https://gulftalent.com', desc: 'وظائف الخليج' }
+  ]},
+  'teacher-tools': { title: 'أدوات مهنية للمعلمين', subtitle: 'أدوات تسهّل عملك اليومي', items: [
+    { name: 'Canva for Education', url: 'https://canva.com/education', desc: 'تصميم عروض تعليمية' },
+    { name: 'Google Classroom', url: 'https://classroom.google.com', desc: 'إدارة الصفوف والواجبات' },
+    { name: 'Kahoot', url: 'https://kahoot.com', desc: 'اختبارات تفاعلية' },
+    { name: 'Quizizz', url: 'https://quizizz.com', desc: 'اختبارات أونلاين' },
+    { name: 'Nearpod', url: 'https://nearpod.com', desc: 'دروس تفاعلية' },
+    { name: 'Padlet', url: 'https://padlet.com', desc: 'لوحات تعاونية للطلاب' }
+  ]},
+  'student-curricula': { title: 'مناهج دراسية رسمية', subtitle: 'مناهج وزارة التعليم السعودية', items: [
+    { name: 'منصة عين', url: 'https://ien.edu.sa', desc: 'المناهج الرسمية السعودية' },
+    { name: 'منصة مدرستي', url: 'https://schools.madrasati.sa', desc: 'الدروس والواجبات' },
+    { name: 'بوابة نور', url: 'https://noor.moe.gov.sa', desc: 'نتائج الطلاب' },
+    { name: 'Khan Academy Arabic', url: 'https://ar.khanacademy.org', desc: 'شرح مبسط لكل المواد' },
+    { name: 'CK-12 Foundation', url: 'https://ck12.org', desc: 'مناهج علمية مبسطة' },
+    { name: 'OpenStax', url: 'https://openstax.org', desc: 'كتب جامعية مجانية' }
+  ]},
+  'student-courses': { title: 'دورات أونلاين مجانية', subtitle: 'كورسات معتمدة من أفضل الجامعات', items: [
+    { name: 'إدراك', url: 'https://edraak.org', desc: 'دورات عربية مجانية' },
+    { name: 'رواق', url: 'https://rwaq.org', desc: 'منصة عربية مفتوحة' },
+    { name: 'مهارات Google', url: 'https://learndigital.withgoogle.com', desc: 'شهادات جوجل' },
+    { name: 'Coursera', url: 'https://coursera.org', desc: 'دورات جامعات عالمية' },
+    { name: 'edX', url: 'https://edx.org', desc: 'دورات MIT وHarvard' },
+    { name: 'freeCodeCamp', url: 'https://freecodecamp.org', desc: 'تعلم البرمجة مجاناً' }
+  ]},
+  'student-books': { title: 'كتب ومراجع مجانية', subtitle: 'مكتبات رقمية قانونية', items: [
+    { name: 'مكتبة نور', url: 'https://noor-book.com', desc: 'ملايين الكتب العربية' },
+    { name: 'المكتبة الوقفية', url: 'https://waqfeya.net', desc: 'كتب إسلامية وعلمية' },
+    { name: 'مؤسسة هنداوي', url: 'https://hindawi.org', desc: 'كتب أدبية وعلمية' },
+    { name: 'Project Gutenberg', url: 'https://gutenberg.org', desc: 'كتب عالمية مجانية' },
+    { name: 'Internet Archive', url: 'https://archive.org', desc: 'أرشيف الإنترنت' },
+    { name: 'Open Library', url: 'https://openlibrary.org', desc: 'مكتبة مفتوحة' }
+  ]},
+  'student-quizzes': { title: 'اختبارات مستوى تفاعلية', subtitle: 'قيّم مستواك باختبارات مجانية', items: [
+    { name: 'اختبار مستوى العربية', url: 'https://arabic-test.com', desc: 'قيّم مستواك في العربية' },
+    { name: 'اختبار حفظ القرآن', url: 'https://quran-test.com', desc: 'اختبر حفظك' },
+    { name: 'Kahoot', url: 'https://kahoot.com', desc: 'اختبارات تفاعلية' },
+    { name: 'Quizizz', url: 'https://quizizz.com', desc: 'اختبارات أونلاين' },
+    { name: 'Duolingo Test', url: 'https://duolingo.com', desc: 'اختبر مستوى الإنجليزية' },
+    { name: '16Personalities', url: 'https://16personalities.com', desc: 'اختبر شخصيتك ومسارك' }
+  ]},
+  'student-exams': { title: 'نماذج اختبارات سابقة', subtitle: 'تدرب على الامتحانات الرسمية', items: [
+    { name: 'قياس', url: 'https://etec.gov.sa', desc: 'نماذج اختبارات قياس' },
+    { name: 'وزارة التعليم', url: 'https://moe.gov.sa', desc: 'نماذج رسمية' },
+    { name: 'منصة عين', url: 'https://ien.edu.sa', desc: 'اختبارات إلكترونية' },
+    { name: 'SAT Practice', url: 'https://khanacademy.org/sat', desc: 'تدريب SAT' },
+    { name: 'IELTS Practice', url: 'https://ielts.org', desc: 'نماذج آيلتس' },
+    { name: 'TOEFL Practice', url: 'https://ets.org/toefl', desc: 'نماذج توفل' }
+  ]},
+  'student-scholarships': { title: 'منح دراسية', subtitle: 'فرص تمويل للتعليم', items: [
+    { name: 'منح وزارة التعليم', url: 'https://moe.gov.sa', desc: 'البعثات الحكومية' },
+    { name: 'منح KAUST', url: 'https://kaust.edu.sa', desc: 'منح كاملة للدراسات العليا' },
+    { name: 'منح المسك', url: 'https://misk.org.sa', desc: 'برامج ومنح للشباب' },
+    { name: 'Chevening', url: 'https://chevening.org', desc: 'منح بريطانية حكومية' },
+    { name: 'Fulbright', url: 'https://fulbright.org', desc: 'منح أمريكية' },
+    { name: 'DAAD', url: 'https://daad.de', desc: 'منح ألمانية' }
+  ]},
+  'pro-jobs': { title: 'وظائف تعليمية', subtitle: 'فرص في القطاعين الحكومي والخاص', items: [
+    { name: 'جدارات', url: 'https://jadarat.sa', desc: 'الوظائف الحكومية' },
+    { name: 'طاقات', url: 'https://taqat.sa', desc: 'وظائف القطاع الخاص' },
+    { name: 'منصة سبل', url: 'https://sbl.sa', desc: 'وظائف تعليمية' },
+    { name: 'LinkedIn', url: 'https://linkedin.com/jobs', desc: 'وظائف دولية' },
+    { name: 'Bayt', url: 'https://bayt.com', desc: 'أكبر موقع توظيف عربي' },
+    { name: 'Indeed', url: 'https://indeed.com', desc: 'وظائف عالمية' }
+  ]},
+  'pro-scholarships': { title: 'منح وبعثات', subtitle: 'فرص تمويل مهني وأكاديمي', items: [
+    { name: 'بعثات وزارة التعليم', url: 'https://moe.gov.sa', desc: 'البرامج الرسمية' },
+    { name: 'منح KAUST', url: 'https://kaust.edu.sa', desc: 'دراسات عليا' },
+    { name: 'منح المسك', url: 'https://misk.org.sa', desc: 'برامج شباب' },
+    { name: 'Chevening', url: 'https://chevening.org', desc: 'منح بريطانية' },
+    { name: 'Fulbright', url: 'https://fulbright.org', desc: 'منح أمريكية' },
+    { name: 'Erasmus+', url: 'https://erasmus-plus.ec.europa.eu', desc: 'منح أوروبية' }
+  ]},
+  'pro-training': { title: 'تدريب معتمد', subtitle: 'شهادات مهنية معترف بها', items: [
+    { name: 'إدراك', url: 'https://edraak.org', desc: 'دورات عربية' },
+    { name: 'رواق', url: 'https://rwaq.org', desc: 'منصة عربية' },
+    { name: 'Coursera', url: 'https://coursera.org', desc: 'شهادات معتمدة' },
+    { name: 'edX', url: 'https://edx.org', desc: 'شهادات احترافية' },
+    { name: 'Udacity', url: 'https://udacity.com', desc: 'نانو ديجري' },
+    { name: 'Pluralsight', url: 'https://pluralsight.com', desc: 'تدريب تقني' }
+  ]},
+  'pro-networks': { title: 'شبكات مهنية', subtitle: 'تواصل مع المحترفين', items: [
+    { name: 'LinkedIn', url: 'https://linkedin.com', desc: 'أكبر شبكة مهنية' },
+    { name: 'Bayt', url: 'https://bayt.com', desc: 'شبكة عربية' },
+    { name: 'GulfTalent', url: 'https://gulftalent.com', desc: 'شبكة الخليج' },
+    { name: 'AngelList', url: 'https://angel.co', desc: 'شبكة ريادة أعمال' },
+    { name: 'Meetup', url: 'https://meetup.com', desc: 'لقاءات مهنية' },
+    { name: 'Slack Communities', url: 'https://slack.com/community', desc: 'مجتمعات تقنية' }
+  ]},
+  'pro-events': { title: 'مؤتمرات وملتقيات', subtitle: 'فرص للتطوير المهني', items: [
+    { name: 'ملتقى التعليم السعودي', url: 'https://moe.gov.sa', desc: 'فعاليات وزارة التعليم' },
+    { name: 'LEAP', url: 'https://onegiantleap.com', desc: 'مؤتمر التقنية' },
+    { name: 'GITEX', url: 'https://gitex.com', desc: 'معرض التقنية' },
+    { name: 'TEDx', url: 'https://ted.com', desc: 'محادثات ملهمة' },
+    { name: 'EdTech Summit', url: 'https://edtechsummit.com', desc: 'قمة التعليم' },
+    { name: 'Eventbrite', url: 'https://eventbrite.com', desc: 'اكتشف الفعاليات' }
+  ]},
+  'pro-tools': { title: 'أدوات مهنية', subtitle: 'أدوات تسهّل عملك', items: [
+    { name: 'Notion', url: 'https://notion.so', desc: 'تنظيم المهام' },
+    { name: 'Trello', url: 'https://trello.com', desc: 'إدارة المشاريع' },
+    { name: 'Slack', url: 'https://slack.com', desc: 'تواصل الفرق' },
+    { name: 'Zoom', url: 'https://zoom.us', desc: 'اجتماعات أونلاين' },
+    { name: 'Google Workspace', url: 'https://workspace.google.com', desc: 'أدوات جوجل' },
+    { name: 'Canva', url: 'https://canva.com', desc: 'تصميم احترافي' }
+  ]}
 };
 
 /* =========================================================
@@ -1018,6 +946,9 @@ let activeConnection = null;
 let activeRecipient = null;
 let realtimeChannels = [];
 let syncTimer = null;
+
+/* حالة توسيع الأقسام */
+const expandedPlatforms = new Set();
 
 /* =========================================================
    UTILITIES
@@ -1388,57 +1319,15 @@ function updateRadarStats() {
 }
 
 /* =========================================================
-   RADAR — تجميع الكروت حسب المنصة
+   RADAR — تجميع الكروت حسب المنصة + عرض 3 كحد أقصى
 ========================================================= */
 const PLATFORM_META = {
-  telegram: {
-    name: 'تيليجرام',
-    icon: 'fa-brands fa-telegram',
-    headerCls: 'from-sky-50 to-white',
-    iconCls: 'bg-sky-100 text-sky-600',
-    countCls: 'bg-sky-100 text-sky-700',
-    desc: 'قنوات ومجموعات ودورات تعليمية'
-  },
-  khamsat: {
-    name: 'خمسات',
-    icon: 'fa-solid fa-briefcase',
-    headerCls: 'from-amber-50 to-white',
-    iconCls: 'bg-amber-100 text-amber-600',
-    countCls: 'bg-amber-100 text-amber-700',
-    desc: 'خدمات تعليمية عربية'
-  },
-  freelancer: {
-    name: 'Freelancer',
-    icon: 'fa-solid fa-laptop-code',
-    headerCls: 'from-indigo-50 to-white',
-    iconCls: 'bg-indigo-100 text-indigo-600',
-    countCls: 'bg-indigo-100 text-indigo-700',
-    desc: 'مشاريع ووظائف تعليمية عالمية'
-  },
-  teacheron: {
-    name: 'TeacherOn',
-    icon: 'fa-solid fa-chalkboard-user',
-    headerCls: 'from-violet-50 to-white',
-    iconCls: 'bg-violet-100 text-violet-600',
-    countCls: 'bg-violet-100 text-violet-700',
-    desc: 'معلمون خصوصيون ومدرسون'
-  },
-  web: {
-    name: 'الويب المفتوح',
-    icon: 'fa-solid fa-globe',
-    headerCls: 'from-emerald-50 to-white',
-    iconCls: 'bg-emerald-100 text-emerald-600',
-    countCls: 'bg-emerald-100 text-emerald-700',
-    desc: 'نتائج بحث عامة'
-  },
-  other: {
-    name: 'مصادر أخرى',
-    icon: 'fa-solid fa-layer-group',
-    headerCls: 'from-slate-50 to-white',
-    iconCls: 'bg-slate-100 text-slate-600',
-    countCls: 'bg-slate-100 text-slate-700',
-    desc: 'مصادر متنوعة'
-  }
+  telegram: { name: 'تيليجرام', icon: 'fa-brands fa-telegram', headerCls: 'from-sky-50 to-white', iconCls: 'bg-sky-100 text-sky-600', countCls: 'bg-sky-100 text-sky-700', desc: 'قنوات ومجموعات ودورات تعليمية' },
+  khamsat: { name: 'خمسات', icon: 'fa-solid fa-briefcase', headerCls: 'from-amber-50 to-white', iconCls: 'bg-amber-100 text-amber-600', countCls: 'bg-amber-100 text-amber-700', desc: 'خدمات تعليمية عربية' },
+  freelancer: { name: 'Freelancer', icon: 'fa-solid fa-laptop-code', headerCls: 'from-indigo-50 to-white', iconCls: 'bg-indigo-100 text-indigo-600', countCls: 'bg-indigo-100 text-indigo-700', desc: 'مشاريع ووظائف تعليمية عالمية' },
+  teacheron: { name: 'TeacherOn', icon: 'fa-solid fa-chalkboard-user', headerCls: 'from-violet-50 to-white', iconCls: 'bg-violet-100 text-violet-600', countCls: 'bg-violet-100 text-violet-700', desc: 'معلمون خصوصيون ومدرسون' },
+  web: { name: 'الويب المفتوح', icon: 'fa-solid fa-globe', headerCls: 'from-emerald-50 to-white', iconCls: 'bg-emerald-100 text-emerald-600', countCls: 'bg-emerald-100 text-emerald-700', desc: 'نتائج بحث عامة' },
+  other: { name: 'مصادر أخرى', icon: 'fa-solid fa-layer-group', headerCls: 'from-slate-50 to-white', iconCls: 'bg-slate-100 text-slate-600', countCls: 'bg-slate-100 text-slate-700', desc: 'مصادر متنوعة' }
 };
 
 const PLATFORM_ORDER = ['telegram', 'khamsat', 'freelancer', 'teacheron', 'web', 'other'];
@@ -1489,6 +1378,12 @@ function renderRadarCard(l) {
   </article>`;
 }
 
+function togglePlatformExpand(key) {
+  if (expandedPlatforms.has(key)) expandedPlatforms.delete(key);
+  else expandedPlatforms.add(key);
+  renderRadar();
+}
+
 function renderRadar() {
   const q = $('radar-search').value.trim().toLowerCase();
   const src = $('radar-filter-source').value;
@@ -1532,7 +1427,28 @@ function renderRadar() {
 
   container.innerHTML = presentKeys.map(key => {
     const meta = PLATFORM_META[key];
-    const items = grouped[key];
+    const allItems = grouped[key];
+    const isExpanded = expandedPlatforms.has(key);
+    const visible = isExpanded ? allItems : allItems.slice(0, 3);
+    const remaining = allItems.length - 3;
+
+    let moreBtn = '';
+    if (remaining > 0) {
+      if (isExpanded) {
+        moreBtn = `<div class="col-span-full text-center pt-2">
+          <button onclick="togglePlatformExpand('${key}')" class="inline-flex items-center gap-2 rounded-xl border-2 border-slate-200 bg-white hover:bg-slate-50 text-slate-700 px-5 py-2.5 text-xs font-black transition">
+            <i class="fa-solid fa-chevron-up"></i> عرض أقل
+          </button>
+        </div>`;
+      } else {
+        moreBtn = `<div class="col-span-full text-center pt-2">
+          <button onclick="togglePlatformExpand('${key}')" class="inline-flex items-center gap-2 rounded-xl border-2 border-dashed border-slate-300 bg-white hover:bg-brand-50 hover:border-brand-400 text-brand-700 px-5 py-2.5 text-xs font-black transition">
+            <i class="fa-solid fa-plus-circle"></i> عرض ${remaining} إشارة إضافية
+          </button>
+        </div>`;
+      }
+    }
+
     return `
       <section class="rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm">
         <header class="flex items-center justify-between gap-3 px-5 py-4 bg-gradient-to-l ${meta.headerCls} border-b border-slate-100">
@@ -1545,10 +1461,11 @@ function renderRadar() {
               <p class="text-[11px] text-slate-500 truncate">${meta.desc}</p>
             </div>
           </div>
-          <span class="text-[11px] font-black px-3 py-1 rounded-full ${meta.countCls} shrink-0">${items.length} إشارة</span>
+          <span class="text-[11px] font-black px-3 py-1 rounded-full ${meta.countCls} shrink-0">${allItems.length} إشارة</span>
         </header>
         <div class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          ${items.map(renderRadarCard).join('')}
+          ${visible.map(renderRadarCard).join('')}
+          ${moreBtn}
         </div>
       </section>
     `;
@@ -1639,7 +1556,6 @@ function openSources(key) {
   const detectLang = (url) => {
     const u = url.toLowerCase();
     if (/\.sa|\.eg|\.ae|\.jo|\.ma|\.dz|\.tn|\.iq|\.ps|\.om|\.qa|\.kw|\.bh|\.ye|\.sd|\.ly|\.lb|\.sy|\.edu\.sa/.test(u)) return { label: 'عربي', flag: '🌍' };
-    if (/\.de|\.fr|\.uk|\.com$/.test(u) && !/\.sa|\.eg|\.ae/.test(u)) return { label: 'دولي', flag: '🌐' };
     return { label: 'دولي', flag: '🌐' };
   };
 
