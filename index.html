@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>منصة وفاق التعليمية | القرآن والعربية والمطابقة الذكية</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23059669'/><text x='50' y='72' font-size='60' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'>و</text></svg>">
-<meta name="description" content="منصة وفاق تربط الطلاب والأسر بمعلمي القرآن واللغة العربية، مع رادار حي من تيليجرام وخمسات.">
+<meta name="description" content="منصة وفاق تربط الطلاب والأسر بمعلمي القرآن واللغة العربية.">
 <meta name="theme-color" content="#059669">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -560,10 +560,10 @@ tailwind.config = {
 
 <script>
 /* =========================================================
-   CONFIG
+   CONFIG — v4.2: publishable key + base tables
 ========================================================= */
 const SUPABASE_URL = "https://zwgkrwkrohkmnyoixude.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind6Z2tyd2tyb2hrbW55b2l4dWRlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA2NzY2NDksImV4cCI6MjEwNjI1MjY0OX0.m4oZowdJ0-UbZ4ZFkygSp7yWo4BXENV2rlkzGMPF2JE";
+const SUPABASE_ANON_KEY = "sb_publishable_-tSaRUJ2HWDMSCfEg5CUEQ_dm4-uYAe";
 
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -1082,7 +1082,7 @@ async function copyText(text) {
 }
 
 /* =========================================================
-   SPECIALISTS — v4: uses education_profiles directly
+   SPECIALISTS — uses education_profiles
 ========================================================= */
 async function loadSpecialists() {
   const q = $('spec-search').value.trim();
@@ -1197,7 +1197,7 @@ function openSpecialistJoin() {
 }
 
 /* =========================================================
-   LISTINGS — v4: uses listings directly
+   LISTINGS — uses listings directly
 ========================================================= */
 async function loadListings() {
   const q = $('list-search').value.trim().toLowerCase();
@@ -1318,7 +1318,7 @@ async function submitListing(e) {
 }
 
 /* =========================================================
-   CONTACT — v4: uses listings for title
+   CONTACT
 ========================================================= */
 async function openContact(listingId) {
   if (!currentUser) { openAuthModal(); return; }
