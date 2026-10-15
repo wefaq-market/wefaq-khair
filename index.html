@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>منصة وفاق التعليمية | القرآن والعربية والمطابقة الذكية</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23059669'/><text x='50' y='72' font-size='60' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'>و</text></svg>">
-<meta name="description" content="منصة وفاق تربط الطلاب والأسر بمعلمي القرآن واللغة العربية، مع رادار حي من تيليجرام وخمسات والمصادر العامة.">
+<meta name="description" content="منصة وفاق تربط الطلاب والأسر بمعلمي القرآن واللغة العربية، مع رادار حي من تيليجرام وخمسات.">
 <meta name="theme-color" content="#059669">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -581,8 +581,11 @@ const RADAR_SOURCES = {
   ]
 };
 
-/* ✅ محدّث: proxy محسّن يستخدم AllOrigins فقط */
+/* ✅ v4: 5 بروكسيات — تجرب بالترتيب حتى واحد ينجح */
 const CORS_PROXIES = [
+  url => `https://api.cors.lol/?url=${encodeURIComponent(url)}`,
+  url => `https://cors.eu.org/${url}`,
+  url => `https://test.cors.workers.dev/?${url}`,
   url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
   url => `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`
 ];
@@ -790,27 +793,35 @@ sb.auth.onAuthStateChange((event, session) => {
    RADAR
 ========================================================= */
 
-/* ✅ محدّث: fetchViaProxy يستخدم AllOrigins فقط (raw ثم get كبديل) */
+/* ✅ v4: fetchViaProxy يجرب 5 بروكسيات بالترتيب */
 async function fetchViaProxy(url) {
-  // 1) محاولة raw — يعطي HTML مباشر
-  try {
-    const res = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`, {
-      signal: AbortSignal.timeout(11000)
-    });
-    if (res.ok) return await res.text();
-  } catch (e) {}
+  for (const proxyFn of CORS_PROXIES) {
+    try {
+      const proxyUrl = proxyFn(url);
+      const res = await fetch(proxyUrl, {
+        signal: AbortSignal.timeout(12000),
+        headers: { 'Accept': 'text/html,application/xhtml+xml,application/xml' }
+      });
+      if (!res.ok) continue;
 
-  // 2) محاولة get — يعطي JSON يحتوي HTML
-  try {
-    const res = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`, {
-      signal: AbortSignal.timeout(11000)
-    });
-    if (res.ok) {
-      const json = await res.json();
-      if (json && json.contents) return json.contents;
+      let html = await res.text();
+
+      // AllOrigins /get يعطي JSON — نفكّه
+      if (html.trim().startsWith('{')) {
+        try {
+          const json = JSON.parse(html);
+          if (json.contents) html = json.contents;
+        } catch (e) {}
+      }
+
+      // تحقق أن الاستجابة تحتوي HTML فعلاً
+      if (html.includes('tgme_widget_message') || html.length > 500) {
+        return html;
+      }
+    } catch (e) {
+      continue;
     }
-  } catch (e) {}
-
+  }
   return null;
 }
 
@@ -1048,7 +1059,6 @@ async function saveLeadToWorkspace(leadId) {
   const lead = radarLeads.find(l => l.id === leadId);
   if (!lead) return;
 
-  // إشارة موجودة أصلاً في قاعدة البيانات (من radar_leads)
   if (lead.id.startsWith('sb_')) {
     const uuid = lead.id.replace('sb_', '');
     const { error } = await sb.from('radar_user_saves').insert({
@@ -1068,7 +1078,6 @@ async function saveLeadToWorkspace(leadId) {
     return;
   }
 
-  // إشارة جديدة (من تيليجرام/خمسات) — نحفظها أولاً ثم نربطها
   const { data: inserted, error: insErr } = await sb.from('radar_leads').insert({
     title: lead.title,
     snippet: lead.snippet,
