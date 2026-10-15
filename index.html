@@ -189,33 +189,33 @@ tailwind.config = {
         <input id="radar-search" oninput="debounceRenderRadar()" type="search" placeholder="ابحث في الإشارات..."
                class="w-full min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 pr-9 pl-3 text-sm outline-none focus:border-brand-500">
       </div>
-      <select id="radar-filter-source" onchange="renderRadar()" class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm outline-none">
-        <option value="all">كل المصادر</option>
+      <select id="radar-filter-source" onchange="renderRadar()" class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm font-bold outline-none">
+        <option value="all">🌐 كل المصادر</option>
         <option value="telegram">تيليجرام</option>
         <option value="khamsat">خمسات</option>
         <option value="web">الويب المفتوح</option>
       </select>
-      <select id="radar-filter-category" onchange="renderRadar()" class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm outline-none">
-        <option value="all">كل المجالات</option>
+      <select id="radar-filter-category" onchange="renderRadar()" class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm font-bold outline-none">
+        <option value="all">📚 كل المجالات</option>
         <option value="quran">قرآن وتحفيظ</option>
         <option value="arabic">لغة عربية</option>
         <option value="hadith">حديث</option>
         <option value="kids">أطفال</option>
         <option value="services">خدمات</option>
       </select>
-      <select id="radar-filter-type" onchange="renderRadar()" class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm outline-none">
-        <option value="all">طلبات وعروض</option>
-        <option value="demand">طلبات فقط</option>
-        <option value="offer">عروض فقط</option>
+      <select id="radar-filter-type" onchange="renderRadar()" class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm font-bold outline-none">
+        <option value="all">🔀 الكل</option>
+        <option value="demand">📥 طلبات فقط</option>
+        <option value="offer">📤 عروض فقط</option>
       </select>
-      <select id="radar-filter-sort" onchange="renderRadar()" class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm outline-none">
-        <option value="fresh">الأحدث</option>
-        <option value="score">الأولوية</option>
+      <select id="radar-filter-sort" onchange="renderRadar()" class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm font-bold outline-none">
+        <option value="fresh">🕐 الأحدث</option>
+        <option value="score">⭐ الأولوية</option>
       </select>
     </div>
   </div>
 
-  <div id="radar-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <div id="radar-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
     <div class="col-span-full rounded-2xl border border-dashed border-slate-300 p-8 text-center text-slate-400 text-sm">
       <i class="fa-solid fa-satellite-dish text-3xl mb-3 text-brand-500"></i>
       <div class="font-black text-slate-700">جارٍ المزامنة الأولى...</div>
@@ -258,7 +258,6 @@ tailwind.config = {
     </div>
     <div id="spec-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
 
-    <!-- 🌐 بوابة مصادر المعلمين -->
     <div class="mt-10 rounded-3xl border-2 border-dashed border-brand-300 bg-gradient-to-br from-brand-50/60 to-white p-6">
       <div class="text-center mb-5">
         <span class="text-[10px] font-black text-brand-700 bg-brand-100 px-3 py-1 rounded-full">🔗 مصادر إضافية للمعلمين</span>
@@ -267,70 +266,38 @@ tailwind.config = {
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
         <button onclick="openSources('teacher-certs')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-brand-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-brand-50 group-hover:bg-brand-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-certificate text-brand-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">شهادات معتمدة</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">شهادات معترف بها للمعلمين</span>
-          </span>
+          <span class="w-11 h-11 rounded-xl bg-brand-50 group-hover:bg-brand-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-certificate text-brand-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">شهادات معتمدة</span><span class="block text-[10px] text-slate-400 mt-0.5">شهادات معترف بها للمعلمين</span></span>
           <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-brand-600 transition"></i>
         </button>
         <button onclick="openSources('teacher-courses')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-brand-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-brand-50 group-hover:bg-brand-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-graduation-cap text-brand-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">دورات تدريب</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">لتطوير مهارات التدريس</span>
-          </span>
+          <span class="w-11 h-11 rounded-xl bg-brand-50 group-hover:bg-brand-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-graduation-cap text-brand-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">دورات تدريب</span><span class="block text-[10px] text-slate-400 mt-0.5">لتطوير مهارات التدريس</span></span>
           <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-brand-600 transition"></i>
         </button>
         <button onclick="openSources('teacher-ijazat')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-brand-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-brand-50 group-hover:bg-brand-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-book-quran text-brand-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">إجازات قرآنية</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">إجازة بالسند المتصل</span>
-          </span>
+          <span class="w-11 h-11 rounded-xl bg-brand-50 group-hover:bg-brand-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-book-quran text-brand-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">إجازات قرآنية</span><span class="block text-[10px] text-slate-400 mt-0.5">إجازة بالسند المتصل</span></span>
           <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-brand-600 transition"></i>
         </button>
         <button onclick="openSources('teacher-platforms')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-brand-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-brand-50 group-hover:bg-brand-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-chalkboard-user text-brand-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">منصات تعليمية</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">اعرض دروسك وابنِ سمعتك</span>
-          </span>
+          <span class="w-11 h-11 rounded-xl bg-brand-50 group-hover:bg-brand-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-chalkboard-user text-brand-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">منصات تعليمية</span><span class="block text-[10px] text-slate-400 mt-0.5">اعرض دروسك وابنِ سمعتك</span></span>
           <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-brand-600 transition"></i>
         </button>
         <button onclick="openSources('teacher-jobs')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-brand-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-brand-50 group-hover:bg-brand-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-briefcase text-brand-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">وظائف تعليمية</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">فرص في المدارس والمراكز</span>
-          </span>
+          <span class="w-11 h-11 rounded-xl bg-brand-50 group-hover:bg-brand-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-briefcase text-brand-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">وظائف تعليمية</span><span class="block text-[10px] text-slate-400 mt-0.5">فرص في المدارس والمراكز</span></span>
           <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-brand-600 transition"></i>
         </button>
         <button onclick="openSources('teacher-tools')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-brand-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-brand-50 group-hover:bg-brand-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-toolbox text-brand-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">أدوات مهنية</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">تسهّل عملك اليومي</span>
-          </span>
+          <span class="w-11 h-11 rounded-xl bg-brand-50 group-hover:bg-brand-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-toolbox text-brand-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">أدوات مهنية</span><span class="block text-[10px] text-slate-400 mt-0.5">تسهّل عملك اليومي</span></span>
           <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-brand-600 transition"></i>
         </button>
       </div>
       <div class="mt-4 text-center">
-        <button onclick="openSuggestSource('teacher')" class="text-[10px] font-bold text-slate-500 hover:text-brand-700">
-          💡 اقترح مصدراً جديداً لهذا القسم
-        </button>
+        <button onclick="openSuggestSource('teacher')" class="text-[10px] font-bold text-slate-500 hover:text-brand-700">💡 اقترح مصدراً جديداً لهذا القسم</button>
       </div>
     </div>
   </div>
@@ -370,7 +337,6 @@ tailwind.config = {
     </div>
     <div id="list-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
 
-    <!-- 🌐 بوابة مصادر الطلاب -->
     <div class="mt-10 rounded-3xl border-2 border-dashed border-emerald-300 bg-gradient-to-br from-emerald-50/60 to-white p-6">
       <div class="text-center mb-5">
         <span class="text-[10px] font-black text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">🔗 مصادر إضافية للطلاب والأسر</span>
@@ -379,70 +345,38 @@ tailwind.config = {
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
         <button onclick="openSources('student-curricula')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-emerald-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-emerald-50 group-hover:bg-emerald-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-book text-emerald-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">مناهج دراسية</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">مناهج وزارة التعليم</span>
-          </span>
+          <span class="w-11 h-11 rounded-xl bg-emerald-50 group-hover:bg-emerald-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-book text-emerald-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">مناهج دراسية</span><span class="block text-[10px] text-slate-400 mt-0.5">مناهج وزارة التعليم</span></span>
           <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-emerald-600 transition"></i>
         </button>
         <button onclick="openSources('student-courses')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-emerald-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-emerald-50 group-hover:bg-emerald-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-play-circle text-emerald-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">دورات أونلاين</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">كورسات جامعات عالمية</span>
-          </span>
+          <span class="w-11 h-11 rounded-xl bg-emerald-50 group-hover:bg-emerald-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-play-circle text-emerald-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">دورات أونلاين</span><span class="block text-[10px] text-slate-400 mt-0.5">كورسات جامعات عالمية</span></span>
           <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-emerald-600 transition"></i>
         </button>
         <button onclick="openSources('student-books')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-emerald-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-emerald-50 group-hover:bg-emerald-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-book-open text-emerald-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">كتب ومراجع</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">مكتبات رقمية قانونية</span>
-          </span>
+          <span class="w-11 h-11 rounded-xl bg-emerald-50 group-hover:bg-emerald-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-book-open text-emerald-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">كتب ومراجع</span><span class="block text-[10px] text-slate-400 mt-0.5">مكتبات رقمية قانونية</span></span>
           <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-emerald-600 transition"></i>
         </button>
         <button onclick="openSources('student-quizzes')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-emerald-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-emerald-50 group-hover:bg-emerald-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-clipboard-question text-emerald-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">اختبارات مستوى</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">قيّم مستواك مجاناً</span>
-          </span>
+          <span class="w-11 h-11 rounded-xl bg-emerald-50 group-hover:bg-emerald-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-clipboard-question text-emerald-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">اختبارات مستوى</span><span class="block text-[10px] text-slate-400 mt-0.5">قيّم مستواك مجاناً</span></span>
           <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-emerald-600 transition"></i>
         </button>
         <button onclick="openSources('student-exams')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-emerald-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-emerald-50 group-hover:bg-emerald-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-file-pen text-emerald-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">نماذج اختبارات</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">تدرب على الامتحانات</span>
-          </span>
+          <span class="w-11 h-11 rounded-xl bg-emerald-50 group-hover:bg-emerald-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-file-pen text-emerald-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">نماذج اختبارات</span><span class="block text-[10px] text-slate-400 mt-0.5">تدرب على الامتحانات</span></span>
           <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-emerald-600 transition"></i>
         </button>
         <button onclick="openSources('student-scholarships')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-emerald-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-emerald-50 group-hover:bg-emerald-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-award text-emerald-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">منح دراسية</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">فرص تمويل للتعليم</span>
-          </span>
+          <span class="w-11 h-11 rounded-xl bg-emerald-50 group-hover:bg-emerald-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-award text-emerald-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">منح دراسية</span><span class="block text-[10px] text-slate-400 mt-0.5">فرص تمويل للتعليم</span></span>
           <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-emerald-600 transition"></i>
         </button>
       </div>
       <div class="mt-4 text-center">
-        <button onclick="openSuggestSource('student')" class="text-[10px] font-bold text-slate-500 hover:text-emerald-700">
-          💡 اقترح مصدراً جديداً لهذا القسم
-        </button>
+        <button onclick="openSuggestSource('student')" class="text-[10px] font-bold text-slate-500 hover:text-emerald-700">💡 اقترح مصدراً جديداً لهذا القسم</button>
       </div>
     </div>
   </div>
@@ -473,7 +407,6 @@ tailwind.config = {
     </div>
     <div id="comm-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
 
-    <!-- 🌐 بوابة مصادر المهنيين -->
     <div class="mt-10 rounded-3xl border-2 border-dashed border-violet-300 bg-gradient-to-br from-violet-50/60 to-white p-6">
       <div class="text-center mb-5">
         <span class="text-[10px] font-black text-violet-700 bg-violet-100 px-3 py-1 rounded-full">🔗 مصادر إضافية للمهنيين</span>
@@ -482,70 +415,38 @@ tailwind.config = {
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
         <button onclick="openSources('pro-jobs')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-violet-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-violet-50 group-hover:bg-violet-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-briefcase text-violet-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">وظائف تعليمية</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">حكومي وخاص</span>
-          </span>
+          <span class="w-11 h-11 rounded-xl bg-violet-50 group-hover:bg-violet-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-briefcase text-violet-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">وظائف تعليمية</span><span class="block text-[10px] text-slate-400 mt-0.5">حكومي وخاص</span></span>
           <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-violet-600 transition"></i>
         </button>
         <button onclick="openSources('pro-scholarships')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-violet-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-violet-50 group-hover:bg-violet-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-graduation-cap text-violet-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">منح وبعثات</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">فرص تمويل مهني</span>
-          </span>
+          <span class="w-11 h-11 rounded-xl bg-violet-50 group-hover:bg-violet-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-graduation-cap text-violet-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">منح وبعثات</span><span class="block text-[10px] text-slate-400 mt-0.5">فرص تمويل مهني</span></span>
           <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-violet-600 transition"></i>
         </button>
         <button onclick="openSources('pro-training')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-violet-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-violet-50 group-hover:bg-violet-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-certificate text-violet-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">تدريب معتمد</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">شهادات معترف بها</span>
-          </span>
+          <span class="w-11 h-11 rounded-xl bg-violet-50 group-hover:bg-violet-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-certificate text-violet-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">تدريب معتمد</span><span class="block text-[10px] text-slate-400 mt-0.5">شهادات معترف بها</span></span>
           <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-violet-600 transition"></i>
         </button>
         <button onclick="openSources('pro-networks')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-violet-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-violet-50 group-hover:bg-violet-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-users text-violet-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">شبكات مهنية</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">تواصل مع المحترفين</span>
-          </span>
+          <span class="w-11 h-11 rounded-xl bg-violet-50 group-hover:bg-violet-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-users text-violet-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">شبكات مهنية</span><span class="block text-[10px] text-slate-400 mt-0.5">تواصل مع المحترفين</span></span>
           <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-violet-600 transition"></i>
         </button>
         <button onclick="openSources('pro-events')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-violet-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-violet-50 group-hover:bg-violet-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-calendar text-violet-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">مؤتمرات وملتقيات</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">فرص للتطوير</span>
-          </span>
+          <span class="w-11 h-11 rounded-xl bg-violet-50 group-hover:bg-violet-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-calendar text-violet-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">مؤتمرات وملتقيات</span><span class="block text-[10px] text-slate-400 mt-0.5">فرص للتطوير</span></span>
           <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-violet-600 transition"></i>
         </button>
         <button onclick="openSources('pro-tools')" class="group flex items-center gap-3 p-3 rounded-2xl bg-white border-2 border-slate-200 hover:border-violet-400 hover:shadow-lg hover:-translate-y-0.5 transition text-right">
-          <span class="w-11 h-11 rounded-xl bg-violet-50 group-hover:bg-violet-100 grid place-items-center shrink-0 transition">
-            <i class="fa-solid fa-toolbox text-violet-600"></i>
-          </span>
-          <span class="flex-1 min-w-0">
-            <span class="block text-xs font-black text-slate-900">أدوات مهنية</span>
-            <span class="block text-[10px] text-slate-400 mt-0.5">تسهّل عملك</span>
-          </span>
+          <span class="w-11 h-11 rounded-xl bg-violet-50 group-hover:bg-violet-100 grid place-items-center shrink-0 transition"><i class="fa-solid fa-toolbox text-violet-600"></i></span>
+          <span class="flex-1 min-w-0"><span class="block text-xs font-black text-slate-900">أدوات مهنية</span><span class="block text-[10px] text-slate-400 mt-0.5">تسهّل عملك</span></span>
           <i class="fa-solid fa-chevron-left text-slate-300 group-hover:text-violet-600 transition"></i>
         </button>
       </div>
       <div class="mt-4 text-center">
-        <button onclick="openSuggestSource('pro')" class="text-[10px] font-bold text-slate-500 hover:text-violet-700">
-          💡 اقترح مصدراً جديداً لهذا القسم
-        </button>
+        <button onclick="openSuggestSource('pro')" class="text-[10px] font-bold text-slate-500 hover:text-violet-700">💡 اقترح مصدراً جديداً لهذا القسم</button>
       </div>
     </div>
   </div>
@@ -853,7 +754,7 @@ tailwind.config = {
 
 <script>
 /* =========================================================
-   CONFIG — v5.0: publishable key + base tables + sources PRO
+   CONFIG — v5.1: RADAR PRO (4 columns + colored accents)
 ========================================================= */
 const SUPABASE_URL = "https://zwgkrwkrohkmnyoixude.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_-tSaRUJ2HWDMSCfEg5CUEQ_dm4-uYAe";
@@ -886,7 +787,6 @@ const CORS_PROXIES = [
    SOURCES — قائمة المصادر المفتوحة
 ========================================================= */
 const SOURCES = {
-  // ============ قسم المعلمين ============
   'teacher-certs': {
     title: 'شهادات مهنية معتمدة',
     subtitle: 'شهادات معترف بها للمعلمين والمحفظين',
@@ -959,8 +859,6 @@ const SOURCES = {
       { name: 'Padlet', url: 'https://padlet.com', desc: 'لوحات تعاونية للطلاب' }
     ]
   },
-
-  // ============ قسم الطلاب ============
   'student-curricula': {
     title: 'مناهج دراسية رسمية',
     subtitle: 'مناهج وزارة التعليم السعودية',
@@ -1033,8 +931,6 @@ const SOURCES = {
       { name: 'DAAD', url: 'https://daad.de', desc: 'منح ألمانية' }
     ]
   },
-
-  // ============ قسم المهنيين ============
   'pro-jobs': {
     title: 'وظائف تعليمية',
     subtitle: 'فرص في القطاعين الحكومي والخاص',
@@ -1309,7 +1205,7 @@ sb.auth.onAuthStateChange((event, session) => {
 });
 
 /* =========================================================
-   RADAR
+   RADAR ENGINE
 ========================================================= */
 async function fetchViaProxy(url) {
   for (const proxyFn of CORS_PROXIES) {
@@ -1491,6 +1387,10 @@ function updateRadarStats() {
   $('radar-last-sync').textContent = `آخر مزامنة: ${timeAgo(new Date().toISOString())}`;
 }
 
+/* =========================================================
+   RENDER RADAR — v5.1 PRO
+   4 أعمدة + شريط جانبي ملوّن + بج مميز
+========================================================= */
 function renderRadar() {
   const q = $('radar-search').value.trim().toLowerCase();
   const src = $('radar-filter-source').value;
@@ -1513,32 +1413,40 @@ function renderRadar() {
     grid.innerHTML = `<div class="col-span-full rounded-2xl border border-dashed border-slate-300 p-8 text-center text-slate-400 text-sm"><i class="fa-solid fa-inbox text-3xl mb-3 text-slate-300"></i><div class="font-black text-slate-700">لا توجد إشارات حالية بهذه الفلاتر</div><div class="text-xs mt-1">جرّب مزامنة جديدة أو غيّر الفلتر</div></div>`;
     return;
   }
+
   const srcIcon = { telegram: 'fa-brands fa-telegram text-sky-500', khamsat: 'fa-solid fa-briefcase text-amber-500', web: 'fa-solid fa-globe text-emerald-500' };
   const catLabel = { quran: 'قرآن', arabic: 'عربية', hadith: 'حديث', kids: 'أطفال', services: 'خدمات' };
 
-  grid.innerHTML = list.slice(0, 60).map(l => {
-    const typeBadge = l.intentType === 'demand'
-      ? '<span class="text-[9px] font-black px-2 py-0.5 rounded-full wf-badge-demand"><i class="fa-solid fa-user-graduate"></i> طلب</span>'
-      : l.intentType === 'offer'
-        ? '<span class="text-[9px] font-black px-2 py-0.5 rounded-full wf-badge-offer"><i class="fa-solid fa-bullhorn"></i> عرض</span>'
-        : '';
-    const phoneChip = l.phone ? `<span class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700"><i class="fa-solid fa-phone"></i> ${esc(l.phone)}</span>` : '';
-    return `<article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-4 flex flex-col">
-      <div class="flex items-start justify-between gap-2 mb-2 flex-wrap">
-        <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full bg-slate-100 text-slate-700"><i class="${srcIcon[l.source]}"></i> ${esc(l.sourceLabel || l.source)}</span>
-        <div class="flex items-center gap-1.5 flex-wrap">${typeBadge}<span class="text-[10px] text-slate-400">${timeAgo(l.date)}</span></div>
+  const typeInfo = {
+    demand: { label: 'طلب', icon: 'fa-user-graduate', badgeCls: 'bg-orange-100 text-orange-700 border-orange-300', accent: 'border-r-4 border-r-orange-400' },
+    offer:  { label: 'عرض', icon: 'fa-bullhorn', badgeCls: 'bg-emerald-100 text-emerald-700 border-emerald-300', accent: 'border-r-4 border-r-emerald-400' },
+    unknown: { label: 'إشارة', icon: 'fa-circle-question', badgeCls: 'bg-slate-100 text-slate-500 border-slate-200', accent: 'border-r-4 border-r-slate-300' }
+  };
+
+  grid.innerHTML = list.slice(0, 80).map(l => {
+    const t = typeInfo[l.intentType] || typeInfo.unknown;
+    const phoneChip = l.phone ? `<span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200"><i class="fa-solid fa-phone"></i> ${esc(l.phone)}</span>` : '';
+    return `<article class="wf-card-hover rounded-2xl border border-slate-200 ${t.accent} bg-white p-3 flex flex-col">
+      <div class="flex items-center justify-between gap-1.5 mb-2 flex-wrap">
+        <span class="inline-flex items-center gap-1 text-[9px] font-black px-1.5 py-0.5 rounded-full bg-slate-100 text-slate-600">
+          <i class="${srcIcon[l.source]}"></i> ${esc(l.sourceLabel || l.source)}
+        </span>
+        <div class="flex items-center gap-1 flex-wrap">
+          <span class="text-[9px] font-black px-1.5 py-0.5 rounded-full ${t.badgeCls} border"><i class="fa-solid ${t.icon}"></i> ${t.label}</span>
+          <span class="text-[9px] text-slate-400">${timeAgo(l.date)}</span>
+        </div>
       </div>
-      <h3 class="font-black text-sm text-slate-900 leading-6 line-clamp-2">${esc(l.title)}</h3>
-      ${l.snippet ? `<p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">${esc(l.snippet)}</p>` : ''}
-      <div class="mt-3 flex flex-wrap gap-1.5">
-        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-50 text-brand-700">${catLabel[l.category] || l.category}</span>
-        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700">أولوية ${l.score}%</span>
+      <h3 class="font-black text-xs text-slate-900 leading-5 line-clamp-2">${esc(l.title)}</h3>
+      ${l.snippet ? `<p class="mt-1.5 text-[10px] text-slate-500 leading-4 line-clamp-2">${esc(l.snippet)}</p>` : ''}
+      <div class="mt-2 flex flex-wrap gap-1">
+        <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-brand-50 text-brand-700">${catLabel[l.category] || l.category}</span>
+        <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-50 text-amber-700">${l.score}%</span>
         ${phoneChip}
       </div>
-      <div class="mt-4 flex gap-2">
-        <a href="${esc(l.sourceUrl)}" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2"><i class="fa-solid fa-arrow-up-right-from-square"></i> فتح</a>
-        <button onclick="shareRadarLead('${esc(l.id)}')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="مشاركة"><i class="fa-solid fa-share-nodes"></i></button>
-        <button onclick="saveLeadToWorkspace('${esc(l.id)}')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="حفظ"><i class="fa-regular fa-bookmark"></i></button>
+      <div class="mt-3 flex gap-1.5">
+        <a href="${esc(l.sourceUrl)}" target="_blank" rel="noopener" class="flex-1 text-center rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-[10px] font-black py-1.5"><i class="fa-solid fa-arrow-up-right-from-square"></i> فتح</a>
+        <button onclick="shareRadarLead('${esc(l.id)}')" class="rounded-lg border border-slate-200 px-2 py-1.5 text-[10px] hover:bg-slate-50" title="مشاركة"><i class="fa-solid fa-share-nodes"></i></button>
+        <button onclick="saveLeadToWorkspace('${esc(l.id)}')" class="rounded-lg border border-slate-200 px-2 py-1.5 text-[10px] hover:bg-slate-50" title="حفظ"><i class="fa-regular fa-bookmark"></i></button>
       </div>
     </article>`;
   }).join('');
@@ -1602,7 +1510,7 @@ async function copyText(text) {
 }
 
 /* =========================================================
-   SOURCES PRO — تصميم احترافي بنفس أسلوب كروت الرادار
+   SOURCES PRO
 ========================================================= */
 function openSources(key) {
   const data = SOURCES[key];
@@ -1617,7 +1525,6 @@ function openSources(key) {
   title.textContent = data.title;
   subtitle.textContent = data.subtitle;
 
-  // كشف نوع المصدر تلقائياً
   const detectSourceType = (url) => {
     const u = url.toLowerCase();
     if (/\.gov\.|gov\.sa|\.gov$|gov\.eg|gov\.ae/.test(u)) return { label: 'حكومي', icon: 'fa-solid fa-landmark', cls: 'bg-emerald-50 text-emerald-700 border-emerald-200' };
@@ -1626,11 +1533,9 @@ function openSources(key) {
     return { label: 'منصة', icon: 'fa-solid fa-globe', cls: 'bg-amber-50 text-amber-700 border-amber-200' };
   };
 
-  // كشف اللغة
   const detectLang = (url) => {
     const u = url.toLowerCase();
     if (/\.sa|\.eg|\.ae|\.jo|\.ma|\.dz|\.tn|\.iq|\.ps|\.om|\.qa|\.kw|\.bh|\.ye|\.sd|\.ly|\.lb|\.sy|\.edu\.sa/.test(u)) return { label: 'عربي', flag: '🌍' };
-    if (/\.de|\.fr|\.uk|\.com$/.test(u) && !/\.sa|\.eg|\.ae/.test(u)) return { label: 'دولي', flag: '🌐' };
     return { label: 'دولي', flag: '🌐' };
   };
 
