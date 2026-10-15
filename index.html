@@ -257,6 +257,46 @@ tailwind.config = {
       </div>
     </div>
     <div id="spec-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+
+    <!-- 🌐 بوابة مصادر المعلمين -->
+    <div class="mt-10 rounded-3xl border-2 border-dashed border-brand-300 bg-gradient-to-br from-brand-50/60 to-white p-6">
+      <div class="text-center mb-5">
+        <span class="text-[10px] font-black text-brand-700 bg-brand-100 px-3 py-1 rounded-full">🔗 مصادر إضافية للمعلمين</span>
+        <h3 class="font-black text-xl mt-3 text-slate-900">أدوات ومراجع مهنية مفيدة</h3>
+        <p class="text-xs text-slate-500 mt-1">مصادر رسمية موثوقة — توجّهك للمصدر الأصلي مباشرة</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+        <button onclick="openSources('teacher-certs')" class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-white border-2 border-slate-200 hover:border-brand-400 hover:shadow-lg transition text-center">
+          <i class="fa-solid fa-certificate text-2xl text-brand-600"></i>
+          <span class="text-xs font-bold text-slate-800">شهادات معتمدة</span>
+        </button>
+        <button onclick="openSources('teacher-courses')" class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-white border-2 border-slate-200 hover:border-brand-400 hover:shadow-lg transition text-center">
+          <i class="fa-solid fa-graduation-cap text-2xl text-brand-600"></i>
+          <span class="text-xs font-bold text-slate-800">دورات تدريب</span>
+        </button>
+        <button onclick="openSources('teacher-ijazat')" class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-white border-2 border-slate-200 hover:border-brand-400 hover:shadow-lg transition text-center">
+          <i class="fa-solid fa-book-quran text-2xl text-brand-600"></i>
+          <span class="text-xs font-bold text-slate-800">إجازات قرآنية</span>
+        </button>
+        <button onclick="openSources('teacher-platforms')" class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-white border-2 border-slate-200 hover:border-brand-400 hover:shadow-lg transition text-center">
+          <i class="fa-solid fa-chalkboard-user text-2xl text-brand-600"></i>
+          <span class="text-xs font-bold text-slate-800">منصات تعليمية</span>
+        </button>
+        <button onclick="openSources('teacher-jobs')" class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-white border-2 border-slate-200 hover:border-brand-400 hover:shadow-lg transition text-center">
+          <i class="fa-solid fa-briefcase text-2xl text-brand-600"></i>
+          <span class="text-xs font-bold text-slate-800">وظائف تعليمية</span>
+        </button>
+        <button onclick="openSources('teacher-tools')" class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-white border-2 border-slate-200 hover:border-brand-400 hover:shadow-lg transition text-center">
+          <i class="fa-solid fa-toolbox text-2xl text-brand-600"></i>
+          <span class="text-xs font-bold text-slate-800">أدوات مهنية</span>
+        </button>
+      </div>
+      <div class="mt-4 text-center">
+        <button onclick="openSuggestSource('teacher')" class="text-[10px] font-bold text-slate-500 hover:text-brand-700">
+          💡 اقترح مصدراً جديداً لهذا القسم
+        </button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -293,6 +333,46 @@ tailwind.config = {
       </div>
     </div>
     <div id="list-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+
+    <!-- 🌐 بوابة مصادر الطلاب -->
+    <div class="mt-10 rounded-3xl border-2 border-dashed border-emerald-300 bg-gradient-to-br from-emerald-50/60 to-white p-6">
+      <div class="text-center mb-5">
+        <span class="text-[10px] font-black text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">🔗 مصادر إضافية للطلاب والأسر</span>
+        <h3 class="font-black text-xl mt-3 text-slate-900">مصادر تعليمية موثوقة ومجانية</h3>
+        <p class="text-xs text-slate-500 mt-1">مناهج، دورات، كتب، اختبارات — كلها رسمية</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+        <button onclick="openSources('student-curricula')" class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-white border-2 border-slate-200 hover:border-emerald-400 hover:shadow-lg transition text-center">
+          <i class="fa-solid fa-book text-2xl text-emerald-600"></i>
+          <span class="text-xs font-bold text-slate-800">مناهج دراسية</span>
+        </button>
+        <button onclick="openSources('student-courses')" class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-white border-2 border-slate-200 hover:border-emerald-400 hover:shadow-lg transition text-center">
+          <i class="fa-solid fa-play-circle text-2xl text-emerald-600"></i>
+          <span class="text-xs font-bold text-slate-800">دورات أونلاين</span>
+        </button>
+        <button onclick="openSources('student-books')" class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-white border-2 border-slate-200 hover:border-emerald-400 hover:shadow-lg transition text-center">
+          <i class="fa-solid fa-book-open text-2xl text-emerald-600"></i>
+          <span class="text-xs font-bold text-slate-800">كتب ومراجع</span>
+        </button>
+        <button onclick="openSources('student-quizzes')" class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-white border-2 border-slate-200 hover:border-emerald-400 hover:shadow-lg transition text-center">
+          <i class="fa-solid fa-clipboard-question text-2xl text-emerald-600"></i>
+          <span class="text-xs font-bold text-slate-800">اختبارات مستوى</span>
+        </button>
+        <button onclick="openSources('student-exams')" class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-white border-2 border-slate-200 hover:border-emerald-400 hover:shadow-lg transition text-center">
+          <i class="fa-solid fa-file-pen text-2xl text-emerald-600"></i>
+          <span class="text-xs font-bold text-slate-800">نماذج اختبارات</span>
+        </button>
+        <button onclick="openSources('student-scholarships')" class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-white border-2 border-slate-200 hover:border-emerald-400 hover:shadow-lg transition text-center">
+          <i class="fa-solid fa-award text-2xl text-emerald-600"></i>
+          <span class="text-xs font-bold text-slate-800">منح دراسية</span>
+        </button>
+      </div>
+      <div class="mt-4 text-center">
+        <button onclick="openSuggestSource('student')" class="text-[10px] font-bold text-slate-500 hover:text-emerald-700">
+          💡 اقترح مصدراً جديداً لهذا القسم
+        </button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -320,6 +400,46 @@ tailwind.config = {
       </div>
     </div>
     <div id="comm-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+
+    <!-- 🌐 بوابة مصادر المهنيين -->
+    <div class="mt-10 rounded-3xl border-2 border-dashed border-violet-300 bg-gradient-to-br from-violet-50/60 to-white p-6">
+      <div class="text-center mb-5">
+        <span class="text-[10px] font-black text-violet-700 bg-violet-100 px-3 py-1 rounded-full">🔗 مصادر إضافية للمهنيين</span>
+        <h3 class="font-black text-xl mt-3 text-slate-900">فرص وشبكات مهنية</h3>
+        <p class="text-xs text-slate-500 mt-1">وظائف، منح، تدريب معتمد، مجتمعات مهنية</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+        <button onclick="openSources('pro-jobs')" class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-white border-2 border-slate-200 hover:border-violet-400 hover:shadow-lg transition text-center">
+          <i class="fa-solid fa-briefcase text-2xl text-violet-600"></i>
+          <span class="text-xs font-bold text-slate-800">وظائف تعليمية</span>
+        </button>
+        <button onclick="openSources('pro-scholarships')" class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-white border-2 border-slate-200 hover:border-violet-400 hover:shadow-lg transition text-center">
+          <i class="fa-solid fa-graduation-cap text-2xl text-violet-600"></i>
+          <span class="text-xs font-bold text-slate-800">منح وبعثات</span>
+        </button>
+        <button onclick="openSources('pro-training')" class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-white border-2 border-slate-200 hover:border-violet-400 hover:shadow-lg transition text-center">
+          <i class="fa-solid fa-certificate text-2xl text-violet-600"></i>
+          <span class="text-xs font-bold text-slate-800">تدريب معتمد</span>
+        </button>
+        <button onclick="openSources('pro-networks')" class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-white border-2 border-slate-200 hover:border-violet-400 hover:shadow-lg transition text-center">
+          <i class="fa-solid fa-users text-2xl text-violet-600"></i>
+          <span class="text-xs font-bold text-slate-800">شبكات مهنية</span>
+        </button>
+        <button onclick="openSources('pro-events')" class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-white border-2 border-slate-200 hover:border-violet-400 hover:shadow-lg transition text-center">
+          <i class="fa-solid fa-calendar text-2xl text-violet-600"></i>
+          <span class="text-xs font-bold text-slate-800">مؤتمرات وملتقيات</span>
+        </button>
+        <button onclick="openSources('pro-tools')" class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-white border-2 border-slate-200 hover:border-violet-400 hover:shadow-lg transition text-center">
+          <i class="fa-solid fa-toolbox text-2xl text-violet-600"></i>
+          <span class="text-xs font-bold text-slate-800">أدوات مهنية</span>
+        </button>
+      </div>
+      <div class="mt-4 text-center">
+        <button onclick="openSuggestSource('pro')" class="text-[10px] font-bold text-slate-500 hover:text-violet-700">
+          💡 اقترح مصدراً جديداً لهذا القسم
+        </button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -558,9 +678,76 @@ tailwind.config = {
   </div>
 </div>
 
+<!-- 🌐 Modal: عرض المصادر -->
+<div id="sources-modal" class="hidden fixed inset-0 z-[200] bg-slate-950/80 backdrop-blur-md items-center justify-center p-4">
+  <div class="bg-white rounded-3xl w-full max-w-3xl shadow-2xl relative max-h-[90vh] overflow-y-auto">
+    <div class="sticky top-0 bg-white border-b border-slate-200 p-5 flex items-center justify-between rounded-t-3xl z-10">
+      <div>
+        <span class="text-[10px] font-black text-brand-700" id="sources-modal-badge">🔗 مصادر موثوقة</span>
+        <h2 class="text-xl font-black text-slate-900 mt-1" id="sources-modal-title">المصادر</h2>
+        <p class="text-[11px] text-slate-500 mt-1" id="sources-modal-subtitle">روابط رسمية مباشرة</p>
+      </div>
+      <button onclick="closeSources()" class="w-10 h-10 rounded-xl bg-slate-100 hover:bg-slate-200 grid place-items-center text-slate-500" aria-label="إغلاق">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="p-5" id="sources-modal-body"></div>
+  </div>
+</div>
+
+<!-- 🌐 Modal: اقتراح مصدر -->
+<div id="suggest-modal" class="hidden fixed inset-0 z-[200] bg-slate-950/80 backdrop-blur-md items-center justify-center p-4">
+  <div class="bg-white rounded-3xl w-full max-w-lg shadow-2xl relative">
+    <div class="border-b border-slate-200 p-5 flex items-center justify-between">
+      <div>
+        <span class="text-[10px] font-black text-violet-700">💡 اقتراح مصدر</span>
+        <h2 class="text-lg font-black text-slate-900 mt-1">ساعدنا في تحسين المنصة</h2>
+        <p class="text-[11px] text-slate-500 mt-1">اقترح مصدراً مفيداً وسنراجعه قريباً</p>
+      </div>
+      <button onclick="closeSuggestSource()" class="w-10 h-10 rounded-xl bg-slate-100 hover:bg-slate-200 grid place-items-center" aria-label="إغلاق">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <form onsubmit="submitSuggestSource(event)" class="p-5 space-y-3">
+      <div>
+        <label class="block text-xs font-bold text-slate-700 mb-1">اسم المصدر *</label>
+        <input id="sg-name" required maxlength="120" placeholder="مثال: منصة إدراك" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-brand-500">
+      </div>
+      <div>
+        <label class="block text-xs font-bold text-slate-700 mb-1">الرابط *</label>
+        <input id="sg-url" required type="url" dir="ltr" placeholder="https://example.com" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-brand-500">
+      </div>
+      <div>
+        <label class="block text-xs font-bold text-slate-700 mb-1">القسم المقترح</label>
+        <select id="sg-section" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
+          <option value="teacher">المعلمون والمتخصصون</option>
+          <option value="student">الطلاب والأسر</option>
+          <option value="pro">المهنيون والباحثون عن وظائف</option>
+          <option value="other">قسم آخر</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-xs font-bold text-slate-700 mb-1">سبب الإضافة (اختياري)</label>
+        <textarea id="sg-reason" rows="3" maxlength="500" placeholder="لماذا تعتقد أن هذا المصدر مفيد؟" class="w-full rounded-xl bg-slate-50 border border-slate-200 p-3 text-sm outline-none resize-none"></textarea>
+      </div>
+      <div class="rounded-xl bg-emerald-50 border border-emerald-200 p-3 text-[10px] leading-5 text-emerald-800">
+        <i class="fa-solid fa-shield-halved"></i>
+        <strong class="ml-1">لا ترسل بيانات شخصية</strong> — لا أرقام هواتف، لا بريد، لا معلومات خاصة.
+      </div>
+      <div class="flex gap-2 pt-2">
+        <button type="submit" class="flex-1 rounded-xl bg-violet-600 hover:bg-violet-700 text-white py-3 text-sm font-black">
+          <i class="fa-solid fa-paper-plane"></i> إرسال الاقتراح
+        </button>
+        <button type="button" onclick="closeSuggestSource()" class="rounded-xl border border-slate-200 px-4 py-3 text-sm font-bold">إلغاء</button>
+      </div>
+      <p id="sg-msg" class="text-xs text-center text-slate-500"></p>
+    </form>
+  </div>
+</div>
+
 <script>
 /* =========================================================
-   CONFIG — v4.2: publishable key + base tables
+   CONFIG — v4.3: publishable key + base tables + sources
 ========================================================= */
 const SUPABASE_URL = "https://zwgkrwkrohkmnyoixude.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_-tSaRUJ2HWDMSCfEg5CUEQ_dm4-uYAe";
@@ -588,6 +775,233 @@ const CORS_PROXIES = [
   url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
   url => `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`
 ];
+
+/* =========================================================
+   SOURCES — قائمة المصادر المفتوحة
+========================================================= */
+const SOURCES = {
+  // ============ قسم المعلمين ============
+  'teacher-certs': {
+    title: 'شهادات مهنية معتمدة',
+    subtitle: 'شهادات معترف بها للمعلمين والمحفظين',
+    items: [
+      { name: 'هيئة تقويم التعليم والتدريب', url: 'https://etec.gov.sa', desc: 'الرخص المهنية للمعلمين في السعودية' },
+      { name: 'المركز الوطني للتعليم الإلكتروني', url: 'https://nelc.gov.sa', desc: 'اعتماد المنصات والشهادات' },
+      { name: 'جمعية تحفيظ القرآن الكريم', url: 'https://quran.org.sa', desc: 'إجازات قرآنية معتمدة' },
+      { name: 'Coursera Certificates', url: 'https://coursera.org', desc: 'شهادات من جامعات عالمية' },
+      { name: 'edX Professional', url: 'https://edx.org', desc: 'شهادات احترافية من MIT وHarvard' },
+      { name: 'Microsoft Educator', url: 'https://education.microsoft.com', desc: 'شهادات تعليمية من مايكروسوفت' }
+    ]
+  },
+  'teacher-courses': {
+    title: 'دورات تدريب مهني',
+    subtitle: 'دورات لتطوير مهارات التدريس والتحفيظ',
+    items: [
+      { name: 'إدراك', url: 'https://edraak.org', desc: 'دورات عربية مجانية' },
+      { name: 'رواق', url: 'https://rwaq.org', desc: 'منصة عربية للتعليم المفتوح' },
+      { name: 'مهارات Google', url: 'https://learndigital.withgoogle.com', desc: 'دورات جوجل بالعربية' },
+      { name: 'Coursera for Teachers', url: 'https://coursera.org', desc: 'دورات تدريب المعلمين' },
+      { name: 'FutureLearn', url: 'https://futurelearn.com', desc: 'دورات بريطانية' },
+      { name: 'Khan Academy', url: 'https://khanacademy.org', desc: 'أدوات تعليمية تفاعلية' }
+    ]
+  },
+  'teacher-ijazat': {
+    title: 'إجازات قرآنية معتمدة',
+    subtitle: 'الحصول على إجازة بالسند المتصل',
+    items: [
+      { name: 'مجمع الملك فهد', url: 'https://qurancomplex.gov.sa', desc: 'إجازات ومراجع المصحف' },
+      { name: 'الجمعية الخيرية لتحفيظ القرآن', url: 'https://quran.org.sa', desc: 'حلقات وإجازات' },
+      { name: 'الهيئة العالمية لتحفيظ القرآن', url: 'https://quran-world.org', desc: 'شبكة عالمية للإجازات' },
+      { name: 'Ijazah Online', url: 'https://ijazah.online', desc: 'منصة إجازة أونلاين' },
+      { name: 'Quranic Arabic Institute', url: 'https://quranicarabic.org', desc: 'إجازات بالقراءات العشر' },
+      { name: 'Al-Azhar', url: 'https://azhar.edu.eg', desc: 'إجازات الأزهر الشريف' }
+    ]
+  },
+  'teacher-platforms': {
+    title: 'منصات تعليمية للتدريس',
+    subtitle: 'اعرض دروسك وابنِ سمعتك',
+    items: [
+      { name: 'منصة مدرستي', url: 'https://schools.madrasati.sa', desc: 'المنصة الرسمية للتعليم' },
+      { name: 'منصة عين', url: 'https://ien.edu.sa', desc: 'محتوى تعليمي رسمي' },
+      { name: 'نون أكاديمي', url: 'https://noonacademy.com', desc: 'منصة دورات عربية' },
+      { name: 'Udemy', url: 'https://udemy.com', desc: 'بيع دوراتك عالمياً' },
+      { name: 'Teachable', url: 'https://teachable.com', desc: 'ابن منصتك التعليمية' },
+      { name: 'Thinkific', url: 'https://thinkific.com', desc: 'منصة دورات احترافية' }
+    ]
+  },
+  'teacher-jobs': {
+    title: 'وظائف تعليمية',
+    subtitle: 'فرص عمل في المدارس والمراكز',
+    items: [
+      { name: 'جدارات', url: 'https://jadarat.sa', desc: 'الوظائف الحكومية السعودية' },
+      { name: 'طاقات', url: 'https://taqat.sa', desc: 'وظائف القطاع الخاص' },
+      { name: 'منصة سبل', url: 'https://sbl.sa', desc: 'وظائف تعليمية متخصصة' },
+      { name: 'LinkedIn Jobs', url: 'https://linkedin.com/jobs', desc: 'وظائف دولية' },
+      { name: 'Bayt.com', url: 'https://bayt.com', desc: 'أكبر موقع توظيف عربي' },
+      { name: 'GulfTalent', url: 'https://gulftalent.com', desc: 'وظائف الخليج' }
+    ]
+  },
+  'teacher-tools': {
+    title: 'أدوات مهنية للمعلمين',
+    subtitle: 'أدوات تسهّل عملك اليومي',
+    items: [
+      { name: 'Canva for Education', url: 'https://canva.com/education', desc: 'تصميم عروض تعليمية' },
+      { name: 'Google Classroom', url: 'https://classroom.google.com', desc: 'إدارة الصفوف' },
+      { name: 'Kahoot', url: 'https://kahoot.com', desc: 'اختبارات تفاعلية' },
+      { name: 'Quizizz', url: 'https://quizizz.com', desc: 'اختبارات أونلاين' },
+      { name: 'Nearpod', url: 'https://nearpod.com', desc: 'دروس تفاعلية' },
+      { name: 'Padlet', url: 'https://padlet.com', desc: 'لوحات تعاونية' }
+    ]
+  },
+
+  // ============ قسم الطلاب ============
+  'student-curricula': {
+    title: 'مناهج دراسية رسمية',
+    subtitle: 'مناهج وزارة التعليم السعودية',
+    items: [
+      { name: 'منصة عين', url: 'https://ien.edu.sa', desc: 'المناهج الرسمية السعودية' },
+      { name: 'منصة مدرستي', url: 'https://schools.madrasati.sa', desc: 'الدروس والواجبات' },
+      { name: 'بوابة نور', url: 'https://noor.moe.gov.sa', desc: 'نتائج الطلاب' },
+      { name: 'Khan Academy Arabic', url: 'https://ar.khanacademy.org', desc: 'شرح مبسط لكل المواد' },
+      { name: 'CK-12 Foundation', url: 'https://ck12.org', desc: 'مناهج علمية مبسطة' },
+      { name: 'OpenStax', url: 'https://openstax.org', desc: 'كتب جامعية مجانية' }
+    ]
+  },
+  'student-courses': {
+    title: 'دورات أونلاين مجانية',
+    subtitle: 'كورسات معتمدة من أفضل الجامعات',
+    items: [
+      { name: 'إدراك', url: 'https://edraak.org', desc: 'دورات عربية مجانية' },
+      { name: 'رواق', url: 'https://rwaq.org', desc: 'منصة عربية مفتوحة' },
+      { name: 'مهارات Google', url: 'https://learndigital.withgoogle.com', desc: 'شهادات جوجل' },
+      { name: 'Coursera', url: 'https://coursera.org', desc: 'دورات جامعات عالمية' },
+      { name: 'edX', url: 'https://edx.org', desc: 'دورات MIT وHarvard' },
+      { name: 'freeCodeCamp', url: 'https://freecodecamp.org', desc: 'تعلم البرمجة مجاناً' }
+    ]
+  },
+  'student-books': {
+    title: 'كتب ومراجع مجانية',
+    subtitle: 'مكتبات رقمية قانونية',
+    items: [
+      { name: 'مكتبة نور', url: 'https://noor-book.com', desc: 'ملايين الكتب العربية' },
+      { name: 'المكتبة الوقفية', url: 'https://waqfeya.net', desc: 'كتب إسلامية وعلمية' },
+      { name: 'مؤسسة هنداوي', url: 'https://hindawi.org', desc: 'كتب أدبية وعلمية' },
+      { name: 'Project Gutenberg', url: 'https://gutenberg.org', desc: 'كتب عالمية مجانية' },
+      { name: 'Internet Archive', url: 'https://archive.org', desc: 'أرشيف الإنترنت' },
+      { name: 'Open Library', url: 'https://openlibrary.org', desc: 'مكتبة مفتوحة' }
+    ]
+  },
+  'student-quizzes': {
+    title: 'اختبارات مستوى تفاعلية',
+    subtitle: 'قيّم مستواك باختبارات مجانية',
+    items: [
+      { name: 'اختبار مستوى العربية', url: 'https://arabic-test.com', desc: 'قيّم مستواك' },
+      { name: 'اختبار حفظ القرآن', url: 'https://quran-test.com', desc: 'اختبر حفظك' },
+      { name: 'Kahoot', url: 'https://kahoot.com', desc: 'اختبارات تفاعلية' },
+      { name: 'Quizizz', url: 'https://quizizz.com', desc: 'اختبارات أونلاين' },
+      { name: 'Duolingo Test', url: 'https://duolingo.com', desc: 'اختبر مستوى الإنجليزية' },
+      { name: '16Personalities', url: 'https://16personalities.com', desc: 'اختبر شخصيتك' }
+    ]
+  },
+  'student-exams': {
+    title: 'نماذج اختبارات سابقة',
+    subtitle: 'تدرب على الامتحانات الرسمية',
+    items: [
+      { name: 'قياس', url: 'https://etec.gov.sa', desc: 'نماذج اختبارات قياس' },
+      { name: 'وزارة التعليم', url: 'https://moe.gov.sa', desc: 'نماذج رسمية' },
+      { name: 'منصة عين', url: 'https://ien.edu.sa', desc: 'اختبارات إلكترونية' },
+      { name: 'SAT Practice', url: 'https://khanacademy.org/sat', desc: 'تدريب SAT' },
+      { name: 'IELTS Practice', url: 'https://ielts.org', desc: 'نماذج آيلتس' },
+      { name: 'TOEFL Practice', url: 'https://ets.org/toefl', desc: 'نماذج توفل' }
+    ]
+  },
+  'student-scholarships': {
+    title: 'منح دراسية',
+    subtitle: 'فرص تمويل للتعليم',
+    items: [
+      { name: 'منح وزارة التعليم', url: 'https://moe.gov.sa', desc: 'البعثات الحكومية' },
+      { name: 'منح KAUST', url: 'https://kaust.edu.sa', desc: 'منح كاملة للدراسات العليا' },
+      { name: 'منح المسك', url: 'https://misk.org.sa', desc: 'برامج ومنح للشباب' },
+      { name: 'Chevening', url: 'https://chevening.org', desc: 'منح بريطانية حكومية' },
+      { name: 'Fulbright', url: 'https://fulbright.org', desc: 'منح أمريكية' },
+      { name: 'DAAD', url: 'https://daad.de', desc: 'منح ألمانية' }
+    ]
+  },
+
+  // ============ قسم المهنيين ============
+  'pro-jobs': {
+    title: 'وظائف تعليمية',
+    subtitle: 'فرص في القطاعين الحكومي والخاص',
+    items: [
+      { name: 'جدارات', url: 'https://jadarat.sa', desc: 'الوظائف الحكومية' },
+      { name: 'طاقات', url: 'https://taqat.sa', desc: 'وظائف القطاع الخاص' },
+      { name: 'منصة سبل', url: 'https://sbl.sa', desc: 'وظائف تعليمية' },
+      { name: 'LinkedIn', url: 'https://linkedin.com/jobs', desc: 'وظائف دولية' },
+      { name: 'Bayt', url: 'https://bayt.com', desc: 'أكبر موقع توظيف عربي' },
+      { name: 'Indeed', url: 'https://indeed.com', desc: 'وظائف عالمية' }
+    ]
+  },
+  'pro-scholarships': {
+    title: 'منح وبعثات',
+    subtitle: 'فرص تمويل مهني وأكاديمي',
+    items: [
+      { name: 'بعثات وزارة التعليم', url: 'https://moe.gov.sa', desc: 'البرامج الرسمية' },
+      { name: 'منح KAUST', url: 'https://kaust.edu.sa', desc: 'دراسات عليا' },
+      { name: 'منح المسك', url: 'https://misk.org.sa', desc: 'برامج شباب' },
+      { name: 'Chevening', url: 'https://chevening.org', desc: 'منح بريطانية' },
+      { name: 'Fulbright', url: 'https://fulbright.org', desc: 'منح أمريكية' },
+      { name: 'Erasmus+', url: 'https://erasmus-plus.ec.europa.eu', desc: 'منح أوروبية' }
+    ]
+  },
+  'pro-training': {
+    title: 'تدريب معتمد',
+    subtitle: 'شهادات مهنية معترف بها',
+    items: [
+      { name: 'إدراك', url: 'https://edraak.org', desc: 'دورات عربية' },
+      { name: 'رواق', url: 'https://rwaq.org', desc: 'منصة عربية' },
+      { name: 'Coursera', url: 'https://coursera.org', desc: 'شهادات معتمدة' },
+      { name: 'edX', url: 'https://edx.org', desc: 'شهادات احترافية' },
+      { name: 'Udacity', url: 'https://udacity.com', desc: 'نانو ديجري' },
+      { name: 'Pluralsight', url: 'https://pluralsight.com', desc: 'تدريب تقني' }
+    ]
+  },
+  'pro-networks': {
+    title: 'شبكات مهنية',
+    subtitle: 'تواصل مع المحترفين',
+    items: [
+      { name: 'LinkedIn', url: 'https://linkedin.com', desc: 'أكبر شبكة مهنية' },
+      { name: 'Bayt', url: 'https://bayt.com', desc: 'شبكة عربية' },
+      { name: 'GulfTalent', url: 'https://gulftalent.com', desc: 'شبكة الخليج' },
+      { name: 'AngelList', url: 'https://angel.co', desc: 'شبكة ريادة أعمال' },
+      { name: 'Meetup', url: 'https://meetup.com', desc: 'لقاءات مهنية' },
+      { name: 'Slack Communities', url: 'https://slack.com/community', desc: 'مجتمعات تقنية' }
+    ]
+  },
+  'pro-events': {
+    title: 'مؤتمرات وملتقيات',
+    subtitle: 'فرص للتطوير المهني',
+    items: [
+      { name: 'ملتقى التعليم السعودي', url: 'https://moe.gov.sa', desc: 'فعاليات وزارة التعليم' },
+      { name: 'LEAP', url: 'https://onegiantleap.com', desc: 'مؤتمر التقنية' },
+      { name: 'GITEX', url: 'https://gitex.com', desc: 'معرض التقنية' },
+      { name: 'TEDx', url: 'https://ted.com', desc: 'محادثات ملهمة' },
+      { name: 'EdTech Summit', url: 'https://edtechsummit.com', desc: 'قمة التعليم' },
+      { name: 'Eventbrite', url: 'https://eventbrite.com', desc: 'اكتشف الفعاليات' }
+    ]
+  },
+  'pro-tools': {
+    title: 'أدوات مهنية',
+    subtitle: 'أدوات تسهّل عملك',
+    items: [
+      { name: 'Notion', url: 'https://notion.so', desc: 'تنظيم المهام' },
+      { name: 'Trello', url: 'https://trello.com', desc: 'إدارة المشاريع' },
+      { name: 'Slack', url: 'https://slack.com', desc: 'تواصل الفرق' },
+      { name: 'Zoom', url: 'https://zoom.us', desc: 'اجتماعات أونلاين' },
+      { name: 'Google Workspace', url: 'https://workspace.google.com', desc: 'أدوات جوجل' },
+      { name: 'Canva', url: 'https://canva.com', desc: 'تصميم احترافي' }
+    ]
+  }
+};
 
 /* =========================================================
    STATE
@@ -1079,6 +1493,100 @@ async function shareRadarLead(leadId) {
 async function copyText(text) {
   try { await navigator.clipboard.writeText(text); toast('تم النسخ ✓', 'success'); }
   catch { toast('تعذر النسخ', 'error'); }
+}
+
+/* =========================================================
+   SOURCES — عرض + اقتراح
+========================================================= */
+function openSources(key) {
+  const data = SOURCES[key];
+  if (!data) return;
+
+  const badge = $('sources-modal-badge');
+  const title = $('sources-modal-title');
+  const subtitle = $('sources-modal-subtitle');
+  const body = $('sources-modal-body');
+
+  badge.textContent = '🔗 مصادر موثوقة';
+  title.textContent = data.title;
+  subtitle.textContent = data.subtitle;
+
+  body.innerHTML = data.items.map((item, i) => `
+    <a href="${esc(item.url)}" target="_blank" rel="noopener noreferrer"
+       class="block rounded-2xl border border-slate-200 bg-white hover:border-brand-400 hover:shadow-md transition p-4 mb-3">
+      <div class="flex items-start justify-between gap-3">
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-[9px] font-black text-slate-400 bg-slate-100 px-2 py-0.5 rounded">${String(i+1).padStart(2,'0')}</span>
+            <h4 class="font-black text-sm text-slate-900">${esc(item.name)}</h4>
+          </div>
+          <p class="text-[11px] text-slate-500 leading-5">${esc(item.desc)}</p>
+          <p class="text-[9px] text-slate-400 mt-1" dir="ltr">${esc(item.url)}</p>
+        </div>
+        <i class="fa-solid fa-arrow-up-right-from-square text-brand-600 text-sm mt-1"></i>
+      </div>
+    </a>
+  `).join('');
+
+  openModal('sources-modal');
+}
+
+function closeSources() {
+  closeModal('sources-modal');
+}
+
+function openSuggestSource(section) {
+  const select = $('sg-section');
+  const map = { teacher: 'teacher', student: 'student', pro: 'pro' };
+  if (map[section]) select.value = map[section];
+  $('sg-msg').textContent = '';
+  openModal('suggest-modal');
+}
+
+function closeSuggestSource() {
+  closeModal('suggest-modal');
+}
+
+async function submitSuggestSource(e) {
+  e.preventDefault();
+  const msg = $('sg-msg');
+  const name = $('sg-name').value.trim();
+  const url = $('sg-url').value.trim();
+  const section = $('sg-section').value;
+  const reason = $('sg-reason').value.trim();
+
+  if (!name || !url) { msg.textContent = 'يرجى إكمال الحقول المطلوبة'; return; }
+  if (!/^https?:\/\//i.test(url)) { msg.textContent = 'الرابط يجب أن يبدأ بـ https://'; return; }
+
+  msg.textContent = 'جارٍ الإرسال...';
+
+  try {
+    const { error } = await sb.from('source_suggestions').insert({
+      name, url, section,
+      reason: reason || null,
+      submitted_by: currentUser?.id || null,
+      status: 'pending'
+    });
+
+    if (error) {
+      // fallback إلى localStorage
+      const list = JSON.parse(localStorage.getItem('wefaq_source_suggestions') || '[]');
+      list.unshift({ name, url, section, reason, created_at: new Date().toISOString() });
+      localStorage.setItem('wefaq_source_suggestions', JSON.stringify(list.slice(0, 50)));
+      msg.textContent = 'تم الحفظ محلياً';
+      toast('تم استلام اقتراحك — شكراً لك ✓', 'success');
+      e.target.reset();
+      setTimeout(closeSuggestSource, 900);
+      return;
+    }
+
+    msg.textContent = 'تم الإرسال ✓';
+    toast('شكراً لك! سنراجع اقتراحك قريباً ✓', 'success');
+    e.target.reset();
+    setTimeout(closeSuggestSource, 900);
+  } catch (err) {
+    msg.textContent = 'حدث خطأ، حاول مرة أخرى';
+  }
 }
 
 /* =========================================================
@@ -1587,7 +2095,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
-    ['auth-modal','create-modal','spec-modal','comm-modal','contact-modal','chat-modal','details-modal'].forEach(closeModal);
+    ['auth-modal','create-modal','spec-modal','comm-modal','contact-modal','chat-modal','details-modal','sources-modal','suggest-modal'].forEach(closeModal);
   }
 });
 </script>
