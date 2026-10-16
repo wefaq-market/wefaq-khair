@@ -59,6 +59,8 @@ tailwind.config = {
   .wf-badge-offer  { background:#ecfdf5; color:#047857; border:1px solid #a7f3d0; }
   .dark .wf-badge-demand { background:rgba(124,45,18,.22); color:#fdba74; border-color:rgba(251,146,60,.24); }
   .dark .wf-badge-offer  { background:rgba(6,78,59,.28); color:#6ee7b7; border-color:rgba(110,231,183,.22); }
+  .wf-owner-badge { background:#fef3c7; color:#92400e; border:1px solid #fde68a; }
+  .dark .wf-owner-badge { background:rgba(120,53,15,.35); color:#fcd34d; border-color:rgba(251,191,36,.3); }
 </style>
 </head>
 
@@ -775,9 +777,6 @@ const CORS_PROXIES = [
   url => `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`
 ];
 
-/* =========================================================
-   SOURCES
-========================================================= */
 const SOURCES = {
   'teacher-certs': { title: 'شهادات مهنية معتمدة', subtitle: 'شهادات معترف بها للمعلمين والمحفظين', items: [
     { name: 'هيئة تقويم التعليم والتدريب', url: 'https://etec.gov.sa', desc: 'الرخص المهنية للمعلمين في السعودية' },
@@ -938,8 +937,6 @@ let activeConnection = null;
 let activeRecipient = null;
 let realtimeChannels = [];
 let syncTimer = null;
-
-/* حالة توسيع الأقسام */
 const expandedPlatforms = new Set();
 
 /* =========================================================
@@ -1311,7 +1308,7 @@ function updateRadarStats() {
 }
 
 /* =========================================================
-   RADAR — تجميع الكروت حسب المنصة + عرض 3 كحد أقصى
+   RADAR RENDER
 ========================================================= */
 const PLATFORM_META = {
   telegram: { name: 'تيليجرام', icon: 'fa-brands fa-telegram', headerCls: 'from-sky-50 to-white', iconCls: 'bg-sky-100 text-sky-600', countCls: 'bg-sky-100 text-sky-700', desc: 'قنوات ومجموعات ودورات تعليمية' },
@@ -1412,7 +1409,6 @@ function renderRadar() {
   });
 
   const presentKeys = PLATFORM_ORDER.filter(k => grouped[k] && grouped[k].length > 0);
-
   container.className = 'space-y-6';
 
   container.innerHTML = presentKeys.map(key => {
@@ -1520,20 +1516,15 @@ async function copyText(text) {
 }
 
 /* =========================================================
-   SOURCES PRO
+   SOURCES
 ========================================================= */
 function openSources(key) {
   const data = SOURCES[key];
   if (!data) return;
 
-  const badge = $('sources-modal-badge');
-  const title = $('sources-modal-title');
-  const subtitle = $('sources-modal-subtitle');
-  const body = $('sources-modal-body');
-
-  badge.textContent = '🔗 مصادر موثوقة';
-  title.textContent = data.title;
-  subtitle.textContent = data.subtitle;
+  $('sources-modal-badge').textContent = '🔗 مصادر موثوقة';
+  $('sources-modal-title').textContent = data.title;
+  $('sources-modal-subtitle').textContent = data.subtitle;
 
   const detectSourceType = (url) => {
     const u = url.toLowerCase();
@@ -1549,14 +1540,13 @@ function openSources(key) {
     return { label: 'دولي', flag: '🌐' };
   };
 
-  body.innerHTML = `<div class="grid grid-cols-1 md:grid-cols-2 gap-4">` +
+  $('sources-modal-body').innerHTML = `<div class="grid grid-cols-1 md:grid-cols-2 gap-4">` +
     data.items.map((item) => {
       const src = detectSourceType(item.url);
       const lang = detectLang(item.url);
       const cleanUrl = item.url.replace(/^https?:\/\//,'').replace(/\/$/,'');
       return `
-      <a href="${esc(item.url)}" target="_blank" rel="noopener noreferrer"
-         class="group block rounded-2xl border border-slate-200 bg-white p-4 flex flex-col hover:border-brand-400 hover:-translate-y-0.5 hover:shadow-lg transition">
+      <a href="${esc(item.url)}" target="_blank" rel="noopener noreferrer" class="group block rounded-2xl border border-slate-200 bg-white p-4 flex flex-col hover:border-brand-400 hover:-translate-y-0.5 hover:shadow-lg transition">
         <div class="flex items-center justify-between gap-2 mb-3 flex-wrap">
           <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full border ${src.cls}">
             <i class="${src.icon}"></i> ${src.label}
@@ -1608,10 +1598,8 @@ async function submitSuggestSource(e) {
 
   try {
     const { error } = await sb.from('source_suggestions').insert({
-      name, url, section,
-      reason: reason || null,
-      submitted_by: currentUser?.id || null,
-      status: 'pending'
+      name, url, section, reason: reason || null,
+      submitted_by: currentUser?.id || null, status: 'pending'
     });
 
     if (error) {
@@ -1635,7 +1623,7 @@ async function submitSuggestSource(e) {
 }
 
 /* =========================================================
-   SPECIALISTS
+   SPECIALISTS — مع أزرار التعديل والحذف
 ========================================================= */
 async function loadSpecialists() {
   const q = $('spec-search').value.trim();
@@ -1666,11 +1654,19 @@ async function loadSpecialists() {
   grid.innerHTML = list.map(s => {
     const wa = String(s.whatsapp || '').replace(/[^0-9]/g, '');
     const verified = ['verified', 'admin_reviewed'].includes(s.verification_status);
+    const isOwner = currentUser && String(s.id) === String(currentUser.id);
+    const ownerActions = isOwner ? `
+      <button onclick="editSpecialist('${esc(s.id)}')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="تعديل ملفي"><i class="fa-solid fa-pen text-slate-600"></i></button>
+      <button onclick="deleteSpecialist('${esc(s.id)}')" class="rounded-xl border border-red-200 px-3 py-2 text-xs hover:bg-red-50" title="حذف ملفي"><i class="fa-solid fa-trash text-red-600"></i></button>
+    ` : '';
     return `<article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-5 flex flex-col">
       <div class="flex items-start gap-3">
         <div class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-700 grid place-items-center text-xl font-black shrink-0">${esc((s.display_name || 'و').slice(0, 1))}</div>
         <div class="min-w-0 flex-1">
-          <h3 class="font-black text-sm text-slate-900 truncate">${esc(s.display_name || 'متخصص')}</h3>
+          <div class="flex items-center gap-1.5 flex-wrap">
+            <h3 class="font-black text-sm text-slate-900 truncate">${esc(s.display_name || 'متخصص')}</h3>
+            ${isOwner ? '<span class="text-[9px] font-bold px-2 py-0.5 rounded-full wf-owner-badge">ملفي</span>' : ''}
+          </div>
           <div class="text-[10px] font-bold text-brand-700 mt-0.5">${esc(roleLabels[s.role] || s.role || '')}</div>
           ${s.city || s.country ? `<div class="text-[10px] text-slate-500 mt-1"><i class="fa-solid fa-location-dot"></i> ${esc([s.city, s.country].filter(Boolean).join('، '))}</div>` : ''}
           ${verified ? `<div class="text-[10px] font-bold text-emerald-600 mt-1"><i class="fa-solid fa-circle-check"></i> ملف موثق</div>` : ''}
@@ -1682,6 +1678,7 @@ async function loadSpecialists() {
       <div class="mt-4 flex gap-2">
         ${wa ? `<a href="https://wa.me/${wa}" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-black py-2.5"><i class="fa-brands fa-whatsapp"></i> واتساب</a>` : ''}
         <button onclick="openSpecialistDetails('${esc(s.id)}')" class="flex-1 rounded-xl border border-slate-200 text-xs font-bold py-2.5 hover:bg-slate-50">تفاصيل</button>
+        ${ownerActions}
       </div>
     </article>`;
   }).join('');
@@ -1720,9 +1717,11 @@ async function submitSpecialist(e) {
   e.preventDefault();
   if (!currentUser) { closeModal('spec-modal'); openAuthModal(); return; }
   const msg = $('s-msg');
-  msg.textContent = 'جارٍ النشر...';
+  const form = $('spec-modal').querySelector('form');
+  const editId = form?.dataset.editId || '';
+  msg.textContent = editId ? 'جارٍ الحفظ...' : 'جارٍ النشر...';
+
   const payload = {
-    id: currentUser.id,
     display_name: $('s-name').value.trim(),
     role: $('s-role').value,
     specialty: $('s-specialty').value.trim(),
@@ -1732,25 +1731,84 @@ async function submitSpecialist(e) {
     telegram: $('s-telegram').value.trim(),
     years_experience: Number($('s-experience').value) || 0,
     teaching_mode: $('s-modes').value.split(',').map(x => x.trim()).filter(Boolean),
-    is_active: true,
-    verification_status: 'pending'
+    is_active: true
   };
-  const { error } = await sb.from('education_profiles').upsert(payload, { onConflict: 'id' });
-  if (error) { msg.textContent = error.message; toast('فشل النشر: ' + error.message, 'error'); return; }
-  await sb.from('profiles').upsert({ id: currentUser.id, display_name: payload.display_name, region: payload.country, bio: payload.bio, updated_at: new Date().toISOString() }, { onConflict: 'id' });
-  msg.textContent = 'تم النشر ✓';
-  toast('تم نشر ملفك ✓', 'success');
+
+  let error;
+  if (editId) {
+    ({ error } = await sb.from('education_profiles').update(payload).eq('id', editId));
+  } else {
+    payload.id = currentUser.id;
+    payload.verification_status = 'pending';
+    ({ error } = await sb.from('education_profiles').upsert(payload, { onConflict: 'id' }));
+  }
+
+  if (error) { msg.textContent = error.message; toast('فشل: ' + error.message, 'error'); return; }
+
+  await sb.from('profiles').upsert({
+    id: currentUser.id, display_name: payload.display_name,
+    region: payload.country, bio: payload.bio,
+    updated_at: new Date().toISOString()
+  }, { onConflict: 'id' });
+
+  msg.textContent = editId ? 'تم الحفظ ✓' : 'تم النشر ✓';
+  toast(editId ? 'تم حفظ التعديلات ✓' : 'تم نشر ملفك ✓', 'success');
   closeModal('spec-modal');
+  resetSpecialistForm();
   loadSpecialists();
+}
+
+function resetSpecialistForm() {
+  const form = $('spec-modal').querySelector('form');
+  if (form) { form.reset(); form.dataset.editId = ''; }
+  const h2 = $('spec-modal').querySelector('h2');
+  if (h2) h2.textContent = 'انضم كمتخصص';
+  $('s-msg').textContent = '';
 }
 
 function openSpecialistJoin() {
   if (!currentUser) { openAuthModal(); return; }
+  resetSpecialistForm();
+  openModal('spec-modal');
+}
+
+/* ═══════ دوال التعديل والحذف للمتخصصين ═══════ */
+async function deleteSpecialist(id) {
+  if (!currentUser) { openAuthModal(); return; }
+  const s = specialistData.find(x => String(x.id) === String(id));
+  if (!s) { toast('الملف غير موجود', 'error'); return; }
+  if (String(s.id) !== String(currentUser.id)) { toast('لا يمكنك حذف ملف ليس لك', 'error'); return; }
+  if (!confirm('هل أنت متأكد من حذف ملفك كمتخصص؟ لا يمكن التراجع.')) return;
+  toast('جارٍ الحذف...', 'info');
+  const { error } = await sb.from('education_profiles').delete().eq('id', id);
+  if (error) { toast('فشل الحذف: ' + error.message, 'error'); return; }
+  toast('تم حذف ملفك ✓', 'success');
+  loadSpecialists();
+}
+
+function editSpecialist(id) {
+  if (!currentUser) { openAuthModal(); return; }
+  const s = specialistData.find(x => String(x.id) === String(id));
+  if (!s) return;
+  if (String(s.id) !== String(currentUser.id)) { toast('لا يمكنك تعديل ملف ليس لك', 'error'); return; }
+  $('s-name').value = s.display_name || '';
+  $('s-role').value = s.role || 'quran_teacher';
+  $('s-specialty').value = s.specialty || '';
+  $('s-country').value = s.country || '';
+  $('s-whatsapp').value = s.whatsapp || '';
+  $('s-telegram').value = s.telegram || '';
+  $('s-experience').value = s.years_experience || 0;
+  $('s-modes').value = Array.isArray(s.teaching_mode) ? s.teaching_mode.join(',') : '';
+  $('s-bio').value = s.bio || '';
+  $('spec-modal').querySelector('form').dataset.editId = id;
+  const h2 = $('spec-modal').querySelector('h2');
+  if (h2) h2.textContent = 'تعديل ملفي كمتخصص';
+  $('s-msg').textContent = '';
   openModal('spec-modal');
 }
 
 /* =========================================================
-   LISTINGS
+   LISTINGS — مع أزرار التعديل والحذف
 ========================================================= */
 async function loadListings() {
   const q = $('list-search').value.trim().toLowerCase();
@@ -1778,22 +1836,33 @@ async function loadListings() {
     return;
   }
   const catLabel = { quran: '📖 قرآن', arabic: '📝 عربية', hadith: '📚 حديث', kids: '👧 أطفال', languages: '🌍 لغات', services: '🛠 خدمات' };
-  grid.innerHTML = list.map(l => `<article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-5 flex flex-col">
-    <div class="flex items-center justify-between gap-2 mb-3">
-      <span class="text-[10px] font-black px-2 py-1 rounded-full bg-brand-50 text-brand-700">${catLabel[l.category] || l.category}</span>
-      <span class="text-[10px] font-bold px-2 py-1 rounded-full ${l.type === 'offer' ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700'}">${l.type === 'offer' ? 'عرض' : 'طلب'}</span>
-    </div>
-    <h3 class="font-black text-sm text-slate-900 line-clamp-2">${esc(l.title)}</h3>
-    <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3 flex-1">${esc(l.description)}</p>
-    <div class="mt-4 flex items-center justify-between text-xs">
-      <span class="text-slate-400">${timeAgo(l.created_at)}</span>
-      ${Number(l.amount) > 0 ? `<span class="font-black text-brand-700">${Number(l.amount).toLocaleString()} ر.س</span>` : '<span class="text-slate-400 text-[10px]">حسب الاتفاق</span>'}
-    </div>
-    <div class="mt-4 flex gap-2">
-      <button onclick="openListingDetails('${esc(l.id)}')" class="flex-1 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2.5"><i class="fa-solid fa-circle-info"></i> التفاصيل</button>
-      <button onclick="openContact('${esc(l.id)}')" class="flex-1 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-black py-2.5"><i class="fa-solid fa-handshake"></i> تواصل</button>
-    </div>
-  </article>`).join('');
+  grid.innerHTML = list.map(l => {
+    const isOwner = currentUser && String(l.user_id) === String(currentUser.id);
+    const ownerActions = isOwner ? `
+      <button onclick="editListing('${esc(l.id)}')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="تعديل"><i class="fa-solid fa-pen text-slate-600"></i></button>
+      <button onclick="deleteListing('${esc(l.id)}')" class="rounded-xl border border-red-200 px-3 py-2 text-xs hover:bg-red-50" title="حذف"><i class="fa-solid fa-trash text-red-600"></i></button>
+    ` : '';
+    return `<article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-5 flex flex-col">
+      <div class="flex items-center justify-between gap-2 mb-3">
+        <span class="text-[10px] font-black px-2 py-1 rounded-full bg-brand-50 text-brand-700">${catLabel[l.category] || l.category}</span>
+        <div class="flex items-center gap-1.5">
+          ${isOwner ? '<span class="text-[9px] font-bold px-2 py-0.5 rounded-full wf-owner-badge">منشوري</span>' : ''}
+          <span class="text-[10px] font-bold px-2 py-1 rounded-full ${l.type === 'offer' ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700'}">${l.type === 'offer' ? 'عرض' : 'طلب'}</span>
+        </div>
+      </div>
+      <h3 class="font-black text-sm text-slate-900 line-clamp-2">${esc(l.title)}</h3>
+      <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3 flex-1">${esc(l.description)}</p>
+      <div class="mt-4 flex items-center justify-between text-xs">
+        <span class="text-slate-400">${timeAgo(l.created_at)}</span>
+        ${Number(l.amount) > 0 ? `<span class="font-black text-brand-700">${Number(l.amount).toLocaleString()} ر.س</span>` : '<span class="text-slate-400 text-[10px]">حسب الاتفاق</span>'}
+      </div>
+      <div class="mt-4 flex gap-2">
+        <button onclick="openListingDetails('${esc(l.id)}')" class="flex-1 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2.5"><i class="fa-solid fa-circle-info"></i> التفاصيل</button>
+        <button onclick="openContact('${esc(l.id)}')" class="flex-1 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-black py-2.5"><i class="fa-solid fa-handshake"></i> تواصل</button>
+        ${ownerActions}
+      </div>
+    </article>`;
+  }).join('');
 }
 
 function openListingDetails(id) {
@@ -1841,6 +1910,7 @@ async function shareListing(id) {
 
 function openCreateModal() {
   if (!currentUser) { openAuthModal(); return; }
+  resetCreateForm();
   openModal('create-modal');
 }
 
@@ -1848,7 +1918,8 @@ async function submitListing(e) {
   e.preventDefault();
   if (!currentUser) { openAuthModal(); return; }
   const msg = $('c-msg');
-  msg.textContent = 'جارٍ النشر...';
+  const editId = $('create-form').dataset.editId || '';
+
   const payload = {
     title: $('c-title').value.trim(),
     category: $('c-category').value,
@@ -1858,16 +1929,80 @@ async function submitListing(e) {
     description: $('c-desc').value.trim(),
     phone: $('c-phone').value.trim(),
     badge: 'unverified',
-    status: 'approved',
-    user_id: currentUser.id
+    status: 'approved'
   };
-  const { error } = await sb.from('listings').insert(payload);
-  if (error) { msg.textContent = error.message; toast('فشل النشر: ' + error.message, 'error'); return; }
-  toast('تم النشر بنجاح ✓', 'success');
+
+  if (editId) {
+    msg.textContent = 'جارٍ الحفظ...';
+    const { error } = await sb.from('listings').update(payload).eq('id', editId);
+    if (error) { msg.textContent = error.message; toast('فشل الحفظ: ' + error.message, 'error'); return; }
+    toast('تم حفظ التعديلات ✓', 'success');
+  } else {
+    msg.textContent = 'جارٍ النشر...';
+    payload.user_id = currentUser.id;
+    const { error } = await sb.from('listings').insert(payload);
+    if (error) { msg.textContent = error.message; toast('فشل النشر: ' + error.message, 'error'); return; }
+    toast('تم النشر بنجاح ✓', 'success');
+  }
+
   closeModal('create-modal');
-  $('create-form').reset();
-  msg.textContent = '';
+  resetCreateForm();
   loadListings();
+}
+
+function resetCreateForm() {
+  $('create-form').reset();
+  $('create-form').dataset.editId = '';
+  $('c-msg').textContent = '';
+  const modal = $('create-modal');
+  if (modal) {
+    const h2 = modal.querySelector('h2');
+    if (h2) h2.textContent = 'نشر طلب / عرض تعليمي';
+    const p = modal.querySelector('p');
+    if (p) p.textContent = 'سيظهر منشورك في السوق مباشرة ويصبح قابلاً للتواصل.';
+    const btn = modal.querySelector('button[type="submit"]');
+    if (btn) btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> نشر على السحابة';
+  }
+}
+
+/* ═══════ دوال التعديل والحذف للمنشورات ═══════ */
+async function deleteListing(id) {
+  if (!currentUser) { openAuthModal(); return; }
+  const l = listingData.find(x => String(x.id) === String(id));
+  if (!l) { toast('المنشور غير موجود', 'error'); return; }
+  if (String(l.user_id) !== String(currentUser.id)) { toast('لا يمكنك حذف منشور ليس لك', 'error'); return; }
+  if (!confirm('هل أنت متأكد من حذف هذا المنشور؟ لا يمكن التراجع.')) return;
+  toast('جارٍ الحذف...', 'info');
+  const { error } = await sb.from('listings').delete().eq('id', id);
+  if (error) { toast('فشل الحذف: ' + error.message, 'error'); return; }
+  toast('تم حذف المنشور ✓', 'success');
+  loadListings();
+}
+
+function editListing(id) {
+  if (!currentUser) { openAuthModal(); return; }
+  const l = listingData.find(x => String(x.id) === String(id));
+  if (!l) return;
+  if (String(l.user_id) !== String(currentUser.id)) { toast('لا يمكنك تعديل منشور ليس لك', 'error'); return; }
+  $('c-title').value = l.title || '';
+  $('c-category').value = l.category || 'quran';
+  $('c-region').value = l.region || 'GLOBAL';
+  $('c-type').value = l.type || 'offer';
+  $('c-amount').value = l.amount || '';
+  $('c-desc').value = l.description || '';
+  $('c-phone').value = l.phone || '';
+  $('create-form').dataset.editId = id;
+  const modal = $('create-modal');
+  if (modal) {
+    const h2 = modal.querySelector('h2');
+    if (h2) h2.textContent = 'تعديل المنشور';
+    const p = modal.querySelector('p');
+    if (p) p.textContent = 'عدّل البيانات ثم اضغط حفظ.';
+    const btn = modal.querySelector('button[type="submit"]');
+    if (btn) btn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> حفظ التعديلات';
+  }
+  $('c-msg').textContent = '';
+  openModal('create-modal');
 }
 
 /* =========================================================
