@@ -383,7 +383,7 @@ tailwind.config = {
       <div>
         <span class="text-xs font-black text-brand-700"><i class="fa-solid fa-users"></i> شبكة المجتمعات</span>
         <h2 class="mt-2 text-2xl sm:text-3xl font-black text-slate-900">مجموعات وقنوات تعليمية عامة</h2>
-        <p class="mt-1 text-sm text-slate-500">روابط عامة لفيسبوك وتيليجرام — تُحفظ محلياً للتصفح السريع.</p>
+        <p class="mt-1 text-sm text-slate-500">مجتمعات سحابية مشتركة لفيسبوك وتيليجرام — أضف وأدر مجتمعاتك.</p>
       </div>
       <button onclick="openCommunityModal()" class="inline-flex items-center gap-2 rounded-xl border border-brand-200 bg-brand-50 hover:bg-brand-100 text-brand-700 px-4 py-2.5 text-xs font-black">
         <i class="fa-solid fa-plus"></i> أضف مجتمعاً
@@ -747,9 +747,7 @@ tailwind.config = {
 </div>
 
 <script>
-/* =========================================================
-   CONFIG
-========================================================= */
+/* ============ CONFIG ============ */
 const SUPABASE_URL = "https://zwgkrwkrohkmnyoixude.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_-tSaRUJ2HWDMSCfEg5CUEQ_dm4-uYAe";
 
@@ -924,24 +922,22 @@ const SOURCES = {
   ]}
 };
 
-/* =========================================================
-   STATE
-========================================================= */
+/* ============ STATE ============ */
 let currentUser = null;
 let currentAuthMode = 'login';
 let radarLeads = [];
 let specialistData = [];
 let listingData = [];
+let communitiesData = [];
 let contactTarget = null;
 let activeConnection = null;
 let activeRecipient = null;
 let realtimeChannels = [];
 let syncTimer = null;
+let commFilter = 'all';
 const expandedPlatforms = new Set();
 
-/* =========================================================
-   UTILITIES
-========================================================= */
+/* ============ UTILITIES ============ */
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
 
@@ -1024,9 +1020,7 @@ function computeScore(lead) {
   return Math.min(99, Math.max(20, score));
 }
 
-/* =========================================================
-   THEME + MENU
-========================================================= */
+/* ============ THEME + MENU ============ */
 function initTheme() {
   const saved = localStorage.getItem('wefaq_theme');
   if (saved === 'dark' || (!saved && matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -1047,9 +1041,7 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 $('to-top').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-/* =========================================================
-   AUTH
-========================================================= */
+/* ============ AUTH ============ */
 function openAuthModal() { openModal('auth-modal'); }
 function switchAuthTab(mode) {
   currentAuthMode = mode;
@@ -1122,11 +1114,12 @@ sb.auth.onAuthStateChange((event, session) => {
   updateAuthUI();
   if (currentUser) { loadWorkspace(); setupRealtime(); }
   else teardownRealtime();
+  loadListings();
+  loadSpecialists();
+  renderCommunities();
 });
 
-/* =========================================================
-   RADAR
-========================================================= */
+/* ============ RADAR ============ */
 async function fetchViaProxy(url) {
   for (const proxyFn of CORS_PROXIES) {
     try {
@@ -1138,14 +1131,9 @@ async function fetchViaProxy(url) {
       if (!res.ok) continue;
       let html = await res.text();
       if (html.trim().startsWith('{')) {
-        try {
-          const json = JSON.parse(html);
-          if (json.contents) html = json.contents;
-        } catch (e) {}
+        try { const json = JSON.parse(html); if (json.contents) html = json.contents; } catch (e) {}
       }
-      if (html.includes('tgme_widget_message') || html.length > 500) {
-        return html;
-      }
+      if (html.includes('tgme_widget_message') || html.length > 500) return html;
     } catch (e) { continue; }
   }
   return null;
@@ -1186,28 +1174,24 @@ async function fetchKhamsat(url, category, label) {
   try {
     const doc = new DOMParser().parseFromString(xml, 'application/xml');
     const items = [...doc.querySelectorAll('item')].slice(0, 15);
-    if (items.length) {
-      return items.map((it, i) => {
-        const title = it.querySelector('title')?.textContent || '';
-        const desc = it.querySelector('description')?.textContent || '';
-        const link = it.querySelector('link')?.textContent || '';
-        const pub = it.querySelector('pubDate')?.textContent || new Date().toISOString();
-        const plain = desc.replace(/<[^>]*>/g, ' ');
-        const lead = {
-          id: `kh_${i}_${Date.now()}`,
-          source: 'khamsat', sourceLabel: label, sourceUrl: link,
-          title: title.slice(0, 100),
-          snippet: plain.slice(0, 400), fullText: plain.slice(0, 800),
-          category: detectCategory(title + ' ' + plain),
-          date: new Date(pub).toISOString(),
-          phone: extractPhone(plain), email: extractEmail(plain),
-          intentType: detectIntentType(title + ' ' + plain)
-        };
-        lead.score = computeScore(lead);
-        return lead;
-      }).filter(x => x.title);
-    }
-    return [];
+    return items.map((it, i) => {
+      const title = it.querySelector('title')?.textContent || '';
+      const desc = it.querySelector('description')?.textContent || '';
+      const link = it.querySelector('link')?.textContent || '';
+      const pub = it.querySelector('pubDate')?.textContent || new Date().toISOString();
+      const plain = desc.replace(/<[^>]*>/g, ' ');
+      const lead = {
+        id: `kh_${i}_${Date.now()}`, source: 'khamsat', sourceLabel: label, sourceUrl: link,
+        title: title.slice(0, 100),
+        snippet: plain.slice(0, 400), fullText: plain.slice(0, 800),
+        category: detectCategory(title + ' ' + plain),
+        date: new Date(pub).toISOString(),
+        phone: extractPhone(plain), email: extractEmail(plain),
+        intentType: detectIntentType(title + ' ' + plain)
+      };
+      lead.score = computeScore(lead);
+      return lead;
+    }).filter(x => x.title);
   } catch (e) { return []; }
 }
 
@@ -1215,19 +1199,14 @@ async function fetchSupabaseLeads() {
   try {
     const { data, error } = await sb.from('radar_leads')
       .select('id, title, snippet, category, source, source_url, score, created_at')
-      .order('created_at', { ascending: false })
-      .limit(100);
+      .order('created_at', { ascending: false }).limit(100);
     if (error || !data) return [];
     return data.map(d => {
       const lead = {
-        id: `sb_${d.id}`, source: 'web',
-        sourceLabel: d.source || 'مصدر محفوظ',
-        sourceUrl: d.source_url || '#',
-        title: d.title, snippet: d.snippet || '',
-        fullText: d.snippet || '',
-        category: d.category || 'services', date: d.created_at,
-        phone: extractPhone(d.snippet || ''),
-        email: extractEmail(d.snippet || ''),
+        id: `sb_${d.id}`, source: 'web', sourceLabel: d.source || 'مصدر محفوظ',
+        sourceUrl: d.source_url || '#', title: d.title, snippet: d.snippet || '',
+        fullText: d.snippet || '', category: d.category || 'services', date: d.created_at,
+        phone: extractPhone(d.snippet || ''), email: extractEmail(d.snippet || ''),
         intentType: detectIntentType(d.title + ' ' + (d.snippet || ''))
       };
       lead.score = Number(d.score) || computeScore(lead);
@@ -1255,9 +1234,7 @@ async function syncRadar(manual = false) {
   const tgPromises = RADAR_SOURCES.telegram.map(ch => fetchTelegramChannel(ch.channel, ch.category, ch.label));
   const khPromises = RADAR_SOURCES.khamsat.map(k => fetchKhamsat(k.url, k.category, k.label));
   const [tgResults, khResults, sbResults] = await Promise.all([
-    Promise.allSettled(tgPromises),
-    Promise.allSettled(khPromises),
-    fetchSupabaseLeads()
+    Promise.allSettled(tgPromises), Promise.allSettled(khPromises), fetchSupabaseLeads()
   ]);
   tgResults.forEach(r => { if (r.status === 'fulfilled') allLeads.push(...r.value); });
   khResults.forEach(r => { if (r.status === 'fulfilled') allLeads.push(...r.value); });
@@ -1307,9 +1284,6 @@ function updateRadarStats() {
   $('radar-last-sync').textContent = `آخر مزامنة: ${timeAgo(new Date().toISOString())}`;
 }
 
-/* =========================================================
-   RADAR RENDER
-========================================================= */
 const PLATFORM_META = {
   telegram: { name: 'تيليجرام', icon: 'fa-brands fa-telegram', headerCls: 'from-sky-50 to-white', iconCls: 'bg-sky-100 text-sky-600', countCls: 'bg-sky-100 text-sky-700', desc: 'قنوات ومجموعات ودورات تعليمية' },
   khamsat: { name: 'خمسات', icon: 'fa-solid fa-briefcase', headerCls: 'from-amber-50 to-white', iconCls: 'bg-amber-100 text-amber-600', countCls: 'bg-amber-100 text-amber-700', desc: 'خدمات تعليمية عربية' },
@@ -1332,11 +1306,7 @@ function getPlatformKey(lead) {
 }
 
 function renderRadarCard(l) {
-  const srcIcon = {
-    telegram: 'fa-brands fa-telegram text-sky-500',
-    khamsat: 'fa-solid fa-briefcase text-amber-500',
-    web: 'fa-solid fa-globe text-emerald-500'
-  };
+  const srcIcon = { telegram: 'fa-brands fa-telegram text-sky-500', khamsat: 'fa-solid fa-briefcase text-amber-500', web: 'fa-solid fa-globe text-emerald-500' };
   const catLabel = { quran: 'قرآن', arabic: 'عربية', hadith: 'حديث', kids: 'أطفال', services: 'خدمات' };
   const typeBadge = l.intentType === 'demand'
     ? '<span class="text-[9px] font-black px-2 py-0.5 rounded-full wf-badge-demand"><i class="fa-solid fa-user-graduate"></i> طلب</span>'
@@ -1346,7 +1316,6 @@ function renderRadarCard(l) {
   const phoneChip = l.phone
     ? `<span class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700"><i class="fa-solid fa-phone"></i> ${esc(l.phone)}</span>`
     : '';
-
   return `<article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-4 flex flex-col">
     <div class="flex items-start justify-between gap-2 mb-2 flex-wrap">
       <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full bg-slate-100 text-slate-700"><i class="${srcIcon[l.source] || 'fa-solid fa-circle'}"></i> ${esc(l.sourceLabel || l.source)}</span>
@@ -1389,7 +1358,6 @@ function renderRadar() {
   });
 
   const container = $('radar-grid');
-
   if (list.length === 0) {
     container.className = '';
     container.innerHTML = `<div class="rounded-2xl border border-dashed border-slate-300 p-8 text-center text-slate-400 text-sm"><i class="fa-solid fa-inbox text-3xl mb-3 text-slate-300"></i><div class="font-black text-slate-700">لا توجد إشارات حالية بهذه الفلاتر</div><div class="text-xs mt-1">جرّب مزامنة جديدة أو غيّر الفلتر</div></div>`;
@@ -1397,12 +1365,7 @@ function renderRadar() {
   }
 
   const grouped = {};
-  list.forEach(l => {
-    const k = getPlatformKey(l);
-    if (!grouped[k]) grouped[k] = [];
-    grouped[k].push(l);
-  });
-
+  list.forEach(l => { const k = getPlatformKey(l); if (!grouped[k]) grouped[k] = []; grouped[k].push(l); });
   Object.keys(grouped).forEach(k => {
     if (sort === 'score') grouped[k].sort((a, b) => (b.score || 0) - (a.score || 0));
     else grouped[k].sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -1421,46 +1384,30 @@ function renderRadar() {
     let moreBtn = '';
     if (remaining > 0) {
       if (isExpanded) {
-        moreBtn = `<div class="col-span-full text-center pt-2">
-          <button onclick="togglePlatformExpand('${key}')" class="inline-flex items-center gap-2 rounded-xl border-2 border-slate-200 bg-white hover:bg-slate-50 text-slate-700 px-5 py-2.5 text-xs font-black transition">
-            <i class="fa-solid fa-chevron-up"></i> عرض أقل
-          </button>
-        </div>`;
+        moreBtn = `<div class="col-span-full text-center pt-2"><button onclick="togglePlatformExpand('${key}')" class="inline-flex items-center gap-2 rounded-xl border-2 border-slate-200 bg-white hover:bg-slate-50 text-slate-700 px-5 py-2.5 text-xs font-black transition"><i class="fa-solid fa-chevron-up"></i> عرض أقل</button></div>`;
       } else {
-        moreBtn = `<div class="col-span-full text-center pt-2">
-          <button onclick="togglePlatformExpand('${key}')" class="inline-flex items-center gap-2 rounded-xl border-2 border-dashed border-slate-300 bg-white hover:bg-brand-50 hover:border-brand-400 text-brand-700 px-5 py-2.5 text-xs font-black transition">
-            <i class="fa-solid fa-plus-circle"></i> عرض ${remaining} إشارة إضافية
-          </button>
-        </div>`;
+        moreBtn = `<div class="col-span-full text-center pt-2"><button onclick="togglePlatformExpand('${key}')" class="inline-flex items-center gap-2 rounded-xl border-2 border-dashed border-slate-300 bg-white hover:bg-brand-50 hover:border-brand-400 text-brand-700 px-5 py-2.5 text-xs font-black transition"><i class="fa-solid fa-plus-circle"></i> عرض ${remaining} إشارة إضافية</button></div>`;
       }
     }
 
-    return `
-      <section class="rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm">
-        <header class="flex items-center justify-between gap-3 px-5 py-4 bg-gradient-to-l ${meta.headerCls} border-b border-slate-100">
-          <div class="flex items-center gap-3 min-w-0">
-            <span class="w-11 h-11 rounded-2xl ${meta.iconCls} grid place-items-center text-lg shrink-0">
-              <i class="${meta.icon}"></i>
-            </span>
-            <div class="min-w-0">
-              <h3 class="font-black text-slate-900 text-base truncate">${meta.name}</h3>
-              <p class="text-[11px] text-slate-500 truncate">${meta.desc}</p>
-            </div>
-          </div>
-          <span class="text-[11px] font-black px-3 py-1 rounded-full ${meta.countCls} shrink-0">${allItems.length} إشارة</span>
-        </header>
-        <div class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          ${visible.map(renderRadarCard).join('')}
-          ${moreBtn}
+    return `<section class="rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm">
+      <header class="flex items-center justify-between gap-3 px-5 py-4 bg-gradient-to-l ${meta.headerCls} border-b border-slate-100">
+        <div class="flex items-center gap-3 min-w-0">
+          <span class="w-11 h-11 rounded-2xl ${meta.iconCls} grid place-items-center text-lg shrink-0"><i class="${meta.icon}"></i></span>
+          <div class="min-w-0"><h3 class="font-black text-slate-900 text-base truncate">${meta.name}</h3><p class="text-[11px] text-slate-500 truncate">${meta.desc}</p></div>
         </div>
-      </section>
-    `;
+        <span class="text-[11px] font-black px-3 py-1 rounded-full ${meta.countCls} shrink-0">${allItems.length} إشارة</span>
+      </header>
+      <div class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        ${visible.map(renderRadarCard).join('')}
+        ${moreBtn}
+      </div>
+    </section>`;
   }).join('');
 }
 
 function renderHeroRadarPreview() {
-  const box = $('hero-radar-preview');
-  if (!box) return;
+  const box = $('hero-radar-preview'); if (!box) return;
   const top = radarLeads.slice(0, 3);
   if (top.length === 0) { box.innerHTML = `<div class="text-xs text-white/50 text-center py-4">لا توجد إشارات بعد</div>`; return; }
   box.innerHTML = top.map(l => `<div class="rounded-xl bg-white/5 border border-white/10 p-3"><div class="flex items-center justify-between mb-1"><div class="text-[10px] font-black text-emerald-300">${esc(l.sourceLabel || l.source)}</div>${l.intentType === 'demand' ? '<span class="text-[9px] font-black text-orange-300">طلب</span>' : ''}</div><div class="text-xs font-bold text-white line-clamp-2">${esc(l.title)}</div></div>`).join('');
@@ -1470,30 +1417,21 @@ async function saveLeadToWorkspace(leadId) {
   if (!currentUser) { openAuthModal(); return; }
   const lead = radarLeads.find(l => l.id === leadId);
   if (!lead) return;
-
   if (lead.id.startsWith('sb_')) {
     const uuid = lead.id.replace('sb_', '');
-    const { error } = await sb.from('radar_user_saves').insert({
-      user_id: currentUser.id, lead_id: uuid, notes: lead.sourceLabel || null
-    });
+    const { error } = await sb.from('radar_user_saves').insert({ user_id: currentUser.id, lead_id: uuid, notes: lead.sourceLabel || null });
     if (error) {
       if (error.code === '23505' || error.message.includes('duplicate')) toast('محفوظة مسبقاً ✓', 'info');
       else toast('لم يتم الحفظ: ' + error.message, 'error');
     } else toast('تم حفظ الإشارة في مساحتك ✓', 'success');
     return;
   }
-
   const { data: inserted, error: insErr } = await sb.from('radar_leads').insert({
     title: lead.title, snippet: lead.snippet, category: lead.category,
     source: lead.sourceLabel, source_url: lead.sourceUrl, score: lead.score
   }).select('id').single();
-
   if (insErr || !inserted) { toast('لم يتم الحفظ: ' + (insErr?.message || 'خطأ'), 'error'); return; }
-
-  const { error: saveErr } = await sb.from('radar_user_saves').insert({
-    user_id: currentUser.id, lead_id: inserted.id, notes: null
-  });
-
+  const { error: saveErr } = await sb.from('radar_user_saves').insert({ user_id: currentUser.id, lead_id: inserted.id, notes: null });
   if (saveErr) {
     if (saveErr.code === '23505' || saveErr.message.includes('duplicate')) toast('محفوظة مسبقاً ✓', 'info');
     else toast('لم يتم الحفظ: ' + saveErr.message, 'error');
@@ -1515,13 +1453,9 @@ async function copyText(text) {
   catch { toast('تعذر النسخ', 'error'); }
 }
 
-/* =========================================================
-   SOURCES
-========================================================= */
+/* ============ SOURCES ============ */
 function openSources(key) {
-  const data = SOURCES[key];
-  if (!data) return;
-
+  const data = SOURCES[key]; if (!data) return;
   $('sources-modal-badge').textContent = '🔗 مصادر موثوقة';
   $('sources-modal-title').textContent = data.title;
   $('sources-modal-subtitle').textContent = data.subtitle;
@@ -1533,7 +1467,6 @@ function openSources(key) {
     if (/\.org\.|\.org$|org\.sa/.test(u)) return { label: 'منظمة', icon: 'fa-solid fa-hand-holding-heart', cls: 'bg-violet-50 text-violet-700 border-violet-200' };
     return { label: 'منصة', icon: 'fa-solid fa-globe', cls: 'bg-amber-50 text-amber-700 border-amber-200' };
   };
-
   const detectLang = (url) => {
     const u = url.toLowerCase();
     if (/\.sa|\.eg|\.ae|\.jo|\.ma|\.dz|\.tn|\.iq|\.ps|\.om|\.qa|\.kw|\.bh|\.ye|\.sd|\.ly|\.lb|\.sy|\.edu\.sa/.test(u)) return { label: 'عربي', flag: '🌍' };
@@ -1545,12 +1478,9 @@ function openSources(key) {
       const src = detectSourceType(item.url);
       const lang = detectLang(item.url);
       const cleanUrl = item.url.replace(/^https?:\/\//,'').replace(/\/$/,'');
-      return `
-      <a href="${esc(item.url)}" target="_blank" rel="noopener noreferrer" class="group block rounded-2xl border border-slate-200 bg-white p-4 flex flex-col hover:border-brand-400 hover:-translate-y-0.5 hover:shadow-lg transition">
+      return `<a href="${esc(item.url)}" target="_blank" rel="noopener noreferrer" class="group block rounded-2xl border border-slate-200 bg-white p-4 flex flex-col hover:border-brand-400 hover:-translate-y-0.5 hover:shadow-lg transition">
         <div class="flex items-center justify-between gap-2 mb-3 flex-wrap">
-          <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full border ${src.cls}">
-            <i class="${src.icon}"></i> ${src.label}
-          </span>
+          <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full border ${src.cls}"><i class="${src.icon}"></i> ${src.label}</span>
           <span class="text-[10px] font-bold text-slate-400">${lang.flag} ${lang.label}</span>
         </div>
         <div class="flex-1 min-h-0">
@@ -1559,15 +1489,10 @@ function openSources(key) {
           <p class="mt-2 text-[10px] text-slate-400 font-mono truncate" dir="ltr">${esc(cleanUrl)}</p>
         </div>
         <div class="mt-4">
-          <span class="block text-center rounded-xl bg-slate-900 group-hover:bg-brand-600 text-white text-xs font-black py-2.5 transition">
-            <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> زيارة المصدر
-          </span>
+          <span class="block text-center rounded-xl bg-slate-900 group-hover:bg-brand-600 text-white text-xs font-black py-2.5 transition"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> زيارة المصدر</span>
         </div>
-      </a>
-    `;
-    }).join('') +
-  `</div>`;
-
+      </a>`;
+    }).join('') + `</div>`;
   openModal('sources-modal');
 }
 
@@ -1590,41 +1515,26 @@ async function submitSuggestSource(e) {
   const url = $('sg-url').value.trim();
   const section = $('sg-section').value;
   const reason = $('sg-reason').value.trim();
-
   if (!name || !url) { msg.textContent = 'يرجى إكمال الحقول المطلوبة'; return; }
   if (!/^https?:\/\//i.test(url)) { msg.textContent = 'الرابط يجب أن يبدأ بـ https://'; return; }
-
   msg.textContent = 'جارٍ الإرسال...';
-
   try {
-    const { error } = await sb.from('source_suggestions').insert({
-      name, url, section, reason: reason || null,
-      submitted_by: currentUser?.id || null, status: 'pending'
-    });
-
+    const { error } = await sb.from('source_suggestions').insert({ name, url, section, reason: reason || null, submitted_by: currentUser?.id || null, status: 'pending' });
     if (error) {
       const list = JSON.parse(localStorage.getItem('wefaq_source_suggestions') || '[]');
       list.unshift({ name, url, section, reason, created_at: new Date().toISOString() });
       localStorage.setItem('wefaq_source_suggestions', JSON.stringify(list.slice(0, 50)));
       msg.textContent = 'تم الحفظ محلياً';
       toast('تم استلام اقتراحك — شكراً لك ✓', 'success');
-      e.target.reset();
-      setTimeout(closeSuggestSource, 900);
-      return;
+      e.target.reset(); setTimeout(closeSuggestSource, 900); return;
     }
-
     msg.textContent = 'تم الإرسال ✓';
     toast('شكراً لك! سنراجع اقتراحك قريباً ✓', 'success');
-    e.target.reset();
-    setTimeout(closeSuggestSource, 900);
-  } catch (err) {
-    msg.textContent = 'حدث خطأ، حاول مرة أخرى';
-  }
+    e.target.reset(); setTimeout(closeSuggestSource, 900);
+  } catch (err) { msg.textContent = 'حدث خطأ، حاول مرة أخرى'; }
 }
 
-/* =========================================================
-   SPECIALISTS — مع أزرار التعديل والحذف
-========================================================= */
+/* ============ SPECIALISTS ============ */
 async function loadSpecialists() {
   const q = $('spec-search').value.trim();
   const role = $('spec-role').value;
@@ -1634,12 +1544,8 @@ async function loadSpecialists() {
 
   let query = sb.from('education_profiles').select('*').eq('is_active', true).limit(60);
   if (role !== 'all') query = query.eq('role', role);
-
   const { data, error } = await query;
-  if (error) {
-    grid.innerHTML = `<div class="col-span-full text-center text-sm text-red-500 py-8">خطأ: ${esc(error.message)}</div>`;
-    return;
-  }
+  if (error) { grid.innerHTML = `<div class="col-span-full text-center text-sm text-red-500 py-8">خطأ: ${esc(error.message)}</div>`; return; }
 
   let list = (data || []);
   if (q) list = list.filter(s => `${s.display_name || ''} ${s.specialty || ''} ${s.country || ''} ${s.city || ''}`.toLowerCase().includes(q.toLowerCase()));
@@ -1685,8 +1591,7 @@ async function loadSpecialists() {
 }
 
 function openSpecialistDetails(id) {
-  const s = specialistData.find(x => String(x.id) === String(id));
-  if (!s) return;
+  const s = specialistData.find(x => String(x.id) === String(id)); if (!s) return;
   const roleLabels = { quran_teacher: 'معلم قرآن', qari: 'قارئ', quran_memorizer: 'محفّظ', hadith_specialist: 'متخصص حديث', arabic_teacher: 'معلم عربية' };
   const wa = String(s.whatsapp || '').replace(/[^0-9]/g, '');
   const tg = String(s.telegram || '').replace(/^@/, '');
@@ -1711,6 +1616,22 @@ function openSpecialistDetails(id) {
       ${tg ? `<a href="https://t.me/${tg}" target="_blank" rel="noopener" class="text-center rounded-xl bg-sky-500 hover:bg-sky-600 text-white py-3 text-sm font-black"><i class="fa-brands fa-telegram"></i> تيليجرام</a>` : ''}
     </div>`;
   openModal('details-modal');
+}
+
+function resetSpecialistForm() {
+  const form = $('spec-modal').querySelector('form');
+  if (form) { form.reset(); form.dataset.editId = ''; }
+  const h2 = $('spec-modal').querySelector('h2');
+  if (h2) h2.textContent = 'انضم كمتخصص';
+  const btn = $('spec-modal').querySelector('button[type="submit"]');
+  if (btn) btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> نشر الملف';
+  $('s-msg').textContent = '';
+}
+
+function openSpecialistJoin() {
+  if (!currentUser) { openAuthModal(); return; }
+  resetSpecialistForm();
+  openModal('spec-modal');
 }
 
 async function submitSpecialist(e) {
@@ -1742,15 +1663,8 @@ async function submitSpecialist(e) {
     payload.verification_status = 'pending';
     ({ error } = await sb.from('education_profiles').upsert(payload, { onConflict: 'id' }));
   }
-
   if (error) { msg.textContent = error.message; toast('فشل: ' + error.message, 'error'); return; }
-
-  await sb.from('profiles').upsert({
-    id: currentUser.id, display_name: payload.display_name,
-    region: payload.country, bio: payload.bio,
-    updated_at: new Date().toISOString()
-  }, { onConflict: 'id' });
-
+  await sb.from('profiles').upsert({ id: currentUser.id, display_name: payload.display_name, region: payload.country, bio: payload.bio, updated_at: new Date().toISOString() }, { onConflict: 'id' });
   msg.textContent = editId ? 'تم الحفظ ✓' : 'تم النشر ✓';
   toast(editId ? 'تم حفظ التعديلات ✓' : 'تم نشر ملفك ✓', 'success');
   closeModal('spec-modal');
@@ -1758,21 +1672,6 @@ async function submitSpecialist(e) {
   loadSpecialists();
 }
 
-function resetSpecialistForm() {
-  const form = $('spec-modal').querySelector('form');
-  if (form) { form.reset(); form.dataset.editId = ''; }
-  const h2 = $('spec-modal').querySelector('h2');
-  if (h2) h2.textContent = 'انضم كمتخصص';
-  $('s-msg').textContent = '';
-}
-
-function openSpecialistJoin() {
-  if (!currentUser) { openAuthModal(); return; }
-  resetSpecialistForm();
-  openModal('spec-modal');
-}
-
-/* ═══════ دوال التعديل والحذف للمتخصصين ═══════ */
 async function deleteSpecialist(id) {
   if (!currentUser) { openAuthModal(); return; }
   const s = specialistData.find(x => String(x.id) === String(id));
@@ -1803,13 +1702,13 @@ function editSpecialist(id) {
   $('spec-modal').querySelector('form').dataset.editId = id;
   const h2 = $('spec-modal').querySelector('h2');
   if (h2) h2.textContent = 'تعديل ملفي كمتخصص';
+  const btn = $('spec-modal').querySelector('button[type="submit"]');
+  if (btn) btn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> حفظ التعديلات';
   $('s-msg').textContent = '';
   openModal('spec-modal');
 }
 
-/* =========================================================
-   LISTINGS — مع أزرار التعديل والحذف
-========================================================= */
+/* ============ LISTINGS ============ */
 async function loadListings() {
   const q = $('list-search').value.trim().toLowerCase();
   const cat = $('list-cat').value;
@@ -1820,12 +1719,8 @@ async function loadListings() {
   let query = sb.from('listings').select('*').order('created_at', { ascending: false }).limit(60);
   if (cat !== 'all') query = query.eq('category', cat);
   if (type !== 'all') query = query.eq('type', type);
-
   const { data, error } = await query;
-  if (error) {
-    grid.innerHTML = `<div class="col-span-full text-center text-sm text-red-500 py-8">خطأ: ${esc(error.message)}</div>`;
-    return;
-  }
+  if (error) { grid.innerHTML = `<div class="col-span-full text-center text-sm text-red-500 py-8">خطأ: ${esc(error.message)}</div>`; return; }
 
   let list = (data || []);
   if (q) list = list.filter(l => `${l.title || ''} ${l.description || ''}`.toLowerCase().includes(q));
@@ -1866,8 +1761,7 @@ async function loadListings() {
 }
 
 function openListingDetails(id) {
-  const l = listingData.find(x => String(x.id) === String(id));
-  if (!l) return;
+  const l = listingData.find(x => String(x.id) === String(id)); if (!l) return;
   const catLabel = { quran: '📖 قرآن وتحفيظ', arabic: '📝 لغة عربية', hadith: '📚 حديث', kids: '👧 أطفال', languages: '🌍 لغات', services: '🛠 خدمات' };
   const regionLabels = { GLOBAL:'عالمي', KSA:'السعودية', EGP:'مصر', UAE:'الإمارات', GCC:'الخليج', AFRICA:'أفريقيا', FOREIGN:'أوروبا/أمريكا/آسيا' };
   $('details-content').innerHTML = `
@@ -1877,19 +1771,10 @@ function openListingDetails(id) {
       <h2 class="text-xl font-black text-slate-900 mt-3">${esc(l.title)}</h2>
       <div class="text-xs text-slate-500 mt-2"><i class="fa-solid fa-location-dot"></i> ${esc(regionLabels[l.region] || l.region || '—')} · ${timeAgo(l.created_at)}</div>
     </div>
-    <div class="rounded-xl border border-slate-200 p-4 mb-4">
-      <div class="text-[10px] font-black text-slate-400 mb-2">الوصف</div>
-      <p class="text-sm text-slate-700 leading-7 whitespace-pre-wrap">${esc(l.description)}</p>
-    </div>
+    <div class="rounded-xl border border-slate-200 p-4 mb-4"><div class="text-[10px] font-black text-slate-400 mb-2">الوصف</div><p class="text-sm text-slate-700 leading-7 whitespace-pre-wrap">${esc(l.description)}</p></div>
     <div class="grid grid-cols-2 gap-3 mb-4">
-      <div class="rounded-xl border border-slate-200 p-3">
-        <div class="text-[10px] font-black text-slate-400 mb-1">الميزانية</div>
-        <div class="text-lg font-black text-brand-700">${Number(l.amount) > 0 ? Number(l.amount).toLocaleString() + ' ر.س' : 'حسب الاتفاق'}</div>
-      </div>
-      <div class="rounded-xl border border-slate-200 p-3">
-        <div class="text-[10px] font-black text-slate-400 mb-1">التحقق</div>
-        <div class="text-sm font-bold ${l.badge && l.badge !== 'unverified' ? 'text-emerald-600' : 'text-slate-400'}">${l.badge && l.badge !== 'unverified' ? 'موثق' : 'غير موثق'}</div>
-      </div>
+      <div class="rounded-xl border border-slate-200 p-3"><div class="text-[10px] font-black text-slate-400 mb-1">الميزانية</div><div class="text-lg font-black text-brand-700">${Number(l.amount) > 0 ? Number(l.amount).toLocaleString() + ' ر.س' : 'حسب الاتفاق'}</div></div>
+      <div class="rounded-xl border border-slate-200 p-3"><div class="text-[10px] font-black text-slate-400 mb-1">التحقق</div><div class="text-sm font-bold ${l.badge && l.badge !== 'unverified' ? 'text-emerald-600' : 'text-slate-400'}">${l.badge && l.badge !== 'unverified' ? 'موثق' : 'غير موثق'}</div></div>
     </div>
     <div class="flex gap-2">
       <button onclick="closeModal('details-modal'); openContact('${esc(l.id)}')" class="flex-1 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white py-3 text-sm font-black"><i class="fa-solid fa-handshake"></i> تواصل مع صاحب المنشور</button>
@@ -1899,13 +1784,27 @@ function openListingDetails(id) {
 }
 
 async function shareListing(id) {
-  const l = listingData.find(x => String(x.id) === String(id));
-  if (!l) return;
+  const l = listingData.find(x => String(x.id) === String(id)); if (!l) return;
   const text = `${l.title}\n${(l.description || '').slice(0, 200)}`;
   if (navigator.share) {
     try { await navigator.share({ title: l.title, text }); }
     catch (e) { if (e.name !== 'AbortError') copyText(text); }
   } else copyText(text);
+}
+
+function resetCreateForm() {
+  $('create-form').reset();
+  $('create-form').dataset.editId = '';
+  $('c-msg').textContent = '';
+  const modal = $('create-modal');
+  if (modal) {
+    const h2 = modal.querySelector('h2');
+    if (h2) h2.textContent = 'نشر طلب / عرض تعليمي';
+    const p = modal.querySelector('p');
+    if (p) p.textContent = 'سيظهر منشورك في السوق مباشرة ويصبح قابلاً للتواصل.';
+    const btn = modal.querySelector('button[type="submit"]');
+    if (btn) btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> نشر على السحابة';
+  }
 }
 
 function openCreateModal() {
@@ -1950,22 +1849,6 @@ async function submitListing(e) {
   loadListings();
 }
 
-function resetCreateForm() {
-  $('create-form').reset();
-  $('create-form').dataset.editId = '';
-  $('c-msg').textContent = '';
-  const modal = $('create-modal');
-  if (modal) {
-    const h2 = modal.querySelector('h2');
-    if (h2) h2.textContent = 'نشر طلب / عرض تعليمي';
-    const p = modal.querySelector('p');
-    if (p) p.textContent = 'سيظهر منشورك في السوق مباشرة ويصبح قابلاً للتواصل.';
-    const btn = modal.querySelector('button[type="submit"]');
-    if (btn) btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> نشر على السحابة';
-  }
-}
-
-/* ═══════ دوال التعديل والحذف للمنشورات ═══════ */
 async function deleteListing(id) {
   if (!currentUser) { openAuthModal(); return; }
   const l = listingData.find(x => String(x.id) === String(id));
@@ -2005,9 +1888,7 @@ function editListing(id) {
   openModal('create-modal');
 }
 
-/* =========================================================
-   CONTACT
-========================================================= */
+/* ============ CONTACT ============ */
 async function openContact(listingId) {
   if (!currentUser) { openAuthModal(); return; }
   const { data, error } = await sb.rpc('get_listing_contact', { p_listing_id: listingId });
@@ -2030,9 +1911,7 @@ function sendContactWhatsApp() {
 
 async function copyContactMsg() { copyText($('contact-msg').value); }
 
-/* =========================================================
-   WORKSPACE
-========================================================= */
+/* ============ WORKSPACE ============ */
 async function loadWorkspace() {
   if (!currentUser) return;
   const [connRes, favRes, msgRes, profRes] = await Promise.all([
@@ -2091,25 +1970,19 @@ async function updateConnection(id, status) {
   else { toast('تم التحديث ✓', 'success'); loadWorkspace(); }
 }
 
-/* =========================================================
-   REALTIME
-========================================================= */
+/* ============ REALTIME ============ */
 function setupRealtime() {
   if (!currentUser) return;
   teardownRealtime();
   const msgChannel = sb.channel('wefaq_msgs')
-    .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages', filter: `recipient_id=eq.${currentUser.id}` },
-      payload => {
-        toast('<i class="fa-solid fa-envelope"></i> لديك رسالة جديدة', 'info');
-        if (activeConnection && payload.new.connection_id === activeConnection) loadChat();
-        loadWorkspace();
-      })
-    .subscribe();
+    .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages', filter: `recipient_id=eq.${currentUser.id}` }, payload => {
+      toast('<i class="fa-solid fa-envelope"></i> لديك رسالة جديدة', 'info');
+      if (activeConnection && payload.new.connection_id === activeConnection) loadChat();
+      loadWorkspace();
+    }).subscribe();
   realtimeChannels.push(msgChannel);
   const connChannel = sb.channel('wefaq_conns')
-    .on('postgres_changes', { event: '*', schema: 'public', table: 'connections', filter: `provider_id=eq.${currentUser.id}` },
-      () => { toast('<i class="fa-solid fa-handshake"></i> تحديث على طلب اتصال', 'info'); loadWorkspace(); })
-    .subscribe();
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'connections', filter: `provider_id=eq.${currentUser.id}` }, () => { toast('<i class="fa-solid fa-handshake"></i> تحديث على طلب اتصال', 'info'); loadWorkspace(); }).subscribe();
   realtimeChannels.push(connChannel);
 }
 
@@ -2118,12 +1991,9 @@ function teardownRealtime() {
   realtimeChannels = [];
 }
 
-/* =========================================================
-   CHAT
-========================================================= */
+/* ============ CHAT ============ */
 async function openChat(connectionId, recipientId) {
-  activeConnection = connectionId;
-  activeRecipient = recipientId;
+  activeConnection = connectionId; activeRecipient = recipientId;
   openModal('chat-modal');
   await loadChat();
 }
@@ -2153,18 +2023,40 @@ async function sendChat(e) {
 
 function closeChat() { closeModal('chat-modal'); activeConnection = null; activeRecipient = null; }
 
-/* =========================================================
-   COMMUNITIES
-========================================================= */
-const COMM_KEY = 'wefaq_communities_v1';
-let commFilter = 'all';
+/* ============ COMMUNITIES — سحابي ============ */
+async function loadCommunities() {
+  const grid = $('comm-grid');
+  if (!grid) return;
+  grid.innerHTML = '<div class="col-span-full text-center py-8 text-slate-400 text-sm">جارٍ التحميل...</div>';
 
-function getCommunities() {
-  try { return JSON.parse(localStorage.getItem(COMM_KEY) || '[]'); }
-  catch { return []; }
+  const { data, error } = await sb.from('communities').select('*').order('created_at', { ascending: false }).limit(100);
+  if (error) {
+    grid.innerHTML = `<div class="col-span-full text-center text-sm text-red-500 py-8">خطأ: ${esc(error.message)}</div>`;
+    return;
+  }
+  communitiesData = data || [];
+  renderCommunities();
 }
-function setCommunities(list) { localStorage.setItem(COMM_KEY, JSON.stringify(list.slice(0, 200))); }
-function openCommunityModal() { openModal('comm-modal'); }
+
+function openCommunityModal() {
+  if (!currentUser) {
+    toast('سجّل الدخول أولاً لإضافة مجتمع', 'warn');
+    openAuthModal();
+    return;
+  }
+  resetCommunityForm();
+  openModal('comm-modal');
+}
+
+function resetCommunityForm() {
+  const form = $('comm-modal').querySelector('form');
+  if (form) { form.reset(); form.dataset.editId = ''; }
+  const h2 = $('comm-modal').querySelector('h2');
+  if (h2) h2.textContent = 'أضف مجتمعاً عاماً';
+  const btn = $('comm-modal').querySelector('button[type="submit"]');
+  if (btn) btn.textContent = 'حفظ';
+}
+
 function setCommunityFilter(f) {
   commFilter = f;
   document.querySelectorAll('.cf-btn').forEach(b => {
@@ -2174,44 +2066,108 @@ function setCommunityFilter(f) {
   renderCommunities();
 }
 
-function submitCommunity(e) {
+async function submitCommunity(e) {
   e.preventDefault();
+  if (!currentUser) { openAuthModal(); return; }
+
   const platform = $('cm-platform').value;
   const url = $('cm-url').value.trim();
-  const host = platform === 'telegram' ? /^https:\/\/(t\.me|telegram\.me)\//i : /^https:\/\/(www\.)?facebook\.com\//i;
+  const host = platform === 'telegram'
+    ? /^https:\/\/(t\.me|telegram\.me)\//i
+    : /^https:\/\/(www\.)?facebook\.com\//i;
   if (!host.test(url)) { toast('الرابط غير صالح لهذه المنصة', 'error'); return; }
-  const list = getCommunities();
-  list.unshift({
-    id: 'c_' + Date.now(), platform,
-    name: $('cm-name').value.trim(), url,
+
+  const editId = $('comm-modal').querySelector('form').dataset.editId || '';
+  const payload = {
+    platform,
+    name: $('cm-name').value.trim(),
+    url,
     category: $('cm-category').value.trim(),
     region: $('cm-region').value.trim(),
     description: $('cm-desc').value.trim(),
-    created_at: new Date().toISOString()
-  });
-  setCommunities(list);
+    updated_at: new Date().toISOString()
+  };
+
+  let error;
+  if (editId) {
+    ({ error } = await sb.from('communities').update(payload).eq('id', editId));
+  } else {
+    payload.user_id = currentUser.id;
+    ({ error } = await sb.from('communities').insert(payload));
+  }
+
+  if (error) { toast('فشل الحفظ: ' + error.message, 'error'); return; }
+  toast(editId ? 'تم حفظ التعديلات ✓' : 'تمت إضافة المجتمع ✓', 'success');
   closeModal('comm-modal');
-  $('cm-name').value = ''; $('cm-url').value = ''; $('cm-category').value = ''; $('cm-region').value = ''; $('cm-desc').value = '';
-  toast('تمت إضافة المجتمع ✓', 'success');
-  renderCommunities();
+  resetCommunityForm();
+  loadCommunities();
+}
+
+function editCommunity(id) {
+  const c = communitiesData.find(x => String(x.id) === String(id));
+  if (!c) return;
+  if (!currentUser || String(c.user_id) !== String(currentUser.id)) { toast('لا يمكنك تعديل مجتمع ليس لك', 'error'); return; }
+  $('cm-platform').value = c.platform || 'telegram';
+  $('cm-name').value = c.name || '';
+  $('cm-url').value = c.url || '';
+  $('cm-category').value = c.category || '';
+  $('cm-region').value = c.region || '';
+  $('cm-desc').value = c.description || '';
+  $('comm-modal').querySelector('form').dataset.editId = id;
+  const h2 = $('comm-modal').querySelector('h2');
+  if (h2) h2.textContent = 'تعديل المجتمع';
+  const btn = $('comm-modal').querySelector('button[type="submit"]');
+  if (btn) btn.textContent = 'حفظ التعديلات';
+  openModal('comm-modal');
+}
+
+async function deleteCommunity(id) {
+  const c = communitiesData.find(x => String(x.id) === String(id));
+  if (!c) return;
+  if (!currentUser || String(c.user_id) !== String(currentUser.id)) { toast('لا يمكنك حذف مجتمع ليس لك', 'error'); return; }
+  if (!confirm('هل أنت متأكد من حذف هذا المجتمع؟ لا يمكن التراجع.')) return;
+  toast('جارٍ الحذف...', 'info');
+  const { error } = await sb.from('communities').delete().eq('id', id);
+  if (error) { toast('فشل الحذف: ' + error.message, 'error'); return; }
+  toast('تم حذف المجتمع ✓', 'success');
+  loadCommunities();
 }
 
 function renderCommunities() {
-  const q = $('comm-search').value.trim().toLowerCase();
-  const list = getCommunities()
+  const q = ($('comm-search')?.value || '').trim().toLowerCase();
+  const list = communitiesData
     .filter(c => commFilter === 'all' || c.platform === commFilter)
-    .filter(c => !q || `${c.name} ${c.category} ${c.region}`.toLowerCase().includes(q));
+    .filter(c => !q || `${c.name || ''} ${c.category || ''} ${c.region || ''}`.toLowerCase().includes(q));
   const grid = $('comm-grid');
+  if (!grid) return;
+
   if (list.length === 0) {
-    grid.innerHTML = `<div class="col-span-full text-center py-10 rounded-2xl border border-dashed border-slate-300"><i class="fa-solid fa-users text-3xl text-slate-300"></i><div class="mt-3 font-black text-slate-700">لا توجد مجتمعات بعد</div><button onclick="openCommunityModal()" class="mt-3 rounded-xl bg-brand-600 text-white px-4 py-2 text-xs font-black">أضف أول مجتمع</button></div>`;
+    grid.innerHTML = `<div class="col-span-full text-center py-10 rounded-2xl border border-dashed border-slate-300">
+      <i class="fa-solid fa-users text-3xl text-slate-300"></i>
+      <div class="mt-3 font-black text-slate-700">لا توجد مجتمعات بعد</div>
+      <button onclick="openCommunityModal()" class="mt-3 rounded-xl bg-brand-600 text-white px-4 py-2 text-xs font-black">أضف أول مجتمع</button>
+    </div>`;
     return;
   }
+
   grid.innerHTML = list.map(c => {
-    const icon = c.platform === 'telegram' ? 'fa-brands fa-telegram text-sky-500' : 'fa-brands fa-facebook-f text-blue-600';
-    return `<article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-5">
-      <div class="flex items-center gap-2 mb-3"><span class="text-lg"><i class="${icon}"></i></span><span class="text-[10px] font-black text-slate-500">${c.platform === 'telegram' ? 'تيليجرام' : 'فيسبوك'}</span></div>
+    const isTelegram = c.platform === 'telegram';
+    const icon = isTelegram ? 'fa-brands fa-telegram text-sky-500' : 'fa-brands fa-facebook-f text-blue-600';
+    const isOwner = currentUser && String(c.user_id) === String(currentUser.id);
+    const ownerActions = isOwner ? `
+      <button onclick="editCommunity('${esc(c.id)}')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="تعديل"><i class="fa-solid fa-pen text-slate-600"></i></button>
+      <button onclick="deleteCommunity('${esc(c.id)}')" class="rounded-xl border border-red-200 px-3 py-2 text-xs hover:bg-red-50" title="حذف"><i class="fa-solid fa-trash text-red-600"></i></button>
+    ` : '';
+    return `<article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-5 flex flex-col">
+      <div class="flex items-center justify-between gap-2 mb-3">
+        <div class="flex items-center gap-2">
+          <span class="text-lg"><i class="${icon}"></i></span>
+          <span class="text-[10px] font-black text-slate-500">${isTelegram ? 'تيليجرام' : 'فيسبوك'}</span>
+        </div>
+        ${isOwner ? '<span class="text-[9px] font-bold px-2 py-0.5 rounded-full wf-owner-badge">مجتمعي</span>' : ''}
+      </div>
       <h3 class="font-black text-sm text-slate-900">${esc(c.name)}</h3>
-      ${c.description ? `<p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-2">${esc(c.description)}</p>` : ''}
+      ${c.description ? `<p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-2 flex-1">${esc(c.description)}</p>` : '<div class="flex-1"></div>'}
       <div class="mt-3 flex flex-wrap gap-1.5">
         ${c.category ? `<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-50 text-brand-700">${esc(c.category)}</span>` : ''}
         ${c.region ? `<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">${esc(c.region)}</span>` : ''}
@@ -2219,13 +2175,14 @@ function renderCommunities() {
       <div class="mt-4 flex gap-2">
         <a href="${esc(c.url)}" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2.5"><i class="fa-solid fa-arrow-up-right-from-square"></i> زيارة</a>
         <button onclick="shareCommunity('${esc(c.id)}')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="مشاركة"><i class="fa-solid fa-share-nodes"></i></button>
+        ${ownerActions}
       </div>
     </article>`;
   }).join('');
 }
 
 async function shareCommunity(id) {
-  const c = getCommunities().find(x => x.id === id);
+  const c = communitiesData.find(x => String(x.id) === String(id));
   if (!c) return;
   const text = `${c.name}\n${c.description || ''}\n${c.url}`;
   if (navigator.share) {
@@ -2234,9 +2191,7 @@ async function shareCommunity(id) {
   } else copyText(text);
 }
 
-/* =========================================================
-   HERO SEARCH
-========================================================= */
+/* ============ HERO SEARCH ============ */
 function heroSearch() {
   const q = $('hero-search').value.trim();
   const role = $('hero-role').value;
@@ -2246,9 +2201,7 @@ function heroSearch() {
   loadSpecialists();
 }
 
-/* =========================================================
-   INIT
-========================================================= */
+/* ============ INIT ============ */
 document.addEventListener('DOMContentLoaded', async () => {
   initTheme();
   $('year').textContent = new Date().getFullYear();
@@ -2258,7 +2211,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   renderHeroRadarPreview();
   loadSpecialists();
   loadListings();
-  renderCommunities();
+  loadCommunities();
 
   const { data: { session } } = await sb.auth.getSession();
   currentUser = session?.user || null;
