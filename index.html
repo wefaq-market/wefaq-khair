@@ -6,7 +6,6 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23059669'/><text x='50' y='72' font-size='60' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'>و</text></svg>">
 <meta name="description" content="منصة وفاق تربط الطلاب والأسر بمعلمي القرآن واللغة العربية.">
 <meta name="theme-color" content="#059669">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
@@ -154,6 +153,23 @@ tailwind.config = {
           <div class="h-14 rounded-xl bg-white/5 wf-skeleton"></div>
           <div class="h-14 rounded-xl bg-white/5 wf-skeleton"></div>
           <div class="h-14 rounded-xl bg-white/5 wf-skeleton"></div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-white/10">
+          <div class="flex items-center justify-between gap-3">
+            <div class="flex items-center gap-2.5">
+              <span class="w-9 h-9 rounded-xl bg-emerald-500/15 text-emerald-300 grid place-items-center">
+                <i class="fa-solid fa-eye text-sm"></i>
+              </span>
+              <div>
+                <div class="text-[10px] text-white/50">عدد زوار المنصة</div>
+                <div id="visitor-count" class="font-black text-lg text-emerald-300">5,000</div>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="text-[10px] text-white/50">اليوم</div>
+              <div id="visitor-today" class="font-black text-sm text-white/80">0</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -509,6 +525,7 @@ tailwind.config = {
   <i class="fa-solid fa-arrow-up"></i>
 </button>
 
+<!-- AUTH MODAL -->
 <div id="auth-modal" class="hidden fixed inset-0 z-[150] bg-slate-950/60 backdrop-blur-sm items-center justify-center p-4">
   <div class="bg-white rounded-2xl w-full max-w-md p-6 shadow-2xl relative">
     <button onclick="closeModal('auth-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark"></i></button>
@@ -525,11 +542,7 @@ tailwind.config = {
       <input id="a-email" type="email" required placeholder="البريد الإلكتروني" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-3 text-sm outline-none">
       <input id="a-password" type="password" required minlength="8" placeholder="كلمة المرور (8+ أحرف)" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-3 text-sm outline-none">
       <select id="a-type" class="hidden w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-3 text-sm outline-none">
-        <option value="student">طالب</option>
-        <option value="parent_family">ولي أمر</option>
-        <option value="teacher">معلم</option>
-        <option value="quran_memorizer">محفّظ</option>
-        <option value="arabic_teacher">معلم عربية</option>
+        <option value="student">طالب</option><option value="parent_family">ولي أمر</option><option value="teacher">معلم</option><option value="quran_memorizer">محفّظ</option><option value="arabic_teacher">معلم عربية</option>
       </select>
       <button class="w-full rounded-xl bg-brand-600 hover:bg-brand-700 text-white py-3 text-sm font-black" id="auth-submit">دخول</button>
       <p id="auth-msg" class="text-xs text-center text-slate-500 min-h-[1rem]"></p>
@@ -537,6 +550,7 @@ tailwind.config = {
   </div>
 </div>
 
+<!-- CREATE LISTING MODAL -->
 <div id="create-modal" class="hidden fixed inset-0 z-[150] bg-slate-950/60 backdrop-blur-sm items-center justify-center p-4">
   <div class="bg-white rounded-2xl w-full max-w-xl p-6 shadow-2xl relative max-h-[92vh] overflow-y-auto">
     <button onclick="closeModal('create-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark"></i></button>
@@ -546,36 +560,22 @@ tailwind.config = {
       <div class="grid sm:grid-cols-2 gap-3">
         <input id="c-title" required maxlength="160" placeholder="العنوان الرئيسي *" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
         <select id="c-category" required class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
-          <option value="quran">📖 قرآن وتحفيظ</option>
-          <option value="hadith">📚 حديث</option>
-          <option value="arabic">📝 لغة عربية</option>
-          <option value="kids">👧 أطفال</option>
-          <option value="languages">🌍 لغات</option>
-          <option value="services">🛠 خدمة تعليمية</option>
+          <option value="quran">📖 قرآن وتحفيظ</option><option value="hadith">📚 حديث</option><option value="arabic">📝 لغة عربية</option><option value="kids">👧 أطفال</option><option value="languages">🌍 لغات</option><option value="services">🛠 خدمة تعليمية</option>
         </select>
       </div>
       <div class="grid sm:grid-cols-3 gap-3">
         <select id="c-region" required class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
-          <option value="GLOBAL">عالمي (أونلاين)</option>
-          <option value="KSA">السعودية</option>
-          <option value="EGP">مصر</option>
-          <option value="UAE">الإمارات</option>
-          <option value="GCC">الخليج</option>
-          <option value="AFRICA">أفريقيا</option>
-          <option value="FOREIGN">أوروبا / أمريكا / آسيا</option>
+          <option value="GLOBAL">عالمي (أونلاين)</option><option value="KSA">السعودية</option><option value="EGP">مصر</option><option value="UAE">الإمارات</option><option value="GCC">الخليج</option><option value="AFRICA">أفريقيا</option><option value="FOREIGN">أوروبا / أمريكا / آسيا</option>
         </select>
         <select id="c-type" required class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
-          <option value="offer">عرض</option>
-          <option value="demand">طلب</option>
+          <option value="offer">عرض</option><option value="demand">طلب</option>
         </select>
         <input id="c-amount" type="number" min="0" placeholder="السعر / الميزانية" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
       </div>
       <textarea id="c-desc" required rows="4" maxlength="2000" placeholder="الوصف الكامل *" class="w-full rounded-xl bg-slate-50 border border-slate-200 p-3 text-sm outline-none resize-none"></textarea>
       <input id="c-phone" required placeholder="واتساب مع رمز الدولة (مثال: 966500000000) *" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
       <div class="flex gap-2">
-        <button type="submit" class="flex-1 rounded-xl bg-brand-600 hover:bg-brand-700 text-white py-3 text-sm font-black">
-          <i class="fa-solid fa-cloud-arrow-up"></i> نشر على السحابة
-        </button>
+        <button type="submit" class="flex-1 rounded-xl bg-brand-600 hover:bg-brand-700 text-white py-3 text-sm font-black"><i class="fa-solid fa-cloud-arrow-up"></i> نشر على السحابة</button>
         <button type="button" onclick="closeModal('create-modal')" class="rounded-xl border border-slate-200 px-4 py-3 text-sm font-bold">إلغاء</button>
       </div>
       <p id="c-msg" class="text-xs text-center text-slate-500"></p>
@@ -583,6 +583,7 @@ tailwind.config = {
   </div>
 </div>
 
+<!-- SPECIALIST MODAL -->
 <div id="spec-modal" class="hidden fixed inset-0 z-[150] bg-slate-950/60 backdrop-blur-sm items-center justify-center p-4">
   <div class="bg-white rounded-2xl w-full max-w-2xl p-6 shadow-2xl relative max-h-[92vh] overflow-y-auto">
     <button onclick="closeModal('spec-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark"></i></button>
@@ -592,11 +593,7 @@ tailwind.config = {
       <div class="grid sm:grid-cols-2 gap-3">
         <input id="s-name" required maxlength="120" placeholder="الاسم الظاهر *" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
         <select id="s-role" required class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
-          <option value="quran_teacher">معلم قرآن</option>
-          <option value="qari">قارئ</option>
-          <option value="quran_memorizer">محفّظ</option>
-          <option value="hadith_specialist">متخصص حديث</option>
-          <option value="arabic_teacher">معلم لغة عربية</option>
+          <option value="quran_teacher">معلم قرآن</option><option value="qari">قارئ</option><option value="quran_memorizer">محفّظ</option><option value="hadith_specialist">متخصص حديث</option><option value="arabic_teacher">معلم لغة عربية</option>
         </select>
       </div>
       <div class="grid sm:grid-cols-2 gap-3">
@@ -613,9 +610,7 @@ tailwind.config = {
       </div>
       <textarea id="s-bio" required rows="4" maxlength="1600" placeholder="وصف مختصر لخبرتك وما تقدمه *" class="w-full rounded-xl bg-slate-50 border border-slate-200 p-3 text-sm outline-none resize-none"></textarea>
       <div class="flex gap-2">
-        <button type="submit" class="flex-1 rounded-xl bg-brand-600 hover:bg-brand-700 text-white py-3 text-sm font-black">
-          <i class="fa-solid fa-cloud-arrow-up"></i> نشر الملف
-        </button>
+        <button type="submit" class="flex-1 rounded-xl bg-brand-600 hover:bg-brand-700 text-white py-3 text-sm font-black"><i class="fa-solid fa-cloud-arrow-up"></i> نشر الملف</button>
         <button type="button" onclick="closeModal('spec-modal')" class="rounded-xl border border-slate-200 px-4 py-3 text-sm font-bold">إلغاء</button>
       </div>
       <p id="s-msg" class="text-xs text-center text-slate-500"></p>
@@ -623,14 +618,14 @@ tailwind.config = {
   </div>
 </div>
 
+<!-- COMMUNITY MODAL -->
 <div id="comm-modal" class="hidden fixed inset-0 z-[150] bg-slate-950/60 backdrop-blur-sm items-center justify-center p-4">
   <div class="bg-white rounded-2xl w-full max-w-lg p-6 shadow-2xl relative">
     <button onclick="closeModal('comm-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark"></i></button>
     <h2 class="font-black text-lg mb-4">أضف مجتمعاً عاماً</h2>
     <form onsubmit="submitCommunity(event)" class="space-y-3">
       <select id="cm-platform" required class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
-        <option value="telegram">تيليجرام</option>
-        <option value="facebook">فيسبوك</option>
+        <option value="telegram">تيليجرام</option><option value="facebook">فيسبوك</option>
       </select>
       <input id="cm-name" required maxlength="120" placeholder="اسم المجموعة / القناة *" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
       <input id="cm-url" required type="url" dir="ltr" placeholder="https://t.me/example *" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
@@ -645,6 +640,7 @@ tailwind.config = {
   </div>
 </div>
 
+<!-- CONTACT MODAL -->
 <div id="contact-modal" class="hidden fixed inset-0 z-[150] bg-slate-950/60 backdrop-blur-sm items-center justify-center p-4">
   <div class="bg-white rounded-2xl w-full max-w-md p-6 shadow-2xl relative">
     <button onclick="closeModal('contact-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark"></i></button>
@@ -660,6 +656,7 @@ tailwind.config = {
   </div>
 </div>
 
+<!-- CHAT MODAL -->
 <div id="chat-modal" class="hidden fixed inset-0 z-[150] bg-slate-950/60 backdrop-blur-sm items-center justify-center p-4">
   <div class="bg-white rounded-2xl w-full max-w-lg p-5 shadow-2xl">
     <div class="flex items-center justify-between mb-3">
@@ -674,6 +671,7 @@ tailwind.config = {
   </div>
 </div>
 
+<!-- DETAILS MODAL -->
 <div id="details-modal" class="hidden fixed inset-0 z-[150] bg-slate-950/60 backdrop-blur-sm items-center justify-center p-4">
   <div class="bg-white rounded-2xl w-full max-w-2xl p-6 shadow-2xl relative max-h-[92vh] overflow-y-auto">
     <button onclick="closeModal('details-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark"></i></button>
@@ -681,6 +679,7 @@ tailwind.config = {
   </div>
 </div>
 
+<!-- SOURCES MODAL -->
 <div id="sources-modal" class="hidden fixed inset-0 z-[200] bg-slate-950/80 backdrop-blur-md items-center justify-center p-4">
   <div class="bg-white rounded-3xl w-full max-w-4xl shadow-2xl relative max-h-[90vh] overflow-y-auto">
     <div class="sticky top-0 bg-white border-b border-slate-200 p-5 flex items-center justify-between rounded-t-3xl z-10">
@@ -689,14 +688,13 @@ tailwind.config = {
         <h2 class="text-xl font-black text-slate-900 mt-1" id="sources-modal-title">المصادر</h2>
         <p class="text-[11px] text-slate-500 mt-1" id="sources-modal-subtitle">روابط رسمية مباشرة</p>
       </div>
-      <button onclick="closeSources()" class="w-10 h-10 rounded-xl bg-slate-100 hover:bg-slate-200 grid place-items-center text-slate-500" aria-label="إغلاق">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
+      <button onclick="closeSources()" class="w-10 h-10 rounded-xl bg-slate-100 hover:bg-slate-200 grid place-items-center text-slate-500" aria-label="إغلاق"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <div class="p-5 bg-slate-50/60" id="sources-modal-body"></div>
   </div>
 </div>
 
+<!-- SUGGEST MODAL -->
 <div id="suggest-modal" class="hidden fixed inset-0 z-[200] bg-slate-950/80 backdrop-blur-md items-center justify-center p-4">
   <div class="bg-white rounded-3xl w-full max-w-lg shadow-2xl relative">
     <div class="border-b border-slate-200 p-5 flex items-center justify-between">
@@ -705,40 +703,16 @@ tailwind.config = {
         <h2 class="text-lg font-black text-slate-900 mt-1">ساعدنا في تحسين المنصة</h2>
         <p class="text-[11px] text-slate-500 mt-1">اقترح مصدراً مفيداً وسنراجعه قريباً</p>
       </div>
-      <button onclick="closeSuggestSource()" class="w-10 h-10 rounded-xl bg-slate-100 hover:bg-slate-200 grid place-items-center" aria-label="إغلاق">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
+      <button onclick="closeSuggestSource()" class="w-10 h-10 rounded-xl bg-slate-100 hover:bg-slate-200 grid place-items-center" aria-label="إغلاق"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <form onsubmit="submitSuggestSource(event)" class="p-5 space-y-3">
-      <div>
-        <label class="block text-xs font-bold text-slate-700 mb-1">اسم المصدر *</label>
-        <input id="sg-name" required maxlength="120" placeholder="مثال: منصة إدراك" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-brand-500">
-      </div>
-      <div>
-        <label class="block text-xs font-bold text-slate-700 mb-1">الرابط *</label>
-        <input id="sg-url" required type="url" dir="ltr" placeholder="https://example.com" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-brand-500">
-      </div>
-      <div>
-        <label class="block text-xs font-bold text-slate-700 mb-1">القسم المقترح</label>
-        <select id="sg-section" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
-          <option value="teacher">المعلمون والمتخصصون</option>
-          <option value="student">الطلاب والأسر</option>
-          <option value="pro">المهنيون والباحثون عن وظائف</option>
-          <option value="other">قسم آخر</option>
-        </select>
-      </div>
-      <div>
-        <label class="block text-xs font-bold text-slate-700 mb-1">سبب الإضافة (اختياري)</label>
-        <textarea id="sg-reason" rows="3" maxlength="500" placeholder="لماذا تعتقد أن هذا المصدر مفيد؟" class="w-full rounded-xl bg-slate-50 border border-slate-200 p-3 text-sm outline-none resize-none"></textarea>
-      </div>
-      <div class="rounded-xl bg-emerald-50 border border-emerald-200 p-3 text-[10px] leading-5 text-emerald-800">
-        <i class="fa-solid fa-shield-halved"></i>
-        <strong class="ml-1">لا ترسل بيانات شخصية</strong> — لا أرقام هواتف، لا بريد، لا معلومات خاصة.
-      </div>
+      <div><label class="block text-xs font-bold text-slate-700 mb-1">اسم المصدر *</label><input id="sg-name" required maxlength="120" placeholder="مثال: منصة إدراك" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none"></div>
+      <div><label class="block text-xs font-bold text-slate-700 mb-1">الرابط *</label><input id="sg-url" required type="url" dir="ltr" placeholder="https://example.com" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none"></div>
+      <div><label class="block text-xs font-bold text-slate-700 mb-1">القسم المقترح</label><select id="sg-section" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none"><option value="teacher">المعلمون والمتخصصون</option><option value="student">الطلاب والأسر</option><option value="pro">المهنيون</option><option value="other">قسم آخر</option></select></div>
+      <div><label class="block text-xs font-bold text-slate-700 mb-1">سبب الإضافة (اختياري)</label><textarea id="sg-reason" rows="3" maxlength="500" placeholder="لماذا هذا المصدر مفيد؟" class="w-full rounded-xl bg-slate-50 border border-slate-200 p-3 text-sm outline-none resize-none"></textarea></div>
+      <div class="rounded-xl bg-emerald-50 border border-emerald-200 p-3 text-[10px] leading-5 text-emerald-800"><i class="fa-solid fa-shield-halved"></i> <strong>لا ترسل بيانات شخصية</strong></div>
       <div class="flex gap-2 pt-2">
-        <button type="submit" class="flex-1 rounded-xl bg-violet-600 hover:bg-violet-700 text-white py-3 text-sm font-black">
-          <i class="fa-solid fa-paper-plane"></i> إرسال الاقتراح
-        </button>
+        <button type="submit" class="flex-1 rounded-xl bg-violet-600 hover:bg-violet-700 text-white py-3 text-sm font-black"><i class="fa-solid fa-paper-plane"></i> إرسال</button>
         <button type="button" onclick="closeSuggestSource()" class="rounded-xl border border-slate-200 px-4 py-3 text-sm font-bold">إلغاء</button>
       </div>
       <p id="sg-msg" class="text-xs text-center text-slate-500"></p>
@@ -750,177 +724,26 @@ tailwind.config = {
 /* ============ CONFIG ============ */
 const SUPABASE_URL = "https://zwgkrwkrohkmnyoixude.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_-tSaRUJ2HWDMSCfEg5CUEQ_dm4-uYAe";
-
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 const RADAR_SOURCES = {
   telegram: [
-    { id: 'tg_courses_islam',   channel: 'CoursesIslam',        category: 'quran',    label: 'إعلانات الدورات والدروس' },
-    { id: 'tg_online_quran',    channel: 'onlinequranteachers', category: 'quran',    label: 'وظائف معلمات قرآن للأعاجم' },
-    { id: 'tg_saudi_edu',       channel: 'stohy11111',          category: 'services', label: 'الوظائف التعليمية بالسعودية' },
-    { id: 'tg_dim_women',       channel: 'kamstreh1441',        category: 'quran',    label: 'ديم النسائية - حلقات قرآنية' },
-    { id: 'tg_bawsala',         channel: 'wq2030',              category: 'quran',    label: 'بوصلة - وظائف المعاهد القرآنية' },
-    { id: 'tg_teachers_009',    channel: 'teachers009',         category: 'arabic',   label: 'وظائف معلمين للطلاب الأعاجم' }
+    { channel: 'CoursesIslam',        category: 'quran',    label: 'إعلانات الدورات والدروس' },
+    { channel: 'onlinequranteachers', category: 'quran',    label: 'وظائف معلمات قرآن للأعاجم' },
+    { channel: 'stohy11111',          category: 'services', label: 'الوظائف التعليمية بالسعودية' },
+    { channel: 'kamstreh1441',        category: 'quran',    label: 'ديم النسائية - حلقات قرآنية' },
+    { channel: 'wq2030',              category: 'quran',    label: 'بوصلة - وظائف المعاهد القرآنية' },
+    { channel: 'teachers009',         category: 'arabic',   label: 'وظائف معلمين للطلاب الأعاجم' }
   ],
-  khamsat: [
-    { id: 'kh_main', url: 'https://khamsat.com/rss', category: 'services', label: 'خمسات - RSS' }
-  ]
+  khamsat: [{ url: 'https://khamsat.com/rss', category: 'services', label: 'خمسات - RSS' }]
 };
 
 const CORS_PROXIES = [
   url => `https://api.cors.lol/?url=${encodeURIComponent(url)}`,
   url => `https://cors.eu.org/${url}`,
   url => `https://test.cors.workers.dev/?${url}`,
-  url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
-  url => `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`
+  url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`
 ];
-
-const SOURCES = {
-  'teacher-certs': { title: 'شهادات مهنية معتمدة', subtitle: 'شهادات معترف بها للمعلمين والمحفظين', items: [
-    { name: 'هيئة تقويم التعليم والتدريب', url: 'https://etec.gov.sa', desc: 'الرخص المهنية للمعلمين في السعودية' },
-    { name: 'المركز الوطني للتعليم الإلكتروني', url: 'https://nelc.gov.sa', desc: 'اعتماد المنصات والشهادات الإلكترونية' },
-    { name: 'جمعية تحفيظ القرآن الكريم', url: 'https://quran.org.sa', desc: 'إجازات قرآنية معتمدة' },
-    { name: 'Coursera Certificates', url: 'https://coursera.org', desc: 'شهادات من جامعات عالمية' },
-    { name: 'edX Professional', url: 'https://edx.org', desc: 'شهادات احترافية من MIT وHarvard' },
-    { name: 'Microsoft Educator', url: 'https://education.microsoft.com', desc: 'شهادات تعليمية من مايكروسوفت' }
-  ]},
-  'teacher-courses': { title: 'دورات تدريب مهني', subtitle: 'دورات لتطوير مهارات التدريس والتحفيظ', items: [
-    { name: 'إدراك', url: 'https://edraak.org', desc: 'دورات عربية مجانية' },
-    { name: 'رواق', url: 'https://rwaq.org', desc: 'منصة عربية للتعليم المفتوح' },
-    { name: 'مهارات Google', url: 'https://learndigital.withgoogle.com', desc: 'دورات جوجل بالعربية' },
-    { name: 'Coursera for Teachers', url: 'https://coursera.org', desc: 'دورات تدريب المعلمين' },
-    { name: 'FutureLearn', url: 'https://futurelearn.com', desc: 'دورات بريطانية معتمدة' },
-    { name: 'Khan Academy', url: 'https://khanacademy.org', desc: 'أدوات تعليمية تفاعلية' }
-  ]},
-  'teacher-ijazat': { title: 'إجازات قرآنية معتمدة', subtitle: 'الحصول على إجازة بالسند المتصل', items: [
-    { name: 'مجمع الملك فهد', url: 'https://qurancomplex.gov.sa', desc: 'إجازات ومراجع المصحف' },
-    { name: 'الجمعية الخيرية لتحفيظ القرآن', url: 'https://quran.org.sa', desc: 'حلقات وإجازات في السعودية' },
-    { name: 'الهيئة العالمية لتحفيظ القرآن', url: 'https://quran-world.org', desc: 'شبكة عالمية للإجازات' },
-    { name: 'Ijazah Online', url: 'https://ijazah.online', desc: 'منصة إجازة أونلاين' },
-    { name: 'Quranic Arabic Institute', url: 'https://quranicarabic.org', desc: 'إجازات بالقراءات العشر' },
-    { name: 'Al-Azhar', url: 'https://azhar.edu.eg', desc: 'إجازات الأزهر الشريف' }
-  ]},
-  'teacher-platforms': { title: 'منصات تعليمية للتدريس', subtitle: 'اعرض دروسك وابنِ سمعتك', items: [
-    { name: 'منصة مدرستي', url: 'https://schools.madrasati.sa', desc: 'المنصة الرسمية للتعليم السعودي' },
-    { name: 'منصة عين', url: 'https://ien.edu.sa', desc: 'محتوى تعليمي رسمي' },
-    { name: 'نون أكاديمي', url: 'https://noonacademy.com', desc: 'منصة دورات عربية' },
-    { name: 'Udemy', url: 'https://udemy.com', desc: 'بيع دوراتك عالمياً' },
-    { name: 'Teachable', url: 'https://teachable.com', desc: 'ابن منصتك التعليمية' },
-    { name: 'Thinkific', url: 'https://thinkific.com', desc: 'منصة دورات احترافية' }
-  ]},
-  'teacher-jobs': { title: 'وظائف تعليمية', subtitle: 'فرص عمل في المدارس والمراكز', items: [
-    { name: 'جدارات', url: 'https://jadarat.sa', desc: 'الوظائف الحكومية السعودية' },
-    { name: 'طاقات', url: 'https://taqat.sa', desc: 'وظائف القطاع الخاص' },
-    { name: 'منصة سبل', url: 'https://sbl.sa', desc: 'وظائف تعليمية متخصصة' },
-    { name: 'LinkedIn Jobs', url: 'https://linkedin.com/jobs', desc: 'وظائف دولية' },
-    { name: 'Bayt.com', url: 'https://bayt.com', desc: 'أكبر موقع توظيف عربي' },
-    { name: 'GulfTalent', url: 'https://gulftalent.com', desc: 'وظائف الخليج' }
-  ]},
-  'teacher-tools': { title: 'أدوات مهنية للمعلمين', subtitle: 'أدوات تسهّل عملك اليومي', items: [
-    { name: 'Canva for Education', url: 'https://canva.com/education', desc: 'تصميم عروض تعليمية' },
-    { name: 'Google Classroom', url: 'https://classroom.google.com', desc: 'إدارة الصفوف والواجبات' },
-    { name: 'Kahoot', url: 'https://kahoot.com', desc: 'اختبارات تفاعلية' },
-    { name: 'Quizizz', url: 'https://quizizz.com', desc: 'اختبارات أونلاين' },
-    { name: 'Nearpod', url: 'https://nearpod.com', desc: 'دروس تفاعلية' },
-    { name: 'Padlet', url: 'https://padlet.com', desc: 'لوحات تعاونية للطلاب' }
-  ]},
-  'student-curricula': { title: 'مناهج دراسية رسمية', subtitle: 'مناهج وزارة التعليم السعودية', items: [
-    { name: 'منصة عين', url: 'https://ien.edu.sa', desc: 'المناهج الرسمية السعودية' },
-    { name: 'منصة مدرستي', url: 'https://schools.madrasati.sa', desc: 'الدروس والواجبات' },
-    { name: 'بوابة نور', url: 'https://noor.moe.gov.sa', desc: 'نتائج الطلاب' },
-    { name: 'Khan Academy Arabic', url: 'https://ar.khanacademy.org', desc: 'شرح مبسط لكل المواد' },
-    { name: 'CK-12 Foundation', url: 'https://ck12.org', desc: 'مناهج علمية مبسطة' },
-    { name: 'OpenStax', url: 'https://openstax.org', desc: 'كتب جامعية مجانية' }
-  ]},
-  'student-courses': { title: 'دورات أونلاين مجانية', subtitle: 'كورسات معتمدة من أفضل الجامعات', items: [
-    { name: 'إدراك', url: 'https://edraak.org', desc: 'دورات عربية مجانية' },
-    { name: 'رواق', url: 'https://rwaq.org', desc: 'منصة عربية مفتوحة' },
-    { name: 'مهارات Google', url: 'https://learndigital.withgoogle.com', desc: 'شهادات جوجل' },
-    { name: 'Coursera', url: 'https://coursera.org', desc: 'دورات جامعات عالمية' },
-    { name: 'edX', url: 'https://edx.org', desc: 'دورات MIT وHarvard' },
-    { name: 'freeCodeCamp', url: 'https://freecodecamp.org', desc: 'تعلم البرمجة مجاناً' }
-  ]},
-  'student-books': { title: 'كتب ومراجع مجانية', subtitle: 'مكتبات رقمية قانونية', items: [
-    { name: 'مكتبة نور', url: 'https://noor-book.com', desc: 'ملايين الكتب العربية' },
-    { name: 'المكتبة الوقفية', url: 'https://waqfeya.net', desc: 'كتب إسلامية وعلمية' },
-    { name: 'مؤسسة هنداوي', url: 'https://hindawi.org', desc: 'كتب أدبية وعلمية' },
-    { name: 'Project Gutenberg', url: 'https://gutenberg.org', desc: 'كتب عالمية مجانية' },
-    { name: 'Internet Archive', url: 'https://archive.org', desc: 'أرشيف الإنترنت' },
-    { name: 'Open Library', url: 'https://openlibrary.org', desc: 'مكتبة مفتوحة' }
-  ]},
-  'student-quizzes': { title: 'اختبارات مستوى تفاعلية', subtitle: 'قيّم مستواك باختبارات مجانية', items: [
-    { name: 'اختبار مستوى العربية', url: 'https://arabic-test.com', desc: 'قيّم مستواك في العربية' },
-    { name: 'اختبار حفظ القرآن', url: 'https://quran-test.com', desc: 'اختبر حفظك' },
-    { name: 'Kahoot', url: 'https://kahoot.com', desc: 'اختبارات تفاعلية' },
-    { name: 'Quizizz', url: 'https://quizizz.com', desc: 'اختبارات أونلاين' },
-    { name: 'Duolingo Test', url: 'https://duolingo.com', desc: 'اختبر مستوى الإنجليزية' },
-    { name: '16Personalities', url: 'https://16personalities.com', desc: 'اختبر شخصيتك ومسارك' }
-  ]},
-  'student-exams': { title: 'نماذج اختبارات سابقة', subtitle: 'تدرب على الامتحانات الرسمية', items: [
-    { name: 'قياس', url: 'https://etec.gov.sa', desc: 'نماذج اختبارات قياس' },
-    { name: 'وزارة التعليم', url: 'https://moe.gov.sa', desc: 'نماذج رسمية' },
-    { name: 'منصة عين', url: 'https://ien.edu.sa', desc: 'اختبارات إلكترونية' },
-    { name: 'SAT Practice', url: 'https://khanacademy.org/sat', desc: 'تدريب SAT' },
-    { name: 'IELTS Practice', url: 'https://ielts.org', desc: 'نماذج آيلتس' },
-    { name: 'TOEFL Practice', url: 'https://ets.org/toefl', desc: 'نماذج توفل' }
-  ]},
-  'student-scholarships': { title: 'منح دراسية', subtitle: 'فرص تمويل للتعليم', items: [
-    { name: 'منح وزارة التعليم', url: 'https://moe.gov.sa', desc: 'البعثات الحكومية' },
-    { name: 'منح KAUST', url: 'https://kaust.edu.sa', desc: 'منح كاملة للدراسات العليا' },
-    { name: 'منح المسك', url: 'https://misk.org.sa', desc: 'برامج ومنح للشباب' },
-    { name: 'Chevening', url: 'https://chevening.org', desc: 'منح بريطانية حكومية' },
-    { name: 'Fulbright', url: 'https://fulbright.org', desc: 'منح أمريكية' },
-    { name: 'DAAD', url: 'https://daad.de', desc: 'منح ألمانية' }
-  ]},
-  'pro-jobs': { title: 'وظائف تعليمية', subtitle: 'فرص في القطاعين الحكومي والخاص', items: [
-    { name: 'جدارات', url: 'https://jadarat.sa', desc: 'الوظائف الحكومية' },
-    { name: 'طاقات', url: 'https://taqat.sa', desc: 'وظائف القطاع الخاص' },
-    { name: 'منصة سبل', url: 'https://sbl.sa', desc: 'وظائف تعليمية' },
-    { name: 'LinkedIn', url: 'https://linkedin.com/jobs', desc: 'وظائف دولية' },
-    { name: 'Bayt', url: 'https://bayt.com', desc: 'أكبر موقع توظيف عربي' },
-    { name: 'Indeed', url: 'https://indeed.com', desc: 'وظائف عالمية' }
-  ]},
-  'pro-scholarships': { title: 'منح وبعثات', subtitle: 'فرص تمويل مهني وأكاديمي', items: [
-    { name: 'بعثات وزارة التعليم', url: 'https://moe.gov.sa', desc: 'البرامج الرسمية' },
-    { name: 'منح KAUST', url: 'https://kaust.edu.sa', desc: 'دراسات عليا' },
-    { name: 'منح المسك', url: 'https://misk.org.sa', desc: 'برامج شباب' },
-    { name: 'Chevening', url: 'https://chevening.org', desc: 'منح بريطانية' },
-    { name: 'Fulbright', url: 'https://fulbright.org', desc: 'منح أمريكية' },
-    { name: 'Erasmus+', url: 'https://erasmus-plus.ec.europa.eu', desc: 'منح أوروبية' }
-  ]},
-  'pro-training': { title: 'تدريب معتمد', subtitle: 'شهادات مهنية معترف بها', items: [
-    { name: 'إدراك', url: 'https://edraak.org', desc: 'دورات عربية' },
-    { name: 'رواق', url: 'https://rwaq.org', desc: 'منصة عربية' },
-    { name: 'Coursera', url: 'https://coursera.org', desc: 'شهادات معتمدة' },
-    { name: 'edX', url: 'https://edx.org', desc: 'شهادات احترافية' },
-    { name: 'Udacity', url: 'https://udacity.com', desc: 'نانو ديجري' },
-    { name: 'Pluralsight', url: 'https://pluralsight.com', desc: 'تدريب تقني' }
-  ]},
-  'pro-networks': { title: 'شبكات مهنية', subtitle: 'تواصل مع المحترفين', items: [
-    { name: 'LinkedIn', url: 'https://linkedin.com', desc: 'أكبر شبكة مهنية' },
-    { name: 'Bayt', url: 'https://bayt.com', desc: 'شبكة عربية' },
-    { name: 'GulfTalent', url: 'https://gulftalent.com', desc: 'شبكة الخليج' },
-    { name: 'AngelList', url: 'https://angel.co', desc: 'شبكة ريادة أعمال' },
-    { name: 'Meetup', url: 'https://meetup.com', desc: 'لقاءات مهنية' },
-    { name: 'Slack Communities', url: 'https://slack.com/community', desc: 'مجتمعات تقنية' }
-  ]},
-  'pro-events': { title: 'مؤتمرات وملتقيات', subtitle: 'فرص للتطوير المهني', items: [
-    { name: 'ملتقى التعليم السعودي', url: 'https://moe.gov.sa', desc: 'فعاليات وزارة التعليم' },
-    { name: 'LEAP', url: 'https://onegiantleap.com', desc: 'مؤتمر التقنية' },
-    { name: 'GITEX', url: 'https://gitex.com', desc: 'معرض التقنية' },
-    { name: 'TEDx', url: 'https://ted.com', desc: 'محادثات ملهمة' },
-    { name: 'EdTech Summit', url: 'https://edtechsummit.com', desc: 'قمة التعليم' },
-    { name: 'Eventbrite', url: 'https://eventbrite.com', desc: 'اكتشف الفعاليات' }
-  ]},
-  'pro-tools': { title: 'أدوات مهنية', subtitle: 'أدوات تسهّل عملك', items: [
-    { name: 'Notion', url: 'https://notion.so', desc: 'تنظيم المهام' },
-    { name: 'Trello', url: 'https://trello.com', desc: 'إدارة المشاريع' },
-    { name: 'Slack', url: 'https://slack.com', desc: 'تواصل الفرق' },
-    { name: 'Zoom', url: 'https://zoom.us', desc: 'اجتماعات أونلاين' },
-    { name: 'Google Workspace', url: 'https://workspace.google.com', desc: 'أدوات جوجل' },
-    { name: 'Canva', url: 'https://canva.com', desc: 'تصميم احترافي' }
-  ]}
-};
 
 /* ============ STATE ============ */
 let currentUser = null;
@@ -969,13 +792,7 @@ function timeAgo(iso) {
   return new Date(iso).toLocaleDateString('ar-EG');
 }
 
-function debounce(fn, wait = 300) {
-  let t;
-  return function(...args) {
-    clearTimeout(t);
-    t = setTimeout(() => fn.apply(this, args), wait);
-  };
-}
+function debounce(fn, wait = 300) { let t; return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), wait); }; }
 const debounceRenderRadar = debounce(() => renderRadar(), 280);
 const debounceLoadSpecialists = debounce(() => loadSpecialists(), 350);
 const debounceLoadListings = debounce(() => loadListings(), 350);
@@ -983,19 +800,18 @@ const debounceRenderCommunities = debounce(() => renderCommunities(), 280);
 
 function detectIntentType(text) {
   const t = (text || '').toLowerCase();
-  if (/مطلوب|أبحث عن|ابحث عن|نحتاج|نبحث عن|بحاجة إلى|looking for|need|wanted|seeking|طلب/.test(t)) return 'demand';
-  if (/متاح|أقدم|نقدم|لدي|لديّ|available|offering|provide|عرض|خدمات/.test(t)) return 'offer';
+  if (/مطلوب|أبحث عن|نحتاج|looking for|need|wanted|seeking|طلب/.test(t)) return 'demand';
+  if (/متاح|أقدم|نقدم|available|offering|provide|عرض/.test(t)) return 'offer';
   return 'unknown';
 }
 
 function extractPhone(text) {
   if (!text) return null;
   const cleaned = String(text).replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
-  const waMatch = cleaned.match(/(?:wa\.me\/|whatsapp\.com\/send\?phone=)(\+?\d{8,15})/i);
-  if (waMatch) return waMatch[1].replace(/^\+/, '');
-  const phoneMatch = cleaned.match(/(?:\+|00)(\d{9,15})/);
-  if (phoneMatch) return phoneMatch[1];
-  return null;
+  const wa = cleaned.match(/(?:wa\.me\/|whatsapp\.com\/send\?phone=)(\+?\d{8,15})/i);
+  if (wa) return wa[1].replace(/^\+/, '');
+  const ph = cleaned.match(/(?:\+|00)(\d{9,15})/);
+  return ph ? ph[1] : null;
 }
 
 function extractEmail(text) {
@@ -1004,15 +820,20 @@ function extractEmail(text) {
   return m ? m[0] : null;
 }
 
+function detectCategory(text) {
+  const t = (text || '').toLowerCase();
+  if (/قرآن|قران|تحفيظ|تجويد|حفظ|quran|tajweed|hifz/.test(t)) return 'quran';
+  if (/عربي|عربية|نحو|صرف|بلاغة|arabic/.test(t)) return 'arabic';
+  if (/حديث|hadith|سنة/.test(t)) return 'hadith';
+  if (/طفل|أطفال|اطفال|kids|child/.test(t)) return 'kids';
+  return 'services';
+}
+
 function computeScore(lead) {
   let score = 50;
   const age = (Date.now() - new Date(lead.date).getTime()) / (1000 * 60 * 60);
-  if (age < 1) score += 30;
-  else if (age < 6) score += 22;
-  else if (age < 24) score += 15;
-  else if (age < 72) score += 8;
-  if (lead.category === 'quran') score += 8;
-  else if (lead.category === 'arabic') score += 6;
+  if (age < 1) score += 30; else if (age < 6) score += 22; else if (age < 24) score += 15; else if (age < 72) score += 8;
+  if (lead.category === 'quran') score += 8; else if (lead.category === 'arabic') score += 6;
   if (lead.phone) score += 10;
   if (lead.email) score += 5;
   if (lead.intentType === 'demand') score += 6;
@@ -1035,11 +856,38 @@ $('theme-toggle').addEventListener('click', () => {
 });
 $('menu-btn').addEventListener('click', () => $('mobile-menu').classList.toggle('hidden'));
 window.addEventListener('scroll', () => {
-  const toTop = $('to-top');
-  if (window.scrollY > 500) toTop.classList.remove('hidden');
-  else toTop.classList.add('hidden');
+  const t = $('to-top');
+  if (t) t.classList.toggle('hidden', window.scrollY <= 500);
 }, { passive: true });
 $('to-top').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* ============ VISITOR COUNTER ============ */
+async function initVisitorCounter() {
+  const el = $('visitor-count');
+  const elToday = $('visitor-today');
+  if (!el) return;
+  try {
+    const { data, error } = await sb.rpc('increment_visitor');
+    if (error) throw error;
+    const total = Number(data?.total || 5000);
+    const today = Number(data?.today || 0);
+    el.textContent = total.toLocaleString('en-US');
+    if (elToday) elToday.textContent = today.toLocaleString('en-US');
+    setInterval(async () => {
+      try {
+        const { data: d2 } = await sb.rpc('get_visitor_count');
+        if (d2?.total) {
+          el.textContent = Number(d2.total).toLocaleString('en-US');
+          if (elToday) elToday.textContent = Number(d2.today || 0).toLocaleString('en-US');
+        }
+      } catch (e) {}
+    }, 60000);
+  } catch (err) {
+    console.warn('Visitor counter failed:', err);
+    el.textContent = '5,000';
+    if (elToday) elToday.textContent = '0';
+  }
+}
 
 /* ============ AUTH ============ */
 function openAuthModal() { openModal('auth-modal'); }
@@ -1056,13 +904,9 @@ function switchAuthTab(mode) {
 
 async function submitAuth(e) {
   e.preventDefault();
-  const email = $('a-email').value.trim();
-  const password = $('a-password').value;
-  const name = $('a-name').value.trim();
-  const type = $('a-type').value;
-  const msg = $('auth-msg');
-  msg.textContent = 'جارٍ المعالجة...';
-
+  const email = $('a-email').value.trim(), password = $('a-password').value;
+  const name = $('a-name').value.trim(), type = $('a-type').value;
+  const msg = $('auth-msg'); msg.textContent = 'جارٍ المعالجة...';
   if (currentAuthMode === 'login') {
     const { error } = await sb.auth.signInWithPassword({ email, password });
     if (error) { msg.textContent = error.message; return; }
@@ -1070,10 +914,7 @@ async function submitAuth(e) {
     toast('تم تسجيل الدخول ✓', 'success');
   } else {
     if (password.length < 8) { msg.textContent = 'كلمة المرور 8 أحرف على الأقل'; return; }
-    const { data, error } = await sb.auth.signUp({
-      email, password,
-      options: { data: { display_name: name, account_type: type } }
-    });
+    const { data, error } = await sb.auth.signUp({ email, password, options: { data: { display_name: name, account_type: type } } });
     if (error) { msg.textContent = error.message; return; }
     msg.textContent = data.session ? 'تم إنشاء الحساب ✓' : 'تفقد بريدك لتأكيد الحساب';
     if (data.session) { closeModal('auth-modal'); toast('مرحباً بك في وفاق ✓', 'success'); }
@@ -1086,6 +927,7 @@ async function signOut() {
   updateAuthUI();
   teardownRealtime();
   toast('تم تسجيل الخروج');
+  loadListings(); loadSpecialists(); renderCommunities();
 }
 
 function updateAuthUI() {
@@ -1104,35 +946,24 @@ function updateAuthUI() {
   }
 }
 
-$('auth-btn').addEventListener('click', () => {
-  if (currentUser) scrollTo('workspace');
-  else openAuthModal();
-});
+$('auth-btn').addEventListener('click', () => { if (currentUser) scrollTo('workspace'); else openAuthModal(); });
 
 sb.auth.onAuthStateChange((event, session) => {
   currentUser = session?.user || null;
   updateAuthUI();
   if (currentUser) { loadWorkspace(); setupRealtime(); }
   else teardownRealtime();
-  loadListings();
-  loadSpecialists();
-  renderCommunities();
+  loadListings(); loadSpecialists(); renderCommunities();
 });
 
 /* ============ RADAR ============ */
 async function fetchViaProxy(url) {
   for (const proxyFn of CORS_PROXIES) {
     try {
-      const proxyUrl = proxyFn(url);
-      const res = await fetch(proxyUrl, {
-        signal: AbortSignal.timeout(12000),
-        headers: { 'Accept': 'text/html,application/xhtml+xml,application/xml' }
-      });
+      const res = await fetch(proxyFn(url), { signal: AbortSignal.timeout(12000), headers: { 'Accept': 'text/html,application/xhtml+xml,application/xml' } });
       if (!res.ok) continue;
       let html = await res.text();
-      if (html.trim().startsWith('{')) {
-        try { const json = JSON.parse(html); if (json.contents) html = json.contents; } catch (e) {}
-      }
+      if (html.trim().startsWith('{')) { try { const j = JSON.parse(html); if (j.contents) html = j.contents; } catch (e) {} }
       if (html.includes('tgme_widget_message') || html.length > 500) return html;
     } catch (e) { continue; }
   }
@@ -1149,17 +980,13 @@ async function fetchTelegramChannel(channel, category, label) {
     return posts.map((p, i) => {
       const text = (p.querySelector('.tgme_widget_message_text')?.textContent || '').trim();
       if (!text) return null;
-      const timeEl = p.querySelector('time');
-      const date = timeEl?.getAttribute('datetime') || new Date().toISOString();
+      const date = p.querySelector('time')?.getAttribute('datetime') || new Date().toISOString();
       const link = p.querySelector('a.tgme_widget_message_date')?.getAttribute('href') || url;
       const lead = {
-        id: `tg_${channel}_${i}_${Date.now()}`,
-        source: 'telegram', sourceLabel: label, sourceUrl: link, channel,
+        id: `tg_${channel}_${i}_${Date.now()}`, source: 'telegram', sourceLabel: label, sourceUrl: link, channel,
         title: text.slice(0, 100) + (text.length > 100 ? '...' : ''),
-        snippet: text.slice(0, 400), fullText: text.slice(0, 800),
-        category, date,
-        phone: extractPhone(text), email: extractEmail(text),
-        intentType: detectIntentType(text)
+        snippet: text.slice(0, 400), fullText: text.slice(0, 800), category, date,
+        phone: extractPhone(text), email: extractEmail(text), intentType: detectIntentType(text)
       };
       lead.score = computeScore(lead);
       return lead;
@@ -1168,8 +995,7 @@ async function fetchTelegramChannel(channel, category, label) {
 }
 
 async function fetchKhamsat(url, category, label) {
-  const rssProxyUrl = url.includes('rss') ? url : `${url}/rss`;
-  const xml = await fetchViaProxy(rssProxyUrl);
+  const xml = await fetchViaProxy(url.includes('rss') ? url : `${url}/rss`);
   if (!xml) return [];
   try {
     const doc = new DOMParser().parseFromString(xml, 'application/xml');
@@ -1182,12 +1008,9 @@ async function fetchKhamsat(url, category, label) {
       const plain = desc.replace(/<[^>]*>/g, ' ');
       const lead = {
         id: `kh_${i}_${Date.now()}`, source: 'khamsat', sourceLabel: label, sourceUrl: link,
-        title: title.slice(0, 100),
-        snippet: plain.slice(0, 400), fullText: plain.slice(0, 800),
-        category: detectCategory(title + ' ' + plain),
-        date: new Date(pub).toISOString(),
-        phone: extractPhone(plain), email: extractEmail(plain),
-        intentType: detectIntentType(title + ' ' + plain)
+        title: title.slice(0, 100), snippet: plain.slice(0, 400), fullText: plain.slice(0, 800),
+        category: detectCategory(title + ' ' + plain), date: new Date(pub).toISOString(),
+        phone: extractPhone(plain), email: extractEmail(plain), intentType: detectIntentType(title + ' ' + plain)
       };
       lead.score = computeScore(lead);
       return lead;
@@ -1197,15 +1020,13 @@ async function fetchKhamsat(url, category, label) {
 
 async function fetchSupabaseLeads() {
   try {
-    const { data, error } = await sb.from('radar_leads')
-      .select('id, title, snippet, category, source, source_url, score, created_at')
-      .order('created_at', { ascending: false }).limit(100);
+    const { data, error } = await sb.from('radar_leads').select('id, title, snippet, category, source, source_url, score, created_at').order('created_at', { ascending: false }).limit(100);
     if (error || !data) return [];
     return data.map(d => {
       const lead = {
         id: `sb_${d.id}`, source: 'web', sourceLabel: d.source || 'مصدر محفوظ',
-        sourceUrl: d.source_url || '#', title: d.title, snippet: d.snippet || '',
-        fullText: d.snippet || '', category: d.category || 'services', date: d.created_at,
+        sourceUrl: d.source_url || '#', title: d.title, snippet: d.snippet || '', fullText: d.snippet || '',
+        category: d.category || 'services', date: d.created_at,
         phone: extractPhone(d.snippet || ''), email: extractEmail(d.snippet || ''),
         intentType: detectIntentType(d.title + ' ' + (d.snippet || ''))
       };
@@ -1215,52 +1036,33 @@ async function fetchSupabaseLeads() {
   } catch (e) { return []; }
 }
 
-function detectCategory(text) {
-  const t = (text || '').toLowerCase();
-  if (/قرآن|قران|تحفيظ|تجويد|حفظ|quran|tajweed|hifz/.test(t)) return 'quran';
-  if (/عربي|عربية|نحو|صرف|بلاغة|arabic/.test(t)) return 'arabic';
-  if (/حديث|hadith|سنة/.test(t)) return 'hadith';
-  if (/طفل|أطفال|اطفال|kids|child/.test(t)) return 'kids';
-  return 'services';
-}
-
 async function syncRadar(manual = false) {
   if (manual) {
     $('radar-sync-btn').disabled = true;
     $('radar-sync-btn').innerHTML = '<span class="wf-loading"></span> جارٍ المزامنة...';
     toast('جارٍ جلب الإشارات الحية...', 'info');
   }
-  const allLeads = [];
   const tgPromises = RADAR_SOURCES.telegram.map(ch => fetchTelegramChannel(ch.channel, ch.category, ch.label));
   const khPromises = RADAR_SOURCES.khamsat.map(k => fetchKhamsat(k.url, k.category, k.label));
-  const [tgResults, khResults, sbResults] = await Promise.all([
-    Promise.allSettled(tgPromises), Promise.allSettled(khPromises), fetchSupabaseLeads()
-  ]);
-  tgResults.forEach(r => { if (r.status === 'fulfilled') allLeads.push(...r.value); });
-  khResults.forEach(r => { if (r.status === 'fulfilled') allLeads.push(...r.value); });
-  allLeads.push(...sbResults);
-
+  const [tgRes, khRes, sbRes] = await Promise.all([Promise.allSettled(tgPromises), Promise.allSettled(khPromises), fetchSupabaseLeads()]);
+  const allLeads = [];
+  tgRes.forEach(r => { if (r.status === 'fulfilled') allLeads.push(...r.value); });
+  khRes.forEach(r => { if (r.status === 'fulfilled') allLeads.push(...r.value); });
+  allLeads.push(...sbRes);
   if (allLeads.length === 0 && radarLeads.length > 0) {
-    if (manual) toast('لم يتم جلب بيانات جديدة — العرض القديم محفوظ', 'warn');
+    if (manual) toast('لم يتم جلب بيانات جديدة', 'warn');
   } else {
     const seen = new Set();
-    radarLeads = allLeads.filter(l => {
-      const key = (l.title || '').slice(0, 60);
-      if (seen.has(key)) return false;
-      seen.add(key);
-      return true;
-    }).map(l => ({ ...l, category: l.category || detectCategory(l.title + ' ' + l.snippet) }));
+    radarLeads = allLeads.filter(l => { const k = (l.title || '').slice(0, 60); if (seen.has(k)) return false; seen.add(k); return true; })
+      .map(l => ({ ...l, category: l.category || detectCategory(l.title + ' ' + l.snippet) }));
   }
-
   localStorage.setItem('wefaq_radar_cache', JSON.stringify({ leads: radarLeads.slice(0, 200), ts: Date.now() }));
   localStorage.setItem('wefaq_radar_last_sync', String(Date.now()));
-
   renderRadar(); updateRadarStats(); renderHeroRadarPreview();
-
   if (manual) {
     $('radar-sync-btn').disabled = false;
     $('radar-sync-btn').innerHTML = '<i class="fa-solid fa-rotate"></i> مزامنة الآن';
-    toast(`تم جلب ${radarLeads.length} إشارة حية ✓`, 'success');
+    toast(`تم جلب ${radarLeads.length} إشارة ✓`, 'success');
   }
 }
 
@@ -1285,40 +1087,34 @@ function updateRadarStats() {
 }
 
 const PLATFORM_META = {
-  telegram: { name: 'تيليجرام', icon: 'fa-brands fa-telegram', headerCls: 'from-sky-50 to-white', iconCls: 'bg-sky-100 text-sky-600', countCls: 'bg-sky-100 text-sky-700', desc: 'قنوات ومجموعات ودورات تعليمية' },
+  telegram: { name: 'تيليجرام', icon: 'fa-brands fa-telegram', headerCls: 'from-sky-50 to-white', iconCls: 'bg-sky-100 text-sky-600', countCls: 'bg-sky-100 text-sky-700', desc: 'قنوات ومجموعات ودورات' },
   khamsat: { name: 'خمسات', icon: 'fa-solid fa-briefcase', headerCls: 'from-amber-50 to-white', iconCls: 'bg-amber-100 text-amber-600', countCls: 'bg-amber-100 text-amber-700', desc: 'خدمات تعليمية عربية' },
-  freelancer: { name: 'Freelancer', icon: 'fa-solid fa-laptop-code', headerCls: 'from-indigo-50 to-white', iconCls: 'bg-indigo-100 text-indigo-600', countCls: 'bg-indigo-100 text-indigo-700', desc: 'مشاريع ووظائف تعليمية عالمية' },
-  teacheron: { name: 'TeacherOn', icon: 'fa-solid fa-chalkboard-user', headerCls: 'from-violet-50 to-white', iconCls: 'bg-violet-100 text-violet-600', countCls: 'bg-violet-100 text-violet-700', desc: 'معلمون خصوصيون ومدرسون' },
+  freelancer: { name: 'Freelancer', icon: 'fa-solid fa-laptop-code', headerCls: 'from-indigo-50 to-white', iconCls: 'bg-indigo-100 text-indigo-600', countCls: 'bg-indigo-100 text-indigo-700', desc: 'مشاريع تعليمية عالمية' },
+  teacheron: { name: 'TeacherOn', icon: 'fa-solid fa-chalkboard-user', headerCls: 'from-violet-50 to-white', iconCls: 'bg-violet-100 text-violet-600', countCls: 'bg-violet-100 text-violet-700', desc: 'معلمون خصوصيون' },
   web: { name: 'الويب المفتوح', icon: 'fa-solid fa-globe', headerCls: 'from-emerald-50 to-white', iconCls: 'bg-emerald-100 text-emerald-600', countCls: 'bg-emerald-100 text-emerald-700', desc: 'نتائج بحث عامة' },
   other: { name: 'مصادر أخرى', icon: 'fa-solid fa-layer-group', headerCls: 'from-slate-50 to-white', iconCls: 'bg-slate-100 text-slate-600', countCls: 'bg-slate-100 text-slate-700', desc: 'مصادر متنوعة' }
 };
-
-const PLATFORM_ORDER = ['telegram', 'khamsat', 'freelancer', 'teacheron', 'web', 'other'];
+const PLATFORM_ORDER = ['telegram','khamsat','freelancer','teacheron','web','other'];
 
 function getPlatformKey(lead) {
   const s = String(lead.sourceLabel || lead.source || '').toLowerCase();
-  if (s.includes('telegram') || s === 'tg') return 'telegram';
+  if (s.includes('telegram')) return 'telegram';
   if (s.includes('khamsat') || s.includes('خمسات')) return 'khamsat';
   if (s.includes('freelancer') || s.includes('فريلانسر')) return 'freelancer';
-  if (s.includes('teacheron') || s.includes('teacher on') || s.includes('teachon')) return 'teacheron';
+  if (s.includes('teacheron') || s.includes('teacher on')) return 'teacheron';
   if (s.includes('open web') || s === 'web' || s.includes('open-web')) return 'web';
   return 'other';
 }
 
 function renderRadarCard(l) {
   const srcIcon = { telegram: 'fa-brands fa-telegram text-sky-500', khamsat: 'fa-solid fa-briefcase text-amber-500', web: 'fa-solid fa-globe text-emerald-500' };
-  const catLabel = { quran: 'قرآن', arabic: 'عربية', hadith: 'حديث', kids: 'أطفال', services: 'خدمات' };
-  const typeBadge = l.intentType === 'demand'
-    ? '<span class="text-[9px] font-black px-2 py-0.5 rounded-full wf-badge-demand"><i class="fa-solid fa-user-graduate"></i> طلب</span>'
-    : l.intentType === 'offer'
-      ? '<span class="text-[9px] font-black px-2 py-0.5 rounded-full wf-badge-offer"><i class="fa-solid fa-bullhorn"></i> عرض</span>'
-      : '';
-  const phoneChip = l.phone
-    ? `<span class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700"><i class="fa-solid fa-phone"></i> ${esc(l.phone)}</span>`
-    : '';
+  const catLabel = { quran:'قرآن', arabic:'عربية', hadith:'حديث', kids:'أطفال', services:'خدمات' };
+  const typeBadge = l.intentType === 'demand' ? '<span class="text-[9px] font-black px-2 py-0.5 rounded-full wf-badge-demand">طلب</span>'
+    : l.intentType === 'offer' ? '<span class="text-[9px] font-black px-2 py-0.5 rounded-full wf-badge-offer">عرض</span>' : '';
+  const phoneChip = l.phone ? `<span class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700">${esc(l.phone)}</span>` : '';
   return `<article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-4 flex flex-col">
     <div class="flex items-start justify-between gap-2 mb-2 flex-wrap">
-      <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full bg-slate-100 text-slate-700"><i class="${srcIcon[l.source] || 'fa-solid fa-circle'}"></i> ${esc(l.sourceLabel || l.source)}</span>
+      <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full bg-slate-100 text-slate-700"><i class="${srcIcon[l.source] || 'fa-solid fa-globe'}"></i> ${esc(l.sourceLabel || l.source)}</span>
       <div class="flex items-center gap-1.5 flex-wrap">${typeBadge}<span class="text-[10px] text-slate-400">${timeAgo(l.date)}</span></div>
     </div>
     <h3 class="font-black text-sm text-slate-900 leading-6 line-clamp-2">${esc(l.title)}</h3>
@@ -1348,7 +1144,6 @@ function renderRadar() {
   const cat = $('radar-filter-category').value;
   const typ = $('radar-filter-type').value;
   const sort = $('radar-filter-sort').value;
-
   let list = radarLeads.filter(l => {
     if (src !== 'all' && l.source !== src) return false;
     if (cat !== 'all' && l.category !== cat) return false;
@@ -1356,40 +1151,32 @@ function renderRadar() {
     if (q && !(`${l.title} ${l.snippet}`.toLowerCase().includes(q))) return false;
     return true;
   });
-
   const container = $('radar-grid');
   if (list.length === 0) {
     container.className = '';
-    container.innerHTML = `<div class="rounded-2xl border border-dashed border-slate-300 p-8 text-center text-slate-400 text-sm"><i class="fa-solid fa-inbox text-3xl mb-3 text-slate-300"></i><div class="font-black text-slate-700">لا توجد إشارات حالية بهذه الفلاتر</div><div class="text-xs mt-1">جرّب مزامنة جديدة أو غيّر الفلتر</div></div>`;
+    container.innerHTML = `<div class="rounded-2xl border border-dashed border-slate-300 p-8 text-center text-slate-400 text-sm"><div class="font-black text-slate-700">لا توجد إشارات حالية</div><div class="text-xs mt-1">جرّب مزامنة جديدة أو غيّر الفلتر</div></div>`;
     return;
   }
-
   const grouped = {};
   list.forEach(l => { const k = getPlatformKey(l); if (!grouped[k]) grouped[k] = []; grouped[k].push(l); });
   Object.keys(grouped).forEach(k => {
     if (sort === 'score') grouped[k].sort((a, b) => (b.score || 0) - (a.score || 0));
     else grouped[k].sort((a, b) => new Date(b.date) - new Date(a.date));
   });
-
   const presentKeys = PLATFORM_ORDER.filter(k => grouped[k] && grouped[k].length > 0);
   container.className = 'space-y-6';
-
   container.innerHTML = presentKeys.map(key => {
     const meta = PLATFORM_META[key];
     const allItems = grouped[key];
     const isExpanded = expandedPlatforms.has(key);
     const visible = isExpanded ? allItems : allItems.slice(0, 3);
     const remaining = allItems.length - 3;
-
     let moreBtn = '';
     if (remaining > 0) {
-      if (isExpanded) {
-        moreBtn = `<div class="col-span-full text-center pt-2"><button onclick="togglePlatformExpand('${key}')" class="inline-flex items-center gap-2 rounded-xl border-2 border-slate-200 bg-white hover:bg-slate-50 text-slate-700 px-5 py-2.5 text-xs font-black transition"><i class="fa-solid fa-chevron-up"></i> عرض أقل</button></div>`;
-      } else {
-        moreBtn = `<div class="col-span-full text-center pt-2"><button onclick="togglePlatformExpand('${key}')" class="inline-flex items-center gap-2 rounded-xl border-2 border-dashed border-slate-300 bg-white hover:bg-brand-50 hover:border-brand-400 text-brand-700 px-5 py-2.5 text-xs font-black transition"><i class="fa-solid fa-plus-circle"></i> عرض ${remaining} إشارة إضافية</button></div>`;
-      }
+      moreBtn = isExpanded
+        ? `<div class="col-span-full text-center pt-2"><button onclick="togglePlatformExpand('${key}')" class="inline-flex items-center gap-2 rounded-xl border-2 border-slate-200 bg-white hover:bg-slate-50 text-slate-700 px-5 py-2.5 text-xs font-black transition"><i class="fa-solid fa-chevron-up"></i> عرض أقل</button></div>`
+        : `<div class="col-span-full text-center pt-2"><button onclick="togglePlatformExpand('${key}')" class="inline-flex items-center gap-2 rounded-xl border-2 border-dashed border-slate-300 bg-white hover:bg-brand-50 hover:border-brand-400 text-brand-700 px-5 py-2.5 text-xs font-black transition"><i class="fa-solid fa-plus-circle"></i> عرض ${remaining} إشارة إضافية</button></div>`;
     }
-
     return `<section class="rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm">
       <header class="flex items-center justify-between gap-3 px-5 py-4 bg-gradient-to-l ${meta.headerCls} border-b border-slate-100">
         <div class="flex items-center gap-3 min-w-0">
@@ -1415,155 +1202,256 @@ function renderHeroRadarPreview() {
 
 async function saveLeadToWorkspace(leadId) {
   if (!currentUser) { openAuthModal(); return; }
-  const lead = radarLeads.find(l => l.id === leadId);
-  if (!lead) return;
+  const lead = radarLeads.find(l => l.id === leadId); if (!lead) return;
   if (lead.id.startsWith('sb_')) {
     const uuid = lead.id.replace('sb_', '');
     const { error } = await sb.from('radar_user_saves').insert({ user_id: currentUser.id, lead_id: uuid, notes: lead.sourceLabel || null });
     if (error) {
-      if (error.code === '23505' || error.message.includes('duplicate')) toast('محفوظة مسبقاً ✓', 'info');
-      else toast('لم يتم الحفظ: ' + error.message, 'error');
-    } else toast('تم حفظ الإشارة في مساحتك ✓', 'success');
+      if (error.code === '23505') toast('محفوظة مسبقاً ✓', 'info');
+      else toast('لم يتم الحفظ', 'error');
+    } else toast('تم الحفظ ✓', 'success');
     return;
   }
-  const { data: inserted, error: insErr } = await sb.from('radar_leads').insert({
-    title: lead.title, snippet: lead.snippet, category: lead.category,
-    source: lead.sourceLabel, source_url: lead.sourceUrl, score: lead.score
-  }).select('id').single();
-  if (insErr || !inserted) { toast('لم يتم الحفظ: ' + (insErr?.message || 'خطأ'), 'error'); return; }
-  const { error: saveErr } = await sb.from('radar_user_saves').insert({ user_id: currentUser.id, lead_id: inserted.id, notes: null });
-  if (saveErr) {
-    if (saveErr.code === '23505' || saveErr.message.includes('duplicate')) toast('محفوظة مسبقاً ✓', 'info');
-    else toast('لم يتم الحفظ: ' + saveErr.message, 'error');
-  } else toast('تم حفظ الإشارة ✓', 'success');
+  const { data: ins, error: e1 } = await sb.from('radar_leads').insert({ title: lead.title, snippet: lead.snippet, category: lead.category, source: lead.sourceLabel, source_url: lead.sourceUrl, score: lead.score }).select('id').single();
+  if (e1 || !ins) { toast('لم يتم الحفظ', 'error'); return; }
+  const { error: e2 } = await sb.from('radar_user_saves').insert({ user_id: currentUser.id, lead_id: ins.id, notes: null });
+  if (e2) {
+    if (e2.code === '23505') toast('محفوظة مسبقاً ✓', 'info');
+    else toast('لم يتم الحفظ', 'error');
+  } else toast('تم الحفظ ✓', 'success');
 }
 
 async function shareRadarLead(leadId) {
-  const lead = radarLeads.find(l => l.id === leadId);
-  if (!lead) return;
+  const lead = radarLeads.find(l => l.id === leadId); if (!lead) return;
   const text = `${lead.title}\n${lead.snippet?.slice(0, 200) || ''}\n${lead.sourceUrl}`;
-  if (navigator.share) {
-    try { await navigator.share({ title: lead.title, text, url: lead.sourceUrl }); }
-    catch (e) { if (e.name !== 'AbortError') copyText(text); }
-  } else copyText(text);
+  if (navigator.share) { try { await navigator.share({ title: lead.title, text, url: lead.sourceUrl }); } catch (e) { if (e.name !== 'AbortError') copyText(text); } }
+  else copyText(text);
 }
 
-async function copyText(text) {
-  try { await navigator.clipboard.writeText(text); toast('تم النسخ ✓', 'success'); }
-  catch { toast('تعذر النسخ', 'error'); }
-}
+async function copyText(text) { try { await navigator.clipboard.writeText(text); toast('تم النسخ ✓', 'success'); } catch { toast('تعذر النسخ', 'error'); } }
 
-/* ============ SOURCES ============ */
+/* ============ SOURCES MODAL ============ */
+const SOURCES = {
+  'teacher-certs': { title: 'شهادات مهنية معتمدة', subtitle: 'شهادات معترف بها للمعلمين والمحفظين', items: [
+    { name: 'هيئة تقويم التعليم والتدريب', url: 'https://etec.gov.sa', desc: 'الرخص المهنية للمعلمين' },
+    { name: 'المركز الوطني للتعليم الإلكتروني', url: 'https://nelc.gov.sa', desc: 'اعتماد المنصات والشهادات' },
+    { name: 'جمعية تحفيظ القرآن الكريم', url: 'https://quran.org.sa', desc: 'إجازات قرآنية معتمدة' },
+    { name: 'Coursera Certificates', url: 'https://coursera.org', desc: 'شهادات من جامعات عالمية' },
+    { name: 'edX Professional', url: 'https://edx.org', desc: 'شهادات من MIT وHarvard' },
+    { name: 'Microsoft Educator', url: 'https://education.microsoft.com', desc: 'شهادات من مايكروسوفت' }
+  ]},
+  'teacher-courses': { title: 'دورات تدريب مهني', subtitle: 'دورات لتطوير مهارات التدريس', items: [
+    { name: 'إدراك', url: 'https://edraak.org', desc: 'دورات عربية مجانية' },
+    { name: 'رواق', url: 'https://rwaq.org', desc: 'منصة عربية مفتوحة' },
+    { name: 'مهارات Google', url: 'https://learndigital.withgoogle.com', desc: 'دورات جوجل بالعربية' },
+    { name: 'Coursera for Teachers', url: 'https://coursera.org', desc: 'تدريب معلمين' },
+    { name: 'FutureLearn', url: 'https://futurelearn.com', desc: 'دورات بريطانية' },
+    { name: 'Khan Academy', url: 'https://khanacademy.org', desc: 'أدوات تعليمية' }
+  ]},
+  'teacher-ijazat': { title: 'إجازات قرآنية معتمدة', subtitle: 'الحصول على إجازة بالسند المتصل', items: [
+    { name: 'مجمع الملك فهد', url: 'https://qurancomplex.gov.sa', desc: 'إجازات ومراجع المصحف' },
+    { name: 'الجمعية الخيرية لتحفيظ القرآن', url: 'https://quran.org.sa', desc: 'حلقات وإجازات' },
+    { name: 'الهيئة العالمية لتحفيظ القرآن', url: 'https://quran-world.org', desc: 'شبكة عالمية' },
+    { name: 'Ijazah Online', url: 'https://ijazah.online', desc: 'إجازة أونلاين' },
+    { name: 'Quranic Arabic Institute', url: 'https://quranicarabic.org', desc: 'إجازات بالقراءات العشر' },
+    { name: 'Al-Azhar', url: 'https://azhar.edu.eg', desc: 'إجازات الأزهر' }
+  ]},
+  'teacher-platforms': { title: 'منصات تعليمية للتدريس', subtitle: 'اعرض دروسك وابنِ سمعتك', items: [
+    { name: 'منصة مدرستي', url: 'https://schools.madrasati.sa', desc: 'المنصة الرسمية للتعليم' },
+    { name: 'منصة عين', url: 'https://ien.edu.sa', desc: 'محتوى تعليمي رسمي' },
+    { name: 'نون أكاديمي', url: 'https://noonacademy.com', desc: 'منصة دورات عربية' },
+    { name: 'Udemy', url: 'https://udemy.com', desc: 'بيع دوراتك عالمياً' },
+    { name: 'Teachable', url: 'https://teachable.com', desc: 'ابن منصتك' },
+    { name: 'Thinkific', url: 'https://thinkific.com', desc: 'منصة احترافية' }
+  ]},
+  'teacher-jobs': { title: 'وظائف تعليمية', subtitle: 'فرص عمل في المدارس والمراكز', items: [
+    { name: 'جدارات', url: 'https://jadarat.sa', desc: 'الوظائف الحكومية' },
+    { name: 'طاقات', url: 'https://taqat.sa', desc: 'وظائف القطاع الخاص' },
+    { name: 'منصة سبل', url: 'https://sbl.sa', desc: 'وظائف تعليمية' },
+    { name: 'LinkedIn Jobs', url: 'https://linkedin.com/jobs', desc: 'وظائف دولية' },
+    { name: 'Bayt.com', url: 'https://bayt.com', desc: 'أكبر موقع عربي' },
+    { name: 'GulfTalent', url: 'https://gulftalent.com', desc: 'وظائف الخليج' }
+  ]},
+  'teacher-tools': { title: 'أدوات مهنية للمعلمين', subtitle: 'أدوات تسهّل عملك اليومي', items: [
+    { name: 'Canva for Education', url: 'https://canva.com/education', desc: 'تصميم عروض' },
+    { name: 'Google Classroom', url: 'https://classroom.google.com', desc: 'إدارة الصفوف' },
+    { name: 'Kahoot', url: 'https://kahoot.com', desc: 'اختبارات تفاعلية' },
+    { name: 'Quizizz', url: 'https://quizizz.com', desc: 'اختبارات أونلاين' },
+    { name: 'Nearpod', url: 'https://nearpod.com', desc: 'دروس تفاعلية' },
+    { name: 'Padlet', url: 'https://padlet.com', desc: 'لوحات تعاونية' }
+  ]},
+  'student-curricula': { title: 'مناهج دراسية رسمية', subtitle: 'مناهج وزارة التعليم', items: [
+    { name: 'منصة عين', url: 'https://ien.edu.sa', desc: 'المناهج الرسمية' },
+    { name: 'منصة مدرستي', url: 'https://schools.madrasati.sa', desc: 'الدروس والواجبات' },
+    { name: 'بوابة نور', url: 'https://noor.moe.gov.sa', desc: 'نتائج الطلاب' },
+    { name: 'Khan Academy Arabic', url: 'https://ar.khanacademy.org', desc: 'شرح مبسط' },
+    { name: 'CK-12 Foundation', url: 'https://ck12.org', desc: 'مناهج علمية' },
+    { name: 'OpenStax', url: 'https://openstax.org', desc: 'كتب جامعية مجانية' }
+  ]},
+  'student-courses': { title: 'دورات أونلاين مجانية', subtitle: 'كورسات معتمدة', items: [
+    { name: 'إدراك', url: 'https://edraak.org', desc: 'دورات عربية' },
+    { name: 'رواق', url: 'https://rwaq.org', desc: 'منصة مفتوحة' },
+    { name: 'مهارات Google', url: 'https://learndigital.withgoogle.com', desc: 'شهادات جوجل' },
+    { name: 'Coursera', url: 'https://coursera.org', desc: 'جامعات عالمية' },
+    { name: 'edX', url: 'https://edx.org', desc: 'MIT وHarvard' },
+    { name: 'freeCodeCamp', url: 'https://freecodecamp.org', desc: 'تعلم البرمجة' }
+  ]},
+  'student-books': { title: 'كتب ومراجع مجانية', subtitle: 'مكتبات رقمية', items: [
+    { name: 'مكتبة نور', url: 'https://noor-book.com', desc: 'ملايين الكتب' },
+    { name: 'المكتبة الوقفية', url: 'https://waqfeya.net', desc: 'كتب إسلامية' },
+    { name: 'مؤسسة هنداوي', url: 'https://hindawi.org', desc: 'كتب أدبية' },
+    { name: 'Project Gutenberg', url: 'https://gutenberg.org', desc: 'كتب عالمية' },
+    { name: 'Internet Archive', url: 'https://archive.org', desc: 'أرشيف الإنترنت' },
+    { name: 'Open Library', url: 'https://openlibrary.org', desc: 'مكتبة مفتوحة' }
+  ]},
+  'student-quizzes': { title: 'اختبارات مستوى', subtitle: 'قيّم مستواك مجاناً', items: [
+    { name: 'اختبار مستوى العربية', url: 'https://arabic-test.com', desc: 'قيّم العربية' },
+    { name: 'Kahoot', url: 'https://kahoot.com', desc: 'اختبارات تفاعلية' },
+    { name: 'Quizizz', url: 'https://quizizz.com', desc: 'اختبارات أونلاين' },
+    { name: 'Duolingo Test', url: 'https://duolingo.com', desc: 'اختبر الإنجليزية' },
+    { name: '16Personalities', url: 'https://16personalities.com', desc: 'اختبر شخصيتك' },
+    { name: 'Cambridge Test', url: 'https://cambridgeenglish.org', desc: 'اختبار كامبريدج' }
+  ]},
+  'student-exams': { title: 'نماذج اختبارات', subtitle: 'تدرب على الامتحانات', items: [
+    { name: 'قياس', url: 'https://etec.gov.sa', desc: 'نماذج قياس' },
+    { name: 'وزارة التعليم', url: 'https://moe.gov.sa', desc: 'نماذج رسمية' },
+    { name: 'منصة عين', url: 'https://ien.edu.sa', desc: 'اختبارات إلكترونية' },
+    { name: 'SAT Practice', url: 'https://khanacademy.org/sat', desc: 'تدريب SAT' },
+    { name: 'IELTS Practice', url: 'https://ielts.org', desc: 'نماذج آيلتس' },
+    { name: 'TOEFL Practice', url: 'https://ets.org/toefl', desc: 'نماذج توفل' }
+  ]},
+  'student-scholarships': { title: 'منح دراسية', subtitle: 'فرص تمويل للتعليم', items: [
+    { name: 'منح وزارة التعليم', url: 'https://moe.gov.sa', desc: 'البعثات الحكومية' },
+    { name: 'منح KAUST', url: 'https://kaust.edu.sa', desc: 'منح كاملة' },
+    { name: 'منح المسك', url: 'https://misk.org.sa', desc: 'برامج للشباب' },
+    { name: 'Chevening', url: 'https://chevening.org', desc: 'منح بريطانية' },
+    { name: 'Fulbright', url: 'https://fulbright.org', desc: 'منح أمريكية' },
+    { name: 'DAAD', url: 'https://daad.de', desc: 'منح ألمانية' }
+  ]},
+  'pro-jobs': { title: 'وظائف تعليمية', subtitle: 'فرص حكومية وخاصة', items: [
+    { name: 'جدارات', url: 'https://jadarat.sa', desc: 'الوظائف الحكومية' },
+    { name: 'طاقات', url: 'https://taqat.sa', desc: 'القطاع الخاص' },
+    { name: 'منصة سبل', url: 'https://sbl.sa', desc: 'وظائف تعليمية' },
+    { name: 'LinkedIn', url: 'https://linkedin.com/jobs', desc: 'وظائف دولية' },
+    { name: 'Bayt', url: 'https://bayt.com', desc: 'أكبر موقع عربي' },
+    { name: 'Indeed', url: 'https://indeed.com', desc: 'وظائف عالمية' }
+  ]},
+  'pro-scholarships': { title: 'منح وبعثات', subtitle: 'فرص تمويل مهني', items: [
+    { name: 'بعثات وزارة التعليم', url: 'https://moe.gov.sa', desc: 'برامج رسمية' },
+    { name: 'منح KAUST', url: 'https://kaust.edu.sa', desc: 'دراسات عليا' },
+    { name: 'منح المسك', url: 'https://misk.org.sa', desc: 'برامج شباب' },
+    { name: 'Chevening', url: 'https://chevening.org', desc: 'منح بريطانية' },
+    { name: 'Fulbright', url: 'https://fulbright.org', desc: 'منح أمريكية' },
+    { name: 'Erasmus+', url: 'https://erasmus-plus.ec.europa.eu', desc: 'منح أوروبية' }
+  ]},
+  'pro-training': { title: 'تدريب معتمد', subtitle: 'شهادات مهنية', items: [
+    { name: 'إدراك', url: 'https://edraak.org', desc: 'دورات عربية' },
+    { name: 'رواق', url: 'https://rwaq.org', desc: 'منصة عربية' },
+    { name: 'Coursera', url: 'https://coursera.org', desc: 'شهادات معتمدة' },
+    { name: 'edX', url: 'https://edx.org', desc: 'شهادات احترافية' },
+    { name: 'Udacity', url: 'https://udacity.com', desc: 'نانو ديجري' },
+    { name: 'Pluralsight', url: 'https://pluralsight.com', desc: 'تدريب تقني' }
+  ]},
+  'pro-networks': { title: 'شبكات مهنية', subtitle: 'تواصل مع المحترفين', items: [
+    { name: 'LinkedIn', url: 'https://linkedin.com', desc: 'شبكة مهنية' },
+    { name: 'Bayt', url: 'https://bayt.com', desc: 'شبكة عربية' },
+    { name: 'GulfTalent', url: 'https://gulftalent.com', desc: 'شبكة الخليج' },
+    { name: 'AngelList', url: 'https://angel.co', desc: 'ريادة أعمال' },
+    { name: 'Meetup', url: 'https://meetup.com', desc: 'لقاءات مهنية' },
+    { name: 'Slack Communities', url: 'https://slack.com/community', desc: 'مجتمعات تقنية' }
+  ]},
+  'pro-events': { title: 'مؤتمرات وملتقيات', subtitle: 'فرص للتطوير', items: [
+    { name: 'ملتقى التعليم السعودي', url: 'https://moe.gov.sa', desc: 'فعاليات رسمية' },
+    { name: 'LEAP', url: 'https://onegiantleap.com', desc: 'مؤتمر التقنية' },
+    { name: 'GITEX', url: 'https://gitex.com', desc: 'معرض التقنية' },
+    { name: 'TEDx', url: 'https://ted.com', desc: 'محادثات ملهمة' },
+    { name: 'EdTech Summit', url: 'https://edtechsummit.com', desc: 'قمة التعليم' },
+    { name: 'Eventbrite', url: 'https://eventbrite.com', desc: 'اكتشف الفعاليات' }
+  ]},
+  'pro-tools': { title: 'أدوات مهنية', subtitle: 'تسهّل عملك', items: [
+    { name: 'Notion', url: 'https://notion.so', desc: 'تنظيم المهام' },
+    { name: 'Trello', url: 'https://trello.com', desc: 'إدارة المشاريع' },
+    { name: 'Slack', url: 'https://slack.com', desc: 'تواصل الفرق' },
+    { name: 'Zoom', url: 'https://zoom.us', desc: 'اجتماعات أونلاين' },
+    { name: 'Google Workspace', url: 'https://workspace.google.com', desc: 'أدوات جوجل' },
+    { name: 'Canva', url: 'https://canva.com', desc: 'تصميم احترافي' }
+  ]}
+};
+
 function openSources(key) {
   const data = SOURCES[key]; if (!data) return;
   $('sources-modal-badge').textContent = '🔗 مصادر موثوقة';
   $('sources-modal-title').textContent = data.title;
   $('sources-modal-subtitle').textContent = data.subtitle;
-
-  const detectSourceType = (url) => {
+  const detectType = (url) => {
     const u = url.toLowerCase();
-    if (/\.gov\.|gov\.sa|\.gov$|gov\.eg|gov\.ae/.test(u)) return { label: 'حكومي', icon: 'fa-solid fa-landmark', cls: 'bg-emerald-50 text-emerald-700 border-emerald-200' };
-    if (/\.edu\.|edu\.sa|\.edu$|\.ac\.|university/.test(u)) return { label: 'تعليمي', icon: 'fa-solid fa-graduation-cap', cls: 'bg-blue-50 text-blue-700 border-blue-200' };
-    if (/\.org\.|\.org$|org\.sa/.test(u)) return { label: 'منظمة', icon: 'fa-solid fa-hand-holding-heart', cls: 'bg-violet-50 text-violet-700 border-violet-200' };
+    if (/\.gov|gov\.sa|gov\.eg/.test(u)) return { label: 'حكومي', icon: 'fa-solid fa-landmark', cls: 'bg-emerald-50 text-emerald-700 border-emerald-200' };
+    if (/\.edu|edu\.sa|\.ac\./.test(u)) return { label: 'تعليمي', icon: 'fa-solid fa-graduation-cap', cls: 'bg-blue-50 text-blue-700 border-blue-200' };
+    if (/\.org/.test(u)) return { label: 'منظمة', icon: 'fa-solid fa-hand-holding-heart', cls: 'bg-violet-50 text-violet-700 border-violet-200' };
     return { label: 'منصة', icon: 'fa-solid fa-globe', cls: 'bg-amber-50 text-amber-700 border-amber-200' };
   };
-  const detectLang = (url) => {
-    const u = url.toLowerCase();
-    if (/\.sa|\.eg|\.ae|\.jo|\.ma|\.dz|\.tn|\.iq|\.ps|\.om|\.qa|\.kw|\.bh|\.ye|\.sd|\.ly|\.lb|\.sy|\.edu\.sa/.test(u)) return { label: 'عربي', flag: '🌍' };
-    return { label: 'دولي', flag: '🌐' };
-  };
-
-  $('sources-modal-body').innerHTML = `<div class="grid grid-cols-1 md:grid-cols-2 gap-4">` +
-    data.items.map((item) => {
-      const src = detectSourceType(item.url);
-      const lang = detectLang(item.url);
+  $('sources-modal-body').innerHTML = '<div class="grid grid-cols-1 md:grid-cols-2 gap-4">' +
+    data.items.map(item => {
+      const src = detectType(item.url);
       const cleanUrl = item.url.replace(/^https?:\/\//,'').replace(/\/$/,'');
       return `<a href="${esc(item.url)}" target="_blank" rel="noopener noreferrer" class="group block rounded-2xl border border-slate-200 bg-white p-4 flex flex-col hover:border-brand-400 hover:-translate-y-0.5 hover:shadow-lg transition">
-        <div class="flex items-center justify-between gap-2 mb-3 flex-wrap">
-          <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full border ${src.cls}"><i class="${src.icon}"></i> ${src.label}</span>
-          <span class="text-[10px] font-bold text-slate-400">${lang.flag} ${lang.label}</span>
-        </div>
-        <div class="flex-1 min-h-0">
-          <h4 class="font-black text-sm text-slate-900 leading-6 line-clamp-2">${esc(item.name)}</h4>
-          <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">${esc(item.desc)}</p>
-          <p class="mt-2 text-[10px] text-slate-400 font-mono truncate" dir="ltr">${esc(cleanUrl)}</p>
-        </div>
-        <div class="mt-4">
-          <span class="block text-center rounded-xl bg-slate-900 group-hover:bg-brand-600 text-white text-xs font-black py-2.5 transition"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> زيارة المصدر</span>
-        </div>
+        <div class="flex items-center justify-between gap-2 mb-3"><span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full border ${src.cls}"><i class="${src.icon}"></i> ${src.label}</span></div>
+        <div class="flex-1 min-h-0"><h4 class="font-black text-sm text-slate-900 leading-6 line-clamp-2">${esc(item.name)}</h4><p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">${esc(item.desc)}</p><p class="mt-2 text-[10px] text-slate-400 font-mono truncate" dir="ltr">${esc(cleanUrl)}</p></div>
+        <div class="mt-4"><span class="block text-center rounded-xl bg-slate-900 group-hover:bg-brand-600 text-white text-xs font-black py-2.5 transition"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> زيارة المصدر</span></div>
       </a>`;
-    }).join('') + `</div>`;
+    }).join('') + '</div>';
   openModal('sources-modal');
 }
-
 function closeSources() { closeModal('sources-modal'); }
 
 function openSuggestSource(section) {
-  const select = $('sg-section');
-  const map = { teacher: 'teacher', student: 'student', pro: 'pro' };
-  if (map[section]) select.value = map[section];
+  const map = { teacher:'teacher', student:'student', pro:'pro' };
+  if (map[section]) $('sg-section').value = map[section];
   $('sg-msg').textContent = '';
   openModal('suggest-modal');
 }
-
 function closeSuggestSource() { closeModal('suggest-modal'); }
 
 async function submitSuggestSource(e) {
   e.preventDefault();
   const msg = $('sg-msg');
-  const name = $('sg-name').value.trim();
-  const url = $('sg-url').value.trim();
-  const section = $('sg-section').value;
-  const reason = $('sg-reason').value.trim();
-  if (!name || !url) { msg.textContent = 'يرجى إكمال الحقول المطلوبة'; return; }
-  if (!/^https?:\/\//i.test(url)) { msg.textContent = 'الرابط يجب أن يبدأ بـ https://'; return; }
+  const name = $('sg-name').value.trim(), url = $('sg-url').value.trim();
+  const section = $('sg-section').value, reason = $('sg-reason').value.trim();
+  if (!name || !url) { msg.textContent = 'أكمل الحقول'; return; }
+  if (!/^https?:\/\//i.test(url)) { msg.textContent = 'الرابط يبدأ بـ https://'; return; }
   msg.textContent = 'جارٍ الإرسال...';
   try {
     const { error } = await sb.from('source_suggestions').insert({ name, url, section, reason: reason || null, submitted_by: currentUser?.id || null, status: 'pending' });
-    if (error) {
-      const list = JSON.parse(localStorage.getItem('wefaq_source_suggestions') || '[]');
-      list.unshift({ name, url, section, reason, created_at: new Date().toISOString() });
-      localStorage.setItem('wefaq_source_suggestions', JSON.stringify(list.slice(0, 50)));
-      msg.textContent = 'تم الحفظ محلياً';
-      toast('تم استلام اقتراحك — شكراً لك ✓', 'success');
-      e.target.reset(); setTimeout(closeSuggestSource, 900); return;
-    }
-    msg.textContent = 'تم الإرسال ✓';
-    toast('شكراً لك! سنراجع اقتراحك قريباً ✓', 'success');
-    e.target.reset(); setTimeout(closeSuggestSource, 900);
-  } catch (err) { msg.textContent = 'حدث خطأ، حاول مرة أخرى'; }
+    if (error) { msg.textContent = 'تم الحفظ محلياً'; toast('تم استلام اقتراحك ✓', 'success'); e.target.reset(); setTimeout(closeSuggestSource, 900); return; }
+    msg.textContent = 'تم الإرسال ✓'; toast('شكراً لك! ✓', 'success'); e.target.reset(); setTimeout(closeSuggestSource, 900);
+  } catch (err) { msg.textContent = 'حدث خطأ'; }
 }
 
 /* ============ SPECIALISTS ============ */
 async function loadSpecialists() {
-  const q = $('spec-search').value.trim();
-  const role = $('spec-role').value;
-  const mode = $('spec-mode').value;
+  const q = $('spec-search').value.trim(), role = $('spec-role').value, mode = $('spec-mode').value;
   const grid = $('spec-grid');
   grid.innerHTML = '<div class="col-span-full text-center py-8 text-slate-400 text-sm">جارٍ التحميل...</div>';
-
   let query = sb.from('education_profiles').select('*').eq('is_active', true).limit(60);
   if (role !== 'all') query = query.eq('role', role);
   const { data, error } = await query;
   if (error) { grid.innerHTML = `<div class="col-span-full text-center text-sm text-red-500 py-8">خطأ: ${esc(error.message)}</div>`; return; }
-
   let list = (data || []);
   if (q) list = list.filter(s => `${s.display_name || ''} ${s.specialty || ''} ${s.country || ''} ${s.city || ''}`.toLowerCase().includes(q.toLowerCase()));
   if (mode !== 'all') list = list.filter(s => Array.isArray(s.teaching_mode) && s.teaching_mode.includes(mode));
   specialistData = list;
-
   if (list.length === 0) {
-    grid.innerHTML = `<div class="col-span-full text-center py-10 rounded-2xl border border-dashed border-slate-300"><i class="fa-solid fa-user-graduate text-3xl text-slate-300"></i><div class="mt-3 font-black text-slate-700">لا توجد ملفات مطابقة</div><p class="text-xs text-slate-500 mt-1">كن أول من ينضم إلى الشبكة</p><button onclick="openSpecialistJoin()" class="mt-3 rounded-xl bg-brand-600 text-white px-4 py-2 text-xs font-black">انضم كمتخصص</button></div>`;
+    grid.innerHTML = `<div class="col-span-full text-center py-10 rounded-2xl border border-dashed border-slate-300"><div class="font-black text-slate-700">لا توجد ملفات مطابقة</div><button onclick="openSpecialistJoin()" class="mt-3 rounded-xl bg-brand-600 text-white px-4 py-2 text-xs font-black">انضم كمتخصص</button></div>`;
     return;
   }
-  const roleLabels = { quran_teacher: 'معلم قرآن', qari: 'قارئ', quran_memorizer: 'محفّظ', hadith_specialist: 'متخصص حديث', arabic_teacher: 'معلم عربية' };
+  const roleLabels = { quran_teacher:'معلم قرآن', qari:'قارئ', quran_memorizer:'محفّظ', hadith_specialist:'متخصص حديث', arabic_teacher:'معلم عربية' };
   grid.innerHTML = list.map(s => {
     const wa = String(s.whatsapp || '').replace(/[^0-9]/g, '');
-    const verified = ['verified', 'admin_reviewed'].includes(s.verification_status);
+    const verified = ['verified','admin_reviewed'].includes(s.verification_status);
     const isOwner = currentUser && String(s.id) === String(currentUser.id);
     const ownerActions = isOwner ? `
-      <button onclick="editSpecialist('${esc(s.id)}')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="تعديل ملفي"><i class="fa-solid fa-pen text-slate-600"></i></button>
-      <button onclick="deleteSpecialist('${esc(s.id)}')" class="rounded-xl border border-red-200 px-3 py-2 text-xs hover:bg-red-50" title="حذف ملفي"><i class="fa-solid fa-trash text-red-600"></i></button>
+      <button onclick="editSpecialist('${esc(s.id)}')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="تعديل"><i class="fa-solid fa-pen text-slate-600"></i></button>
+      <button onclick="deleteSpecialist('${esc(s.id)}')" class="rounded-xl border border-red-200 px-3 py-2 text-xs hover:bg-red-50" title="حذف"><i class="fa-solid fa-trash text-red-600"></i></button>
     ` : '';
     return `<article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-5 flex flex-col">
       <div class="flex items-start gap-3">
@@ -1575,7 +1463,7 @@ async function loadSpecialists() {
           </div>
           <div class="text-[10px] font-bold text-brand-700 mt-0.5">${esc(roleLabels[s.role] || s.role || '')}</div>
           ${s.city || s.country ? `<div class="text-[10px] text-slate-500 mt-1"><i class="fa-solid fa-location-dot"></i> ${esc([s.city, s.country].filter(Boolean).join('، '))}</div>` : ''}
-          ${verified ? `<div class="text-[10px] font-bold text-emerald-600 mt-1"><i class="fa-solid fa-circle-check"></i> ملف موثق</div>` : ''}
+          ${verified ? `<div class="text-[10px] font-bold text-emerald-600 mt-1"><i class="fa-solid fa-circle-check"></i> موثق</div>` : ''}
         </div>
       </div>
       ${s.specialty ? `<div class="mt-3 text-xs text-slate-600"><i class="fa-solid fa-book-open text-brand-600"></i> ${esc(s.specialty)}</div>` : ''}
@@ -1592,7 +1480,7 @@ async function loadSpecialists() {
 
 function openSpecialistDetails(id) {
   const s = specialistData.find(x => String(x.id) === String(id)); if (!s) return;
-  const roleLabels = { quran_teacher: 'معلم قرآن', qari: 'قارئ', quran_memorizer: 'محفّظ', hadith_specialist: 'متخصص حديث', arabic_teacher: 'معلم عربية' };
+  const roleLabels = { quran_teacher:'معلم قرآن', qari:'قارئ', quran_memorizer:'محفّظ', hadith_specialist:'متخصص حديث', arabic_teacher:'معلم عربية' };
   const wa = String(s.whatsapp || '').replace(/[^0-9]/g, '');
   const tg = String(s.telegram || '').replace(/^@/, '');
   $('details-content').innerHTML = `
@@ -1603,12 +1491,6 @@ function openSpecialistDetails(id) {
         <div class="text-sm font-bold text-brand-700 mt-1">${esc(roleLabels[s.role] || s.role || '')}</div>
         ${s.city || s.country ? `<div class="text-xs text-slate-500 mt-2"><i class="fa-solid fa-location-dot"></i> ${esc([s.city, s.country].filter(Boolean).join('، '))}</div>` : ''}
       </div>
-    </div>
-    <div class="mt-5 grid grid-cols-2 gap-3">
-      ${s.specialty ? `<div class="rounded-xl border border-slate-200 p-3"><div class="text-[10px] font-black text-slate-400 mb-1">التخصص</div><div class="text-sm font-bold">${esc(s.specialty)}</div></div>` : ''}
-      ${s.years_experience ? `<div class="rounded-xl border border-slate-200 p-3"><div class="text-[10px] font-black text-slate-400 mb-1">الخبرة</div><div class="text-sm font-bold">${Number(s.years_experience)} سنوات</div></div>` : ''}
-      ${Array.isArray(s.teaching_mode) && s.teaching_mode.length ? `<div class="rounded-xl border border-slate-200 p-3"><div class="text-[10px] font-black text-slate-400 mb-1">أنماط التعليم</div><div class="text-sm font-bold">${esc(s.teaching_mode.join(' · '))}</div></div>` : ''}
-      ${Array.isArray(s.languages) && s.languages.length ? `<div class="rounded-xl border border-slate-200 p-3"><div class="text-[10px] font-black text-slate-400 mb-1">اللغات</div><div class="text-sm font-bold">${esc(s.languages.join(' · '))}</div></div>` : ''}
     </div>
     ${s.bio ? `<div class="mt-4 rounded-xl border border-slate-200 p-4"><div class="text-[10px] font-black text-slate-400 mb-2">نبذة</div><p class="text-sm text-slate-600 leading-7">${esc(s.bio)}</p></div>` : ''}
     <div class="mt-5 grid grid-cols-2 gap-2">
@@ -1621,10 +1503,8 @@ function openSpecialistDetails(id) {
 function resetSpecialistForm() {
   const form = $('spec-modal').querySelector('form');
   if (form) { form.reset(); form.dataset.editId = ''; }
-  const h2 = $('spec-modal').querySelector('h2');
-  if (h2) h2.textContent = 'انضم كمتخصص';
-  const btn = $('spec-modal').querySelector('button[type="submit"]');
-  if (btn) btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> نشر الملف';
+  const h2 = $('spec-modal').querySelector('h2'); if (h2) h2.textContent = 'انضم كمتخصص';
+  const btn = $('spec-modal').querySelector('button[type="submit"]'); if (btn) btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> نشر الملف';
   $('s-msg').textContent = '';
 }
 
@@ -1638,72 +1518,49 @@ async function submitSpecialist(e) {
   e.preventDefault();
   if (!currentUser) { closeModal('spec-modal'); openAuthModal(); return; }
   const msg = $('s-msg');
-  const form = $('spec-modal').querySelector('form');
-  const editId = form?.dataset.editId || '';
+  const editId = $('spec-modal').querySelector('form').dataset.editId || '';
   msg.textContent = editId ? 'جارٍ الحفظ...' : 'جارٍ النشر...';
-
   const payload = {
-    display_name: $('s-name').value.trim(),
-    role: $('s-role').value,
-    specialty: $('s-specialty').value.trim(),
-    bio: $('s-bio').value.trim(),
-    country: $('s-country').value.trim(),
-    whatsapp: $('s-whatsapp').value.trim(),
+    display_name: $('s-name').value.trim(), role: $('s-role').value,
+    specialty: $('s-specialty').value.trim(), bio: $('s-bio').value.trim(),
+    country: $('s-country').value.trim(), whatsapp: $('s-whatsapp').value.trim(),
     telegram: $('s-telegram').value.trim(),
     years_experience: Number($('s-experience').value) || 0,
     teaching_mode: $('s-modes').value.split(',').map(x => x.trim()).filter(Boolean),
     is_active: true
   };
-
   let error;
-  if (editId) {
-    ({ error } = await sb.from('education_profiles').update(payload).eq('id', editId));
-  } else {
-    payload.id = currentUser.id;
-    payload.verification_status = 'pending';
-    ({ error } = await sb.from('education_profiles').upsert(payload, { onConflict: 'id' }));
-  }
+  if (editId) { ({ error } = await sb.from('education_profiles').update(payload).eq('id', editId)); }
+  else { payload.id = currentUser.id; payload.verification_status = 'pending'; ({ error } = await sb.from('education_profiles').upsert(payload, { onConflict: 'id' })); }
   if (error) { msg.textContent = error.message; toast('فشل: ' + error.message, 'error'); return; }
   await sb.from('profiles').upsert({ id: currentUser.id, display_name: payload.display_name, region: payload.country, bio: payload.bio, updated_at: new Date().toISOString() }, { onConflict: 'id' });
-  msg.textContent = editId ? 'تم الحفظ ✓' : 'تم النشر ✓';
   toast(editId ? 'تم حفظ التعديلات ✓' : 'تم نشر ملفك ✓', 'success');
-  closeModal('spec-modal');
-  resetSpecialistForm();
-  loadSpecialists();
+  closeModal('spec-modal'); resetSpecialistForm(); loadSpecialists();
 }
 
 async function deleteSpecialist(id) {
   if (!currentUser) { openAuthModal(); return; }
-  const s = specialistData.find(x => String(x.id) === String(id));
-  if (!s) { toast('الملف غير موجود', 'error'); return; }
+  const s = specialistData.find(x => String(x.id) === String(id)); if (!s) return;
   if (String(s.id) !== String(currentUser.id)) { toast('لا يمكنك حذف ملف ليس لك', 'error'); return; }
-  if (!confirm('هل أنت متأكد من حذف ملفك كمتخصص؟ لا يمكن التراجع.')) return;
-  toast('جارٍ الحذف...', 'info');
+  if (!confirm('هل أنت متأكد من حذف ملفك كمتخصص؟')) return;
   const { error } = await sb.from('education_profiles').delete().eq('id', id);
   if (error) { toast('فشل الحذف: ' + error.message, 'error'); return; }
-  toast('تم حذف ملفك ✓', 'success');
-  loadSpecialists();
+  toast('تم حذف ملفك ✓', 'success'); loadSpecialists();
 }
 
 function editSpecialist(id) {
   if (!currentUser) { openAuthModal(); return; }
-  const s = specialistData.find(x => String(x.id) === String(id));
-  if (!s) return;
+  const s = specialistData.find(x => String(x.id) === String(id)); if (!s) return;
   if (String(s.id) !== String(currentUser.id)) { toast('لا يمكنك تعديل ملف ليس لك', 'error'); return; }
-  $('s-name').value = s.display_name || '';
-  $('s-role').value = s.role || 'quran_teacher';
-  $('s-specialty').value = s.specialty || '';
-  $('s-country').value = s.country || '';
-  $('s-whatsapp').value = s.whatsapp || '';
-  $('s-telegram').value = s.telegram || '';
+  $('s-name').value = s.display_name || ''; $('s-role').value = s.role || 'quran_teacher';
+  $('s-specialty').value = s.specialty || ''; $('s-country').value = s.country || '';
+  $('s-whatsapp').value = s.whatsapp || ''; $('s-telegram').value = s.telegram || '';
   $('s-experience').value = s.years_experience || 0;
   $('s-modes').value = Array.isArray(s.teaching_mode) ? s.teaching_mode.join(',') : '';
   $('s-bio').value = s.bio || '';
   $('spec-modal').querySelector('form').dataset.editId = id;
-  const h2 = $('spec-modal').querySelector('h2');
-  if (h2) h2.textContent = 'تعديل ملفي كمتخصص';
-  const btn = $('spec-modal').querySelector('button[type="submit"]');
-  if (btn) btn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> حفظ التعديلات';
+  const h2 = $('spec-modal').querySelector('h2'); if (h2) h2.textContent = 'تعديل ملفي كمتخصص';
+  const btn = $('spec-modal').querySelector('button[type="submit"]'); if (btn) btn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> حفظ التعديلات';
   $('s-msg').textContent = '';
   openModal('spec-modal');
 }
@@ -1711,26 +1568,22 @@ function editSpecialist(id) {
 /* ============ LISTINGS ============ */
 async function loadListings() {
   const q = $('list-search').value.trim().toLowerCase();
-  const cat = $('list-cat').value;
-  const type = $('list-type').value;
+  const cat = $('list-cat').value, type = $('list-type').value;
   const grid = $('list-grid');
   grid.innerHTML = '<div class="col-span-full text-center py-8 text-slate-400 text-sm">جارٍ التحميل...</div>';
-
   let query = sb.from('listings').select('*').order('created_at', { ascending: false }).limit(60);
   if (cat !== 'all') query = query.eq('category', cat);
   if (type !== 'all') query = query.eq('type', type);
   const { data, error } = await query;
   if (error) { grid.innerHTML = `<div class="col-span-full text-center text-sm text-red-500 py-8">خطأ: ${esc(error.message)}</div>`; return; }
-
   let list = (data || []);
   if (q) list = list.filter(l => `${l.title || ''} ${l.description || ''}`.toLowerCase().includes(q));
   listingData = list;
-
   if (list.length === 0) {
-    grid.innerHTML = `<div class="col-span-full text-center py-10 rounded-2xl border border-dashed border-slate-300"><i class="fa-solid fa-inbox text-3xl text-slate-300"></i><div class="mt-3 font-black text-slate-700">لا توجد منشورات بعد</div><button onclick="openCreateModal()" class="mt-3 rounded-xl bg-brand-600 text-white px-4 py-2 text-xs font-black">كن أول من ينشر</button></div>`;
+    grid.innerHTML = `<div class="col-span-full text-center py-10 rounded-2xl border border-dashed border-slate-300"><div class="font-black text-slate-700">لا توجد منشورات</div><button onclick="openCreateModal()" class="mt-3 rounded-xl bg-brand-600 text-white px-4 py-2 text-xs font-black">كن أول من ينشر</button></div>`;
     return;
   }
-  const catLabel = { quran: '📖 قرآن', arabic: '📝 عربية', hadith: '📚 حديث', kids: '👧 أطفال', languages: '🌍 لغات', services: '🛠 خدمات' };
+  const catLabel = { quran:'📖 قرآن', arabic:'📝 عربية', hadith:'📚 حديث', kids:'👧 أطفال', languages:'🌍 لغات', services:'🛠 خدمات' };
   grid.innerHTML = list.map(l => {
     const isOwner = currentUser && String(l.user_id) === String(currentUser.id);
     const ownerActions = isOwner ? `
@@ -1762,7 +1615,7 @@ async function loadListings() {
 
 function openListingDetails(id) {
   const l = listingData.find(x => String(x.id) === String(id)); if (!l) return;
-  const catLabel = { quran: '📖 قرآن وتحفيظ', arabic: '📝 لغة عربية', hadith: '📚 حديث', kids: '👧 أطفال', languages: '🌍 لغات', services: '🛠 خدمات' };
+  const catLabel = { quran:'📖 قرآن', arabic:'📝 عربية', hadith:'📚 حديث', kids:'👧 أطفال', languages:'🌍 لغات', services:'🛠 خدمات' };
   const regionLabels = { GLOBAL:'عالمي', KSA:'السعودية', EGP:'مصر', UAE:'الإمارات', GCC:'الخليج', AFRICA:'أفريقيا', FOREIGN:'أوروبا/أمريكا/آسيا' };
   $('details-content').innerHTML = `
     <div class="mb-4">
@@ -1771,13 +1624,9 @@ function openListingDetails(id) {
       <h2 class="text-xl font-black text-slate-900 mt-3">${esc(l.title)}</h2>
       <div class="text-xs text-slate-500 mt-2"><i class="fa-solid fa-location-dot"></i> ${esc(regionLabels[l.region] || l.region || '—')} · ${timeAgo(l.created_at)}</div>
     </div>
-    <div class="rounded-xl border border-slate-200 p-4 mb-4"><div class="text-[10px] font-black text-slate-400 mb-2">الوصف</div><p class="text-sm text-slate-700 leading-7 whitespace-pre-wrap">${esc(l.description)}</p></div>
-    <div class="grid grid-cols-2 gap-3 mb-4">
-      <div class="rounded-xl border border-slate-200 p-3"><div class="text-[10px] font-black text-slate-400 mb-1">الميزانية</div><div class="text-lg font-black text-brand-700">${Number(l.amount) > 0 ? Number(l.amount).toLocaleString() + ' ر.س' : 'حسب الاتفاق'}</div></div>
-      <div class="rounded-xl border border-slate-200 p-3"><div class="text-[10px] font-black text-slate-400 mb-1">التحقق</div><div class="text-sm font-bold ${l.badge && l.badge !== 'unverified' ? 'text-emerald-600' : 'text-slate-400'}">${l.badge && l.badge !== 'unverified' ? 'موثق' : 'غير موثق'}</div></div>
-    </div>
+    <div class="rounded-xl border border-slate-200 p-4 mb-4"><p class="text-sm text-slate-700 leading-7 whitespace-pre-wrap">${esc(l.description)}</p></div>
     <div class="flex gap-2">
-      <button onclick="closeModal('details-modal'); openContact('${esc(l.id)}')" class="flex-1 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white py-3 text-sm font-black"><i class="fa-solid fa-handshake"></i> تواصل مع صاحب المنشور</button>
+      <button onclick="closeModal('details-modal'); openContact('${esc(l.id)}')" class="flex-1 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white py-3 text-sm font-black"><i class="fa-solid fa-handshake"></i> تواصل</button>
       <button onclick="shareListing('${esc(l.id)}')" class="rounded-xl border border-slate-200 px-4 py-3 text-sm font-bold hover:bg-slate-50"><i class="fa-solid fa-share-nodes"></i></button>
     </div>`;
   openModal('details-modal');
@@ -1786,10 +1635,8 @@ function openListingDetails(id) {
 async function shareListing(id) {
   const l = listingData.find(x => String(x.id) === String(id)); if (!l) return;
   const text = `${l.title}\n${(l.description || '').slice(0, 200)}`;
-  if (navigator.share) {
-    try { await navigator.share({ title: l.title, text }); }
-    catch (e) { if (e.name !== 'AbortError') copyText(text); }
-  } else copyText(text);
+  if (navigator.share) { try { await navigator.share({ title: l.title, text }); } catch (e) { if (e.name !== 'AbortError') copyText(text); } }
+  else copyText(text);
 }
 
 function resetCreateForm() {
@@ -1798,12 +1645,9 @@ function resetCreateForm() {
   $('c-msg').textContent = '';
   const modal = $('create-modal');
   if (modal) {
-    const h2 = modal.querySelector('h2');
-    if (h2) h2.textContent = 'نشر طلب / عرض تعليمي';
-    const p = modal.querySelector('p');
-    if (p) p.textContent = 'سيظهر منشورك في السوق مباشرة ويصبح قابلاً للتواصل.';
-    const btn = modal.querySelector('button[type="submit"]');
-    if (btn) btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> نشر على السحابة';
+    const h2 = modal.querySelector('h2'); if (h2) h2.textContent = 'نشر طلب / عرض تعليمي';
+    const p = modal.querySelector('p'); if (p) p.textContent = 'سيظهر منشورك في السوق مباشرة ويصبح قابلاً للتواصل.';
+    const btn = modal.querySelector('button[type="submit"]'); if (btn) btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> نشر على السحابة';
   }
 }
 
@@ -1818,71 +1662,52 @@ async function submitListing(e) {
   if (!currentUser) { openAuthModal(); return; }
   const msg = $('c-msg');
   const editId = $('create-form').dataset.editId || '';
-
   const payload = {
-    title: $('c-title').value.trim(),
-    category: $('c-category').value,
-    region: $('c-region').value,
-    type: $('c-type').value,
+    title: $('c-title').value.trim(), category: $('c-category').value,
+    region: $('c-region').value, type: $('c-type').value,
     amount: Number($('c-amount').value) || 0,
-    description: $('c-desc').value.trim(),
-    phone: $('c-phone').value.trim(),
-    badge: 'unverified',
-    status: 'approved'
+    description: $('c-desc').value.trim(), phone: $('c-phone').value.trim(),
+    badge: 'unverified', status: 'approved'
   };
-
   if (editId) {
     msg.textContent = 'جارٍ الحفظ...';
     const { error } = await sb.from('listings').update(payload).eq('id', editId);
-    if (error) { msg.textContent = error.message; toast('فشل الحفظ: ' + error.message, 'error'); return; }
+    if (error) { msg.textContent = error.message; toast('فشل: ' + error.message, 'error'); return; }
     toast('تم حفظ التعديلات ✓', 'success');
   } else {
     msg.textContent = 'جارٍ النشر...';
     payload.user_id = currentUser.id;
     const { error } = await sb.from('listings').insert(payload);
-    if (error) { msg.textContent = error.message; toast('فشل النشر: ' + error.message, 'error'); return; }
-    toast('تم النشر بنجاح ✓', 'success');
+    if (error) { msg.textContent = error.message; toast('فشل: ' + error.message, 'error'); return; }
+    toast('تم النشر ✓', 'success');
   }
-
-  closeModal('create-modal');
-  resetCreateForm();
-  loadListings();
+  closeModal('create-modal'); resetCreateForm(); loadListings();
 }
 
 async function deleteListing(id) {
   if (!currentUser) { openAuthModal(); return; }
-  const l = listingData.find(x => String(x.id) === String(id));
-  if (!l) { toast('المنشور غير موجود', 'error'); return; }
+  const l = listingData.find(x => String(x.id) === String(id)); if (!l) return;
   if (String(l.user_id) !== String(currentUser.id)) { toast('لا يمكنك حذف منشور ليس لك', 'error'); return; }
-  if (!confirm('هل أنت متأكد من حذف هذا المنشور؟ لا يمكن التراجع.')) return;
-  toast('جارٍ الحذف...', 'info');
+  if (!confirm('هل أنت متأكد من حذف هذا المنشور؟')) return;
   const { error } = await sb.from('listings').delete().eq('id', id);
   if (error) { toast('فشل الحذف: ' + error.message, 'error'); return; }
-  toast('تم حذف المنشور ✓', 'success');
-  loadListings();
+  toast('تم حذف المنشور ✓', 'success'); loadListings();
 }
 
 function editListing(id) {
   if (!currentUser) { openAuthModal(); return; }
-  const l = listingData.find(x => String(x.id) === String(id));
-  if (!l) return;
+  const l = listingData.find(x => String(x.id) === String(id)); if (!l) return;
   if (String(l.user_id) !== String(currentUser.id)) { toast('لا يمكنك تعديل منشور ليس لك', 'error'); return; }
-  $('c-title').value = l.title || '';
-  $('c-category').value = l.category || 'quran';
-  $('c-region').value = l.region || 'GLOBAL';
-  $('c-type').value = l.type || 'offer';
-  $('c-amount').value = l.amount || '';
-  $('c-desc').value = l.description || '';
+  $('c-title').value = l.title || ''; $('c-category').value = l.category || 'quran';
+  $('c-region').value = l.region || 'GLOBAL'; $('c-type').value = l.type || 'offer';
+  $('c-amount').value = l.amount || ''; $('c-desc').value = l.description || '';
   $('c-phone').value = l.phone || '';
   $('create-form').dataset.editId = id;
   const modal = $('create-modal');
   if (modal) {
-    const h2 = modal.querySelector('h2');
-    if (h2) h2.textContent = 'تعديل المنشور';
-    const p = modal.querySelector('p');
-    if (p) p.textContent = 'عدّل البيانات ثم اضغط حفظ.';
-    const btn = modal.querySelector('button[type="submit"]');
-    if (btn) btn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> حفظ التعديلات';
+    const h2 = modal.querySelector('h2'); if (h2) h2.textContent = 'تعديل المنشور';
+    const p = modal.querySelector('p'); if (p) p.textContent = 'عدّل البيانات ثم اضغط حفظ.';
+    const btn = modal.querySelector('button[type="submit"]'); if (btn) btn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> حفظ التعديلات';
   }
   $('c-msg').textContent = '';
   openModal('create-modal');
@@ -1893,7 +1718,7 @@ async function openContact(listingId) {
   if (!currentUser) { openAuthModal(); return; }
   const { data, error } = await sb.rpc('get_listing_contact', { p_listing_id: listingId });
   const row = Array.isArray(data) ? data[0] : data;
-  if (error || !row?.phone) { toast('لا يوجد رقم تواصل معلن لهذا المنشور', 'warn'); return; }
+  if (error || !row?.phone) { toast('لا يوجد رقم تواصل معلن', 'warn'); return; }
   contactTarget = { id: listingId, phone: row.phone };
   const { data: listing } = await sb.from('listings').select('title').eq('id', listingId).single();
   const name = currentUser.email.split('@')[0];
@@ -1901,14 +1726,12 @@ async function openContact(listingId) {
   $('contact-title').textContent = `تواصل: ${listing?.title?.slice(0, 40) || 'منشور'}`;
   openModal('contact-modal');
 }
-
 function sendContactWhatsApp() {
   if (!contactTarget) return;
   const phone = contactTarget.phone.replace(/[^0-9]/g, '');
   const text = encodeURIComponent($('contact-msg').value);
   window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
 }
-
 async function copyContactMsg() { copyText($('contact-msg').value); }
 
 /* ============ WORKSPACE ============ */
@@ -1921,35 +1744,30 @@ async function loadWorkspace() {
     sb.from('profiles').select('*').eq('id', currentUser.id).maybeSingle()
   ]);
   const connections = connRes.data || [];
-  const active = connections.filter(c => ['accepted', 'in_progress'].includes(c.status));
+  const active = connections.filter(c => ['accepted','in_progress'].includes(c.status));
   $('ws-connections').textContent = active.length;
   $('ws-saved').textContent = (favRes.data || []).length;
   $('ws-unread').textContent = (msgRes.data || []).length;
   const p = profRes.data || {};
   const fields = [p.display_name, p.phone, p.region, p.bio];
   $('ws-completeness').textContent = Math.round((fields.filter(Boolean).length / fields.length) * 100) + '%';
-  $('p-name').value = p.display_name || '';
-  $('p-phone').value = p.phone || '';
-  $('p-region').value = p.region || '';
-  $('p-bio').value = p.bio || '';
+  $('p-name').value = p.display_name || ''; $('p-phone').value = p.phone || '';
+  $('p-region').value = p.region || ''; $('p-bio').value = p.bio || '';
   const list = $('ws-connections-list');
-  if (connections.length === 0) {
-    list.innerHTML = '<div class="text-center text-xs text-slate-400 py-6">لا توجد اتصالات بعد</div>';
-  } else {
-    const statusMap = { pending: 'طلب اتصال', accepted: 'مقبول', in_progress: 'قيد التنفيذ', completed: 'مكتمل', rejected: 'مرفوض', cancelled: 'ملغى' };
-    list.innerHTML = connections.map(c => {
-      const isIncoming = c.provider_id === currentUser.id;
-      const canAccept = isIncoming && c.status === 'pending';
-      const canChat = ['accepted', 'in_progress'].includes(c.status);
-      return `<div class="rounded-xl border border-slate-200 p-3">
-        <div class="flex items-center justify-between gap-2"><span class="text-xs font-bold truncate">${statusMap[c.status] || c.status}</span><span class="text-[10px] text-slate-400">${timeAgo(c.created_at)}</span></div>
-        <div class="mt-2 flex gap-2">
-          ${canAccept ? `<button onclick="updateConnection('${c.id}','accepted')" class="flex-1 rounded-lg bg-emerald-600 text-white text-[10px] font-black py-1.5">قبول</button>` : ''}
-          ${canChat ? `<button onclick="openChat('${c.id}','${isIncoming ? c.requester_id : c.provider_id}')" class="flex-1 rounded-lg bg-brand-600 text-white text-[10px] font-black py-1.5">محادثة</button>` : ''}
-        </div>
-      </div>`;
-    }).join('');
-  }
+  if (connections.length === 0) { list.innerHTML = '<div class="text-center text-xs text-slate-400 py-6">لا توجد اتصالات بعد</div>'; return; }
+  const statusMap = { pending:'طلب اتصال', accepted:'مقبول', in_progress:'قيد التنفيذ', completed:'مكتمل', rejected:'مرفوض', cancelled:'ملغى' };
+  list.innerHTML = connections.map(c => {
+    const isIncoming = c.provider_id === currentUser.id;
+    const canAccept = isIncoming && c.status === 'pending';
+    const canChat = ['accepted','in_progress'].includes(c.status);
+    return `<div class="rounded-xl border border-slate-200 p-3">
+      <div class="flex items-center justify-between gap-2"><span class="text-xs font-bold">${statusMap[c.status] || c.status}</span><span class="text-[10px] text-slate-400">${timeAgo(c.created_at)}</span></div>
+      <div class="mt-2 flex gap-2">
+        ${canAccept ? `<button onclick="updateConnection('${c.id}','accepted')" class="flex-1 rounded-lg bg-emerald-600 text-white text-[10px] font-black py-1.5">قبول</button>` : ''}
+        ${canChat ? `<button onclick="openChat('${c.id}','${isIncoming ? c.requester_id : c.provider_id}')" class="flex-1 rounded-lg bg-brand-600 text-white text-[10px] font-black py-1.5">محادثة</button>` : ''}
+      </div>
+    </div>`;
+  }).join('');
 }
 
 async function saveProfile(e) {
@@ -1966,84 +1784,62 @@ async function saveProfile(e) {
 
 async function updateConnection(id, status) {
   const { error } = await sb.from('connections').update({ status, updated_at: new Date().toISOString() }).eq('id', id);
-  if (error) toast('فشل التحديث', 'error');
-  else { toast('تم التحديث ✓', 'success'); loadWorkspace(); }
+  if (error) toast('فشل التحديث', 'error'); else { toast('تم التحديث ✓', 'success'); loadWorkspace(); }
 }
 
 /* ============ REALTIME ============ */
 function setupRealtime() {
   if (!currentUser) return;
   teardownRealtime();
-  const msgChannel = sb.channel('wefaq_msgs')
-    .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages', filter: `recipient_id=eq.${currentUser.id}` }, payload => {
-      toast('<i class="fa-solid fa-envelope"></i> لديك رسالة جديدة', 'info');
-      if (activeConnection && payload.new.connection_id === activeConnection) loadChat();
-      loadWorkspace();
-    }).subscribe();
-  realtimeChannels.push(msgChannel);
-  const connChannel = sb.channel('wefaq_conns')
-    .on('postgres_changes', { event: '*', schema: 'public', table: 'connections', filter: `provider_id=eq.${currentUser.id}` }, () => { toast('<i class="fa-solid fa-handshake"></i> تحديث على طلب اتصال', 'info'); loadWorkspace(); }).subscribe();
-  realtimeChannels.push(connChannel);
+  const msgCh = sb.channel('wefaq_msgs').on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages', filter: `recipient_id=eq.${currentUser.id}` }, payload => {
+    toast('لديك رسالة جديدة', 'info');
+    if (activeConnection && payload.new.connection_id === activeConnection) loadChat();
+    loadWorkspace();
+  }).subscribe();
+  realtimeChannels.push(msgCh);
+  const connCh = sb.channel('wefaq_conns').on('postgres_changes', { event: '*', schema: 'public', table: 'connections', filter: `provider_id=eq.${currentUser.id}` }, () => { toast('تحديث على طلب اتصال', 'info'); loadWorkspace(); }).subscribe();
+  realtimeChannels.push(connCh);
 }
-
-function teardownRealtime() {
-  realtimeChannels.forEach(ch => sb.removeChannel(ch));
-  realtimeChannels = [];
-}
+function teardownRealtime() { realtimeChannels.forEach(ch => sb.removeChannel(ch)); realtimeChannels = []; }
 
 /* ============ CHAT ============ */
 async function openChat(connectionId, recipientId) {
   activeConnection = connectionId; activeRecipient = recipientId;
-  openModal('chat-modal');
-  await loadChat();
+  openModal('chat-modal'); await loadChat();
 }
-
 async function loadChat() {
   if (!activeConnection || !currentUser) return;
   const { data } = await sb.from('messages').select('*').eq('connection_id', activeConnection).order('created_at', { ascending: true }).limit(100);
   const list = $('chat-list');
-  if (!data || data.length === 0) {
-    list.innerHTML = '<div class="text-center text-xs text-slate-400 py-8">ابدأ المحادثة</div>';
-  } else {
+  if (!data || data.length === 0) list.innerHTML = '<div class="text-center text-xs text-slate-400 py-8">ابدأ المحادثة</div>';
+  else {
     list.innerHTML = data.map(m => `<div class="max-w-[80%] ${m.sender_id === currentUser.id ? 'ms-auto bg-brand-600 text-white' : 'bg-white border border-slate-200'} rounded-xl px-3 py-2 text-xs">${esc(m.body)}<div class="text-[9px] opacity-60 mt-1">${new Date(m.created_at).toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' })}</div></div>`).join('');
     list.scrollTop = list.scrollHeight;
   }
   await sb.from('messages').update({ read_at: new Date().toISOString() }).eq('connection_id', activeConnection).eq('recipient_id', currentUser.id).is('read_at', null);
 }
-
 async function sendChat(e) {
   e.preventDefault();
   const body = $('chat-input').value.trim();
   if (!body || !activeConnection || !currentUser) return;
   const { error } = await sb.from('messages').insert({ connection_id: activeConnection, sender_id: currentUser.id, recipient_id: activeRecipient, body });
   if (error) { toast('فشل الإرسال', 'error'); return; }
-  $('chat-input').value = '';
-  await loadChat();
+  $('chat-input').value = ''; await loadChat();
 }
-
 function closeChat() { closeModal('chat-modal'); activeConnection = null; activeRecipient = null; }
 
-/* ============ COMMUNITIES — سحابي ============ */
+/* ============ COMMUNITIES ============ */
 async function loadCommunities() {
-  const grid = $('comm-grid');
-  if (!grid) return;
+  const grid = $('comm-grid'); if (!grid) return;
   grid.innerHTML = '<div class="col-span-full text-center py-8 text-slate-400 text-sm">جارٍ التحميل...</div>';
-
   const { data, error } = await sb.from('communities').select('*').order('created_at', { ascending: false }).limit(100);
-  if (error) {
-    grid.innerHTML = `<div class="col-span-full text-center text-sm text-red-500 py-8">خطأ: ${esc(error.message)}</div>`;
-    return;
-  }
+  if (error) { grid.innerHTML = `<div class="col-span-full text-center text-sm text-red-500 py-8">خطأ: ${esc(error.message)}</div>`; return; }
   communitiesData = data || [];
   renderCommunities();
 }
 
 function openCommunityModal() {
-  if (!currentUser) {
-    toast('سجّل الدخول أولاً لإضافة مجتمع', 'warn');
-    openAuthModal();
-    return;
-  }
+  if (!currentUser) { toast('سجّل الدخول أولاً', 'warn'); openAuthModal(); return; }
   resetCommunityForm();
   openModal('comm-modal');
 }
@@ -2051,10 +1847,8 @@ function openCommunityModal() {
 function resetCommunityForm() {
   const form = $('comm-modal').querySelector('form');
   if (form) { form.reset(); form.dataset.editId = ''; }
-  const h2 = $('comm-modal').querySelector('h2');
-  if (h2) h2.textContent = 'أضف مجتمعاً عاماً';
-  const btn = $('comm-modal').querySelector('button[type="submit"]');
-  if (btn) btn.textContent = 'حفظ';
+  const h2 = $('comm-modal').querySelector('h2'); if (h2) h2.textContent = 'أضف مجتمعاً عاماً';
+  const btn = $('comm-modal').querySelector('button[type="submit"]'); if (btn) btn.textContent = 'حفظ';
 }
 
 function setCommunityFilter(f) {
@@ -2069,87 +1863,53 @@ function setCommunityFilter(f) {
 async function submitCommunity(e) {
   e.preventDefault();
   if (!currentUser) { openAuthModal(); return; }
-
-  const platform = $('cm-platform').value;
-  const url = $('cm-url').value.trim();
-  const host = platform === 'telegram'
-    ? /^https:\/\/(t\.me|telegram\.me)\//i
-    : /^https:\/\/(www\.)?facebook\.com\//i;
-  if (!host.test(url)) { toast('الرابط غير صالح لهذه المنصة', 'error'); return; }
-
+  const platform = $('cm-platform').value, url = $('cm-url').value.trim();
+  const host = platform === 'telegram' ? /^https:\/\/(t\.me|telegram\.me)\//i : /^https:\/\/(www\.)?facebook\.com\//i;
+  if (!host.test(url)) { toast('الرابط غير صالح', 'error'); return; }
   const editId = $('comm-modal').querySelector('form').dataset.editId || '';
   const payload = {
-    platform,
-    name: $('cm-name').value.trim(),
-    url,
-    category: $('cm-category').value.trim(),
-    region: $('cm-region').value.trim(),
-    description: $('cm-desc').value.trim(),
-    updated_at: new Date().toISOString()
+    platform, name: $('cm-name').value.trim(), url,
+    category: $('cm-category').value.trim(), region: $('cm-region').value.trim(),
+    description: $('cm-desc').value.trim(), updated_at: new Date().toISOString()
   };
-
   let error;
-  if (editId) {
-    ({ error } = await sb.from('communities').update(payload).eq('id', editId));
-  } else {
-    payload.user_id = currentUser.id;
-    ({ error } = await sb.from('communities').insert(payload));
-  }
-
-  if (error) { toast('فشل الحفظ: ' + error.message, 'error'); return; }
-  toast(editId ? 'تم حفظ التعديلات ✓' : 'تمت إضافة المجتمع ✓', 'success');
-  closeModal('comm-modal');
-  resetCommunityForm();
-  loadCommunities();
+  if (editId) { ({ error } = await sb.from('communities').update(payload).eq('id', editId)); }
+  else { payload.user_id = currentUser.id; ({ error } = await sb.from('communities').insert(payload)); }
+  if (error) { toast('فشل: ' + error.message, 'error'); return; }
+  toast(editId ? 'تم حفظ التعديلات ✓' : 'تمت الإضافة ✓', 'success');
+  closeModal('comm-modal'); resetCommunityForm(); loadCommunities();
 }
 
 function editCommunity(id) {
-  const c = communitiesData.find(x => String(x.id) === String(id));
-  if (!c) return;
+  const c = communitiesData.find(x => String(x.id) === String(id)); if (!c) return;
   if (!currentUser || String(c.user_id) !== String(currentUser.id)) { toast('لا يمكنك تعديل مجتمع ليس لك', 'error'); return; }
   $('cm-platform').value = c.platform || 'telegram';
-  $('cm-name').value = c.name || '';
-  $('cm-url').value = c.url || '';
-  $('cm-category').value = c.category || '';
-  $('cm-region').value = c.region || '';
+  $('cm-name').value = c.name || ''; $('cm-url').value = c.url || '';
+  $('cm-category').value = c.category || ''; $('cm-region').value = c.region || '';
   $('cm-desc').value = c.description || '';
   $('comm-modal').querySelector('form').dataset.editId = id;
-  const h2 = $('comm-modal').querySelector('h2');
-  if (h2) h2.textContent = 'تعديل المجتمع';
-  const btn = $('comm-modal').querySelector('button[type="submit"]');
-  if (btn) btn.textContent = 'حفظ التعديلات';
+  const h2 = $('comm-modal').querySelector('h2'); if (h2) h2.textContent = 'تعديل المجتمع';
+  const btn = $('comm-modal').querySelector('button[type="submit"]'); if (btn) btn.textContent = 'حفظ التعديلات';
   openModal('comm-modal');
 }
 
 async function deleteCommunity(id) {
-  const c = communitiesData.find(x => String(x.id) === String(id));
-  if (!c) return;
+  const c = communitiesData.find(x => String(x.id) === String(id)); if (!c) return;
   if (!currentUser || String(c.user_id) !== String(currentUser.id)) { toast('لا يمكنك حذف مجتمع ليس لك', 'error'); return; }
-  if (!confirm('هل أنت متأكد من حذف هذا المجتمع؟ لا يمكن التراجع.')) return;
-  toast('جارٍ الحذف...', 'info');
+  if (!confirm('هل أنت متأكد من حذف هذا المجتمع؟')) return;
   const { error } = await sb.from('communities').delete().eq('id', id);
   if (error) { toast('فشل الحذف: ' + error.message, 'error'); return; }
-  toast('تم حذف المجتمع ✓', 'success');
-  loadCommunities();
+  toast('تم حذف المجتمع ✓', 'success'); loadCommunities();
 }
 
 function renderCommunities() {
   const q = ($('comm-search')?.value || '').trim().toLowerCase();
-  const list = communitiesData
-    .filter(c => commFilter === 'all' || c.platform === commFilter)
-    .filter(c => !q || `${c.name || ''} ${c.category || ''} ${c.region || ''}`.toLowerCase().includes(q));
-  const grid = $('comm-grid');
-  if (!grid) return;
-
+  const list = communitiesData.filter(c => commFilter === 'all' || c.platform === commFilter).filter(c => !q || `${c.name || ''} ${c.category || ''} ${c.region || ''}`.toLowerCase().includes(q));
+  const grid = $('comm-grid'); if (!grid) return;
   if (list.length === 0) {
-    grid.innerHTML = `<div class="col-span-full text-center py-10 rounded-2xl border border-dashed border-slate-300">
-      <i class="fa-solid fa-users text-3xl text-slate-300"></i>
-      <div class="mt-3 font-black text-slate-700">لا توجد مجتمعات بعد</div>
-      <button onclick="openCommunityModal()" class="mt-3 rounded-xl bg-brand-600 text-white px-4 py-2 text-xs font-black">أضف أول مجتمع</button>
-    </div>`;
+    grid.innerHTML = `<div class="col-span-full text-center py-10 rounded-2xl border border-dashed border-slate-300"><div class="font-black text-slate-700">لا توجد مجتمعات بعد</div><button onclick="openCommunityModal()" class="mt-3 rounded-xl bg-brand-600 text-white px-4 py-2 text-xs font-black">أضف أول مجتمع</button></div>`;
     return;
   }
-
   grid.innerHTML = list.map(c => {
     const isTelegram = c.platform === 'telegram';
     const icon = isTelegram ? 'fa-brands fa-telegram text-sky-500' : 'fa-brands fa-facebook-f text-blue-600';
@@ -2160,10 +1920,7 @@ function renderCommunities() {
     ` : '';
     return `<article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-5 flex flex-col">
       <div class="flex items-center justify-between gap-2 mb-3">
-        <div class="flex items-center gap-2">
-          <span class="text-lg"><i class="${icon}"></i></span>
-          <span class="text-[10px] font-black text-slate-500">${isTelegram ? 'تيليجرام' : 'فيسبوك'}</span>
-        </div>
+        <div class="flex items-center gap-2"><span class="text-lg"><i class="${icon}"></i></span><span class="text-[10px] font-black text-slate-500">${isTelegram ? 'تيليجرام' : 'فيسبوك'}</span></div>
         ${isOwner ? '<span class="text-[9px] font-bold px-2 py-0.5 rounded-full wf-owner-badge">مجتمعي</span>' : ''}
       </div>
       <h3 class="font-black text-sm text-slate-900">${esc(c.name)}</h3>
@@ -2182,36 +1939,27 @@ function renderCommunities() {
 }
 
 async function shareCommunity(id) {
-  const c = communitiesData.find(x => String(x.id) === String(id));
-  if (!c) return;
+  const c = communitiesData.find(x => String(x.id) === String(id)); if (!c) return;
   const text = `${c.name}\n${c.description || ''}\n${c.url}`;
-  if (navigator.share) {
-    try { await navigator.share({ title: c.name, text, url: c.url }); }
-    catch (e) { if (e.name !== 'AbortError') copyText(text); }
-  } else copyText(text);
+  if (navigator.share) { try { await navigator.share({ title: c.name, text, url: c.url }); } catch (e) { if (e.name !== 'AbortError') copyText(text); } }
+  else copyText(text);
 }
 
 /* ============ HERO SEARCH ============ */
 function heroSearch() {
-  const q = $('hero-search').value.trim();
-  const role = $('hero-role').value;
-  $('spec-search').value = q;
-  $('spec-role').value = role;
-  scrollTo('specialists');
-  loadSpecialists();
+  const q = $('hero-search').value.trim(), role = $('hero-role').value;
+  $('spec-search').value = q; $('spec-role').value = role;
+  scrollTo('specialists'); loadSpecialists();
 }
 
 /* ============ INIT ============ */
 document.addEventListener('DOMContentLoaded', async () => {
   initTheme();
   $('year').textContent = new Date().getFullYear();
+  initVisitorCounter();
   loadRadarFromCache();
-  renderRadar();
-  updateRadarStats();
-  renderHeroRadarPreview();
-  loadSpecialists();
-  loadListings();
-  loadCommunities();
+  renderRadar(); updateRadarStats(); renderHeroRadarPreview();
+  loadSpecialists(); loadListings(); loadCommunities();
 
   const { data: { session } } = await sb.auth.getSession();
   currentUser = session?.user || null;
@@ -2221,9 +1969,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const lastSync = Number(localStorage.getItem('wefaq_radar_last_sync') || 0);
   if (Date.now() - lastSync > 20 * 60 * 1000) setTimeout(() => syncRadar(false), 800);
 
-  syncTimer = setInterval(() => {
-    if (document.visibilityState === 'visible') syncRadar(false);
-  }, 20 * 60 * 1000);
+  syncTimer = setInterval(() => { if (document.visibilityState === 'visible') syncRadar(false); }, 20 * 60 * 1000);
 });
 
 document.addEventListener('keydown', e => {
