@@ -2,14 +2,32 @@
 <html dir="rtl" lang="ar" class="scroll-smooth"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>منصة وفاق التعليمية | القرآن والعربية والمطابقة الذكية</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23059669'/><text x='50' y='72' font-size='60' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'>و</text></svg>">
-<meta name="description" content="منصة وفاق تربط الطلاب والأسر بمعلمي القرآن واللغة العربية.">
+<title>منصة وفاق | معلمو القرآن واللغة العربية — شبكة تعليمية عالمية</title>
+<meta name="description" content="منصة وفاق: ابحث عن معلمي القرآن والقراء والمتخصصين في التحفيظ والحديث واللغة العربية. رادار حي، مطابقة ذكية، وملفات موثوقة.">
+<meta name="keywords" content="معلم قرآن, تحفيظ القرآن, تجويد, معلم لغة عربية, قارئ, متخصص حديث, منصة تعليمية, دروس أونلاين">
+<meta name="robots" content="index, follow">
 <meta name="theme-color" content="#059669">
+<meta name="language" content="Arabic">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="وفاق">
+<link rel="canonical" href="https://wefaq-market.github.io/wefaq-khair/">
+<link rel="manifest" href="/wefaq-khair/manifest.json">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23059669'/><text x='50' y='72' font-size='60' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'>و</text></svg>">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wefaq-market.github.io/wefaq-khair/">
+<meta property="og:title" content="منصة وفاق | شبكة معلمي القرآن واللغة العربية">
+<meta property="og:description" content="ابحث عن معلمي القرآن والقراء والمتخصصين في اللغة العربية من جميع أنحاء العالم.">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:site_name" content="منصة وفاق">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="منصة وفاق | شبكة معلمي القرآن واللغة العربية">
+<meta name="twitter:description" content="ابحث عن معلمي القرآن والمتخصصين في اللغة العربية من جميع أنحاء العالم.">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" referrerpolicy="no-referrer">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -60,11 +78,80 @@ tailwind.config = {
   .dark .wf-badge-offer  { background:rgba(6,78,59,.28); color:#6ee7b7; border-color:rgba(110,231,183,.22); }
   .wf-owner-badge { background:#fef3c7; color:#92400e; border:1px solid #fde68a; }
   .dark .wf-owner-badge { background:rgba(120,53,15,.35); color:#fcd34d; border-color:rgba(251,191,36,.3); }
+  .wf-icon { display: inline-block; width: 1em; height: 1em; vertical-align: -0.125em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 </style>
 </head>
 
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
 
+<!-- ═══════════ SVG ICONS SPRITE ═══════════ -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<symbol id="i-satellite" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 7l4-4 4 4-4 4zM3 21l6-6M5 19l-2-2M19 5l-2-2"/></symbol>
+<symbol id="i-telegram" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></symbol>
+<symbol id="i-briefcase" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></symbol>
+<symbol id="i-laptop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><line x1="2" y1="20" x2="22" y2="20"/></symbol>
+<symbol id="i-chalkboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></symbol>
+<symbol id="i-layer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+<symbol id="i-user-graduate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></symbol>
+<symbol id="i-user-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></symbol>
+<symbol id="i-user-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/><rect x="14" y="11" width="8" height="6" rx="1"/></symbol>
+<symbol id="i-user-pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+<symbol id="i-plus-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></symbol>
+<symbol id="i-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></symbol>
+<symbol id="i-xmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></symbol>
+<symbol id="i-whatsapp" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/></symbol>
+<symbol id="i-rotate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></symbol>
+<symbol id="i-book-quran" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/><path d="M12 6v11M8 9h8M8 13h8"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></symbol>
+<symbol id="i-book-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2zM22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></symbol>
+<symbol id="i-bullhorn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 11-5.8-1.6"/></symbol>
+<symbol id="i-chevron-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></symbol>
+<symbol id="i-chevron-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></symbol>
+<symbol id="i-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></symbol>
+<symbol id="i-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></symbol>
+<symbol id="i-bookmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></symbol>
+<symbol id="i-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></symbol>
+<symbol id="i-check-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></symbol>
+<symbol id="i-x-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></symbol>
+<symbol id="i-inbox" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+<symbol id="i-right-to-bracket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></symbol>
+<symbol id="i-paper-plane" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></symbol>
+<symbol id="i-landmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></symbol>
+<symbol id="i-graduation" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></symbol>
+<symbol id="i-certificate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></symbol>
+<symbol id="i-store" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1-5h16l1 5M3 9v11a2 2 0 002 2h14a2 2 0 002-2V9M3 9h18"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16" fill="currentColor"/></symbol>
+<symbol id="i-clipboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M9 14l2 2 4-4"/></symbol>
+<symbol id="i-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></symbol>
+<symbol id="i-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+<symbol id="i-toolbox" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></symbol>
+<symbol id="i-facebook" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></symbol>
+<symbol id="i-comments" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></symbol>
+<symbol id="i-handshake" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 17l-2 2-5-5 2-2 3 3 3-3 3 3 3-3 2 2-5 5-2-2"/><path d="M7 9l3-3 4 4 3-3 3 3"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-floppy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></symbol>
+<symbol id="i-pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 114 4L7.5 20.5 2 22l1.5-5.5z"/></symbol>
+<symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></symbol>
+<symbol id="i-envelope" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+<symbol id="i-star-fill" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+</svg>
+
+<!-- HEADER -->
 <header class="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/90 backdrop-blur-md">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
     <a href="#" class="flex items-center gap-2.5 shrink-0">
@@ -82,7 +169,7 @@ tailwind.config = {
       <a href="#workspace" class="px-3 py-2 rounded-lg hover:bg-brand-50 hover:text-brand-700">مساحتي</a>
     </nav>
     <div class="flex items-center gap-2">
-      <button id="theme-toggle" class="w-10 h-10 rounded-xl border border-slate-200 grid place-items-center hover:bg-slate-50" title="الوضع الليلي">
+      <button id="theme-toggle" class="w-10 h-10 rounded-xl border border-slate-200 grid place-items-center hover:bg-slate-50" title="الوضع الليلي" aria-label="الوضع الليلي">
         <i class="fa-solid fa-moon" id="theme-icon"></i>
       </button>
       <button id="auth-btn" class="hidden sm:inline-flex items-center gap-1.5 rounded-xl border border-slate-200 px-3 py-2 text-xs font-bold hover:bg-slate-50">
@@ -158,7 +245,7 @@ tailwind.config = {
           <div class="flex items-center justify-between gap-3">
             <div class="flex items-center gap-2.5">
               <span class="w-9 h-9 rounded-xl bg-emerald-500/15 text-emerald-300 grid place-items-center">
-                <i class="fa-solid fa-eye text-sm"></i>
+                <i class="fa-solid fa-eye"></i>
               </span>
               <div>
                 <div class="text-[10px] text-white/50">عدد زوار المنصة</div>
@@ -176,6 +263,7 @@ tailwind.config = {
   </div>
 </section>
 
+<!-- RADAR -->
 <section id="radar" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
   <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
     <div>
@@ -190,10 +278,10 @@ tailwind.config = {
   </div>
 
   <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
-    <div class="rounded-2xl border border-slate-200 bg-white p-3"><div class="flex items-center justify-between"><span class="text-[10px] font-black text-slate-500">إجمالي الإشارات</span><span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 grid place-items-center"><i class="fa-solid fa-layer-group text-xs"></i></span></div><div class="mt-2 text-2xl font-black" id="radar-stat-total">0</div></div>
-    <div class="rounded-2xl border border-slate-200 bg-white p-3"><div class="flex items-center justify-between"><span class="text-[10px] font-black text-slate-500">تيليجرام</span><span class="w-8 h-8 rounded-lg bg-sky-50 text-sky-600 grid place-items-center"><i class="fa-brands fa-telegram text-xs"></i></span></div><div class="mt-2 text-2xl font-black" id="radar-stat-telegram">0</div></div>
-    <div class="rounded-2xl border border-slate-200 bg-white p-3"><div class="flex items-center justify-between"><span class="text-[10px] font-black text-slate-500">خمسات</span><span class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 grid place-items-center"><i class="fa-solid fa-briefcase text-xs"></i></span></div><div class="mt-2 text-2xl font-black" id="radar-stat-khamsat">0</div></div>
-    <div class="rounded-2xl border border-slate-200 bg-white p-3"><div class="flex items-center justify-between"><span class="text-[10px] font-black text-slate-500">طلبات (لا عروض)</span><span class="w-8 h-8 rounded-lg bg-orange-50 text-orange-600 grid place-items-center"><i class="fa-solid fa-user-graduate text-xs"></i></span></div><div class="mt-2 text-2xl font-black" id="radar-stat-demand">0</div></div>
+    <div class="rounded-2xl border border-slate-200 bg-white p-3"><div class="flex items-center justify-between"><span class="text-[10px] font-black text-slate-500">إجمالي الإشارات</span><span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-700 grid place-items-center"><i class="fa-solid fa-layer-group"></i></span></div><div class="mt-2 text-2xl font-black" id="radar-stat-total">0</div></div>
+    <div class="rounded-2xl border border-slate-200 bg-white p-3"><div class="flex items-center justify-between"><span class="text-[10px] font-black text-slate-500">تيليجرام</span><span class="w-8 h-8 rounded-lg bg-sky-50 text-sky-600 grid place-items-center"><i class="fa-brands fa-telegram"></i></span></div><div class="mt-2 text-2xl font-black" id="radar-stat-telegram">0</div></div>
+    <div class="rounded-2xl border border-slate-200 bg-white p-3"><div class="flex items-center justify-between"><span class="text-[10px] font-black text-slate-500">خمسات</span><span class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 grid place-items-center"><i class="fa-solid fa-briefcase"></i></span></div><div class="mt-2 text-2xl font-black" id="radar-stat-khamsat">0</div></div>
+    <div class="rounded-2xl border border-slate-200 bg-white p-3"><div class="flex items-center justify-between"><span class="text-[10px] font-black text-slate-500">طلبات (لا عروض)</span><span class="w-8 h-8 rounded-lg bg-orange-50 text-orange-600 grid place-items-center"><i class="fa-solid fa-user-graduate"></i></span></div><div class="mt-2 text-2xl font-black" id="radar-stat-demand">0</div></div>
   </div>
 
   <div class="rounded-2xl border border-slate-200 bg-white p-3 mb-5">
@@ -203,27 +291,16 @@ tailwind.config = {
         <input id="radar-search" oninput="debounceRenderRadar()" type="search" placeholder="ابحث في الإشارات..." class="w-full min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 pr-9 pl-3 text-sm outline-none focus:border-brand-500">
       </div>
       <select id="radar-filter-source" onchange="renderRadar()" class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm outline-none">
-        <option value="all">كل المصادر</option>
-        <option value="telegram">تيليجرام</option>
-        <option value="khamsat">خمسات</option>
-        <option value="web">الويب المفتوح</option>
+        <option value="all">كل المصادر</option><option value="telegram">تيليجرام</option><option value="khamsat">خمسات</option><option value="web">الويب المفتوح</option>
       </select>
       <select id="radar-filter-category" onchange="renderRadar()" class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm outline-none">
-        <option value="all">كل المجالات</option>
-        <option value="quran">قرآن وتحفيظ</option>
-        <option value="arabic">لغة عربية</option>
-        <option value="hadith">حديث</option>
-        <option value="kids">أطفال</option>
-        <option value="services">خدمات</option>
+        <option value="all">كل المجالات</option><option value="quran">قرآن وتحفيظ</option><option value="arabic">لغة عربية</option><option value="hadith">حديث</option><option value="kids">أطفال</option><option value="services">خدمات</option>
       </select>
       <select id="radar-filter-type" onchange="renderRadar()" class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm outline-none">
-        <option value="all">طلبات وعروض</option>
-        <option value="demand">طلبات فقط</option>
-        <option value="offer">عروض فقط</option>
+        <option value="all">طلبات وعروض</option><option value="demand">طلبات فقط</option><option value="offer">عروض فقط</option>
       </select>
       <select id="radar-filter-sort" onchange="renderRadar()" class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm outline-none">
-        <option value="fresh">الأحدث</option>
-        <option value="score">الأولوية</option>
+        <option value="fresh">الأحدث</option><option value="score">الأولوية</option>
       </select>
     </div>
   </div>
@@ -237,6 +314,7 @@ tailwind.config = {
   </div>
 </section>
 
+<!-- SPECIALISTS -->
 <section id="specialists" class="bg-slate-50 py-12">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
@@ -253,18 +331,10 @@ tailwind.config = {
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
         <input id="spec-search" oninput="debounceLoadSpecialists()" type="search" placeholder="اسم / تخصص / مدينة..." class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm outline-none focus:border-brand-500">
         <select id="spec-role" onchange="loadSpecialists()" class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm outline-none">
-          <option value="all">كل الأدوار</option>
-          <option value="quran_teacher">معلم قرآن</option>
-          <option value="qari">قارئ</option>
-          <option value="quran_memorizer">محفّظ</option>
-          <option value="hadith_specialist">متخصص حديث</option>
-          <option value="arabic_teacher">معلم عربية</option>
+          <option value="all">كل الأدوار</option><option value="quran_teacher">معلم قرآن</option><option value="qari">قارئ</option><option value="quran_memorizer">محفّظ</option><option value="hadith_specialist">متخصص حديث</option><option value="arabic_teacher">معلم عربية</option>
         </select>
         <select id="spec-mode" onchange="loadSpecialists()" class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm outline-none">
-          <option value="all">كل الأنماط</option>
-          <option value="online">أونلاين</option>
-          <option value="in_person">حضوري</option>
-          <option value="hybrid">هجين</option>
+          <option value="all">كل الأنماط</option><option value="online">أونلاين</option><option value="in_person">حضوري</option><option value="hybrid">هجين</option>
         </select>
       </div>
     </div>
@@ -315,11 +385,12 @@ tailwind.config = {
   </div>
 </section>
 
+<!-- LISTINGS -->
 <section id="listings" class="py-12">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
       <div>
-        <span class="text-xs font-black text-brand-700"><i class="fa-solid fa-book-open-reader"></i> سوق وفاق</span>
+        <span class="text-xs font-black text-brand-700"><i class="fa-solid fa-book-open"></i> سوق وفاق</span>
         <h2 class="mt-2 text-2xl sm:text-3xl font-black text-slate-900">الطلبات والعروض التعليمية</h2>
         <p class="mt-1 text-sm text-slate-500">منشورات حقيقية ينشرها الطلاب والمعلمون والأسر داخل المنصة.</p>
       </div>
@@ -331,18 +402,10 @@ tailwind.config = {
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
         <input id="list-search" oninput="debounceLoadListings()" type="search" placeholder="ابحث في الطلبات والعروض..." class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm outline-none focus:border-brand-500">
         <select id="list-cat" onchange="loadListings()" class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm outline-none">
-          <option value="all">كل التصنيفات</option>
-          <option value="quran">قرآن وتحفيظ</option>
-          <option value="arabic">لغة عربية</option>
-          <option value="hadith">حديث</option>
-          <option value="kids">أطفال</option>
-          <option value="languages">لغات</option>
-          <option value="services">خدمات</option>
+          <option value="all">كل التصنيفات</option><option value="quran">قرآن وتحفيظ</option><option value="arabic">لغة عربية</option><option value="hadith">حديث</option><option value="kids">أطفال</option><option value="languages">لغات</option><option value="services">خدمات</option>
         </select>
         <select id="list-type" onchange="loadListings()" class="min-h-[42px] rounded-xl bg-slate-50 border border-slate-200 px-3 text-sm outline-none">
-          <option value="all">الكل</option>
-          <option value="offer">عرض</option>
-          <option value="demand">طلب</option>
+          <option value="all">الكل</option><option value="offer">عرض</option><option value="demand">طلب</option>
         </select>
       </div>
     </div>
@@ -393,6 +456,7 @@ tailwind.config = {
   </div>
 </section>
 
+<!-- COMMUNITIES -->
 <section id="communities" class="bg-slate-50 py-12">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
@@ -462,12 +526,13 @@ tailwind.config = {
   </div>
 </section>
 
+<!-- WORKSPACE -->
 <section id="workspace" class="py-12">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="rounded-3xl border border-slate-200 bg-white p-6">
       <div class="flex items-center justify-between gap-4 mb-5">
         <div>
-          <span class="text-xs font-black text-brand-700"><i class="fa-solid fa-user-shield"></i> مساحة الحساب</span>
+          <span class="text-xs font-black text-brand-700"><i class="fa-solid fa-shield"></i> مساحة الحساب</span>
           <h2 class="mt-2 text-2xl font-black text-slate-900">مساحتي في وفاق</h2>
         </div>
         <button id="signout-btn" class="hidden text-xs font-bold text-red-600 hover:underline" onclick="signOut()">تسجيل الخروج</button>
@@ -515,7 +580,12 @@ tailwind.config = {
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-xs text-slate-500">
     <div class="font-black text-slate-800">منصة وفاق التعليمية</div>
     <div class="mt-1">القرآن · اللغة العربية · الرادار الحي · المطابقة الذكية</div>
-    <div class="mt-3">© <span id="year"></span> جميع الحقوق محفوظة</div>
+    <div class="mt-3 flex items-center justify-center gap-3">
+      <a href="/wefaq-khair/privacy.html" class="hover:text-brand-600">سياسة الخصوصية</a>
+      <span>·</span>
+      <a href="/wefaq-khair/about.html" class="hover:text-brand-600">من نحن</a>
+    </div>
+    <div class="mt-2">© <span id="year"></span> جميع الحقوق محفوظة</div>
   </div>
 </footer>
 
@@ -525,12 +595,12 @@ tailwind.config = {
   <i class="fa-solid fa-arrow-up"></i>
 </button>
 
-<!-- AUTH MODAL -->
+<!-- MODALS -->
 <div id="auth-modal" class="hidden fixed inset-0 z-[150] bg-slate-950/60 backdrop-blur-sm items-center justify-center p-4">
   <div class="bg-white rounded-2xl w-full max-w-md p-6 shadow-2xl relative">
-    <button onclick="closeModal('auth-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark"></i></button>
+    <button onclick="closeModal('auth-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700" aria-label="إغلاق"><i class="fa-solid fa-xmark"></i></button>
     <div class="flex items-center gap-3 mb-5">
-      <div class="w-11 h-11 rounded-xl bg-brand-100 text-brand-700 grid place-items-center"><i class="fa-solid fa-user-shield"></i></div>
+      <div class="w-11 h-11 rounded-xl bg-brand-100 text-brand-700 grid place-items-center"><i class="fa-solid fa-shield"></i></div>
       <div><h2 class="font-black">حساب وفاق</h2><p class="text-[11px] text-slate-500">ادخل أو أنشئ حساباً جديداً</p></div>
     </div>
     <div class="grid grid-cols-2 gap-2 mb-4 p-1 bg-slate-100 rounded-xl text-xs font-black">
@@ -550,10 +620,9 @@ tailwind.config = {
   </div>
 </div>
 
-<!-- CREATE LISTING MODAL -->
 <div id="create-modal" class="hidden fixed inset-0 z-[150] bg-slate-950/60 backdrop-blur-sm items-center justify-center p-4">
   <div class="bg-white rounded-2xl w-full max-w-xl p-6 shadow-2xl relative max-h-[92vh] overflow-y-auto">
-    <button onclick="closeModal('create-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark"></i></button>
+    <button onclick="closeModal('create-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700" aria-label="إغلاق"><i class="fa-solid fa-xmark"></i></button>
     <h2 class="font-black text-lg mb-1">نشر طلب / عرض تعليمي</h2>
     <p class="text-xs text-slate-500 mb-5">سيظهر منشورك في السوق مباشرة ويصبح قابلاً للتواصل.</p>
     <form id="create-form" onsubmit="submitListing(event)" class="space-y-3">
@@ -583,10 +652,9 @@ tailwind.config = {
   </div>
 </div>
 
-<!-- SPECIALIST MODAL -->
 <div id="spec-modal" class="hidden fixed inset-0 z-[150] bg-slate-950/60 backdrop-blur-sm items-center justify-center p-4">
   <div class="bg-white rounded-2xl w-full max-w-2xl p-6 shadow-2xl relative max-h-[92vh] overflow-y-auto">
-    <button onclick="closeModal('spec-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark"></i></button>
+    <button onclick="closeModal('spec-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700" aria-label="إغلاق"><i class="fa-solid fa-xmark"></i></button>
     <h2 class="font-black text-lg mb-1">انضم كمتخصص</h2>
     <p class="text-xs text-slate-500 mb-5">أنشئ ملفاً سحابياً حقيقياً ليظهر لك الطلاب والأسر.</p>
     <form onsubmit="submitSpecialist(event)" class="space-y-3">
@@ -618,10 +686,37 @@ tailwind.config = {
   </div>
 </div>
 
-<!-- COMMUNITY MODAL -->
+<!-- MODAL: إضافة تقييم -->
+<div id="review-modal" class="hidden fixed inset-0 z-[150] bg-slate-950/60 backdrop-blur-sm items-center justify-center p-4">
+  <div class="bg-white rounded-2xl w-full max-w-md p-6 shadow-2xl relative">
+    <button onclick="closeModal('review-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700" aria-label="إغلاق"><i class="fa-solid fa-xmark"></i></button>
+    <h2 class="font-black text-lg mb-1">تقييم المتخصص</h2>
+    <p class="text-xs text-slate-500 mb-5" id="review-target-name">اسم المتخصص</p>
+    
+    <form onsubmit="submitReview(event)" class="space-y-4">
+      <input type="hidden" id="review-specialist-id">
+      <input type="hidden" id="review-rating-value" value="5">
+      
+      <div class="text-center">
+        <div class="flex justify-center gap-2 text-3xl cursor-pointer" id="star-rating-container">
+          <!-- النجوم ستُضاف هنا عبر JavaScript -->
+        </div>
+        <p class="text-[11px] text-slate-400 mt-2">اضغط على النجوم للتقييم</p>
+      </div>
+      
+      <textarea id="review-comment" rows="3" maxlength="500" placeholder="اكتب تجربتك مع هذا المتخصص (اختياري)..." class="w-full rounded-xl bg-slate-50 border border-slate-200 p-3 text-sm outline-none resize-none"></textarea>
+      
+      <button type="submit" class="w-full rounded-xl bg-brand-600 hover:bg-brand-700 text-white py-3 text-sm font-black">
+        <i class="fa-solid fa-paper-plane"></i> إرسال التقييم
+      </button>
+      <p id="review-msg" class="text-xs text-center text-slate-500"></p>
+    </form>
+  </div>
+</div>
+
 <div id="comm-modal" class="hidden fixed inset-0 z-[150] bg-slate-950/60 backdrop-blur-sm items-center justify-center p-4">
   <div class="bg-white rounded-2xl w-full max-w-lg p-6 shadow-2xl relative">
-    <button onclick="closeModal('comm-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark"></i></button>
+    <button onclick="closeModal('comm-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700" aria-label="إغلاق"><i class="fa-solid fa-xmark"></i></button>
     <h2 class="font-black text-lg mb-4">أضف مجتمعاً عاماً</h2>
     <form onsubmit="submitCommunity(event)" class="space-y-3">
       <select id="cm-platform" required class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none">
@@ -640,10 +735,9 @@ tailwind.config = {
   </div>
 </div>
 
-<!-- CONTACT MODAL -->
 <div id="contact-modal" class="hidden fixed inset-0 z-[150] bg-slate-950/60 backdrop-blur-sm items-center justify-center p-4">
   <div class="bg-white rounded-2xl w-full max-w-md p-6 shadow-2xl relative">
-    <button onclick="closeModal('contact-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark"></i></button>
+    <button onclick="closeModal('contact-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700" aria-label="إغلاق"><i class="fa-solid fa-xmark"></i></button>
     <div class="flex items-center gap-3 mb-4">
       <div class="w-11 h-11 rounded-xl bg-emerald-100 text-emerald-700 grid place-items-center"><i class="fa-brands fa-whatsapp text-lg"></i></div>
       <div><h2 class="font-black text-sm" id="contact-title">تواصل مع صاحب المنشور</h2><p class="text-[10px] text-slate-500">رسالة جاهزة للتعديل</p></div>
@@ -656,12 +750,11 @@ tailwind.config = {
   </div>
 </div>
 
-<!-- CHAT MODAL -->
 <div id="chat-modal" class="hidden fixed inset-0 z-[150] bg-slate-950/60 backdrop-blur-sm items-center justify-center p-4">
   <div class="bg-white rounded-2xl w-full max-w-lg p-5 shadow-2xl">
     <div class="flex items-center justify-between mb-3">
       <h2 class="font-black">محادثة داخل وفاق</h2>
-      <button onclick="closeChat()" class="text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark"></i></button>
+      <button onclick="closeChat()" class="text-slate-400 hover:text-slate-700" aria-label="إغلاق"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <div id="chat-list" class="h-72 overflow-y-auto space-y-2 rounded-xl bg-slate-50 p-3 mb-3"></div>
     <form onsubmit="sendChat(event)" class="flex gap-2">
@@ -671,15 +764,13 @@ tailwind.config = {
   </div>
 </div>
 
-<!-- DETAILS MODAL -->
 <div id="details-modal" class="hidden fixed inset-0 z-[150] bg-slate-950/60 backdrop-blur-sm items-center justify-center p-4">
   <div class="bg-white rounded-2xl w-full max-w-2xl p-6 shadow-2xl relative max-h-[92vh] overflow-y-auto">
-    <button onclick="closeModal('details-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark"></i></button>
+    <button onclick="closeModal('details-modal')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-700" aria-label="إغلاق"><i class="fa-solid fa-xmark"></i></button>
     <div id="details-content"></div>
   </div>
 </div>
 
-<!-- SOURCES MODAL -->
 <div id="sources-modal" class="hidden fixed inset-0 z-[200] bg-slate-950/80 backdrop-blur-md items-center justify-center p-4">
   <div class="bg-white rounded-3xl w-full max-w-4xl shadow-2xl relative max-h-[90vh] overflow-y-auto">
     <div class="sticky top-0 bg-white border-b border-slate-200 p-5 flex items-center justify-between rounded-t-3xl z-10">
@@ -694,7 +785,6 @@ tailwind.config = {
   </div>
 </div>
 
-<!-- SUGGEST MODAL -->
 <div id="suggest-modal" class="hidden fixed inset-0 z-[200] bg-slate-950/80 backdrop-blur-md items-center justify-center p-4">
   <div class="bg-white rounded-3xl w-full max-w-lg shadow-2xl relative">
     <div class="border-b border-slate-200 p-5 flex items-center justify-between">
@@ -710,7 +800,7 @@ tailwind.config = {
       <div><label class="block text-xs font-bold text-slate-700 mb-1">الرابط *</label><input id="sg-url" required type="url" dir="ltr" placeholder="https://example.com" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none"></div>
       <div><label class="block text-xs font-bold text-slate-700 mb-1">القسم المقترح</label><select id="sg-section" class="w-full rounded-xl bg-slate-50 border border-slate-200 px-3 py-2.5 text-sm outline-none"><option value="teacher">المعلمون والمتخصصون</option><option value="student">الطلاب والأسر</option><option value="pro">المهنيون</option><option value="other">قسم آخر</option></select></div>
       <div><label class="block text-xs font-bold text-slate-700 mb-1">سبب الإضافة (اختياري)</label><textarea id="sg-reason" rows="3" maxlength="500" placeholder="لماذا هذا المصدر مفيد؟" class="w-full rounded-xl bg-slate-50 border border-slate-200 p-3 text-sm outline-none resize-none"></textarea></div>
-      <div class="rounded-xl bg-emerald-50 border border-emerald-200 p-3 text-[10px] leading-5 text-emerald-800"><i class="fa-solid fa-shield-halved"></i> <strong>لا ترسل بيانات شخصية</strong></div>
+      <div class="rounded-xl bg-emerald-50 border border-emerald-200 p-3 text-[10px] leading-5 text-emerald-800"><i class="fa-solid fa-shield"></i> <strong>لا ترسل بيانات شخصية</strong></div>
       <div class="flex gap-2 pt-2">
         <button type="submit" class="flex-1 rounded-xl bg-violet-600 hover:bg-violet-700 text-white py-3 text-sm font-black"><i class="fa-solid fa-paper-plane"></i> إرسال</button>
         <button type="button" onclick="closeSuggestSource()" class="rounded-xl border border-slate-200 px-4 py-3 text-sm font-bold">إلغاء</button>
@@ -721,6 +811,54 @@ tailwind.config = {
 </div>
 
 <script>
+/* ============ SVG ICON REPLACEMENT ============ */
+function replaceIconsToSvg() {
+  const map = {
+    'fa-satellite-dish': 'i-satellite', 'fa-telegram': 'i-telegram', 'fa-briefcase': 'i-briefcase',
+    'fa-laptop-code': 'i-laptop', 'fa-chalkboard-user': 'i-chalkboard', 'fa-globe': 'i-globe',
+    'fa-layer-group': 'i-layer', 'fa-user': 'i-user', 'fa-user-graduate': 'i-user-graduate',
+    'fa-user-plus': 'i-user-plus', 'fa-user-lock': 'i-user-lock', 'fa-user-pen': 'i-user-pen',
+    'fa-plus': 'i-plus', 'fa-plus-circle': 'i-plus-circle', 'fa-moon': 'i-moon', 'fa-sun': 'i-sun',
+    'fa-bars': 'i-bars', 'fa-xmark': 'i-xmark', 'fa-magnifying-glass': 'i-search', 'fa-search': 'i-search',
+    'fa-whatsapp': 'i-whatsapp', 'fa-rotate': 'i-rotate', 'fa-book-quran': 'i-book-quran',
+    'fa-book': 'i-book', 'fa-book-open': 'i-book-open', 'fa-bullhorn': 'i-bullhorn',
+    'fa-chevron-left': 'i-chevron-left', 'fa-chevron-up': 'i-chevron-up',
+    'fa-arrow-up-right-from-square': 'i-external', 'fa-share-nodes': 'i-share',
+    'fa-bookmark': 'i-bookmark', 'fa-arrow-up': 'i-arrow-up', 'fa-phone': 'i-phone',
+    'fa-circle-check': 'i-check-circle', 'fa-circle-info': 'i-info', 'fa-info-circle': 'i-info',
+    'fa-triangle-exclamation': 'i-alert', 'fa-exclamation-triangle': 'i-alert',
+    'fa-circle-xmark': 'i-x-circle', 'fa-inbox': 'i-inbox', 'fa-shield-halved': 'i-shield',
+    'fa-right-to-bracket': 'i-right-to-bracket', 'fa-paper-plane': 'i-paper-plane',
+    'fa-landmark': 'i-landmark', 'fa-hand-holding-heart': 'i-heart', 'fa-heart': 'i-heart',
+    'fa-graduation-cap': 'i-graduation', 'fa-certificate': 'i-certificate', 'fa-users': 'i-users',
+    'fa-store': 'i-store', 'fa-play-circle': 'i-play', 'fa-clipboard-question': 'i-clipboard',
+    'fa-file-pen': 'i-file', 'fa-award': 'i-award', 'fa-calendar': 'i-calendar',
+    'fa-toolbox': 'i-toolbox', 'fa-facebook-f': 'i-facebook', 'fa-copy': 'i-copy',
+    'fa-comments': 'i-comments', 'fa-handshake': 'i-handshake', 'fa-eye': 'i-eye',
+    'fa-floppy-disk': 'i-floppy', 'fa-pen': 'i-pen', 'fa-trash': 'i-trash', 'fa-envelope': 'i-envelope',
+    'fa-star': 'i-star'
+  };
+  document.querySelectorAll('i[class*="fa-"]').forEach(el => {
+    const classes = el.className.split(' ');
+    const faClass = classes.find(c => c.startsWith('fa-') && !['fa-solid','fa-regular','fa-brands'].includes(c));
+    if (!faClass) return;
+    const id = map[faClass];
+    if (!id) return;
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    const isFill = ['fa-telegram','fa-whatsapp','fa-facebook-f'].includes(faClass);
+    const baseClass = classes.filter(c => !c.startsWith('fa-')).join(' ');
+    svg.setAttribute('class', baseClass);
+    svg.style.cssText = 'display:inline-block;width:1em;height:1em;vertical-align:-0.125em;' + (isFill ? 'fill:currentColor;stroke:none;' : 'fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;');
+    svg.innerHTML = `<use href="#${id}"/>`;
+    el.replaceWith(svg);
+  });
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', replaceIconsToSvg);
+} else {
+  replaceIconsToSvg();
+}
+
 /* ============ CONFIG ============ */
 const SUPABASE_URL = "https://zwgkrwkrohkmnyoixude.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_-tSaRUJ2HWDMSCfEg5CUEQ_dm4-uYAe";
@@ -766,10 +904,10 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&l
 
 function toast(msg, type='info') {
   const colors = { info:'bg-slate-900', success:'bg-emerald-600', error:'bg-red-600', warn:'bg-amber-500' };
-  const icons  = { info:'fa-circle-info', success:'fa-circle-check', error:'fa-circle-xmark', warn:'fa-triangle-exclamation' };
+  const icons  = { info:'i-info', success:'i-check-circle', error:'i-x-circle', warn:'i-alert' };
   const el = document.createElement('div');
   el.className = `${colors[type]} text-white text-xs font-bold px-4 py-3 rounded-xl shadow-2xl flex items-center gap-2`;
-  el.innerHTML = `<i class="fa-solid ${icons[type]}"></i><span>${msg}</span>`;
+  el.innerHTML = `<svg style="display:inline-block;width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><use href="#${icons[type]}"/></svg><span>${msg}</span>`;
   $('toast-container').appendChild(el);
   setTimeout(() => { el.style.opacity = '0'; el.style.transition = 'opacity .3s'; setTimeout(() => el.remove(), 350); }, 3800);
 }
@@ -804,7 +942,6 @@ function detectIntentType(text) {
   if (/متاح|أقدم|نقدم|available|offering|provide|عرض/.test(t)) return 'offer';
   return 'unknown';
 }
-
 function extractPhone(text) {
   if (!text) return null;
   const cleaned = String(text).replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
@@ -813,13 +950,11 @@ function extractPhone(text) {
   const ph = cleaned.match(/(?:\+|00)(\d{9,15})/);
   return ph ? ph[1] : null;
 }
-
 function extractEmail(text) {
   if (!text) return null;
   const m = String(text).match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
   return m ? m[0] : null;
 }
-
 function detectCategory(text) {
   const t = (text || '').toLowerCase();
   if (/قرآن|قران|تحفيظ|تجويد|حفظ|quran|tajweed|hifz/.test(t)) return 'quran';
@@ -828,7 +963,6 @@ function detectCategory(text) {
   if (/طفل|أطفال|اطفال|kids|child/.test(t)) return 'kids';
   return 'services';
 }
-
 function computeScore(lead) {
   let score = 50;
   const age = (Date.now() - new Date(lead.date).getTime()) / (1000 * 60 * 60);
@@ -846,1137 +980,16 @@ function initTheme() {
   const saved = localStorage.getItem('wefaq_theme');
   if (saved === 'dark' || (!saved && matchMedia('(prefers-color-scheme: dark)').matches)) {
     document.documentElement.classList.add('dark');
-    $('theme-icon').className = 'fa-solid fa-sun text-amber-400';
+    const icon = $('theme-icon');
+    if (icon) icon.className = 'fa-solid fa-sun text-amber-400';
   }
 }
 $('theme-toggle').addEventListener('click', () => {
   const isDark = document.documentElement.classList.toggle('dark');
   localStorage.setItem('wefaq_theme', isDark ? 'dark' : 'light');
-  $('theme-icon').className = isDark ? 'fa-solid fa-sun text-amber-400' : 'fa-solid fa-moon';
+  const icon = $('theme-icon');
+  if (icon) icon.className = isDark ? 'fa-solid fa-sun text-amber-400' : 'fa-solid fa-moon';
+  setTimeout(replaceIconsToSvg, 50);
 });
 $('menu-btn').addEventListener('click', () => $('mobile-menu').classList.toggle('hidden'));
-window.addEventListener('scroll', () => {
-  const t = $('to-top');
-  if (t) t.classList.toggle('hidden', window.scrollY <= 500);
-}, { passive: true });
-$('to-top').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-/* ============ VISITOR COUNTER ============ */
-async function initVisitorCounter() {
-  const el = $('visitor-count');
-  const elToday = $('visitor-today');
-  if (!el) return;
-  try {
-    const { data, error } = await sb.rpc('increment_visitor');
-    if (error) throw error;
-    const total = Number(data?.total || 5000);
-    const today = Number(data?.today || 0);
-    el.textContent = total.toLocaleString('en-US');
-    if (elToday) elToday.textContent = today.toLocaleString('en-US');
-    setInterval(async () => {
-      try {
-        const { data: d2 } = await sb.rpc('get_visitor_count');
-        if (d2?.total) {
-          el.textContent = Number(d2.total).toLocaleString('en-US');
-          if (elToday) elToday.textContent = Number(d2.today || 0).toLocaleString('en-US');
-        }
-      } catch (e) {}
-    }, 60000);
-  } catch (err) {
-    console.warn('Visitor counter failed:', err);
-    el.textContent = '5,000';
-    if (elToday) elToday.textContent = '0';
-  }
-}
-
-/* ============ AUTH ============ */
-function openAuthModal() { openModal('auth-modal'); }
-function switchAuthTab(mode) {
-  currentAuthMode = mode;
-  const isLogin = mode === 'login';
-  $('tab-login').className = `py-2 rounded-lg ${isLogin ? 'bg-white shadow-sm' : 'text-slate-500'}`;
-  $('tab-signup').className = `py-2 rounded-lg ${!isLogin ? 'bg-white shadow-sm' : 'text-slate-500'}`;
-  $('a-name').classList.toggle('hidden', isLogin);
-  $('a-type').classList.toggle('hidden', isLogin);
-  $('auth-submit').textContent = isLogin ? 'دخول' : 'إنشاء حساب';
-  $('auth-msg').textContent = '';
-}
-
-async function submitAuth(e) {
-  e.preventDefault();
-  const email = $('a-email').value.trim(), password = $('a-password').value;
-  const name = $('a-name').value.trim(), type = $('a-type').value;
-  const msg = $('auth-msg'); msg.textContent = 'جارٍ المعالجة...';
-  if (currentAuthMode === 'login') {
-    const { error } = await sb.auth.signInWithPassword({ email, password });
-    if (error) { msg.textContent = error.message; return; }
-    closeModal('auth-modal');
-    toast('تم تسجيل الدخول ✓', 'success');
-  } else {
-    if (password.length < 8) { msg.textContent = 'كلمة المرور 8 أحرف على الأقل'; return; }
-    const { data, error } = await sb.auth.signUp({ email, password, options: { data: { display_name: name, account_type: type } } });
-    if (error) { msg.textContent = error.message; return; }
-    msg.textContent = data.session ? 'تم إنشاء الحساب ✓' : 'تفقد بريدك لتأكيد الحساب';
-    if (data.session) { closeModal('auth-modal'); toast('مرحباً بك في وفاق ✓', 'success'); }
-  }
-}
-
-async function signOut() {
-  await sb.auth.signOut();
-  currentUser = null;
-  updateAuthUI();
-  teardownRealtime();
-  toast('تم تسجيل الخروج');
-  loadListings(); loadSpecialists(); renderCommunities();
-}
-
-function updateAuthUI() {
-  const label = $('auth-btn-label');
-  const wsGuest = $('workspace-guest'), wsUser = $('workspace-user'), soBtn = $('signout-btn');
-  if (currentUser) {
-    label.textContent = (currentUser.email || '').split('@')[0];
-    wsGuest.classList.add('hidden');
-    wsUser.classList.remove('hidden');
-    soBtn.classList.remove('hidden');
-  } else {
-    label.textContent = 'دخول';
-    wsGuest.classList.remove('hidden');
-    wsUser.classList.add('hidden');
-    soBtn.classList.add('hidden');
-  }
-}
-
-$('auth-btn').addEventListener('click', () => { if (currentUser) scrollTo('workspace'); else openAuthModal(); });
-
-sb.auth.onAuthStateChange((event, session) => {
-  currentUser = session?.user || null;
-  updateAuthUI();
-  if (currentUser) { loadWorkspace(); setupRealtime(); }
-  else teardownRealtime();
-  loadListings(); loadSpecialists(); renderCommunities();
-});
-
-/* ============ RADAR ============ */
-async function fetchViaProxy(url) {
-  for (const proxyFn of CORS_PROXIES) {
-    try {
-      const res = await fetch(proxyFn(url), { signal: AbortSignal.timeout(12000), headers: { 'Accept': 'text/html,application/xhtml+xml,application/xml' } });
-      if (!res.ok) continue;
-      let html = await res.text();
-      if (html.trim().startsWith('{')) { try { const j = JSON.parse(html); if (j.contents) html = j.contents; } catch (e) {} }
-      if (html.includes('tgme_widget_message') || html.length > 500) return html;
-    } catch (e) { continue; }
-  }
-  return null;
-}
-
-async function fetchTelegramChannel(channel, category, label) {
-  const url = `https://t.me/s/${channel}`;
-  const html = await fetchViaProxy(url);
-  if (!html) return [];
-  try {
-    const doc = new DOMParser().parseFromString(html, 'text/html');
-    const posts = [...doc.querySelectorAll('.tgme_widget_message')].slice(-20).reverse();
-    return posts.map((p, i) => {
-      const text = (p.querySelector('.tgme_widget_message_text')?.textContent || '').trim();
-      if (!text) return null;
-      const date = p.querySelector('time')?.getAttribute('datetime') || new Date().toISOString();
-      const link = p.querySelector('a.tgme_widget_message_date')?.getAttribute('href') || url;
-      const lead = {
-        id: `tg_${channel}_${i}_${Date.now()}`, source: 'telegram', sourceLabel: label, sourceUrl: link, channel,
-        title: text.slice(0, 100) + (text.length > 100 ? '...' : ''),
-        snippet: text.slice(0, 400), fullText: text.slice(0, 800), category, date,
-        phone: extractPhone(text), email: extractEmail(text), intentType: detectIntentType(text)
-      };
-      lead.score = computeScore(lead);
-      return lead;
-    }).filter(Boolean);
-  } catch (e) { return []; }
-}
-
-async function fetchKhamsat(url, category, label) {
-  const xml = await fetchViaProxy(url.includes('rss') ? url : `${url}/rss`);
-  if (!xml) return [];
-  try {
-    const doc = new DOMParser().parseFromString(xml, 'application/xml');
-    const items = [...doc.querySelectorAll('item')].slice(0, 15);
-    return items.map((it, i) => {
-      const title = it.querySelector('title')?.textContent || '';
-      const desc = it.querySelector('description')?.textContent || '';
-      const link = it.querySelector('link')?.textContent || '';
-      const pub = it.querySelector('pubDate')?.textContent || new Date().toISOString();
-      const plain = desc.replace(/<[^>]*>/g, ' ');
-      const lead = {
-        id: `kh_${i}_${Date.now()}`, source: 'khamsat', sourceLabel: label, sourceUrl: link,
-        title: title.slice(0, 100), snippet: plain.slice(0, 400), fullText: plain.slice(0, 800),
-        category: detectCategory(title + ' ' + plain), date: new Date(pub).toISOString(),
-        phone: extractPhone(plain), email: extractEmail(plain), intentType: detectIntentType(title + ' ' + plain)
-      };
-      lead.score = computeScore(lead);
-      return lead;
-    }).filter(x => x.title);
-  } catch (e) { return []; }
-}
-
-async function fetchSupabaseLeads() {
-  try {
-    const { data, error } = await sb.from('radar_leads').select('id, title, snippet, category, source, source_url, score, created_at').order('created_at', { ascending: false }).limit(100);
-    if (error || !data) return [];
-    return data.map(d => {
-      const lead = {
-        id: `sb_${d.id}`, source: 'web', sourceLabel: d.source || 'مصدر محفوظ',
-        sourceUrl: d.source_url || '#', title: d.title, snippet: d.snippet || '', fullText: d.snippet || '',
-        category: d.category || 'services', date: d.created_at,
-        phone: extractPhone(d.snippet || ''), email: extractEmail(d.snippet || ''),
-        intentType: detectIntentType(d.title + ' ' + (d.snippet || ''))
-      };
-      lead.score = Number(d.score) || computeScore(lead);
-      return lead;
-    });
-  } catch (e) { return []; }
-}
-
-async function syncRadar(manual = false) {
-  if (manual) {
-    $('radar-sync-btn').disabled = true;
-    $('radar-sync-btn').innerHTML = '<span class="wf-loading"></span> جارٍ المزامنة...';
-    toast('جارٍ جلب الإشارات الحية...', 'info');
-  }
-  const tgPromises = RADAR_SOURCES.telegram.map(ch => fetchTelegramChannel(ch.channel, ch.category, ch.label));
-  const khPromises = RADAR_SOURCES.khamsat.map(k => fetchKhamsat(k.url, k.category, k.label));
-  const [tgRes, khRes, sbRes] = await Promise.all([Promise.allSettled(tgPromises), Promise.allSettled(khPromises), fetchSupabaseLeads()]);
-  const allLeads = [];
-  tgRes.forEach(r => { if (r.status === 'fulfilled') allLeads.push(...r.value); });
-  khRes.forEach(r => { if (r.status === 'fulfilled') allLeads.push(...r.value); });
-  allLeads.push(...sbRes);
-  if (allLeads.length === 0 && radarLeads.length > 0) {
-    if (manual) toast('لم يتم جلب بيانات جديدة', 'warn');
-  } else {
-    const seen = new Set();
-    radarLeads = allLeads.filter(l => { const k = (l.title || '').slice(0, 60); if (seen.has(k)) return false; seen.add(k); return true; })
-      .map(l => ({ ...l, category: l.category || detectCategory(l.title + ' ' + l.snippet) }));
-  }
-  localStorage.setItem('wefaq_radar_cache', JSON.stringify({ leads: radarLeads.slice(0, 200), ts: Date.now() }));
-  localStorage.setItem('wefaq_radar_last_sync', String(Date.now()));
-  renderRadar(); updateRadarStats(); renderHeroRadarPreview();
-  if (manual) {
-    $('radar-sync-btn').disabled = false;
-    $('radar-sync-btn').innerHTML = '<i class="fa-solid fa-rotate"></i> مزامنة الآن';
-    toast(`تم جلب ${radarLeads.length} إشارة ✓`, 'success');
-  }
-}
-
-function loadRadarFromCache() {
-  try {
-    const raw = localStorage.getItem('wefaq_radar_cache');
-    if (!raw) return;
-    const { leads } = JSON.parse(raw);
-    if (Array.isArray(leads)) radarLeads = leads;
-    const lastSync = Number(localStorage.getItem('wefaq_radar_last_sync') || 0);
-    if (lastSync) $('radar-last-sync').textContent = `آخر مزامنة: ${timeAgo(new Date(lastSync).toISOString())}`;
-  } catch (e) {}
-}
-
-function updateRadarStats() {
-  $('radar-stat-total').textContent = radarLeads.length;
-  $('radar-stat-telegram').textContent = radarLeads.filter(l => l.source === 'telegram').length;
-  $('radar-stat-khamsat').textContent = radarLeads.filter(l => l.source === 'khamsat').length;
-  $('radar-stat-demand').textContent = radarLeads.filter(l => l.intentType === 'demand').length;
-  $('radar-timestamp').textContent = new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
-  $('radar-last-sync').textContent = `آخر مزامنة: ${timeAgo(new Date().toISOString())}`;
-}
-
-const PLATFORM_META = {
-  telegram: { name: 'تيليجرام', icon: 'fa-brands fa-telegram', headerCls: 'from-sky-50 to-white', iconCls: 'bg-sky-100 text-sky-600', countCls: 'bg-sky-100 text-sky-700', desc: 'قنوات ومجموعات ودورات' },
-  khamsat: { name: 'خمسات', icon: 'fa-solid fa-briefcase', headerCls: 'from-amber-50 to-white', iconCls: 'bg-amber-100 text-amber-600', countCls: 'bg-amber-100 text-amber-700', desc: 'خدمات تعليمية عربية' },
-  freelancer: { name: 'Freelancer', icon: 'fa-solid fa-laptop-code', headerCls: 'from-indigo-50 to-white', iconCls: 'bg-indigo-100 text-indigo-600', countCls: 'bg-indigo-100 text-indigo-700', desc: 'مشاريع تعليمية عالمية' },
-  teacheron: { name: 'TeacherOn', icon: 'fa-solid fa-chalkboard-user', headerCls: 'from-violet-50 to-white', iconCls: 'bg-violet-100 text-violet-600', countCls: 'bg-violet-100 text-violet-700', desc: 'معلمون خصوصيون' },
-  web: { name: 'الويب المفتوح', icon: 'fa-solid fa-globe', headerCls: 'from-emerald-50 to-white', iconCls: 'bg-emerald-100 text-emerald-600', countCls: 'bg-emerald-100 text-emerald-700', desc: 'نتائج بحث عامة' },
-  other: { name: 'مصادر أخرى', icon: 'fa-solid fa-layer-group', headerCls: 'from-slate-50 to-white', iconCls: 'bg-slate-100 text-slate-600', countCls: 'bg-slate-100 text-slate-700', desc: 'مصادر متنوعة' }
-};
-const PLATFORM_ORDER = ['telegram','khamsat','freelancer','teacheron','web','other'];
-
-function getPlatformKey(lead) {
-  const s = String(lead.sourceLabel || lead.source || '').toLowerCase();
-  if (s.includes('telegram')) return 'telegram';
-  if (s.includes('khamsat') || s.includes('خمسات')) return 'khamsat';
-  if (s.includes('freelancer') || s.includes('فريلانسر')) return 'freelancer';
-  if (s.includes('teacheron') || s.includes('teacher on')) return 'teacheron';
-  if (s.includes('open web') || s === 'web' || s.includes('open-web')) return 'web';
-  return 'other';
-}
-
-function renderRadarCard(l) {
-  const srcIcon = { telegram: 'fa-brands fa-telegram text-sky-500', khamsat: 'fa-solid fa-briefcase text-amber-500', web: 'fa-solid fa-globe text-emerald-500' };
-  const catLabel = { quran:'قرآن', arabic:'عربية', hadith:'حديث', kids:'أطفال', services:'خدمات' };
-  const typeBadge = l.intentType === 'demand' ? '<span class="text-[9px] font-black px-2 py-0.5 rounded-full wf-badge-demand">طلب</span>'
-    : l.intentType === 'offer' ? '<span class="text-[9px] font-black px-2 py-0.5 rounded-full wf-badge-offer">عرض</span>' : '';
-  const phoneChip = l.phone ? `<span class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700">${esc(l.phone)}</span>` : '';
-  return `<article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-4 flex flex-col">
-    <div class="flex items-start justify-between gap-2 mb-2 flex-wrap">
-      <span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full bg-slate-100 text-slate-700"><i class="${srcIcon[l.source] || 'fa-solid fa-globe'}"></i> ${esc(l.sourceLabel || l.source)}</span>
-      <div class="flex items-center gap-1.5 flex-wrap">${typeBadge}<span class="text-[10px] text-slate-400">${timeAgo(l.date)}</span></div>
-    </div>
-    <h3 class="font-black text-sm text-slate-900 leading-6 line-clamp-2">${esc(l.title)}</h3>
-    ${l.snippet ? `<p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">${esc(l.snippet)}</p>` : ''}
-    <div class="mt-3 flex flex-wrap gap-1.5">
-      <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-50 text-brand-700">${catLabel[l.category] || l.category}</span>
-      <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700">أولوية ${l.score}%</span>
-      ${phoneChip}
-    </div>
-    <div class="mt-4 flex gap-2">
-      <a href="${esc(l.sourceUrl)}" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2"><i class="fa-solid fa-arrow-up-right-from-square"></i> فتح</a>
-      <button onclick="shareRadarLead('${esc(l.id)}')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="مشاركة"><i class="fa-solid fa-share-nodes"></i></button>
-      <button onclick="saveLeadToWorkspace('${esc(l.id)}')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="حفظ"><i class="fa-regular fa-bookmark"></i></button>
-    </div>
-  </article>`;
-}
-
-function togglePlatformExpand(key) {
-  if (expandedPlatforms.has(key)) expandedPlatforms.delete(key);
-  else expandedPlatforms.add(key);
-  renderRadar();
-}
-
-function renderRadar() {
-  const q = $('radar-search').value.trim().toLowerCase();
-  const src = $('radar-filter-source').value;
-  const cat = $('radar-filter-category').value;
-  const typ = $('radar-filter-type').value;
-  const sort = $('radar-filter-sort').value;
-  let list = radarLeads.filter(l => {
-    if (src !== 'all' && l.source !== src) return false;
-    if (cat !== 'all' && l.category !== cat) return false;
-    if (typ !== 'all' && l.intentType !== typ) return false;
-    if (q && !(`${l.title} ${l.snippet}`.toLowerCase().includes(q))) return false;
-    return true;
-  });
-  const container = $('radar-grid');
-  if (list.length === 0) {
-    container.className = '';
-    container.innerHTML = `<div class="rounded-2xl border border-dashed border-slate-300 p-8 text-center text-slate-400 text-sm"><div class="font-black text-slate-700">لا توجد إشارات حالية</div><div class="text-xs mt-1">جرّب مزامنة جديدة أو غيّر الفلتر</div></div>`;
-    return;
-  }
-  const grouped = {};
-  list.forEach(l => { const k = getPlatformKey(l); if (!grouped[k]) grouped[k] = []; grouped[k].push(l); });
-  Object.keys(grouped).forEach(k => {
-    if (sort === 'score') grouped[k].sort((a, b) => (b.score || 0) - (a.score || 0));
-    else grouped[k].sort((a, b) => new Date(b.date) - new Date(a.date));
-  });
-  const presentKeys = PLATFORM_ORDER.filter(k => grouped[k] && grouped[k].length > 0);
-  container.className = 'space-y-6';
-  container.innerHTML = presentKeys.map(key => {
-    const meta = PLATFORM_META[key];
-    const allItems = grouped[key];
-    const isExpanded = expandedPlatforms.has(key);
-    const visible = isExpanded ? allItems : allItems.slice(0, 3);
-    const remaining = allItems.length - 3;
-    let moreBtn = '';
-    if (remaining > 0) {
-      moreBtn = isExpanded
-        ? `<div class="col-span-full text-center pt-2"><button onclick="togglePlatformExpand('${key}')" class="inline-flex items-center gap-2 rounded-xl border-2 border-slate-200 bg-white hover:bg-slate-50 text-slate-700 px-5 py-2.5 text-xs font-black transition"><i class="fa-solid fa-chevron-up"></i> عرض أقل</button></div>`
-        : `<div class="col-span-full text-center pt-2"><button onclick="togglePlatformExpand('${key}')" class="inline-flex items-center gap-2 rounded-xl border-2 border-dashed border-slate-300 bg-white hover:bg-brand-50 hover:border-brand-400 text-brand-700 px-5 py-2.5 text-xs font-black transition"><i class="fa-solid fa-plus-circle"></i> عرض ${remaining} إشارة إضافية</button></div>`;
-    }
-    return `<section class="rounded-3xl border border-slate-200 bg-white overflow-hidden shadow-sm">
-      <header class="flex items-center justify-between gap-3 px-5 py-4 bg-gradient-to-l ${meta.headerCls} border-b border-slate-100">
-        <div class="flex items-center gap-3 min-w-0">
-          <span class="w-11 h-11 rounded-2xl ${meta.iconCls} grid place-items-center text-lg shrink-0"><i class="${meta.icon}"></i></span>
-          <div class="min-w-0"><h3 class="font-black text-slate-900 text-base truncate">${meta.name}</h3><p class="text-[11px] text-slate-500 truncate">${meta.desc}</p></div>
-        </div>
-        <span class="text-[11px] font-black px-3 py-1 rounded-full ${meta.countCls} shrink-0">${allItems.length} إشارة</span>
-      </header>
-      <div class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        ${visible.map(renderRadarCard).join('')}
-        ${moreBtn}
-      </div>
-    </section>`;
-  }).join('');
-}
-
-function renderHeroRadarPreview() {
-  const box = $('hero-radar-preview'); if (!box) return;
-  const top = radarLeads.slice(0, 3);
-  if (top.length === 0) { box.innerHTML = `<div class="text-xs text-white/50 text-center py-4">لا توجد إشارات بعد</div>`; return; }
-  box.innerHTML = top.map(l => `<div class="rounded-xl bg-white/5 border border-white/10 p-3"><div class="flex items-center justify-between mb-1"><div class="text-[10px] font-black text-emerald-300">${esc(l.sourceLabel || l.source)}</div>${l.intentType === 'demand' ? '<span class="text-[9px] font-black text-orange-300">طلب</span>' : ''}</div><div class="text-xs font-bold text-white line-clamp-2">${esc(l.title)}</div></div>`).join('');
-}
-
-async function saveLeadToWorkspace(leadId) {
-  if (!currentUser) { openAuthModal(); return; }
-  const lead = radarLeads.find(l => l.id === leadId); if (!lead) return;
-  if (lead.id.startsWith('sb_')) {
-    const uuid = lead.id.replace('sb_', '');
-    const { error } = await sb.from('radar_user_saves').insert({ user_id: currentUser.id, lead_id: uuid, notes: lead.sourceLabel || null });
-    if (error) {
-      if (error.code === '23505') toast('محفوظة مسبقاً ✓', 'info');
-      else toast('لم يتم الحفظ', 'error');
-    } else toast('تم الحفظ ✓', 'success');
-    return;
-  }
-  const { data: ins, error: e1 } = await sb.from('radar_leads').insert({ title: lead.title, snippet: lead.snippet, category: lead.category, source: lead.sourceLabel, source_url: lead.sourceUrl, score: lead.score }).select('id').single();
-  if (e1 || !ins) { toast('لم يتم الحفظ', 'error'); return; }
-  const { error: e2 } = await sb.from('radar_user_saves').insert({ user_id: currentUser.id, lead_id: ins.id, notes: null });
-  if (e2) {
-    if (e2.code === '23505') toast('محفوظة مسبقاً ✓', 'info');
-    else toast('لم يتم الحفظ', 'error');
-  } else toast('تم الحفظ ✓', 'success');
-}
-
-async function shareRadarLead(leadId) {
-  const lead = radarLeads.find(l => l.id === leadId); if (!lead) return;
-  const text = `${lead.title}\n${lead.snippet?.slice(0, 200) || ''}\n${lead.sourceUrl}`;
-  if (navigator.share) { try { await navigator.share({ title: lead.title, text, url: lead.sourceUrl }); } catch (e) { if (e.name !== 'AbortError') copyText(text); } }
-  else copyText(text);
-}
-
-async function copyText(text) { try { await navigator.clipboard.writeText(text); toast('تم النسخ ✓', 'success'); } catch { toast('تعذر النسخ', 'error'); } }
-
-/* ============ SOURCES MODAL ============ */
-const SOURCES = {
-  'teacher-certs': { title: 'شهادات مهنية معتمدة', subtitle: 'شهادات معترف بها للمعلمين والمحفظين', items: [
-    { name: 'هيئة تقويم التعليم والتدريب', url: 'https://etec.gov.sa', desc: 'الرخص المهنية للمعلمين' },
-    { name: 'المركز الوطني للتعليم الإلكتروني', url: 'https://nelc.gov.sa', desc: 'اعتماد المنصات والشهادات' },
-    { name: 'جمعية تحفيظ القرآن الكريم', url: 'https://quran.org.sa', desc: 'إجازات قرآنية معتمدة' },
-    { name: 'Coursera Certificates', url: 'https://coursera.org', desc: 'شهادات من جامعات عالمية' },
-    { name: 'edX Professional', url: 'https://edx.org', desc: 'شهادات من MIT وHarvard' },
-    { name: 'Microsoft Educator', url: 'https://education.microsoft.com', desc: 'شهادات من مايكروسوفت' }
-  ]},
-  'teacher-courses': { title: 'دورات تدريب مهني', subtitle: 'دورات لتطوير مهارات التدريس', items: [
-    { name: 'إدراك', url: 'https://edraak.org', desc: 'دورات عربية مجانية' },
-    { name: 'رواق', url: 'https://rwaq.org', desc: 'منصة عربية مفتوحة' },
-    { name: 'مهارات Google', url: 'https://learndigital.withgoogle.com', desc: 'دورات جوجل بالعربية' },
-    { name: 'Coursera for Teachers', url: 'https://coursera.org', desc: 'تدريب معلمين' },
-    { name: 'FutureLearn', url: 'https://futurelearn.com', desc: 'دورات بريطانية' },
-    { name: 'Khan Academy', url: 'https://khanacademy.org', desc: 'أدوات تعليمية' }
-  ]},
-  'teacher-ijazat': { title: 'إجازات قرآنية معتمدة', subtitle: 'الحصول على إجازة بالسند المتصل', items: [
-    { name: 'مجمع الملك فهد', url: 'https://qurancomplex.gov.sa', desc: 'إجازات ومراجع المصحف' },
-    { name: 'الجمعية الخيرية لتحفيظ القرآن', url: 'https://quran.org.sa', desc: 'حلقات وإجازات' },
-    { name: 'الهيئة العالمية لتحفيظ القرآن', url: 'https://quran-world.org', desc: 'شبكة عالمية' },
-    { name: 'Ijazah Online', url: 'https://ijazah.online', desc: 'إجازة أونلاين' },
-    { name: 'Quranic Arabic Institute', url: 'https://quranicarabic.org', desc: 'إجازات بالقراءات العشر' },
-    { name: 'Al-Azhar', url: 'https://azhar.edu.eg', desc: 'إجازات الأزهر' }
-  ]},
-  'teacher-platforms': { title: 'منصات تعليمية للتدريس', subtitle: 'اعرض دروسك وابنِ سمعتك', items: [
-    { name: 'منصة مدرستي', url: 'https://schools.madrasati.sa', desc: 'المنصة الرسمية للتعليم' },
-    { name: 'منصة عين', url: 'https://ien.edu.sa', desc: 'محتوى تعليمي رسمي' },
-    { name: 'نون أكاديمي', url: 'https://noonacademy.com', desc: 'منصة دورات عربية' },
-    { name: 'Udemy', url: 'https://udemy.com', desc: 'بيع دوراتك عالمياً' },
-    { name: 'Teachable', url: 'https://teachable.com', desc: 'ابن منصتك' },
-    { name: 'Thinkific', url: 'https://thinkific.com', desc: 'منصة احترافية' }
-  ]},
-  'teacher-jobs': { title: 'وظائف تعليمية', subtitle: 'فرص عمل في المدارس والمراكز', items: [
-    { name: 'جدارات', url: 'https://jadarat.sa', desc: 'الوظائف الحكومية' },
-    { name: 'طاقات', url: 'https://taqat.sa', desc: 'وظائف القطاع الخاص' },
-    { name: 'منصة سبل', url: 'https://sbl.sa', desc: 'وظائف تعليمية' },
-    { name: 'LinkedIn Jobs', url: 'https://linkedin.com/jobs', desc: 'وظائف دولية' },
-    { name: 'Bayt.com', url: 'https://bayt.com', desc: 'أكبر موقع عربي' },
-    { name: 'GulfTalent', url: 'https://gulftalent.com', desc: 'وظائف الخليج' }
-  ]},
-  'teacher-tools': { title: 'أدوات مهنية للمعلمين', subtitle: 'أدوات تسهّل عملك اليومي', items: [
-    { name: 'Canva for Education', url: 'https://canva.com/education', desc: 'تصميم عروض' },
-    { name: 'Google Classroom', url: 'https://classroom.google.com', desc: 'إدارة الصفوف' },
-    { name: 'Kahoot', url: 'https://kahoot.com', desc: 'اختبارات تفاعلية' },
-    { name: 'Quizizz', url: 'https://quizizz.com', desc: 'اختبارات أونلاين' },
-    { name: 'Nearpod', url: 'https://nearpod.com', desc: 'دروس تفاعلية' },
-    { name: 'Padlet', url: 'https://padlet.com', desc: 'لوحات تعاونية' }
-  ]},
-  'student-curricula': { title: 'مناهج دراسية رسمية', subtitle: 'مناهج وزارة التعليم', items: [
-    { name: 'منصة عين', url: 'https://ien.edu.sa', desc: 'المناهج الرسمية' },
-    { name: 'منصة مدرستي', url: 'https://schools.madrasati.sa', desc: 'الدروس والواجبات' },
-    { name: 'بوابة نور', url: 'https://noor.moe.gov.sa', desc: 'نتائج الطلاب' },
-    { name: 'Khan Academy Arabic', url: 'https://ar.khanacademy.org', desc: 'شرح مبسط' },
-    { name: 'CK-12 Foundation', url: 'https://ck12.org', desc: 'مناهج علمية' },
-    { name: 'OpenStax', url: 'https://openstax.org', desc: 'كتب جامعية مجانية' }
-  ]},
-  'student-courses': { title: 'دورات أونلاين مجانية', subtitle: 'كورسات معتمدة', items: [
-    { name: 'إدراك', url: 'https://edraak.org', desc: 'دورات عربية' },
-    { name: 'رواق', url: 'https://rwaq.org', desc: 'منصة مفتوحة' },
-    { name: 'مهارات Google', url: 'https://learndigital.withgoogle.com', desc: 'شهادات جوجل' },
-    { name: 'Coursera', url: 'https://coursera.org', desc: 'جامعات عالمية' },
-    { name: 'edX', url: 'https://edx.org', desc: 'MIT وHarvard' },
-    { name: 'freeCodeCamp', url: 'https://freecodecamp.org', desc: 'تعلم البرمجة' }
-  ]},
-  'student-books': { title: 'كتب ومراجع مجانية', subtitle: 'مكتبات رقمية', items: [
-    { name: 'مكتبة نور', url: 'https://noor-book.com', desc: 'ملايين الكتب' },
-    { name: 'المكتبة الوقفية', url: 'https://waqfeya.net', desc: 'كتب إسلامية' },
-    { name: 'مؤسسة هنداوي', url: 'https://hindawi.org', desc: 'كتب أدبية' },
-    { name: 'Project Gutenberg', url: 'https://gutenberg.org', desc: 'كتب عالمية' },
-    { name: 'Internet Archive', url: 'https://archive.org', desc: 'أرشيف الإنترنت' },
-    { name: 'Open Library', url: 'https://openlibrary.org', desc: 'مكتبة مفتوحة' }
-  ]},
-  'student-quizzes': { title: 'اختبارات مستوى', subtitle: 'قيّم مستواك مجاناً', items: [
-    { name: 'اختبار مستوى العربية', url: 'https://arabic-test.com', desc: 'قيّم العربية' },
-    { name: 'Kahoot', url: 'https://kahoot.com', desc: 'اختبارات تفاعلية' },
-    { name: 'Quizizz', url: 'https://quizizz.com', desc: 'اختبارات أونلاين' },
-    { name: 'Duolingo Test', url: 'https://duolingo.com', desc: 'اختبر الإنجليزية' },
-    { name: '16Personalities', url: 'https://16personalities.com', desc: 'اختبر شخصيتك' },
-    { name: 'Cambridge Test', url: 'https://cambridgeenglish.org', desc: 'اختبار كامبريدج' }
-  ]},
-  'student-exams': { title: 'نماذج اختبارات', subtitle: 'تدرب على الامتحانات', items: [
-    { name: 'قياس', url: 'https://etec.gov.sa', desc: 'نماذج قياس' },
-    { name: 'وزارة التعليم', url: 'https://moe.gov.sa', desc: 'نماذج رسمية' },
-    { name: 'منصة عين', url: 'https://ien.edu.sa', desc: 'اختبارات إلكترونية' },
-    { name: 'SAT Practice', url: 'https://khanacademy.org/sat', desc: 'تدريب SAT' },
-    { name: 'IELTS Practice', url: 'https://ielts.org', desc: 'نماذج آيلتس' },
-    { name: 'TOEFL Practice', url: 'https://ets.org/toefl', desc: 'نماذج توفل' }
-  ]},
-  'student-scholarships': { title: 'منح دراسية', subtitle: 'فرص تمويل للتعليم', items: [
-    { name: 'منح وزارة التعليم', url: 'https://moe.gov.sa', desc: 'البعثات الحكومية' },
-    { name: 'منح KAUST', url: 'https://kaust.edu.sa', desc: 'منح كاملة' },
-    { name: 'منح المسك', url: 'https://misk.org.sa', desc: 'برامج للشباب' },
-    { name: 'Chevening', url: 'https://chevening.org', desc: 'منح بريطانية' },
-    { name: 'Fulbright', url: 'https://fulbright.org', desc: 'منح أمريكية' },
-    { name: 'DAAD', url: 'https://daad.de', desc: 'منح ألمانية' }
-  ]},
-  'pro-jobs': { title: 'وظائف تعليمية', subtitle: 'فرص حكومية وخاصة', items: [
-    { name: 'جدارات', url: 'https://jadarat.sa', desc: 'الوظائف الحكومية' },
-    { name: 'طاقات', url: 'https://taqat.sa', desc: 'القطاع الخاص' },
-    { name: 'منصة سبل', url: 'https://sbl.sa', desc: 'وظائف تعليمية' },
-    { name: 'LinkedIn', url: 'https://linkedin.com/jobs', desc: 'وظائف دولية' },
-    { name: 'Bayt', url: 'https://bayt.com', desc: 'أكبر موقع عربي' },
-    { name: 'Indeed', url: 'https://indeed.com', desc: 'وظائف عالمية' }
-  ]},
-  'pro-scholarships': { title: 'منح وبعثات', subtitle: 'فرص تمويل مهني', items: [
-    { name: 'بعثات وزارة التعليم', url: 'https://moe.gov.sa', desc: 'برامج رسمية' },
-    { name: 'منح KAUST', url: 'https://kaust.edu.sa', desc: 'دراسات عليا' },
-    { name: 'منح المسك', url: 'https://misk.org.sa', desc: 'برامج شباب' },
-    { name: 'Chevening', url: 'https://chevening.org', desc: 'منح بريطانية' },
-    { name: 'Fulbright', url: 'https://fulbright.org', desc: 'منح أمريكية' },
-    { name: 'Erasmus+', url: 'https://erasmus-plus.ec.europa.eu', desc: 'منح أوروبية' }
-  ]},
-  'pro-training': { title: 'تدريب معتمد', subtitle: 'شهادات مهنية', items: [
-    { name: 'إدراك', url: 'https://edraak.org', desc: 'دورات عربية' },
-    { name: 'رواق', url: 'https://rwaq.org', desc: 'منصة عربية' },
-    { name: 'Coursera', url: 'https://coursera.org', desc: 'شهادات معتمدة' },
-    { name: 'edX', url: 'https://edx.org', desc: 'شهادات احترافية' },
-    { name: 'Udacity', url: 'https://udacity.com', desc: 'نانو ديجري' },
-    { name: 'Pluralsight', url: 'https://pluralsight.com', desc: 'تدريب تقني' }
-  ]},
-  'pro-networks': { title: 'شبكات مهنية', subtitle: 'تواصل مع المحترفين', items: [
-    { name: 'LinkedIn', url: 'https://linkedin.com', desc: 'شبكة مهنية' },
-    { name: 'Bayt', url: 'https://bayt.com', desc: 'شبكة عربية' },
-    { name: 'GulfTalent', url: 'https://gulftalent.com', desc: 'شبكة الخليج' },
-    { name: 'AngelList', url: 'https://angel.co', desc: 'ريادة أعمال' },
-    { name: 'Meetup', url: 'https://meetup.com', desc: 'لقاءات مهنية' },
-    { name: 'Slack Communities', url: 'https://slack.com/community', desc: 'مجتمعات تقنية' }
-  ]},
-  'pro-events': { title: 'مؤتمرات وملتقيات', subtitle: 'فرص للتطوير', items: [
-    { name: 'ملتقى التعليم السعودي', url: 'https://moe.gov.sa', desc: 'فعاليات رسمية' },
-    { name: 'LEAP', url: 'https://onegiantleap.com', desc: 'مؤتمر التقنية' },
-    { name: 'GITEX', url: 'https://gitex.com', desc: 'معرض التقنية' },
-    { name: 'TEDx', url: 'https://ted.com', desc: 'محادثات ملهمة' },
-    { name: 'EdTech Summit', url: 'https://edtechsummit.com', desc: 'قمة التعليم' },
-    { name: 'Eventbrite', url: 'https://eventbrite.com', desc: 'اكتشف الفعاليات' }
-  ]},
-  'pro-tools': { title: 'أدوات مهنية', subtitle: 'تسهّل عملك', items: [
-    { name: 'Notion', url: 'https://notion.so', desc: 'تنظيم المهام' },
-    { name: 'Trello', url: 'https://trello.com', desc: 'إدارة المشاريع' },
-    { name: 'Slack', url: 'https://slack.com', desc: 'تواصل الفرق' },
-    { name: 'Zoom', url: 'https://zoom.us', desc: 'اجتماعات أونلاين' },
-    { name: 'Google Workspace', url: 'https://workspace.google.com', desc: 'أدوات جوجل' },
-    { name: 'Canva', url: 'https://canva.com', desc: 'تصميم احترافي' }
-  ]}
-};
-
-function openSources(key) {
-  const data = SOURCES[key]; if (!data) return;
-  $('sources-modal-badge').textContent = '🔗 مصادر موثوقة';
-  $('sources-modal-title').textContent = data.title;
-  $('sources-modal-subtitle').textContent = data.subtitle;
-  const detectType = (url) => {
-    const u = url.toLowerCase();
-    if (/\.gov|gov\.sa|gov\.eg/.test(u)) return { label: 'حكومي', icon: 'fa-solid fa-landmark', cls: 'bg-emerald-50 text-emerald-700 border-emerald-200' };
-    if (/\.edu|edu\.sa|\.ac\./.test(u)) return { label: 'تعليمي', icon: 'fa-solid fa-graduation-cap', cls: 'bg-blue-50 text-blue-700 border-blue-200' };
-    if (/\.org/.test(u)) return { label: 'منظمة', icon: 'fa-solid fa-hand-holding-heart', cls: 'bg-violet-50 text-violet-700 border-violet-200' };
-    return { label: 'منصة', icon: 'fa-solid fa-globe', cls: 'bg-amber-50 text-amber-700 border-amber-200' };
-  };
-  $('sources-modal-body').innerHTML = '<div class="grid grid-cols-1 md:grid-cols-2 gap-4">' +
-    data.items.map(item => {
-      const src = detectType(item.url);
-      const cleanUrl = item.url.replace(/^https?:\/\//,'').replace(/\/$/,'');
-      return `<a href="${esc(item.url)}" target="_blank" rel="noopener noreferrer" class="group block rounded-2xl border border-slate-200 bg-white p-4 flex flex-col hover:border-brand-400 hover:-translate-y-0.5 hover:shadow-lg transition">
-        <div class="flex items-center justify-between gap-2 mb-3"><span class="inline-flex items-center gap-1.5 text-[10px] font-black px-2 py-1 rounded-full border ${src.cls}"><i class="${src.icon}"></i> ${src.label}</span></div>
-        <div class="flex-1 min-h-0"><h4 class="font-black text-sm text-slate-900 leading-6 line-clamp-2">${esc(item.name)}</h4><p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">${esc(item.desc)}</p><p class="mt-2 text-[10px] text-slate-400 font-mono truncate" dir="ltr">${esc(cleanUrl)}</p></div>
-        <div class="mt-4"><span class="block text-center rounded-xl bg-slate-900 group-hover:bg-brand-600 text-white text-xs font-black py-2.5 transition"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> زيارة المصدر</span></div>
-      </a>`;
-    }).join('') + '</div>';
-  openModal('sources-modal');
-}
-function closeSources() { closeModal('sources-modal'); }
-
-function openSuggestSource(section) {
-  const map = { teacher:'teacher', student:'student', pro:'pro' };
-  if (map[section]) $('sg-section').value = map[section];
-  $('sg-msg').textContent = '';
-  openModal('suggest-modal');
-}
-function closeSuggestSource() { closeModal('suggest-modal'); }
-
-async function submitSuggestSource(e) {
-  e.preventDefault();
-  const msg = $('sg-msg');
-  const name = $('sg-name').value.trim(), url = $('sg-url').value.trim();
-  const section = $('sg-section').value, reason = $('sg-reason').value.trim();
-  if (!name || !url) { msg.textContent = 'أكمل الحقول'; return; }
-  if (!/^https?:\/\//i.test(url)) { msg.textContent = 'الرابط يبدأ بـ https://'; return; }
-  msg.textContent = 'جارٍ الإرسال...';
-  try {
-    const { error } = await sb.from('source_suggestions').insert({ name, url, section, reason: reason || null, submitted_by: currentUser?.id || null, status: 'pending' });
-    if (error) { msg.textContent = 'تم الحفظ محلياً'; toast('تم استلام اقتراحك ✓', 'success'); e.target.reset(); setTimeout(closeSuggestSource, 900); return; }
-    msg.textContent = 'تم الإرسال ✓'; toast('شكراً لك! ✓', 'success'); e.target.reset(); setTimeout(closeSuggestSource, 900);
-  } catch (err) { msg.textContent = 'حدث خطأ'; }
-}
-
-/* ============ SPECIALISTS ============ */
-async function loadSpecialists() {
-  const q = $('spec-search').value.trim(), role = $('spec-role').value, mode = $('spec-mode').value;
-  const grid = $('spec-grid');
-  grid.innerHTML = '<div class="col-span-full text-center py-8 text-slate-400 text-sm">جارٍ التحميل...</div>';
-  let query = sb.from('education_profiles').select('*').eq('is_active', true).limit(60);
-  if (role !== 'all') query = query.eq('role', role);
-  const { data, error } = await query;
-  if (error) { grid.innerHTML = `<div class="col-span-full text-center text-sm text-red-500 py-8">خطأ: ${esc(error.message)}</div>`; return; }
-  let list = (data || []);
-  if (q) list = list.filter(s => `${s.display_name || ''} ${s.specialty || ''} ${s.country || ''} ${s.city || ''}`.toLowerCase().includes(q.toLowerCase()));
-  if (mode !== 'all') list = list.filter(s => Array.isArray(s.teaching_mode) && s.teaching_mode.includes(mode));
-  specialistData = list;
-  if (list.length === 0) {
-    grid.innerHTML = `<div class="col-span-full text-center py-10 rounded-2xl border border-dashed border-slate-300"><div class="font-black text-slate-700">لا توجد ملفات مطابقة</div><button onclick="openSpecialistJoin()" class="mt-3 rounded-xl bg-brand-600 text-white px-4 py-2 text-xs font-black">انضم كمتخصص</button></div>`;
-    return;
-  }
-  const roleLabels = { quran_teacher:'معلم قرآن', qari:'قارئ', quran_memorizer:'محفّظ', hadith_specialist:'متخصص حديث', arabic_teacher:'معلم عربية' };
-  grid.innerHTML = list.map(s => {
-    const wa = String(s.whatsapp || '').replace(/[^0-9]/g, '');
-    const verified = ['verified','admin_reviewed'].includes(s.verification_status);
-    const isOwner = currentUser && String(s.id) === String(currentUser.id);
-    const ownerActions = isOwner ? `
-      <button onclick="editSpecialist('${esc(s.id)}')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="تعديل"><i class="fa-solid fa-pen text-slate-600"></i></button>
-      <button onclick="deleteSpecialist('${esc(s.id)}')" class="rounded-xl border border-red-200 px-3 py-2 text-xs hover:bg-red-50" title="حذف"><i class="fa-solid fa-trash text-red-600"></i></button>
-    ` : '';
-    return `<article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-5 flex flex-col">
-      <div class="flex items-start gap-3">
-        <div class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-700 grid place-items-center text-xl font-black shrink-0">${esc((s.display_name || 'و').slice(0, 1))}</div>
-        <div class="min-w-0 flex-1">
-          <div class="flex items-center gap-1.5 flex-wrap">
-            <h3 class="font-black text-sm text-slate-900 truncate">${esc(s.display_name || 'متخصص')}</h3>
-            ${isOwner ? '<span class="text-[9px] font-bold px-2 py-0.5 rounded-full wf-owner-badge">ملفي</span>' : ''}
-          </div>
-          <div class="text-[10px] font-bold text-brand-700 mt-0.5">${esc(roleLabels[s.role] || s.role || '')}</div>
-          ${s.city || s.country ? `<div class="text-[10px] text-slate-500 mt-1"><i class="fa-solid fa-location-dot"></i> ${esc([s.city, s.country].filter(Boolean).join('، '))}</div>` : ''}
-          ${verified ? `<div class="text-[10px] font-bold text-emerald-600 mt-1"><i class="fa-solid fa-circle-check"></i> موثق</div>` : ''}
-        </div>
-      </div>
-      ${s.specialty ? `<div class="mt-3 text-xs text-slate-600"><i class="fa-solid fa-book-open text-brand-600"></i> ${esc(s.specialty)}</div>` : ''}
-      ${s.bio ? `<p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3">${esc(s.bio)}</p>` : ''}
-      ${s.years_experience ? `<div class="mt-2 text-[10px] text-slate-500">الخبرة: ${Number(s.years_experience)} سنوات</div>` : ''}
-      <div class="mt-4 flex gap-2">
-        ${wa ? `<a href="https://wa.me/${wa}" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-black py-2.5"><i class="fa-brands fa-whatsapp"></i> واتساب</a>` : ''}
-        <button onclick="openSpecialistDetails('${esc(s.id)}')" class="flex-1 rounded-xl border border-slate-200 text-xs font-bold py-2.5 hover:bg-slate-50">تفاصيل</button>
-        ${ownerActions}
-      </div>
-    </article>`;
-  }).join('');
-}
-
-function openSpecialistDetails(id) {
-  const s = specialistData.find(x => String(x.id) === String(id)); if (!s) return;
-  const roleLabels = { quran_teacher:'معلم قرآن', qari:'قارئ', quran_memorizer:'محفّظ', hadith_specialist:'متخصص حديث', arabic_teacher:'معلم عربية' };
-  const wa = String(s.whatsapp || '').replace(/[^0-9]/g, '');
-  const tg = String(s.telegram || '').replace(/^@/, '');
-  $('details-content').innerHTML = `
-    <div class="flex items-start gap-4">
-      <div class="w-20 h-20 rounded-2xl bg-brand-100 text-brand-700 grid place-items-center text-3xl font-black shrink-0">${esc((s.display_name || 'و').slice(0, 1))}</div>
-      <div class="min-w-0 flex-1">
-        <h2 class="text-xl font-black text-slate-900">${esc(s.display_name || 'متخصص')}</h2>
-        <div class="text-sm font-bold text-brand-700 mt-1">${esc(roleLabels[s.role] || s.role || '')}</div>
-        ${s.city || s.country ? `<div class="text-xs text-slate-500 mt-2"><i class="fa-solid fa-location-dot"></i> ${esc([s.city, s.country].filter(Boolean).join('، '))}</div>` : ''}
-      </div>
-    </div>
-    ${s.bio ? `<div class="mt-4 rounded-xl border border-slate-200 p-4"><div class="text-[10px] font-black text-slate-400 mb-2">نبذة</div><p class="text-sm text-slate-600 leading-7">${esc(s.bio)}</p></div>` : ''}
-    <div class="mt-5 grid grid-cols-2 gap-2">
-      ${wa ? `<a href="https://wa.me/${wa}" target="_blank" rel="noopener" class="text-center rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white py-3 text-sm font-black"><i class="fa-brands fa-whatsapp"></i> واتساب</a>` : ''}
-      ${tg ? `<a href="https://t.me/${tg}" target="_blank" rel="noopener" class="text-center rounded-xl bg-sky-500 hover:bg-sky-600 text-white py-3 text-sm font-black"><i class="fa-brands fa-telegram"></i> تيليجرام</a>` : ''}
-    </div>`;
-  openModal('details-modal');
-}
-
-function resetSpecialistForm() {
-  const form = $('spec-modal').querySelector('form');
-  if (form) { form.reset(); form.dataset.editId = ''; }
-  const h2 = $('spec-modal').querySelector('h2'); if (h2) h2.textContent = 'انضم كمتخصص';
-  const btn = $('spec-modal').querySelector('button[type="submit"]'); if (btn) btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> نشر الملف';
-  $('s-msg').textContent = '';
-}
-
-function openSpecialistJoin() {
-  if (!currentUser) { openAuthModal(); return; }
-  resetSpecialistForm();
-  openModal('spec-modal');
-}
-
-async function submitSpecialist(e) {
-  e.preventDefault();
-  if (!currentUser) { closeModal('spec-modal'); openAuthModal(); return; }
-  const msg = $('s-msg');
-  const editId = $('spec-modal').querySelector('form').dataset.editId || '';
-  msg.textContent = editId ? 'جارٍ الحفظ...' : 'جارٍ النشر...';
-  const payload = {
-    display_name: $('s-name').value.trim(), role: $('s-role').value,
-    specialty: $('s-specialty').value.trim(), bio: $('s-bio').value.trim(),
-    country: $('s-country').value.trim(), whatsapp: $('s-whatsapp').value.trim(),
-    telegram: $('s-telegram').value.trim(),
-    years_experience: Number($('s-experience').value) || 0,
-    teaching_mode: $('s-modes').value.split(',').map(x => x.trim()).filter(Boolean),
-    is_active: true
-  };
-  let error;
-  if (editId) { ({ error } = await sb.from('education_profiles').update(payload).eq('id', editId)); }
-  else { payload.id = currentUser.id; payload.verification_status = 'pending'; ({ error } = await sb.from('education_profiles').upsert(payload, { onConflict: 'id' })); }
-  if (error) { msg.textContent = error.message; toast('فشل: ' + error.message, 'error'); return; }
-  await sb.from('profiles').upsert({ id: currentUser.id, display_name: payload.display_name, region: payload.country, bio: payload.bio, updated_at: new Date().toISOString() }, { onConflict: 'id' });
-  toast(editId ? 'تم حفظ التعديلات ✓' : 'تم نشر ملفك ✓', 'success');
-  closeModal('spec-modal'); resetSpecialistForm(); loadSpecialists();
-}
-
-async function deleteSpecialist(id) {
-  if (!currentUser) { openAuthModal(); return; }
-  const s = specialistData.find(x => String(x.id) === String(id)); if (!s) return;
-  if (String(s.id) !== String(currentUser.id)) { toast('لا يمكنك حذف ملف ليس لك', 'error'); return; }
-  if (!confirm('هل أنت متأكد من حذف ملفك كمتخصص؟')) return;
-  const { error } = await sb.from('education_profiles').delete().eq('id', id);
-  if (error) { toast('فشل الحذف: ' + error.message, 'error'); return; }
-  toast('تم حذف ملفك ✓', 'success'); loadSpecialists();
-}
-
-function editSpecialist(id) {
-  if (!currentUser) { openAuthModal(); return; }
-  const s = specialistData.find(x => String(x.id) === String(id)); if (!s) return;
-  if (String(s.id) !== String(currentUser.id)) { toast('لا يمكنك تعديل ملف ليس لك', 'error'); return; }
-  $('s-name').value = s.display_name || ''; $('s-role').value = s.role || 'quran_teacher';
-  $('s-specialty').value = s.specialty || ''; $('s-country').value = s.country || '';
-  $('s-whatsapp').value = s.whatsapp || ''; $('s-telegram').value = s.telegram || '';
-  $('s-experience').value = s.years_experience || 0;
-  $('s-modes').value = Array.isArray(s.teaching_mode) ? s.teaching_mode.join(',') : '';
-  $('s-bio').value = s.bio || '';
-  $('spec-modal').querySelector('form').dataset.editId = id;
-  const h2 = $('spec-modal').querySelector('h2'); if (h2) h2.textContent = 'تعديل ملفي كمتخصص';
-  const btn = $('spec-modal').querySelector('button[type="submit"]'); if (btn) btn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> حفظ التعديلات';
-  $('s-msg').textContent = '';
-  openModal('spec-modal');
-}
-
-/* ============ LISTINGS ============ */
-async function loadListings() {
-  const q = $('list-search').value.trim().toLowerCase();
-  const cat = $('list-cat').value, type = $('list-type').value;
-  const grid = $('list-grid');
-  grid.innerHTML = '<div class="col-span-full text-center py-8 text-slate-400 text-sm">جارٍ التحميل...</div>';
-  let query = sb.from('listings').select('*').order('created_at', { ascending: false }).limit(60);
-  if (cat !== 'all') query = query.eq('category', cat);
-  if (type !== 'all') query = query.eq('type', type);
-  const { data, error } = await query;
-  if (error) { grid.innerHTML = `<div class="col-span-full text-center text-sm text-red-500 py-8">خطأ: ${esc(error.message)}</div>`; return; }
-  let list = (data || []);
-  if (q) list = list.filter(l => `${l.title || ''} ${l.description || ''}`.toLowerCase().includes(q));
-  listingData = list;
-  if (list.length === 0) {
-    grid.innerHTML = `<div class="col-span-full text-center py-10 rounded-2xl border border-dashed border-slate-300"><div class="font-black text-slate-700">لا توجد منشورات</div><button onclick="openCreateModal()" class="mt-3 rounded-xl bg-brand-600 text-white px-4 py-2 text-xs font-black">كن أول من ينشر</button></div>`;
-    return;
-  }
-  const catLabel = { quran:'📖 قرآن', arabic:'📝 عربية', hadith:'📚 حديث', kids:'👧 أطفال', languages:'🌍 لغات', services:'🛠 خدمات' };
-  grid.innerHTML = list.map(l => {
-    const isOwner = currentUser && String(l.user_id) === String(currentUser.id);
-    const ownerActions = isOwner ? `
-      <button onclick="editListing('${esc(l.id)}')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="تعديل"><i class="fa-solid fa-pen text-slate-600"></i></button>
-      <button onclick="deleteListing('${esc(l.id)}')" class="rounded-xl border border-red-200 px-3 py-2 text-xs hover:bg-red-50" title="حذف"><i class="fa-solid fa-trash text-red-600"></i></button>
-    ` : '';
-    return `<article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-5 flex flex-col">
-      <div class="flex items-center justify-between gap-2 mb-3">
-        <span class="text-[10px] font-black px-2 py-1 rounded-full bg-brand-50 text-brand-700">${catLabel[l.category] || l.category}</span>
-        <div class="flex items-center gap-1.5">
-          ${isOwner ? '<span class="text-[9px] font-bold px-2 py-0.5 rounded-full wf-owner-badge">منشوري</span>' : ''}
-          <span class="text-[10px] font-bold px-2 py-1 rounded-full ${l.type === 'offer' ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700'}">${l.type === 'offer' ? 'عرض' : 'طلب'}</span>
-        </div>
-      </div>
-      <h3 class="font-black text-sm text-slate-900 line-clamp-2">${esc(l.title)}</h3>
-      <p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-3 flex-1">${esc(l.description)}</p>
-      <div class="mt-4 flex items-center justify-between text-xs">
-        <span class="text-slate-400">${timeAgo(l.created_at)}</span>
-        ${Number(l.amount) > 0 ? `<span class="font-black text-brand-700">${Number(l.amount).toLocaleString()} ر.س</span>` : '<span class="text-slate-400 text-[10px]">حسب الاتفاق</span>'}
-      </div>
-      <div class="mt-4 flex gap-2">
-        <button onclick="openListingDetails('${esc(l.id)}')" class="flex-1 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2.5"><i class="fa-solid fa-circle-info"></i> التفاصيل</button>
-        <button onclick="openContact('${esc(l.id)}')" class="flex-1 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-black py-2.5"><i class="fa-solid fa-handshake"></i> تواصل</button>
-        ${ownerActions}
-      </div>
-    </article>`;
-  }).join('');
-}
-
-function openListingDetails(id) {
-  const l = listingData.find(x => String(x.id) === String(id)); if (!l) return;
-  const catLabel = { quran:'📖 قرآن', arabic:'📝 عربية', hadith:'📚 حديث', kids:'👧 أطفال', languages:'🌍 لغات', services:'🛠 خدمات' };
-  const regionLabels = { GLOBAL:'عالمي', KSA:'السعودية', EGP:'مصر', UAE:'الإمارات', GCC:'الخليج', AFRICA:'أفريقيا', FOREIGN:'أوروبا/أمريكا/آسيا' };
-  $('details-content').innerHTML = `
-    <div class="mb-4">
-      <span class="text-[10px] font-black px-2 py-1 rounded-full bg-brand-50 text-brand-700">${catLabel[l.category] || l.category}</span>
-      <span class="ms-2 text-[10px] font-bold px-2 py-1 rounded-full ${l.type === 'offer' ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700'}">${l.type === 'offer' ? 'عرض' : 'طلب'}</span>
-      <h2 class="text-xl font-black text-slate-900 mt-3">${esc(l.title)}</h2>
-      <div class="text-xs text-slate-500 mt-2"><i class="fa-solid fa-location-dot"></i> ${esc(regionLabels[l.region] || l.region || '—')} · ${timeAgo(l.created_at)}</div>
-    </div>
-    <div class="rounded-xl border border-slate-200 p-4 mb-4"><p class="text-sm text-slate-700 leading-7 whitespace-pre-wrap">${esc(l.description)}</p></div>
-    <div class="flex gap-2">
-      <button onclick="closeModal('details-modal'); openContact('${esc(l.id)}')" class="flex-1 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white py-3 text-sm font-black"><i class="fa-solid fa-handshake"></i> تواصل</button>
-      <button onclick="shareListing('${esc(l.id)}')" class="rounded-xl border border-slate-200 px-4 py-3 text-sm font-bold hover:bg-slate-50"><i class="fa-solid fa-share-nodes"></i></button>
-    </div>`;
-  openModal('details-modal');
-}
-
-async function shareListing(id) {
-  const l = listingData.find(x => String(x.id) === String(id)); if (!l) return;
-  const text = `${l.title}\n${(l.description || '').slice(0, 200)}`;
-  if (navigator.share) { try { await navigator.share({ title: l.title, text }); } catch (e) { if (e.name !== 'AbortError') copyText(text); } }
-  else copyText(text);
-}
-
-function resetCreateForm() {
-  $('create-form').reset();
-  $('create-form').dataset.editId = '';
-  $('c-msg').textContent = '';
-  const modal = $('create-modal');
-  if (modal) {
-    const h2 = modal.querySelector('h2'); if (h2) h2.textContent = 'نشر طلب / عرض تعليمي';
-    const p = modal.querySelector('p'); if (p) p.textContent = 'سيظهر منشورك في السوق مباشرة ويصبح قابلاً للتواصل.';
-    const btn = modal.querySelector('button[type="submit"]'); if (btn) btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> نشر على السحابة';
-  }
-}
-
-function openCreateModal() {
-  if (!currentUser) { openAuthModal(); return; }
-  resetCreateForm();
-  openModal('create-modal');
-}
-
-async function submitListing(e) {
-  e.preventDefault();
-  if (!currentUser) { openAuthModal(); return; }
-  const msg = $('c-msg');
-  const editId = $('create-form').dataset.editId || '';
-  const payload = {
-    title: $('c-title').value.trim(), category: $('c-category').value,
-    region: $('c-region').value, type: $('c-type').value,
-    amount: Number($('c-amount').value) || 0,
-    description: $('c-desc').value.trim(), phone: $('c-phone').value.trim(),
-    badge: 'unverified', status: 'approved'
-  };
-  if (editId) {
-    msg.textContent = 'جارٍ الحفظ...';
-    const { error } = await sb.from('listings').update(payload).eq('id', editId);
-    if (error) { msg.textContent = error.message; toast('فشل: ' + error.message, 'error'); return; }
-    toast('تم حفظ التعديلات ✓', 'success');
-  } else {
-    msg.textContent = 'جارٍ النشر...';
-    payload.user_id = currentUser.id;
-    const { error } = await sb.from('listings').insert(payload);
-    if (error) { msg.textContent = error.message; toast('فشل: ' + error.message, 'error'); return; }
-    toast('تم النشر ✓', 'success');
-  }
-  closeModal('create-modal'); resetCreateForm(); loadListings();
-}
-
-async function deleteListing(id) {
-  if (!currentUser) { openAuthModal(); return; }
-  const l = listingData.find(x => String(x.id) === String(id)); if (!l) return;
-  if (String(l.user_id) !== String(currentUser.id)) { toast('لا يمكنك حذف منشور ليس لك', 'error'); return; }
-  if (!confirm('هل أنت متأكد من حذف هذا المنشور؟')) return;
-  const { error } = await sb.from('listings').delete().eq('id', id);
-  if (error) { toast('فشل الحذف: ' + error.message, 'error'); return; }
-  toast('تم حذف المنشور ✓', 'success'); loadListings();
-}
-
-function editListing(id) {
-  if (!currentUser) { openAuthModal(); return; }
-  const l = listingData.find(x => String(x.id) === String(id)); if (!l) return;
-  if (String(l.user_id) !== String(currentUser.id)) { toast('لا يمكنك تعديل منشور ليس لك', 'error'); return; }
-  $('c-title').value = l.title || ''; $('c-category').value = l.category || 'quran';
-  $('c-region').value = l.region || 'GLOBAL'; $('c-type').value = l.type || 'offer';
-  $('c-amount').value = l.amount || ''; $('c-desc').value = l.description || '';
-  $('c-phone').value = l.phone || '';
-  $('create-form').dataset.editId = id;
-  const modal = $('create-modal');
-  if (modal) {
-    const h2 = modal.querySelector('h2'); if (h2) h2.textContent = 'تعديل المنشور';
-    const p = modal.querySelector('p'); if (p) p.textContent = 'عدّل البيانات ثم اضغط حفظ.';
-    const btn = modal.querySelector('button[type="submit"]'); if (btn) btn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> حفظ التعديلات';
-  }
-  $('c-msg').textContent = '';
-  openModal('create-modal');
-}
-
-/* ============ CONTACT ============ */
-async function openContact(listingId) {
-  if (!currentUser) { openAuthModal(); return; }
-  const { data, error } = await sb.rpc('get_listing_contact', { p_listing_id: listingId });
-  const row = Array.isArray(data) ? data[0] : data;
-  if (error || !row?.phone) { toast('لا يوجد رقم تواصل معلن', 'warn'); return; }
-  contactTarget = { id: listingId, phone: row.phone };
-  const { data: listing } = await sb.from('listings').select('title').eq('id', listingId).single();
-  const name = currentUser.email.split('@')[0];
-  $('contact-msg').value = `مرحباً، أنا ${name}.\nأنا مهتم بإعلانك على منصة وفاق:\n"${listing?.title || ''}"\nيرجى التواصل معي. شكراً.`;
-  $('contact-title').textContent = `تواصل: ${listing?.title?.slice(0, 40) || 'منشور'}`;
-  openModal('contact-modal');
-}
-function sendContactWhatsApp() {
-  if (!contactTarget) return;
-  const phone = contactTarget.phone.replace(/[^0-9]/g, '');
-  const text = encodeURIComponent($('contact-msg').value);
-  window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
-}
-async function copyContactMsg() { copyText($('contact-msg').value); }
-
-/* ============ WORKSPACE ============ */
-async function loadWorkspace() {
-  if (!currentUser) return;
-  const [connRes, favRes, msgRes, profRes] = await Promise.all([
-    sb.from('connections').select('*').or(`requester_id.eq.${currentUser.id},provider_id.eq.${currentUser.id}`).order('created_at', { ascending: false }).limit(20),
-    sb.from('favorites').select('id').eq('user_id', currentUser.id),
-    sb.from('messages').select('id').eq('recipient_id', currentUser.id).is('read_at', null),
-    sb.from('profiles').select('*').eq('id', currentUser.id).maybeSingle()
-  ]);
-  const connections = connRes.data || [];
-  const active = connections.filter(c => ['accepted','in_progress'].includes(c.status));
-  $('ws-connections').textContent = active.length;
-  $('ws-saved').textContent = (favRes.data || []).length;
-  $('ws-unread').textContent = (msgRes.data || []).length;
-  const p = profRes.data || {};
-  const fields = [p.display_name, p.phone, p.region, p.bio];
-  $('ws-completeness').textContent = Math.round((fields.filter(Boolean).length / fields.length) * 100) + '%';
-  $('p-name').value = p.display_name || ''; $('p-phone').value = p.phone || '';
-  $('p-region').value = p.region || ''; $('p-bio').value = p.bio || '';
-  const list = $('ws-connections-list');
-  if (connections.length === 0) { list.innerHTML = '<div class="text-center text-xs text-slate-400 py-6">لا توجد اتصالات بعد</div>'; return; }
-  const statusMap = { pending:'طلب اتصال', accepted:'مقبول', in_progress:'قيد التنفيذ', completed:'مكتمل', rejected:'مرفوض', cancelled:'ملغى' };
-  list.innerHTML = connections.map(c => {
-    const isIncoming = c.provider_id === currentUser.id;
-    const canAccept = isIncoming && c.status === 'pending';
-    const canChat = ['accepted','in_progress'].includes(c.status);
-    return `<div class="rounded-xl border border-slate-200 p-3">
-      <div class="flex items-center justify-between gap-2"><span class="text-xs font-bold">${statusMap[c.status] || c.status}</span><span class="text-[10px] text-slate-400">${timeAgo(c.created_at)}</span></div>
-      <div class="mt-2 flex gap-2">
-        ${canAccept ? `<button onclick="updateConnection('${c.id}','accepted')" class="flex-1 rounded-lg bg-emerald-600 text-white text-[10px] font-black py-1.5">قبول</button>` : ''}
-        ${canChat ? `<button onclick="openChat('${c.id}','${isIncoming ? c.requester_id : c.provider_id}')" class="flex-1 rounded-lg bg-brand-600 text-white text-[10px] font-black py-1.5">محادثة</button>` : ''}
-      </div>
-    </div>`;
-  }).join('');
-}
-
-async function saveProfile(e) {
-  e.preventDefault();
-  if (!currentUser) return;
-  const { error } = await sb.from('profiles').upsert({
-    id: currentUser.id, display_name: $('p-name').value.trim(),
-    phone: $('p-phone').value.trim(), region: $('p-region').value.trim(),
-    bio: $('p-bio').value.trim(), updated_at: new Date().toISOString()
-  }, { onConflict: 'id' });
-  $('p-msg').textContent = error ? error.message : 'تم الحفظ ✓';
-  if (!error) { toast('تم حفظ الملف ✓', 'success'); loadWorkspace(); }
-}
-
-async function updateConnection(id, status) {
-  const { error } = await sb.from('connections').update({ status, updated_at: new Date().toISOString() }).eq('id', id);
-  if (error) toast('فشل التحديث', 'error'); else { toast('تم التحديث ✓', 'success'); loadWorkspace(); }
-}
-
-/* ============ REALTIME ============ */
-function setupRealtime() {
-  if (!currentUser) return;
-  teardownRealtime();
-  const msgCh = sb.channel('wefaq_msgs').on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages', filter: `recipient_id=eq.${currentUser.id}` }, payload => {
-    toast('لديك رسالة جديدة', 'info');
-    if (activeConnection && payload.new.connection_id === activeConnection) loadChat();
-    loadWorkspace();
-  }).subscribe();
-  realtimeChannels.push(msgCh);
-  const connCh = sb.channel('wefaq_conns').on('postgres_changes', { event: '*', schema: 'public', table: 'connections', filter: `provider_id=eq.${currentUser.id}` }, () => { toast('تحديث على طلب اتصال', 'info'); loadWorkspace(); }).subscribe();
-  realtimeChannels.push(connCh);
-}
-function teardownRealtime() { realtimeChannels.forEach(ch => sb.removeChannel(ch)); realtimeChannels = []; }
-
-/* ============ CHAT ============ */
-async function openChat(connectionId, recipientId) {
-  activeConnection = connectionId; activeRecipient = recipientId;
-  openModal('chat-modal'); await loadChat();
-}
-async function loadChat() {
-  if (!activeConnection || !currentUser) return;
-  const { data } = await sb.from('messages').select('*').eq('connection_id', activeConnection).order('created_at', { ascending: true }).limit(100);
-  const list = $('chat-list');
-  if (!data || data.length === 0) list.innerHTML = '<div class="text-center text-xs text-slate-400 py-8">ابدأ المحادثة</div>';
-  else {
-    list.innerHTML = data.map(m => `<div class="max-w-[80%] ${m.sender_id === currentUser.id ? 'ms-auto bg-brand-600 text-white' : 'bg-white border border-slate-200'} rounded-xl px-3 py-2 text-xs">${esc(m.body)}<div class="text-[9px] opacity-60 mt-1">${new Date(m.created_at).toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' })}</div></div>`).join('');
-    list.scrollTop = list.scrollHeight;
-  }
-  await sb.from('messages').update({ read_at: new Date().toISOString() }).eq('connection_id', activeConnection).eq('recipient_id', currentUser.id).is('read_at', null);
-}
-async function sendChat(e) {
-  e.preventDefault();
-  const body = $('chat-input').value.trim();
-  if (!body || !activeConnection || !currentUser) return;
-  const { error } = await sb.from('messages').insert({ connection_id: activeConnection, sender_id: currentUser.id, recipient_id: activeRecipient, body });
-  if (error) { toast('فشل الإرسال', 'error'); return; }
-  $('chat-input').value = ''; await loadChat();
-}
-function closeChat() { closeModal('chat-modal'); activeConnection = null; activeRecipient = null; }
-
-/* ============ COMMUNITIES ============ */
-async function loadCommunities() {
-  const grid = $('comm-grid'); if (!grid) return;
-  grid.innerHTML = '<div class="col-span-full text-center py-8 text-slate-400 text-sm">جارٍ التحميل...</div>';
-  const { data, error } = await sb.from('communities').select('*').order('created_at', { ascending: false }).limit(100);
-  if (error) { grid.innerHTML = `<div class="col-span-full text-center text-sm text-red-500 py-8">خطأ: ${esc(error.message)}</div>`; return; }
-  communitiesData = data || [];
-  renderCommunities();
-}
-
-function openCommunityModal() {
-  if (!currentUser) { toast('سجّل الدخول أولاً', 'warn'); openAuthModal(); return; }
-  resetCommunityForm();
-  openModal('comm-modal');
-}
-
-function resetCommunityForm() {
-  const form = $('comm-modal').querySelector('form');
-  if (form) { form.reset(); form.dataset.editId = ''; }
-  const h2 = $('comm-modal').querySelector('h2'); if (h2) h2.textContent = 'أضف مجتمعاً عاماً';
-  const btn = $('comm-modal').querySelector('button[type="submit"]'); if (btn) btn.textContent = 'حفظ';
-}
-
-function setCommunityFilter(f) {
-  commFilter = f;
-  document.querySelectorAll('.cf-btn').forEach(b => {
-    const active = b.dataset.cf === f;
-    b.className = `cf-btn px-4 py-2 rounded-xl text-xs font-black ${active ? 'bg-brand-600 text-white' : 'bg-slate-100 text-slate-700'}`;
-  });
-  renderCommunities();
-}
-
-async function submitCommunity(e) {
-  e.preventDefault();
-  if (!currentUser) { openAuthModal(); return; }
-  const platform = $('cm-platform').value, url = $('cm-url').value.trim();
-  const host = platform === 'telegram' ? /^https:\/\/(t\.me|telegram\.me)\//i : /^https:\/\/(www\.)?facebook\.com\//i;
-  if (!host.test(url)) { toast('الرابط غير صالح', 'error'); return; }
-  const editId = $('comm-modal').querySelector('form').dataset.editId || '';
-  const payload = {
-    platform, name: $('cm-name').value.trim(), url,
-    category: $('cm-category').value.trim(), region: $('cm-region').value.trim(),
-    description: $('cm-desc').value.trim(), updated_at: new Date().toISOString()
-  };
-  let error;
-  if (editId) { ({ error } = await sb.from('communities').update(payload).eq('id', editId)); }
-  else { payload.user_id = currentUser.id; ({ error } = await sb.from('communities').insert(payload)); }
-  if (error) { toast('فشل: ' + error.message, 'error'); return; }
-  toast(editId ? 'تم حفظ التعديلات ✓' : 'تمت الإضافة ✓', 'success');
-  closeModal('comm-modal'); resetCommunityForm(); loadCommunities();
-}
-
-function editCommunity(id) {
-  const c = communitiesData.find(x => String(x.id) === String(id)); if (!c) return;
-  if (!currentUser || String(c.user_id) !== String(currentUser.id)) { toast('لا يمكنك تعديل مجتمع ليس لك', 'error'); return; }
-  $('cm-platform').value = c.platform || 'telegram';
-  $('cm-name').value = c.name || ''; $('cm-url').value = c.url || '';
-  $('cm-category').value = c.category || ''; $('cm-region').value = c.region || '';
-  $('cm-desc').value = c.description || '';
-  $('comm-modal').querySelector('form').dataset.editId = id;
-  const h2 = $('comm-modal').querySelector('h2'); if (h2) h2.textContent = 'تعديل المجتمع';
-  const btn = $('comm-modal').querySelector('button[type="submit"]'); if (btn) btn.textContent = 'حفظ التعديلات';
-  openModal('comm-modal');
-}
-
-async function deleteCommunity(id) {
-  const c = communitiesData.find(x => String(x.id) === String(id)); if (!c) return;
-  if (!currentUser || String(c.user_id) !== String(currentUser.id)) { toast('لا يمكنك حذف مجتمع ليس لك', 'error'); return; }
-  if (!confirm('هل أنت متأكد من حذف هذا المجتمع؟')) return;
-  const { error } = await sb.from('communities').delete().eq('id', id);
-  if (error) { toast('فشل الحذف: ' + error.message, 'error'); return; }
-  toast('تم حذف المجتمع ✓', 'success'); loadCommunities();
-}
-
-function renderCommunities() {
-  const q = ($('comm-search')?.value || '').trim().toLowerCase();
-  const list = communitiesData.filter(c => commFilter === 'all' || c.platform === commFilter).filter(c => !q || `${c.name || ''} ${c.category || ''} ${c.region || ''}`.toLowerCase().includes(q));
-  const grid = $('comm-grid'); if (!grid) return;
-  if (list.length === 0) {
-    grid.innerHTML = `<div class="col-span-full text-center py-10 rounded-2xl border border-dashed border-slate-300"><div class="font-black text-slate-700">لا توجد مجتمعات بعد</div><button onclick="openCommunityModal()" class="mt-3 rounded-xl bg-brand-600 text-white px-4 py-2 text-xs font-black">أضف أول مجتمع</button></div>`;
-    return;
-  }
-  grid.innerHTML = list.map(c => {
-    const isTelegram = c.platform === 'telegram';
-    const icon = isTelegram ? 'fa-brands fa-telegram text-sky-500' : 'fa-brands fa-facebook-f text-blue-600';
-    const isOwner = currentUser && String(c.user_id) === String(currentUser.id);
-    const ownerActions = isOwner ? `
-      <button onclick="editCommunity('${esc(c.id)}')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="تعديل"><i class="fa-solid fa-pen text-slate-600"></i></button>
-      <button onclick="deleteCommunity('${esc(c.id)}')" class="rounded-xl border border-red-200 px-3 py-2 text-xs hover:bg-red-50" title="حذف"><i class="fa-solid fa-trash text-red-600"></i></button>
-    ` : '';
-    return `<article class="wf-card-hover rounded-2xl border border-slate-200 bg-white p-5 flex flex-col">
-      <div class="flex items-center justify-between gap-2 mb-3">
-        <div class="flex items-center gap-2"><span class="text-lg"><i class="${icon}"></i></span><span class="text-[10px] font-black text-slate-500">${isTelegram ? 'تيليجرام' : 'فيسبوك'}</span></div>
-        ${isOwner ? '<span class="text-[9px] font-bold px-2 py-0.5 rounded-full wf-owner-badge">مجتمعي</span>' : ''}
-      </div>
-      <h3 class="font-black text-sm text-slate-900">${esc(c.name)}</h3>
-      ${c.description ? `<p class="mt-2 text-xs text-slate-500 leading-6 line-clamp-2 flex-1">${esc(c.description)}</p>` : '<div class="flex-1"></div>'}
-      <div class="mt-3 flex flex-wrap gap-1.5">
-        ${c.category ? `<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-50 text-brand-700">${esc(c.category)}</span>` : ''}
-        ${c.region ? `<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700">${esc(c.region)}</span>` : ''}
-      </div>
-      <div class="mt-4 flex gap-2">
-        <a href="${esc(c.url)}" target="_blank" rel="noopener" class="flex-1 text-center rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2.5"><i class="fa-solid fa-arrow-up-right-from-square"></i> زيارة</a>
-        <button onclick="shareCommunity('${esc(c.id)}')" class="rounded-xl border border-slate-200 px-3 py-2 text-xs hover:bg-slate-50" title="مشاركة"><i class="fa-solid fa-share-nodes"></i></button>
-        ${ownerActions}
-      </div>
-    </article>`;
-  }).join('');
-}
-
-async function shareCommunity(id) {
-  const c = communitiesData.find(x => String(x.id) === String(id)); if (!c) return;
-  const text = `${c.name}\n${c.description || ''}\n${c.url}`;
-  if (navigator.share) { try { await navigator.share({ title: c.name, text, url: c.url }); } catch (e) { if (e.name !== 'AbortError') copyText(text); } }
-  else copyText(text);
-}
-
-/* ============ HERO SEARCH ============ */
-function heroSearch() {
-  const q = $('hero-search').value.trim(), role = $('hero-role').value;
-  $('spec-search').value = q; $('spec-role').value = role;
-  scrollTo('specialists'); loadSpecialists();
-}
-
-/* ============ INIT ============ */
-document.addEventListener('DOMContentLoaded', async () => {
-  initTheme();
-  $('year').textContent = new Date().getFullYear();
-  initVisitorCounter();
-  loadRadarFromCache();
-  renderRadar(); updateRadarStats(); renderHeroRadarPreview();
-  loadSpecialists(); loadListings(); loadCommunities();
-
-  const { data: { session } } = await sb.auth.getSession();
-  currentUser = session?.user || null;
-  updateAuthUI();
-  if (currentUser) { loadWorkspace(); setupRealtime(); }
-
-  const lastSync = Number(localStorage.getItem('wefaq_radar_last_sync') || 0);
-  if (Date.now() - lastSync > 20 * 60 * 1000) setTimeout(() => syncRadar(false), 800);
-
-  syncTimer = setInterval(() => { if (document.visibilityState === 'visible') syncRadar(false); }, 20 * 60 * 1000);
-});
-
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    ['auth-modal','create-modal','spec-modal','comm-modal','contact-modal','chat-modal','details-modal','sources-modal','suggest-modal'].forEach(closeModal);
-  }
-});
-</script>
-
-</body></html>
+window
